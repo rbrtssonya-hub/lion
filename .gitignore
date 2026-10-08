@@ -1,0 +1,9 @@
+node_modules/
+tmp/
+
+# Local/editor noise
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+*.pyc

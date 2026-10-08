@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "status": "needs-layer-rebuild",
+  "model": "nanfeng-lion.model3.json",
+  "runtime": {
+    "adapter": "../runtime/nanfeng-live2d-runtime.js",
+    "localRuntime": "../runtime/nanfeng-live2d-runtime.js",
+    "cdnRuntime": "../runtime/nanfeng-live2d-runtime.js",
+    "localDependencies": [
+      "../runtime/pixi.min.js",
+      "../runtime/live2dcubismcore.min.js",
+      "../runtime/pixi-live2d-display-cubism4.min.js"
+    ],
+    "cdnDependencies": [
+      "https://cdn.jsdelivr.net/npm/pixi.js@7.4.2/dist/pixi.min.js",
+      "https://cubism.live2d.com/sdk-web/core/06/live2dcubismcore.min.js",
+      "https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/cubism4.min.js"
+    ]
+  },
+  "motions": [
+    "Idle",
+    "Blink",
+    "LookAt",
+    "EntryConfirm"
+  ],
+  "parameters": [
+    "ParamAngleX",
+    "ParamAngleY",
+    "ParamAngleZ",
+    "ParamBodyAngleX",
+    "ParamBreath",
+    "ParamEyeLOpen",
+    "ParamEyeROpen",
+    "ParamEyeBallX",
+    "ParamEyeBallY",
+    "ParamMouthOpenY",
+    "ParamHairSway",
+    "ParamTasselSway"
+  ],
+  "layers": [
+    "Background",
+    "Lion_Body",
+    "Lion_Head",
+    "Lion_Mane",
+    "Lion_Beard",
+    "Lion_Eyes",
+    "Lion_Pupils",
+    "Lion_Eyelids",
+    "Lion_Mouth",
+    "Lion_Tassels",
+    "Background_Repair"
+  ]
+}

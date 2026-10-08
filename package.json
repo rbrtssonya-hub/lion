@@ -1,0 +1,17 @@
+{
+  "name": "nan-feng-you-shi",
+  "private": true,
+  "scripts": {
+    "dev": "vite --config vite.config.mjs",
+    "build": "vite --config vite.config.mjs build",
+    "test:entry": "node site/tests/react-entry-framework.mjs"
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "hyperframes": "0.8.140",
+    "vite": "7.1.9"
+  }
+}

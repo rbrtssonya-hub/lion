@@ -1,0 +1,20 @@
+{
+  "Version": 3,
+  "Meta": {
+    "Duration": 0.28,
+    "Fps": 30.0,
+    "Loop": false,
+    "FadeOutTime": 0,
+    "AreBeziersRestricted": false,
+    "CurveCount": 2,
+    "TotalSegmentCount": 4,
+    "TotalPointCount": 6,
+    "UserDataCount": 0,
+    "TotalUserDataSize": 0
+  },
+  "Curves": [
+    {"Target":"Parameter","Id":"ParamEyeLOpen","Segments":[0,1,0,0.12,0,0,0.28,1]},
+    {"Target":"Parameter","Id":"ParamEyeROpen","Segments":[0,1,0,0.12,0,0,0.28,1]}
+  ],
+  "UserData": []
+}

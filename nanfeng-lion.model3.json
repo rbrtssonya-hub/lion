@@ -1,0 +1,10 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "nanfeng-lion.moc3",
+		"Textures": [
+			"nanfeng-lion.1024/texture_00.png"
+		],
+		"DisplayInfo": "nanfeng-lion.cdi3.json"
+	}
+}
