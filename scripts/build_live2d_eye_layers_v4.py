@@ -5,11 +5,11 @@ from PIL import Image, ImageDraw, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Image.open(ROOT / 'site/assets/entry/home-cover.png').convert('RGBA')
-HEAD = Image.open(ROOT / 'site/assets/live2d/source-v2/Lion_Head.png').convert('RGBA')
-REPAIR = Image.open(ROOT / 'site/assets/live2d/source-v2/Background_Repair.png').convert('RGBA')
-OUT = ROOT / 'site/assets/live2d/source-v4'
-PREVIEW = ROOT / 'tmp/lion-v4-eye-preview.png'
+SOURCE_PATH = ROOT / 'source/public/assets/entry/home-cover.png'
+HEAD_PATH = ROOT / 'source/live2d/source-v2/Lion_Head.png'
+REPAIR_PATH = ROOT / 'source/live2d/source-v2/Background_Repair.png'
+OUT = ROOT / 'source/live2d/source-v4'
+PREVIEW = ROOT / 'source/reviews/live2d/lion-v4-eye-preview.png'
 
 
 EYES = {
@@ -32,13 +32,13 @@ EYES = {
 }
 
 
-def mask_for(points, blur=1.2):
-    mask = Image.new('L', SOURCE.size, 0)
+def mask_for(size, points, blur=1.2):
+    mask = Image.new('L', size, 0)
     ImageDraw.Draw(mask).polygon(points, fill=255)
     return mask.filter(ImageFilter.GaussianBlur(blur))
 
 
-def layer_from_mask(mask, *, source=SOURCE):
+def layer_from_mask(source, mask):
     layer = source.copy()
     layer.putalpha(mask)
     return layer
@@ -54,32 +54,36 @@ def subtract_mask(image, masks):
     return image
 
 
-def make_eye_layers(side, spec):
-    outer = mask_for(spec['outer'], 1.0)
-    pupil = Image.new('L', SOURCE.size, 0)
+def make_eye_layers(source, side, spec):
+    outer = mask_for(source.size, spec['outer'], 1.0)
+    pupil = Image.new('L', source.size, 0)
     ImageDraw.Draw(pupil).ellipse(spec['pupil'], fill=255)
     pupil = pupil.filter(ImageFilter.GaussianBlur(1.0))
     # The complete eye artwork excludes only the movable black pupil.
     eye_mask = Image.fromarray(__import__('numpy').maximum(0, __import__('numpy').array(outer) - __import__('numpy').array(pupil)).astype('uint8'))
-    lid_mask = mask_for(spec['lid'], 1.0)
+    lid_mask = mask_for(source.size, spec['lid'], 1.0)
     return {
-        f'Eye_{side}': layer_from_mask(eye_mask),
-        f'Pupil_{side}': layer_from_mask(pupil),
-        f'Eyelid_{side}': layer_from_mask(lid_mask),
+        f'Eye_{side}': layer_from_mask(source, eye_mask),
+        f'Pupil_{side}': layer_from_mask(source, pupil),
+        f'Eyelid_{side}': layer_from_mask(source, lid_mask),
     }
 
 
 def main():
     import numpy as np
 
+    source = Image.open(SOURCE_PATH).convert('RGBA')
+    head = Image.open(HEAD_PATH).convert('RGBA')
+    repair = Image.open(REPAIR_PATH).convert('RGBA')
     OUT.mkdir(parents=True, exist_ok=True)
-    base = HEAD.copy()
+    PREVIEW.parent.mkdir(parents=True, exist_ok=True)
+    base = head.copy()
     eye_masks = []
     layers = {}
     for side, spec in EYES.items():
-        generated = make_eye_layers(side, spec)
+        generated = make_eye_layers(source, side, spec)
         layers.update(generated)
-        eye_masks.append(mask_for(spec['outer'], 2.0))
+        eye_masks.append(mask_for(source.size, spec['outer'], 2.0))
 
     # Remove the original eye pixels from the head base so the independent eye
     # and upper-eyelid layers can move without leaving a duplicate eye behind.
@@ -88,20 +92,20 @@ def main():
         alpha = np.minimum(alpha, 255 - np.array(mask, dtype=np.uint8))
     base.putalpha(Image.fromarray(alpha, mode='L'))
 
-    shutil.copy2(ROOT / 'site/assets/live2d/source-v2/Background_Repair.png', OUT / 'Background_Repair.png')
+    shutil.copy2(REPAIR_PATH, OUT / 'Background_Repair.png')
     base.save(OUT / 'Lion_Head_Base.png')
     for name, image in layers.items():
         image.save(OUT / f'{name}.png')
 
     # Preview: base -> eyes -> pupils (open state), then eyelids dropped over both eyes.
-    preview = Image.alpha_composite(REPAIR, base)
+    preview = Image.alpha_composite(repair, base)
     for name in ('Eye_L', 'Eye_R', 'Pupil_L', 'Pupil_R'):
         preview = Image.alpha_composite(preview, layers[name])
     open_preview = preview.copy()
     for name in ('Eyelid_L', 'Eyelid_R'):
         preview = Image.alpha_composite(preview, layers[name])
     preview.save(PREVIEW)
-    open_preview.save(ROOT / 'tmp/lion-v4-eye-open-preview.png')
+    open_preview.save(PREVIEW.with_name('lion-v4-eye-open-preview.png'))
     print(f'wrote {OUT}')
     print(f'preview={PREVIEW}')
 

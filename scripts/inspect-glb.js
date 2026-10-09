@@ -1,7 +1,8 @@
-const fs = require('fs');
+import fs from 'node:fs';
+import { resolve } from 'node:path';
 
-const file = process.argv[2];
-if (!file) throw new Error('Usage: node inspect-glb.js <file.glb>');
+const root = resolve(import.meta.dirname, '..');
+const file = resolve(root, process.argv[2] ?? 'source/public/assets/models/lion-overall.glb');
 
 const bytes = fs.readFileSync(file);
 if (bytes.toString('ascii', 0, 4) !== 'glTF') throw new Error('Not a GLB file');

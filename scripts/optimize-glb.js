@@ -1,9 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
-const input = process.argv[2];
-const output = process.argv[3];
-if (!input || !output) throw new Error('Usage: node optimize-glb.js <input.glb> <output.glb>');
+const root = path.resolve(import.meta.dirname, '..');
+const inputArgument = process.argv[2];
+const outputArgument = process.argv[3];
+if (!inputArgument || !outputArgument) {
+  throw new Error('Usage: node scripts/optimize-glb.js <input.glb> <output.glb> (paths relative to repository root)');
+}
+const input = path.resolve(root, inputArgument);
+const output = path.resolve(root, outputArgument);
+if (fs.existsSync(output)) {
+  throw new Error(`Output already exists; choose a new file to preserve the original: ${output}`);
+}
 
 const source = fs.readFileSync(input);
 if (source.toString('ascii', 0, 4) !== 'glTF') throw new Error('Not a GLB file');
@@ -133,7 +141,7 @@ result.writeUInt32LE(0x004e4942, binHeader + 4);
 rebuiltBinary.copy(result, binHeader + 8);
 
 fs.mkdirSync(path.dirname(output), { recursive: true });
-fs.writeFileSync(output, result);
+fs.writeFileSync(output, result, { flag: 'wx' });
 console.log(JSON.stringify({
   input,
   output,

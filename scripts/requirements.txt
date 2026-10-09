@@ -1,0 +1,5 @@
+# Asset tooling only; the React application does not need Python.
+Pillow>=10.0
+numpy>=1.24
+pytoshop>=1.2.1
+# import_lion_into_blender.py uses bpy bundled with Blender, not a pip package.

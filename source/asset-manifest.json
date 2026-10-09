@@ -1,0 +1,414 @@
+{
+  "version": 1,
+  "migratedOn": "2026-10-09",
+  "files": [
+    {
+      "from": "site/assets/entry/final-home.png",
+      "path": "source/design/final-home.png",
+      "bytes": 3534016,
+      "sha256": "7eb2701e245bdea44c8b2a031ee9fac6db225a078c2c2be36a1239c840f66cc5"
+    },
+    {
+      "from": "site/assets/live2d/nanfeng-lion/nanfeng-lion.1024/texture_00.png",
+      "path": "source/live2d/cubism/nanfeng-lion.1024/texture_00.png",
+      "bytes": 2243385,
+      "sha256": "7b1b163f20d9c3d49df048c2e87fde40419bb4f79fbd522e02039a33d94b581a"
+    },
+    {
+      "from": "site/assets/live2d/nanfeng-lion/nanfeng-lion.cmo3",
+      "path": "source/live2d/cubism/nanfeng-lion.cmo3",
+      "bytes": 17716758,
+      "sha256": "7aef0205b1b6c2cae41eb2c0cc57f05427f9f96ad1de084bcdd9ed3cabbab34e"
+    },
+    {
+      "from": "texture_00.png",
+      "path": "source/live2d/root-export/nanfeng-lion.1024/texture_00.png",
+      "bytes": 2243385,
+      "sha256": "7b1b163f20d9c3d49df048c2e87fde40419bb4f79fbd522e02039a33d94b581a"
+    },
+    {
+      "from": "nanfeng-lion.moc3",
+      "path": "source/live2d/root-export/nanfeng-lion.moc3",
+      "bytes": 14592,
+      "sha256": "a7ba3855a3da495135e368e32897d6a366217880bc4ec254231b221f6e668beb"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/Background_Repair.png",
+      "path": "source/live2d/source-v2/Background_Repair.png",
+      "bytes": 7082044,
+      "sha256": "8c285d380704ee2e9fbf2afb905fa58846cd0fbb680c4d7cbe9dd76a3a1365bd"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/EyeClosed_L.png",
+      "path": "source/live2d/source-v2/EyeClosed_L.png",
+      "bytes": 16950,
+      "sha256": "291196514db37d734ffe7174315bd2089a2f46fda03d18c29dd323a70e6f48b1"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/EyeClosed_R.png",
+      "path": "source/live2d/source-v2/EyeClosed_R.png",
+      "bytes": 14131,
+      "sha256": "dcf5c2b5bf0bc0e981080028924a89c3619d69a2cff21fef98919c3d088d8908"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/Eyelid_L.png",
+      "path": "source/live2d/source-v2/Eyelid_L.png",
+      "bytes": 4068047,
+      "sha256": "f611da3a4c0d25b626745c64819c39e3a6a6da788edab193cb25258a054ee829"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/Eyelid_R.png",
+      "path": "source/live2d/source-v2/Eyelid_R.png",
+      "bytes": 4064016,
+      "sha256": "fc7080a80760e595f7fe6c164363e76913250fc2deb19ffad3392f1af78bf028"
+    },
+    {
+      "from": "site/assets/live2d/source-v2/Lion_Head.png",
+      "path": "source/live2d/source-v2/Lion_Head.png",
+      "bytes": 9441466,
+      "sha256": "46b6583e60a0a922f53b2ff06eead8d4a6e2c9c1f96270b6648f5871f079ad00"
+    },
+    {
+      "from": "site/assets/live2d/source-v3/Background_Repair.png",
+      "path": "source/live2d/source-v3/Background_Repair.png",
+      "bytes": 7082044,
+      "sha256": "8c285d380704ee2e9fbf2afb905fa58846cd0fbb680c4d7cbe9dd76a3a1365bd"
+    },
+    {
+      "from": "site/assets/live2d/source-v3/EyeClosed_L.png",
+      "path": "source/live2d/source-v3/EyeClosed_L.png",
+      "bytes": 16950,
+      "sha256": "291196514db37d734ffe7174315bd2089a2f46fda03d18c29dd323a70e6f48b1"
+    },
+    {
+      "from": "site/assets/live2d/source-v3/EyeClosed_R.png",
+      "path": "source/live2d/source-v3/EyeClosed_R.png",
+      "bytes": 14131,
+      "sha256": "dcf5c2b5bf0bc0e981080028924a89c3619d69a2cff21fef98919c3d088d8908"
+    },
+    {
+      "from": "site/assets/live2d/source-v3/Lion_Head.png",
+      "path": "source/live2d/source-v3/Lion_Head.png",
+      "bytes": 9441466,
+      "sha256": "46b6583e60a0a922f53b2ff06eead8d4a6e2c9c1f96270b6648f5871f079ad00"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Background.png",
+      "path": "source/live2d/source/layers/Background.png",
+      "bytes": 4057061,
+      "sha256": "9ac588a2b3c493045304d061896b445e257d6ffcb3934393ff46115f9e602a7d"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Background_Repair.png",
+      "path": "source/live2d/source/layers/Background_Repair.png",
+      "bytes": 1965001,
+      "sha256": "2c6956c1c4b828c98ea72cb1e416414562b03cbb5a6e541af74dc8792bd9a41d"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Beard.png",
+      "path": "source/live2d/source/layers/Lion_Beard.png",
+      "bytes": 621511,
+      "sha256": "14c7f910eeef3646781ac012da9b5e04afdeba75057b8ecb489ac358c939a69f"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Body.png",
+      "path": "source/live2d/source/layers/Lion_Body.png",
+      "bytes": 1215007,
+      "sha256": "80759ab0510ab9bfe8f06f8113abab573b7a23d730c09e3a2cda53e0697001bb"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Eyelids.png",
+      "path": "source/live2d/source/layers/Lion_Eyelids.png",
+      "bytes": 424956,
+      "sha256": "8730ecd74c6fa8c718bee29c40da48400ca1c08fafe1f4515b274bdfbef74a15"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Eyes.png",
+      "path": "source/live2d/source/layers/Lion_Eyes.png",
+      "bytes": 425112,
+      "sha256": "b6e9f35b9a0ee7ef338891818b8b4bd4e88b077b02ad9915ca4e8f994165057a"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Head.png",
+      "path": "source/live2d/source/layers/Lion_Head.png",
+      "bytes": 1267932,
+      "sha256": "9d17c948fd7d65659fc324946f8f75620e1ca3bc49d28cdddcb7b7c39435d271"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Mane.png",
+      "path": "source/live2d/source/layers/Lion_Mane.png",
+      "bytes": 1459581,
+      "sha256": "fce5849d71e1940de3c95a8d4cf2213ad8c4973816576e6f1c0a1255d04a674b"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Mouth.png",
+      "path": "source/live2d/source/layers/Lion_Mouth.png",
+      "bytes": 457368,
+      "sha256": "f6276cd11e0a9143d00c76005757a654857cd532a8381668977193bb9d25f2f1"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Pupils.png",
+      "path": "source/live2d/source/layers/Lion_Pupils.png",
+      "bytes": 317243,
+      "sha256": "6c57f30e974acd415d61e656b805096979c8dcd95f9b5fabba05056a71bfb91b"
+    },
+    {
+      "from": "site/assets/live2d/source/layers/Lion_Tassels.png",
+      "path": "source/live2d/source/layers/Lion_Tassels.png",
+      "bytes": 989133,
+      "sha256": "89c7a41ba6e7a30d7785be276d86dd3b0832af0e4398107f2e46c53da2f76e71"
+    },
+    {
+      "from": "site/assets/live2d/source/nanfeng-lion-layered-rgb.psd",
+      "path": "source/live2d/source/nanfeng-lion-layered-rgb.psd",
+      "bytes": 33089380,
+      "sha256": "7f5072edbccb47002e16174a4f47420841164c7dfcb5ede60b49dd3611a987fe"
+    },
+    {
+      "from": "site/assets/live2d/source/nanfeng-lion-layered.psd",
+      "path": "source/live2d/source/nanfeng-lion-layered.psd",
+      "bytes": 35448676,
+      "sha256": "b52f9fd2ab430d6356e9414e76a24c9c2e5ee8b00d77800eb951b85073c010e0"
+    },
+    {
+      "from": "output/img23d_21199_优化版.glb",
+      "path": "source/models/img23d_21199_优化版.glb",
+      "bytes": 22573396,
+      "sha256": "18ae2f59ac345b35fa6fe9e6e3bcbc1a1c2ff643ef0e92c4d81109640ebc33ed"
+    },
+    {
+      "from": "site/assets/models/lion-face-rigged.glb",
+      "path": "source/models/lion-face-rigged.glb",
+      "bytes": 32012,
+      "sha256": "3d6014f3c08403bf74bd6c0252312c3bdfa95ac7626f3e7a247c781250e1088c"
+    },
+    {
+      "from": "site/assets/entry/home-cover.png",
+      "path": "source/public/assets/entry/home-cover.png",
+      "bytes": 3464806,
+      "sha256": "b075bb05bf04fcb43d1cbddd6b736906658245701c96203e076c755cba08c401"
+    },
+    {
+      "from": "site/assets/entry/home-lion-loop.mp4",
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "bytes": 3139260,
+      "sha256": "b2d4aa147a03d5e676bcbc997f57f8621c685cfc228c690f7b92e098609bde9c"
+    },
+    {
+      "from": "site/assets/entry/title-nanfeng-youshi.png",
+      "path": "source/public/assets/entry/title-nanfeng-youshi.png",
+      "bytes": 207636,
+      "sha256": "e43819930d4cef53a2ed9d58e0eaced848cbf6c0ed0791d2806ed0a993b4e704"
+    },
+    {
+      "from": "site/assets/intro/entry-intro.mp4",
+      "path": "source/public/assets/intro/entry-intro.mp4",
+      "bytes": 4925718,
+      "sha256": "ccce0a6ac43996d2521ceb795494351903e758a283b004bd490c0c593fb468cb"
+    },
+    {
+      "from": "site/assets/live2d/nanfeng-lion/nanfeng-lion.moc3",
+      "path": "source/public/assets/live2d/nanfeng-lion/nanfeng-lion.moc3",
+      "bytes": 21888,
+      "sha256": "c7986863e8d2e5253ca2af7357750d35afe237f3067b040dc6db083867975648"
+    },
+    {
+      "from": "site/assets/live2d/nanfeng-lion/textures/texture_00.png",
+      "path": "source/public/assets/live2d/nanfeng-lion/textures/texture_00.png",
+      "bytes": 2243385,
+      "sha256": "7b1b163f20d9c3d49df048c2e87fde40419bb4f79fbd522e02039a33d94b581a"
+    },
+    {
+      "from": "site/assets/models/lion-overall.glb",
+      "path": "source/public/assets/models/lion-overall.glb",
+      "bytes": 22573396,
+      "sha256": "18ae2f59ac345b35fa6fe9e6e3bcbc1a1c2ff643ef0e92c4d81109640ebc33ed"
+    },
+    {
+      "from": "site/assets/poster/lion-full.png",
+      "path": "source/public/assets/poster/lion-full.png",
+      "bytes": 3567941,
+      "sha256": "e58ee7dae46691e8d3f9ca55e746a90153532016b73c5e25dbd4bef0de8f6e27"
+    },
+    {
+      "from": "homepage-actual.png",
+      "path": "source/reviews/homepage/homepage-actual.png",
+      "bytes": 3288054,
+      "sha256": "671ad14f1e685479f77f5ea387c07fedb83640ea6d1dab9759a23b2e93c107f9"
+    },
+    {
+      "from": "homepage-bright-preview.png",
+      "path": "source/reviews/homepage/homepage-bright-preview.png",
+      "bytes": 1240514,
+      "sha256": "00bda42a7d25c9fe59b8fb2b39d33acffd0f7f7537f1bb035e51994ef00a670c"
+    },
+    {
+      "from": "homepage-color-preview.png",
+      "path": "source/reviews/homepage/homepage-color-preview.png",
+      "bytes": 654394,
+      "sha256": "894eb974ec42cf9703d7a9e5d88ca8b3fbe4b2e9ce77650cd6b9f24f67ced6d7"
+    },
+    {
+      "from": "output/react-entry/home-1920.png",
+      "path": "source/reviews/react-entry/home-1920.png",
+      "bytes": 2650720,
+      "sha256": "cd2b1432b40c8a67199dffa7043703c80384092419d2b4a995d488b830a14d8d"
+    },
+    {
+      "from": "output/react-entry/home-2560.png",
+      "path": "source/reviews/react-entry/home-2560.png",
+      "bytes": 4173655,
+      "sha256": "dd6b9aa45cf368b0ad986648eda293a441be22fddadced0f557425490b0e6d0e"
+    },
+    {
+      "from": "output/react-entry/intro.png",
+      "path": "source/reviews/react-entry/intro.png",
+      "bytes": 2919124,
+      "sha256": "b1fb1551c2c2a0ced2ff1e56a5f302a3a66667d51d41ff029cdba512670264be"
+    },
+    {
+      "from": "video_review_frames/frame_01.jpg",
+      "path": "source/reviews/video/frames/frame_01.jpg",
+      "bytes": 4956,
+      "sha256": "3fee1f23e8241e70cb4d75cad5b10105709c36e01be31aa1ce69d94ff8f9e05f"
+    },
+    {
+      "from": "video_review_frames/frame_02.jpg",
+      "path": "source/reviews/video/frames/frame_02.jpg",
+      "bytes": 15017,
+      "sha256": "afdb78f46c62845477420481e5c0dedce3fffc27af6686ffb094289c79f960d3"
+    },
+    {
+      "from": "video_review_frames/frame_03.jpg",
+      "path": "source/reviews/video/frames/frame_03.jpg",
+      "bytes": 20858,
+      "sha256": "b587e54242999fd8cb1dadf8fb2c6e1005b0d1687356b207fff5e3c80c2108cb"
+    },
+    {
+      "from": "video_review_frames/frame_04.jpg",
+      "path": "source/reviews/video/frames/frame_04.jpg",
+      "bytes": 24808,
+      "sha256": "60548c9573b6a4c6570a5283f3c4851096197904f9a9d12bb362741109d69f91"
+    },
+    {
+      "from": "video_review_frames/frame_05.jpg",
+      "path": "source/reviews/video/frames/frame_05.jpg",
+      "bytes": 29901,
+      "sha256": "7a91360cded4db89de3a99a2473ee0e6c96520ceace7b57e1510bdd6664a55cc"
+    },
+    {
+      "from": "video_review_frames/frame_06.jpg",
+      "path": "source/reviews/video/frames/frame_06.jpg",
+      "bytes": 33053,
+      "sha256": "c23d26641911c69cf34303aa410421c3d8c73649c0d15d0a1c9f91e8fbd69958"
+    },
+    {
+      "from": "video_review_frames/frame_07.jpg",
+      "path": "source/reviews/video/frames/frame_07.jpg",
+      "bytes": 33099,
+      "sha256": "179a9dce76d27edd905c744170342ea3dc78ef738762693f2999063fddaddbd4"
+    },
+    {
+      "from": "video_review_frames/frame_08.jpg",
+      "path": "source/reviews/video/frames/frame_08.jpg",
+      "bytes": 32169,
+      "sha256": "9c5fc12046c87e479dd01ea01729df8f684130d4cb583078a2d076e3ade791aa"
+    },
+    {
+      "from": "video_review_frames/frame_09.jpg",
+      "path": "source/reviews/video/frames/frame_09.jpg",
+      "bytes": 32635,
+      "sha256": "5487f9ac4ae7fe2e93140b2a95c17f9a63ddfa9a09765d4cc266ea5da3d1e5b3"
+    },
+    {
+      "from": "video_review_frames/frame_10.jpg",
+      "path": "source/reviews/video/frames/frame_10.jpg",
+      "bytes": 24187,
+      "sha256": "595abd64d4692b413f730a8f5de0bc66d2b85a7542cc7dbfbd877f9d4ba5c115"
+    },
+    {
+      "from": "video_review_frames/frame_11.jpg",
+      "path": "source/reviews/video/frames/frame_11.jpg",
+      "bytes": 27209,
+      "sha256": "0827b24ece6b5b2c93a65f1d5d1ca4f90443b24c9ef4cf9145aa5c70a2ccbbe7"
+    },
+    {
+      "from": "video_review_frames/frame_12.jpg",
+      "path": "source/reviews/video/frames/frame_12.jpg",
+      "bytes": 23699,
+      "sha256": "9663424f2615e362fb412f9d64a501fe4ba132b8e7fab94099c1bcd6c92840f8"
+    },
+    {
+      "from": "video_review_frames/frame_13.jpg",
+      "path": "source/reviews/video/frames/frame_13.jpg",
+      "bytes": 22319,
+      "sha256": "c6f988ddc5e3b4e0166830d86b17e853e691e7c8018bd45da2db0d2be45301e3"
+    },
+    {
+      "from": "video_review_frames/frame_14.jpg",
+      "path": "source/reviews/video/frames/frame_14.jpg",
+      "bytes": 23880,
+      "sha256": "4ee88f99d79cc24f54fd890ecea4b419f6a83ae81d0b0799faec70d4d0531127"
+    },
+    {
+      "from": "video_review_frames/frame_15.jpg",
+      "path": "source/reviews/video/frames/frame_15.jpg",
+      "bytes": 21041,
+      "sha256": "a1f61f8a68a0e0952b0a43de31a952afc790fab065c247cc70cf5865b0faf1c5"
+    },
+    {
+      "from": "video_review_frames/frame_16.jpg",
+      "path": "source/reviews/video/frames/frame_16.jpg",
+      "bytes": 17408,
+      "sha256": "1f5154d5307f6545441b5cdef79899e7952288e160ec372433e55615e1345ca6"
+    },
+    {
+      "from": "video_end_review.jpg",
+      "path": "source/reviews/video/video_end_review.jpg",
+      "bytes": 44810,
+      "sha256": "7b39f99a8cf1dc11fc602d468c42db7f357074f5e5997f7e25dcf9bdb20eef63"
+    },
+    {
+      "from": "video_motion_review.jpg",
+      "path": "source/reviews/video/video_motion_review.jpg",
+      "bytes": 160593,
+      "sha256": "d77c85eb305c438f8b460766e72935e5ce749c3594468616f6081aa1dfa5c894"
+    },
+    {
+      "from": "video_review_contact.jpg",
+      "path": "source/reviews/video/video_review_contact.jpg",
+      "bytes": 145100,
+      "sha256": "46e13f048a7f64c0b7af66a658811bc4dd323b974a3f167e6af652baf13120cb"
+    },
+    {
+      "from": "video_tail_review.jpg",
+      "path": "source/reviews/video/video_tail_review.jpg",
+      "bytes": 84559,
+      "sha256": "704d442b831e786057e5c9c105661738edcb02833a5fd550455d5d2c574e1162"
+    },
+    {
+      "from": "site/assets/intro/lion-intro-warm.mp4",
+      "path": "source/video/intro/lion-intro-warm.mp4",
+      "bytes": 2665463,
+      "sha256": "d5b25b9872cc2c00804841dbe5ea894550fb286c5241dedd3babd30fde8fe7d2"
+    },
+    {
+      "from": "site/assets/intro/lion-intro.mp4",
+      "path": "source/video/intro/lion-intro.mp4",
+      "bytes": 4288396,
+      "sha256": "5951cdbdf26ff39ecb580e121cd1777a4ec0c4cdbb38554c241a8503508c04ef"
+    },
+    {
+      "from": "site/assets/intro/lion-poster-warm.jpg",
+      "path": "source/video/intro/lion-poster-warm.jpg",
+      "bytes": 67943,
+      "sha256": "086c5b373c6bc1a34248352733024b8632d2f2d2218bd81b4a34e84e40c5a637"
+    },
+    {
+      "from": "site/assets/intro/lion-poster.jpg",
+      "path": "source/video/intro/lion-poster.jpg",
+      "bytes": 5725,
+      "sha256": "c0c4e93ba6f62069c89332fbc775c33e2c62c2790cbb6e6174fcf3fb43332811"
+    }
+  ]
+}

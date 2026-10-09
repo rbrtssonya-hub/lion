@@ -4,9 +4,9 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'site/assets/entry/home-cover.png'
-LAYER_DIR = ROOT / 'site/assets/live2d/source-v2'
-PREVIEW_DIR = ROOT / 'tmp'
+SOURCE = ROOT / 'source/public/assets/entry/home-cover.png'
+LAYER_DIR = ROOT / 'source/live2d/source-v2'
+PREVIEW_DIR = ROOT / 'source/reviews/live2d'
 
 EYELIDS = {
     'Eyelid_L': [
@@ -49,6 +49,7 @@ def main():
         eyelids[name] = make_layer(source, head.getchannel('A'), points)
         eyelids[name].save(LAYER_DIR / f'{name}.png')
 
+    PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
     neutral = Image.alpha_composite(background, head)
     neutral.save(PREVIEW_DIR / 'lion-v2-neutral.png')
     closed = Image.alpha_composite(neutral, shifted(eyelids['Eyelid_L'], (0, 80)))

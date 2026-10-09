@@ -1,0 +1,32 @@
+{
+  "source": "../../public/assets/entry/home-cover.png",
+  "canvas": { "width": 2048, "height": 1152 },
+  "note": "这是给拆层和修复背景使用的构图标注，不是已经完成的透明图层。",
+  "groups": [
+    { "name": "Background", "mode": "static", "rect": [0, 0, 2048, 1152] },
+    { "name": "Background_Repair", "mode": "static", "rect": [690, 90, 1000, 940] },
+    { "name": "Lion_Body", "mode": "deform", "rect": [690, 410, 960, 640] },
+    { "name": "Lion_Head", "mode": "deform", "rect": [720, 95, 740, 690] },
+    { "name": "Lion_Mane", "mode": "deform", "rect": [715, 110, 780, 680] },
+    { "name": "Lion_Beard", "mode": "deform", "rect": [790, 490, 510, 405] },
+    { "name": "Lion_Eyes", "mode": "blink", "rect": [830, 280, 590, 280] },
+    { "name": "Lion_Pupils", "mode": "look-at", "rect": [870, 315, 500, 215] },
+    { "name": "Lion_Eyelids", "mode": "blink", "rect": [815, 260, 640, 325] },
+    { "name": "Lion_Mouth", "mode": "mouth", "rect": [865, 495, 485, 300] },
+    { "name": "Lion_Tassels", "mode": "sway", "rect": [700, 220, 760, 450] }
+  ],
+  "parameters": {
+    "ParamAngleX": "Lion_Head",
+    "ParamAngleY": "Lion_Head",
+    "ParamAngleZ": "Lion_Head",
+    "ParamBodyAngleX": "Lion_Body",
+    "ParamBreath": "Lion_Body",
+    "ParamEyeLOpen": "Lion_Eyelids",
+    "ParamEyeROpen": "Lion_Eyelids",
+    "ParamEyeBallX": "Lion_Pupils",
+    "ParamEyeBallY": "Lion_Pupils",
+    "ParamMouthOpenY": "Lion_Mouth",
+    "ParamHairSway": "Lion_Mane/Lion_Beard",
+    "ParamTasselSway": "Lion_Tassels"
+  }
+}

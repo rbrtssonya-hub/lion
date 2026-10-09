@@ -4,9 +4,9 @@ from PIL import Image, ImageDraw, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'site/assets/entry/home-cover.png'
-LAYER_DIR = ROOT / 'site/assets/live2d/source-v2'
-PREVIEW = ROOT / 'tmp/lion-v2-closed-eyes-preview.png'
+SOURCE = ROOT / 'source/public/assets/entry/home-cover.png'
+LAYER_DIR = ROOT / 'source/live2d/source-v2'
+PREVIEW = ROOT / 'source/reviews/live2d/lion-v2-closed-eyes-preview.png'
 
 # Only the eye sockets move; the brows, forehead ornaments, and original head stay fixed.
 EYES = {
@@ -63,6 +63,7 @@ def main():
         layer = build_eye(source, spec)
         layer.save(LAYER_DIR / f'{name}.png')
         preview = Image.alpha_composite(preview, layer)
+    PREVIEW.parent.mkdir(parents=True, exist_ok=True)
     preview.save(PREVIEW)
     print(PREVIEW)
 

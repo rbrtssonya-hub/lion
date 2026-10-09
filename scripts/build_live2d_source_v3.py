@@ -8,9 +8,9 @@ import pytoshop
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DIR = ROOT / 'site/assets/live2d/source-v2'
-OUTPUT_DIR = ROOT / 'site/assets/live2d/source-v3'
-PSD_PATH = ROOT / 'tmp/nanfeng-lion-v3.psd'
+SOURCE_DIR = ROOT / 'source/live2d/source-v2'
+OUTPUT_DIR = ROOT / 'source/live2d/source-v3'
+PSD_PATH = OUTPUT_DIR / 'nanfeng-lion-v3.psd'
 
 
 def record(path: Path, name: str):

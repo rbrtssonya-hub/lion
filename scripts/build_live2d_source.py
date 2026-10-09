@@ -7,8 +7,8 @@ from pytoshop import enums, layers
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "site" / "assets" / "entry" / "home-cover.png"
-OUTPUT = ROOT / "site" / "assets" / "live2d" / "source"
+SOURCE = ROOT / "source/public/assets/entry/home-cover.png"
+OUTPUT = ROOT / "source/live2d/source"
 PSD_PATH = OUTPUT / "nanfeng-lion-layered-rgb.psd"
 LAYER_DIR = OUTPUT / "layers"
 

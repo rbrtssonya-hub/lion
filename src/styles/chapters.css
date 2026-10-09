@@ -1,0 +1,50 @@
+.chapter-stage { min-height: 100svh; background: radial-gradient(circle at 18% 20%, rgba(169, 59, 45, .16), transparent 34%), linear-gradient(110deg, #080b0a, #121816 48%, #0a0d0c); }
+.chapter-header { position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 24px clamp(26px, 5vw, 76px); border-bottom: 1px solid rgba(228, 218, 191, 0.09); }
+.chapter-header-meta { color: var(--muted); font: 10px var(--display); letter-spacing: 0.12em; white-space: nowrap; }
+.chapter-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 34vw); min-height: 100svh; padding: 24px clamp(26px, 5vw, 76px) 50px; }
+.chapter-canvas { position: relative; min-height: min(72vh, 700px); overflow: hidden; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(35, 48, 42, 0.48), rgba(8, 11, 10, 0.82)); }
+.chapter-canvas::before { content: ''; position: absolute; inset: 12% 12% auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(205, 168, 107, 0.5), transparent); }
+.chapter-canvas::after { content: ''; position: absolute; right: 8%; bottom: 10%; width: 38%; height: 42%; border: 1px solid rgba(205, 168, 107, 0.2); border-radius: 50%; transform: rotate(-18deg); }
+.chapter-index { position: absolute; top: 24px; left: 26px; color: var(--gold); font: 11px var(--display); letter-spacing: 0.16em; }
+.chapter-signal { position: absolute; top: 23%; right: 17%; display: flex; gap: 8px; align-items: flex-end; height: 120px; opacity: 0.7; }
+.chapter-signal span { display: block; width: 8px; height: 30%; background: var(--gold); transform-origin: bottom; animation: signalPulse 2.8s ease-in-out infinite; }
+.chapter-signal span:nth-child(2) { height: 62%; animation-delay: 160ms; }
+.chapter-signal span:nth-child(3) { height: 44%; animation-delay: 320ms; }
+.chapter-signal span:nth-child(4) { height: 82%; animation-delay: 480ms; }
+@keyframes signalPulse { 0%, 100% { transform: scaleY(0.72); opacity: 0.42; } 50% { transform: scaleY(1); opacity: 0.92; } }
+.chapter-copy { position: absolute; left: clamp(28px, 6vw, 92px); top: 34%; z-index: 2; max-width: 600px; }
+.chapter-kicker { margin: 0 0 18px; color: var(--gold); font: 11px var(--display); letter-spacing: 0.16em; }
+.chapter-copy h1 { margin: 0 0 22px; color: var(--paper); font-size: clamp(66px, 9vw, 144px); font-weight: 500; }
+.chapter-copy p:last-child { max-width: 410px; margin: 0; color: rgba(235, 229, 215, 0.66); font-size: 14px; line-height: 1.9; }
+.chapter-track { position: absolute; right: 10%; bottom: 12%; left: 10%; z-index: 3; display: flex; justify-content: space-between; }
+.chapter-track-line { position: absolute; top: 8px; right: 0; left: 0; height: 1px; background: var(--line-strong); }
+.chapter-node { position: relative; display: grid; gap: 8px; justify-items: start; padding: 0; border: 0; color: var(--muted); background: transparent; text-align: left; }
+.chapter-node::before { content: ''; width: 17px; height: 17px; border: 1px solid var(--gold); border-radius: 50%; background: var(--ink); }
+
+.chapter-track b { color: var(--gold); font: 10px var(--display); letter-spacing: 0.1em; }
+.chapter-track span:not(.chapter-track-line) { font-size: 12px; }
+.chapter-panel { min-height: 100%; padding: clamp(24px, 4vw, 58px) 0 0 clamp(10px, 3vw, 48px); border-left: 1px solid var(--line); }
+.chapter-panel-index { margin: 0 0 22px; color: var(--gold); font: 10px var(--display); letter-spacing: 0.12em; }
+.chapter-panel h2 { margin: 0 0 18px; color: var(--paper); font-size: clamp(30px, 4vw, 54px); font-weight: 500; }
+.chapter-panel > p:not(.chapter-panel-index) { max-width: 360px; color: rgba(235, 229, 215, 0.68); font-size: 14px; line-height: 1.9; }
+.chapter-panel-rule { width: 100%; height: 1px; margin: 34px 0 24px; background: var(--line); }
+.chapter-panel-list { display: grid; gap: 0; color: var(--muted); font-size: 12px; }
+.chapter-panel-list span { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.chapter-panel-list span::before { content: '＋'; margin-right: 12px; color: var(--gold); }
+
+
+.chapter-header { flex-wrap: wrap; }
+@media (max-width: 1100px) { .chapter-header .chapter-rail { order: 3; width: 100%; justify-content: space-between; gap: 8px; } }
+@media (max-width: 900px) {
+  .chapter-layout { grid-template-columns: 1fr; }
+  .chapter-panel { min-height: auto; padding: 34px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+}
+@media (max-width: 560px) {
+  .chapter-header { gap: 14px; padding: 18px 24px; }
+  .chapter-header .chapter-rail { flex-wrap: wrap; }
+  .chapter-header-meta { display: none; }
+  .chapter-layout { padding: 18px 24px 40px; }
+  .chapter-canvas { min-height: 62svh; }
+  .chapter-copy { left: 24px; top: 25%; right: 24px; }
+  .chapter-copy h1 { font-size: clamp(58px, 18vw, 96px); }
+}
