@@ -1,4 +1,5 @@
 import { chapters } from '../config/chapters.js';
+import EntryNavTools from './EntryNavTools.jsx';
 
 export default function ChapterNav({ current, onNavigate, variant = 'entry' }) {
   const isEntry = variant === 'entry';
@@ -14,5 +15,5 @@ export default function ChapterNav({ current, onNavigate, variant = 'entry' }) {
       {!isEntry && <button type="button" className="chapter-route chapter-home" onClick={() => onNavigate('entry')}>返回首页</button>}
     </nav>
   );
-  return isEntry ? <div className="entry-nav-shell">{nav}</div> : nav;
+  return isEntry ? <EntryNavTools onNavigate={onNavigate}>{nav}</EntryNavTools> : nav;
 }
