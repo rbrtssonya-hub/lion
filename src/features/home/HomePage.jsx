@@ -14,18 +14,16 @@ export default function HomePage({ onNavigate }) {
     </div>
     <header className="entry-header">
       <div className="entry-brand">南风有狮</div>
-      <ChapterNav current="entry" onNavigate={onNavigate} />
+      <ChapterNav current="intro" onNavigate={onNavigate} />
     </header>
     <div className="entry-copy">
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
-      <div className="entry-support">
-        <p className="entry-motto">广府醒狮的结构、动作与神态</p>
-        <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
-        <button className="entry-cta" id="enterWork" type="button" onClick={() => onNavigate('intro')}>
-          <span>进入醒狮档案</span><svg className="entry-cta-arrow" viewBox="0 0 32 20" aria-hidden="true"><path d="M1 10h29m-8-8 8 8-8 8" /></svg>
-        </button>
-      </div>
+      <button className="entry-cta" id="enterWork" type="button" onClick={() => onNavigate('intro')}>
+        <span>探索更多</span><svg className="entry-cta-arrow" viewBox="0 0 32 20" aria-hidden="true"><path d="M1 10h29m-8-8 8 8-8 8" /></svg>
+      </button>
+      <p className="entry-motto"><span>醒&nbsp;&nbsp;狮&nbsp;&nbsp;传&nbsp;&nbsp;文&nbsp;&nbsp;化</span><span>南&nbsp;&nbsp;风&nbsp;&nbsp;载&nbsp;&nbsp;未&nbsp;&nbsp;来</span></p>
+      <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
     <nav className="entry-bottom-nav" aria-label="信息可视化模块">
       {chapters.slice(1).map(({ route, label, description, icon, viewBox }, index) => (

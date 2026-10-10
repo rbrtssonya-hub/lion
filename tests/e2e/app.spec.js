@@ -14,7 +14,7 @@ test('首页媒体、视频结束转场和六章导航均由当前页面运行',
   expect(requests.some((url) => /three|GLTFLoader|lion-overall/.test(url))).toBe(false);
   await page.screenshot({ path: test.info().outputPath('homepage.png'), fullPage: true });
 
-  await page.getByRole('button', { name: '进入醒狮档案', exact: true }).click();
+  await page.getByRole('button', { name: '探索更多' }).click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'intro');
   await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
   await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));

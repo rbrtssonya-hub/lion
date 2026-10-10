@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { chapters } from '../config/chapters.js';
 
-export default function EntryNavTools({ children, current, onNavigate }) {
+export default function EntryNavTools({ children, onNavigate }) {
   const dialogRef = useRef(null);
   const [mode, setMode] = useState('menu');
   const [query, setQuery] = useState('');
@@ -45,9 +45,7 @@ export default function EntryNavTools({ children, current, onNavigate }) {
         </form>}
         <nav className="entry-dialog-chapters" aria-label="章节目录">
           {(mode === 'search' ? matches : chapters).map(({ route, index, label, description }) =>
-            <button type="button" key={route} data-route={route}
-              className={current === route ? 'is-current' : undefined}
-              aria-current={current === route ? 'page' : undefined} onClick={() => navigate(route)}>
+            <button type="button" key={route} onClick={() => navigate(route)}>
               <span>{index}</span><div><strong>{label}</strong>{description && <small>{description}</small>}</div>
               <svg viewBox="0 0 28 20" aria-hidden="true"><path d="M2 10h23m-7-7 7 7-7 7" /></svg>
             </button>)}
