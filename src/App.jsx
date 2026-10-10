@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import HomePage from './features/home/HomePage.jsx';
 import IntroPage from './features/intro/IntroPage.jsx';
 import ChapterPage from './features/chapters/ChapterPage.jsx';
+import ChapterNav from './components/ChapterNav.jsx';
 import { useChapterRoute } from './hooks/useChapterRoute.js';
 
 const ModelPage = lazy(() => import('./features/model/ModelPage.jsx'));
@@ -20,6 +21,10 @@ export default function App() {
   else page = <ChapterPage route={route} onNavigate={navigate} />;
 
   return <main id="react-app" data-route={route}>
+    {route !== 'entry' && <header className="entry-header chapter-top-header">
+      <div className="entry-brand">南风有狮</div>
+      <ChapterNav current={route} onNavigate={navigate} />
+    </header>}
     <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>{page}</Suspense>
   </main>;
 }

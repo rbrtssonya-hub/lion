@@ -1,0 +1,324 @@
+{
+  "baseline": "810daab8914fd364090738f457888489b947f1ba",
+  "date": "2026-10-11",
+  "userApproval": "允许沿用图片等比例缩放方式微调",
+  "authoredTitleRules": "All original title/container CSS declarations are identical except --title-scale; TitleMotionLayer.jsx is unchanged.",
+  "measurementConditions": "Chrome, reduced motion; container bounds and image anchors compared to baseline; raster glyph colors are preserved by unchanged asset bytes.",
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": {
+        ".entry-copy": {
+          "before": {
+            "x": 150,
+            "y": 311.9140625,
+            "width": 430,
+            "height": 456.171875
+          },
+          "after": {
+            "x": 150,
+            "y": 311.9140625,
+            "width": 430,
+            "height": 456.171875
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-live2d": {
+          "before": {
+            "x": 150,
+            "y": 311.9140625,
+            "width": 330,
+            "height": 294.515625
+          },
+          "after": {
+            "x": 150,
+            "y": 311.9140625,
+            "width": 330,
+            "height": 294.515625
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-art": {
+          "before": {
+            "x": 150,
+            "y": 179.38201904296875,
+            "width": 478.5,
+            "height": 427.04766845703125
+          },
+          "after": {
+            "x": 150,
+            "y": 217.66903686523438,
+            "width": 435.5999755859375,
+            "height": 388.7606506347656
+          },
+          "changedComputedProperties": [
+            {
+              "property": "transform",
+              "before": "matrix(1.45, 0, 0, 1.45, 0, 0)",
+              "after": "matrix(1.32, 0, 0, 1.32, 0, 0)"
+            },
+            {
+              "property": "--title-scale",
+              "before": "1.45",
+              "after": "1.32"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "scrollWidth": 1440,
+      "title": {
+        ".entry-copy": {
+          "before": {
+            "x": 115.1875,
+            "y": 257.78125,
+            "width": 430,
+            "height": 444.4375
+          },
+          "after": {
+            "x": 115.1875,
+            "y": 257.78125,
+            "width": 430,
+            "height": 444.4375
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-live2d": {
+          "before": {
+            "x": 115.1875,
+            "y": 257.78125,
+            "width": 330,
+            "height": 294.515625
+          },
+          "after": {
+            "x": 115.1875,
+            "y": 257.78125,
+            "width": 330,
+            "height": 294.515625
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-art": {
+          "before": {
+            "x": 115.1875,
+            "y": 222.43936157226562,
+            "width": 369.6000061035156,
+            "height": 329.8575134277344
+          },
+          "after": {
+            "x": 115.1875,
+            "y": 210.65875244140625,
+            "width": 382.79998779296875,
+            "height": 341.63812255859375
+          },
+          "changedComputedProperties": [
+            {
+              "property": "transform",
+              "before": "matrix(1.12, 0, 0, 1.12, 0, 0)",
+              "after": "matrix(1.16, 0, 0, 1.16, 0, 0)"
+            },
+            {
+              "property": "--title-scale",
+              "before": "1.12",
+              "after": "1.16"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "width": 414,
+      "height": 896,
+      "scrollWidth": 414,
+      "title": {
+        ".entry-copy": {
+          "before": {
+            "x": 24,
+            "y": 227.0234375,
+            "width": 366,
+            "height": 370.265625
+          },
+          "after": {
+            "x": 24,
+            "y": 227.0234375,
+            "width": 366,
+            "height": 370.265625
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-live2d": {
+          "before": {
+            "x": 24,
+            "y": 227.0234375,
+            "width": 240,
+            "height": 214.1875
+          },
+          "after": {
+            "x": 24,
+            "y": 227.0234375,
+            "width": 240,
+            "height": 214.1875
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-art": {
+          "before": {
+            "x": 24,
+            "y": 227.0234375,
+            "width": 240,
+            "height": 214.1875
+          },
+          "after": {
+            "x": 24,
+            "y": 274.14471435546875,
+            "width": 187.1999969482422,
+            "height": 167.06622314453125
+          },
+          "changedComputedProperties": [
+            {
+              "property": "transform",
+              "before": "matrix(1, 0, 0, 1, 0, 0)",
+              "after": "matrix(0.78, 0, 0, 0.78, 0, 0)"
+            },
+            {
+              "property": "--title-scale",
+              "before": "1",
+              "after": ".78"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "title": {
+        ".entry-copy": {
+          "before": {
+            "x": 24,
+            "y": 203.1015625,
+            "width": 342,
+            "height": 370.265625
+          },
+          "after": {
+            "x": 24,
+            "y": 203.1015625,
+            "width": 342,
+            "height": 370.265625
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-live2d": {
+          "before": {
+            "x": 24,
+            "y": 203.1015625,
+            "width": 240,
+            "height": 214.1875
+          },
+          "after": {
+            "x": 24,
+            "y": 203.1015625,
+            "width": 240,
+            "height": 214.1875
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-art": {
+          "before": {
+            "x": 24,
+            "y": 203.1015625,
+            "width": 240,
+            "height": 214.1875
+          },
+          "after": {
+            "x": 24,
+            "y": 250.2228240966797,
+            "width": 187.1999969482422,
+            "height": 167.0662384033203
+          },
+          "changedComputedProperties": [
+            {
+              "property": "transform",
+              "before": "matrix(1, 0, 0, 1, 0, 0)",
+              "after": "matrix(0.78, 0, 0, 0.78, 0, 0)"
+            },
+            {
+              "property": "--title-scale",
+              "before": "1",
+              "after": ".78"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scrollWidth": 375,
+      "title": {
+        ".entry-copy": {
+          "before": {
+            "x": 24,
+            "y": 191.7265625,
+            "width": 327,
+            "height": 363.578125
+          },
+          "after": {
+            "x": 24,
+            "y": 191.7265625,
+            "width": 327,
+            "height": 363.578125
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-live2d": {
+          "before": {
+            "x": 24,
+            "y": 191.7265625,
+            "width": 232.5,
+            "height": 207.5
+          },
+          "after": {
+            "x": 24,
+            "y": 191.7265625,
+            "width": 232.5,
+            "height": 207.5
+          },
+          "changedComputedProperties": []
+        },
+        ".entry-title-art": {
+          "before": {
+            "x": 24,
+            "y": 191.7265625,
+            "width": 232.5,
+            "height": 207.5
+          },
+          "after": {
+            "x": 24,
+            "y": 237.37657165527344,
+            "width": 181.34999084472656,
+            "height": 161.84999084472656
+          },
+          "changedComputedProperties": [
+            {
+              "property": "transform",
+              "before": "matrix(1, 0, 0, 1, 0, 0)",
+              "after": "matrix(0.78, 0, 0, 0.78, 0, 0)"
+            },
+            {
+              "property": "--title-scale",
+              "before": "1",
+              "after": ".78"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
