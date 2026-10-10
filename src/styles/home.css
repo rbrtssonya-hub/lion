@@ -20,7 +20,7 @@
 .entry-tool svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .entry-copy { position: absolute; left: clamp(56px, 8vw, 150px); top: 50%; z-index: 3; display: flex; flex-direction: column; align-items: flex-start; width: min(430px, 34vw); transform: translateY(-50%); }
 .entry-title-live2d { width: min(330px, 28vw); transform-origin: 22% 54%; animation: titleFloat 5.2s ease-in-out infinite; }
-.entry-title-art { display: block; width: 100%; height: auto; --title-shift-x: 0px; --title-shift-y: 0px; transform: translate3d(var(--title-shift-x), var(--title-shift-y), 0); filter: drop-shadow(0 12px 12px rgba(33, 0, 0, .24)); }
+.entry-title-art { display: block; width: 100%; height: auto; --title-scale: 1.45; --title-shift-x: 0px; --title-shift-y: 0px; transform-origin: left bottom; transform: translate3d(var(--title-shift-x), var(--title-shift-y), 0) scale(var(--title-scale)); filter: drop-shadow(0 12px 12px rgba(33, 0, 0, .24)); }
 .entry-cta { position: relative; display: inline-flex; gap: 36px; align-items: center; justify-content: space-between; height: 52px; min-width: 228px; margin-top: 34px; padding: 12px 26px 12px 30px; border: 1px solid #f4d38e; border-radius: 28px; color: #fff1d9; background: rgba(149, 30, 19, .76); cursor: pointer; font-family: 'STSong', 'SimSun', '宋体', serif; font-size: clamp(17px, 1.15vw, 22px); line-height: 26px; font-weight: 600; letter-spacing: .12em; transition: background 180ms, border-color 180ms; }
 .entry-cta::before { content: ''; position: absolute; inset: 3px; border: 1px solid rgba(243, 202, 129, .3); border-radius: inherit; pointer-events: none; }
 .entry-cta:hover { background: rgba(177, 41, 25, .88); border-color: #ffe3a8; }
@@ -39,7 +39,7 @@
 .entry-bottom-nav::before, .entry-bottom-nav::after { content: ''; position: absolute; top: 7px; width: 32px; height: 12px; border-top: 1px solid #cda16c; opacity: .7; pointer-events: none; }
 .entry-bottom-nav::before { left: 9px; border-left: 1px solid #cda16c; }
 .entry-bottom-nav::after { right: 9px; border-right: 1px solid #cda16c; }
-.entry-bottom-item { position: relative; display: flex; gap: clamp(14px, 2vw, 36px); align-items: center; justify-content: center; min-width: 0; padding: 4px 12px; border: 0; color: #ffedcf; background: transparent; cursor: pointer; text-align: left; transition: background 180ms; }
+.entry-bottom-item { position: relative; display: flex; gap: clamp(14px, 2vw, 36px); align-items: center; justify-content: center; min-width: 0; min-height: 0; padding: 4px 12px; border: 0; color: #ffedcf; background: transparent; cursor: pointer; text-align: left; transition: background 180ms; }
 .entry-bottom-item + .entry-bottom-item::before { content: ''; position: absolute; left: 0; top: 18%; bottom: 18%; width: 1px; background: rgba(230, 184, 116, .5); }
 .entry-bottom-item:hover { background: rgba(218, 92, 47, .17); }
 .entry-icon { display: grid; width: clamp(36px, 3vw, 62px); height: clamp(36px, 3vw, 62px); flex: 0 0 auto; place-items: center; color: #f3d698; transition: transform 180ms; }
@@ -65,6 +65,9 @@
 .react-intro-stage { background: #000; }
 .react-intro-stage .intro-video { object-fit: contain; background: #000; }
 @keyframes titleFloat { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(0, -6px, 0) rotate(-.65deg); } }
+@media (max-width: 1600px) {
+  .entry-title-art { --title-scale: 1.12; }
+}
 @media (max-width: 900px) {
   .entry-header { padding: 24px; }
   .entry-nav-shell { padding: 6px 10px; border-radius: 30px; }
@@ -72,6 +75,7 @@
   .entry-nav-tools { margin: 0; padding: 0; border: 0; gap: 6px; }
   .entry-copy { left: 32px; width: 44vw; }
   .entry-title-live2d { width: min(300px, 44vw); }
+  .entry-title-art { --title-scale: 1.06; }
   .entry-cloud-top { display: none; }
   .entry-cloud-side { width: 58px; left: 7px; top: auto; bottom: 20%; opacity: .45; }
   .entry-bottom-nav { height: 96px; padding: 9px 12px; }
@@ -85,6 +89,7 @@
   .final-home, .react-intro-stage { min-height: 560px; }
   .entry-copy { left: 24px; width: calc(100% - 48px); top: 46%; }
   .entry-title-live2d { width: min(240px, 62vw); }
+  .entry-title-art { --title-scale: 1; }
   .entry-motto { flex-direction: column; gap: 2px; font-size: 13px; }
   .entry-english { max-width: 100%; font-size: 7px; white-space: normal; }
   .entry-brand { padding-top: 5px; }
