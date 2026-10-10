@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-10
+updated: 2026-10-11
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-11 | ui | completed | [首页标题探索框与红金导航](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E9%A6%96%E9%A1%B5%E6%A0%87%E9%A2%98%E6%8E%A2%E7%B4%A2%E6%A1%86%E4%B8%8E%E7%BA%A2%E9%87%91%E5%AF%BC%E8%88%AA.md) |
 | 2026-10-10 | ui | completed | [标题动效层缩放与首页验收](UI%E4%BF%AE%E6%94%B9/2026-10-10-%E6%A0%87%E9%A2%98%E5%8A%A8%E6%95%88%E5%B1%82%E7%BC%A9%E6%94%BE%E4%B8%8E%E9%A6%96%E9%A1%B5%E9%AA%8C%E6%94%B6.md) |
 | 2026-10-10 | ui | in_progress | [首页参考图视觉重构](UI%E4%BF%AE%E6%94%B9/2026-10-09-%E9%A6%96%E9%A1%B5%E5%8F%82%E8%80%83%E5%9B%BE%E8%A7%86%E8%A7%89%E9%87%8D%E6%9E%84.md) |
 | 2026-10-09 | maintenance | completed | [落实完整对话提交与推送约定](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-09-%E8%90%BD%E5%AE%9E%E5%AE%8C%E6%95%B4%E5%AF%B9%E8%AF%9D%E6%8F%90%E4%BA%A4%E4%B8%8E%E6%8E%A8%E9%80%81%E7%BA%A6%E5%AE%9A.md) |

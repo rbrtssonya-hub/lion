@@ -20,6 +20,11 @@ export default function HomePage({ onNavigate }) {
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
       <button className="entry-cta" id="enterWork" type="button" onClick={() => onNavigate('intro')}>
+        {['left', 'right'].map((side) => <svg key={side} className={`entry-cta-cloud entry-cta-cloud-${side}`} viewBox="0 0 72 76" aria-hidden="true" focusable="false">
+          <path className="entry-cta-cloud-line" d="M26 5C11 9 5 20 7 33M27 9C16 12 11 20 12 28" />
+          <path className="entry-cta-cloud-fill" d="M65 69H35C20 69 7 62 5 51C-2 47 0 35 8 32C9 22 21 20 27 27C36 25 42 32 40 40C51 38 58 48 54 56C60 58 63 64 65 69Z" />
+          <path className="entry-cta-cloud-detail" d="M8 33C16 29 24 33 23 40C22 47 12 47 12 41C12 37 17 36 18 39M27 28C19 26 15 32 18 35M39 40C30 39 26 47 31 52C36 57 44 53 41 48C39 45 35 47 36 50M7 51C12 59 23 61 30 59M32 65H53L44 59M54 56C50 56 47 59 47 62" />
+        </svg>)}
         <span>探索更多</span><svg className="entry-cta-arrow" viewBox="0 0 32 20" aria-hidden="true"><path d="M1 10h29m-8-8 8 8-8 8" /></svg>
       </button>
       <p className="entry-motto"><span>醒&nbsp;&nbsp;狮&nbsp;&nbsp;传&nbsp;&nbsp;文&nbsp;&nbsp;化</span><span>南&nbsp;&nbsp;风&nbsp;&nbsp;载&nbsp;&nbsp;未&nbsp;&nbsp;来</span></p>
