@@ -80,28 +80,31 @@ export default function ModelPage({ route = 'model', onNavigate }) {
       aria-label={structure ? '醒狮结构框架' : '可操作醒狮模型'}
     >
       <header className="model-header">
-        <div className="brand-lockup">
-          <span className="brand-mark">广府醒狮</span>
-          <span className="brand-divider" />
-          <span>一头醒狮的出场</span>
+        <div className="model-brand-lockup">
+          <span className="model-brand-mark">南风有狮</span>
+          <span className="model-brand-divider" />
+          <span>广府醒狮档案</span>
         </div>
-        <ChapterNav current={route} onNavigate={onNavigate} variant="chapter" />
-        <div className="model-header-meta">
-          <span className="live-dot" />
-          <span id="modelStatus" role="status">
-            {status.phase === 'ready' && structure ? '结构框架 · 模型可视化' : status.message}
-          </span>
-          <button
-            className={`icon-button${autoRotate ? ' active' : ''}`}
-            id="toggleRotate"
-            type="button"
-            disabled={status.phase !== 'ready'}
-            aria-label={autoRotate ? '暂停自动旋转' : '继续自动旋转'}
-            aria-pressed={autoRotate}
-            onClick={() => setAutoRotate((value) => !value)}
-          >
-            ↻
-          </button>
+        <div className="model-header-navigation">
+          <ChapterNav current={route} onNavigate={onNavigate} />
+          <div className="model-header-meta">
+            <span className="live-dot" />
+            <span id="modelStatus" role="status">
+              {status.phase === 'ready' && structure ? '结构框架 · 模型可视化' : status.message}
+            </span>
+            <button type="button" className="model-back-home" onClick={() => onNavigate('entry')}>返回首页</button>
+            <button
+              className={`icon-button${autoRotate ? ' active' : ''}`}
+              id="toggleRotate"
+              type="button"
+              disabled={status.phase !== 'ready'}
+              aria-label={autoRotate ? '暂停自动旋转' : '继续自动旋转'}
+              aria-pressed={autoRotate}
+              onClick={() => setAutoRotate((value) => !value)}
+            >
+              ↻
+            </button>
+          </div>
         </div>
       </header>
 

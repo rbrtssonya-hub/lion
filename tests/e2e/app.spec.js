@@ -33,14 +33,15 @@ test('首页媒体、视频结束转场和六章导航均由当前页面运行',
     await expect(page.locator(`#hotspots [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
   }
 
-  await page.locator('.chapter-rail').getByRole('button', { name: '结构', exact: true }).click();
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.locator('.entry-chapter-nav, .chapter-rail').getByRole('button', { name: /结构/ }).click();
   await expect(page.locator('#structureLayer')).toBeVisible();
   await page.locator('#structureDepth').fill('90');
   await expect(page.locator('#structureDepthValue')).toHaveText('90%');
   await expect(page.locator('.structure-callout.is-revealed')).toHaveCount(4);
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   for (const [route, label] of [['action', '动作'], ['state', '神态'], ['score', '评分']]) {
-    await page.locator('.chapter-rail').getByRole('button', { name: label, exact: true }).click();
+    await page.locator('.entry-chapter-nav, .chapter-rail').getByRole('button', { name: new RegExp(label) }).click();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
     await expect(page.locator('#chapterTitle')).toHaveText(label);
     await expect(page.locator('iframe')).toHaveCount(0);
@@ -69,7 +70,8 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('structure-mobile.png'), fullPage: true });
-  await page.locator('.chapter-rail').getByRole('button', { name: '动作', exact: true }).click();
+  await page.getByRole('button', { name: '打开章节菜单', exact: true }).click();
+  await page.getByRole('dialog', { name: '章节目录' }).getByRole('button', { name: /04.*动作/ }).click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole('button', { name: '返回首页', exact: true }).click();
@@ -101,6 +103,17 @@ test('整体模型页使用首页朱红背景而不是黑色大底', async ({ pa
   }));
   expect(backgrounds.stage).toMatch(/104,\s*23,\s*15/);
   expect(backgrounds.frame).toMatch(/132,\s*34,\s*21/);
+});
+
+test('模型页顶部复用首页红金章节导航并高亮当前章节', async ({ page }) => {
+  await page.goto('/#/model');
+  const header = page.locator('.model-header');
+  await expect(header.locator('.entry-nav-shell')).toBeVisible();
+  await expect(header.locator('.entry-chapter-nav')).toBeVisible();
+  await expect(header.locator('.chapter-rail')).toHaveCount(0);
+  await expect(header.locator('.entry-nav-item.is-current')).toHaveText(/整体/);
+  await expect(header.getByRole('button', { name: '搜索章节', exact: true })).toBeVisible();
+  await expect(header.getByRole('button', { name: '打开章节菜单', exact: true })).toBeVisible();
 });
 
 test('快速离开载入中的模型时取消请求，重新进入只有一个canvas', async ({ page }) => {
