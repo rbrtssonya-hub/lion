@@ -92,6 +92,17 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
 });
 
+test('整体模型页使用首页朱红背景而不是黑色大底', async ({ page }) => {
+  await page.goto('/#/model');
+  await expect(page.locator('#modelStage')).toBeVisible();
+  const backgrounds = await page.evaluate(() => ({
+    stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
+    frame: getComputedStyle(document.querySelector('#sceneFrame')).backgroundImage,
+  }));
+  expect(backgrounds.stage).toMatch(/104,\s*23,\s*15/);
+  expect(backgrounds.frame).toMatch(/132,\s*34,\s*21/);
+});
+
 test('快速离开载入中的模型时取消请求，重新进入只有一个canvas', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));

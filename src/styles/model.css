@@ -1,4 +1,11 @@
-.model-stage { position: relative; min-height: 100svh; background: radial-gradient(circle at 50% 30%, rgba(42, 71, 62, .22), transparent 40%), linear-gradient(110deg, #080b0a, #101615 48%, #0a0d0c); }
+.model-stage {
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(241, 177, 91, .2), transparent 25%),
+    radial-gradient(circle at 82% 22%, rgba(183, 46, 28, .28), transparent 34%),
+    linear-gradient(115deg, #68170f 0%, #7d1c13 42%, #55110c 72%, #360b08 100%);
+}
 .model-header {
   position: relative;
   z-index: 5;
@@ -37,7 +44,9 @@
   min-height: min(72vh, 700px);
   overflow: hidden;
   border: 1px solid var(--line);
-  background: linear-gradient(140deg, rgba(31, 55, 48, 0.35), rgba(5, 7, 6, 0.65));
+  background:
+    radial-gradient(ellipse at 52% 38%, rgba(240, 182, 95, .18), transparent 48%),
+    linear-gradient(140deg, rgba(132, 34, 21, .9), rgba(65, 12, 9, .94));
 }
 
 .scene-glow { position: absolute; inset: 14% 14% 12%; background: radial-gradient(ellipse, rgba(201, 154, 89, 0.16), transparent 66%); filter: blur(20px); pointer-events: none; }
@@ -107,12 +116,12 @@
 .model-header .chapter-rail { flex-wrap: wrap; }
 .model-fallback { opacity: .6; }
 .model-notice { position: absolute; bottom: 70px; left: 24px; right: 24px; z-index: 8; color: var(--paper); }
-.model-retry { padding: 8px 12px; margin-left: 12px; border: 1px solid var(--gold); color: var(--gold); background: var(--ink); cursor: pointer; }
+.model-retry { padding: 8px 12px; margin-left: 12px; border: 1px solid var(--gold); color: var(--gold); background: rgba(91, 16, 11, .92); cursor: pointer; }
 .icon-button.active { color: var(--gold); border-color: var(--gold); }
 .loading-panel { max-width: calc(100% - 36px); flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.6; white-space: normal; }
-.loading-panel button { padding: 6px 12px; border: 1px solid var(--gold); border-radius: 20px; color: var(--gold); background: var(--ink); cursor: pointer; }
+.loading-panel button { padding: 6px 12px; border: 1px solid var(--gold); border-radius: 20px; color: var(--gold); background: rgba(91, 16, 11, .92); cursor: pointer; }
 .is-structure .scene-caption { bottom: 80px; }
-.structure-control { padding: 14px 10px 8px; background: rgba(8, 11, 10, .82); }
+.structure-control { padding: 14px 10px 8px; background: rgba(86, 15, 10, .86); }
 @media (max-width: 1100px) { .model-header .chapter-rail { order: 3; width: 100%; justify-content: space-between; } }
 @media (max-width: 900px) {
   .model-layout { grid-template-columns: 1fr; }

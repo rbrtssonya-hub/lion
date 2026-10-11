@@ -196,7 +196,7 @@ export async function createLionScene({
 
     const ground = new Mesh(
       new CircleGeometry(4.5, 64),
-      new MeshBasicMaterial({ color: 0x0a0e0d, transparent: true, opacity: 0.72 }),
+      new MeshBasicMaterial({ color: 0x3f0d09, transparent: true, opacity: 0.6 }),
     );
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = -1.15;
