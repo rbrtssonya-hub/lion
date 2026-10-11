@@ -1,12 +1,9 @@
 import {
   ACESFilmicToneMapping,
   Box3,
-  CircleGeometry,
   DirectionalLight,
   Group,
   HemisphereLight,
-  Mesh,
-  MeshBasicMaterial,
   PerspectiveCamera,
   PointLight,
   Scene,
@@ -168,6 +165,8 @@ export async function createLionScene({
   try {
     // Let browsers try their available WebGL implementation, including software rendering.
     renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    // Composite the lion directly over the page's shared background.
+    renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.outputColorSpace = SRGBColorSpace;
     renderer.toneMapping = ACESFilmicToneMapping;
@@ -198,14 +197,6 @@ export async function createLionScene({
     const fill = new PointLight(0xa84431, 5, 7, 2);
     fill.position.set(-2, 1.2, 2.4);
     scene.add(fill);
-
-    const ground = new Mesh(
-      new CircleGeometry(4.5, 64),
-      new MeshBasicMaterial({ color: 0x3f0d09, transparent: true, opacity: 0.6 }),
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -1.15;
-    scene.add(ground);
 
     signal?.addEventListener('abort', dispose, { once: true });
     if (typeof ResizeObserver !== 'undefined') {
@@ -267,7 +258,7 @@ export async function createLionScene({
     model.position.sub(center);
     const modelGroup = new Group();
     modelGroup.add(model);
-    // Keep the complete merged lion head inside the warm display stage.
+    // Keep the complete merged lion head inside the interactive viewport.
     // Focus views can still move closer through the camera API.
     modelGroup.scale.setScalar(1.78 / maxSize);
     modelGroup.position.y = -0.066;

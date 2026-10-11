@@ -65,7 +65,7 @@
 .entry-cloud { position: absolute; width: 76px; fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
 .entry-cloud-top { top: 46px; left: 38%; }
 .entry-cloud-side { left: 22px; top: 61%; width: 86px; }
-.entry-bottom-nav { position: absolute; inset: auto 0 0; z-index: 3; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: clamp(84px, 9.5svh, 132px); padding: 12px 30px; border-top: 1px solid rgba(237, 190, 117, .8); background: rgba(116, 23, 16, .8); backdrop-filter: blur(6px); }
+.entry-bottom-nav { position: absolute; inset: auto 0 0; z-index: 3; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: clamp(84px, 9.5svh, 132px); padding: 12px 30px; border-top: 1px solid rgba(237, 190, 117, .8); background: rgba(116, 23, 16, .8); backdrop-filter: blur(6px); }
 .entry-bottom-nav::before, .entry-bottom-nav::after { content: ''; position: absolute; top: 7px; width: 32px; height: 12px; border-top: 1px solid #cda16c; opacity: .7; pointer-events: none; }
 .entry-bottom-nav::before { left: 9px; border-left: 1px solid #cda16c; }
 .entry-bottom-nav::after { right: 9px; border-right: 1px solid #cda16c; }

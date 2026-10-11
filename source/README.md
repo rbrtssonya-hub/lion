@@ -15,6 +15,7 @@
 | `reviews/homepage/` | 首页视觉审查图 | 不复制 |
 | `reviews/video/` | 视频抽帧、接触表、尾帧与动作审查图 | 不复制 |
 | `reviews/react-entry/` | 迁移前 React 入口及章节审查截图 | 不复制 |
+| `reviews/model/` | 模型页视觉审查图 | 不复制 |
 | `design/` | 设计稿、方案说明与历史实施计划 | 不复制 |
 | `references/` | 资料来源说明 | 不复制 |
 
@@ -22,7 +23,7 @@
 
 `public/` 是 Vite 静态资产根目录。相对网页地址 `assets/entry/home-lion-loop.mp4` 对应 `source/public/assets/entry/home-lion-loop.mp4`；文件路径集中维护在 `src/config/assetPaths.js`，`media.js` 补上 Vite 基址。新增素材先区分运行版与创作版，只有需要随网页交付的文件放入 `public/`。
 
-未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和评分资料尚未完整补齐，来源边界见 [资料说明](references/sources.md)。
+未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
 `asset-manifest.json` 记录68条二进制迁移快照的来源路径、现路径、大小和 SHA256。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 

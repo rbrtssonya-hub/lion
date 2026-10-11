@@ -176,9 +176,6 @@ export default function ModelPage({ route = 'model', onNavigate }) {
             <span>{focusState === 'overall' ? '完整轮廓' : `聚焦 · ${selected.name}`}</span>
           </div>
           <div className="scene-frame" id="sceneFrame">
-            <div className="scene-glow" />
-            <div className="scene-pattern" aria-hidden="true" />
-            <div className="scene-grid" />
             <div
               id="sceneContainer"
               className="scene-container"
@@ -233,7 +230,6 @@ export default function ModelPage({ route = 'model', onNavigate }) {
               className="structure-layer"
               id="structureLayer"
               hidden={!structure}
-              style={{ '--structure-depth': structureDepth / 100 }}
             >
               <div className="structure-layer-head">
                 <span>结构分区预览</span>

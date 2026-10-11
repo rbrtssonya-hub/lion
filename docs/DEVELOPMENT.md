@@ -36,7 +36,9 @@ npm run preview
 
 React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
 
-章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
+整体和结构页的中央容器只承接模型交互，使用透明背景且没有边框、内阴影或装饰场景层。Three.js 通过 `alpha: true` 与透明清屏直接融合全页背景，不添加地面；保留现有相机、模型尺度、热点和结构示意。
+
+章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前五章为入场、整体、结构、动作、神态；已移除的评分地址与其他未知 Hash 地址均回到首页。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
 ## 资源更新
 
@@ -70,7 +72,7 @@ npm run test:e2e
 
 ## 内容与工程记忆
 
-结构数据属于“资料整理 / 结构示意”，不能将合并网格热点称作已分离的模型部件。视频和 AI 模型素材需保持“AI辅助创作”说明；动作、神态和评分的数据扩展须先补来源与样本，评分注明规则年份。
+结构数据属于“资料整理 / 结构示意”，不能将合并网格热点称作已分离的模型部件。视频和 AI 模型素材需保持“AI辅助创作”说明；动作和神态的数据扩展须先补来源与样本。
 
 `source/design/` 中的方案及旧计划保存设计背景，可能含历史路径、旧技术方案或过时进度。恢复当前开发应先读 `AGENTS.md` 和 `wiki_memory/`；从日志追溯历史时核对当时 revision。
 

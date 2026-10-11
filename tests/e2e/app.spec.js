@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('首页媒体、视频结束转场和六章导航均由当前页面运行', async ({ page }) => {
+test('首页媒体、视频结束转场和五章导航均由当前页面运行', async ({ page }) => {
   const errors = [];
   const failedResources = [];
   const requests = [];
@@ -44,7 +44,7 @@ test('首页媒体、视频结束转场和六章导航均由当前页面运行',
   await expect(page.locator('#structureDepthValue')).toHaveText('90%');
   await expect(page.locator('.structure-callout.is-revealed')).toHaveCount(4);
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
-  for (const [route, label] of [['action', '动作'], ['state', '神态'], ['score', '评分']]) {
+  for (const [route, label] of [['action', '动作'], ['state', '神态']]) {
     await page.locator('.entry-chapter-nav, .chapter-rail').getByRole('button', { name: new RegExp(label) }).click();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
     await expect(page.locator('#chapterTitle')).toHaveText(label);
@@ -52,9 +52,9 @@ test('首页媒体、视频结束转场和六章导航均由当前页面运行',
     await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
   }
   await page.reload();
-  await expect(page.locator('#chapterTitle')).toHaveText('评分');
-  await page.goBack();
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
+  await page.goBack();
+  await expect(page.locator('#chapterTitle')).toHaveText('动作');
   await page.getByRole('button', { name: '返回首页', exact: true }).click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   expect(errors).toEqual([]);
@@ -98,15 +98,71 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
 });
 
-test('整体模型页使用首页朱红背景而不是黑色大底', async ({ page }) => {
-  await page.goto('/#/model');
-  await expect(page.locator('#modelStage')).toBeVisible();
-  const backgrounds = await page.evaluate(() => ({
-    stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
-    frame: getComputedStyle(document.querySelector('#sceneFrame')).backgroundImage,
-  }));
-  expect(backgrounds.stage).toMatch(/104,\s*23,\s*15/);
-  expect(backgrounds.frame).toMatch(/132,\s*34,\s*21/);
+test('整体与结构模型透明融入朱红页面，展示区没有内框或地面', async ({ page }) => {
+  for (const route of ['model', 'structure']) {
+    await page.goto(`/#/${route}`);
+    await expect(page.locator('#modelStage')).toBeVisible();
+    await expect(page.locator('#modelStatus')).toContainText(route === 'model' ? '模型已载入' : '结构框架', { timeout: 45_000 });
+    await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+    await expect(page.locator('.scene-glow, .scene-pattern, .scene-grid')).toHaveCount(0);
+    const presentation = await page.evaluate(() => {
+      const frame = getComputedStyle(document.querySelector('#sceneFrame'));
+      const layer = getComputedStyle(document.querySelector('#structureLayer'));
+      const control = getComputedStyle(document.querySelector('.structure-control'));
+      return {
+        stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
+        frameColor: frame.backgroundColor,
+        frameImage: frame.backgroundImage,
+        frameBorders: [frame.borderTopWidth, frame.borderRightWidth, frame.borderBottomWidth, frame.borderLeftWidth],
+        frameShadow: frame.boxShadow,
+        layerColor: layer.backgroundColor,
+        layerImage: layer.backgroundImage,
+        controlColor: control.backgroundColor,
+        controlImage: control.backgroundImage,
+      };
+    });
+    expect(presentation.stage).toMatch(/104,\s*23,\s*15/);
+    expect(presentation.frameColor).toBe('rgba(0, 0, 0, 0)');
+    expect(presentation.frameImage).toBe('none');
+    expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
+    expect(presentation.frameShadow).toBe('none');
+    expect(presentation.layerColor).toBe('rgba(0, 0, 0, 0)');
+    expect(presentation.layerImage).toBe('none');
+    expect(presentation.controlColor).toBe('rgba(0, 0, 0, 0)');
+    expect(presentation.controlImage).toBe('none');
+
+    // Read inside rAF before the browser clears a non-preserved WebGL buffer.
+    // A nonempty model is required so a cleared, all-zero buffer cannot pass.
+    const pixels = await page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
+      const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
+      const attributes = gl?.getContextAttributes();
+      if (!gl || !attributes) return resolve({ alpha: false, modelPixels: 0 });
+      let attempts = 0;
+      const sample = () => {
+        const width = gl.drawingBufferWidth;
+        const height = gl.drawingBufferHeight;
+        const buffer = new Uint8Array(width * height * 4);
+        gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
+        let modelPixels = 0;
+        let edgePixels = 0;
+        const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
+        for (let y = 0; y < height; y += 1) {
+          for (let x = 0; x < width; x += 1) {
+            if (buffer[(y * width + x) * 4 + 3] === 0) continue;
+            modelPixels += 1;
+            const corner = (x < margin || x >= width - margin) && y >= height - margin;
+            if (y < margin || corner) edgePixels += 1;
+          }
+        }
+        if (modelPixels === 0 && ++attempts < 10) return requestAnimationFrame(sample);
+        resolve({ alpha: attributes.alpha, modelPixels, edgePixels });
+      };
+      requestAnimationFrame(sample);
+    }));
+    expect(pixels.alpha).toBe(true);
+    expect(pixels.modelPixels).toBeGreaterThan(100);
+    expect(pixels.edgePixels).toBe(0);
+  }
 });
 
 test('模型页顶部复用首页红金章节导航并高亮当前章节', async ({ page }) => {
@@ -192,4 +248,16 @@ test('视频不可用时可以重试或进入模型，未知链接返回首页',
   await expect(page.locator('#modelStage')).toBeVisible();
   await page.goto('/#/unknown-chapter');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+});
+
+test('已删除的评分章节链接均返回首页', async ({ page }) => {
+  for (const hash of ['#/score', '#score']) {
+    await page.goto(`/${hash}`);
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+    await expect(page.locator('#entryLionVideo')).toBeVisible();
+    await expect(page.locator('#chapterTitle')).toHaveCount(0);
+    await expect(page.locator('.entry-chapter-nav')).not.toContainText('评分');
+    await page.reload();
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  }
 });
