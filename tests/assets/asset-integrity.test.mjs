@@ -108,6 +108,23 @@ test('all six structure hotspots have unique IDs and valid percentage positions'
   }
 });
 
+test('structure hotspots provide cultural, technical and camera focus metadata', () => {
+  const structure = readJson(resolve(root, 'src/data/lion-structure.json'));
+  for (const hotspot of structure.hotspots) {
+    assert.equal(typeof hotspot.culture?.meaning, 'string');
+    assert.ok(hotspot.culture.meaning.length > 0, `${hotspot.id}: missing cultural meaning`);
+    assert.equal(typeof hotspot.culture?.pattern, 'string');
+    assert.ok(hotspot.culture.pattern.length > 0, `${hotspot.id}: missing pattern description`);
+    assert.equal(typeof hotspot.structure?.craft, 'string');
+    assert.ok(hotspot.structure.craft.length > 0, `${hotspot.id}: missing craft description`);
+    assert.ok(Array.isArray(hotspot.structure?.parts) && hotspot.structure.parts.length > 0, `${hotspot.id}: missing structure parts`);
+    assert.ok(Array.isArray(hotspot.focusTarget) && hotspot.focusTarget.length === 3, `${hotspot.id}: invalid focus target`);
+    assert.ok(hotspot.focusTarget.every((value) => Number.isFinite(value)), `${hotspot.id}: focus target must be numeric`);
+    assert.equal(typeof hotspot.focusDistance, 'number');
+    assert.ok(hotspot.focusDistance > 0, `${hotspot.id}: focus distance must be positive`);
+  }
+});
+
 test('Live2D layer specification resolves the source cover after migration', () => {
   const directory = resolve(sourceRoot, 'live2d/source');
   const specification = readJson(resolve(directory, 'layer-spec.json'));

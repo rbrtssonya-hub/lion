@@ -124,6 +124,52 @@ test('模型页顶部复用首页红金章节导航并高亮当前章节', async
   await expect(header.getByRole('button', { name: '打开章节菜单', exact: true })).toBeVisible();
 });
 
+test('模型页数字图鉴联动热点、聚焦和结构入口', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/#/model');
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await expect(page.locator('#culturePanel')).toBeVisible();
+  await expect(page.locator('#structurePanel')).toBeVisible();
+  await expect(page.locator('.panel-detail-list')).toBeVisible();
+  await expect(page.locator('.structure-diagram')).toBeVisible();
+  await expect(page.locator('#viewStructure')).toBeVisible();
+  await expect(page.locator('#resetView')).toBeVisible();
+  const sceneRatio = await page.locator('#sceneFrame').evaluate((element) => {
+    const { width, height } = element.getBoundingClientRect();
+    return width / height;
+  });
+  expect(sceneRatio).toBeCloseTo(16 / 9, 1);
+  const columns = await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+  expect(columns).toBe(3);
+
+  await page.locator('#hotspots [data-id="eyes"]').click();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'eyes');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'eyes');
+  await expect(page.locator('#cultureTitle')).toHaveText('鼓眼与狮眉');
+  await expect(page.locator('#structureTitle')).toHaveText('鼓眼与狮眉');
+  await expect(page.locator('#hotspots [data-id="eyes"]')).toHaveAttribute('aria-pressed', 'true');
+
+  await page.locator('#resetView').click();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
+
+  await page.locator('#hotspots [data-id="mirror"]').click();
+  await page.locator('#viewStructure').click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'structure');
+  await expect(page.locator('#structureLayer')).toBeVisible();
+  await expect(page.locator('#structureBoundary')).toContainText('合并网格');
+  await page.locator('#restoreStructure').click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+});
+
+test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/model');
+  await expect(page.locator('#modelStage')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);
+});
+
 test('快速离开载入中的模型时取消请求，重新进入只有一个canvas', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));

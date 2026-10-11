@@ -117,6 +117,9 @@ export async function createLionScene({
   let disposed = false;
   let modelReady = false;
   let modelScenes = [];
+  let viewTween = null;
+  const initialCameraPosition = new Vector3();
+  const initialTarget = new Vector3();
 
   const report = (status) => {
     if (!disposed && !signal?.aborted) onStatus(status);
@@ -182,6 +185,8 @@ export async function createLionScene({
     controls.maxDistance = 8;
     controls.target.set(0, 0.08, 0);
     controls.addEventListener('start', stopRotation);
+    initialCameraPosition.copy(camera.position);
+    initialTarget.copy(controls.target);
 
     scene.add(new HemisphereLight(0xd5c7a4, 0x0b1513, 1.9));
     const key = new DirectionalLight(0xffe2b2, 3.3);
@@ -214,6 +219,14 @@ export async function createLionScene({
     const render = () => {
       if (disposed) return;
       try {
+        if (viewTween) {
+          const elapsed = performance.now() - viewTween.startedAt;
+          const progress = Math.min(1, elapsed / viewTween.duration);
+          const eased = 1 - ((1 - progress) ** 3);
+          camera.position.lerpVectors(viewTween.fromCamera, viewTween.toCamera, eased);
+          controls.target.lerpVectors(viewTween.fromTarget, viewTween.toTarget, eased);
+          if (progress >= 1) viewTween = null;
+        }
         controls.update();
         renderer.render(scene, camera);
         animationFrame = window.requestAnimationFrame(render);
@@ -254,7 +267,9 @@ export async function createLionScene({
     model.position.sub(center);
     const modelGroup = new Group();
     modelGroup.add(model);
-    modelGroup.scale.setScalar(2.2 / maxSize);
+    // Keep the complete merged lion head inside the warm display stage.
+    // Focus views can still move closer through the camera API.
+    modelGroup.scale.setScalar(1.78 / maxSize);
     modelGroup.position.y = -0.066;
     scene.add(modelGroup);
     modelReady = true;
@@ -266,6 +281,38 @@ export async function createLionScene({
     return {
       setAutoRotate(value) {
         if (!disposed && modelReady) controls.autoRotate = Boolean(value);
+      },
+      focusOn({ target, distance }) {
+        if (disposed || !modelReady || !Array.isArray(target) || target.length !== 3) return;
+        const nextTarget = new Vector3(...target.map(Number));
+        const nextDistance = Number(distance);
+        if (!nextTarget.toArray().every(Number.isFinite) || !Number.isFinite(nextDistance) || nextDistance <= 0) return;
+
+        const direction = camera.position.clone().sub(controls.target);
+        if (direction.lengthSq() < 0.0001) direction.set(0, 0, 1);
+        direction.normalize();
+        const nextCamera = nextTarget.clone().add(direction.multiplyScalar(Math.min(8, Math.max(1.8, nextDistance))));
+        controls.autoRotate = false;
+        onAutoRotateChange(false);
+        viewTween = {
+          fromCamera: camera.position.clone(),
+          fromTarget: controls.target.clone(),
+          toCamera: nextCamera,
+          toTarget: nextTarget,
+          startedAt: performance.now(),
+          duration: 720,
+        };
+      },
+      resetView() {
+        if (disposed || !modelReady) return;
+        viewTween = {
+          fromCamera: camera.position.clone(),
+          fromTarget: controls.target.clone(),
+          toCamera: initialCameraPosition.clone(),
+          toTarget: initialTarget.clone(),
+          startedAt: performance.now(),
+          duration: 620,
+        };
       },
       dispose,
     };
