@@ -190,7 +190,7 @@
     },
     {
       "from": "site/assets/entry/home-lion-loop.mp4",
-      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "path": "source/video/entry/home-lion-loop-v1.mp4",
       "bytes": 3139260,
       "sha256": "b2d4aa147a03d5e676bcbc997f57f8621c685cfc228c690f7b92e098609bde9c"
     },
@@ -451,6 +451,54 @@
       "path": "source/reviews/model/2026-10-11-page-canvas/structure-zoom-1920.png",
       "bytes": 2588952,
       "sha256": "b90fbe95aedd016c81b5ef374d2a337a11cae525e52f6ceca1576c70df3bc153"
+    },
+    {
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "from": "E:/数字媒体竞赛/张钧儒/首页/首页.mp4",
+      "bytes": 8059565,
+      "sha256": "b525b4f755fd464997f3792a5b06630c6b7fc09c9f77a5c68e4a0fa86d33ba1c"
+    },
+    {
+      "path": "source/public/assets/culture/foshan-lion-dance.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:Lion_dance_in_Foshang.jpg",
+      "bytes": 264414,
+      "sha256": "befd672af835e16736841afba86a6191a12b4e0c8cbe96eaf0d8b997c8166a09"
+    },
+    {
+      "path": "source/public/assets/culture/guangzhou-lion-head.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:2020_%E5%BB%A3%E5%B7%9E_%E8%88%9E%E7%8D%85%E7%8D%85%E9%A0%AD.jpg",
+      "bytes": 277498,
+      "sha256": "95e33217bf3b31ffc8268239f5e6484aaa64c4ae04bfa1104cc04a035179b791"
+    },
+    {
+      "path": "source/public/assets/culture/lion-cai-qing.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:Lettuce_Incoming!_(9453206569).jpg",
+      "bytes": 321822,
+      "sha256": "ca06712fde35b3f32e647855e3cfce05d29aa767d300e37ea3002f2d3261c32e"
+    },
+    {
+      "path": "source/public/assets/culture/hong-kong-lion-dance.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:06834_20091004_lion_dance_Hong_Kong_Kowloon.jpg",
+      "bytes": 403391,
+      "sha256": "6f83643f370e3b9bd41bd99723cfc978fe9e112dc4a2d85af55fd2c3d6b73234"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/hero-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/hero-1920.png",
+      "bytes": 2736683,
+      "sha256": "b3755b4b6cf2d38c64fa010bf10a4b6299103b97c9e9f2773d63abbf2f2199ae"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/culture-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/culture-1920.png",
+      "bytes": 3385328,
+      "sha256": "292249da34df6dbaf9e86d7bb8dd08bd21b7afaf6104670181d8171591810fb0"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/merged-model-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/merged-model-1920.png",
+      "bytes": 2065394,
+      "sha256": "43ccf754385bf1325e0c9c4d488ca06bc1733e56ef79a4f7caadb7bda065262b"
     }
   ]
 }

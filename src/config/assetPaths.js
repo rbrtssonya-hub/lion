@@ -6,4 +6,8 @@ export const assetPaths = {
   navLion: 'assets/entry/nav-lion-head.png',
   model: 'assets/models/lion-overall.glb',
   poster: 'assets/poster/lion-full.png',
+  cultureFoshan: 'assets/culture/foshan-lion-dance.jpg',
+  cultureLionHead: 'assets/culture/guangzhou-lion-head.jpg',
+  cultureCaiQing: 'assets/culture/lion-cai-qing.jpg',
+  culturePerformance: 'assets/culture/hong-kong-lion-dance.jpg',
 };

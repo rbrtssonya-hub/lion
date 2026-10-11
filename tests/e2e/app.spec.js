@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { assetPaths } from '../../src/config/assetPaths.js';
 
 async function sampleModelPixels(page) {
   return page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
@@ -61,7 +62,7 @@ async function sampleModelPixels(page) {
   }));
 }
 
-test('首页媒体、视频结束转场和五章导航均由当前页面运行', async ({ page }) => {
+test('首页入场结束后原地循环背景，整体与章节交互由当前页面运行', async ({ page }) => {
   const errors = [];
   const failedResources = [];
   const requests = [];
@@ -70,19 +71,25 @@ test('首页媒体、视频结束转场和五章导航均由当前页面运行',
   page.on('request', (request) => requests.push(request.url()));
   await page.goto('/');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-  await expect(page.locator('.entry-title-art')).toBeVisible();
-  const homeLion = page.locator('.entry-lion-emblem');
+  await expect(page.locator('.entry-title-art')).toHaveCount(1);
+  const homeLion = page.locator('.entry-brand .entry-lion-emblem');
   await expect(homeLion).toBeVisible();
   await expect(homeLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
   expect(await homeLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
-  await expect.poll(() => page.locator('#entryLionVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
+  await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
+  expect(await page.locator('#introVideo').evaluate((video) => video.loop)).toBe(false);
   expect(requests.some((url) => /three|GLTFLoader|lion-overall/.test(url))).toBe(false);
+  await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  await expect(page.locator('#entryLionVideo')).toHaveJSProperty('src', new URL(assetPaths.home, page.url()).href);
+  await expect.poll(() => page.locator('#entryLionVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
+  expect(await page.locator('#entryLionVideo').evaluate((video) => video.loop)).toBe(true);
+  await expect(page.locator('.entry-title-art')).toBeVisible();
+  await expect(page.locator('#introVideo')).toHaveCount(0);
   await page.screenshot({ path: test.info().outputPath('homepage.png'), fullPage: true });
 
-  await page.getByRole('button', { name: '探索更多' }).click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'intro');
-  await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
-  await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
+  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
   await expect(page.locator('#modelStage')).toBeVisible();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
@@ -98,8 +105,8 @@ test('首页媒体、视频结束转场和五章导航均由当前页面运行',
     await expect(page.locator(`#hotspots [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
   }
 
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-  await page.locator('.entry-chapter-nav, .chapter-rail').getByRole('button', { name: /结构/ }).click();
+  await page.locator('#viewStructure').click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
   await expect(page.locator('#structureLayer')).toBeVisible();
   await page.locator('#structureDepth').fill('90');
   await expect(page.locator('#structureDepthValue')).toHaveText('90%');
@@ -122,13 +129,41 @@ test('首页媒体、视频结束转场和五章导航均由当前页面运行',
   expect(failedResources).toEqual([]);
 });
 
+test('入场仅首次自动播放，返回与刷新保留循环背景，支持重播和跳过', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#introVideo')).toBeVisible();
+  await page.getByRole('button', { name: '跳过入场', exact: true }).click();
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await page.reload();
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await expect(page.locator('#introVideo')).toHaveCount(0);
+  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
+  await expect(page.locator('#modelStage')).toBeVisible();
+  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await page.getByRole('button', { name: '重播入场', exact: true }).click();
+  await expect(page.locator('#introVideo')).toBeVisible();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  expect(await page.locator('#introVideo').evaluate((video) => video.loop)).toBe(false);
+  await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  const homeHash = await page.evaluate(() => location.hash);
+  await page.getByRole('button', { name: '探索更多', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  expect(await page.evaluate(() => location.hash)).toBe(homeHash);
+});
+
 test('手机视口保持章节导航与结构交互，页面可正常滚动', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await page.screenshot({ path: test.info().outputPath('home-mobile.png'), fullPage: true });
-  await page.locator('.entry-bottom-item').filter({ hasText: '结构' }).click();
+  await page.locator('.entry-bottom-item').filter({ hasText: '整体' }).click();
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await page.locator('#viewStructure').click();
   await expect(page.locator('#structureLayer')).toBeVisible();
-  await expect(page.locator('#modelStatus')).toContainText('结构框架', { timeout: 45_000 });
+  await expect(page.locator('#modelStatus')).toContainText('结构示意', { timeout: 45_000 });
   await page.locator('#structureDepth').fill('65');
   await expect(page.locator('#structureDepthValue')).toHaveText('65%');
   await page.locator('#hotspotList [data-id="mouth"]').click();
@@ -136,11 +171,11 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('structure-mobile.png'), fullPage: true });
   await page.getByRole('button', { name: '打开章节菜单', exact: true }).click();
-  await page.getByRole('dialog', { name: '章节目录' }).getByRole('button', { name: /04.*动作/ }).click();
+  await page.getByRole('dialog', { name: '章节目录' }).getByRole('button', { name: /03.*动作/ }).click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole('button', { name: '返回首页', exact: true }).click();
-  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
 });
 
 test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ page }) => {
@@ -159,11 +194,13 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
 });
 
-test('整体与结构模型透明融入朱红页面，展示区没有内框或地面', async ({ page }) => {
-  for (const route of ['model', 'structure']) {
-    await page.goto(`/#/${route}`);
+test('整体及同页结构示意透明融入朱红页面，展示区没有内框或地面', async ({ page }) => {
+  await page.goto('/#/model');
+  for (const showGuide of [false, true]) {
+    if (showGuide) await page.locator('#viewStructure').click();
     await expect(page.locator('#modelStage')).toBeVisible();
-    await expect(page.locator('#modelStatus')).toContainText(route === 'model' ? '模型已载入' : '结构框架', { timeout: 45_000 });
+    await expect(page.locator('#modelStatus')).toContainText(showGuide ? '结构示意' : '模型已载入', { timeout: 45_000 });
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
     await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
     await expect(page.locator('.scene-glow, .scene-pattern, .scene-grid')).toHaveCount(0);
     const presentation = await page.evaluate(() => {
@@ -208,12 +245,13 @@ test('整体与结构模型透明融入朱红页面，展示区没有内框或�
   }
 });
 
-test('整体与结构模型滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
+test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  for (const route of ['model', 'structure']) {
+  for (const showGuide of [false, true]) {
     await page.goto('/');
-    await page.goto(`/#/${route}`);
-    await expect(page.locator('#modelStatus')).toContainText(route === 'model' ? '模型已载入' : '结构框架', { timeout: 45_000 });
+    await page.goto('/#/model');
+    await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+    if (showGuide) await page.locator('#viewStructure').click();
     await page.getByRole('button', { name: '暂停自动旋转', exact: true }).click();
     const initial = await sampleModelPixels(page);
     expect(initial.modelPixels).toBeGreaterThan(100);
@@ -231,7 +269,8 @@ test('整体与结构模型滚轮放大后越过旧16:9及交互区上下边缘�
     expect(zoomed.belowPixels).toBeGreaterThan(100);
     expect(zoomed.aboveFramePixels).toBeGreaterThan(100);
     expect(zoomed.belowFramePixels).toBeGreaterThan(100);
-    await page.screenshot({ path: test.info().outputPath(`${route}-zoom-beyond-legacy-frame.png`), fullPage: true });
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+    await page.screenshot({ path: test.info().outputPath(`${showGuide ? 'structure-guide' : 'model'}-zoom-beyond-legacy-frame.png`), fullPage: true });
   }
 });
 
@@ -239,10 +278,11 @@ test('模型页顶部复用首页红金章节导航并高亮当前章节', async
   await page.goto('/#/model');
   const header = page.locator('.model-header');
   await expect(header.locator('.entry-nav-shell')).toBeVisible();
-  const modelLion = header.locator('.entry-lion-emblem');
+  const modelLion = header.locator('.site-brand .entry-lion-emblem');
   await expect(modelLion).toBeVisible();
   await expect(modelLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
   expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
+  await expect(header.locator('.entry-nav-ribbon img')).toHaveCount(0);
   await expect(header.locator('.entry-chapter-nav')).toBeVisible();
   await expect(header.locator('.chapter-rail')).toHaveCount(0);
   await expect(header.locator('.entry-nav-item.is-current')).toHaveText(/整体/);
@@ -250,7 +290,7 @@ test('模型页顶部复用首页红金章节导航并高亮当前章节', async
   await expect(header.getByRole('button', { name: '打开章节菜单', exact: true })).toBeVisible();
 });
 
-test('模型页数字图鉴联动热点、聚焦和结构入口', async ({ page }) => {
+test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出释放场景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('/#/model');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -276,13 +316,27 @@ test('模型页数字图鉴联动热点、聚焦和结构入口', async ({ page 
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
 
   await page.locator('#hotspots [data-id="mirror"]').click();
+  const modelHash = await page.evaluate(() => location.hash);
   await page.locator('#viewStructure').click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'structure');
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  expect(await page.evaluate(() => location.hash)).toBe(modelHash);
+  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-guide-open', 'true');
   await expect(page.locator('#structureLayer')).toBeVisible();
   await expect(page.locator('#structureBoundary')).toContainText('合并网格');
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await page.locator('#viewStructure').click();
+  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#structureLayer')).not.toBeVisible();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mirror');
+  await page.locator('#viewStructure').click();
   await page.locator('#restoreStructure').click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#structureLayer')).not.toBeVisible();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
+  await expect(page.locator('#structureDepthValue')).toHaveText('18%');
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.getByRole('button', { name: '返回首页', exact: true }).click();
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
@@ -320,21 +374,46 @@ test('快速离开载入中的模型时取消请求，重新进入只有一个ca
   expect(errors).toEqual([]);
 });
 
-test('视频不可用时可以重试或进入模型，未知链接返回首页', async ({ page }) => {
-  await page.route('**/assets/intro/entry-intro.mp4', (route) => route.abort('failed'));
-  await page.goto('/#/intro');
+test('首页入场视频失败可重试与跳过，未知链接返回首页', async ({ page }) => {
+  let fail = true;
+  await page.route('**/assets/intro/entry-intro.mp4', (route) => fail ? route.abort('failed') : route.continue());
+  await page.goto('/');
   await expect(page.locator('.video-status')).toContainText('视频暂时无法播放');
-  await page.getByRole('button', { name: '浏览整体模型', exact: true }).click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  fail = false;
+  await page.getByRole('button', { name: '重试', exact: true }).click();
+  await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
+  await page.getByRole('button', { name: '跳过入场', exact: true }).click();
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
   await expect(page.locator('#modelStage')).toBeVisible();
   await page.goto('/#/unknown-chapter');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+});
+
+test('旧入场与结构链接兼容到首页与整体，不再保留独立页面', async ({ page }) => {
+  for (const [hash, route] of [['#/intro', 'entry'], ['#intro', 'entry'], ['#/structure', 'model'], ['#structure', 'model']]) {
+    await page.goto(`/${hash}`);
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
+    await expect(page).toHaveURL(new RegExp(`#/${route}$`));
+    if (route === 'entry') {
+      await expect(page.locator('.entry-title-art')).toHaveCount(1);
+      await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
+    } else {
+      await expect(page.locator('#modelStage')).toBeVisible();
+      await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
+      await expect(page.locator('#structureLayer')).not.toBeVisible();
+    }
+    await page.reload();
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
+  }
 });
 
 test('已删除的评分章节链接均返回首页', async ({ page }) => {
   for (const hash of ['#/score', '#score']) {
     await page.goto(`/${hash}`);
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-    await expect(page.locator('#entryLionVideo')).toBeVisible();
+    await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
     await expect(page.locator('#chapterTitle')).toHaveCount(0);
     await expect(page.locator('.entry-chapter-nav')).not.toContainText('评分');
     await page.reload();

@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-11
+updated: 2026-10-12
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-12 | feature | completed | [入场首页融合与醒狮文化长页](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-12-%E5%85%A5%E5%9C%BA%E9%A6%96%E9%A1%B5%E8%9E%8D%E5%90%88%E4%B8%8E%E9%86%92%E7%8B%AE%E6%96%87%E5%8C%96%E9%95%BF%E9%A1%B5.md) |
 | 2026-10-11 | ui | completed | [首页标题探索框与红金导航](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E9%A6%96%E9%A1%B5%E6%A0%87%E9%A2%98%E6%8E%A2%E7%B4%A2%E6%A1%86%E4%B8%8E%E7%BA%A2%E9%87%91%E5%AF%BC%E8%88%AA.md) |
 | 2026-10-11 | ui | completed | [评分移除与模型透明融合](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E8%AF%84%E5%88%86%E7%A7%BB%E9%99%A4%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%8F%E6%98%8E%E8%9E%8D%E5%90%88.md) |
 | 2026-10-11 | ui | completed | [模型页首页色调背景](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E6%A8%A1%E5%9E%8B%E9%A1%B5%E9%A6%96%E9%A1%B5%E8%89%B2%E8%B0%83%E8%83%8C%E6%99%AF.md) |

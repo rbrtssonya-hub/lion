@@ -52,26 +52,16 @@
 }
 
 .model-brand-lockup {
-  display: flex;
-  align-items: center;
-  gap: 14px;
   min-height: 62px;
-  color: rgba(255, 244, 220, .82);
-  font-size: 11px;
-  white-space: nowrap;
 }
 
-.model-brand-mark {
+.model-brand-lockup .site-brand-name {
   color: #fff0c8;
-  font-family: var(--brush);
-  font-size: clamp(24px, 1.8vw, 34px);
-  font-weight: 600;
   text-shadow: 0 2px 12px rgba(72, 18, 10, .3);
 }
 
-.model-brand-divider { width: 26px; height: 1px; background: var(--stage-gold); }
 .model-header-navigation { display: flex; flex: 1; min-width: 0; flex-direction: column; align-items: flex-end; gap: 4px; }
-.model-header .entry-nav-shell { width: min(62vw, 1550px); max-width: 100%; }
+.model-header .entry-nav-shell { width: min(52vw, 1300px); max-width: 100%; }
 .model-header-meta { display: flex; align-items: center; justify-content: flex-end; gap: 12px; min-height: 26px; color: rgba(255, 240, 204, .78); font-size: 10px; }
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--stage-gold); box-shadow: 0 0 16px var(--stage-gold); }
 .icon-button { width: 34px; height: 34px; margin-left: 8px; border: 1px solid rgba(95, 43, 22, .48); border-radius: 50%; color: #6b271d; background: rgba(255, 239, 207, .78); cursor: pointer; }
@@ -151,7 +141,7 @@
 .loading-panel button { padding: 6px 12px; border: 1px solid #a45e2b; border-radius: 20px; color: #7b2c1f; background: rgba(255, 243, 210, .76); cursor: pointer; }
 .loading-panel { pointer-events: auto; }
 .scene-caption { position: absolute; left: 0; right: 0; bottom: 88px; z-index: 10; display: flex; justify-content: space-between; color: rgba(91, 52, 32, .66); font: 10px var(--display); letter-spacing: .1em; text-transform: uppercase; pointer-events: none; }
-.is-structure .scene-caption { bottom: 158px; }
+.is-guide-visible .scene-caption { bottom: 158px; }
 
 .hotspots { position: absolute; inset: 0; z-index: 12; pointer-events: none; }
 .hotspots.is-disabled { display: none; }
@@ -243,8 +233,7 @@
 
 @media (max-width: 560px) {
   .model-header { padding: 18px 20px 12px; }
-  .model-brand-lockup { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .model-brand-divider { display: none; }
+  .model-brand-lockup { min-height: 48px; }
   .model-header-meta { gap: 8px; }
   .model-header-meta > span:not(.live-dot), .control-source { display: none; }
   .model-header .entry-nav-shell { height: 58px; }

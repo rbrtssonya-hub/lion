@@ -1,0 +1,84 @@
+.home-culture {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 7vw, 124px) clamp(24px, 6vw, 112px) 48px;
+  border-top: 1px solid #d9b67a;
+  color: #542b20;
+  background: radial-gradient(ellipse at 6% 10%, rgba(223, 188, 128, .17), transparent 42%), #f4ead9;
+  color-scheme: light;
+}
+
+.home-culture::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .45;
+  content: '';
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, rgba(126, 90, 43, .025) 3px 4px);
+}
+
+.home-culture-inner { position: relative; max-width: 1390px; margin: 0 auto; }
+.home-culture-intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 6vw, 112px); align-items: end; padding-bottom: clamp(54px, 6vw, 100px); border-bottom: 1px solid rgba(137, 89, 45, .27); }
+.home-culture-overline { display: flex; gap: 24px; align-items: center; margin-bottom: 25px; color: #9f3625; font-size: 13px; letter-spacing: .22em; }
+.home-culture-overline span { color: #987248; font: 10px Georgia, serif; letter-spacing: .2em; }
+.home-culture-intro h2 { margin: 0; color: #8c281c; font: 500 clamp(38px, 4vw, 70px)/1.25 'STSong', 'SimSun', '宋体', serif; letter-spacing: .06em; }
+.home-culture-intro-copy { position: relative; max-width: 470px; padding-bottom: 6px; }
+.home-culture-intro-copy p { margin: 0 0 16px; color: #735442; font-size: 15px; line-height: 1.9; }
+.home-culture-intro-copy p:first-child { color: #7c3526; font: 21px/1.7 'STSong', 'SimSun', '宋体', serif; }
+.home-culture-intro-mark { display: inline-block; padding: 5px 8px; border: 1px solid rgba(150, 55, 34, .6); color: #9b3827; font: 12px/1.4 'STSong', 'SimSun', '宋体', serif; letter-spacing: .16em; }
+.home-culture-stories { padding-top: clamp(60px, 6vw, 104px); }
+.home-culture-story { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); align-items: center; margin-bottom: clamp(84px, 8vw, 142px); }
+.home-culture-story:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr); }
+.home-culture-story:nth-child(even) .home-culture-figure { order: 2; }
+.home-culture-story:nth-child(even) .home-culture-copy { order: 1; }
+.home-culture-figure { min-width: 0; margin: 0; }
+.home-culture-photo-wrap { position: relative; overflow: hidden; background: #decfb8; }
+.home-culture-photo { display: block; width: 100%; height: auto; transform: scale(1); transition: transform 1400ms cubic-bezier(.16, 1, .3, 1); }
+.home-culture-figure figcaption { display: flex; flex-direction: column; gap: 5px; padding-top: 13px; font-size: 10px; line-height: 1.65; letter-spacing: .02em; }
+.home-culture-caption { color: #796044; }
+.home-culture-credit { color: #967b5c; }
+.home-culture a { color: inherit; text-decoration-color: rgba(137, 89, 45, .35); text-underline-offset: 3px; }
+.home-culture a:hover { color: #982d1e; text-decoration-color: currentColor; }
+.home-culture a:focus-visible { outline: 2px solid #9f3625; outline-offset: 4px; }
+.home-culture-copy { position: relative; min-width: 0; padding-top: 32px; }
+.home-culture-number { position: absolute; top: -47px; right: 0; color: rgba(152, 95, 44, .12); font: italic clamp(82px, 8vw, 130px)/1 Georgia, serif; pointer-events: none; }
+.home-culture-eyebrow { position: relative; margin-bottom: 22px; color: #9b7347; font-size: 10px; line-height: 1.6; letter-spacing: .1em; }
+.home-culture-copy h3 { position: relative; margin: 0 0 24px; color: #872b1f; font: 500 clamp(23px, 2.25vw, 37px)/1.5 'STSong', 'SimSun', '宋体', serif; letter-spacing: .04em; }
+.home-culture-text { margin: 0; color: #765542; font-size: clamp(14px, 1.05vw, 17px); line-height: 2.05; text-align: justify; }
+.home-culture-note { margin: 25px 0 0; padding: 13px 0 0; border-top: 1px solid rgba(158, 118, 69, .25); color: #9f7047; font: 13px/1.8 'STSong', 'SimSun', '宋体', serif; letter-spacing: .03em; }
+.home-culture-sources { display: flex; flex-wrap: wrap; gap: 9px 18px; align-items: center; padding-top: 23px; border-top: 1px solid rgba(137, 89, 45, .27); color: #8f7353; font-size: 10px; line-height: 1.8; }
+.home-culture-sources > span:first-child { color: #9d3928; letter-spacing: .1em; }
+.home-culture-endnote { margin-left: auto; }
+.home-culture.culture-motion-enabled [data-culture-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 800ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); }
+.home-culture.culture-motion-enabled [data-culture-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.home-culture.culture-motion-enabled .home-culture-story:not(.is-visible) .home-culture-photo { transform: scale(1.045); }
+
+@media (max-width: 900px) {
+  .home-culture-intro { gap: 35px; }
+  .home-culture-story, .home-culture-story:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; }
+  .home-culture-copy { padding-top: 10px; }
+  .home-culture-copy h3 { margin-bottom: 16px; }
+  .home-culture-number { top: -43px; }
+  .home-culture-endnote { width: 100%; margin-left: 0; }
+}
+
+@media (max-width: 640px) {
+  .home-culture { padding: 62px 24px 34px; }
+  .home-culture-intro { grid-template-columns: 1fr; gap: 32px; padding-bottom: 42px; }
+  .home-culture-intro h2 { font-size: 40px; }
+  .home-culture-intro-copy p:first-child { font-size: 19px; }
+  .home-culture-story, .home-culture-story:nth-child(even) { grid-template-columns: 1fr; gap: 23px; margin-bottom: 68px; }
+  .home-culture-story:nth-child(even) .home-culture-figure, .home-culture-story:nth-child(even) .home-culture-copy { order: initial; }
+  .home-culture-copy { padding-top: 9px; }
+  .home-culture-number { top: -11px; font-size: 80px; }
+  .home-culture-eyebrow { margin-bottom: 12px; }
+  .home-culture-copy h3 { font-size: 26px; }
+  .home-culture-note { margin-top: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-culture [data-culture-reveal],
+  .home-culture.culture-motion-enabled [data-culture-reveal] { opacity: 1; transform: none; transition: none; }
+  .home-culture .home-culture-photo,
+  .home-culture.culture-motion-enabled .home-culture-story:not(.is-visible) .home-culture-photo { transform: none; transition: none; }
+}

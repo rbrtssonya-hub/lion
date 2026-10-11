@@ -7,11 +7,13 @@
 | `public/assets/entry/` | 首页循环视频、封面与图片标题 | 复制到 `dist/assets/entry/` |
 | `public/assets/intro/` | 当前入场视频与运行海报 | 复制到 `dist/assets/intro/` |
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
+| `public/assets/culture/` | 首页文化图文的四张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
 | `public/assets/live2d/` | 保留的 Live2D 运行包、本地库与许可说明 | 随 publicDir 复制，当前首页不加载 |
 | `models/` | 保留的优化与面部绑定模型版本 | 不复制 |
 | `live2d/` | 分层图、PSD、Cubism 工程与原始导出 | 不复制 |
 | `video/intro/` | 入场视频制作版本、对照海报 | 不复制 |
+| `video/entry/` | 替换前的首页循环视频归档 | 不复制 |
 | `reviews/homepage/` | 首页视觉审查图 | 不复制 |
 | `reviews/video/` | 视频抽帧、接触表、尾帧与动作审查图 | 不复制 |
 | `reviews/react-entry/` | 迁移前 React 入口及章节审查截图 | 不复制 |
@@ -25,8 +27,8 @@
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
-`asset-manifest.json` 保留既有68条二进制迁移快照和导航狮头记录，并收录6张模型页浏览器审查图；来源路径、现路径、大小和 SHA256 都需可核对。生成截图的来源使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
+`asset-manifest.json` 目前登记83条二进制素材与审查记录，保留迁移素材的原字节与来源；原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。新增文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 
-本轮浏览器验收截图生成在 `tmp/e2e-dev/`、`tmp/e2e-preview/`，默认测试输出为 `test-results/`；它们属于运行产物，不加入历史素材快照。
+本轮浏览器验收输出在 `tmp/e2e-unified-home-dev/`、`tmp/e2e-unified-home-preview-final/`，默认测试输出为 `test-results/`；它们属于运行产物，不加入历史素材快照。三张人工审查图单独保存于 `reviews/homepage/2026-10-12-unified-entry/`，并登记到资产清单。
 
 历史方案与设计资料保存原文；当前工程状态由 [工程记忆](../wiki_memory/README.md) 统一维护。

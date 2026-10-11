@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { chapters } from '../config/chapters.js';
-import EntryLionEmblem from './EntryLionEmblem.jsx';
 
 export default function EntryNavTools({ children, onNavigate }) {
   const dialogRef = useRef(null);
@@ -22,7 +21,6 @@ export default function EntryNavTools({ children, onNavigate }) {
   return <>
     <div className="entry-nav-shell">
       <div className="entry-nav-ribbon">
-        <EntryLionEmblem />
         {['left', 'right'].map((side) => <svg key={side} className={`entry-ribbon-cloud entry-ribbon-cloud-${side}`} viewBox="0 0 90 100" aria-hidden="true" focusable="false">
           <path className="entry-ribbon-cloud-base" d="M9 23C29 10 40 22 42 30C55 27 62 39 57 46C73 45 79 56 70 65C83 77 70 90 58 87L31 92L24 83L5 79C19 77 22 68 15 62C30 60 31 51 23 47C39 42 29 29 9 23Z" />
           <path className="entry-ribbon-cloud-line" d="M30 31C44 27 53 40 43 46C38 49 34 45 37 41M41 59C55 50 66 64 55 70C49 73 43 69 48 65M25 78C37 85 58 77 61 86" />

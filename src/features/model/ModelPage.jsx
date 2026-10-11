@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ChapterNav from '../../components/ChapterNav.jsx';
+import BrandLockup from '../../components/BrandLockup.jsx';
 import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
 
@@ -24,10 +25,11 @@ function DetailList({ entries, className = 'panel-detail-list' }) {
   );
 }
 
-export default function ModelPage({ route = 'model', onNavigate }) {
+export default function ModelPage({ onNavigate }) {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [structureDepth, setStructureDepth] = useState(18);
+  const [showGuide, setShowGuide] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
   const [focusState, setFocusState] = useState('overall');
   const [hoveredId, setHoveredId] = useState(null);
@@ -40,7 +42,6 @@ export default function ModelPage({ route = 'model', onNavigate }) {
   const autoRotateRef = useRef(autoRotate);
   const selectedRef = useRef(null);
   const focusStateRef = useRef(focusState);
-  const structure = route === 'structure';
   const selectedIndex = hotspots.findIndex((item) => item.id === selectedId);
   const selected = hotspots[selectedIndex] ?? hotspots[0];
 
@@ -117,14 +118,20 @@ export default function ModelPage({ route = 'model', onNavigate }) {
     sceneRef.current?.resetView();
   };
 
+  const restoreStructure = () => {
+    setShowGuide(false);
+    resetView();
+  };
+
   return (
     <section
       id="modelStage"
-      className={`model-stage${structure ? ' is-structure' : ''}`}
-      data-chapter={route}
+      className={`model-stage${showGuide ? ' is-guide-visible' : ''}`}
+      data-chapter="model"
+      data-guide-open={showGuide}
       data-selected-id={selected?.id}
       data-focus-state={focusState}
-      aria-label={structure ? '醒狮结构框架' : '可操作醒狮模型'}
+      aria-label="醒狮整体与结构"
     >
       <div
         id="sceneContainer"
@@ -134,17 +141,13 @@ export default function ModelPage({ route = 'model', onNavigate }) {
         style={{ visibility: status.phase === 'ready' ? 'visible' : 'hidden' }}
       />
       <header className="model-header" ref={headerRef}>
-        <div className="model-brand-lockup">
-          <span className="model-brand-mark">南风有狮</span>
-          <span className="model-brand-divider" />
-          <span>广府醒狮档案</span>
-        </div>
+        <BrandLockup className="model-brand-lockup" caption="广府醒狮档案" />
         <div className="model-header-navigation">
-          <ChapterNav current={route} onNavigate={onNavigate} />
+          <ChapterNav current="model" onNavigate={onNavigate} />
           <div className="model-header-meta">
             <span className="live-dot" />
             <span id="modelStatus" role="status">
-              {status.phase === 'ready' && structure ? '结构框架 · 模型可视化' : status.message}
+              {status.phase === 'ready' && showGuide ? '结构示意 · 模型可视化' : status.message}
             </span>
             <button type="button" className="model-back-home" onClick={() => onNavigate('entry')}>返回首页</button>
             <button
@@ -183,7 +186,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
 
         <div className="scene-column">
           <div className="scene-kicker">
-            {structure ? '结构框架 / STRUCTURE GUIDE' : '整体视图 / OVERALL FORM'}
+            {showGuide ? '结构示意 / STRUCTURE GUIDE' : '整体视图 / OVERALL FORM'}
             <span>{focusState === 'overall' ? '完整轮廓' : `聚焦 · ${selected.name}`}</span>
           </div>
           <div className="scene-frame" id="sceneFrame">
@@ -207,7 +210,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
               </div>
             )}
             <div className="scene-caption">
-              <span>{structure ? '结构分区示意' : '整体轮廓'}</span>
+              <span>{showGuide ? '结构分区示意' : '整体轮廓'}</span>
               <span>GLB / 01</span>
             </div>
             <div className={`hotspots${status.phase !== 'ready' ? ' is-disabled' : ''}`} id="hotspots" aria-label="醒狮部件热点">
@@ -234,7 +237,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
             <div
               className="structure-layer"
               id="structureLayer"
-              hidden={!structure}
+              hidden={!showGuide}
             >
               <div className="structure-layer-head">
                 <span>结构分区预览</span>
@@ -251,7 +254,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
                 </div>
               ))}
               <div className="structure-control">
-                <label htmlFor="structureDepth">拆解进度</label>
+                <label htmlFor="structureDepth">示意进度</label>
                 <input
                   id="structureDepth"
                   type="range"
@@ -272,7 +275,8 @@ export default function ModelPage({ route = 'model', onNavigate }) {
           </div>
           <div className="scene-action-row">
             <button type="button" id="resetView" onClick={resetView}>重置视角</button>
-            <button type="button" id="viewStructure" onClick={() => onNavigate('structure')}>查看结构</button>
+            <button type="button" id="viewStructure" aria-controls="structureLayer" aria-expanded={showGuide}
+              onClick={() => setShowGuide((value) => !value)}>{showGuide ? '关闭结构示意' : '查看结构示意'}</button>
           </div>
         </div>
 
@@ -326,7 +330,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
               </button>
             ))}
           </nav>
-          {structure && <button type="button" className="restore-structure" id="restoreStructure" onClick={() => onNavigate('model')}>复原结构 · 返回整体</button>}
+          {showGuide && <button type="button" className="restore-structure" id="restoreStructure" onClick={restoreStructure}>复原结构 · 关闭示意</button>}
         </aside>
       </div>
       <div className="scroll-cue" aria-hidden="true"><span />向下探索</div>
