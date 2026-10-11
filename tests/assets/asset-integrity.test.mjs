@@ -80,6 +80,15 @@ test('public assets include configured media and exclude private creative or rev
   }
 });
 
+test('navigation lion is a configured transparent PNG', () => {
+  const path = containedPath(publicRoot, assetPaths.navLion);
+  const bytes = readFileSync(path);
+  assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert.equal(bytes[25], 6, 'Navigation lion PNG must use RGBA color type');
+  assert.ok(bytes.readUInt32BE(16) > 0, 'Navigation lion PNG must have a width');
+  assert.ok(bytes.readUInt32BE(20) > 0, 'Navigation lion PNG must have a height');
+});
+
 test('all six structure hotspots have unique IDs and valid percentage positions', () => {
   const structure = readJson(resolve(root, 'src/data/lion-structure.json'));
   assert.equal(structure.hotspots.length, 6);

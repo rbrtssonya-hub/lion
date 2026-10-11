@@ -195,6 +195,12 @@
       "sha256": "b2d4aa147a03d5e676bcbc997f57f8621c685cfc228c690f7b92e098609bde9c"
     },
     {
+      "from": "F:/数媒竞赛/醒狮素材/UI狮头.png",
+      "path": "source/public/assets/entry/nav-lion-head.png",
+      "bytes": 3920112,
+      "sha256": "26db0cacaa575601d367028f51550669d962c53dddb3f596474ee57a44783a07"
+    },
+    {
       "from": "site/assets/entry/title-nanfeng-youshi.png",
       "path": "source/public/assets/entry/title-nanfeng-youshi.png",
       "bytes": 207636,

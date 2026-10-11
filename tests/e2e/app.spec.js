@@ -10,6 +10,10 @@ test('首页媒体、视频结束转场和六章导航均由当前页面运行',
   await page.goto('/');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('.entry-title-art')).toBeVisible();
+  const homeLion = page.locator('.entry-lion-emblem');
+  await expect(homeLion).toBeVisible();
+  await expect(homeLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
+  expect(await homeLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect.poll(() => page.locator('#entryLionVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
   expect(requests.some((url) => /three|GLTFLoader|lion-overall/.test(url))).toBe(false);
   await page.screenshot({ path: test.info().outputPath('homepage.png'), fullPage: true });
@@ -109,6 +113,10 @@ test('模型页顶部复用首页红金章节导航并高亮当前章节', async
   await page.goto('/#/model');
   const header = page.locator('.model-header');
   await expect(header.locator('.entry-nav-shell')).toBeVisible();
+  const modelLion = header.locator('.entry-lion-emblem');
+  await expect(modelLion).toBeVisible();
+  await expect(modelLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
+  expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect(header.locator('.entry-chapter-nav')).toBeVisible();
   await expect(header.locator('.chapter-rail')).toHaveCount(0);
   await expect(header.locator('.entry-nav-item.is-current')).toHaveText(/整体/);

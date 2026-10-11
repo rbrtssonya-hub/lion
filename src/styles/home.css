@@ -7,7 +7,7 @@
 .entry-nav-shell { --nav-height: clamp(66px, 4.7vw, 120px); position: relative; display: flex; align-items: center; gap: clamp(16px, 1.3vw, 32px); width: min(62vw, 1550px); height: var(--nav-height); padding: 0; }
 .entry-nav-ribbon { position: relative; flex: 1; min-width: 0; height: 86%; margin-left: calc(var(--nav-height) * 1.85); border: 2px solid #d69746; border-radius: 24px 38px 38px 24px; background: linear-gradient(180deg, #fff0d5, #f5ddbc); box-shadow: inset 0 0 0 2px #9d2716, inset 0 0 0 4px #ffe5aa; }
 .entry-nav-ribbon::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(186, 113, 48, .6); border-radius: inherit; pointer-events: none; }
-.entry-lion-emblem { position: absolute; left: calc(var(--nav-height) * -1.72); top: -35%; z-index: 3; width: calc(var(--nav-height) * 2.1); height: 175%; overflow: visible; pointer-events: none; }
+.entry-lion-emblem { position: absolute; left: calc(var(--nav-height) * -1.72); top: -35%; z-index: 3; display: block; width: calc(var(--nav-height) * 2.1); height: 175%; object-fit: contain; object-position: center; overflow: visible; pointer-events: none; }
 .entry-ribbon-cloud { position: absolute; top: -17%; z-index: 1; width: calc(var(--nav-height) * .88); height: 126%; overflow: visible; pointer-events: none; }
 .entry-ribbon-cloud-left { left: calc(var(--nav-height) * -1.8); transform: scaleX(-1); }
 .entry-ribbon-cloud-right { right: calc(var(--nav-height) * -.22); }
