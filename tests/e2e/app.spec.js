@@ -1,5 +1,66 @@
 import { test, expect } from '@playwright/test';
 
+async function sampleModelPixels(page) {
+  return page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
+    const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
+    const attributes = gl?.getContextAttributes();
+    if (!gl || !attributes) return resolve({ alpha: false, modelPixels: 0 });
+    let attempts = 0;
+    const sample = () => {
+      const width = gl.drawingBufferWidth;
+      const height = gl.drawingBufferHeight;
+      const bounds = canvas.getBoundingClientRect();
+      const frame = document.querySelector('#sceneFrame').getBoundingClientRect();
+      const legacyHeight = frame.width * 9 / 16;
+      const legacyTop = frame.top + (frame.height - legacyHeight) / 2;
+      const legacyBottom = legacyTop + legacyHeight;
+      const buffer = new Uint8Array(width * height * 4);
+      gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
+      let modelPixels = 0;
+      let cornerPixels = 0;
+      let abovePixels = 0;
+      let belowPixels = 0;
+      let aboveFramePixels = 0;
+      let belowFramePixels = 0;
+      let minY = height;
+      let maxY = -1;
+      const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
+      for (let y = 0; y < height; y += 1) {
+        const cssY = bounds.bottom - (y + 0.5) * bounds.height / height;
+        for (let x = 0; x < width; x += 1) {
+          if (buffer[(y * width + x) * 4 + 3] === 0) continue;
+          modelPixels += 1;
+          minY = Math.min(minY, y);
+          maxY = Math.max(maxY, y);
+          const corner = (x < margin || x >= width - margin) && (y < margin || y >= height - margin);
+          if (corner) cornerPixels += 1;
+          const cssX = bounds.left + (x + 0.5) * bounds.width / width;
+          if (cssX < frame.left || cssX > frame.right) continue;
+          if (cssY < legacyTop - 4) abovePixels += 1;
+          if (cssY > legacyBottom + 4) belowPixels += 1;
+          if (cssY < frame.top - 4) aboveFramePixels += 1;
+          if (cssY > frame.bottom + 4) belowFramePixels += 1;
+        }
+      }
+      if (modelPixels === 0 && ++attempts < 10) return requestAnimationFrame(sample);
+      resolve({
+        alpha: attributes.alpha,
+        modelPixels,
+        cornerPixels,
+        abovePixels,
+        belowPixels,
+        aboveFramePixels,
+        belowFramePixels,
+        modelHeight: maxY >= minY ? (maxY - minY + 1) * bounds.height / height : 0,
+        legacyHeight,
+      });
+    };
+    // A nonempty model is required so a cleared WebGL buffer cannot pass.
+    // Read during rAF before compositing clears a non-preserved drawing buffer.
+    requestAnimationFrame(sample);
+  }));
+}
+
 test('首页媒体、视频结束转场和五章导航均由当前页面运行', async ({ page }) => {
   const errors = [];
   const failedResources = [];
@@ -109,12 +170,17 @@ test('整体与结构模型透明融入朱红页面，展示区没有内框或�
       const frame = getComputedStyle(document.querySelector('#sceneFrame'));
       const layer = getComputedStyle(document.querySelector('#structureLayer'));
       const control = getComputedStyle(document.querySelector('.structure-control'));
+      const stageBounds = document.querySelector('#modelStage').getBoundingClientRect();
+      const canvasBounds = document.querySelector('#sceneContainer canvas').getBoundingClientRect();
       return {
         stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
         frameColor: frame.backgroundColor,
         frameImage: frame.backgroundImage,
         frameBorders: [frame.borderTopWidth, frame.borderRightWidth, frame.borderBottomWidth, frame.borderLeftWidth],
         frameShadow: frame.boxShadow,
+        frameOverflow: frame.overflow,
+        stageBounds: { x: stageBounds.x, y: stageBounds.y, width: stageBounds.width, height: stageBounds.height },
+        canvasBounds: { x: canvasBounds.x, y: canvasBounds.y, width: canvasBounds.width, height: canvasBounds.height },
         layerColor: layer.backgroundColor,
         layerImage: layer.backgroundImage,
         controlColor: control.backgroundColor,
@@ -126,42 +192,46 @@ test('整体与结构模型透明融入朱红页面，展示区没有内框或�
     expect(presentation.frameImage).toBe('none');
     expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
     expect(presentation.frameShadow).toBe('none');
+    expect(presentation.frameOverflow).toBe('visible');
+    for (const dimension of ['x', 'y', 'width', 'height']) {
+      expect(presentation.canvasBounds[dimension]).toBeCloseTo(presentation.stageBounds[dimension], 0);
+    }
     expect(presentation.layerColor).toBe('rgba(0, 0, 0, 0)');
     expect(presentation.layerImage).toBe('none');
     expect(presentation.controlColor).toBe('rgba(0, 0, 0, 0)');
     expect(presentation.controlImage).toBe('none');
 
-    // Read inside rAF before the browser clears a non-preserved WebGL buffer.
-    // A nonempty model is required so a cleared, all-zero buffer cannot pass.
-    const pixels = await page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
-      const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
-      const attributes = gl?.getContextAttributes();
-      if (!gl || !attributes) return resolve({ alpha: false, modelPixels: 0 });
-      let attempts = 0;
-      const sample = () => {
-        const width = gl.drawingBufferWidth;
-        const height = gl.drawingBufferHeight;
-        const buffer = new Uint8Array(width * height * 4);
-        gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
-        let modelPixels = 0;
-        let edgePixels = 0;
-        const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
-        for (let y = 0; y < height; y += 1) {
-          for (let x = 0; x < width; x += 1) {
-            if (buffer[(y * width + x) * 4 + 3] === 0) continue;
-            modelPixels += 1;
-            const corner = (x < margin || x >= width - margin) && y >= height - margin;
-            if (y < margin || corner) edgePixels += 1;
-          }
-        }
-        if (modelPixels === 0 && ++attempts < 10) return requestAnimationFrame(sample);
-        resolve({ alpha: attributes.alpha, modelPixels, edgePixels });
-      };
-      requestAnimationFrame(sample);
-    }));
+    const pixels = await sampleModelPixels(page);
     expect(pixels.alpha).toBe(true);
     expect(pixels.modelPixels).toBeGreaterThan(100);
-    expect(pixels.edgePixels).toBe(0);
+    expect(pixels.cornerPixels).toBe(0);
+  }
+});
+
+test('整体与结构模型滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  for (const route of ['model', 'structure']) {
+    await page.goto('/');
+    await page.goto(`/#/${route}`);
+    await expect(page.locator('#modelStatus')).toContainText(route === 'model' ? '模型已载入' : '结构框架', { timeout: 45_000 });
+    await page.getByRole('button', { name: '暂停自动旋转', exact: true }).click();
+    const initial = await sampleModelPixels(page);
+    expect(initial.modelPixels).toBeGreaterThan(100);
+    const frame = await page.locator('.scene-interaction').boundingBox();
+    await page.locator('.scene-interaction').hover({ position: { x: frame.width / 2, y: 100 } });
+    let zoomed = initial;
+    for (let attempt = 0; attempt < 24; attempt += 1) {
+      await page.mouse.wheel(0, -400);
+      zoomed = await sampleModelPixels(page);
+      if (zoomed.modelHeight > initial.modelHeight * 1.15 && zoomed.aboveFramePixels > 100 && zoomed.belowFramePixels > 100) break;
+    }
+    expect(zoomed.modelHeight).toBeGreaterThan(initial.modelHeight * 1.15);
+    expect(zoomed.modelHeight).toBeGreaterThan(zoomed.legacyHeight);
+    expect(zoomed.abovePixels).toBeGreaterThan(100);
+    expect(zoomed.belowPixels).toBeGreaterThan(100);
+    expect(zoomed.aboveFramePixels).toBeGreaterThan(100);
+    expect(zoomed.belowFramePixels).toBeGreaterThan(100);
+    await page.screenshot({ path: test.info().outputPath(`${route}-zoom-beyond-legacy-frame.png`), fullPage: true });
   }
 });
 
@@ -190,11 +260,7 @@ test('模型页数字图鉴联动热点、聚焦和结构入口', async ({ page 
   await expect(page.locator('.structure-diagram')).toBeVisible();
   await expect(page.locator('#viewStructure')).toBeVisible();
   await expect(page.locator('#resetView')).toBeVisible();
-  const sceneRatio = await page.locator('#sceneFrame').evaluate((element) => {
-    const { width, height } = element.getBoundingClientRect();
-    return width / height;
-  });
-  expect(sceneRatio).toBeCloseTo(16 / 9, 1);
+  const canvas = await page.locator('#sceneContainer canvas').elementHandle();
   const columns = await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
   expect(columns).toBe(3);
 
@@ -214,8 +280,22 @@ test('模型页数字图鉴联动热点、聚焦和结构入口', async ({ page 
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'structure');
   await expect(page.locator('#structureLayer')).toBeVisible();
   await expect(page.locator('#structureBoundary')).toContainText('合并网格');
+  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('#restoreStructure').click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
+  expect(await canvas.evaluate((element) => element.isConnected)).toBe(false);
+  await expect.poll(() => canvas.evaluate((element) => {
+    const gl = element.getContext('webgl2') ?? element.getContext('webgl');
+    return gl?.isContextLost();
+  })).toBe(true);
+  await page.locator('.entry-bottom-item').filter({ hasText: '认识广府醒狮' }).click();
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(false);
+  await canvas.dispose();
 });
 
 test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async ({ page }) => {

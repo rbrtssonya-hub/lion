@@ -36,7 +36,9 @@ npm run preview
 
 React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
 
-整体和结构页的中央容器只承接模型交互，使用透明背景且没有边框、内阴影或装饰场景层。Three.js 通过 `alpha: true` 与透明清屏直接融合全页背景，不添加地面；保留现有相机、模型尺度、热点和结构示意。
+整体和结构页的 `sceneContainer` 位于 `modelStage` 直属层，透明画布覆盖整个模型页；中央 `sceneFrame` 只负责布局、热点与加载回退，独立 `scene-interaction` 承接 OrbitControls 的拖动和缩放。中央列不再限定16:9或裁切溢出模型，标题、说明与控件为绝对定位浮层，列高按视口确定，不随两侧档案卡内容拉长。
+
+Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以中央交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型越过中央边界的实际像素、面板与导航点击，以及退出后的观察器和图形资源释放。
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前五章为入场、整体、结构、动作、神态；已移除的评分地址与其他未知 Hash 地址均回到首页。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
@@ -65,6 +67,8 @@ npm run test:e2e
 ```
 
 构建后可运行 `npm run test:e2e:preview` 回归生产预览。Python 眼层检查使用 `python -B -m unittest discover -s tests/assets -p 'test_*.py'`；v4素材尚未生成时对应检查会显示 skip，需与通过项分开记录。
+
+模型全页绘制的浏览器断言使用真实滚轮及WebGL读像素，检查整体/结构模型在旧16:9和当前中央交互区域上下边界外均有实际像素，同时验证默认角落透明、共享单canvas、离页释放及重入。2026-10-11本轮资产最终8项、构建及开发/生产预览各14项e2e通过，实际环境与审查图见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)；后续改动仍按范围重跑。
 
 当前 Playwright 配置使用完整 Chromium 通道，可由 `PLAYWRIGHT_CHANNEL` 指定已安装的浏览器通道。测试截图和 trace 放在运行输出目录；本轮验收分别用 `--output=tmp/e2e-dev` 与 `--output=tmp/e2e-preview`，不加入 source历史素材。
 

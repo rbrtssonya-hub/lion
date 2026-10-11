@@ -415,6 +415,42 @@
       "path": "source/video/intro/lion-poster.jpg",
       "bytes": 5725,
       "sha256": "c0c4e93ba6f62069c89332fbc775c33e2c62c2790cbb6e6174fcf3fb43332811"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-transparent-display/model-1920.png",
+      "path": "source/reviews/model/2026-10-11-transparent-display/model-1920.png",
+      "bytes": 1818265,
+      "sha256": "935643401b5f669780c0a81f305e4f67ab19a8a8ddc9994ded974c5597f56d86"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-transparent-display/structure-1920.png",
+      "path": "source/reviews/model/2026-10-11-transparent-display/structure-1920.png",
+      "bytes": 1883733,
+      "sha256": "a54f836db394b3b615389fd576f5b9d8d1fa8e1aa23ca92d7632f1176b2867dd"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/model-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/model-1920.png",
+      "bytes": 2020153,
+      "sha256": "3fc27746f50b5f5252add6819c32e5b984b25362aeefe123248aac755c015dfd"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/model-zoom-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/model-zoom-1920.png",
+      "bytes": 2519656,
+      "sha256": "3d22fb8aa5899ea6a91ed6ba6d38478273ab6c0b3adb742e0e35a659c2b0b47a"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/structure-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/structure-1920.png",
+      "bytes": 2587742,
+      "sha256": "177cc2b9b96bab2510648761d3067b613a89567ea8ff3baeccf9ed2dc69a8a7f"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/structure-zoom-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/structure-zoom-1920.png",
+      "bytes": 2588952,
+      "sha256": "b90fbe95aedd016c81b5ef374d2a337a11cae525e52f6ceca1576c70df3bc153"
     }
   ]
 }

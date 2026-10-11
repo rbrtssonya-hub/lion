@@ -25,7 +25,7 @@
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
-`asset-manifest.json` 记录68条二进制迁移快照的来源路径、现路径、大小和 SHA256。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
+`asset-manifest.json` 保留既有68条二进制迁移快照和导航狮头记录，并收录6张模型页浏览器审查图；来源路径、现路径、大小和 SHA256 都需可核对。生成截图的来源使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 
 本轮浏览器验收截图生成在 `tmp/e2e-dev/`、`tmp/e2e-preview/`，默认测试输出为 `test-results/`；它们属于运行产物，不加入历史素材快照。
 

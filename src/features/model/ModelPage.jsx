@@ -34,6 +34,8 @@ export default function ModelPage({ route = 'model', onNavigate }) {
   const [status, setStatus] = useState(initialStatus);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const containerRef = useRef(null);
+  const interactionRef = useRef(null);
+  const headerRef = useRef(null);
   const sceneRef = useRef(null);
   const autoRotateRef = useRef(autoRotate);
   const selectedRef = useRef(null);
@@ -63,6 +65,8 @@ export default function ModelPage({ route = 'model', onNavigate }) {
         if (controller.signal.aborted) return;
         mountedScene = await createLionScene({
           container: containerRef.current,
+          interactionElement: interactionRef.current,
+          layoutElement: headerRef.current,
           modelUrl: media.model,
           signal: controller.signal,
           autoRotate: autoRotateRef.current,
@@ -122,7 +126,14 @@ export default function ModelPage({ route = 'model', onNavigate }) {
       data-focus-state={focusState}
       aria-label={structure ? '醒狮结构框架' : '可操作醒狮模型'}
     >
-      <header className="model-header">
+      <div
+        id="sceneContainer"
+        className="scene-container"
+        ref={containerRef}
+        aria-hidden="true"
+        style={{ visibility: status.phase === 'ready' ? 'visible' : 'hidden' }}
+      />
+      <header className="model-header" ref={headerRef}>
         <div className="model-brand-lockup">
           <span className="model-brand-mark">南风有狮</span>
           <span className="model-brand-divider" />
@@ -176,13 +187,7 @@ export default function ModelPage({ route = 'model', onNavigate }) {
             <span>{focusState === 'overall' ? '完整轮廓' : `聚焦 · ${selected.name}`}</span>
           </div>
           <div className="scene-frame" id="sceneFrame">
-            <div
-              id="sceneContainer"
-              className="scene-container"
-              ref={containerRef}
-              aria-label="可旋转醒狮三维模型"
-              style={{ visibility: status.phase === 'ready' ? 'visible' : 'hidden' }}
-            />
+            <div className="scene-interaction" ref={interactionRef} aria-label="可旋转醒狮三维模型" />
             <img
               className="model-fallback"
               id="modelFallback"
