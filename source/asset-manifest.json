@@ -775,6 +775,54 @@
       "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/state-1920.png",
       "bytes": 658561,
       "sha256": "a0c54aec9b294a61eff79a52afa89931ecba7fc5bf8407b45210b888c1bafa65"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-1/lion-structure-background.png",
+      "path": "source/public/assets/backgrounds/lion-structure-background.png",
+      "bytes": 3296020,
+      "sha256": "8ac4641db9fcc037d5ba79134b5be828b79cfb03e5f070d966ab107f817908b5"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-2/lion-action-background.png",
+      "path": "source/public/assets/backgrounds/lion-action-background.png",
+      "bytes": 2858010,
+      "sha256": "3ea839fe3e2e51f57ef706d5da33841e2ecea6227b975420dc900e2ff6731651"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-3/lion-expression-background.png",
+      "path": "source/public/assets/backgrounds/lion-expression-background.png",
+      "bytes": 2388839,
+      "sha256": "45394bab5d53f8f30ae11078c16a3f325416a35f2043c637ba4e491ce8022dbe"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/action-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/action-1920.png",
+      "bytes": 2219617,
+      "sha256": "e637742191fe9a03fa31a4caf7d5d9b619a23e5cbe2c87037006e765c4251ee8"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/model-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/model-1920.png",
+      "bytes": 2225828,
+      "sha256": "f87f626120ca4f3b9b836acb76b0f2583daaf6012b0f2c7f1f950967e0867119"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-1920.png",
+      "bytes": 1976682,
+      "sha256": "0421e14369ab8b58ae70933edf39bf8ecc2cc40b48bd407b4942918b8c1c237f"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-390.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-390.png",
+      "bytes": 295163,
+      "sha256": "02a3d416a445619d35cb6718f9163929b2d8835079c7469ef49e3e9f78c89af0"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-settings-push-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-settings-push-1920.png",
+      "bytes": 1822926,
+      "sha256": "5131a3d531ab2bf41d07e7a212e4e576cd7fed92c8e801ad1d2f5eb2d8f67caa"
     }
   ]
 }

@@ -1,5 +1,5 @@
 :root { --site-header-height: 90px; --site-nav-font-size: 26px; --navigation-brush: 'Nanfeng Navigation Brush', var(--brush); }
-.site-shell { --site-header-height: var(--header-height, 90px); --site-nav-font-size: var(--nav-font-size, 26px); width: 100%; min-height: 100svh; background: #68170f; }
+.site-shell { --site-header-height: var(--header-height, 90px); --site-nav-font-size: var(--nav-font-size, 26px); width: 100%; min-height: 100svh; background-color: var(--page-background-color, #68170f); background-image: var(--chapter-background-image, none); background-position: center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
 .site-shell[data-settings-layout='push'] { background-image: var(--settings-backdrop-image); background-position: center; background-size: cover; background-attachment: fixed; }
 .site-page { min-width: 0; margin-right: var(--settings-page-reserve, 0px); container: lion-page / inline-size; transition: margin-right 180ms ease; }
 .site-page > main { display: flow-root; }

@@ -11,6 +11,11 @@ import { defaultDeveloperSettings } from './features/developer-settings/useDevel
 import { media } from './config/media.js';
 
 const ModelPage = lazy(() => import('./features/model/ModelPage.jsx'));
+const chapterBackgrounds = {
+  model: media.modelBackground,
+  action: media.actionBackground,
+  state: media.stateBackground,
+};
 
 export default function App() {
   const [route, navigate] = useChapterRoute();
@@ -21,6 +26,7 @@ export default function App() {
   const wasSettingsOpen = useRef(false);
   const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth);
   const pushing = settingsOpen && settings.pushPage && canPush;
+  const chapterBackground = chapterBackgrounds[route];
   const closeSettings = useCallback(() => {
     setSettingsOpen(false);
     triggerRef.current?.focus({ preventScroll: true });
@@ -54,6 +60,8 @@ export default function App() {
   else page = <ChapterPage route={route} />;
 
   const variables = {
+    '--page-background-color': chapterBackground ? '#f8f2e9' : '#68170f',
+    '--chapter-background-image': chapterBackground ? `url("${chapterBackground}")` : 'none',
     '--header-height': `${settings.headerHeight}px`,
     '--header-fill-opacity': 1 - settings.headerTransparency / 100,
     '--header-backdrop-filter': settings.headerBlur > 0 ? `blur(${settings.headerBlur}px)` : 'none',
@@ -68,7 +76,7 @@ export default function App() {
     '--settings-panel-width': `${settings.panelWidth}px`,
     '--settings-page-reserve': pushing ? `${settings.panelWidth}px` : '0px',
     '--resize-header-width': settingsOpen ? `calc(100% - min(${settings.panelWidth}px, 100vw))` : '100%',
-    '--settings-backdrop-image': route === 'entry' ? `url("${media.cover}")` : 'none',
+    '--settings-backdrop-image': `url("${chapterBackground || media.cover}")`,
   };
 
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}

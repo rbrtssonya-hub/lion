@@ -9,6 +9,7 @@
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
 | `public/assets/culture/` | 首页文化图文的四张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
 | `public/assets/fonts/` | 导航毛笔字体WOFF及随部署保留的OFL许可 | 复制到 `dist/assets/fonts/` |
+| `public/assets/backgrounds/` | 用户指定的结构、动作、神态三张PNG背景 | 复制到 `dist/assets/backgrounds/` |
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
 | `public/assets/live2d/` | 保留的 Live2D 运行包、本地库与许可说明 | 随 publicDir 复制，当前首页不加载 |
 | `models/` | 保留的优化与面部绑定模型版本 | 不复制 |
@@ -21,6 +22,7 @@
 | `reviews/react-entry/` | 迁移前 React 入口及章节审查截图 | 不复制 |
 | `reviews/model/` | 模型页视觉审查图 | 不复制 |
 | `reviews/navigation/` | 本轮顶栏、侧栏及拖动交互各版审查图；最终通过版为 `2026-10-12-larger-typography/` | 不复制 |
+| `reviews/backgrounds/` | 章节背景及共用导航、推开布局的审查图 | 不复制 |
 | `design/` | 设计稿、方案说明与历史实施计划 | 不复制 |
 | `references/` | 资料来源说明 | 不复制 |
 
@@ -30,8 +32,8 @@
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
-`asset-manifest.json` 目前登记129条二进制素材与审查记录；本轮保留原83条，仅新增45张导航审查图与1个字体子集。字体来源与再生成方式见 [毛笔字体说明](fonts/navigation-brush/README.md)，原版权和OFL许可随WOFF部署。原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
+`asset-manifest.json` 目前登记137条二进制素材与审查记录；背景替换保留原129条，仅新增用户3张原图与5张背景审查图，来源与SHA256见 [章节背景说明](references/chapter-backgrounds.md)。此前45张导航图和字体子集保持不变。字体来源与再生成方式见 [毛笔字体说明](fonts/navigation-brush/README.md)，原版权和OFL许可随WOFF部署。原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 
-本轮导航与侧栏浏览器验收输出在 `tmp/e2e-unified-navigation-dev/`、`tmp/e2e-unified-navigation-preview/`，默认测试输出为 `test-results/`；它们属于运行产物，不加入历史素材快照。最终通过的UI图在 `reviews/navigation/2026-10-12-larger-typography/`，各版审查PNG已归档和登记；此前三张首页融合人工审查图仍在 `reviews/homepage/2026-10-12-unified-entry/`。
+本轮背景浏览器验收输出在 `tmp/e2e-chapter-backgrounds-dev/`、`tmp/e2e-chapter-backgrounds-preview/`，5张审查图在 `reviews/backgrounds/2026-10-12-chapter-backgrounds/`。此前导航输出为 `tmp/e2e-unified-navigation-dev/`、`tmp/e2e-unified-navigation-preview/`，通过UI图在 `reviews/navigation/2026-10-12-larger-typography/`；首页融合三图仍在 `reviews/homepage/2026-10-12-unified-entry/`。tmp/test-results等运行产物不纳入历史素材快照。
 
 历史方案与设计资料保存原文；当前工程状态由 [工程记忆](../wiki_memory/README.md) 统一维护。

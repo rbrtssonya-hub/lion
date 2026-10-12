@@ -197,7 +197,7 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
 });
 
-test('整体及同页结构示意透明融入朱红页面，展示区没有内框或地面', async ({ page }) => {
+test('整体及同页结构示意透明融入指定背景，展示区没有内框或地面', async ({ page }) => {
   await page.goto('/#/model');
   for (const showGuide of [false, true]) {
     if (showGuide) await page.locator('#viewStructure').click();
@@ -214,6 +214,7 @@ test('整体及同页结构示意透明融入朱红页面，展示区没有内�
       const canvasBounds = document.querySelector('#sceneContainer canvas').getBoundingClientRect();
       return {
         stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
+        pageBackground: getComputedStyle(document.querySelector('.site-shell')).backgroundImage,
         frameColor: frame.backgroundColor,
         frameImage: frame.backgroundImage,
         frameBorders: [frame.borderTopWidth, frame.borderRightWidth, frame.borderBottomWidth, frame.borderLeftWidth],
@@ -227,7 +228,8 @@ test('整体及同页结构示意透明融入朱红页面，展示区没有内�
         controlImage: control.backgroundImage,
       };
     });
-    expect(presentation.stage).toMatch(/104,\s*23,\s*15/);
+    expect(presentation.stage).toBe('none');
+    expect(presentation.pageBackground).toContain(assetPaths.modelBackground);
     expect(presentation.frameColor).toBe('rgba(0, 0, 0, 0)');
     expect(presentation.frameImage).toBe('none');
     expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
