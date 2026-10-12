@@ -4,6 +4,77 @@ import { assetPaths } from '../../src/config/assetPaths.js';
 const routes = [['entry', '首页'], ['model', '狮头与结构'], ['action', '动作'], ['state', '神态']];
 const removedNavigation = '.entry-chapter-nav, .entry-bottom-nav, .entry-bottom-item, .entry-nav-shell, .entry-nav-ribbon, .chapter-rail, .entry-dialog-backdrop';
 
+async function expectCompleteDesktopNavigation(page) {
+  await page.evaluate(() => document.fonts.ready);
+  await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => {
+    const violations = [];
+    const pageBounds = navigation.closest('.site-page').getBoundingClientRect();
+    const headerBounds = navigation.closest('.site-header').getBoundingClientRect();
+    const buttons = [...navigation.querySelectorAll('.site-nav-item')];
+    const firstBounds = buttons[0].getBoundingClientRect();
+    for (const button of buttons) {
+      const bounds = button.getBoundingClientRect();
+      const label = button.querySelector('strong').textContent;
+      const parts = ['small', 'strong', '.site-nav-description'].map(selector => {
+        const element = button.querySelector(selector);
+        const style = getComputedStyle(element);
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        const text = range.getBoundingClientRect();
+        return { element, style, text };
+      });
+      if (Math.abs(bounds.top - firstBounds.top) > 1 || Math.abs(bounds.bottom - firstBounds.bottom) > 1) {
+        violations.push(`${label}: navigation buttons wrap onto separate rows`);
+      }
+      if (bounds.left < pageBounds.left - 1 || bounds.right > pageBounds.right + 1) {
+        violations.push(`${label}: button extends beyond the available page`);
+      }
+      const iconBounds = button.querySelector('.site-nav-icon').getBoundingClientRect();
+      if (bounds.top < headerBounds.top - 1 || bounds.bottom > headerBounds.bottom + 1
+        || iconBounds.top < headerBounds.top - 1 || iconBounds.bottom > headerBounds.bottom + 1) {
+        violations.push(`${label}: button or icon exceeds the header height`);
+      }
+      for (const { element, style, text } of parts) {
+        const part = element.textContent;
+        if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0 || text.width <= 0) {
+          violations.push(`${label}: ${part} is hidden`);
+        }
+        if (style.whiteSpace !== 'nowrap' || style.textOverflow === 'ellipsis') {
+          violations.push(`${label}: ${part} can wrap or be abbreviated`);
+        }
+        if (element.scrollWidth > element.clientWidth + 1 || text.left < bounds.left - 1 || text.right > bounds.right + 1) {
+          violations.push(`${label}: ${part} is clipped outside its button`);
+        }
+        if (text.top < bounds.top - 1 || text.bottom > bounds.bottom + 1) {
+          violations.push(`${label}: ${part} is clipped vertically`);
+        }
+        if (style.fontSize !== parts[1].style.fontSize || style.fontFamily !== parts[1].style.fontFamily) {
+          violations.push(`${label}: ${part} has different typography`);
+        }
+        if (parseFloat(style.fontSize) < 12 || parseFloat(style.fontSize) > 28) {
+          violations.push(`${label}: ${part} has unreadable or oversized typography (${style.fontSize})`);
+        }
+        if (Math.abs(text.top - parts[1].text.top) > 1) {
+          violations.push(`${label}: ${part} is not on the title's line`);
+        }
+      }
+      if (parts[0].text.right > parts[1].text.left + 1 || parts[1].text.right > parts[2].text.left + 1) {
+        violations.push(`${label}: adjacent text overlaps`);
+      }
+    }
+    if (document.documentElement.scrollWidth > innerWidth) violations.push('The document overflows horizontally');
+    return violations;
+  }), { message: 'All five navigation items must show their complete text on one line' }).toEqual([]);
+}
+
+async function editNavigationParameter(page, label, value) {
+  const input = page.getByRole('region', { name: '开发者参数设置' })
+    .getByRole('spinbutton', { name: `${label}数值`, exact: true });
+  await input.fill(String(value));
+  await input.press('Tab');
+  await expect(input).toHaveValue(String(value));
+}
+
 test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('/');
@@ -108,6 +179,51 @@ test('桌面品牌居中对齐，导航真实加载毛笔字体并完整排成�
     expect(placement.family).toContain('Nanfeng Navigation Brush');
     await expect(page.locator('.entry-lion-emblem')).toHaveCount(1);
   }
+});
+
+test('电脑常见宽度与连续窗口缩放均完整显示五项导航辅助文字', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  for (const width of [1024, 1280, 1366, 1440, 1536, 1920, 2560, 3440, 1024, 1920]) {
+    await test.step(`${width}px viewport`, async () => {
+      await page.setViewportSize({ width, height: 1080 });
+      await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width);
+      await expectCompleteDesktopNavigation(page);
+    });
+  }
+});
+
+test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单行文字', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await page.locator('.site-navigation [data-action="settings"]').click();
+  const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
+  await editNavigationParameter(page, '设置面板宽度', 760);
+  await panel.locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await editNavigationParameter(page, '顶栏高度', 64);
+  await editNavigationParameter(page, '导航文字字号', 28);
+  await editNavigationParameter(page, '导航图标尺寸', 56);
+  await editNavigationParameter(page, '品牌左侧留白', 80);
+
+  for (const [viewport, available] of [[1920, 1160], [1660, 900], [2126, 1366], [2680, 1920]]) {
+    await test.step(`${viewport}px viewport, ${available}px available page`, async () => {
+      await page.setViewportSize({ width: viewport, height: 1080 });
+      await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+      await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(available);
+      await expectCompleteDesktopNavigation(page);
+    });
+  }
+  await panel.getByRole('button', { name: '关闭开发者参数' }).click();
+  await page.setViewportSize({ width: 1024, height: 1080 });
+  await expectCompleteDesktopNavigation(page);
+  await page.reload();
+  await expectCompleteDesktopNavigation(page);
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await expectCompleteDesktopNavigation(page);
+  await expect(page.locator('.site-header')).toHaveCSS('height', '64px');
+  const edge = await page.getByRole('separator', { name: '调整顶栏高度' }).boundingBox();
+  expect(edge.y + edge.height / 2).toBeCloseTo(64, 0);
 });
 
 test('顶部导航随文化内容滚动保持可见，当前首页入口返回顶部', async ({ page }) => {

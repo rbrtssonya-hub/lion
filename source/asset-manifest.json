@@ -823,6 +823,54 @@
       "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-settings-push-1920.png",
       "bytes": 1822926,
       "sha256": "5131a3d531ab2bf41d07e7a212e4e576cd7fed92c8e801ad1d2f5eb2d8f67caa"
+    },
+    {
+      "from": "D:/04_EdgeDownload/探索更多金色书法.png",
+      "path": "source/design/entry/explore-more-calligraphy-reference.png",
+      "bytes": 1324855,
+      "sha256": "5b11432227a64f8a53d2ce26209c56a6388a1d99bfc058f11f85f8ef82e0e99e"
+    },
+    {
+      "from": "generated:imagegen-edit/explore-more-calligraphy-transparent-v2",
+      "path": "source/public/assets/entry/explore-more-calligraphy.png",
+      "bytes": 1359903,
+      "sha256": "63c86eee452d750c070bc047316fde34ecf3ba65581f82a7beb2270b1af4ece0"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-1024.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-1024.png",
+      "bytes": 1239702,
+      "sha256": "0ec37eaf8912dd361a501883714334a95d6aa3e62a5301a3eccad122c0e8eec1"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-1366.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-1366.png",
+      "bytes": 1649592,
+      "sha256": "c2f483beff8f75528398559a82d8cb51c788479f0b426367d8aff9a23d5b156f"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-1920.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-1920.png",
+      "bytes": 2959430,
+      "sha256": "71bba8119440e726b54cb0e008b2409ca213a00da10362122394799a35e3c257"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-2560.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-2560.png",
+      "bytes": 4905619,
+      "sha256": "799ab776225c6fbcb94379b7769ff3bd59f483b3de203bc528cdcbe20fca8665"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-390.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-390.png",
+      "bytes": 572632,
+      "sha256": "eb07270a90400c8a33941f90e5b83453c9ea9a55fc7e718be2d31602e50f0e1b"
+    },
+    {
+      "from": "generated:chrome-review/centered-calligraphy/home-pushed-settings-1920.png",
+      "path": "source/reviews/homepage/2026-10-12-centered-calligraphy/home-pushed-settings-1920.png",
+      "bytes": 2299501,
+      "sha256": "1bc7491f128ac0a0d954dbf39d0d0ea2e70a83f39e5f6ddbb97665f350fec31b"
     }
   ]
 }

@@ -56,6 +56,10 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。数字、标题与辅助文字继承同字体/同字号，数字、图标为白色，辅助透明度独立调整；修改导航或品牌文字后重新生成子集。运行检查包含字体和全部审查图的大小及SHA256。
 
+导航适配由 `useNavigationLayout` 统一测量 DOM Range 真实字宽，按内容分配五项宽度，删除桌面隐藏/省略辅助文字规则。字体参数是实际字号上限，图标和间距随可用空间缩小；不足时品牌独立第一行、五项导航仍在第二行完整单行，顶栏最少116px。700px以下保留手机入口布局。实际顶栏高度写入独立 `--site-header-height` 供正文与拖动边界读取，保存请求 `--header-height` 不变；图标按请求高度减去按钮上下padding与border适配，64px顶栏也不越界。页面ResizeObserver、壳style MutationObserver、字体ready/loadingdone和窗口resize合并单RAF，在卸载时取消观察与监听，ready回调检查active状态。
+
+首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label和文化滚动，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
+
 ## 资源更新
 
 创作文件归入 `source/`，运行网页只引用 `source/public/assets/`。该目录通过 Vite 的 `publicDir` 映射为网页根目录，例如 `source/public/assets/models/lion-overall.glb` 对应 `assets/models/lion-overall.glb`。公共资产保持文件名，构建会复制到 `dist/assets/`；不要假定这些文件自动获得哈希版本号。
@@ -87,6 +91,8 @@ npm run test:e2e
 模型全页绘制的浏览器断言使用真实滚轮及WebGL读像素，检查整体与结构示意状态的模型在旧16:9和当前中央交互区域上下边界外均有实际像素，同时验证默认角落透明、同页共享单canvas、离页释放及重入。2026-10-11历史裁切修正验证见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)。2026-10-12融合首页任务实际完成资产8项（330.6ms）、生产构建（56模块）、开发19项（29.9秒）与生产预览19项（28.7秒）回归；构建仍有既有 `lionScene` 超500kB提示。预览首次18/19源于测试将 `/assets` 与 `./assets` 作字面比较，改用 `new URL` 解析后全量通过，产品未因此修改。实际播放脚本观察入场自然ended一次、首页循环回绕一次、返回/刷新不自动入场及手机四图载入，错误数组为空；结果见 [本轮日志](../wiki_memory/日志/功能添加/2026-10-12-入场首页融合与醒狮文化长页.md)。
 
 当前 Playwright 配置使用完整Chromium通道，可由 `PLAYWRIGHT_CHANNEL` 指定已安装的浏览器通道。全局导航与设置侧栏任务实际完成资产9项、63模块构建、Chrome开发/生产预览各30项（43.6秒/40.5秒）；输出为 `tmp/e2e-unified-navigation-dev`、`tmp/e2e-unified-navigation-preview`。回归同时保留原视频/文化/模型行为，并覆盖新材质、推开回退、存储/迁移、拖动与取消清理。最终通过的导航审查图在 `source/reviews/navigation/2026-10-12-larger-typography/`，各版UI均在source归档、登记清单。详情见 [导航与侧栏日志](../wiki_memory/日志/UI修改/2026-10-12-全局顶栏与玻璃设置侧栏.md)。此前实际播放脚本为临时 `tmp/verify-unified-entry.mjs`，三张首页融合审查图仍在 `source/reviews/homepage/2026-10-12-unified-entry/`；临时输出不纳入源码。
+
+2026-10-12探索书法与导航自适应实际通过资产9项（351.96ms）、64模块构建、Chrome开发/生产预览各33项（47.2秒/42.8秒）。新增真实字宽、单行完整文案、极限参数与900px推开余宽、CTA透明像素/共享中心/文化滚动回归；独立审查900–3840及延迟字体加载通过。资产旧137条保持，仅新增8条至145，字图/字体/首页视频与dist原字节一致。结果及截图见 [本轮任务日志](../wiki_memory/日志/UI修改/2026-10-12-探索书法与导航自适应.md)。
 
 离线模型与分层工具位于 `scripts/`。GLB 检查与优化工具接收文件参数，优化必须输出到新文件；脚本会拒绝已有输出，并使用独占写入防止覆盖原件。Blender 导入工具由 Blender Python 执行。Live2D 分层工具的 Pillow、NumPy、pytoshop 依赖列在 `scripts/requirements.txt`，可在独立 Python 环境使用 `python -m pip install -r scripts/requirements.txt` 安装；这些不属于 npm 网页启动依赖，也不会在 `npm run dev` 时运行。具体命令与输出位置以脚本参数、脚本头部路径和对应测试为准。
 

@@ -170,7 +170,7 @@ export default function DeveloperSettingsPanel({
           {range('navIconSize', '导航图标尺寸', 24, 56)}
           {range('brandPadding', '品牌左侧留白', 8, 80)}
           {range('helperTransparency', '辅助文字透明度', 0, 100, 1, '%')}
-          <p className="developer-settings-note">序号、标题与辅助文字保持同字号，辅助文字单独调整透明度。</p>
+          <p className="developer-settings-note">序号、标题与辅助文字保持同字号，辅助文字单独调整透明度。空间不足时自动缩小字号、图标与间距，保持文案完整；品牌另起一行时，顶栏最低116px。</p>
         </SettingsGroup>
 
         <SettingsGroup title="面板布局" note="覆盖或推开" initiallyOpen>
