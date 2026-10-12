@@ -3,6 +3,7 @@ export const assetPaths = {
   cover: 'assets/entry/home-cover.png',
   intro: 'assets/intro/entry-intro.mp4',
   title: 'assets/entry/title-nanfeng-youshi.png',
+  exploreMoreCalligraphy: 'assets/entry/explore-more-calligraphy.png',
   navLion: 'assets/entry/nav-lion-head.png',
   navBrushFont: 'assets/fonts/nanfeng-navigation-brush.woff',
   modelBackground: 'assets/backgrounds/lion-structure-background.png',
