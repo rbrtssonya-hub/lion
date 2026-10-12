@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function VideoStage({ src, poster, loop = false, onEnded, onContinue, label, className = '', id }) {
+export default function VideoStage({ src, poster, loop = false, onEnded, onContinue, continueLabel = '浏览整体模型', label, className = '', id }) {
   const ref = useRef(null);
   const [status, setStatus] = useState('playing');
 
@@ -39,7 +39,7 @@ export default function VideoStage({ src, poster, loop = false, onEnded, onConti
         <div className="video-status" role="status">
           <span>{status === 'error' ? '视频暂时无法播放' : '点击继续播放视频'}</span>
           <button type="button" onClick={replay}>{status === 'error' ? '重试' : '播放'}</button>
-          {onContinue && <button type="button" onClick={onContinue}>浏览整体模型</button>}
+          {onContinue && <button type="button" onClick={onContinue}>{continueLabel}</button>}
         </div>
       )}
     </>

@@ -1,12 +1,9 @@
 import {
   ACESFilmicToneMapping,
   Box3,
-  CircleGeometry,
   DirectionalLight,
   Group,
   HemisphereLight,
-  Mesh,
-  MeshBasicMaterial,
   PerspectiveCamera,
   PointLight,
   Scene,
@@ -97,13 +94,15 @@ async function readModel(modelUrl, signal, report) {
 /** A single mounted model view owns this scene and its AbortController. */
 export async function createLionScene({
   container,
+  interactionElement,
+  layoutElement,
   modelUrl,
   signal,
   autoRotate = true,
   onStatus = () => {},
   onAutoRotateChange = () => {},
 }) {
-  if (signal?.aborted || !container.isConnected) throw aborted();
+  if (signal?.aborted || !container.isConnected || !interactionElement?.isConnected) throw aborted();
   activeScenes.get(container)?.();
 
   const loadController = new AbortController();
@@ -111,6 +110,7 @@ export async function createLionScene({
   const camera = new PerspectiveCamera(34, 1, 0.01, 1000);
   camera.position.set(2.7, 1.05, 4);
   let renderer;
+  let maxRenderSize;
   let controls;
   let observer;
   let animationFrame = 0;
@@ -133,8 +133,17 @@ export async function createLionScene({
     if (disposed || !renderer) return;
     const { clientWidth: width, clientHeight: height } = container;
     if (!width || !height) return;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    const canvasBounds = container.getBoundingClientRect();
+    const frame = interactionElement.getBoundingClientRect();
+    if (!frame.width || !frame.height) return;
+    // Frame the lion in the central column while rendering beyond that column.
+    // Negative offsets extend its frustum across the page without a nested crop.
+    camera.setViewOffset(
+      frame.width, frame.height,
+      canvasBounds.left - frame.left, canvasBounds.top - frame.top,
+      width, height,
+    );
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2, maxRenderSize / Math.max(width, height)));
     renderer.setSize(width, height, false);
   };
   const dispose = () => {
@@ -168,14 +177,17 @@ export async function createLionScene({
   try {
     // Let browsers try their available WebGL implementation, including software rendering.
     renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    // Composite the lion directly over the page's shared background.
+    renderer.setClearColor(0x000000, 0);
+    const context = renderer.getContext();
+    maxRenderSize = context.getParameter(context.MAX_RENDERBUFFER_SIZE);
     renderer.outputColorSpace = SRGBColorSpace;
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.12;
     renderer.domElement.addEventListener('webglcontextlost', onContextLost);
     container.appendChild(renderer.domElement);
 
-    controls = new OrbitControls(camera, renderer.domElement);
+    controls = new OrbitControls(camera, interactionElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.enablePan = false;
@@ -199,18 +211,12 @@ export async function createLionScene({
     fill.position.set(-2, 1.2, 2.4);
     scene.add(fill);
 
-    const ground = new Mesh(
-      new CircleGeometry(4.5, 64),
-      new MeshBasicMaterial({ color: 0x3f0d09, transparent: true, opacity: 0.6 }),
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -1.15;
-    scene.add(ground);
-
     signal?.addEventListener('abort', dispose, { once: true });
     if (typeof ResizeObserver !== 'undefined') {
       observer = new ResizeObserver(resize);
       observer.observe(container);
+      observer.observe(interactionElement);
+      if (layoutElement) observer.observe(layoutElement);
     } else {
       window.addEventListener('resize', resize);
     }
@@ -267,7 +273,7 @@ export async function createLionScene({
     model.position.sub(center);
     const modelGroup = new Group();
     modelGroup.add(model);
-    // Keep the complete merged lion head inside the warm display stage.
+    // Keep the complete merged lion head inside the interactive viewport.
     // Focus views can still move closer through the camera API.
     modelGroup.scale.setScalar(1.78 / maxSize);
     modelGroup.position.y = -0.066;

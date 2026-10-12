@@ -1,25 +1,34 @@
-import ChapterNav from '../../components/ChapterNav.jsx';
 import VideoStage from '../../components/VideoStage.jsx';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
-import { chapters } from '../../config/chapters.js';
+import HomeCulture from './HomeCulture.jsx';
+import { useEntryPlayback } from './useEntryPlayback.js';
 
-export default function HomePage({ onNavigate }) {
-  return <section className="entry-gate final-home" aria-label="作品入口">
-    <VideoStage id="entryLionVideo" src={media.home} poster={media.cover} loop label="循环播放的醒狮首页视频" className="entry-visual entry-visual-video" />
+export default function HomePage() {
+  const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
+  const exploreCulture = () => document.querySelector('#homeCulture')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+
+  return <div className="home-page" data-intro-active={introActive}>
+  <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
+    <VideoStage key={introActive ? `intro-${playbackId}` : 'home-loop'}
+      id={introActive ? 'introVideo' : 'entryLionVideo'} src={introActive ? media.intro : media.home}
+      poster={introActive ? undefined : media.cover} loop={!introActive}
+      onEnded={introActive ? finishIntro : undefined} onContinue={introActive ? finishIntro : undefined} continueLabel="继续浏览首页"
+      label={introActive ? 'AI辅助创作的醒狮入场视频' : '循环播放的醒狮首页视频'} className="entry-visual entry-visual-video" />
     <div className="entry-vignette" aria-hidden="true" />
     <div className="entry-ornaments" aria-hidden="true">
       <svg className="entry-cloud entry-cloud-top" viewBox="0 0 100 32"><path d="M5 22h72c12 0 12-12 0-12H41c-11 0-11 12 0 12h18M18 16h30M38 10h22c10 0 10-8 0-8H48M28 22h24c11 0 11 8 0 8H14" /></svg>
       <svg className="entry-cloud entry-cloud-side" viewBox="0 0 100 32"><path d="M5 22h72c12 0 12-12 0-12H41c-11 0-11 12 0 12h18M18 16h30M38 10h22c10 0 10-8 0-8H48M28 22h24c11 0 11 8 0 8H14" /></svg>
     </div>
-    <header className="entry-header">
-      <div className="entry-brand">南风有狮</div>
-      <ChapterNav current="intro" onNavigate={onNavigate} />
-    </header>
+    <div className="entry-playback-tools">
+      <button type="button" id="replayIntro" onClick={replayIntro}><span aria-hidden="true">↻</span> 重播入场</button>
+      {introActive && <button type="button" id="skipIntro" onClick={finishIntro}>跳过入场 <span aria-hidden="true">→</span></button>}
+      <span className="entry-video-note">{introActive ? '开场影像 · AI辅助创作' : '循环影像 · 用户提供'}</span>
+    </div>
     <div className="entry-copy">
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
-      <button className="entry-cta" id="enterWork" type="button" onClick={() => onNavigate('intro')}>
+      <button className="entry-cta" id="enterWork" type="button" onClick={exploreCulture}>
         {['left', 'right'].map((side) => <svg key={side} className={`entry-cta-cloud entry-cta-cloud-${side}`} viewBox="0 0 72 76" aria-hidden="true" focusable="false">
           <path className="entry-cta-cloud-line" d="M26 5C11 9 5 20 7 33M27 9C16 12 11 20 12 28" />
           <path className="entry-cta-cloud-fill" d="M65 69H35C20 69 7 62 5 51C-2 47 0 35 8 32C9 22 21 20 27 27C36 25 42 32 40 40C51 38 58 48 54 56C60 58 63 64 65 69Z" />
@@ -30,13 +39,8 @@ export default function HomePage({ onNavigate }) {
       <p className="entry-motto"><span>醒&nbsp;&nbsp;狮&nbsp;&nbsp;传&nbsp;&nbsp;文&nbsp;&nbsp;化</span><span>南&nbsp;&nbsp;风&nbsp;&nbsp;载&nbsp;&nbsp;未&nbsp;&nbsp;来</span></p>
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
-    <nav className="entry-bottom-nav" aria-label="信息可视化模块">
-      {chapters.slice(1).map(({ route, label, description, icon, viewBox }, index) => (
-        <button key={route} className="entry-bottom-item" type="button" onClick={() => onNavigate(route)}>
-          <span className="entry-icon" aria-hidden="true"><svg viewBox={viewBox}><path d={icon} /></svg></span>
-          <span><b>{String(index + 1).padStart(2, '0')}</b><strong>{label}</strong><small>{description}</small></span>
-        </button>
-      ))}
-    </nav>
-  </section>;
+    <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
+  </section>
+  <HomeCulture />
+  </div>;
 }

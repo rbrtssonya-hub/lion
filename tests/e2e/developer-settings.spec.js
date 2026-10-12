@@ -1,0 +1,359 @@
+import { test, expect } from '@playwright/test';
+
+const settingsKey = 'nanfeng-lion:developer-settings:v1';
+const panel = page => page.getByRole('region', { name: '开发者参数设置' });
+const trigger = page => page.locator('.site-navigation [data-action="settings"]');
+const topEdge = page => page.getByRole('separator', { name: '调整顶栏高度' });
+const sideEdge = page => page.getByRole('separator', { name: '调整侧栏宽度' });
+const pageWidth = page => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
+const headerHeight = page => page.locator('.site-header').evaluate(element => element.getBoundingClientRect().height);
+const sidebarWidth = page => panel(page).evaluate(element => element.getBoundingClientRect().width);
+
+async function savedSettings(page) {
+  return page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey);
+}
+
+async function expectSaved(page, values) {
+  await expect.poll(() => savedSettings(page)).toMatchObject(values);
+}
+
+async function openSettings(page) {
+  await trigger(page).click();
+  await expect(panel(page)).toBeVisible();
+}
+
+async function editNumber(page, name, value) {
+  const input = panel(page).getByRole('spinbutton', { name: `${name}数值`, exact: true });
+  await input.fill(String(value));
+  await input.press('Tab');
+  await expect(input).toHaveValue(String(value));
+}
+
+async function dragStart(page, edge, axis, delta) {
+  await expect(edge).toBeVisible();
+  const bounds = await edge.boundingBox();
+  expect(bounds).not.toBeNull();
+  // Start away from the visual grip to prove the whole boundary is interactive.
+  const x = axis === 'x' ? bounds.x + bounds.width / 2 : bounds.x + 100;
+  const y = axis === 'y' ? bounds.y + bounds.height / 2 : bounds.y + 120;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + (axis === 'x' ? delta : 0), y + (axis === 'y' ? delta : 0), { steps: 6 });
+}
+
+async function expectNoDrag(page) {
+  await expect.poll(() => page.evaluate(() =>
+    document.documentElement.classList.contains('lion-resizing-x') ||
+    document.documentElement.classList.contains('lion-resizing-y'))).toBe(false);
+  await expect(page.locator('.lion-resize-handle.is-resizing')).toHaveCount(0);
+}
+
+test.beforeEach(async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.addInitScript(() => sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'));
+});
+
+test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Escape 恢复入口焦点', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.site-nav-heading strong')).toHaveText(['首页', '狮头与结构', '动作', '神态', '设置']);
+  await expect(panel(page)).toHaveCount(0);
+  await expect(trigger(page)).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('.developer-settings-trigger')).toHaveCount(0);
+
+  await openSettings(page);
+  await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
+  const bounds = await panel(page).boundingBox();
+  const viewport = await page.evaluate(() => ({ width: document.documentElement.clientWidth, height: innerHeight }));
+  expect(bounds.y).toBe(0);
+  expect(bounds.x + bounds.width).toBeCloseTo(viewport.width, 1);
+  expect(bounds.height).toBe(viewport.height);
+  await expect(panel(page).getByRole('button', { name: '关闭开发者参数' })).toBeFocused();
+  await expect(panel(page).locator('details').filter({ hasText: '导航尺寸' })).not.toHaveAttribute('open', '');
+  await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
+  await expect(panel(page)).toHaveCount(0);
+  await expect(trigger(page)).toBeFocused();
+
+  await openSettings(page);
+  await page.keyboard.press('Escape');
+  await expect(panel(page)).toHaveCount(0);
+  await expect(trigger(page)).toBeFocused();
+});
+
+test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控件不随容器淡出', async ({ page }) => {
+  await page.goto('/');
+  await openSettings(page);
+  await editNumber(page, '顶栏透明度', 100);
+  await editNumber(page, '顶栏模糊强度', 0);
+  await expect(panel(page).getByRole('slider', { name: '顶栏透明度', exact: true })).toHaveValue('100');
+  await expect(page.locator('.site-header')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.site-header')).toHaveCSS('backdrop-filter', 'none');
+  await expect(page.locator('.site-nav-heading strong').first()).toHaveCSS('opacity', '1');
+  await expect(page.locator('.site-nav-icon').first()).toHaveCSS('color', 'rgb(255, 255, 255)');
+  expect(await page.locator('.site-header').evaluate(element => {
+    const style = getComputedStyle(element);
+    return style.backgroundImage.includes('rgba(104, 23, 15, 0)') &&
+      getComputedStyle(element, '::after').opacity === '0';
+  })).toBe(true);
+  await expect(panel(page).getByRole('spinbutton', { name: '侧栏透明度数值' })).toHaveValue('14');
+  await expect(panel(page)).toHaveCSS('backdrop-filter', 'blur(18px)');
+
+  await editNumber(page, '顶栏模糊强度', 24);
+  await expect(page.locator('.site-header')).toHaveCSS('backdrop-filter', 'blur(24px)');
+  await editNumber(page, '侧栏透明度', 100);
+  await editNumber(page, '侧栏模糊强度', 0);
+  await expect(panel(page)).toHaveCSS('opacity', '1');
+  await expect(panel(page)).toHaveCSS('backdrop-filter', 'none');
+  await expect(panel(page).getByRole('heading', { name: '开发者参数设置' })).toHaveCSS('opacity', '1');
+  await expect(panel(page).getByRole('spinbutton', { name: '侧栏透明度数值' })).toHaveCSS('opacity', '1');
+  expect(await panel(page).evaluate(element => {
+    const style = getComputedStyle(element);
+    return style.backgroundImage.includes('rgba(255, 246, 228, 0)') &&
+      style.borderLeftColor === 'rgba(199, 148, 86, 0)';
+  })).toBe(true);
+  await editNumber(page, '侧栏模糊强度', 22);
+  await expect(panel(page)).toHaveCSS('backdrop-filter', 'blur(22px)');
+  await expect(page.locator('.site-header')).toHaveCSS('backdrop-filter', 'blur(24px)');
+});
+
+test('推开页面按侧栏宽度留空，窄窗口自动覆盖并在加宽后恢复用户偏好', async ({ page }) => {
+  await page.goto('/');
+  await openSettings(page);
+  await expect.poll(() => pageWidth(page)).toBe(1920);
+  await panel(page).getByRole('checkbox', { name: '设置面板推开页面' }).check();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await expect.poll(() => pageWidth(page)).toBe(1580);
+  await editNumber(page, '设置面板宽度', 480);
+  await expect.poll(() => pageWidth(page)).toBe(1440);
+
+  await page.setViewportSize({ width: 1200, height: 900 });
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
+  await expect.poll(() => pageWidth(page)).toBe(1200);
+  await expect(panel(page)).toContainText('窗口空间不足');
+  await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).toBeChecked();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expectSaved(page, { pushPage: true, panelWidth: 480 });
+
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await expect.poll(() => pageWidth(page)).toBe(1440);
+  await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
+  await expect.poll(() => pageWidth(page)).toBe(1920);
+});
+
+test('参数持久保存，刷新保持侧栏关闭，恢复默认同时恢复外观与尺寸', async ({ page }) => {
+  await page.goto('/');
+  await openSettings(page);
+  await editNumber(page, '顶栏透明度', 42);
+  await editNumber(page, '侧栏模糊强度', 9);
+  await editNumber(page, '设置面板宽度', 430);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await editNumber(page, '顶栏高度', 123);
+  await editNumber(page, '导航文字字号', 23);
+  await expectSaved(page, { headerTransparency: 42, sidebarBlur: 9, panelWidth: 430, headerHeight: 123, navFontSize: 23 });
+
+  await page.reload();
+  await expect(panel(page)).toHaveCount(0);
+  await expect.poll(() => headerHeight(page)).toBe(123);
+  await openSettings(page);
+  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('42');
+  await expect(panel(page).getByRole('spinbutton', { name: '侧栏模糊强度数值' })).toHaveValue('9');
+  await expect.poll(() => sidebarWidth(page)).toBe(430);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('23');
+  await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await expectSaved(page, { headerTransparency: 18, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, panelWidth: 340, pushPage: false });
+  await expect.poll(() => headerHeight(page)).toBe(90);
+  await expect.poll(() => sidebarWidth(page)).toBe(340);
+});
+
+test('旧默认字号 20 只迁移一次至 26，其他参数保留，随后手选 20 不再升级', async ({ page }) => {
+  await page.addInitScript(({ key, saved }) => {
+    if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(saved));
+  }, { key: settingsKey, saved: { navFontSize: 20, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true } });
+  await page.goto('/');
+  await expectSaved(page, { navFontSize: 26, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true });
+  await openSettings(page);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('26');
+  await editNumber(page, '导航文字字号', 20);
+  await expectSaved(page, { navFontSize: 20 });
+  await page.reload();
+  await expect(panel(page)).toHaveCount(0);
+  await expectSaved(page, { navFontSize: 20, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true });
+  await openSettings(page);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('20');
+});
+
+test('损坏或不合法的保存参数可恢复，浏览器存储不可用时仍能实时调整', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/');
+  for (const badSaved of ['{broken', JSON.stringify({ headerTransparency: 180, headerBlur: -8, sidebarTransparency: 'bad', navFontSize: '20', headerHeight: 999, panelWidth: null, pushPage: 'yes' })]) {
+    await page.evaluate(({ key, value }) => localStorage.setItem(key, value), { key: settingsKey, value: badSaved });
+    await page.reload();
+    await expect(panel(page)).toHaveCount(0);
+    const expected = badSaved === '{broken'
+      ? { headerTransparency: 18, headerBlur: 12, headerHeight: 90 }
+      : { headerTransparency: 100, headerBlur: 0, sidebarTransparency: 14, headerHeight: 180 };
+    await expectSaved(page, { ...expected, navFontSize: 26, panelWidth: 340, pushPage: false });
+  }
+
+  await page.addInitScript(() => Object.defineProperty(window, 'localStorage', {
+    configurable: true,
+    get() { throw new DOMException('Storage blocked for this test', 'SecurityError'); },
+  }));
+  await page.reload();
+  await openSettings(page);
+  await editNumber(page, '顶栏透明度', 55);
+  await editNumber(page, '设置面板宽度', 420);
+  await expect.poll(() => sidebarWidth(page)).toBe(420);
+  await expect(panel(page).getByRole('slider', { name: '顶栏透明度', exact: true })).toHaveValue('55');
+  await page.reload();
+  await expect(panel(page)).toHaveCount(0);
+  await openSettings(page);
+  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('18');
+  expect(errors).toEqual([]);
+});
+
+test('整条边界可悬停显示中央握柄，拖动实时预览并仅在松手后保存', async ({ page }) => {
+  await page.goto('/');
+  const top = topEdge(page);
+  await expect(top.locator('span')).toHaveCSS('opacity', '0');
+  let bounds = await top.boundingBox();
+  await page.mouse.move(100, bounds.y + bounds.height / 2);
+  await expect(top.locator('span')).toHaveCSS('opacity', '1');
+  expect(bounds.width).toBe(1920);
+  const grip = await top.locator('span').boundingBox();
+  expect(grip.width).toBeLessThan(bounds.width / 4);
+  expect(grip.x + grip.width / 2).toBeCloseTo(bounds.x + bounds.width / 2, 1);
+  await expectSaved(page, { headerHeight: 90, panelWidth: 340 });
+
+  await dragStart(page, top, 'y', 37);
+  await expect.poll(() => headerHeight(page)).toBe(127);
+  await expectSaved(page, { headerHeight: 90 });
+  await page.mouse.up();
+  await expectSaved(page, { headerHeight: 127 });
+  await expectNoDrag(page);
+
+  await openSettings(page);
+  const side = sideEdge(page);
+  bounds = await side.boundingBox();
+  expect(bounds.height).toBe(1080);
+  await page.mouse.move(bounds.x + bounds.width / 2, 120);
+  await expect(side.locator('span')).toHaveCSS('opacity', '1');
+  const sideGrip = await side.locator('span').boundingBox();
+  expect(sideGrip.height).toBeLessThan(bounds.height / 4);
+  expect(sideGrip.y + sideGrip.height / 2).toBeCloseTo(bounds.y + bounds.height / 2, 1);
+  await dragStart(page, side, 'x', -113);
+  await expect.poll(() => sidebarWidth(page)).toBe(453);
+  await expectSaved(page, { panelWidth: 340 });
+  await page.mouse.up();
+  await expectSaved(page, { panelWidth: 453, headerHeight: 127 });
+  await expectNoDrag(page);
+});
+
+test('Escape、pointercancel 和拖动中关闭侧栏均撤销预览并清理全局拖动状态', async ({ page }) => {
+  await page.goto('/');
+  await openSettings(page);
+  await dragStart(page, topEdge(page), 'y', 28);
+  await expect.poll(() => headerHeight(page)).toBe(118);
+  await page.keyboard.press('Escape');
+  await page.mouse.up();
+  await expect.poll(() => headerHeight(page)).toBe(90);
+  await expect(panel(page)).toBeVisible();
+  await expectSaved(page, { headerHeight: 90 });
+  await expectNoDrag(page);
+
+  await page.evaluate(() => window.addEventListener('pointerdown', event => {
+    window.testResizePointerId = event.pointerId;
+  }, { capture: true, once: true }));
+  await dragStart(page, sideEdge(page), 'x', -90);
+  await expect.poll(() => sidebarWidth(page)).toBe(430);
+  await page.evaluate(() => window.dispatchEvent(new PointerEvent('pointercancel', {
+    pointerId: window.testResizePointerId, pointerType: 'mouse', bubbles: true,
+  })));
+  await page.mouse.up();
+  await expect.poll(() => sidebarWidth(page)).toBe(340);
+  await expectSaved(page, { panelWidth: 340 });
+  await expectNoDrag(page);
+
+  await dragStart(page, sideEdge(page), 'x', -100);
+  await expect.poll(() => sidebarWidth(page)).toBe(440);
+  // Activate the close control while the pointer remains captured to exercise unmount cleanup.
+  await panel(page).getByRole('button', { name: '关闭开发者参数' }).evaluate(button => button.click());
+  await page.mouse.up();
+  await expect(panel(page)).toHaveCount(0);
+  await expect(trigger(page)).toBeFocused();
+  await expectSaved(page, { panelWidth: 340 });
+  await expectNoDrag(page);
+  await page.mouse.move(100, 400);
+  await openSettings(page);
+  await expect.poll(() => sidebarWidth(page)).toBe(340);
+});
+
+test('尺寸边界支持方向键、加速与上下限，双击仅恢复对应默认尺寸', async ({ page }) => {
+  await page.goto('/');
+  const top = topEdge(page);
+  await top.focus();
+  await page.keyboard.press('ArrowDown');
+  await expectSaved(page, { headerHeight: 91 });
+  await page.keyboard.press('Shift+ArrowDown');
+  await expectSaved(page, { headerHeight: 101 });
+  await page.keyboard.press('Home');
+  await expectSaved(page, { headerHeight: 64 });
+  await page.keyboard.press('End');
+  await expectSaved(page, { headerHeight: 180 });
+  await top.dblclick({ position: { x: 100, y: 6 } });
+  await expectSaved(page, { headerHeight: 90 });
+
+  await openSettings(page);
+  await editNumber(page, '顶栏透明度', 45);
+  const side = sideEdge(page);
+  await side.focus();
+  await page.keyboard.press('ArrowLeft');
+  await expectSaved(page, { panelWidth: 341 });
+  await page.keyboard.press('Shift+ArrowLeft');
+  await expectSaved(page, { panelWidth: 351 });
+  await page.keyboard.press('Home');
+  await expectSaved(page, { panelWidth: 280 });
+  await page.keyboard.press('End');
+  await expectSaved(page, { panelWidth: 760 });
+  await side.dblclick({ position: { x: 6, y: 120 } });
+  await expectSaved(page, { panelWidth: 340, headerHeight: 90, headerTransparency: 45 });
+});
+
+test('设置和尺寸调整保留首页视频及模型画布实例，切换章节与模型控件继续可用', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/');
+  await expect.poll(() => page.locator('#entryLionVideo').evaluate(video => video.readyState)).toBeGreaterThanOrEqual(2);
+  const video = await page.locator('#entryLionVideo').elementHandle();
+  await openSettings(page);
+  await panel(page).getByRole('checkbox', { name: '设置面板推开页面' }).check();
+  await editNumber(page, '设置面板宽度', 480);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await editNumber(page, '顶栏高度', 115);
+  expect(await video.evaluate(element => element.isConnected && element === document.querySelector('#entryLionVideo'))).toBe(true);
+
+  await page.locator('.site-navigation [data-route="model"]').click();
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+  const canvas = await page.locator('#sceneContainer canvas').elementHandle();
+  await editNumber(page, '设置面板宽度', 520);
+  await editNumber(page, '顶栏高度', 100);
+  await editNumber(page, '侧栏模糊强度', 22);
+  expect(await canvas.evaluate(element => element.isConnected && element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await page.locator('#toggleRotate').click();
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+  await page.locator('#hotspotList [data-id="mouth"]').click();
+  await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
+  await page.locator('#viewStructure').click();
+  await expect(page.locator('#structureLayer')).toBeVisible();
+  await page.locator('.site-navigation [data-route="action"]').click();
+  await expect(page.locator('#chapterTitle')).toHaveText('动作');
+  await page.locator('.site-navigation [data-route="state"]').click();
+  await expect(page.locator('#chapterTitle')).toHaveText('神态');
+  await expect(panel(page)).toBeVisible();
+  expect(errors).toEqual([]);
+});

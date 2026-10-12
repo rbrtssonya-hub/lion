@@ -190,7 +190,7 @@
     },
     {
       "from": "site/assets/entry/home-lion-loop.mp4",
-      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "path": "source/video/entry/home-lion-loop-v1.mp4",
       "bytes": 3139260,
       "sha256": "b2d4aa147a03d5e676bcbc997f57f8621c685cfc228c690f7b92e098609bde9c"
     },
@@ -415,6 +415,414 @@
       "path": "source/video/intro/lion-poster.jpg",
       "bytes": 5725,
       "sha256": "c0c4e93ba6f62069c89332fbc775c33e2c62c2790cbb6e6174fcf3fb43332811"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-transparent-display/model-1920.png",
+      "path": "source/reviews/model/2026-10-11-transparent-display/model-1920.png",
+      "bytes": 1818265,
+      "sha256": "935643401b5f669780c0a81f305e4f67ab19a8a8ddc9994ded974c5597f56d86"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-transparent-display/structure-1920.png",
+      "path": "source/reviews/model/2026-10-11-transparent-display/structure-1920.png",
+      "bytes": 1883733,
+      "sha256": "a54f836db394b3b615389fd576f5b9d8d1fa8e1aa23ca92d7632f1176b2867dd"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/model-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/model-1920.png",
+      "bytes": 2020153,
+      "sha256": "3fc27746f50b5f5252add6819c32e5b984b25362aeefe123248aac755c015dfd"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/model-zoom-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/model-zoom-1920.png",
+      "bytes": 2519656,
+      "sha256": "3d22fb8aa5899ea6a91ed6ba6d38478273ab6c0b3adb742e0e35a659c2b0b47a"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/structure-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/structure-1920.png",
+      "bytes": 2587742,
+      "sha256": "177cc2b9b96bab2510648761d3067b613a89567ea8ff3baeccf9ed2dc69a8a7f"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-11-page-canvas/structure-zoom-1920.png",
+      "path": "source/reviews/model/2026-10-11-page-canvas/structure-zoom-1920.png",
+      "bytes": 2588952,
+      "sha256": "b90fbe95aedd016c81b5ef374d2a337a11cae525e52f6ceca1576c70df3bc153"
+    },
+    {
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "from": "E:/数字媒体竞赛/张钧儒/首页/首页.mp4",
+      "bytes": 8059565,
+      "sha256": "b525b4f755fd464997f3792a5b06630c6b7fc09c9f77a5c68e4a0fa86d33ba1c"
+    },
+    {
+      "path": "source/public/assets/culture/foshan-lion-dance.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:Lion_dance_in_Foshang.jpg",
+      "bytes": 264414,
+      "sha256": "befd672af835e16736841afba86a6191a12b4e0c8cbe96eaf0d8b997c8166a09"
+    },
+    {
+      "path": "source/public/assets/culture/guangzhou-lion-head.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:2020_%E5%BB%A3%E5%B7%9E_%E8%88%9E%E7%8D%85%E7%8D%85%E9%A0%AD.jpg",
+      "bytes": 277498,
+      "sha256": "95e33217bf3b31ffc8268239f5e6484aaa64c4ae04bfa1104cc04a035179b791"
+    },
+    {
+      "path": "source/public/assets/culture/lion-cai-qing.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:Lettuce_Incoming!_(9453206569).jpg",
+      "bytes": 321822,
+      "sha256": "ca06712fde35b3f32e647855e3cfce05d29aa767d300e37ea3002f2d3261c32e"
+    },
+    {
+      "path": "source/public/assets/culture/hong-kong-lion-dance.jpg",
+      "from": "https://commons.wikimedia.org/wiki/File:06834_20091004_lion_dance_Hong_Kong_Kowloon.jpg",
+      "bytes": 403391,
+      "sha256": "6f83643f370e3b9bd41bd99723cfc978fe9e112dc4a2d85af55fd2c3d6b73234"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/hero-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/hero-1920.png",
+      "bytes": 2736683,
+      "sha256": "b3755b4b6cf2d38c64fa010bf10a4b6299103b97c9e9f2773d63abbf2f2199ae"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/culture-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/culture-1920.png",
+      "bytes": 3385328,
+      "sha256": "292249da34df6dbaf9e86d7bb8dd08bd21b7afaf6104670181d8171591810fb0"
+    },
+    {
+      "path": "source/reviews/homepage/2026-10-12-unified-entry/merged-model-1920.png",
+      "from": "generated:chrome-review/2026-10-12-unified-entry/merged-model-1920.png",
+      "bytes": 2065394,
+      "sha256": "43ccf754385bf1325e0c9c4d488ca06bc1733e56ef79a4f7caadb7bda065262b"
+    },
+    {
+      "path": "source/public/assets/fonts/nanfeng-navigation-brush.woff",
+      "from": "generated:font-subset/maoken-fonts/slidefont/fonts/Slideqiuhong-Regular.ttf@ff0353c03b1dae981861d3d8b94effd31c9d8a8b",
+      "bytes": 140432,
+      "sha256": "de02b14cddf8a9bc33000e4e4078e0636b5113984502a46ccadee8f6da2cfae5"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/header-brush-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/header-brush-1920.png",
+      "bytes": 119644,
+      "sha256": "ca4193047e247ce34eaff8d2156ae88c9b87aaee811f0e636968b780ae35ef29"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/header-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/header-brush-2560.png",
+      "bytes": 133844,
+      "sha256": "43e78548105095acf8b8895eabfdca1fb3cf828929d0587b4f3d62ba3fd5e7ef"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/home-brush-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/home-brush-1920.png",
+      "bytes": 2768467,
+      "sha256": "bea1e8f51e0119a641d765c606afac5172a6cc259dd8ca9ee4e582fafdad461f"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/home-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/home-brush-2560.png",
+      "bytes": 4566459,
+      "sha256": "caee676443b1746e543aac9bfd6813bbb03081973e9d4faa474817c5cadd0007"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/model-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/model-brush-2560.png",
+      "bytes": 2861518,
+      "sha256": "f164c41fc3031e7ab4e1d34ee7b48dd92addeecd2d2ada1849a63e56ea834f0c"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-brush-typography/settings-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-brush-typography/settings-brush-2560.png",
+      "bytes": 4366221,
+      "sha256": "b024e75a8f4eed0a62be94f5b84c1139cbf9e1e5e6bb869222a321c53e24578f"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-developer-settings/header-transparent-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-developer-settings/header-transparent-1920.png",
+      "bytes": 190626,
+      "sha256": "713a93841f38434059a87f3c6552b7cdc16cbcc13f86a31fc8c8024bf1b10f66"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-developer-settings/home-closed-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-developer-settings/home-closed-1920.png",
+      "bytes": 2771767,
+      "sha256": "b9efa50925390bb3332b870a5ddeceb198b06e650642d40f2d140735cb024d47"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-developer-settings/model-panel-push-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-developer-settings/model-panel-push-1920.png",
+      "bytes": 1604414,
+      "sha256": "7d4d6b08affa8aba23981994788d3ee358062f8b6e6908a14874b62343c77f6d"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-developer-settings/panel-overlay-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-developer-settings/panel-overlay-1920.png",
+      "bytes": 2576169,
+      "sha256": "0d0801db77c3329926bf78621b36227ddd7426dbfd0cc4fee91784ab0d5b09f2"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-developer-settings/panel-push-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-developer-settings/panel-push-1920.png",
+      "bytes": 2444393,
+      "sha256": "72624056442857941c13e955b1122f6c82f175dc40bd2d0bc6a0b31dc661d1c1"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-dock-resizing/glass-dock-hover-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-dock-resizing/glass-dock-hover-2560.png",
+      "bytes": 4438035,
+      "sha256": "4189c4852ba625991130227c08099073c7ca02c0ff8214bfa2fdb7d804a824db"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-dock-resizing/home-five-items-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-dock-resizing/home-five-items-2560.png",
+      "bytes": 4576391,
+      "sha256": "324d8e65aa4c0c5866bd772d76ed936287fd570046f76c250dd20b3fcea29d78"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-dock-resizing/model-resized-dock-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-dock-resizing/model-resized-dock-2560.png",
+      "bytes": 2683330,
+      "sha256": "a0882a725a451da719a279ec872c6d287854614b531b8ab0b984cdbc3d48d848"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-dock-resizing/resized-dock-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-dock-resizing/resized-dock-2560.png",
+      "bytes": 4290581,
+      "sha256": "51e031f37d2edda4880c2e4eae12f9a4cd52b10d1bbee7492bd023beb8c18ec2"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-dock-resizing/top-edge-hover-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-dock-resizing/top-edge-hover-2560.png",
+      "bytes": 219502,
+      "sha256": "3abf95ce7447ff86199a1635942f7ea31ab7c6f898df04e3c0e80a23f5812605"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/header-brush-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/header-brush-1920.png",
+      "bytes": 125449,
+      "sha256": "7bdb4b69e45465caaae0cc545f6fd96826239ab2630238b3345af88476494ddd"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/header-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/header-brush-2560.png",
+      "bytes": 144655,
+      "sha256": "7a8d46bb09cc5f558c9b3ef80fea0132c55798cd9879f788d00162c135a49cc7"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/home-brush-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/home-brush-1920.png",
+      "bytes": 2775125,
+      "sha256": "759bfed6e4437c50e65589cbefb021fc569d01f065166edd6bb4254190e63afc"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/home-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/home-brush-2560.png",
+      "bytes": 4581334,
+      "sha256": "ca98beec8098eb2220b2f460c71fcdf73685ce4c5abf2bcbd19e2f6996916485"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/model-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/model-brush-2560.png",
+      "bytes": 2871979,
+      "sha256": "770740b761e2395843747c7eba55159baee6560b5a39e4fa2475e6dcec49a00f"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-larger-typography/settings-brush-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-larger-typography/settings-brush-2560.png",
+      "bytes": 4378027,
+      "sha256": "090a98ee10085ed1bab2590ba5972e4f8243495a208bfd336f270a807d2198a3"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/action-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/action-1920.png",
+      "bytes": 676248,
+      "sha256": "42259e234811df382f55c81a2f7ab370b065983f6901bb3bcad426e1504be7f8"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/culture-navigation-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/culture-navigation-1920.png",
+      "bytes": 1027061,
+      "sha256": "1cbbba399175fe53e467246d382c3a0e76c0a93ffb838e1294c191b96c3fe1a7"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/home-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/home-1920.png",
+      "bytes": 2691623,
+      "sha256": "153d30705505cef2b4a12020a004616eb196f654db9cfbf99dd42814f21f7249"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/home-390.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/home-390.png",
+      "bytes": 539908,
+      "sha256": "e5647f7786a2a01c4376f1cb18b705910601c88194eaa375d3f8c157cb907e28"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/model-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/model-1920.png",
+      "bytes": 1587909,
+      "sha256": "20cb346f3beb450ae48d191f5914af741f012a015d8bf600301ea0dfb85cf8a6"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/navigation-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/navigation-1920.png",
+      "bytes": 96398,
+      "sha256": "f6543995037d1b7de91532ded51cddbf6197ee3c942f20ffb782ab9a0da7b574"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-draft/state-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-draft/state-1920.png",
+      "bytes": 664941,
+      "sha256": "8db6c7a929fe2fd672703fffefc1859cd359bd6e7fe76a151d882947b15e1e43"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/action-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/action-1920.png",
+      "bytes": 677833,
+      "sha256": "fc597d71660334a65bb452d2761e35bbc6c5e01d175d2e30be0e416fc950ad62"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/home-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/home-1920.png",
+      "bytes": 2721602,
+      "sha256": "fe73af9b73249c7b0eb04c97ace2c4f14c5d34d53de2869025b2ab268c6b4e29"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/home-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/home-2560.png",
+      "bytes": 4501281,
+      "sha256": "02df06ffb2bb3a17354873cf4c795a752a9ea90bd148622ea4305bd0dd711ada"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/home-390.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/home-390.png",
+      "bytes": 543273,
+      "sha256": "b2fb81d21dbf9c561225cb3bb80096302344c10c72fb083364ce2b6959317ba2"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/model-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/model-1920.png",
+      "bytes": 1603639,
+      "sha256": "eada7ed454ccae8530b550a4536bc883f07f6df6cbf043862b0117713f761ec2"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/navigation-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/navigation-1920.png",
+      "bytes": 93706,
+      "sha256": "21973916e1a808f97cbcce78b3c7bea51755970c9c6dd5c728932e53de4f391f"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/navigation-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/navigation-2560.png",
+      "bytes": 106962,
+      "sha256": "73aa45490cc4371e52e02fb6b7c29a2e38ef7acc49003393105ba951f1f4993b"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-inline/state-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-inline/state-1920.png",
+      "bytes": 666988,
+      "sha256": "bbe91ddd1a6f36ad78a15f70a0b77688a607211d34e11609f48914bc08fe1fc5"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/action-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/action-1920.png",
+      "bytes": 669827,
+      "sha256": "51d2215808e83efbf703ec5ff03b9290ce57500459034cee559b7c969979afcd"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/home-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/home-1920.png",
+      "bytes": 2714505,
+      "sha256": "6de6f3ee33626d82e2a752a55c43acff5dc037d0e1004fe8e95a7bdd18b84431"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/home-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/home-2560.png",
+      "bytes": 4492530,
+      "sha256": "1bebc69a9b4924fcddce4bac6d46562c9161238ccc59a34b4c6294cc4fcb44b3"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/home-390.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/home-390.png",
+      "bytes": 540318,
+      "sha256": "07d610eb9886de625ded2b5d7095686ba415146216c2c68bc0574fa0510889cc"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/model-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/model-1920.png",
+      "bytes": 1597617,
+      "sha256": "2fb49c0e89b35fb3a118ec72ae1a00bd0ab842412a5899513c7142036c16ec52"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/navigation-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/navigation-1920.png",
+      "bytes": 86484,
+      "sha256": "4b4e320b3469d21300d8c7dac67148dcb8ce9fc45ff25c51b106ecca4d3652c5"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/navigation-2560.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/navigation-2560.png",
+      "bytes": 98618,
+      "sha256": "9e8280e04fee9f301cfd7e49e19dc59bc837706c42be3f6497dc7b248667843a"
+    },
+    {
+      "path": "source/reviews/navigation/2026-10-12-topbar-refined/state-1920.png",
+      "from": "generated:chrome-review/navigation/2026-10-12-topbar-refined/state-1920.png",
+      "bytes": 658561,
+      "sha256": "a0c54aec9b294a61eff79a52afa89931ecba7fc5bf8407b45210b888c1bafa65"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-1/lion-structure-background.png",
+      "path": "source/public/assets/backgrounds/lion-structure-background.png",
+      "bytes": 3296020,
+      "sha256": "8ac4641db9fcc037d5ba79134b5be828b79cfb03e5f070d966ab107f817908b5"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-2/lion-action-background.png",
+      "path": "source/public/assets/backgrounds/lion-action-background.png",
+      "bytes": 2858010,
+      "sha256": "3ea839fe3e2e51f57ef706d5da33841e2ecea6227b975420dc900e2ff6731651"
+    },
+    {
+      "from": "user-provided:2026-10-12/image-3/lion-expression-background.png",
+      "path": "source/public/assets/backgrounds/lion-expression-background.png",
+      "bytes": 2388839,
+      "sha256": "45394bab5d53f8f30ae11078c16a3f325416a35f2043c637ba4e491ce8022dbe"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/action-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/action-1920.png",
+      "bytes": 2219617,
+      "sha256": "e637742191fe9a03fa31a4caf7d5d9b619a23e5cbe2c87037006e765c4251ee8"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/model-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/model-1920.png",
+      "bytes": 2225828,
+      "sha256": "f87f626120ca4f3b9b836acb76b0f2583daaf6012b0f2c7f1f950967e0867119"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-1920.png",
+      "bytes": 1976682,
+      "sha256": "0421e14369ab8b58ae70933edf39bf8ecc2cc40b48bd407b4942918b8c1c237f"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-390.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-390.png",
+      "bytes": 295163,
+      "sha256": "02a3d416a445619d35cb6718f9163929b2d8835079c7469ef49e3e9f78c89af0"
+    },
+    {
+      "from": "generated:chrome-review/backgrounds/2026-10-12-chapter-backgrounds/state-settings-push-1920.png",
+      "path": "source/reviews/backgrounds/2026-10-12-chapter-backgrounds/state-settings-push-1920.png",
+      "bytes": 1822926,
+      "sha256": "5131a3d531ab2bf41d07e7a212e4e576cd7fed92c8e801ad1d2f5eb2d8f67caa"
     }
   ]
 }

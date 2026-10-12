@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-11
+updated: 2026-10-12
 topic: work-log-index
 sources: []
 ---
@@ -12,9 +12,14 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-12 | feature | completed | [入场首页融合与醒狮文化长页](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-12-%E5%85%A5%E5%9C%BA%E9%A6%96%E9%A1%B5%E8%9E%8D%E5%90%88%E4%B8%8E%E9%86%92%E7%8B%AE%E6%96%87%E5%8C%96%E9%95%BF%E9%A1%B5.md) |
+| 2026-10-12 | ui | completed | [章节背景替换与统一导航](UI%E4%BF%AE%E6%94%B9/2026-10-12-%E7%AB%A0%E8%8A%82%E8%83%8C%E6%99%AF%E6%9B%BF%E6%8D%A2%E4%B8%8E%E7%BB%9F%E4%B8%80%E5%AF%BC%E8%88%AA.md) |
+| 2026-10-12 | ui | completed | [全局顶栏与玻璃设置侧栏](UI%E4%BF%AE%E6%94%B9/2026-10-12-%E5%85%A8%E5%B1%80%E9%A1%B6%E6%A0%8F%E4%B8%8E%E7%8E%BB%E7%92%83%E8%AE%BE%E7%BD%AE%E4%BE%A7%E6%A0%8F.md) |
 | 2026-10-11 | ui | completed | [首页标题探索框与红金导航](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E9%A6%96%E9%A1%B5%E6%A0%87%E9%A2%98%E6%8E%A2%E7%B4%A2%E6%A1%86%E4%B8%8E%E7%BA%A2%E9%87%91%E5%AF%BC%E8%88%AA.md) |
+| 2026-10-11 | ui | completed | [评分移除与模型透明融合](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E8%AF%84%E5%88%86%E7%A7%BB%E9%99%A4%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%8F%E6%98%8E%E8%9E%8D%E5%90%88.md) |
 | 2026-10-11 | ui | completed | [模型页首页色调背景](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E6%A8%A1%E5%9E%8B%E9%A1%B5%E9%A6%96%E9%A1%B5%E8%89%B2%E8%B0%83%E8%83%8C%E6%99%AF.md) |
 | 2026-10-11 | ui | completed | [模型页档案布局与首页导航](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E6%A8%A1%E5%9E%8B%E9%A1%B5%E6%A1%A3%E6%A1%88%E5%B8%83%E5%B1%80%E4%B8%8E%E9%A6%96%E9%A1%B5%E5%AF%BC%E8%88%AA.md) |
+| 2026-10-11 | ui | completed | [模型全页画布与裁切修正](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E6%A8%A1%E5%9E%8B%E5%85%A8%E9%A1%B5%E7%94%BB%E5%B8%83%E4%B8%8E%E8%A3%81%E5%88%87%E4%BF%AE%E6%AD%A3.md) |
 | 2026-10-11 | ui | completed | [整体页数字展厅改版](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E6%95%B4%E4%BD%93%E9%A1%B5%E6%95%B0%E5%AD%97%E5%B1%95%E5%8E%85%E6%94%B9%E7%89%88.md) |
 | 2026-10-11 | ui | completed | [导航栏狮头替换](UI%E4%BF%AE%E6%94%B9/2026-10-11-%E5%AF%BC%E8%88%AA%E6%A0%8F%E7%8B%AE%E5%A4%B4%E6%9B%BF%E6%8D%A2.md) |
 | 2026-10-10 | ui | completed | [标题动效层缩放与首页验收](UI%E4%BF%AE%E6%94%B9/2026-10-10-%E6%A0%87%E9%A2%98%E5%8A%A8%E6%95%88%E5%B1%82%E7%BC%A9%E6%94%BE%E4%B8%8E%E9%A6%96%E9%A1%B5%E9%AA%8C%E6%94%B6.md) |

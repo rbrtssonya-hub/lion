@@ -1,0 +1,108 @@
+.lion-resize-handle {
+  position: absolute;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lion-resize-handle > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  border-radius: 999px;
+  background: #f2c676;
+  box-shadow: 0 0 0 0 transparent;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 140ms ease, width 160ms ease, height 160ms ease, box-shadow 160ms ease;
+}
+
+.lion-resize-handle:hover > span,
+.lion-resize-handle:focus-visible > span,
+.lion-resize-handle.is-resizing > span {
+  opacity: 1;
+  box-shadow: 0 0 0 4px rgba(242, 198, 118, .14), 0 0 14px rgba(242, 198, 118, .25);
+}
+
+.lion-resize-handle:focus-visible {
+  outline: none;
+}
+
+.lion-resize-handle-x {
+  cursor: col-resize;
+}
+
+.lion-resize-handle-y {
+  cursor: row-resize;
+}
+
+.lion-resize-handle-x > span {
+  width: 3px;
+  height: 54px;
+}
+
+.lion-resize-handle-y > span {
+  width: 64px;
+  height: 3px;
+}
+
+.lion-resize-handle-x:hover > span,
+.lion-resize-handle-x:focus-visible > span,
+.lion-resize-handle-x.is-resizing > span {
+  height: 72px;
+}
+
+.lion-resize-handle-y:hover > span,
+.lion-resize-handle-y:focus-visible > span,
+.lion-resize-handle-y.is-resizing > span {
+  width: 96px;
+}
+
+.lion-topbar-resize-handle {
+  position: fixed;
+  z-index: 35;
+  top: calc(var(--site-header-height) - 6px);
+  left: 0;
+  width: var(--resize-header-width, 100%);
+  height: 12px;
+}
+
+.lion-sidebar-resize-handle {
+  position: absolute;
+  z-index: 43;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  width: 12px;
+}
+
+:root.lion-resizing-x *,
+:root.lion-resizing-y * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+:root.lion-resizing-x * {
+  cursor: col-resize !important;
+}
+
+:root.lion-resizing-y * {
+  cursor: row-resize !important;
+}
+
+:root.lion-resizing-x .site-page,
+:root.lion-resizing-x .site-header,
+:root.lion-resizing-x .developer-settings-panel,
+:root.lion-resizing-y .site-page,
+:root.lion-resizing-y .site-header,
+:root.lion-resizing-y .developer-settings-panel {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lion-resize-handle > span {
+    transition: none;
+  }
+}

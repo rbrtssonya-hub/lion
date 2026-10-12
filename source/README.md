@@ -7,14 +7,22 @@
 | `public/assets/entry/` | 首页循环视频、封面与图片标题 | 复制到 `dist/assets/entry/` |
 | `public/assets/intro/` | 当前入场视频与运行海报 | 复制到 `dist/assets/intro/` |
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
+| `public/assets/culture/` | 首页文化图文的四张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
+| `public/assets/fonts/` | 导航毛笔字体WOFF及随部署保留的OFL许可 | 复制到 `dist/assets/fonts/` |
+| `public/assets/backgrounds/` | 用户指定的结构、动作、神态三张PNG背景 | 复制到 `dist/assets/backgrounds/` |
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
 | `public/assets/live2d/` | 保留的 Live2D 运行包、本地库与许可说明 | 随 publicDir 复制，当前首页不加载 |
 | `models/` | 保留的优化与面部绑定模型版本 | 不复制 |
+| `fonts/` | 字体来源、授权说明及子集生成脚本 | 不复制 |
 | `live2d/` | 分层图、PSD、Cubism 工程与原始导出 | 不复制 |
 | `video/intro/` | 入场视频制作版本、对照海报 | 不复制 |
+| `video/entry/` | 替换前的首页循环视频归档 | 不复制 |
 | `reviews/homepage/` | 首页视觉审查图 | 不复制 |
 | `reviews/video/` | 视频抽帧、接触表、尾帧与动作审查图 | 不复制 |
 | `reviews/react-entry/` | 迁移前 React 入口及章节审查截图 | 不复制 |
+| `reviews/model/` | 模型页视觉审查图 | 不复制 |
+| `reviews/navigation/` | 本轮顶栏、侧栏及拖动交互各版审查图；最终通过版为 `2026-10-12-larger-typography/` | 不复制 |
+| `reviews/backgrounds/` | 章节背景及共用导航、推开布局的审查图 | 不复制 |
 | `design/` | 设计稿、方案说明与历史实施计划 | 不复制 |
 | `references/` | 资料来源说明 | 不复制 |
 
@@ -22,10 +30,10 @@
 
 `public/` 是 Vite 静态资产根目录。相对网页地址 `assets/entry/home-lion-loop.mp4` 对应 `source/public/assets/entry/home-lion-loop.mp4`；文件路径集中维护在 `src/config/assetPaths.js`，`media.js` 补上 Vite 基址。新增素材先区分运行版与创作版，只有需要随网页交付的文件放入 `public/`。
 
-未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和评分资料尚未完整补齐，来源边界见 [资料说明](references/sources.md)。
+未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
-`asset-manifest.json` 记录68条二进制迁移快照的来源路径、现路径、大小和 SHA256。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
+`asset-manifest.json` 目前登记137条二进制素材与审查记录；背景替换保留原129条，仅新增用户3张原图与5张背景审查图，来源与SHA256见 [章节背景说明](references/chapter-backgrounds.md)。此前45张导航图和字体子集保持不变。字体来源与再生成方式见 [毛笔字体说明](fonts/navigation-brush/README.md)，原版权和OFL许可随WOFF部署。原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 
-本轮浏览器验收截图生成在 `tmp/e2e-dev/`、`tmp/e2e-preview/`，默认测试输出为 `test-results/`；它们属于运行产物，不加入历史素材快照。
+本轮背景浏览器验收输出在 `tmp/e2e-chapter-backgrounds-dev/`、`tmp/e2e-chapter-backgrounds-preview/`，5张审查图在 `reviews/backgrounds/2026-10-12-chapter-backgrounds/`。此前导航输出为 `tmp/e2e-unified-navigation-dev/`、`tmp/e2e-unified-navigation-preview/`，通过UI图在 `reviews/navigation/2026-10-12-larger-typography/`；首页融合三图仍在 `reviews/homepage/2026-10-12-unified-entry/`。tmp/test-results等运行产物不纳入历史素材快照。
 
 历史方案与设计资料保存原文；当前工程状态由 [工程记忆](../wiki_memory/README.md) 统一维护。

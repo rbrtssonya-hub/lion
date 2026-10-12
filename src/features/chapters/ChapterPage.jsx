@@ -1,15 +1,9 @@
-import ChapterNav from '../../components/ChapterNav.jsx';
 import { chapterContent } from '../../config/chapters.js';
 
-export default function ChapterPage({ route, onNavigate }) {
+export default function ChapterPage({ route }) {
   const content = chapterContent[route];
   return <>
     <section className="chapter-stage" id="chapterStage" aria-label="信息可视化章节" data-chapter={route}>
-      <header className="chapter-header">
-        <div className="brand-lockup"><span className="brand-mark">广府醒狮</span><span className="brand-divider" /><span>南风有狮 / 章节档案</span></div>
-        <ChapterNav current={route} onNavigate={onNavigate} variant="chapter" />
-        <div className="chapter-header-meta">INTERACTIVE ARCHIVE / 01</div>
-      </header>
       <div className="chapter-layout">
         <div className="chapter-canvas">
           <div className="chapter-index" id="chapterIndex">{content.index}</div>
