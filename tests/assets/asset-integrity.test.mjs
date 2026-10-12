@@ -9,7 +9,7 @@ const root = resolve(import.meta.dirname, '../..');
 const sourceRoot = resolve(root, 'source');
 const publicRoot = resolve(sourceRoot, 'public');
 const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
-const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.moc3', '.psd', '.cmo3', '.blend']);
+const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.moc3', '.psd', '.cmo3', '.blend', '.woff', '.woff2', '.ttf', '.otf']);
 
 function containedPath(base, path) {
   assert.equal(typeof path, 'string');
@@ -73,6 +73,7 @@ test('public assets include configured media and exclude private creative or rev
     const folders = path.split('/').slice(0, -1);
     assert.equal(folders.some((name) => /^(?:source(?:-v\d+)?|reviews?|design|private|cubism|root-export)$/.test(name)), false, `Private asset directory in publicDir: ${path}`);
     if (runtimeMedia.has(path)) continue;
+    if (path === 'assets/fonts/OFL.txt') continue;
     const live2dAsset = path === 'assets/live2d/README.md'
       || (path.startsWith('assets/live2d/runtime/') && ['.js', '.md'].includes(extension))
       || (path.startsWith('assets/live2d/nanfeng-lion/') && ['.json', '.moc3', '.png'].includes(extension));
@@ -87,6 +88,16 @@ test('navigation lion is a configured transparent PNG', () => {
   assert.equal(bytes[25], 6, 'Navigation lion PNG must use RGBA color type');
   assert.ok(bytes.readUInt32BE(16) > 0, 'Navigation lion PNG must have a width');
   assert.ok(bytes.readUInt32BE(20) > 0, 'Navigation lion PNG must have a height');
+});
+
+test('navigation brush font is a WOFF with its redistributable license', () => {
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.navBrushFont));
+  assert.equal(bytes.subarray(0, 4).toString('ascii'), 'wOFF');
+  assert.equal(bytes.readUInt32BE(8), bytes.length, 'WOFF header length must match the delivered font');
+  assert.ok(bytes.readUInt16BE(12) > 0, 'WOFF must contain font tables');
+  const license = readFileSync(containedPath(publicRoot, 'assets/fonts/OFL.txt'), 'utf8');
+  assert.match(license, /Copyright 2019-2020 The SlideFont Project Authors/);
+  assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
 });
 
 test('all six structure hotspots have unique IDs and valid percentage positions', () => {

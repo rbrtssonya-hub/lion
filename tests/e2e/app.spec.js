@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
+const routeButton = (page, route) => page.locator(`.site-header .site-navigation .site-nav-item[data-route="${route}"]`);
+
 async function sampleModelPixels(page) {
   return page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
     const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
@@ -72,7 +74,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await page.goto('/');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('.entry-title-art')).toHaveCount(1);
-  const homeLion = page.locator('.entry-brand .entry-lion-emblem');
+  const homeLion = page.locator('.site-header .site-brand .entry-lion-emblem');
   await expect(homeLion).toBeVisible();
   await expect(homeLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
   expect(await homeLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
@@ -88,7 +90,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await expect(page.locator('#introVideo')).toHaveCount(0);
   await page.screenshot({ path: test.info().outputPath('homepage.png'), fullPage: true });
 
-  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
   await expect(page.locator('#modelStage')).toBeVisible();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -113,7 +115,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await expect(page.locator('.structure-callout.is-revealed')).toHaveCount(4);
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   for (const [route, label] of [['action', '动作'], ['state', '神态']]) {
-    await page.locator('.entry-chapter-nav, .chapter-rail').getByRole('button', { name: new RegExp(label) }).click();
+    await routeButton(page, route).click();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
     await expect(page.locator('#chapterTitle')).toHaveText(label);
     await expect(page.locator('iframe')).toHaveCount(0);
@@ -123,7 +125,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
   await page.goBack();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
-  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await routeButton(page, 'entry').click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   expect(errors).toEqual([]);
   expect(failedResources).toEqual([]);
@@ -137,9 +139,9 @@ test('入场仅首次自动播放，返回与刷新保留循环背景，支持�
   await page.reload();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await expect(page.locator('#introVideo')).toHaveCount(0);
-  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#modelStage')).toBeVisible();
-  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await routeButton(page, 'entry').click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await page.getByRole('button', { name: '重播入场', exact: true }).click();
   await expect(page.locator('#introVideo')).toBeVisible();
@@ -159,7 +161,7 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await page.screenshot({ path: test.info().outputPath('home-mobile.png'), fullPage: true });
-  await page.locator('.entry-bottom-item').filter({ hasText: '整体' }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await page.locator('#viewStructure').click();
   await expect(page.locator('#structureLayer')).toBeVisible();
@@ -170,11 +172,12 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('structure-mobile.png'), fullPage: true });
-  await page.getByRole('button', { name: '打开章节菜单', exact: true }).click();
-  await page.getByRole('dialog', { name: '章节目录' }).getByRole('button', { name: /03.*动作/ }).click();
+  await expect(page.locator('.site-header .site-navigation .site-nav-item[data-route]')).toHaveCount(4);
+  for (const route of ['entry', 'model', 'action', 'state']) await expect(routeButton(page, route)).toBeInViewport();
+  await routeButton(page, 'action').click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await routeButton(page, 'entry').click();
   await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
 });
 
@@ -274,20 +277,26 @@ test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘�
   }
 });
 
-test('模型页顶部复用首页红金章节导航并高亮当前章节', async ({ page }) => {
+test('模型页复用全局品牌与章节导航并高亮当前章节', async ({ page }) => {
   await page.goto('/#/model');
-  const header = page.locator('.model-header');
-  await expect(header.locator('.entry-nav-shell')).toBeVisible();
+  const header = page.locator('.site-header');
+  await expect(header).toHaveCount(1);
+  await expect(header).toBeVisible();
   const modelLion = header.locator('.site-brand .entry-lion-emblem');
   await expect(modelLion).toBeVisible();
   await expect(modelLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
   expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
-  await expect(header.locator('.entry-nav-ribbon img')).toHaveCount(0);
-  await expect(header.locator('.entry-chapter-nav')).toBeVisible();
-  await expect(header.locator('.chapter-rail')).toHaveCount(0);
-  await expect(header.locator('.entry-nav-item.is-current')).toHaveText(/整体/);
-  await expect(header.getByRole('button', { name: '搜索章节', exact: true })).toBeVisible();
-  await expect(header.getByRole('button', { name: '打开章节菜单', exact: true })).toBeVisible();
+  await expect(header.locator('.site-navigation img')).toHaveCount(0);
+  await expect(header.locator('.site-navigation')).toBeVisible();
+  await expect(header.locator('.site-nav-item[data-route]')).toHaveCount(4);
+  await expect(page.locator('.model-header .site-navigation, .model-header .site-brand')).toHaveCount(0);
+  await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
+  await expect(routeButton(page, 'model')).toHaveAttribute('aria-current', 'page');
+  await expect(routeButton(page, 'model').locator('.site-nav-heading strong')).toHaveText('狮头与结构');
+  const settings = header.getByRole('button', { name: '打开开发者参数设置', exact: true });
+  await expect(settings).toBeVisible();
+  await expect(settings).toHaveAttribute('aria-expanded', 'false');
+  await expect(settings).toHaveAttribute('aria-controls', 'developerSettingsPanel');
 });
 
 test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出释放场景', async ({ page }) => {
@@ -338,14 +347,14 @@ test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出�
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
   await expect(page.locator('#structureDepthValue')).toHaveText('18%');
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
-  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await routeButton(page, 'entry').click();
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
   expect(await canvas.evaluate((element) => element.isConnected)).toBe(false);
   await expect.poll(() => canvas.evaluate((element) => {
     const gl = element.getContext('webgl2') ?? element.getContext('webgl');
     return gl?.isContextLost();
   })).toBe(true);
-  await page.locator('.entry-bottom-item').filter({ hasText: '认识广府醒狮' }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(false);
@@ -366,9 +375,9 @@ test('快速离开载入中的模型时取消请求，重新进入只有一个ca
   await page.route('**/assets/models/lion-overall.glb', (route) => route.abort('aborted'));
   await page.goto('/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
-  await page.getByRole('button', { name: '返回首页', exact: true }).click();
+  await routeButton(page, 'entry').click();
   await page.unroute('**/assets/models/lion-overall.glb');
-  await page.locator('.entry-bottom-item').filter({ hasText: '认识广府醒狮' }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   expect(errors).toEqual([]);
@@ -385,7 +394,7 @@ test('首页入场视频失败可重试与跳过，未知链接返回首页', as
   await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
   await page.getByRole('button', { name: '跳过入场', exact: true }).click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
-  await page.locator('.entry-chapter-nav').getByRole('button', { name: /整体/ }).click();
+  await routeButton(page, 'model').click();
   await expect(page.locator('#modelStage')).toBeVisible();
   await page.goto('/#/unknown-chapter');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
@@ -415,7 +424,8 @@ test('已删除的评分章节链接均返回首页', async ({ page }) => {
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
     await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
     await expect(page.locator('#chapterTitle')).toHaveCount(0);
-    await expect(page.locator('.entry-chapter-nav')).not.toContainText('评分');
+    await expect(page.locator('.site-header .site-navigation')).not.toContainText('评分');
+    await expect(routeButton(page, 'score')).toHaveCount(0);
     await page.reload();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   }

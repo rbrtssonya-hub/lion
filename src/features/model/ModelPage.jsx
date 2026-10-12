@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import ChapterNav from '../../components/ChapterNav.jsx';
-import BrandLockup from '../../components/BrandLockup.jsx';
 import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
 
@@ -25,7 +23,7 @@ function DetailList({ entries, className = 'panel-detail-list' }) {
   );
 }
 
-export default function ModelPage({ onNavigate }) {
+export default function ModelPage() {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [structureDepth, setStructureDepth] = useState(18);
@@ -141,27 +139,22 @@ export default function ModelPage({ onNavigate }) {
         style={{ visibility: status.phase === 'ready' ? 'visible' : 'hidden' }}
       />
       <header className="model-header" ref={headerRef}>
-        <BrandLockup className="model-brand-lockup" caption="广府醒狮档案" />
-        <div className="model-header-navigation">
-          <ChapterNav current="model" onNavigate={onNavigate} />
-          <div className="model-header-meta">
-            <span className="live-dot" />
-            <span id="modelStatus" role="status">
-              {status.phase === 'ready' && showGuide ? '结构示意 · 模型可视化' : status.message}
-            </span>
-            <button type="button" className="model-back-home" onClick={() => onNavigate('entry')}>返回首页</button>
-            <button
-              className={`icon-button${autoRotate ? ' active' : ''}`}
-              id="toggleRotate"
-              type="button"
-              disabled={status.phase !== 'ready'}
-              aria-label={autoRotate ? '暂停自动旋转' : '继续自动旋转'}
-              aria-pressed={autoRotate}
-              onClick={() => setAutoRotate((value) => !value)}
-            >
-              ↻
-            </button>
-          </div>
+        <div className="model-header-meta">
+          <span className="live-dot" />
+          <span id="modelStatus" role="status">
+            {status.phase === 'ready' && showGuide ? '结构示意 · 模型可视化' : status.message}
+          </span>
+          <button
+            className={`icon-button${autoRotate ? ' active' : ''}`}
+            id="toggleRotate"
+            type="button"
+            disabled={status.phase !== 'ready'}
+            aria-label={autoRotate ? '暂停自动旋转' : '继续自动旋转'}
+            aria-pressed={autoRotate}
+            onClick={() => setAutoRotate((value) => !value)}
+          >
+            ↻
+          </button>
         </div>
       </header>
 

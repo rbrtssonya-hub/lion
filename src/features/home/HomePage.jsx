@@ -1,13 +1,10 @@
-import ChapterNav from '../../components/ChapterNav.jsx';
-import BrandLockup from '../../components/BrandLockup.jsx';
 import VideoStage from '../../components/VideoStage.jsx';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
-import { chapters } from '../../config/chapters.js';
 import HomeCulture from './HomeCulture.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 
-export default function HomePage({ onNavigate }) {
+export default function HomePage() {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
   const exploreCulture = () => document.querySelector('#homeCulture')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 
@@ -23,10 +20,6 @@ export default function HomePage({ onNavigate }) {
       <svg className="entry-cloud entry-cloud-top" viewBox="0 0 100 32"><path d="M5 22h72c12 0 12-12 0-12H41c-11 0-11 12 0 12h18M18 16h30M38 10h22c10 0 10-8 0-8H48M28 22h24c11 0 11 8 0 8H14" /></svg>
       <svg className="entry-cloud entry-cloud-side" viewBox="0 0 100 32"><path d="M5 22h72c12 0 12-12 0-12H41c-11 0-11 12 0 12h18M18 16h30M38 10h22c10 0 10-8 0-8H48M28 22h24c11 0 11 8 0 8H14" /></svg>
     </div>
-    <header className="entry-header">
-      <BrandLockup className="entry-brand" />
-      <ChapterNav current="entry" onNavigate={onNavigate} />
-    </header>
     <div className="entry-playback-tools">
       <button type="button" id="replayIntro" onClick={replayIntro}><span aria-hidden="true">↻</span> 重播入场</button>
       {introActive && <button type="button" id="skipIntro" onClick={finishIntro}>跳过入场 <span aria-hidden="true">→</span></button>}
@@ -47,14 +40,6 @@ export default function HomePage({ onNavigate }) {
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
     <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
-    <nav className="entry-bottom-nav" aria-label="信息可视化模块">
-      {chapters.slice(1).map(({ route, label, description, icon, viewBox }, index) => (
-        <button key={route} className="entry-bottom-item" type="button" onClick={() => onNavigate(route)}>
-          <span className="entry-icon" aria-hidden="true"><svg viewBox={viewBox}><path d={icon} /></svg></span>
-          <span><b>{String(index + 1).padStart(2, '0')}</b><strong>{label}</strong><small>{description}</small></span>
-        </button>
-      ))}
-    </nav>
   </section>
   <HomeCulture />
   </div>;

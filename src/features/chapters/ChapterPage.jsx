@@ -1,16 +1,9 @@
-import ChapterNav from '../../components/ChapterNav.jsx';
-import BrandLockup from '../../components/BrandLockup.jsx';
 import { chapterContent } from '../../config/chapters.js';
 
-export default function ChapterPage({ route, onNavigate }) {
+export default function ChapterPage({ route }) {
   const content = chapterContent[route];
   return <>
     <section className="chapter-stage" id="chapterStage" aria-label="信息可视化章节" data-chapter={route}>
-      <header className="chapter-header">
-        <BrandLockup className="chapter-brand" caption="广府醒狮 · 章节档案" />
-        <ChapterNav current={route} onNavigate={onNavigate} variant="chapter" />
-        <div className="chapter-header-meta">INTERACTIVE ARCHIVE / 01</div>
-      </header>
       <div className="chapter-layout">
         <div className="chapter-canvas">
           <div className="chapter-index" id="chapterIndex">{content.index}</div>

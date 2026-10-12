@@ -4,6 +4,7 @@ export const assetPaths = {
   intro: 'assets/intro/entry-intro.mp4',
   title: 'assets/entry/title-nanfeng-youshi.png',
   navLion: 'assets/entry/nav-lion-head.png',
+  navBrushFont: 'assets/fonts/nanfeng-navigation-brush.woff',
   model: 'assets/models/lion-overall.glb',
   poster: 'assets/poster/lion-full.png',
   cultureFoshan: 'assets/culture/foshan-lion-dance.jpg',
