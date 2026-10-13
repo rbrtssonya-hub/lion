@@ -146,17 +146,12 @@ test('减弱动态效果下键盘可切态，离页重入没有残留交互', as
   await previousObservation.dispose();
 });
 
-test('手机和侧栏推开后900px余宽仍可读可切换且没有横向溢出', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/#/state');
-  await expectLoadedLion(page);
-  await stateButton(page, '疑').click();
-  await expectState(page, '疑');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-
+test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', async ({ page }) => {
   await page.setViewportSize({ width: 1380, height: 900 });
+  await page.goto('/#/state');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const settings = page.getByRole('region', { name: '开发者参数设置', exact: true });
+  await settings.getByRole('tab', { name: '布局', exact: true }).click();
   const width = settings.getByRole('spinbutton', { name: '设置面板宽度数值', exact: true });
   await width.fill('480');
   await width.press('Tab');

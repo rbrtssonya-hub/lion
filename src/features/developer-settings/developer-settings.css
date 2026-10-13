@@ -4,6 +4,8 @@
   top: 0;
   right: 0;
   bottom: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   box-sizing: border-box;
   width: var(--settings-panel-width, 340px);
   max-width: 100vw;
@@ -24,19 +26,19 @@
 }
 
 .developer-settings-scroll {
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
-  height: 100%;
-  padding: 26px 22px 18px;
-  overflow: auto;
+  min-height: 0;
+  padding: 18px 18px 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: #bf9b71 transparent;
+  scrollbar-gutter: stable;
 }
 
-.developer-settings-scroll > * {
-  flex-shrink: 0;
+.developer-settings-header {
+  padding: 24px 18px 0;
 }
 
 .developer-settings-panel:focus {
@@ -88,65 +90,118 @@
 }
 
 .developer-settings-intro {
-  margin: 12px 0 18px;
+  margin: 10px 0 16px;
   color: #916d4e;
   font-size: 12px;
 }
 
+.developer-settings-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+  margin: 0 18px;
+  padding: 4px;
+  border: 1px solid rgba(157, 104, 60, calc(.24 * var(--sidebar-decoration-opacity, .86)));
+  border-radius: 8px;
+  background: rgba(221, 195, 151, calc(.24 * var(--sidebar-fill-opacity, .86)));
+}
+
+.developer-settings-tabs > button {
+  display: flex;
+  min-width: 0;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 3px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #805742;
+  background: transparent;
+  font: 500 12px/1.5 var(--sans);
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.developer-settings-tabs > button svg {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.developer-settings-tabs > button:hover {
+  color: #8b281d;
+  background: rgba(255, 248, 231, .55);
+}
+
+.developer-settings-tabs > button[aria-selected='true'] {
+  border-color: #a63221;
+  color: #fff8eb;
+  background: #a63221;
+  box-shadow: 0 1px 4px rgba(95, 53, 23, .08);
+}
+
+.developer-settings-page {
+  display: grid;
+  gap: 14px;
+  outline-offset: 3px;
+}
+
+.developer-settings-page[hidden] {
+  display: none;
+}
+
+.developer-settings-page-heading {
+  display: grid;
+  gap: 5px;
+  padding: 0 2px 2px;
+}
+
+.developer-settings-page-heading h3 {
+  margin: 0;
+  color: #7e251b;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .developer-settings-group {
-  margin-top: 12px;
   border: 1px solid rgba(157, 104, 60, calc(.25 * var(--sidebar-decoration-opacity, .86)));
   border-radius: 7px;
   background: rgba(255, 251, 242, calc(.48 * var(--sidebar-fill-opacity, .86)));
 }
 
-.developer-settings-group > summary {
+.developer-settings-group-heading {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 14px;
+  padding: 12px 13px;
   color: #7e251b;
   font-size: 13px;
   font-weight: 600;
-  cursor: pointer;
-  list-style: none;
+  border-bottom: 1px solid rgba(157, 104, 60, calc(.16 * var(--sidebar-decoration-opacity, .86)));
 }
 
-.developer-settings-group > summary::-webkit-details-marker {
-  display: none;
+.developer-settings-group-heading h4 {
+  margin: 0;
+  font: inherit;
 }
 
-.developer-settings-group > summary small {
+.developer-settings-group-heading small {
   margin-left: auto;
   color: #9d7650;
   font-size: 11px;
   font-weight: 400;
 }
 
-.developer-settings-group > summary svg {
-  flex: 0 0 16px;
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5;
-  transition: transform 160ms ease;
-}
-
-.developer-settings-group[open] > summary svg {
-  transform: rotate(180deg);
-}
-
-.developer-settings-group[open] > summary {
-  border-bottom: 1px solid rgba(157, 104, 60, calc(.16 * var(--sidebar-decoration-opacity, .86)));
-}
-
 .developer-settings-group-content {
   display: grid;
   gap: 16px;
-  padding: 15px 14px;
+  padding: 15px 13px;
 }
 
 .developer-range-control {
@@ -188,6 +243,31 @@
   background: #fffaf0;
   font: 12px/1.5 var(--sans);
   font-variant-numeric: tabular-nums;
+}
+
+.developer-settings-select-control {
+  display: grid;
+  gap: 8px;
+}
+
+.developer-settings-select-control > label {
+  color: #613022;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.developer-settings-select-control select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid rgba(157, 104, 60, .3);
+  border-radius: 5px;
+  color: #713221;
+  background: #fffaf0;
+  font: 12px/1.5 var(--sans);
+  cursor: pointer;
 }
 
 .developer-range-value > span {
@@ -273,22 +353,19 @@
 
 .developer-settings-switch input:focus-visible + span,
 .developer-settings-panel button:focus-visible,
-.developer-settings-panel summary:focus-visible,
-.developer-settings-panel input:focus-visible {
+.developer-settings-panel input:focus-visible,
+.developer-settings-panel select:focus-visible,
+.developer-settings-page:focus-visible {
   outline: 2px solid #a63221;
   outline-offset: 3px;
 }
 
 .developer-settings-footer {
-  position: sticky;
-  z-index: 1;
-  bottom: -18px;
-  margin-top: auto;
-  padding: 20px 0 18px;
+  display: grid;
+  gap: 9px;
+  padding: 13px 18px 18px;
   border-top: 1px solid rgba(157, 104, 60, calc(.22 * var(--sidebar-decoration-opacity, .86)));
-  background: linear-gradient(180deg,
-    rgba(245, 231, 205, 0),
-    rgba(245, 231, 205, var(--sidebar-fill-opacity, .86)) 22%);
+  background: rgba(245, 231, 205, var(--sidebar-fill-opacity, .86));
 }
 
 .developer-settings-reset {
@@ -309,7 +386,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .developer-settings-group > summary svg,
+  .developer-settings-tabs > button,
   .developer-settings-switch > span,
   .developer-settings-switch > span::after {
     transition: none;

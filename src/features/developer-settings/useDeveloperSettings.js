@@ -9,9 +9,14 @@ export const defaultDeveloperSettings = Object.freeze({
   sidebarBlur: 18,
   headerHeight: 90,
   navFontSize: 26,
+  helperFontSize: 18,
   navIconSize: 40,
   helperTransparency: 50,
   brandPadding: 24,
+  navigationDuration: 720,
+  navigationEasing: 'smooth',
+  compactNavGap: 14,
+  compactNavInset: 48,
   panelWidth: 340,
   pushPage: false,
 });
@@ -20,12 +25,18 @@ const ranges = {
   headerTransparency: [0, 100, 1], headerBlur: [0, 30, 1],
   sidebarTransparency: [0, 100, 1], sidebarBlur: [0, 30, 1],
   headerHeight: [64, 180, 1], navFontSize: [14, 28, 1],
+  helperFontSize: [10, 28, 1],
   navIconSize: [24, 56, 1], helperTransparency: [0, 100, 1],
   brandPadding: [8, 80, 1], panelWidth: [280, 760, 1],
+  navigationDuration: [200, 1600, 10],
+  compactNavGap: [4, 36, 1], compactNavInset: [16, 160, 1],
 };
 
 function normalize(name, value) {
   if (name === 'pushPage') return typeof value === 'boolean' ? value : defaultDeveloperSettings.pushPage;
+  if (name === 'navigationEasing') {
+    return ['smooth', 'swift', 'soft'].includes(value) ? value : defaultDeveloperSettings.navigationEasing;
+  }
   const [min, max, step] = ranges[name];
   if (typeof value !== 'number' || !Number.isFinite(value)) return defaultDeveloperSettings[name];
   return min + Math.round((Math.min(max, Math.max(min, value)) - min) / step) * step;

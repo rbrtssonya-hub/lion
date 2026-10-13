@@ -4,7 +4,7 @@ import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 
-export default function HomePage() {
+export default function HomePage({ onNavigate }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
   const exploreCulture = () => document.querySelector('#homeCulture')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 
@@ -28,7 +28,7 @@ export default function HomePage() {
     <div className="entry-copy">
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
-      <button className="entry-cta" id="enterWork" type="button" aria-label="探索更多" onClick={exploreCulture}>
+      <button className="entry-cta" id="enterWork" type="button" aria-label="探索更多" onClick={() => onNavigate('model')}>
         {['left', 'right'].map((side) => <svg key={side} className={`entry-cta-cloud entry-cta-cloud-${side}`} viewBox="0 0 72 76" aria-hidden="true" focusable="false">
           <path className="entry-cta-cloud-line" d="M26 5C11 9 5 20 7 33M27 9C16 12 11 20 12 28" />
           <path className="entry-cta-cloud-fill" d="M65 69H35C20 69 7 62 5 51C-2 47 0 35 8 32C9 22 21 20 27 27C36 25 42 32 40 40C51 38 58 48 54 56C60 58 63 64 65 69Z" />

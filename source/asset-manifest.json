@@ -913,6 +913,114 @@
       "path": "source/reviews/chapters/2026-10-14-eight-states/state-mobile.png",
       "bytes": 461412,
       "sha256": "1e8f7675719ffde10a58ed4351b09557abad8e2d4e137cf9500c45f596417863"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-default.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-default.png",
+      "bytes": 2889158,
+      "sha256": "e7be38ae54f208cdf165e8488cbcfc29528ab2757aeff27e0f85d936c87f13d1"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-push-900.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-push-900.png",
+      "bytes": 1888071,
+      "sha256": "93b115675feac07c9d1d6662c793e1ad2faa539caed44ace3a8ba5a35ea79668"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-settings.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-settings.png",
+      "bytes": 2638308,
+      "sha256": "bf9f7f1cd4649edb890cc064575a58c784e8afa8831ca8765469e95e43c959bb"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/navigation-default.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/navigation-default.png",
+      "bytes": 112881,
+      "sha256": "119646782adb33331980e9a450f554979d45c13b0e781d19cc8aa1ea19e8a893"
+    },
+    {
+      "from": "generated:chrome-review/clear-chapter-background/action-1920.png",
+      "path": "source/reviews/chapters/2026-10-14-clear-background/action-1920.png",
+      "bytes": 1594654,
+      "sha256": "106758cbe5344044920ad0ddbdddf98e9033b8dd4d57b408167b8dda9669b56f"
+    },
+    {
+      "from": "generated:chrome-review/clear-chapter-background/state-1920.png",
+      "path": "source/reviews/chapters/2026-10-14-clear-background/state-1920.png",
+      "bytes": 1340088,
+      "sha256": "1ca76c23f7b5a473b81aa9b22c2779eac120bb5f844c8422b781a4ec23ad70b3"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/action-1920.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/action-1920.png",
+      "bytes": 1564797,
+      "sha256": "7dbb0f0c4be7e1c1aa36f6413049f4c224e644dca2b82b39d51c3afc54662dba"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/home-1920.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/home-1920.png",
+      "bytes": 2890201,
+      "sha256": "68ead88de6e206431a4b862943e6b53a0837e7bd8af0f34ee35e01fae8c50d01"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/motion-half.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/motion-half.png",
+      "bytes": 72227,
+      "sha256": "3ed05bc13d687ab6c26fdfb49abe0660547905b59817b84fb573f4e2468a609a"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/settings-animation.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/settings-animation.png",
+      "bytes": 157373,
+      "sha256": "e7e1581809b32e80286ffb77d8c8c46e2c3f5b110eeb93b80c3efbfeed12e9ea"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/settings-appearance.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/settings-appearance.png",
+      "bytes": 153358,
+      "sha256": "ae840494426a83d7cc1acf72ceecddfeb8c4e069c36572430769f634ae05a5c8"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/settings-layout.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/settings-layout.png",
+      "bytes": 152142,
+      "sha256": "60c4b1b0549823aeb4651a20c84e65cfada621be646d1e5ece294d8e2bf37b79"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/settings-navigation.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/settings-navigation.png",
+      "bytes": 153755,
+      "sha256": "88f74a83238cb3a19408cbe5481674f7ca673580eb7e2e1e4ed8a40fd7169e5b"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/state-1920.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/state-1920.png",
+      "bytes": 1307907,
+      "sha256": "6b2ab30f352e55053f16df42a75d68a30510351901d6dae7bf8f0015bf3419f9"
+    },
+    {
+      "from": "generated:chrome-review/navigation-icon-motion/structure-1920.png",
+      "path": "source/reviews/navigation/2026-10-14-icon-motion/structure-1920.png",
+      "bytes": 2194568,
+      "sha256": "a3be923cdc05d770d729f14454d1d9e161def4a83213c4bf50b8a3df5db83124"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states-integrated",
+      "path": "source/reviews/chapters/2026-10-14-eight-states-integrated/action-desktop.png",
+      "bytes": 1883694,
+      "sha256": "5a149b29e3c0250e38dec0b5494a32bd2ce92ca7e081b8889732cd33ddeed85b"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states-integrated",
+      "path": "source/reviews/chapters/2026-10-14-eight-states-integrated/state-curious-desktop.png",
+      "bytes": 2274798,
+      "sha256": "333f4345e4bdd27ce5169b516938f817e426ac4adfd63c8cf4368a692a483ee3"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states-integrated",
+      "path": "source/reviews/chapters/2026-10-14-eight-states-integrated/state-joy-desktop.png",
+      "bytes": 2286311,
+      "sha256": "fde149fa78e5ab86b7e0e594fde44ad362c9bcc9c03dd2688a04f97393add9b4"
     }
   ]
 }
