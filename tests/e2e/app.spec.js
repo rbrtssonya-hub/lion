@@ -131,6 +131,24 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   expect(failedResources).toEqual([]);
 });
 
+test('动作与神态章节使用三栏档案布局并诚实标记资料状态', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/#/action');
+  await expect(page.locator('.chapter-layout > .chapter-info-panel, .chapter-layout > .chapter-center, .chapter-layout > .chapter-panel')).toHaveCount(3);
+  await expect(page.locator('.chapter-media')).toBeVisible();
+  await expect(page.locator('.chapter-media')).toContainText('动作视频待接入');
+  await expect(page.locator('#chapterTrack .chapter-node')).toHaveCount(3);
+  await expect(page.locator('iframe')).toHaveCount(0);
+
+  await page.goto('/#/state');
+  await expect(page.locator('.chapter-layout > .chapter-info-panel, .chapter-layout > .chapter-center, .chapter-layout > .chapter-panel')).toHaveCount(3);
+  await expect(page.locator('.chapter-expression-observation')).toBeVisible();
+  await expect(page.locator('.chapter-expression-observation')).toContainText('眼神 · 眉部 · 嘴部');
+  await expect(page.locator('#chapterPanelText')).toContainText('定性观察节点');
+  await expect(page.locator('iframe')).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('入场仅首次自动播放，返回与刷新保留循环背景，支持重播和跳过', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#introVideo')).toBeVisible();

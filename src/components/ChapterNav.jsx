@@ -2,7 +2,7 @@ import { chapters } from '../config/chapters.js';
 
 export default function ChapterNav({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef }) {
   return <nav className="site-navigation" aria-label="作品章节导航">
-    {chapters.map(({ route, index, label, description, icon, viewBox }) => (
+    {chapters.map(({ route, label, description, icon, viewBox }) => (
       <button key={route} data-route={route} type="button"
         className={`site-nav-item${current === route ? ' is-current' : ''}`}
         onClick={() => onNavigate(route)} aria-current={current === route ? 'page' : undefined}>
@@ -10,7 +10,7 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
           <svg viewBox={viewBox} focusable="false"><path d={icon} /></svg>
         </span>
         <span className="site-nav-copy">
-          <span className="site-nav-heading"><small>{index}</small><strong>{label}</strong></span>
+          <span className="site-nav-heading"><strong>{label}</strong></span>
           <span className="site-nav-description">{description}</span>
         </span>
       </button>
@@ -26,7 +26,7 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
         </svg>
       </span>
       <span className="site-nav-copy">
-        <span className="site-nav-heading"><small>05</small><strong>设置</strong></span>
+        <span className="site-nav-heading"><strong>设置</strong></span>
         <span className="site-nav-description">界面参数</span>
       </span>
     </button>

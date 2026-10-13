@@ -11,14 +11,14 @@ export const chapterContent = {
     index: '03 / 04', kicker: '动作章节 / MOTION', title: '动作',
     lead: '从入场、摆头到收势，动作模块将在时间轴中记录醒狮的节奏变化。',
     module: 'MODULE 03', panelTitle: '动作时间轴',
-    panelText: '这里将接入动作视频、关键帧和动作说明，形成可浏览的动作信息层。',
+    panelText: '专用动作视频待提供，当前不复用入场视频。时间轴先保留入场、展开、收势三个定性节点。',
     nodes: ['入场', '展开', '收势'],
   },
   state: {
     index: '04 / 04', kicker: '神态章节 / EXPRESSION', title: '神态',
     lead: '通过眼神、摆头和嘴部变化，记录醒狮由静到动的神态线索。',
     module: 'MODULE 04', panelTitle: '神态观察',
-    panelText: '这里将接入神态视频与定格分析，建立动作和神态之间的对应关系。',
+    panelText: '当前仅展示注视、警觉、唤醒三个定性观察节点，真实样本接入后再补充图片与对照说明。',
     nodes: ['注视', '警觉', '唤醒'],
   },
 };

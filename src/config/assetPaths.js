@@ -15,4 +15,5 @@ export const assetPaths = {
   cultureLionHead: 'assets/culture/guangzhou-lion-head.jpg',
   cultureCaiQing: 'assets/culture/lion-cai-qing.jpg',
   culturePerformance: 'assets/culture/hong-kong-lion-dance.jpg',
+  culturePattern: 'assets/decor/lion-culture-pattern.svg',
 };
