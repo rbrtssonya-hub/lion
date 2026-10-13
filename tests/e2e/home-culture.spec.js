@@ -57,59 +57,91 @@ test('探索更多使用透明金色书法并居中对齐，点击仍向下探�
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
 });
 
-test('首页文化图文可自然向下滚动，照片加载并逐段呈现', async ({ page }) => {
+test('首页文化图鉴可以自然向下滚动，当前图片与来源可读', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   const culture = page.locator('#homeCulture');
   await expect(culture.getByRole('heading', { name: /一头醒狮，\s*一方风土/ })).toBeVisible();
-  const stories = culture.locator('.home-culture-story');
+  const stories = culture.locator('[data-culture-slide]');
   await expect(stories).toHaveCount(4);
   expect(await page.evaluate(() => document.documentElement.scrollHeight > innerHeight * 1.5)).toBe(true);
-  await expect(culture.locator('button, a[href^="#"], a[href*="#/model"], a[href*="#/action"], a[href*="#/state"]')).toHaveCount(0);
+  await expect(culture.locator('button')).toHaveCount(7);
   const first = stories.first();
-  const before = await first.evaluate((element) => {
-    const style = getComputedStyle(element);
-    return { opacity: Number(style.opacity), offsetY: style.transform === 'none' ? 0 : new DOMMatrixReadOnly(style.transform).m42 };
-  });
-  expect(before.opacity < 1 || Math.abs(before.offsetY) > 1).toBe(true);
   await page.mouse.move(960, 80);
   await page.mouse.wheel(0, 850);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
-
-  for (const story of await stories.all()) {
-    for (let attempt = 0; attempt < 12; attempt += 1) {
-      const position = await story.evaluate((element) => ({ top: element.getBoundingClientRect().top, viewport: innerHeight }));
-      if (position.top < position.viewport * 0.7) break;
-      await page.mouse.wheel(0, 600);
-      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(resolve)));
-    }
-    await expect(story).toBeInViewport();
-    await expect(story).toHaveClass(/is-visible/);
-    await expect.poll(() => story.evaluate((element) => Number(getComputedStyle(element).opacity))).toBe(1);
-    await expect.poll(() => story.evaluate((element) => {
-      const transform = getComputedStyle(element).transform;
-      return transform === 'none' ? 0 : Math.abs(new DOMMatrixReadOnly(transform).m42);
-    })).toBeLessThan(1);
-    const photo = story.locator('.home-culture-photo');
-    await expect(photo).toHaveCount(1);
-    await expect(photo).toHaveAttribute('alt', /\S/);
-    await expect.poll(() => photo.evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
-    await expect(story.locator('p').first()).not.toBeEmpty();
-  }
+  await expect(first).toHaveClass(/is-active/);
+  await expect(first.locator('.home-culture-photo')).toHaveAttribute('alt', /\S/);
+  await expect.poll(() => first.locator('.home-culture-photo').evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await expect(first.locator('.home-culture-credit a')).toHaveCount(2);
+  await expect(first.locator('.home-culture-note')).not.toBeEmpty();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   expect(errors).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('home-culture-scrolled.png'), fullPage: true });
 });
 
+test('首页文化图鉴会同步轮播图片、文字、署名与进度', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  await expect(carousel).toHaveAttribute('data-culture-carousel', 'true');
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'living-tradition');
+  await expect(carousel.locator('[data-culture-slide].is-active .home-culture-title')).toHaveText('一声锣鼓，唤醒岭南');
+  await expect(carousel.locator('[data-culture-slide].is-active .home-culture-credit a')).toHaveCount(2);
+  await expect(carousel.locator('.home-culture-progress > span:first-child')).toHaveText('01 / 04');
+  await expect(carousel.getByRole('button', { name: '下一项' })).toBeVisible();
+  await expect(carousel.getByRole('button', { name: '上一项' })).toBeVisible();
+  await expect(carousel.getByRole('button', { name: '暂停自动播放' })).toBeVisible();
+
+  await expect.poll(() => carousel.locator('[data-culture-slide].is-active').getAttribute('data-culture-id'), { timeout: 9_000 }).toBe('lion-head-craft');
+  await expect(carousel.locator('[data-culture-slide].is-active .home-culture-title')).toHaveText('一扎一画，狮有了神采');
+  await expect(carousel.locator('.home-culture-progress > span:first-child')).toHaveText('02 / 04');
+  await expect(carousel.locator('[data-culture-slide].is-active .home-culture-credit a')).toHaveCount(2);
+  await expect(carousel.locator('[data-culture-slide].is-active .home-culture-photo')).toHaveAttribute('alt', /狮头/);
+});
+
+test('首页文化图鉴支持手动切换，并在悬停与键盘聚焦时暂停', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  const next = carousel.getByRole('button', { name: '下一项' });
+  await next.click();
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'lion-head-craft');
+  await carousel.getByRole('button', { name: '暂停自动播放' }).click();
+  await expect(carousel.getByRole('button', { name: '开始自动播放' })).toBeVisible();
+  await next.click();
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'cai-qing');
+  await carousel.getByRole('button', { name: '开始自动播放' }).click();
+  await carousel.hover();
+  const hoveredId = await carousel.locator('[data-culture-slide].is-active').getAttribute('data-culture-id');
+  await page.waitForTimeout(6_300);
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', hoveredId);
+  await next.focus();
+  await page.waitForTimeout(6_300);
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', hoveredId);
+});
+
+test('减少动态效果时文化图鉴不自动切换但仍支持手动操作', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'living-tradition');
+  await page.waitForTimeout(6_300);
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'living-tradition');
+  await carousel.getByRole('button', { name: '下一项' }).click();
+  await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'lion-head-craft');
+  await expect(carousel.getByRole('button', { name: '开始自动播放' })).toBeVisible();
+});
+
 test('减少动态效果时文化内容立即可读，手机页面仍能自然滚动', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const reveals = page.locator('#homeCulture [data-culture-reveal]');
-  expect(await reveals.count()).toBeGreaterThanOrEqual(4);
+  const reveals = page.locator('#homeCulture [data-culture-reveal], #homeCulture [data-culture-slide].is-active');
+  expect(await reveals.count()).toBe(2);
   await expect.poll(() => reveals.evaluateAll((elements) => elements.every((element) => {
     const style = getComputedStyle(element);
     return Number(style.opacity) === 1 && style.transform === 'none' && style.animationName === 'none';
