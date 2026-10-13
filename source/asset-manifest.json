@@ -901,6 +901,18 @@
       "path": "source/reviews/navigation/2026-10-13-independent-typography/navigation-default.png",
       "bytes": 112881,
       "sha256": "119646782adb33331980e9a450f554979d45c13b0e781d19cc8aa1ea19e8a893"
+    },
+    {
+      "from": "generated:chrome-review/clear-chapter-background/action-1920.png",
+      "path": "source/reviews/chapters/2026-10-14-clear-background/action-1920.png",
+      "bytes": 1594654,
+      "sha256": "106758cbe5344044920ad0ddbdddf98e9033b8dd4d57b408167b8dda9669b56f"
+    },
+    {
+      "from": "generated:chrome-review/clear-chapter-background/state-1920.png",
+      "path": "source/reviews/chapters/2026-10-14-clear-background/state-1920.png",
+      "bytes": 1340088,
+      "sha256": "1ca76c23f7b5a473b81aa9b22c2779eac120bb5f844c8422b781a4ec23ad70b3"
     }
   ]
 }

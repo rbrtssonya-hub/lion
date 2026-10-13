@@ -11,7 +11,7 @@
   padding-top: var(--site-header-height);
   color: var(--chapter-ink);
   color-scheme: light;
-  background: linear-gradient(180deg, rgba(250, 241, 225, .72), rgba(250, 241, 225, .88));
+  background: transparent;
 }
 .chapter-layout { display: grid; width: min(100%, 1920px); min-height: calc(100svh - var(--site-header-height)); margin: 0 auto; padding: clamp(28px, 4vw, 64px) clamp(24px, 4vw, 78px) 52px; gap: clamp(16px, 2vw, 32px); }
 .chapter-layout--three-column { grid-template-columns: minmax(210px, .72fr) minmax(420px, 1.8fr) minmax(250px, .86fr); }
