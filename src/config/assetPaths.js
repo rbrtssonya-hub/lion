@@ -9,6 +9,7 @@ export const assetPaths = {
   modelBackground: 'assets/backgrounds/lion-structure-background.png',
   actionBackground: 'assets/backgrounds/lion-action-background.png',
   stateBackground: 'assets/backgrounds/lion-expression-background.png',
+  expressionLion: 'assets/expression/lion-head-front.png',
   model: 'assets/models/lion-overall.glb',
   poster: 'assets/poster/lion-full.png',
   cultureFoshan: 'assets/culture/foshan-lion-dance.jpg',

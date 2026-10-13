@@ -25,7 +25,7 @@ npm run preview
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
 | `src/features/home/` | 首页内入场/循环视频状态、文化长页和向下探索 |
 | `src/features/model/` | 整体模型页、同页结构示意与信息面板 |
-| `src/features/chapters/` | 其余章节的现有占位页面 |
+| `src/features/chapters/` | 动作待接入页面与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
 | `src/components/` | 共用品牌狮头、章节导航、视频舞台、图片标题动效 |
 | `src/hooks/` | 浏览器地址与 React 状态衔接 |
@@ -43,6 +43,8 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 整体页的 `sceneContainer` 位于 `modelStage` 直属层，透明画布覆盖整个模型页；中央 `sceneFrame` 只负责布局、热点与加载回退，独立 `scene-interaction` 承接 OrbitControls 的拖动和缩放。中央列不再限定16:9或裁切溢出模型，标题、说明与控件为绝对定位浮层，列高按视口确定，不随两侧档案卡内容拉长。结构工艺在右卡常驻，`showGuide` 控制同页结构示意；开关和复原不更换路由或重建canvas。
 
 结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；两侧模型档案卡与全页透明canvas保留。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
+
+神态页由 `ExpressionPage.jsx` 与 `src/data/lion-expressions.js` 提供喜、怒、哀、乐、动、静、惊、疑八态图鉴；左侧牌签、狮头层叠过渡、右侧标题/正文及下方神情/动作线索同步。点击、上下按钮、主视觉区域的上下滚轮及聚焦后的方向键/Home/End可切换，首尾循环。原生非被动wheel监听仅绑定主视觉，180ms无后续滚动才开启下一手势，累计36px才触发；忽略横向滚动及Ctrl缩放，离页解绑。区域外正常页面滚动，减少动态偏好仍保留手动功能。布局以 `lion-page` 容器查询适配手机及设置推开后的余宽。白红狮头是参考图经内置imagegen生成的透明提取版本，八态复用同一图片并以姿态/层叠辅助导航，下方局部由CSS取景；页面明确标为AI辅助视觉和真实样本待校核，详见 [八态来源](../source/references/lion-expressions.md)。动作/神态黄色渐变遮罩与卡片底层已去除，动作视频仍待接入。
 
 Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以中央交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型越过中央边界的实际像素、面板与导航点击，以及退出后的观察器和图形资源释放。
 

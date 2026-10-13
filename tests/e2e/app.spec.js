@@ -279,12 +279,13 @@ test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘�
   }
 });
 
-test('动作章节按三栏档案布局保留待接入视频和定性时间轴', async ({ page }) => {
+test('动作章节使用透明底层并保留待接入视频和定性时间轴', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const mediaRequests = [];
   page.on('request', (request) => mediaRequests.push(request.url()));
   await page.goto('/#/action');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
+  expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
   await expect(page.locator('.chapter-layout')).toHaveClass(/chapter-layout--three-column/);
   await expect(page.locator('.chapter-side-panel')).toHaveCount(2);
   await expect(page.locator('.chapter-main-visual')).toHaveCount(1);
@@ -314,13 +315,12 @@ test('动作章节按三栏档案布局保留待接入视频和定性时间轴',
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test('神态章节按三栏观察布局展示定性标签且不伪造量化结论', async ({ page }) => {
+test('神态章节展示八态图鉴且保留样本待校核说明', async ({ page }) => {
   await page.goto('/#/state');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'state');
-  await expect(page.locator('.chapter-layout')).toHaveClass(/chapter-layout--three-column/);
-  await expect(page.locator('.chapter-side-panel')).toHaveCount(2);
+  expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
+  await expect(page.getByRole('navigation', { name: '醒狮八态' }).getByRole('button')).toHaveCount(8);
   await expect(page.locator('#expressionObservation')).toBeVisible();
-  await expect(page.locator('.expression-tag')).toHaveText(['注视', '警觉', '唤醒']);
   await expect(page.locator('#chapterEvidence')).toContainText('等待真实图片/视频样本校核');
   await expect(page.locator('[data-quantified-result]')).toHaveCount(0);
   await expect(page.locator('#chapterTitle')).toHaveText('神态');

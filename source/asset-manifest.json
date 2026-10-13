@@ -877,6 +877,42 @@
       "path": "source/public/assets/decor/lion-culture-pattern.svg",
       "bytes": 673,
       "sha256": "d28bd98a828731093bbea211913a755fba2e693661bf1d76e273803e2fe4633b"
+    },
+    {
+      "from": "builtin-imagegen:2026-10-14/reference-lion-head-extraction",
+      "path": "source/public/assets/expression/lion-head-front.png",
+      "bytes": 1930415,
+      "sha256": "2cb4b75558552f634d9e3b37869c535037ed60094945588f26a3ab284c1ab896"
+    },
+    {
+      "from": "user-provided:2026-10-14/image-2",
+      "path": "source/design/expression/eight-states-reference.png",
+      "bytes": 3330758,
+      "sha256": "67960ec863abad4e045fdfaf96a43aeb89b61beb7f5cee72967e154878ec1766"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states",
+      "path": "source/reviews/chapters/2026-10-14-eight-states/action-desktop.png",
+      "bytes": 1916187,
+      "sha256": "77273045d408c3ce14106a9b778e24c21b3d60a8ebcbc695d9ced9c353add15e"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states",
+      "path": "source/reviews/chapters/2026-10-14-eight-states/state-curious-desktop.png",
+      "bytes": 2306767,
+      "sha256": "44d84bd21f07e7dc1cab9f28a2ed452dfec7d772ba9287972e12af956593009d"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states",
+      "path": "source/reviews/chapters/2026-10-14-eight-states/state-joy-desktop.png",
+      "bytes": 2319158,
+      "sha256": "e94b92492cd631294f8b09c1db94563e4e3ae44915dd06e1b650be97103515a6"
+    },
+    {
+      "from": "browser-review:2026-10-14/eight-states",
+      "path": "source/reviews/chapters/2026-10-14-eight-states/state-mobile.png",
+      "bytes": 461412,
+      "sha256": "1e8f7675719ffde10a58ed4351b09557abad8e2d4e137cf9500c45f596417863"
     }
   ]
 }

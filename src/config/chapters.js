@@ -1,3 +1,5 @@
+import { lionExpressions } from '../data/lion-expressions.js';
+
 export const chapters = [
   { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南', icon: 'M7 22 24 8l17 14M11 19v21h26V19M20 40V28h8v12M14 23h3M31 23h3M32 14V8h5v10', viewBox: '0 0 48 48' },
   { route: 'model', label: '狮头与结构', description: '认识广府醒狮', icon: 'M12 37a8 8 0 0 1-2-16 9 9 0 0 1 8-10 10 10 0 0 1 18 8 9 9 0 0 1 0 18H12ZM12 28c-6-6 4-11 6-4 0-7 10-7 10 0 6-6 12 2 5 6M19 31c-4 3-1 8 3 5M26 30c4-4 7 2 3 4', viewBox: '0 0 48 48' },
@@ -18,7 +20,7 @@ export const chapterContent = {
     index: '04 / 04', kicker: '神态章节 / EXPRESSION', title: '神态',
     lead: '通过眼神、摆头和嘴部变化，记录醒狮由静到动的神态线索。',
     module: 'MODULE 04', panelTitle: '神态观察',
-    panelText: '当前仅展示注视、警觉、唤醒三个定性观察节点，真实样本接入后再补充图片与对照说明。',
-    nodes: ['注视', '警觉', '唤醒'],
+    panelText: '八态图鉴提供定性观察提示，等待真实图片/视频样本校核。',
+    nodes: lionExpressions.map(({ name }) => name),
   },
 };
