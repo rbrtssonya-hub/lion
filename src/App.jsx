@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import HomePage from './features/home/HomePage.jsx';
 import ChapterPage from './features/chapters/ChapterPage.jsx';
 import { useChapterRoute } from './hooks/useChapterRoute.js';
@@ -9,6 +9,7 @@ import { useSettingsPanelLayout } from './features/developer-settings/useSetting
 import ResizeHandle from './components/ResizeHandle.jsx';
 import { defaultDeveloperSettings } from './features/developer-settings/useDeveloperSettings.js';
 import { media } from './config/media.js';
+import { useNavigationMotion } from './features/navigation/useNavigationMotion.js';
 
 const ModelPage = lazy(() => import('./features/model/ModelPage.jsx'));
 const chapterBackgrounds = {
@@ -18,12 +19,22 @@ const chapterBackgrounds = {
 };
 
 export default function App() {
-  const [route, navigate] = useChapterRoute();
+  const navigationCaptureRef = useRef(null);
+  const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
+  const [route, navigate] = useChapterRoute(beforeRouteChange);
   const { settings, changeSettings, previewSettings, commitSettings, resetSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
   const wasSettingsOpen = useRef(false);
+  const headerRef = useRef(null);
+  const captureNavigation = useNavigationMotion(headerRef, route, settings);
+  useLayoutEffect(() => { navigationCaptureRef.current = captureNavigation; }, [captureNavigation]);
+  const navigateTo = useCallback(target => {
+    if (target !== route) captureNavigation();
+    navigate(target);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [route, navigate, captureNavigation]);
   const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth);
   const pushing = settingsOpen && settings.pushPage && canPush;
   const chapterBackground = chapterBackgrounds[route];
@@ -55,7 +66,7 @@ export default function App() {
   }, [route]);
 
   let page;
-  if (route === 'entry') page = <HomePage />;
+  if (route === 'entry') page = <HomePage onNavigate={navigateTo} />;
   else if (route === 'model') page = <ModelPage />;
   else page = <ChapterPage route={route} />;
 
@@ -72,6 +83,8 @@ export default function App() {
     '--nav-font-size': `${settings.navFontSize}px`,
     '--nav-helper-font-size': `${settings.helperFontSize}px`,
     '--requested-nav-icon-size': `${settings.navIconSize}px`,
+    '--compact-nav-gap': `${settings.compactNavGap}px`,
+    '--compact-nav-inset': `${settings.compactNavInset}px`,
     '--helper-opacity': 1 - settings.helperTransparency / 100,
     '--brand-padding': `${settings.brandPadding}px`,
     '--settings-panel-width': `${settings.panelWidth}px`,
@@ -83,7 +96,8 @@ export default function App() {
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}
     data-settings-layout={pushing ? 'push' : 'overlay'}>
     <div className="site-page">
-      <SiteHeader current={route} onNavigate={navigate} settingsOpen={settingsOpen}
+      <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen}
+        headerRef={headerRef} settings={settings}
         onToggleSettings={() => settingsOpen ? closeSettings() : setSettingsOpen(true)}
         settingsTriggerRef={triggerRef} />
       <main id="react-app" data-route={route}>
@@ -93,11 +107,11 @@ export default function App() {
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
-    {settingsOpen && <DeveloperSettingsPanel open settings={settings} onChange={changeSettings}
+    <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
       onKeyDown={handleSettingsKey} resizeHandle={<ResizeHandle label="调整侧栏宽度" axis="x"
         value={settings.panelWidth} min={280} max={760} direction={-1}
         defaultValue={defaultDeveloperSettings.panelWidth} className="lion-sidebar-resize-handle"
-        onChange={value => previewSettings('panelWidth', value)} onCommit={commitSettings} onCancel={commitSettings} />} />}
+        onChange={value => previewSettings('panelWidth', value)} onCommit={commitSettings} onCancel={commitSettings} />} />
   </div>;
 }

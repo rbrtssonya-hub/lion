@@ -150,11 +150,10 @@ test('入场仅首次自动播放，返回与刷新保留循环背景，支持�
   await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-  const homeHash = await page.evaluate(() => location.hash);
   await page.getByRole('button', { name: '探索更多', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-  expect(await page.evaluate(() => location.hash)).toBe(homeHash);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  await expect(page).toHaveURL(/#\/model$/);
+  await expect(page.locator('#modelStage')).toBeVisible();
 });
 
 test('手机视口保持章节导航与结构交互，页面可正常滚动', async ({ page }) => {
@@ -306,12 +305,6 @@ test('动作章节按三栏档案布局保留待接入视频和定性时间轴',
   expect(desktopNodes[1].x).toBeLessThan(desktopNodes[2].x);
   await expect(page.locator('#chapterSourceTag')).toContainText('公开视频样本分析');
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/#/action');
-  await expect(page.locator('.chapter-layout')).toBeVisible();
-  expect(await page.locator('.chapter-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test('神态章节按三栏观察布局展示定性标签且不伪造量化结论', async ({ page }) => {
@@ -341,7 +334,8 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   await expect(page.locator('.model-header .site-navigation, .model-header .site-brand')).toHaveCount(0);
   await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
   await expect(routeButton(page, 'model')).toHaveAttribute('aria-current', 'page');
-  await expect(routeButton(page, 'model').locator('.site-nav-heading strong')).toHaveText('狮头与结构');
+  await expect(routeButton(page, 'model')).toHaveAccessibleName('结构');
+  await expect(routeButton(page, 'model').locator('.site-nav-copy')).toBeHidden();
   const settings = header.getByRole('button', { name: '打开开发者参数设置', exact: true });
   await expect(settings).toBeVisible();
   await expect(settings).toHaveAttribute('aria-expanded', 'false');

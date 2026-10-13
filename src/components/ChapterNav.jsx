@@ -5,7 +5,8 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
     {chapters.map(({ route, label, description, icon, viewBox }) => (
       <button key={route} data-route={route} type="button"
         className={`site-nav-item${current === route ? ' is-current' : ''}`}
-        onClick={() => onNavigate(route)} aria-current={current === route ? 'page' : undefined}>
+        onClick={() => onNavigate(route)} aria-label={label} title={label}
+        aria-current={current === route ? 'page' : undefined}>
         <span className="site-nav-icon" aria-hidden="true">
           <svg viewBox={viewBox} focusable="false"><path d={icon} /></svg>
         </span>

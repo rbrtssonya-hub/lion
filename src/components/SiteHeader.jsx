@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import BrandLockup from './BrandLockup.jsx';
 import ChapterNav from './ChapterNav.jsx';
 import { media } from '../config/media.js';
@@ -12,15 +11,14 @@ const navigationFontFace = `@font-face {
   font-display: swap;
 }`;
 
-export default function SiteHeader({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef }) {
-  const headerRef = useRef(null);
-  useNavigationLayout(headerRef);
+export default function SiteHeader({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef, headerRef, settings }) {
+  useNavigationLayout(headerRef, current, settings);
   const navigate = (route) => {
     onNavigate(route);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  return <header className="site-header" ref={headerRef}>
+  return <header className="site-header" ref={headerRef} data-nav-mode={current === 'entry' ? 'expanded' : 'compact'}>
     <style>{navigationFontFace}</style>
     <div className="site-header-inner">
       <BrandLockup />

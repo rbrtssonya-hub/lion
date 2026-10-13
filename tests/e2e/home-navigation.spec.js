@@ -1,8 +1,57 @@
 import { test, expect } from '@playwright/test';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
-const routes = [['entry', '首页'], ['model', '狮头与结构'], ['action', '动作'], ['state', '神态']];
+const routes = [['entry', '首页'], ['model', '结构'], ['action', '动作'], ['state', '神态']];
 const removedNavigation = '.entry-chapter-nav, .entry-bottom-nav, .entry-bottom-item, .entry-nav-shell, .entry-nav-ribbon, .chapter-rail, .entry-dialog-backdrop';
+const iconRed = 'rgb(212, 56, 42)';
+
+async function expectRedNavigationIcons(page) {
+  await expect.poll(() => page.locator('.site-nav-icon').evaluateAll(icons => icons.map(icon => ({
+    color: getComputedStyle(icon).color,
+    stroke: getComputedStyle(icon.querySelector('svg')).stroke,
+  })))).toEqual(Array.from({ length: 5 }, () => ({ color: iconRed, stroke: iconRed })));
+}
+
+async function armNativeNavigationSampling(page, duration) {
+  await page.evaluate(duration => {
+    window.nativeNavigationSamples = new Promise(resolve => {
+      window.addEventListener('hashchange', () => {
+        const icon = document.querySelector('.site-nav-icon');
+        const read = () => {
+          const box = icon.getBoundingClientRect();
+          return {
+            x: box.left + box.width / 2, y: box.top + box.height / 2,
+            color: getComputedStyle(icon).color,
+            running: icon.getAnimations().some(animation => animation.playState === 'running'),
+          };
+        };
+        const initial = read();
+        const samples = [];
+        const started = performance.now();
+        const sample = now => {
+          samples.push({ time: now - started, ...read() });
+          if (now - started < duration + 180) requestAnimationFrame(sample);
+          else resolve({ initial, samples });
+        };
+        requestAnimationFrame(sample);
+      }, { capture: true, once: true });
+    });
+  }, duration);
+}
+
+function expectNativeNavigationMotion(motion, duration, direction) {
+  expect(motion.samples.length).toBeGreaterThan(15);
+  const distance = motion.samples.at(-1).x - motion.initial.x;
+  expect(distance * direction).toBeGreaterThan(300);
+  const middle = motion.samples.filter(sample => sample.time > duration * .15 && sample.time < duration * .85);
+  expect(middle.some(sample => {
+    const progress = (sample.x - motion.initial.x) / distance;
+    return progress > .05 && progress < .95 && sample.running;
+  })).toBe(true);
+  expect(Math.max(...middle.map(sample => Math.abs((sample.x - motion.initial.x) / distance - sample.time / duration)))).toBeGreaterThan(.12);
+  expect(Math.max(...motion.samples.map(sample => Math.abs(sample.y - motion.initial.y)))).toBeLessThan(2);
+  expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.color))]).toEqual([iconRed]);
+}
 
 async function expectCompleteDesktopNavigation(page) {
   await page.evaluate(() => document.fonts.ready);
@@ -39,6 +88,10 @@ async function expectCompleteDesktopNavigation(page) {
         violations.push(`${label}: button extends beyond the available page`);
       }
       const iconBounds = button.querySelector('.site-nav-icon').getBoundingClientRect();
+      if (getComputedStyle(button.querySelector('.site-nav-icon')).color !== 'rgb(212, 56, 42)'
+        || getComputedStyle(button.querySelector('.site-nav-icon svg')).stroke !== 'rgb(212, 56, 42)') {
+        violations.push(`${label}: the expanded icon lost its red color`);
+      }
       if (bounds.top < headerBounds.top - 1 || bounds.bottom > headerBounds.bottom + 1
         || iconBounds.top < headerBounds.top - 1 || iconBounds.bottom > headerBounds.bottom + 1) {
         violations.push(`${label}: button or icon exceeds the header height`);
@@ -81,11 +134,64 @@ async function expectCompleteDesktopNavigation(page) {
 }
 
 async function editNavigationParameter(page, label, value) {
-  const input = page.getByRole('region', { name: '开发者参数设置' })
+  const panel = page.getByRole('region', { name: '开发者参数设置' });
+  const tabName = label === '设置面板宽度' ? '布局' : label.includes('动画') || label.startsWith('紧凑') ? '动画' : '导航';
+  await panel.getByRole('tab', { name: tabName, exact: true }).click();
+  const input = panel
     .getByRole('spinbutton', { name: `${label}数值`, exact: true });
   await input.fill(String(value));
   await input.press('Tab');
   await expect(input).toHaveValue(String(value));
+}
+
+async function expectCompactDesktopNavigation(page, route) {
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
+  const navigation = page.locator('.site-navigation');
+  for (const [chapter, label] of routes) {
+    await expect(navigation.locator(`[data-route="${chapter}"]`)).toHaveAccessibleName(label);
+  }
+  for (const copy of await navigation.locator('.site-nav-copy').all()) await expect(copy).toBeHidden();
+  await expect.poll(() => navigation.evaluate((element) => {
+    const violations = [];
+    const page = element.closest('.site-page').getBoundingClientRect();
+    const header = element.closest('.site-header').getBoundingClientRect();
+    const brand = element.closest('.site-header').querySelector('.site-brand').getBoundingClientRect();
+    const nav = element.getBoundingClientRect();
+    const buttons = [...element.querySelectorAll('.site-nav-item')];
+    const firstIcon = buttons[0].querySelector('.site-nav-icon').getBoundingClientRect();
+    const sharesBrandRow = nav.top < brand.bottom - 1 && nav.bottom > brand.top + 1;
+    const overlapsBrand = sharesBrandRow ? nav.left < brand.right - 1 : nav.top < brand.bottom - 1;
+    if (overlapsBrand || nav.right > page.right - 15 || nav.width > page.width * .6) {
+      violations.push('The icon group is not compact and aligned to the right of the brand');
+    }
+    let previousRight = nav.left;
+    for (const button of buttons) {
+      const bounds = button.getBoundingClientRect();
+      const icon = button.querySelector('.site-nav-icon').getBoundingClientRect();
+      if (getComputedStyle(button.querySelector('.site-nav-icon')).color !== 'rgb(212, 56, 42)'
+        || getComputedStyle(button.querySelector('.site-nav-icon svg')).stroke !== 'rgb(212, 56, 42)') {
+        violations.push('A compact icon lost its red color');
+      }
+      if (bounds.left < previousRight - 1 || bounds.right > nav.right + 1) violations.push('Icon buttons overlap or exceed their group');
+      if (icon.width <= 0 || icon.left < bounds.left - 1 || icon.right > bounds.right + 1) violations.push('An icon is hidden or clipped');
+      if (icon.top < header.top - 1 || icon.bottom > header.bottom + 1) violations.push('An icon exceeds the header vertically');
+      if (Math.abs((icon.top + icon.bottom) / 2 - (firstIcon.top + firstIcon.bottom) / 2) > 1) violations.push('Icons are not on one horizontal line');
+      previousRight = bounds.right;
+      const underline = getComputedStyle(button.querySelector('.site-nav-icon'), '::after');
+      const scale = underline.transform === 'none' ? 1 : new DOMMatrix(underline.transform).a;
+      if (button.getAttribute('aria-current') === 'page') {
+        const underlineTop = icon.bottom - parseFloat(underline.bottom) - parseFloat(underline.height);
+        if (scale < .99 || parseFloat(underline.height) < 1 || parseFloat(underline.width) <= 0 || underlineTop < icon.bottom - 1
+          || underline.backgroundColor !== 'rgb(212, 56, 42)') {
+          violations.push('The current chapter lacks a visible line below its icon');
+        }
+      } else if (button.dataset.route && scale > .01) {
+        violations.push('A noncurrent chapter has an active underline');
+      }
+    }
+    if (document.documentElement.scrollWidth > innerWidth) violations.push('The document overflows horizontally');
+    return violations;
+  }), { message: 'Chapter navigation must settle into one compact, usable icon row at the right' }).toEqual([]);
 }
 
 test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除', async ({ page }) => {
@@ -103,6 +209,7 @@ test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除',
     await expect(navigation).not.toContainText(/\d/);
     await expect(navigation.locator('[aria-current="page"]')).toHaveCount(1);
     await expect(navigation.locator('[aria-current="page"] .site-nav-heading strong')).toHaveText(label);
+    await expect(navigation.locator(`[data-route="${route}"]`)).toHaveAccessibleName(label);
     await expect(navigation.locator('[data-action="settings"]')).toHaveAttribute('aria-expanded', 'false');
     await expect(navigation.locator('.site-nav-icon svg')).toHaveCount(5);
     await expect(navigation.locator('.site-nav-icon svg path')).toHaveCount(5);
@@ -112,6 +219,8 @@ test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除',
     await expect(page.locator(removedNavigation)).toHaveCount(0);
     await expect(page.getByRole('button', { name: '搜索章节', exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: '打开章节菜单', exact: true })).toHaveCount(0);
+    if (route === 'entry') await expectCompleteDesktopNavigation(page);
+    else await expectCompactDesktopNavigation(page, route);
   }
 });
 
@@ -146,6 +255,7 @@ test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小�
   expect(typography.loadedFaces).toBeGreaterThan(0);
   expect(typography.items).toHaveLength(5);
   for (const { button, icon, title, helper } of typography.items) {
+    expect(icon.color).toBe(iconRed);
     expect(helper.color).toBe('rgb(255, 255, 255)');
     expect(helper.opacity).toBeGreaterThan(0);
     expect(helper.opacity).toBeLessThan(1);
@@ -208,9 +318,10 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await page.goto('/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await panel.getByRole('tab', { name: '布局', exact: true }).click();
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
-  await panel.locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await panel.getByRole('tab', { name: '导航', exact: true }).click();
   await editNavigationParameter(page, '顶栏高度', 64);
   await editNavigationParameter(page, '导航标题字号', 28);
   await editNavigationParameter(page, '导航辅助文字字号', 28);
@@ -237,14 +348,15 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   expect(edge.y + edge.height / 2).toBeCloseTo(64, 0);
 });
 
-test('独立字号的正反比例在窄宽推开布局和手机返回桌面后保持完整单行', async ({ page }) => {
+test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持完整单行', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await panel.getByRole('tab', { name: '布局', exact: true }).click();
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
-  await panel.locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await panel.getByRole('tab', { name: '导航', exact: true }).click();
   for (const [title, helper] of [[28, 10], [14, 28], [20, 20]]) {
     await editNavigationParameter(page, '导航标题字号', title);
     await editNavigationParameter(page, '导航辅助文字字号', helper);
@@ -260,9 +372,6 @@ test('独立字号的正反比例在窄宽推开布局和手机返回桌面后�
   await editNavigationParameter(page, '导航标题字号', 28);
   await editNavigationParameter(page, '导航辅助文字字号', 10);
   await panel.getByRole('button', { name: '关闭开发者参数' }).click();
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('.site-nav-description').first()).toBeHidden();
-  await expect(page.locator('.site-nav-heading strong').first()).toBeVisible();
   await page.setViewportSize({ width: 900, height: 1080 });
   await expectCompleteDesktopNavigation(page);
   await page.reload();
@@ -283,6 +392,248 @@ test('顶部导航随文化内容滚动保持可见，当前首页入口返回�
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('.entry-gate')).toBeInViewport();
+});
+
+test('进入章节时五个原图标水平变速收拢到右侧，保留高亮与操作，回首页重新展开', async ({ page }) => {
+  const duration = 1400;
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.addInitScript(({ duration }) => {
+    sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
+    localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationDuration: duration, navigationTypographyVersion: 2 }));
+  }, { duration });
+  await page.goto('/');
+  await expectCompleteDesktopNavigation(page);
+  for (const button of await page.locator('.site-nav-item').all()) {
+    await button.hover();
+    await expectRedNavigationIcons(page);
+  }
+  await page.mouse.move(0, 120);
+  const icons = await page.locator('.site-nav-icon svg').elementHandles();
+  const paths = await page.locator('.site-nav-icon svg path').evaluateAll(elements => elements.map(element => element.getAttribute('d')));
+  const motion = await page.evaluate(async duration => {
+    const icons = [...document.querySelectorAll('.site-nav-icon')];
+    const positions = () => icons.map(icon => {
+      const box = icon.getBoundingClientRect();
+      return {
+        x: box.left + box.width / 2, y: box.top + box.height / 2,
+        color: getComputedStyle(icon).color, stroke: getComputedStyle(icon.querySelector('svg')).stroke,
+      };
+    });
+    const initial = positions();
+    const initialX = initial[0].x;
+    const initialY = initial[0].y;
+    const samples = [];
+    const started = performance.now();
+    document.querySelector('.site-nav-item[data-route="model"]').click();
+    await new Promise(resolve => {
+      const sample = now => {
+        const current = positions();
+        samples.push({ time: now - started, x: current[0].x, y: current[0].y, positions: current });
+        if (now - started < duration + 180) requestAnimationFrame(sample);
+        else resolve();
+      };
+      requestAnimationFrame(sample);
+    });
+    return { initialX, initialY, initial, samples };
+  }, duration);
+  expect(motion.samples.length).toBeGreaterThan(15);
+  expect([...new Set([...motion.initial, ...motion.samples.flatMap(sample => sample.positions)]
+    .flatMap(position => [position.color, position.stroke]))]).toEqual([iconRed]);
+  const finalX = motion.samples.at(-1).x;
+  const distance = finalX - motion.initialX;
+  expect(distance).toBeGreaterThan(300);
+  const intermediates = motion.samples.filter(sample => sample.time > duration * .15 && sample.time < duration * .85);
+  expect(intermediates.some(sample => sample.x > motion.initialX + distance * .05 && sample.x < finalX - distance * .05)).toBe(true);
+  const deviation = Math.max(...intermediates.map(sample => Math.abs((sample.x - motion.initialX) / distance - sample.time / duration)));
+  expect(deviation).toBeGreaterThan(.12);
+  expect(Math.max(...motion.samples.map(sample => Math.abs(sample.y - motion.initialY)))).toBeLessThan(2);
+  for (let index = 0; index < motion.initial.length; index += 1) {
+    const start = motion.initial[index];
+    const finish = motion.samples.at(-1).positions[index];
+    expect(finish.x - start.x).toBeGreaterThan(10);
+    expect(intermediates.some(sample => sample.positions[index].x > start.x + (finish.x - start.x) * .05
+      && sample.positions[index].x < finish.x - (finish.x - start.x) * .05)).toBe(true);
+    expect(Math.max(...motion.samples.map(sample => Math.abs(sample.positions[index].y - start.y)))).toBeLessThan(2);
+  }
+  for (let index = 1; index < motion.samples.length; index += 1) {
+    expect(motion.samples[index].x).toBeGreaterThanOrEqual(motion.samples[index - 1].x - 2);
+  }
+  await expectCompactDesktopNavigation(page, 'model');
+  await page.locator('.site-nav-item[data-route="action"]').hover();
+  await expectRedNavigationIcons(page);
+  expect(await page.locator('.site-nav-icon svg path').evaluateAll(elements => elements.map(element => element.getAttribute('d')))).toEqual(paths);
+  for (let index = 0; index < icons.length; index += 1) {
+    expect(await icons[index].evaluate((element, index) => element === document.querySelectorAll('.site-nav-icon svg')[index], index)).toBe(true);
+  }
+  const navBounds = await page.locator('.site-navigation').boundingBox();
+  expect(1920 - navBounds.x - navBounds.width).toBeCloseTo(48, 0);
+  for (const route of ['action', 'state']) {
+    await page.locator(`.site-nav-item[data-route="${route}"]`).click();
+    await expectCompactDesktopNavigation(page, route);
+  }
+  const beforeSettings = page.url();
+  await page.locator('.site-nav-item[data-action="settings"]').click();
+  await expect(page.getByRole('region', { name: '开发者参数设置' })).toBeVisible();
+  await expectRedNavigationIcons(page);
+  expect(page.url()).toBe(beforeSettings);
+  await page.getByRole('button', { name: '关闭开发者参数' }).click();
+  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await expectCompleteDesktopNavigation(page);
+  await expectRedNavigationIcons(page);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'expanded');
+  await expect.poll(() => page.locator('.site-nav-icon').first().evaluate(icon => icon.getBoundingClientRect().left + icon.getBoundingClientRect().width / 2)).toBeCloseTo(motion.initialX, 0);
+});
+
+test('动画中连续切换章节与首页会收敛到最终位置并清理旧动画', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await expectCompleteDesktopNavigation(page);
+  await page.evaluate(async () => {
+    for (const route of ['model', 'entry', 'action', 'state', 'entry', 'action']) {
+      document.querySelector(`.site-nav-item[data-route="${route}"]`).click();
+      await new Promise(resolve => setTimeout(resolve, 80));
+    }
+  });
+  await expectCompactDesktopNavigation(page, 'action');
+  await expect.poll(() => page.locator('.site-navigation').evaluate(element =>
+    element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
+  const settled = await page.locator('.site-nav-icon').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().left));
+  await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 200)));
+  expect(await page.locator('.site-nav-icon').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().left))).toEqual(settled);
+  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await expectCompleteDesktopNavigation(page);
+  await expect.poll(() => page.locator('.site-navigation').evaluate(element =>
+    element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
+  expect(errors).toEqual([]);
+});
+
+test('浏览器返回与原生Hash跳转继续使用真实的水平变速动画', async ({ page }) => {
+  const duration = 1200;
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.addInitScript(duration => {
+    sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
+    localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationTypographyVersion: 2, navigationDuration: duration }));
+  }, duration);
+  await page.goto('/');
+  await expectCompleteDesktopNavigation(page);
+  await page.locator('.site-nav-item[data-route="action"]').click();
+  await expectCompactDesktopNavigation(page, 'action');
+
+  await armNativeNavigationSampling(page, duration);
+  await page.goBack({ waitUntil: 'commit' });
+  const backMotion = await page.evaluate(() => window.nativeNavigationSamples);
+  expectNativeNavigationMotion(backMotion, duration, -1);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  await expectCompleteDesktopNavigation(page);
+
+  await armNativeNavigationSampling(page, duration);
+  await page.evaluate(() => { location.hash = '#/state'; });
+  const hashMotion = await page.evaluate(() => window.nativeNavigationSamples);
+  expectNativeNavigationMotion(hashMotion, duration, 1);
+  await expectCompactDesktopNavigation(page, 'state');
+  await expect.poll(() => page.locator('.site-navigation').evaluate(element =>
+    element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
+});
+
+test('1366px电脑在紧凑模式修改字号后返回首页，五个图标的Y位置保持不变', async ({ page }) => {
+  const duration = 1000;
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 1366, height: 1080 });
+  await page.addInitScript(duration => {
+    sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
+    localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationTypographyVersion: 2, navigationDuration: duration }));
+  }, duration);
+  await page.goto('/#/action');
+  await page.evaluate(() => document.fonts.ready);
+  await expectCompactDesktopNavigation(page, 'action');
+  await page.locator('.site-nav-item[data-action="settings"]').click();
+  await editNavigationParameter(page, '导航标题字号', 14);
+  await editNavigationParameter(page, '导航辅助文字字号', 28);
+  await editNavigationParameter(page, '导航图标尺寸', 56);
+  await page.getByRole('button', { name: '关闭开发者参数' }).click();
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'compact-stacked');
+  await expectCompactDesktopNavigation(page, 'action');
+
+  const motion = await page.evaluate(async duration => {
+    const icons = [...document.querySelectorAll('.site-nav-icon')];
+    const positions = () => icons.map(icon => {
+      const box = icon.getBoundingClientRect();
+      return { x: box.left + box.width / 2, y: box.top + box.height / 2 };
+    });
+    const initial = positions();
+    const samples = [];
+    const started = performance.now();
+    document.querySelector('.site-nav-item[data-route="entry"]').click();
+    await new Promise(resolve => {
+      const sample = now => {
+        samples.push(positions());
+        if (now - started < duration + 180) requestAnimationFrame(sample);
+        else resolve();
+      };
+      requestAnimationFrame(sample);
+    });
+    return { initial, samples };
+  }, duration);
+  expect(motion.samples.length).toBeGreaterThan(15);
+  for (let index = 0; index < 5; index += 1) {
+    expect(Math.max(...motion.samples.map(sample => Math.abs(sample[index].y - motion.initial[index].y)))).toBeLessThan(2);
+  }
+  expect(motion.initial[0].x - motion.samples.at(-1)[0].x).toBeGreaterThan(300);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'stacked');
+  await expectCompleteDesktopNavigation(page);
+  await expectRedNavigationIcons(page);
+});
+
+test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置侧栏后仍按页面边缘定位', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/#/action');
+  await expectCompactDesktopNavigation(page, 'action');
+  await page.locator('.site-nav-item[data-action="settings"]').click();
+  await editNavigationParameter(page, '紧凑导航图标间距', 28);
+  await editNavigationParameter(page, '紧凑导航右侧留白', 96);
+  const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await panel.getByRole('tab', { name: '布局', exact: true }).click();
+  await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
+  await editNavigationParameter(page, '设置面板宽度', 480);
+  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(1440);
+  await expectCompactDesktopNavigation(page, 'action');
+  await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => {
+    const page = navigation.closest('.site-page').getBoundingClientRect();
+    const nav = navigation.getBoundingClientRect();
+    const buttons = [...navigation.querySelectorAll('.site-nav-item')].map(button => button.getBoundingClientRect());
+    return { inset: Math.round(page.right - nav.right), gaps: buttons.slice(1).map((button, index) => Math.round(button.left - buttons[index].right)) };
+  })).toEqual({ inset: 96, gaps: [28, 28, 28, 28] });
+  await panel.getByRole('button', { name: '关闭开发者参数' }).click();
+  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(1920);
+  await expectCompactDesktopNavigation(page, 'action');
+  const finalBounds = await page.locator('.site-navigation').boundingBox();
+  expect(1920 - finalBounds.x - finalBounds.width).toBeCloseTo(96, 0);
+});
+
+test('减少动态偏好时章节图标直接就位并保留可访问导航和返回首页', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await expectCompleteDesktopNavigation(page);
+  const state = await page.evaluate(async () => {
+    document.querySelector('.site-nav-item[data-route="action"]').click();
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const navigation = document.querySelector('.site-navigation');
+    return {
+      route: document.querySelector('#react-app').dataset.route,
+      running: navigation.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length,
+    };
+  });
+  expect(state).toEqual({ route: 'action', running: 0 });
+  await expectCompactDesktopNavigation(page, 'action');
+  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await expectCompleteDesktopNavigation(page);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'expanded');
 });
 
 test('导航可用键盘逐项切换，设置入口保持当前页面与地址', async ({ page }) => {

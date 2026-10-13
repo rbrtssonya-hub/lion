@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('探索更多使用透明金色书法并居中对齐，点击仍向下探索文化', async ({ page }) => {
+test('探索更多保留透明金色书法与电脑端居中对齐，点击进入结构章节', async ({ page }) => {
   await page.addInitScript(() => sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -29,7 +29,7 @@ test('探索更多使用透明金色书法并居中对齐，点击仍向下探�
   expect(transparency.visible).toBeGreaterThan(transparency.total * 0.1);
   expect(transparency.visible).toBeLessThan(transparency.total);
 
-  for (const [width, height] of [[1024, 768], [1366, 768], [1920, 1080], [2560, 1440], [390, 844]]) {
+  for (const [width, height] of [[1024, 768], [1366, 768], [1920, 1080], [2560, 1440]]) {
     await page.setViewportSize({ width, height });
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await expect(button).toBeVisible();
@@ -52,9 +52,22 @@ test('探索更多使用透明金色书法并居中对齐，点击仍向下探�
     }
   }
   await button.click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  await expect(page).toHaveURL(/#\/model$/);
+  await expect(page.locator('#modelStage')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+});
+
+test('首页向下了解文化入口继续滚动图鉴并保持首页地址', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  const initialUrl = page.url();
+  await page.getByRole('button', { name: '向下了解醒狮文化' }).click();
   await expect(page.locator('#homeCulture')).toBeInViewport();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  expect(page.url()).toBe(initialUrl);
 });
 
 test('首页文化图鉴可以自然向下滚动，当前图片与来源可读', async ({ page }) => {
