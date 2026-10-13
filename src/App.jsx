@@ -70,6 +70,7 @@ export default function App() {
     '--sidebar-backdrop-filter': settings.sidebarBlur > 0 ? `blur(${settings.sidebarBlur}px)` : 'none',
     '--sidebar-decoration-opacity': 1 - settings.sidebarTransparency / 100,
     '--nav-font-size': `${settings.navFontSize}px`,
+    '--nav-helper-font-size': `${settings.helperFontSize}px`,
     '--requested-nav-icon-size': `${settings.navIconSize}px`,
     '--helper-opacity': 1 - settings.helperTransparency / 100,
     '--brand-padding': `${settings.brandPadding}px`,

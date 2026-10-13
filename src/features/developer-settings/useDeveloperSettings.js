@@ -9,6 +9,7 @@ export const defaultDeveloperSettings = Object.freeze({
   sidebarBlur: 18,
   headerHeight: 90,
   navFontSize: 26,
+  helperFontSize: 18,
   navIconSize: 40,
   helperTransparency: 50,
   brandPadding: 24,
@@ -20,6 +21,7 @@ const ranges = {
   headerTransparency: [0, 100, 1], headerBlur: [0, 30, 1],
   sidebarTransparency: [0, 100, 1], sidebarBlur: [0, 30, 1],
   headerHeight: [64, 180, 1], navFontSize: [14, 28, 1],
+  helperFontSize: [10, 28, 1],
   navIconSize: [24, 56, 1], helperTransparency: [0, 100, 1],
   brandPadding: [8, 80, 1], panelWidth: [280, 760, 1],
 };

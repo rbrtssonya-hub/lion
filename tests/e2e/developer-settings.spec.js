@@ -29,6 +29,13 @@ async function editNumber(page, name, value) {
   await expect(input).toHaveValue(String(value));
 }
 
+async function expectNavigationSizes(page, title, helper) {
+  await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => ({
+    title: parseFloat(getComputedStyle(navigation.querySelector('strong')).fontSize),
+    helper: parseFloat(getComputedStyle(navigation.querySelector('.site-nav-description')).fontSize),
+  }))).toEqual({ title, helper });
+}
+
 async function dragStart(page, edge, axis, delta) {
   await expect(edge).toBeVisible();
   const bounds = await edge.boundingBox();
@@ -140,7 +147,41 @@ test('推开页面按侧栏宽度留空，窄窗口自动覆盖并在加宽后�
   await expect.poll(() => pageWidth(page)).toBe(1920);
 });
 
-test('参数持久保存，刷新保持侧栏关闭，恢复默认同时恢复外观与尺寸', async ({ page }) => {
+test('导航标题与辅助文字可独立调整，滑块和数值输入校验字号边界', async ({ page }) => {
+  await page.setViewportSize({ width: 3440, height: 1440 });
+  await page.goto('/');
+  await openSettings(page);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await expectNavigationSizes(page, 26, 18);
+  await editNumber(page, '导航辅助文字字号', 12);
+  await expectNavigationSizes(page, 26, 12);
+  await editNumber(page, '导航标题字号', 28);
+  await expectNavigationSizes(page, 28, 12);
+  await expectSaved(page, { navFontSize: 28, helperFontSize: 12 });
+
+  const helperSlider = panel(page).getByRole('slider', { name: '导航辅助文字字号', exact: true });
+  await helperSlider.focus();
+  await helperSlider.press('Home');
+  await expectNavigationSizes(page, 28, 10);
+  await helperSlider.press('End');
+  await expectNavigationSizes(page, 28, 28);
+  const helperInput = panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值', exact: true });
+  for (const [draft, expected] of [['99', 28], ['-1', 10], ['', 10], ['18.6', 19]]) {
+    await helperInput.fill(draft);
+    await helperInput.press('Tab');
+    await expect(helperInput).toHaveValue(String(expected));
+    await expectNavigationSizes(page, 28, expected);
+    await expectSaved(page, { navFontSize: 28, helperFontSize: expected });
+  }
+
+  const titleInput = panel(page).getByRole('spinbutton', { name: '导航标题字号数值', exact: true });
+  await titleInput.fill('-1');
+  await titleInput.press('Tab');
+  await expect(titleInput).toHaveValue('14');
+  await expectNavigationSizes(page, 14, 19);
+});
+
+test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默认同时恢复外观与尺寸', async ({ page }) => {
   await page.goto('/');
   await openSettings(page);
   await editNumber(page, '顶栏透明度', 42);
@@ -148,8 +189,10 @@ test('参数持久保存，刷新保持侧栏关闭，恢复默认同时恢复�
   await editNumber(page, '设置面板宽度', 430);
   await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
   await editNumber(page, '顶栏高度', 123);
-  await editNumber(page, '导航文字字号', 23);
-  await expectSaved(page, { headerTransparency: 42, sidebarBlur: 9, panelWidth: 430, headerHeight: 123, navFontSize: 23 });
+  await editNumber(page, '导航标题字号', 23);
+  await editNumber(page, '导航辅助文字字号', 15);
+  await expectSaved(page, { headerTransparency: 42, sidebarBlur: 9, panelWidth: 430, headerHeight: 123, navFontSize: 23, helperFontSize: 15 });
+  await expectNavigationSizes(page, 23, 15);
 
   await page.reload();
   await expect(panel(page)).toHaveCount(0);
@@ -159,9 +202,12 @@ test('参数持久保存，刷新保持侧栏关闭，恢复默认同时恢复�
   await expect(panel(page).getByRole('spinbutton', { name: '侧栏模糊强度数值' })).toHaveValue('9');
   await expect.poll(() => sidebarWidth(page)).toBe(430);
   await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
-  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('23');
+  await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('23');
+  await expect(panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值' })).toHaveValue('15');
+  await expectNavigationSizes(page, 23, 15);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
-  await expectSaved(page, { headerTransparency: 18, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, panelWidth: 340, pushPage: false });
+  await expectSaved(page, { headerTransparency: 18, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, helperFontSize: 18, panelWidth: 340, pushPage: false });
+  await expectNavigationSizes(page, 26, 18);
   await expect.poll(() => headerHeight(page)).toBe(90);
   await expect.poll(() => sidebarWidth(page)).toBe(340);
 });
@@ -171,31 +217,49 @@ test('旧默认字号 20 只迁移一次至 26，其他参数保留，随后手�
     if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(saved));
   }, { key: settingsKey, saved: { navFontSize: 20, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true } });
   await page.goto('/');
-  await expectSaved(page, { navFontSize: 26, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true });
+  await expectSaved(page, { navFontSize: 26, helperFontSize: 18, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true });
   await openSettings(page);
   await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
-  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('26');
-  await editNumber(page, '导航文字字号', 20);
+  await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('26');
+  await editNumber(page, '导航标题字号', 20);
   await expectSaved(page, { navFontSize: 20 });
   await page.reload();
   await expect(panel(page)).toHaveCount(0);
   await expectSaved(page, { navFontSize: 20, headerTransparency: 42, sidebarBlur: 9, headerHeight: 137, panelWidth: 430, pushPage: true });
   await openSettings(page);
   await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
-  await expect(panel(page).getByRole('spinbutton', { name: '导航文字字号数值' })).toHaveValue('20');
+  await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('20');
+});
+
+test('已有 v2 的标题字号 20 保留，缺失的辅助字号补为 18 且刷新保持', async ({ page }) => {
+  await page.addInitScript(({ key, saved }) => {
+    if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(saved));
+  }, { key: settingsKey, saved: { navigationTypographyVersion: 2, navFontSize: 20, helperTransparency: 37 } });
+  await page.goto('/');
+  await expectSaved(page, { navigationTypographyVersion: 2, navFontSize: 20, helperFontSize: 18, helperTransparency: 37 });
+  await expectNavigationSizes(page, 20, 18);
+  await page.reload();
+  await expectSaved(page, { navFontSize: 20, helperFontSize: 18, helperTransparency: 37 });
+  await openSettings(page);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('20');
+  await expect(panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值' })).toHaveValue('18');
 });
 
 test('损坏或不合法的保存参数可恢复，浏览器存储不可用时仍能实时调整', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/');
-  for (const badSaved of ['{broken', JSON.stringify({ headerTransparency: 180, headerBlur: -8, sidebarTransparency: 'bad', navFontSize: '20', headerHeight: 999, panelWidth: null, pushPage: 'yes' })]) {
+  for (const [badSaved, expected] of [
+    ['{broken', { headerTransparency: 18, headerBlur: 12, headerHeight: 90, helperFontSize: 18 }],
+    [JSON.stringify({ headerTransparency: 180, headerBlur: -8, sidebarTransparency: 'bad', navFontSize: '20', helperFontSize: '18', headerHeight: 999, panelWidth: null, pushPage: 'yes' }),
+      { headerTransparency: 100, headerBlur: 0, sidebarTransparency: 14, headerHeight: 180, helperFontSize: 18 }],
+    [JSON.stringify({ helperFontSize: 99 }), { helperFontSize: 28 }],
+    [JSON.stringify({ helperFontSize: -1 }), { helperFontSize: 10 }],
+  ]) {
     await page.evaluate(({ key, value }) => localStorage.setItem(key, value), { key: settingsKey, value: badSaved });
     await page.reload();
     await expect(panel(page)).toHaveCount(0);
-    const expected = badSaved === '{broken'
-      ? { headerTransparency: 18, headerBlur: 12, headerHeight: 90 }
-      : { headerTransparency: 100, headerBlur: 0, sidebarTransparency: 14, headerHeight: 180 };
     await expectSaved(page, { ...expected, navFontSize: 26, panelWidth: 340, pushPage: false });
   }
 
@@ -207,12 +271,16 @@ test('损坏或不合法的保存参数可恢复，浏览器存储不可用时�
   await openSettings(page);
   await editNumber(page, '顶栏透明度', 55);
   await editNumber(page, '设置面板宽度', 420);
+  await panel(page).locator('summary').filter({ hasText: '导航尺寸' }).click();
+  await editNumber(page, '导航辅助文字字号', 12);
+  await expectNavigationSizes(page, 26, 12);
   await expect.poll(() => sidebarWidth(page)).toBe(420);
   await expect(panel(page).getByRole('slider', { name: '顶栏透明度', exact: true })).toHaveValue('55');
   await page.reload();
   await expect(panel(page)).toHaveCount(0);
   await openSettings(page);
   await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('18');
+  await expectNavigationSizes(page, 26, 18);
   expect(errors).toEqual([]);
 });
 

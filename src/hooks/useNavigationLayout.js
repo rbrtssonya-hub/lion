@@ -33,6 +33,7 @@ export function useNavigationLayout(headerRef) {
       const requested = getComputedStyle(shell);
       const requestedHeight = readPixels(requested, '--header-height', 90);
       const font = readPixels(requested, '--nav-font-size', 26);
+      const helperFont = readPixels(requested, '--nav-helper-font-size', 18);
       if (width < 700) {
         header.dataset.navLayout = 'mobile';
         write(header, '--site-nav-font-size', `${Math.min(16, Math.max(12, font * .58))}px`);
@@ -54,24 +55,27 @@ export function useNavigationLayout(headerRef) {
       const sidePadding = Math.min(requestedPadding, Math.max(8, width * .02));
       const headerGap = Math.min(28, width * .011);
       const items = [...header.querySelectorAll('.site-nav-item')];
-      const units = items.map(item => [...item.querySelectorAll('.site-nav-heading strong, .site-nav-description')]
-        .reduce((sum, element) => sum + textUnits(element), 0));
-      const totalUnits = units.reduce((sum, value) => sum + value, 0);
+      // Fit both text sizes together so narrowing the page preserves their hierarchy.
+      const textWidths = items.map(item =>
+        textUnits(item.querySelector('.site-nav-heading strong')) * font
+        + textUnits(item.querySelector('.site-nav-description')) * helperFont);
+      const totalTextWidth = textWidths.reduce((sum, value) => sum + value, 0);
       const fixedWidth = icon + headingGap + copyGap + itemGap + 2 * itemPadding;
       const brandWidth = header.querySelector('.site-brand').getBoundingClientRect().width;
       let available = width - 2 * sidePadding - brandWidth - headerGap;
-      let fittedFont = Math.min(font, (available - fixedWidth * items.length) / totalUnits);
-      const stacked = fittedFont < Math.min(font, 16);
+      let scale = Math.min(1, (available - fixedWidth * items.length) / totalTextWidth);
+      const stacked = font * scale < Math.min(font, 16);
       if (stacked) {
         header.dataset.navLayout = 'stacked';
         available = width - 2 * sidePadding;
-        fittedFont = Math.min(font, (available - fixedWidth * items.length) / totalUnits);
+        scale = Math.min(1, (available - fixedWidth * items.length) / totalTextWidth);
       }
       // Leave a subpixel margin for the browser's grid-track rounding.
-      if (fittedFont < font) fittedFont = Math.floor((fittedFont - .08) * 100) / 100;
-      const extra = Math.max(0, (available - totalUnits * fittedFont - fixedWidth * items.length) / items.length);
-      const columns = units.map(value => `${value * fittedFont + fixedWidth + extra}px`).join(' ');
-      write(header, '--site-nav-font-size', `${fittedFont}px`);
+      if (scale < 1) scale = Math.max(0, Math.floor((scale - .08 / Math.max(font, helperFont)) * 10000) / 10000);
+      const extra = Math.max(0, (available - totalTextWidth * scale - fixedWidth * items.length) / items.length);
+      const columns = textWidths.map(value => `${value * scale + fixedWidth + extra}px`).join(' ');
+      write(header, '--site-nav-font-size', `${font * scale}px`);
+      write(header, '--site-nav-helper-font-size', `${helperFont * scale}px`);
       write(header, '--navigation-icon-size', `${icon}px`);
       write(header, '--navigation-heading-gap', `${headingGap}px`);
       write(header, '--navigation-copy-gap', `${copyGap}px`);

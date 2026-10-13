@@ -8,6 +8,9 @@ async function expectCompleteDesktopNavigation(page) {
   await page.evaluate(() => document.fonts.ready);
   await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => {
     const violations = [];
+    const requested = getComputedStyle(navigation.closest('.site-shell'));
+    const titleSize = parseFloat(requested.getPropertyValue('--nav-font-size'));
+    const helperSize = parseFloat(requested.getPropertyValue('--nav-helper-font-size'));
     const pageBounds = navigation.closest('.site-page').getBoundingClientRect();
     const headerBounds = navigation.closest('.site-header').getBoundingClientRect();
     const buttons = [...navigation.querySelectorAll('.site-nav-item')];
@@ -15,13 +18,19 @@ async function expectCompleteDesktopNavigation(page) {
     for (const button of buttons) {
       const bounds = button.getBoundingClientRect();
       const label = button.querySelector('strong').textContent;
-    const parts = ['strong', '.site-nav-description'].map(selector => {
+      const parts = ['strong', '.site-nav-description'].map(selector => {
         const element = button.querySelector(selector);
         const style = getComputedStyle(element);
         const range = document.createRange();
         range.selectNodeContents(element);
         const text = range.getBoundingClientRect();
-        return { element, style, text };
+        // A zero-height inline box sits on the text baseline at either font size.
+        const marker = document.createElement('span');
+        marker.style.cssText = 'display:inline-block;width:0;height:0;margin:0;padding:0;vertical-align:baseline';
+        element.append(marker);
+        const baseline = marker.getBoundingClientRect().top;
+        marker.remove();
+        return { element, style, text, baseline };
       });
       if (Math.abs(bounds.top - firstBounds.top) > 1 || Math.abs(bounds.bottom - firstBounds.bottom) > 1) {
         violations.push(`${label}: navigation buttons wrap onto separate rows`);
@@ -34,7 +43,7 @@ async function expectCompleteDesktopNavigation(page) {
         || iconBounds.top < headerBounds.top - 1 || iconBounds.bottom > headerBounds.bottom + 1) {
         violations.push(`${label}: button or icon exceeds the header height`);
       }
-      for (const { element, style, text } of parts) {
+      for (const [index, { element, style, text }] of parts.entries()) {
         const part = element.textContent;
         if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0 || text.width <= 0) {
           violations.push(`${label}: ${part} is hidden`);
@@ -48,15 +57,19 @@ async function expectCompleteDesktopNavigation(page) {
         if (text.top < bounds.top - 1 || text.bottom > bounds.bottom + 1) {
           violations.push(`${label}: ${part} is clipped vertically`);
         }
-        if (style.fontSize !== parts[1].style.fontSize || style.fontFamily !== parts[1].style.fontFamily) {
-          violations.push(`${label}: ${part} has different typography`);
+        if (style.fontFamily !== parts[1].style.fontFamily) {
+          violations.push(`${label}: ${part} lost the navigation font`);
         }
-        if (parseFloat(style.fontSize) < 12 || parseFloat(style.fontSize) > 28) {
-          violations.push(`${label}: ${part} has unreadable or oversized typography (${style.fontSize})`);
+        const maximum = index === 0 ? titleSize : helperSize;
+        if (parseFloat(style.fontSize) <= 0 || parseFloat(style.fontSize) > maximum + .02) {
+          violations.push(`${label}: ${part} exceeds its requested typography (${style.fontSize})`);
         }
-        if (Math.abs(text.top - parts[1].text.top) > 1) {
-          violations.push(`${label}: ${part} is not on the title's line`);
-        }
+      }
+      if (Math.abs(parts[0].baseline - parts[1].baseline) > 1) {
+        violations.push(`${label}: the title and helper are not on one baseline`);
+      }
+      if (Math.abs(parseFloat(parts[1].style.fontSize) / parseFloat(parts[0].style.fontSize) - helperSize / titleSize) > .002) {
+        violations.push(`${label}: fitting changed the requested title/helper size ratio`);
       }
       if (parts[0].text.right > parts[1].text.left + 1) {
         violations.push(`${label}: adjacent text overlaps`);
@@ -102,7 +115,7 @@ test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除',
   }
 });
 
-test('桌面品牌居中对齐，导航真实加载毛笔字体并完整排成一行', async ({ page }) => {
+test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小并完整排成一行', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const fontResponses = [];
   page.on('response', response => {
@@ -138,8 +151,8 @@ test('桌面品牌居中对齐，导航真实加载毛笔字体并完整排成�
     expect(helper.opacity).toBeLessThan(1);
     expect(title.family).toContain('Nanfeng Navigation Brush');
     expect(helper.family).toBe(title.family);
-    expect(helper.size).toBe(title.size);
-    expect(Math.abs(helper.top - title.top)).toBeLessThan(1);
+    expect(parseFloat(helper.size)).toBeLessThan(parseFloat(title.size));
+    expect(parseFloat(helper.size) / parseFloat(title.size)).toBeCloseTo(18 / 26, 2);
     expect(title.right).toBeLessThanOrEqual(helper.left);
     expect(helper.width).toBeGreaterThan(0);
     expect(helper.scrollWidth).toBeLessThanOrEqual(helper.clientWidth + 1);
@@ -147,6 +160,7 @@ test('桌面品牌居中对齐，导航真实加载毛笔字体并完整排成�
     expect(button.top).toBeCloseTo(typography.items[0].button.top, 0);
     expect(button.bottom).toBeCloseTo(typography.items[0].button.bottom, 0);
   }
+  await expectCompleteDesktopNavigation(page);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
   for (const [route] of routes) {
@@ -198,7 +212,8 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await editNavigationParameter(page, '设置面板宽度', 760);
   await panel.locator('summary').filter({ hasText: '导航尺寸' }).click();
   await editNavigationParameter(page, '顶栏高度', 64);
-  await editNavigationParameter(page, '导航文字字号', 28);
+  await editNavigationParameter(page, '导航标题字号', 28);
+  await editNavigationParameter(page, '导航辅助文字字号', 28);
   await editNavigationParameter(page, '导航图标尺寸', 56);
   await editNavigationParameter(page, '品牌左侧留白', 80);
 
@@ -220,6 +235,38 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await expect(page.locator('.site-header')).toHaveCSS('height', '64px');
   const edge = await page.getByRole('separator', { name: '调整顶栏高度' }).boundingBox();
   expect(edge.y + edge.height / 2).toBeCloseTo(64, 0);
+});
+
+test('独立字号的正反比例在窄宽推开布局和手机返回桌面后保持完整单行', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await page.locator('.site-navigation [data-action="settings"]').click();
+  const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
+  await editNavigationParameter(page, '设置面板宽度', 760);
+  await panel.locator('summary').filter({ hasText: '导航尺寸' }).click();
+  for (const [title, helper] of [[28, 10], [14, 28], [20, 20]]) {
+    await editNavigationParameter(page, '导航标题字号', title);
+    await editNavigationParameter(page, '导航辅助文字字号', helper);
+    for (const width of [1660, 2126, 2680]) {
+      await test.step(`title ${title}px, helper ${helper}px, viewport ${width}px`, async () => {
+        await page.setViewportSize({ width, height: 1080 });
+        await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+        await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width - 760);
+        await expectCompleteDesktopNavigation(page);
+      });
+    }
+  }
+  await editNavigationParameter(page, '导航标题字号', 28);
+  await editNavigationParameter(page, '导航辅助文字字号', 10);
+  await panel.getByRole('button', { name: '关闭开发者参数' }).click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('.site-nav-description').first()).toBeHidden();
+  await expect(page.locator('.site-nav-heading strong').first()).toBeVisible();
+  await page.setViewportSize({ width: 900, height: 1080 });
+  await expectCompleteDesktopNavigation(page);
+  await page.reload();
+  await expectCompleteDesktopNavigation(page);
 });
 
 test('顶部导航随文化内容滚动保持可见，当前首页入口返回顶部', async ({ page }) => {

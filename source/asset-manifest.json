@@ -877,6 +877,30 @@
       "path": "source/public/assets/decor/lion-culture-pattern.svg",
       "bytes": 673,
       "sha256": "d28bd98a828731093bbea211913a755fba2e693661bf1d76e273803e2fe4633b"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-default.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-default.png",
+      "bytes": 2889158,
+      "sha256": "e7be38ae54f208cdf165e8488cbcfc29528ab2757aeff27e0f85d936c87f13d1"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-push-900.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-push-900.png",
+      "bytes": 1888071,
+      "sha256": "93b115675feac07c9d1d6662c793e1ad2faa539caed44ace3a8ba5a35ea79668"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/desktop-settings.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/desktop-settings.png",
+      "bytes": 2638308,
+      "sha256": "bf9f7f1cd4649edb890cc064575a58c784e8afa8831ca8765469e95e43c959bb"
+    },
+    {
+      "from": "generated:chrome-review/independent-typography/navigation-default.png",
+      "path": "source/reviews/navigation/2026-10-13-independent-typography/navigation-default.png",
+      "bytes": 112881,
+      "sha256": "119646782adb33331980e9a450f554979d45c13b0e781d19cc8aa1ea19e8a893"
     }
   ]
 }

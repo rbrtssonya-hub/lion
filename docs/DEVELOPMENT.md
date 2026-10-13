@@ -54,7 +54,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 `ResizeHandle` 覆盖顶栏底边或侧栏左边，悬停整条边界在中心显示微交互提示。pointer capture、窗口兜底监听和单一RAF处理实时预览，松手后才持久化；Escape、pointercancel、失去capture/窗口焦点、pagehide和卸载恢复原值，清理监听、RAF、capture及全局拖动样式。方向键、Shift加速、Home/End及双击复原可用。修改此组件时需回归取消不会同时关闭面板、离页清理与实际视图尺寸。
 
-导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。数字、标题与辅助文字继承同字体/同字号，数字、图标为白色，辅助透明度独立调整；修改导航或品牌文字后重新生成子集。运行检查包含字体和全部审查图的大小及SHA256。
+导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。导航标题和辅助文字均为真实字体，开发者参数的“导航尺寸”可分别调节标题字号（14–28px，默认26px）和辅助字号（10–28px，默认18px），辅助透明度独立调整；导航按两类文字的实际字宽计算栏宽，空间不足时共同缩小并保留设定比例。旧保存参数自动补齐辅助字号，标题偏好保留，刷新和恢复默认沿用现有机制。图标为白色，顶部章节数字已移除；修改导航或品牌文字后重新生成子集。运行检查包含字体和全部审查图的大小及SHA256。
 
 导航适配由 `useNavigationLayout` 统一测量 DOM Range 真实字宽，按内容分配五项宽度，删除桌面隐藏/省略辅助文字规则。字体参数是实际字号上限，图标和间距随可用空间缩小；不足时品牌独立第一行、五项导航仍在第二行完整单行，顶栏最少116px。700px以下保留手机入口布局。实际顶栏高度写入独立 `--site-header-height` 供正文与拖动边界读取，保存请求 `--header-height` 不变；图标按请求高度减去按钮上下padding与border适配，64px顶栏也不越界。页面ResizeObserver、壳style MutationObserver、字体ready/loadingdone和窗口resize合并单RAF，在卸载时取消观察与监听，ready回调检查active状态。
 

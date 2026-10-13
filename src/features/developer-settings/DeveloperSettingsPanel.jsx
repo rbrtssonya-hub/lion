@@ -166,11 +166,12 @@ export default function DeveloperSettingsPanel({
 
         <SettingsGroup title="导航尺寸" note="字号与间距">
           {range('headerHeight', '顶栏高度', 64, 180)}
-          {range('navFontSize', '导航文字字号', 14, 28)}
+          {range('navFontSize', '导航标题字号', 14, 28)}
+          {range('helperFontSize', '导航辅助文字字号', 10, 28)}
           {range('navIconSize', '导航图标尺寸', 24, 56)}
           {range('brandPadding', '品牌左侧留白', 8, 80)}
           {range('helperTransparency', '辅助文字透明度', 0, 100, 1, '%')}
-          <p className="developer-settings-note">序号、标题与辅助文字保持同字号，辅助文字单独调整透明度。空间不足时自动缩小字号、图标与间距，保持文案完整；品牌另起一行时，顶栏最低116px。</p>
+          <p className="developer-settings-note">标题与辅助文字可分别调节大小，辅助文字还可单独调整透明度。空间不足时按比例缩小文字，并调整图标与间距，保持文案完整；品牌另起一行时，顶栏最低116px。</p>
         </SettingsGroup>
 
         <SettingsGroup title="面板布局" note="覆盖或推开" initiallyOpen>
