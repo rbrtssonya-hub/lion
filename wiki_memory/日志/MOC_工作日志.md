@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-13 | maintenance | completed | [同步GitHub最新lion工程](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-13-%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0lion%E5%B7%A5%E7%A8%8B.md) |
 | 2026-10-13 | ui | completed | [首页轮播与无数字导航](UI%E4%BF%AE%E6%94%B9/2026-10-13-%E9%A6%96%E9%A1%B5%E8%BD%AE%E6%92%AD%E4%B8%8E%E6%97%A0%E6%95%B0%E5%AD%97%E5%AF%BC%E8%88%AA.md) |
+| 2026-10-13 | ui | completed | [三章 Figma 与动作神态网页同步](UI%E4%BF%AE%E6%94%B9/2026-10-13-%E4%B8%89%E7%AB%A0Figma%E4%B8%8E%E5%8A%A8%E4%BD%9C%E7%A5%9E%E6%80%81%E7%BD%91%E9%A1%B5%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-12 | feature | completed | [入场首页融合与醒狮文化长页](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-12-%E5%85%A5%E5%9C%BA%E9%A6%96%E9%A1%B5%E8%9E%8D%E5%90%88%E4%B8%8E%E9%86%92%E7%8B%AE%E6%96%87%E5%8C%96%E9%95%BF%E9%A1%B5.md) |
 | 2026-10-12 | ui | completed | [章节背景替换与统一导航](UI%E4%BF%AE%E6%94%B9/2026-10-12-%E7%AB%A0%E8%8A%82%E8%83%8C%E6%99%AF%E6%9B%BF%E6%8D%A2%E4%B8%8E%E7%BB%9F%E4%B8%80%E5%AF%BC%E8%88%AA.md) |
 | 2026-10-12 | ui | completed | [探索书法与导航自适应](UI%E4%BF%AE%E6%94%B9/2026-10-12-%E6%8E%A2%E7%B4%A2%E4%B9%A6%E6%B3%95%E4%B8%8E%E5%AF%BC%E8%88%AA%E8%87%AA%E9%80%82%E5%BA%94.md) |

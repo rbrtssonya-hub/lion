@@ -279,6 +279,53 @@ test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘�
   }
 });
 
+test('动作章节按三栏档案布局保留待接入视频和定性时间轴', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  const mediaRequests = [];
+  page.on('request', (request) => mediaRequests.push(request.url()));
+  await page.goto('/#/action');
+  await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
+  await expect(page.locator('.chapter-layout')).toHaveClass(/chapter-layout--three-column/);
+  await expect(page.locator('.chapter-side-panel')).toHaveCount(2);
+  await expect(page.locator('.chapter-main-visual')).toHaveCount(1);
+  await expect(page.locator('#chapterMediaPlaceholder')).toContainText('动作视频待接入');
+  await expect(page.locator('#chapterMediaPlaceholder')).toHaveAttribute('data-media-state', 'pending');
+  await expect(page.locator('#chapterMediaViewport')).toBeVisible();
+  await expect(page.locator('#chapterMediaControls')).toBeVisible();
+  await expect(page.locator('#chapterMediaControls')).toContainText('资料状态 · 待核对');
+  expect(mediaRequests.some((url) => url.includes('entry-intro.mp4'))).toBe(false);
+  await expect(page.locator('.chapter-timeline')).toHaveClass(/chapter-timeline--horizontal/);
+  await expect(page.locator('.chapter-timeline .chapter-timeline-node strong')).toHaveText(['入场', '展开', '收势']);
+  const desktopNodes = await page.locator('.chapter-timeline-node').evaluateAll((nodes) => nodes.map((node) => {
+    const bounds = node.getBoundingClientRect();
+    return { x: bounds.x, width: bounds.width };
+  }));
+  expect(desktopNodes).toHaveLength(3);
+  expect(desktopNodes.every(({ width }) => width > 0)).toBe(true);
+  expect(desktopNodes[0].x).toBeLessThan(desktopNodes[1].x);
+  expect(desktopNodes[1].x).toBeLessThan(desktopNodes[2].x);
+  await expect(page.locator('#chapterSourceTag')).toContainText('公开视频样本分析');
+  await expect(page.locator('#chapterTitle')).toHaveText('动作');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/action');
+  await expect(page.locator('.chapter-layout')).toBeVisible();
+  expect(await page.locator('.chapter-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('神态章节按三栏观察布局展示定性标签且不伪造量化结论', async ({ page }) => {
+  await page.goto('/#/state');
+  await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'state');
+  await expect(page.locator('.chapter-layout')).toHaveClass(/chapter-layout--three-column/);
+  await expect(page.locator('.chapter-side-panel')).toHaveCount(2);
+  await expect(page.locator('#expressionObservation')).toBeVisible();
+  await expect(page.locator('.expression-tag')).toHaveText(['注视', '警觉', '唤醒']);
+  await expect(page.locator('#chapterEvidence')).toContainText('等待真实图片/视频样本校核');
+  await expect(page.locator('[data-quantified-result]')).toHaveCount(0);
+  await expect(page.locator('#chapterTitle')).toHaveText('神态');
+});
+
 test('模型页复用全局品牌与章节导航并高亮当前章节', async ({ page }) => {
   await page.goto('/#/model');
   const header = page.locator('.site-header');
