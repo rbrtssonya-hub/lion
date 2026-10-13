@@ -54,7 +54,7 @@ export function useNavigationLayout(headerRef) {
       const sidePadding = Math.min(requestedPadding, Math.max(8, width * .02));
       const headerGap = Math.min(28, width * .011);
       const items = [...header.querySelectorAll('.site-nav-item')];
-      const units = items.map(item => [...item.querySelectorAll('.site-nav-heading small, .site-nav-heading strong, .site-nav-description')]
+      const units = items.map(item => [...item.querySelectorAll('.site-nav-heading strong, .site-nav-description')]
         .reduce((sum, element) => sum + textUnits(element), 0));
       const totalUnits = units.reduce((sum, value) => sum + value, 0);
       const fixedWidth = icon + headingGap + copyGap + itemGap + 2 * itemPadding;

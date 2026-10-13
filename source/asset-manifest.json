@@ -873,10 +873,10 @@
       "sha256": "1bc7491f128ac0a0d954dbf39d0d0ea2e70a83f39e5f6ddbb97665f350fec31b"
     },
     {
-      "from": "generated:vector/lion-culture-pattern.svg",
+      "from": "generated:runtime/lion-culture-pattern.svg",
       "path": "source/public/assets/decor/lion-culture-pattern.svg",
-      "bytes": 827,
-      "sha256": "57b32ba550db21cb548a6e951eb79d4d44ecbb22df138d63eea72ba49d0f885d"
+      "bytes": 673,
+      "sha256": "d28bd98a828731093bbea211913a755fba2e693661bf1d76e273803e2fe4633b"
     }
   ]
 }

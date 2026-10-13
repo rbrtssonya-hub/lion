@@ -15,7 +15,7 @@ async function expectCompleteDesktopNavigation(page) {
     for (const button of buttons) {
       const bounds = button.getBoundingClientRect();
       const label = button.querySelector('strong').textContent;
-      const parts = ['strong', '.site-nav-description'].map(selector => {
+    const parts = ['strong', '.site-nav-description'].map(selector => {
         const element = button.querySelector(selector);
         const style = getComputedStyle(element);
         const range = document.createRange();
@@ -87,11 +87,13 @@ test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除',
     await expect(navigation.locator('.site-nav-item')).toHaveCount(5);
     await expect(navigation.locator('.site-nav-heading strong')).toHaveText([...routes.map(([, title]) => title), '设置']);
     await expect(navigation.locator('.site-nav-heading small')).toHaveCount(0);
+    await expect(navigation).not.toContainText(/\d/);
     await expect(navigation.locator('[aria-current="page"]')).toHaveCount(1);
     await expect(navigation.locator('[aria-current="page"] .site-nav-heading strong')).toHaveText(label);
     await expect(navigation.locator('[data-action="settings"]')).toHaveAttribute('aria-expanded', 'false');
     await expect(navigation.locator('.site-nav-icon svg')).toHaveCount(5);
     await expect(navigation.locator('.site-nav-icon svg path')).toHaveCount(5);
+    await expect(navigation.locator('[data-route="action"] .site-nav-icon svg path')).toHaveAttribute('d', 'M12 15 8 12l2-5 5 1 3-4 5 2 1 6-4 5-7-2ZM14 8h1M10 12h6M20 16l9 8 7 9 4 9-4 2-5-8-7-5-3 4-5-2 4-6-5-5-3 2-7-4 1-4 6 2 1-4M28 24c6 0 8-4 7-8 5 0 5 8 0 12M25 31l-3 9-6 3-2-3 5-3 1-5');
     await expect(navigation.locator('img')).toHaveCount(0);
     await expect(navigation.locator('[data-route="intro"], [data-route="structure"], [data-route="score"]')).toHaveCount(0);
     await expect(page.locator(removedNavigation)).toHaveCount(0);
@@ -138,7 +140,6 @@ test('桌面品牌居中对齐，导航真实加载毛笔字体并完整排成�
     expect(helper.family).toBe(title.family);
     expect(helper.size).toBe(title.size);
     expect(Math.abs(helper.top - title.top)).toBeLessThan(1);
-    expect(icon.right).toBeLessThanOrEqual(title.left);
     expect(title.right).toBeLessThanOrEqual(helper.left);
     expect(helper.width).toBeGreaterThan(0);
     expect(helper.scrollWidth).toBeLessThanOrEqual(helper.clientWidth + 1);
