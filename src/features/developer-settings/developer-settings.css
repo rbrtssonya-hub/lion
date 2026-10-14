@@ -97,8 +97,8 @@
 
 .developer-settings-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 3px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 2px;
   margin: 0 18px;
   padding: 4px;
   border: 1px solid rgba(157, 104, 60, calc(.24 * var(--sidebar-decoration-opacity, .86)));
@@ -108,12 +108,13 @@
 
 .developer-settings-tabs > button {
   display: flex;
+  flex-direction: column;
   min-width: 0;
-  min-height: 36px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 5px 3px;
+  gap: 1px;
+  padding: 5px 2px;
   border: 1px solid transparent;
   border-radius: 5px;
   color: #805742;
@@ -124,9 +125,9 @@
 }
 
 .developer-settings-tabs > button svg {
-  flex: 0 0 14px;
-  width: 14px;
-  height: 14px;
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;

@@ -90,6 +90,7 @@ const pages = [
   { id: 'appearance', label: '外观', title: '外观材质', note: '分别调整顶栏与设置侧栏的透明和模糊。', icon: 'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id: 'navigation', label: '导航', title: '导航文字与尺寸', note: '首页导航的文字层级、图标和顶栏留白。', icon: 'M4 6h12M4 10h8M4 14h12' },
   { id: 'animation', label: '动画', title: '图标收拢动画', note: '进入结构、动作或神态时，图标向右收拢。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
+  { id: 'carousel', label: '轮播', title: '首页照片轮播', note: '调整醒狮文化图鉴的播放节奏与照片动效。', icon: 'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
   { id: 'layout', label: '布局', title: '面板与页面布局', note: '选择覆盖或推开页面，并调整面板宽度。', icon: 'M3 4h14v12H3zM12 4v12' },
 ];
 
@@ -111,6 +112,7 @@ export default function DeveloperSettingsPanel({
   resizeHandle,
 }) {
   const pushId = useId();
+  const carouselAutoplayId = useId();
   const panelId = useId();
   const easingId = useId();
   const [activePage, setActivePage] = useState('appearance');
@@ -269,6 +271,31 @@ export default function DeveloperSettingsPanel({
                 {range('compactNavGap', '紧凑导航图标间距', 4, 36)}
                 {range('compactNavInset', '紧凑导航右侧留白', 16, 160)}
                 <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，图标直接切换到目标位置。</p>
+              </SettingsGroup>
+            </>}
+
+            {page.id === 'carousel' && <>
+              <SettingsGroup title="播放节奏" note="自动与恢复">
+                <label className="developer-settings-toggle" htmlFor={carouselAutoplayId}>
+                  <span>照片自动播放</span>
+                  <span className="developer-settings-switch">
+                    <input
+                      id={carouselAutoplayId}
+                      type="checkbox"
+                      checked={settings.carouselAutoplay}
+                      onChange={event => onChange('carouselAutoplay', event.target.checked)}
+                    />
+                    <span aria-hidden="true" />
+                  </span>
+                </label>
+                {range('carouselInterval', '自动播放间隔', 2, 30, 1, '秒')}
+                {range('carouselResumeDelay', '离开后恢复等待', 1, 15, 1, '秒')}
+                <p className="developer-settings-note">仅悬停前景照片时暂停，点击照片可查看下一张。离开照片后先等待，再重新计算播放间隔。</p>
+              </SettingsGroup>
+              <SettingsGroup title="照片动效" note="过渡与聚焦">
+                {range('carouselTransitionDuration', '照片过渡时长', 300, 1600, 50, 'ms')}
+                {range('carouselFocusScale', '照片聚焦比例', 101, 110, 1, '%')}
+                <p className="developer-settings-note">悬停前景照片时轻微放大，104% 表示原尺寸的 1.04 倍。系统开启减少动态效果时，保留静态图片与手动切换。</p>
               </SettingsGroup>
             </>}
 

@@ -4,7 +4,7 @@ import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 
-export default function HomePage({ onNavigate }) {
+export default function HomePage({ onNavigate, settings }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
   const exploreCulture = () => document.querySelector('#homeCulture')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 
@@ -42,6 +42,6 @@ export default function HomePage({ onNavigate }) {
     </div>
     <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
   </section>
-  <HomeCulture />
+  <HomeCulture settings={settings} />
   </div>;
 }

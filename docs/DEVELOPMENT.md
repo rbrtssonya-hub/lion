@@ -97,7 +97,7 @@ npm test
 npm run test:e2e -- --grep-invert 手机
 ```
 
-首页文化照片采用局部纵深图鉴：React负责图文/连续序号和6秒轮播，`CultureDepthGallery`进入可视区域后动态载入 `src/services/cultureDepthGallery.js`。透明Three画布仅负责照片透视、平滑推进、视差和短暂光迹，稳定后停止RAF；不拦截页面滚轮，不改变首屏视频。图文、摄影许可和静态图片始终由React维护；减少动态、WebGL/纹理失败或上下文丢失时回退静态照片。修改此区时运行 `tests/e2e/home-culture.spec.js --grep-invert 手机`，覆盖真实绘制、循环、电脑窗口、动态偏好变化、不可用回退与释放重入，并核对 [源码参考与MIT许可](../source/references/home-culture-depth-gallery.md)。
+首页文化照片采用局部纵深图鉴：React负责图文/连续序号，`CultureDepthGallery`进入可视区域后动态载入 `src/services/cultureDepthGallery.js`。透明Three画布负责透视推进和前景微放大，Raycaster只允许真实前景照片命中/点击，位置稳定且已删除视差/光迹，稳定后停止RAF；不拦截页面滚轮，不改变首屏视频。底部控制栏已移除，直接点击照片下一张，键盘方向键/Home/End保留；暂停开关与间隔/离开等待/过渡时长/聚焦比例在设置的独立“轮播”页，参数通过App→HomePage→HomeCulture传递并原位更新引擎。移开先等待恢复时间，再从头计算播放间隔；重新进入清旧计时。图文、摄影许可和静态图片始终由React维护，减少动态或WebGL故障时照片仍可点选。修改此区时运行 `tests/e2e/home-culture.spec.js tests/e2e/developer-settings.spec.js --grep-invert 手机`，覆盖稳定聚焦/点击/延时恢复/设置迁移、电脑窗口、动态偏好变化、不可用回退及释放重入，并核对 [源码参考与MIT许可](../source/references/home-culture-depth-gallery.md)。
 
 构建后可运行 `npm run test:e2e:preview -- --grep-invert 手机` 回归生产预览；两组命令按当前电脑端约束排除专项手机测试。Python 眼层检查使用 `python -B -m unittest discover -s tests/assets -p 'test_*.py'`；v4素材尚未生成时对应检查会显示 skip，需与通过项分开记录。本轮完整验证结果由当前任务日志记录，下列既有结果仅追溯当时版本。
 

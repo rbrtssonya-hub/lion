@@ -66,7 +66,7 @@ export default function App() {
   }, [route]);
 
   let page;
-  if (route === 'entry') page = <HomePage onNavigate={navigateTo} />;
+  if (route === 'entry') page = <HomePage onNavigate={navigateTo} settings={settings} />;
   else if (route === 'model') page = <ModelPage />;
   else page = <ChapterPage route={route} />;
 

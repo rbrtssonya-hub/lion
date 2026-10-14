@@ -17,6 +17,11 @@ export const defaultDeveloperSettings = Object.freeze({
   navigationEasing: 'smooth',
   compactNavGap: 14,
   compactNavInset: 48,
+  carouselAutoplay: true,
+  carouselInterval: 6,
+  carouselResumeDelay: 3,
+  carouselTransitionDuration: 800,
+  carouselFocusScale: 104,
   panelWidth: 340,
   pushPage: false,
 });
@@ -30,10 +35,14 @@ const ranges = {
   brandPadding: [8, 80, 1], panelWidth: [280, 760, 1],
   navigationDuration: [200, 1600, 10],
   compactNavGap: [4, 36, 1], compactNavInset: [16, 160, 1],
+  carouselInterval: [2, 30, 1], carouselResumeDelay: [1, 15, 1],
+  carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
 };
 
 function normalize(name, value) {
-  if (name === 'pushPage') return typeof value === 'boolean' ? value : defaultDeveloperSettings.pushPage;
+  if (name === 'pushPage' || name === 'carouselAutoplay') {
+    return typeof value === 'boolean' ? value : defaultDeveloperSettings[name];
+  }
   if (name === 'navigationEasing') {
     return ['smooth', 'swift', 'soft'].includes(value) ? value : defaultDeveloperSettings.navigationEasing;
   }

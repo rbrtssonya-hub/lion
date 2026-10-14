@@ -1039,6 +1039,30 @@
       "path": "source/reviews/homepage/2026-10-14-depth-gallery/desktop-900-available-settings.png",
       "bytes": 672362,
       "sha256": "9f9b433a2635ad689aa59135af1251822ddf683642af449735337111337b4747"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14 carousel focus: desktop-1920-clean.png",
+      "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1920-clean.png",
+      "bytes": 1062541,
+      "sha256": "ebee65fbe97299029f8e061b4188cdb043a45d67fe2383b458a02c520af30f71"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14 carousel focus: desktop-1920-focused.png",
+      "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1920-focused.png",
+      "bytes": 1076407,
+      "sha256": "058c0b4010d2d655d2cdbdaf6232c435d2ccb1a7e7ba7a08b09feea8bfc86a8d"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14 carousel focus: desktop-1366-clean.png",
+      "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1366-clean.png",
+      "bytes": 693709,
+      "sha256": "e780cb4356125f017ec2f380bd9eb77fec2e0893306273c99e2f1184aecd5719"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14 carousel focus: desktop-1920-carousel-settings.png",
+      "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1920-carousel-settings.png",
+      "bytes": 1344511,
+      "sha256": "c9629d67fa3a59c723fab5407d2f5e6adcf4e48e9f53b2a1a407eb34c2a44efe"
     }
   ]
 }

@@ -54,7 +54,7 @@ function CultureSlide({ story, active }) {
   );
 }
 
-export default function HomeCulture() {
+export default function HomeCulture({ settings }) {
   const sectionRef = useRef(null);
   const {
     currentIndex,
@@ -62,15 +62,19 @@ export default function HomeCulture() {
     reducedMotion,
     isPageVisible,
     isAutoplaying,
-    isPlaying,
+    playbackStatus,
+    isHovered,
     next,
     previous,
     select,
-    toggle,
     setHovered,
     setFocused,
     setInView,
-  } = useCultureCarousel(homeCultureStories.length);
+  } = useCultureCarousel(homeCultureStories.length, {
+    autoplay: settings.carouselAutoplay,
+    interval: settings.carouselInterval * 1000,
+    resumeDelay: settings.carouselResumeDelay * 1000,
+  });
   const currentStory = homeCultureStories[currentIndex];
   const handleKeyDown = useCallback((event) => {
     if (event.altKey || event.ctrlKey || event.metaKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
@@ -78,12 +82,7 @@ export default function HomeCulture() {
     if (event.key === 'ArrowLeft') { event.preventDefault(); previous(); }
     if (event.key === 'Home') { event.preventDefault(); select(0); }
     if (event.key === 'End') { event.preventDefault(); select(homeCultureStories.length - 1); }
-    if (event.target.getAttribute('role') === 'tab') {
-      const count = homeCultureStories.length;
-      const target = { ArrowRight: (currentIndex + 1) % count, ArrowLeft: (currentIndex + count - 1) % count, Home: 0, End: count - 1 }[event.key];
-      if (target !== undefined) event.currentTarget.querySelectorAll('.home-culture-dots [role="tab"]')[target]?.focus();
-    }
-  }, [currentIndex, next, previous, select]);
+  }, [next, previous, select]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -104,13 +103,17 @@ export default function HomeCulture() {
       className="home-culture"
       id="homeCulture"
       ref={sectionRef}
+      style={{ '--culture-focus-scale': settings.carouselFocusScale / 100 }}
       aria-labelledby="home-culture-title"
       data-culture-carousel="true"
       data-culture-index={currentIndex}
-      data-culture-playing={isPlaying}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)}
+      data-culture-playing={isAutoplaying}
+      data-culture-status={playbackStatus}
+      data-culture-focused={isHovered}
+      onPointerDownCapture={() => setFocused(false)}
+      onFocusCapture={(event) => {
+        setFocused(event.target.matches(':focus-visible'));
+      }}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
       }}
@@ -131,40 +134,13 @@ export default function HomeCulture() {
 
         <div className="home-culture-carousel" role="region" aria-roledescription="轮播" aria-label="醒狮文化纵深图鉴">
           <div className="home-culture-carousel-stage">
-            <CultureDepthGallery stories={homeCultureStories} currentIndex={currentIndex} position={position} reducedMotion={reducedMotion} isPageVisible={isPageVisible} onVisibilityChange={setInView} />
+            <CultureDepthGallery stories={homeCultureStories} currentIndex={currentIndex} position={position}
+              reducedMotion={reducedMotion} isPageVisible={isPageVisible} onVisibilityChange={setInView}
+              settings={settings} onPhotoHover={setHovered} onNext={next} />
             {homeCultureStories.map((story, index) => <CultureSlide key={story.id} story={story} active={index === currentIndex} />)}
           </div>
           <p className="sr-only" aria-live={isAutoplaying ? 'off' : 'polite'} aria-atomic="true">{currentStory.index} / {String(homeCultureStories.length).padStart(2, '0')}：{currentStory.title}</p>
-          <div className="home-culture-carousel-controls">
-            <div className="home-culture-progress" aria-label={`当前第 ${currentIndex + 1} 项，共 ${homeCultureStories.length} 项`}>
-              <span>{String(currentIndex + 1).padStart(2, '0')} / {String(homeCultureStories.length).padStart(2, '0')}</span>
-              <span className="home-culture-progress-line"><i style={{ '--culture-progress': `${((currentIndex + 1) / homeCultureStories.length) * 100}%` }} /></span>
-              <strong>{currentStory.eyebrow.split(' / ')[0]}</strong>
-            </div>
-            <div className="home-culture-control-group">
-              <button type="button" className="home-culture-control" onClick={previous} aria-label="上一项">←</button>
-              <div className="home-culture-dots" role="tablist" aria-label="选择文化图鉴项目">
-                {homeCultureStories.map((story, index) => (
-                  <button
-                    key={story.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={index === currentIndex}
-                    aria-controls={`culture-panel-${story.id}`}
-                    tabIndex={index === currentIndex ? 0 : -1}
-                    aria-label={`查看第 ${index + 1} 项：${story.eyebrow.split(' / ')[0]}`}
-                    className={index === currentIndex ? 'is-current' : ''}
-                    onClick={() => select(index)}
-                  />
-                ))}
-              </div>
-              <button type="button" className="home-culture-control" onClick={next} aria-label="下一项">→</button>
-              <button type="button" className="home-culture-play" onClick={toggle} aria-label={isPlaying ? '暂停自动播放' : '开始自动播放'} aria-pressed={isPlaying}>
-                <span aria-hidden="true">{isPlaying ? 'Ⅱ' : '▶'}</span>
-                {isPlaying ? '暂停' : '播放'}
-              </button>
-            </div>
-          </div>
+          <p id="culture-photo-instructions" className="sr-only">点击照片查看下一张，左右方向键切换，Home和End到首尾；悬停暂停，离开后按设置恢复自动播放。</p>
         </div>
 
         <footer className="home-culture-sources">

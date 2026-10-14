@@ -3,10 +3,12 @@
 2026-10-14按用户指定本地源码 `D:/Gitclone/伪交互/codrops-depth-gallery` 适配首页原照片轮播，实施者为Agent。
 
 - 参考项目：Atmospheric Depth Gallery，作者 Houmahani Kane / Codrops。原仓库信息来自本地 `package.json`：https://github.com/houmahani/codrops-depth-gallery 。本次依据本地源码，未联网核对远端版本。
-- 实质参考：`src/Experience/Gallery.js` 的等距Z平面、原图比例、平滑视差/材质透明度，`Scroll.js` 的相机纵深推进，`Trail.js` 的浅色指针轨迹。原版背景shader负责blob和grain，照片本身没有深度图或三维重建。
+- 实质参考：`src/Experience/Gallery.js` 的等距Z平面、原图比例及材质透明度，`Scroll.js` 的相机纵深推进。首版曾参考鼠标视差与`Trail.js`光迹，2026-10-14后续按用户要求删除，以保持前景照片聚焦时稳定。原版背景shader负责blob和grain，照片本身没有深度图或三维重建。
 - 完整MIT版权和许可归档在 [codrops-depth-gallery-LICENSE.txt](codrops-depth-gallery-LICENSE.txt)，相同原字节的[部署许可](../public/assets/licenses/codrops-depth-gallery-LICENSE.txt)经 `cultureDepthLicense` 登记后随Vite进入dist。本项目服务保留来源注释；未拷贝参考工程的花卉摄影。
 - 适配入口：`src/features/home/CultureDepthGallery.jsx`、`src/services/cultureDepthGallery.js`；图片URL继续由 `src/config/media.js` 提供。保留原四组实景照片、文化资料、作者与CC许可，来源见 [home-culture-sources.md](home-culture-sources.md)。照片保持原始宽高比，缩放展示，不生成深度内容。
-- 首页保留米纸/朱红/暖金，左侧透明WebGL照片沿纵深递进，右侧文化解读和下方署名、进度同步。原6秒自动播放、前后/主题点/暂停与聚焦暂停保留；仅在画廊可见且页面在前台时播放。方向键/Home/End限本文化区内操作，滚轮自然滚动页面。
+- 首页保留米纸/朱红/暖金，左侧透明WebGL照片沿纵深递进，右侧文化解读和下方署名同步。按用户绿色框删除底部进度、前后箭头、主题点和播放暂停整条控制栏，保留摄影署名。直接点击前景照片切下一张，方向键/Home/End限本文化区内操作，滚轮自然滚动页面。
+- 自动播放和全部常用参数在设置的独立“轮播”页调整并即时保存：自动开关（默认开）；间隔6秒（2–30）；离开等待3秒（1–15）；照片过渡800ms（300–1600，步长50）；聚焦比例104%（101–110）。旧保存值缺少新字段时补默认，不覆盖原导航/布局参数。
+- 鼠标只有进入前景照片真实画面才聚焦/暂停，位置和旋转保持稳定，微放大默认1.04倍；后层照片、空白及装饰不触发。离开后先等待恢复时间，再重新计算完整轮播间隔；重新进入会清旧恢复计时。键盘聚焦同样暂停，切回鼠标操作会解除键盘暂停，点击不会导致永久停播。仅在画廊可见、页面前台、自动开关开启且系统未开启减少动态时播放。
 - 图形服务延迟加载，限制DPR；只在可见/前台活动时绘制。组件卸载清理监听、观察器、RAF、材质、几何、纹理与WebGL上下文，处理异步纹理加载的卸载竞态。
 - 减少动态效果使用静态图片并停止自动播放；WebGL创建/纹理加载/上下文故障保留当前图片、完整文化文字、署名和手动切换。不引入原工程的全局滚轮拦截、调试面板、body样式或新版Three依赖。
 - 验收以电脑端为目标，实际命令、结果和截图在本轮工程记忆日志中记录。网站正式托管和真实设备GPU性能不在本次验证范围。

@@ -8,11 +8,16 @@ const sideEdge = page => page.getByRole('separator', { name: '调整侧栏宽度
 const pageWidth = page => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
 const headerHeight = page => page.locator('.site-header').evaluate(element => element.getBoundingClientRect().height);
 const sidebarWidth = page => panel(page).evaluate(element => element.getBoundingClientRect().width);
+const carouselDefaults = {
+  carouselAutoplay: true, carouselInterval: 6, carouselResumeDelay: 3,
+  carouselTransitionDuration: 800, carouselFocusScale: 104,
+};
 
 const controlTabs = {
   顶栏透明度: '外观', 顶栏模糊强度: '外观', 侧栏透明度: '外观', 侧栏模糊强度: '外观',
   顶栏高度: '导航', 导航标题字号: '导航', 导航辅助文字字号: '导航', 导航图标尺寸: '导航', 品牌左侧留白: '导航',
   导航动画时长: '动画', 紧凑导航图标间距: '动画', 紧凑导航右侧留白: '动画', 设置面板宽度: '布局',
+  自动播放间隔: '轮播', 离开后恢复等待: '轮播', 照片过渡时长: '轮播', 照片聚焦比例: '轮播',
 };
 
 async function selectSettingsTab(page, name) {
@@ -100,14 +105,14 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await expect(trigger(page)).toBeFocused();
 });
 
-test('四个设置页签仅显示选中类别，支持键盘切换并保留已调参数与当前类别', async ({ page }) => {
+test('五个设置页签仅显示选中类别，支持键盘切换并保留已调参数与当前类别', async ({ page }) => {
   await page.goto('/');
   await openSettings(page);
   const tabs = panel(page).getByRole('tab');
   await expect(panel(page).getByRole('tablist', { name: '设置分类' })).toBeVisible();
-  await expect(tabs).toHaveText(['外观', '导航', '动画', '布局']);
+  await expect(tabs).toHaveText(['外观', '导航', '动画', '轮播', '布局']);
   await expect(panel(page).getByRole('tabpanel')).toHaveCount(1);
-  await expect(panel(page).getByRole('tabpanel', { includeHidden: true })).toHaveCount(4);
+  await expect(panel(page).getByRole('tabpanel', { includeHidden: true })).toHaveCount(5);
   await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toBeVisible();
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', includeHidden: true })).toBeHidden();
   await expect(panel(page).getByRole('spinbutton', { name: '导航动画时长数值', includeHidden: true })).toBeHidden();
@@ -127,7 +132,13 @@ test('四个设置页签仅显示选中类别，支持键盘切换并保留已�
   await expect(animation).toHaveAttribute('aria-selected', 'true');
   await expect(panel(page).getByRole('spinbutton', { name: '导航动画时长数值' })).toBeVisible();
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', includeHidden: true })).toBeHidden();
-  await animation.press('End');
+  await animation.press('ArrowRight');
+  const carousel = panel(page).getByRole('tab', { name: '轮播', exact: true });
+  await expect(carousel).toBeFocused();
+  await expect(carousel).toHaveAttribute('aria-selected', 'true');
+  await expect(panel(page).getByRole('spinbutton', { name: '自动播放间隔数值' })).toBeVisible();
+  await expect(panel(page).getByRole('spinbutton', { name: '导航动画时长数值', includeHidden: true })).toBeHidden();
+  await carousel.press('End');
   const layout = panel(page).getByRole('tab', { name: '布局', exact: true });
   await expect(layout).toBeFocused();
   await expect(layout).toHaveAttribute('aria-selected', 'true');
@@ -195,6 +206,104 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   await expectSaved(page, { navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48, helperFontSize: 18 });
   await expect(duration).toHaveValue('720');
   await expect(easing).toHaveValue('smooth');
+});
+
+test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢复默认', async ({ page }) => {
+  const navigationSettings = {
+    navigationTypographyVersion: 2, navFontSize: 20, helperFontSize: 16,
+    helperTransparency: 37, navigationDuration: 960, navigationEasing: 'swift',
+    compactNavGap: 21, compactNavInset: 76, pushPage: true,
+  };
+  await page.addInitScript(({ key, saved }) => {
+    if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(saved));
+  }, { key: settingsKey, saved: navigationSettings });
+  await page.goto('/');
+  await expectSaved(page, { ...navigationSettings, ...carouselDefaults });
+  await openSettings(page);
+  await selectSettingsTab(page, '轮播');
+  const autoplay = panel(page).getByRole('checkbox', { name: '照片自动播放', exact: true });
+  await expect(autoplay).toBeChecked();
+  await autoplay.uncheck();
+  await editNumber(page, '自动播放间隔', 9);
+  await editNumber(page, '离开后恢复等待', 5);
+  await editNumber(page, '照片过渡时长', 1050);
+  await editNumber(page, '照片聚焦比例', 107);
+  const changed = {
+    carouselAutoplay: false, carouselInterval: 9, carouselResumeDelay: 5,
+    carouselTransitionDuration: 1050, carouselFocusScale: 107,
+  };
+  await expectSaved(page, { ...navigationSettings, ...changed });
+
+  await page.reload();
+  await expect(panel(page)).toHaveCount(0);
+  await expectSaved(page, { ...navigationSettings, ...changed });
+  await openSettings(page);
+  await selectSettingsTab(page, '轮播');
+  await expect(autoplay).not.toBeChecked();
+  for (const [label, value] of [['自动播放间隔', 9], ['离开后恢复等待', 5], ['照片过渡时长', 1050], ['照片聚焦比例', 107]]) {
+    await expect(panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true })).toHaveValue(String(value));
+  }
+  await selectSettingsTab(page, '导航');
+  await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', exact: true })).toHaveValue('20');
+  await selectSettingsTab(page, '轮播');
+  await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await expectSaved(page, { ...carouselDefaults, navFontSize: 26, navigationTypographyVersion: 2, pushPage: false });
+  await expect(autoplay).toBeChecked();
+  for (const [label, value] of [['自动播放间隔', 6], ['离开后恢复等待', 3], ['照片过渡时长', 800], ['照片聚焦比例', 104]]) {
+    await expect(panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true })).toHaveValue(String(value));
+  }
+});
+
+test('280px侧栏完整显示五个分类，轮播滑块及数值校验范围与步长', async ({ page }) => {
+  await page.goto('/');
+  await openSettings(page);
+  await editNumber(page, '设置面板宽度', 280);
+  await expect.poll(() => sidebarWidth(page)).toBe(280);
+  const tabs = panel(page).getByRole('tab');
+  await expect(tabs).toHaveText(['外观', '导航', '动画', '轮播', '布局']);
+  for (const tab of await tabs.all()) await expect(tab).toBeVisible();
+  const tabLayout = await panel(page).getByRole('tablist', { name: '设置分类' }).evaluate(element => {
+    const bounds = element.getBoundingClientRect();
+    return {
+      overflow: element.scrollWidth > element.clientWidth,
+      fitted: Array.from(element.querySelectorAll('button')).every(button => {
+        const buttonBounds = button.getBoundingClientRect();
+        return buttonBounds.left >= bounds.left && buttonBounds.right <= bounds.right && button.scrollWidth <= button.clientWidth;
+      }),
+    };
+  });
+  expect(tabLayout).toEqual({ overflow: false, fitted: true });
+  await selectSettingsTab(page, '轮播');
+  for (const [label, key, min, max, step] of [
+    ['自动播放间隔', 'carouselInterval', 2, 30, 1],
+    ['离开后恢复等待', 'carouselResumeDelay', 1, 15, 1],
+    ['照片过渡时长', 'carouselTransitionDuration', 300, 1600, 50],
+    ['照片聚焦比例', 'carouselFocusScale', 101, 110, 1],
+  ]) {
+    const slider = panel(page).getByRole('slider', { name: label, exact: true });
+    await expect(slider).toHaveAttribute('min', String(min));
+    await expect(slider).toHaveAttribute('max', String(max));
+    await expect(slider).toHaveAttribute('step', String(step));
+    await slider.focus();
+    await slider.press('Home');
+    await expectSaved(page, { [key]: min });
+    await slider.press('ArrowRight');
+    await expectSaved(page, { [key]: min + step });
+    await slider.press('End');
+    await expectSaved(page, { [key]: max });
+    const input = panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true });
+    for (const [draft, expected] of [[min - 1, min], [max + 1, max]]) {
+      await input.fill(String(draft));
+      await input.press('Tab');
+      await expect(input).toHaveValue(String(expected));
+      await expectSaved(page, { [key]: expected });
+    }
+  }
+  const duration = panel(page).getByRole('spinbutton', { name: '照片过渡时长数值', exact: true });
+  await duration.fill('1025');
+  await duration.press('Tab');
+  await expect(duration).toHaveValue('1050');
+  await expectSaved(page, { carouselTransitionDuration: 1050 });
 });
 
 test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控件不随容器淡出', async ({ page }) => {

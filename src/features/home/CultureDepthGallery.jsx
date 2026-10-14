@@ -1,17 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 
-export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange }) {
+export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext }) {
   const hostRef = useRef(null);
   const canvasRef = useRef(null);
   const engineRef = useRef(null);
   const selectionRef = useRef({ currentIndex, position });
   const activeRef = useRef(false);
+  const interactionRef = useRef({ settings, onPhotoHover, onNext });
   const [isInView, setInView] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [status, setStatus] = useState('static');
   selectionRef.current = { currentIndex, position };
   activeRef.current = isInView && isPageVisible && !reducedMotion;
+  interactionRef.current = { settings, onPhotoHover, onNext };
+  const photo = stories[currentIndex].photo;
+
+  const engineSettings = (value) => ({ transitionDuration: value.carouselTransitionDuration, focusScale: value.carouselFocusScale / 100 });
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -36,8 +41,11 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
       engine = createCultureDepthGallery({
         canvas: canvasRef.current,
         items: stories.map(({ photo }) => ({ src: media[photo.mediaKey], width: photo.width, height: photo.height })),
+        settings: engineSettings(interactionRef.current.settings),
+        onFocusChange: (focused) => { if (!disposed) interactionRef.current.onPhotoHover(focused); },
+        onNext: () => { if (!disposed) interactionRef.current.onNext(); },
         onReady: () => { if (!disposed) setStatus('ready'); },
-        onError: () => { if (!disposed) setStatus('fallback'); },
+        onError: () => { if (!disposed) { setStatus('fallback'); interactionRef.current.onPhotoHover(false); } },
       });
       engineRef.current = engine;
       engine.select(selectionRef.current.currentIndex, selectionRef.current.position);
@@ -53,6 +61,12 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
   }, [hasEntered, reducedMotion, stories]);
 
   useEffect(() => {
+    engineRef.current?.setSettings(engineSettings(settings));
+  }, [settings.carouselTransitionDuration, settings.carouselFocusScale]);
+
+  useEffect(() => onPhotoHover(false), [reducedMotion, onPhotoHover]);
+
+  useEffect(() => {
     engineRef.current?.select(currentIndex, position);
   }, [currentIndex, position]);
 
@@ -61,11 +75,16 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
   }, [isInView, isPageVisible, reducedMotion, status]);
 
   return (
-    <div className="culture-depth-gallery" ref={hostRef} data-depth-state={status} aria-hidden="true">
-      <div className="culture-depth-atmosphere" />
-      <span className="culture-depth-label">风土入画 <i /> 狮影成章</span>
-      <canvas key={reducedMotion ? 'static' : 'animated'} ref={canvasRef} className="culture-depth-canvas" />
-      <div className="culture-depth-axis"><span>近</span><i /><span>远</span></div>
+    <div className="culture-depth-gallery" ref={hostRef} data-depth-state={status}
+      style={{ '--culture-photo-aspect': photo.width / photo.height, '--culture-focus-scale': settings.carouselFocusScale / 100 }}>
+      <div className="culture-depth-atmosphere" aria-hidden="true" />
+      <span className="culture-depth-label" aria-hidden="true">风土入画 <i /> 狮影成章</span>
+      <canvas key={reducedMotion ? 'static' : 'animated'} ref={canvasRef} className="culture-depth-canvas" aria-hidden="true" />
+      <button className="culture-depth-photo-action" type="button" aria-label="下一张文化照片"
+        aria-describedby="culture-photo-instructions" aria-controls={`culture-panel-${stories[currentIndex].id}`}
+        onClick={onNext} onMouseEnter={() => { if (status !== 'ready') onPhotoHover(true); }}
+        onMouseLeave={() => { if (status !== 'ready') onPhotoHover(false); }} />
+      <div className="culture-depth-axis" aria-hidden="true"><span>近</span><i /><span>远</span></div>
     </div>
   );
 }

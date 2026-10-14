@@ -9,16 +9,17 @@ import * as THREE from 'three';
  * React owns selection and input. This service owns only the local WebGL view;
  * it deliberately does not install the original demo's global scroll handlers.
  */
-export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
+export function createCultureDepthGallery({ canvas, items, onReady, onError, onFocusChange, onNext, settings }) {
   const container = canvas.parentElement;
   const planeGap = 5;
   const cameraDistance = 6;
   const slotCount = 8;
   const textures = new Map();
   const planes = [];
-  const pointerTarget = new THREE.Vector2();
-  const pointerCurrent = new THREE.Vector2();
-  const trailPoints = [];
+  const pointer = new THREE.Vector2();
+  const raycaster = new THREE.Raycaster();
+  const originalCursor = canvas.style.cursor;
+  const config = { transitionDuration: 800, focusScale: 1.04 };
   let disposed = false;
   let failed = false;
   let ready = false;
@@ -31,6 +32,9 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
   let transition = null;
   let viewWidth = 1;
   let viewHeight = 1;
+  let focused = false;
+  let focusScale = 1;
+  let lastPointer = null;
   let renderer;
   let resizeObserver;
 
@@ -40,23 +44,25 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 70);
   camera.position.z = cameraDistance;
   const geometry = new THREE.PlaneGeometry(1, 1);
-  const trailGeometry = new THREE.BufferGeometry();
-  const trailAttribute = new THREE.BufferAttribute(new Float32Array(32 * 3), 3);
-  trailAttribute.setUsage(THREE.DynamicDrawUsage);
-  trailGeometry.setAttribute('position', trailAttribute);
-  trailGeometry.setDrawRange(0, 0);
-  const trailMaterial = new THREE.LineBasicMaterial({
-    color: '#c9aa68',
-    transparent: true,
-    opacity: 0,
-    depthTest: false,
-    depthWrite: false,
-    toneMapped: false,
-  });
-  const trail = new THREE.Line(trailGeometry, trailMaterial);
-  trail.frustumCulled = false;
-  trail.renderOrder = 100;
-  scene.add(trail);
+
+  function transitionDuration(distance) {
+    return Math.min(config.transitionDuration * 1.5,
+      config.transitionDuration + Math.max(0, Math.abs(distance) - 1) * 120);
+  }
+
+  function setSettings(nextSettings) {
+    if (disposed || failed) return;
+    const duration = nextSettings?.transitionDuration;
+    const scale = nextSettings?.focusScale;
+    if (Number.isFinite(duration)) config.transitionDuration = THREE.MathUtils.clamp(duration, 300, 1600);
+    if (Number.isFinite(scale)) config.focusScale = THREE.MathUtils.clamp(scale, 1.01, 1.10);
+    if (transition) {
+      const progress = transition.elapsed / transition.duration;
+      transition.duration = transitionDuration(transition.to - transition.from);
+      transition.elapsed = progress * transition.duration;
+    }
+    requestDraw();
+  }
 
   function stop() {
     if (frame) cancelAnimationFrame(frame);
@@ -77,7 +83,7 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     }
   }
 
-  function updatePlanes(velocity = 0) {
+  function updatePlanes() {
     // Rebase the world every step so long-running, bidirectional loops retain
     // small coordinates while the camera still travels through actual depth.
     const origin = Math.floor(position);
@@ -98,46 +104,29 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
       const opacity = THREE.MathUtils.smoothstep(distance, -0.9, -0.04) *
         (1 - THREE.MathUtils.smoothstep(distance, 3.5, 5.2)) /
         (1 + Math.max(0, distance) * 0.75);
-      const parallax = Math.max(0.35, 1 - Math.abs(distance) * 0.12);
+      const zoom = 1 + (focusScale - 1) * Math.max(0, 1 - Math.abs(distance));
 
       if (plane.material.map !== texture) {
         plane.material.map = texture;
         plane.material.needsUpdate = true;
       }
-      plane.scale.set(height * aspect, height, 1);
+      plane.scale.set(height * aspect * zoom, height * zoom, 1);
       plane.position.set(
-        (sequence - origin) * horizontalGap - viewWidth * 0.08 + pointerCurrent.x * 0.16 * parallax,
-        Math.sin(distance * 0.9) * viewHeight * 0.026 + pointerCurrent.y * 0.08 * parallax,
+        (sequence - origin) * horizontalGap - viewWidth * 0.08,
+        Math.sin(distance * 0.9) * viewHeight * 0.026,
         -(sequence - origin) * planeGap,
       );
-      plane.rotation.set(-pointerCurrent.y * velocity * 0.012, pointerCurrent.x * velocity * 0.018, 0);
+      plane.rotation.set(0, 0, 0);
       plane.material.opacity = opacity;
       plane.visible = opacity > 0.001;
+      plane.userData.sequence = sequence;
     });
   }
 
-  function updateTrail(time) {
-    while (trailPoints.length && time - trailPoints[0].time > 360) trailPoints.shift();
-    trail.visible = trailPoints.length > 1;
-    if (!trail.visible) return false;
-    const depth = 4.8;
-    const factor = depth / cameraDistance;
-    trail.position.copy(camera.position);
-    trailPoints.forEach((point, index) => {
-      trailAttribute.setXYZ(index, point.x * viewWidth * 0.5 * factor, point.y * viewHeight * 0.5 * factor, -depth);
-    });
-    trailAttribute.needsUpdate = true;
-    trailGeometry.setDrawRange(0, trailPoints.length);
-    trailMaterial.opacity = 0.32 * Math.max(0, 1 - (time - trailPoints.at(-1).time) / 360);
-    return true;
-  }
-
-  function render(time, velocity = 0) {
-    updatePlanes(velocity);
-    const trailMoving = updateTrail(time);
+  function render() {
+    updatePlanes();
     renderer.clear();
     renderer.render(scene, camera);
-    return trailMoving;
   }
 
   function draw(time) {
@@ -145,7 +134,7 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     if (disposed || failed || !ready || !active || document.hidden) return;
     const elapsed = lastFrameTime ? Math.min(time - lastFrameTime, 48) : 0;
     lastFrameTime = time;
-    const previous = position;
+    let settled = false;
     if (transition) {
       transition.elapsed += elapsed;
       const progress = Math.min(transition.elapsed / transition.duration, 1);
@@ -156,14 +145,18 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
       if (progress === 1) {
         position = transition.to;
         transition = null;
+        settled = true;
       }
     }
-    pointerCurrent.lerp(pointerTarget, 1 - Math.exp(-Math.max(elapsed, 1) * 0.006));
-    const pointerMoving = pointerCurrent.distanceToSquared(pointerTarget) > 0.000001;
-    if (!pointerMoving) pointerCurrent.copy(pointerTarget);
-    const velocity = elapsed ? THREE.MathUtils.clamp((position - previous) * 1000 / elapsed, -3, 3) : 0;
-    const trailMoving = render(time, velocity);
-    if (transition || pointerMoving || trailMoving) requestDraw();
+    const targetScale = focused ? config.focusScale : 1;
+    focusScale = THREE.MathUtils.lerp(focusScale, targetScale, 1 - Math.exp(-Math.max(elapsed, 1) * 0.018));
+    const focusMoving = Math.abs(focusScale - targetScale) > 0.00001;
+    if (!focusMoving) focusScale = targetScale;
+    render();
+    // Different photographs can have different aspect ratios. Recheck once
+    // after travel settles, without introducing per-frame hover oscillation.
+    if (settled && lastPointer) setFocused(hitsFront(lastPointer));
+    if (transition || focusMoving) requestDraw();
     else lastFrameTime = 0;
   }
 
@@ -179,35 +172,68 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     renderer.setSize(Math.round(bounds.width), Math.round(bounds.height), false);
     if (ready) {
       // Static draws also keep an inactive view correct after container resize.
-      render(performance.now());
+      render();
       requestDraw();
     }
   }
 
-  function onPointerMove(event) {
-    if (!active || document.hidden || disposed || failed) return;
-    const bounds = container.getBoundingClientRect();
-    if (!bounds.width || !bounds.height) return;
-    pointerTarget.set(
-      THREE.MathUtils.clamp((event.clientX - bounds.left) / bounds.width * 2 - 1, -1, 1),
-      THREE.MathUtils.clamp(1 - (event.clientY - bounds.top) / bounds.height * 2, -1, 1),
-    );
-    const time = performance.now();
-    trailPoints.push({ x: pointerTarget.x, y: pointerTarget.y, time });
-    if (trailPoints.length > 32) trailPoints.shift();
+  function setFocused(value) {
+    if (disposed || failed || focused === value) return;
+    focused = value;
+    canvas.style.cursor = focused ? 'pointer' : originalCursor;
+    onFocusChange?.(focused);
     requestDraw();
   }
 
+  function hitsFront(event) {
+    if (!ready || !active || document.hidden || disposed || failed) return false;
+    const bounds = canvas.getBoundingClientRect();
+    if (!bounds.width || !bounds.height || event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom) return false;
+    // Decorations can ignore pointer events in CSS and still visually cover a
+    // moving photograph. Their text / axis must never act as image controls.
+    const decorations = container.querySelectorAll('.culture-depth-label, .culture-depth-axis, [data-depth-decoration]');
+    for (const decoration of decorations) {
+      const box = decoration.getBoundingClientRect();
+      if (event.clientX >= box.left && event.clientX <= box.right &&
+        event.clientY >= box.top && event.clientY <= box.bottom) return false;
+    }
+    const front = planes.find((plane) => plane.userData.sequence === Math.round(position));
+    if (!front?.visible) return false;
+    pointer.set((event.clientX - bounds.left) / bounds.width * 2 - 1,
+      1 - (event.clientY - bounds.top) / bounds.height * 2);
+    camera.updateMatrixWorld();
+    front.updateWorldMatrix(true, false);
+    raycaster.setFromCamera(pointer, camera);
+    return raycaster.intersectObject(front, false).length > 0;
+  }
+
+  function onPointerMove(event) {
+    if (!active || document.hidden || disposed || failed) return;
+    // Re-evaluate on actual input only: a click's camera animation must not
+    // repeatedly blur / refocus a stationary pointer as images pass beneath it.
+    lastPointer = { clientX: event.clientX, clientY: event.clientY };
+    setFocused(hitsFront(event));
+  }
+
   function onPointerLeave() {
-    pointerTarget.set(0, 0);
-    requestDraw();
+    lastPointer = null;
+    setFocused(false);
+  }
+
+  function onClick(event) {
+    if (event.button !== 0 || !hitsFront(event)) return;
+    lastPointer = { clientX: event.clientX, clientY: event.clientY };
+    setFocused(true);
+    onNext?.();
   }
 
   function onVisibilityChange() {
     if (document.hidden) {
       stop();
-      trailPoints.length = 0;
-      pointerTarget.set(0, 0);
+      lastPointer = null;
+      setFocused(false);
+      focusScale = 1;
     } else requestDraw();
   }
 
@@ -232,14 +258,15 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     if (!active || document.hidden) {
       position = nextPosition;
       transition = null;
-      render(performance.now());
+      focusScale = 1;
+      render();
       return;
     }
     transition = {
       from: position,
       to: nextPosition,
       elapsed: 0,
-      duration: Math.min(900, 720 + Math.abs(nextPosition - position) * 60),
+      duration: transitionDuration(nextPosition - position),
     };
     requestDraw();
   }
@@ -249,8 +276,11 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     if (active) requestDraw();
     else {
       stop();
-      trailPoints.length = 0;
-      pointerTarget.set(0, 0);
+      lastPointer = null;
+      const wasFocused = focused;
+      setFocused(false);
+      focusScale = 1;
+      if (wasFocused && ready && !disposed && !failed && !document.hidden) render();
     }
   }
 
@@ -260,14 +290,18 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     stop();
     resizeObserver?.disconnect();
     container?.removeEventListener('pointermove', onPointerMove);
+    container?.removeEventListener('pointerenter', onPointerMove);
     container?.removeEventListener('pointerleave', onPointerLeave);
+    container?.removeEventListener('click', onClick);
     document.removeEventListener('visibilitychange', onVisibilityChange);
     canvas.removeEventListener('webglcontextlost', onContextLost);
     window.removeEventListener('resize', resize);
     planes.forEach((plane) => plane.material.dispose());
     geometry.dispose();
-    trailGeometry.dispose();
-    trailMaterial.dispose();
+    // Unmount cleanup is intentionally silent; React owns the retiring view.
+    focused = false;
+    lastPointer = null;
+    canvas.style.cursor = originalCursor;
     textures.forEach((texture) => texture.dispose());
     textures.clear();
     scene.clear();
@@ -279,7 +313,8 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     }
   }
 
-  const service = { select, setActive, resize, dispose };
+  const service = { select, setActive, setSettings, resize, dispose };
+  setSettings(settings);
   try {
     if (!container || !items.length) throw new Error('首页纵深照片画廊缺少容器或照片。');
     renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -288,7 +323,9 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     renderer.autoClear = false;
     canvas.addEventListener('webglcontextlost', onContextLost);
     container.addEventListener('pointermove', onPointerMove, { passive: true });
+    container.addEventListener('pointerenter', onPointerMove, { passive: true });
     container.addEventListener('pointerleave', onPointerLeave, { passive: true });
+    container.addEventListener('click', onClick);
     document.addEventListener('visibilitychange', onVisibilityChange);
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(resize);
@@ -328,7 +365,7 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError }) {
     ready = true;
     resize();
     // Draw before revealing the canvas, including when the view is inactive.
-    render(performance.now());
+    render();
     onReady?.();
     requestDraw();
   }).catch(fail);

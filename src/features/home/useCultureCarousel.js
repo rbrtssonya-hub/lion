@@ -1,22 +1,23 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const INTERVAL = 6000;
-
 function prefersReducedMotion() {
   return typeof window !== 'undefined'
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function useCultureCarousel(count, interval = INTERVAL) {
+export function useCultureCarousel(count, { autoplay = true, interval = 6000, resumeDelay = 3000 } = {}) {
   const [position, setPosition] = useState(0);
   const currentIndex = ((position % count) + count) % count;
-  const [isPlaying, setIsPlaying] = useState(() => !prefersReducedMotion());
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
+  const [isWaiting, setWaiting] = useState(false);
   const [isInView, setInView] = useState(false);
   const [isPageVisible, setPageVisible] = useState(() => typeof document === 'undefined' || document.visibilityState === 'visible');
   const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
-  const isAutoplaying = isPlaying && !reducedMotion && !isHovered && !isFocused && isPageVisible && isInView && count > 1;
+  const isInteracting = isHovered || isFocused;
+  const isAutoplaying = autoplay && !reducedMotion && !isInteracting && !isWaiting && isPageVisible && isInView && count > 1;
+  const playbackStatus = !autoplay ? 'disabled' : reducedMotion ? 'reduced' : !isPageVisible ? 'hidden'
+    : !isInView ? 'offscreen' : isInteracting ? 'focused' : isWaiting ? 'waiting' : 'playing';
 
   const move = useCallback((step) => {
     setPosition((value) => value + step);
@@ -33,13 +34,11 @@ export function useCultureCarousel(count, interval = INTERVAL) {
       return value + distance;
     });
   }, [count]);
-  const toggle = useCallback(() => setIsPlaying((value) => !value), []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const updateMotion = (event) => {
       setReducedMotion(event.matches);
-      if (event.matches) setIsPlaying(false);
     };
     mediaQuery.addEventListener('change', updateMotion);
     return () => mediaQuery.removeEventListener('change', updateMotion);
@@ -52,10 +51,20 @@ export function useCultureCarousel(count, interval = INTERVAL) {
   }, []);
 
   useEffect(() => {
+    if (isInteracting) {
+      setWaiting(true);
+      return undefined;
+    }
+    if (!isWaiting) return undefined;
+    const timer = window.setTimeout(() => setWaiting(false), resumeDelay);
+    return () => window.clearTimeout(timer);
+  }, [isInteracting, isWaiting, resumeDelay]);
+
+  useEffect(() => {
     if (!isAutoplaying) return undefined;
-    const timer = window.setInterval(next, interval);
-    return () => window.clearInterval(timer);
-  }, [interval, isAutoplaying, next]);
+    const timer = window.setTimeout(next, interval);
+    return () => window.clearTimeout(timer);
+  }, [interval, isAutoplaying, next, position]);
 
   return useMemo(() => ({
     currentIndex,
@@ -63,13 +72,13 @@ export function useCultureCarousel(count, interval = INTERVAL) {
     reducedMotion,
     isPageVisible,
     isAutoplaying,
-    isPlaying: isPlaying && !reducedMotion,
+    playbackStatus,
+    isHovered,
     next,
     previous,
     select,
-    toggle,
     setHovered,
     setFocused,
     setInView,
-  }), [currentIndex, position, isPageVisible, isPlaying, isAutoplaying, next, previous, reducedMotion, select, toggle]);
+  }), [currentIndex, position, isPageVisible, isAutoplaying, playbackStatus, isHovered, next, previous, reducedMotion, select]);
 }
