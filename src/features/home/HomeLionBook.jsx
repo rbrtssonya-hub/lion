@@ -1,5 +1,6 @@
 import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
+import LionArchiveOrnament from './LionArchiveOrnament.jsx';
 import '../../styles/lion-book.css';
 
 const LionBookExperience = lazy(() => import('./LionBookExperience.jsx'));
@@ -31,11 +32,12 @@ export default function HomeLionBook() {
   return <section className="lion-book-section" id="homeLionBook" ref={sectionRef} aria-labelledby="lion-book-title">
     <div className="lion-book-inner">
       <header className="lion-book-heading">
-        <div>
+        <div className="lion-book-title-group">
           <p className="lion-book-overline">南风 · 藏卷 <span>LINGNAN HERITAGE CHRONICLE</span></p>
-          <h2 id="lion-book-title">岭南醒狮志<span className="lion-book-seal" aria-hidden="true">狮<br />志</span></h2>
+          <div className="lion-archive-title-line"><h2 id="lion-book-title"><span>岭南</span>醒狮志</h2><LionArchiveOrnament /></div>
+          <div className="lion-archive-tags"><span>狮舞</span><i aria-hidden="true" /><span>鼓韵</span><i aria-hidden="true" /><span>匠心</span></div>
         </div>
-        <div className="lion-book-preface"><p>一狮一鼓，百年传承</p><span>翻一页纸，循一脉鼓声。<br />从瑞兽的想象，读到今日岭南。</span></div>
+        <div className="lion-book-preface"><span className="lion-book-preface-label">循鼓入卷 · 读狮知岭南</span><p>一狮一鼓，百年传承</p><span>翻一页纸，循一脉鼓声。<br />从瑞兽的想象，读到今日岭南。</span></div>
       </header>
       <BookBoundary><Suspense fallback={<BookPlaceholder />}>
         {entered ? <LionBookExperience /> : <BookPlaceholder />}

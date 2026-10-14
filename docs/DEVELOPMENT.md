@@ -21,6 +21,8 @@ npm run preview
 
 ## 代码边界
 
+首页首屏之后的 `.home-archive-scene` 为书册及文化图鉴共用用户醒狮纹样背景，两区透明，不叠加旧米纸底和整页滤镜。资源集中配置为 `homeArchiveBackground`，按文档基址转绝对URL；书页本身和官方引擎不变。标题/正文使用完整系统字体回退，醒狮/云纹装饰复用现有透明狮头及原生SVG，来源见 [背景与文字排版](../source/references/home-archive-background.md)。电脑宽度、900px推开和原交互由 `tests/e2e/home-archive-visual.spec.js` 及既有史册/文化回归覆盖。
+
 | 目录或入口 | 维护内容 |
 | --- | --- |
 | `src/main.jsx` | 挂载 React 与加载全局样式 |

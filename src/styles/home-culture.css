@@ -4,27 +4,17 @@
   padding: clamp(70px, 7vw, 124px) clamp(24px, 6vw, 112px) 48px;
   border-top: 1px solid #d9b67a;
   color: #542b20;
-  background: radial-gradient(ellipse at 6% 10%, rgba(223, 188, 128, .17), transparent 42%), #f4ead9;
+  background: transparent;
   color-scheme: light;
 }
-.home-culture::before {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .4;
-  content: '';
-  background-image: url('/assets/decor/lion-culture-pattern.svg'), repeating-linear-gradient(0deg, transparent 0 3px, rgba(126, 90, 43, .025) 3px 4px);
-  background-position: center, center;
-  background-size: 240px 240px, auto;
-}
-.home-culture-inner { position: relative; max-width: 1390px; margin: 0 auto; }
+.home-culture-inner { position: relative; max-width: 1390px; margin: 0 auto; container-type: inline-size; }
 .home-culture-intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 6vw, 112px); align-items: end; padding-bottom: clamp(54px, 6vw, 100px); border-bottom: 1px solid rgba(137, 89, 45, .27); }
 .home-culture-overline { display: flex; gap: 24px; align-items: center; margin-bottom: 25px; color: #9f3625; font-size: 13px; letter-spacing: .22em; }
 .home-culture-overline span { color: #987248; font: 10px Georgia, serif; letter-spacing: .2em; }
-.home-culture-intro h2 { margin: 0; color: #8c281c; font: 500 clamp(38px, 4vw, 70px)/1.25 'STSong', 'SimSun', '宋体', serif; letter-spacing: .06em; }
+.home-culture-intro h2 { margin: 0; color: #8c281c; font: 500 clamp(36px, 4.4cqw, 64px)/1.3 var(--archive-brush); letter-spacing: .06em; }
 .home-culture-intro-copy { position: relative; max-width: 470px; padding-bottom: 6px; }
-.home-culture-intro-copy p { margin: 0 0 16px; color: #735442; font-size: 15px; line-height: 1.9; }
-.home-culture-intro-copy p:first-child { color: #7c3526; font: 21px/1.7 'STSong', 'SimSun', '宋体', serif; }
+.home-culture-intro-copy p { margin: 0 0 16px; color: #513a2c; font: 17px/1.9 var(--archive-body); }
+.home-culture-intro-copy p:first-child { color: #7c3526; font: 24px/1.7 var(--archive-body); }
 .home-culture-intro-mark { display: inline-block; padding: 5px 8px; border: 1px solid rgba(150, 55, 34, .6); color: #9b3827; font: 12px/1.4 'STSong', 'SimSun', '宋体', serif; letter-spacing: .16em; }
 .home-culture-carousel { --gallery-height: clamp(390px, 34vw, 580px); --gallery-gap: clamp(28px, 3vw, 52px); margin-top: clamp(40px, 4vw, 70px); }
 .home-culture-carousel-stage { position: relative; min-height: calc(var(--gallery-height) + 65px); }
@@ -43,9 +33,9 @@
 .home-culture a:focus-visible { outline: 2px solid #9f3625; outline-offset: 4px; }
 .home-culture-copy { position: relative; min-width: 0; padding: 0 0 35px; pointer-events: auto; }
 .home-culture-eyebrow { position: relative; margin-bottom: 22px; color: #9b7347; font-size: 10px; line-height: 1.6; letter-spacing: .1em; }
-.home-culture-copy h3 { position: relative; margin: 0 0 24px; color: #872b1f; font: 500 clamp(23px, 2vw, 33px)/1.5 'STSong', 'SimSun', '宋体', serif; letter-spacing: .04em; text-wrap: balance; }
-.home-culture-text { margin: 0; color: #765542; font-size: clamp(14px, 1.05vw, 17px); line-height: 2.05; text-align: justify; }
-.home-culture-note { margin: 25px 0 0; padding: 13px 0 0; border-top: 1px solid rgba(158, 118, 69, .25); color: #9f7047; font: 13px/1.8 'STSong', 'SimSun', '宋体', serif; letter-spacing: .03em; }
+.home-culture-copy h3 { position: relative; margin: 0 0 24px; color: #872b1f; font: 500 clamp(24px, 2.5cqw, 35px)/1.5 var(--archive-brush); letter-spacing: .04em; text-wrap: balance; }
+.home-culture-text { margin: 0; color: #513a2c; font: clamp(16px, 1.35cqw, 19px)/1.95 var(--archive-body); text-align: justify; }
+.home-culture-note { margin: 25px 0 0; padding: 13px 0 0; border-top: 1px solid rgba(158, 118, 69, .35); color: #765036; font: 15px/1.8 var(--archive-body); letter-spacing: .03em; }
 .home-culture-sources { display: flex; flex-wrap: wrap; gap: 9px 18px; align-items: center; padding-top: 23px; margin-top: 27px; border-top: 1px solid rgba(137, 89, 45, .27); color: #8f7353; font-size: 10px; line-height: 1.8; }
 .home-culture-sources > span:first-child { color: #9d3928; letter-spacing: .1em; }
 .home-culture-endnote { margin-left: auto; }

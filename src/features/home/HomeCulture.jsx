@@ -3,6 +3,7 @@ import { media } from '../../config/media.js';
 import { homeCultureSources, homeCultureStories } from '../../data/home-culture.js';
 import { useCultureCarousel } from './useCultureCarousel.js';
 import CultureDepthGallery from './CultureDepthGallery.jsx';
+import LionArchiveOrnament from './LionArchiveOrnament.jsx';
 import '../../styles/home-culture.css';
 
 function PhotoCredit({ photo }) {
@@ -123,7 +124,7 @@ export default function HomeCulture({ settings }) {
         <header className="home-culture-intro" data-culture-reveal>
           <div>
             <p className="home-culture-overline">南风 · 狮语 <span>LION CULTURE / ARCHIVE</span></p>
-            <h2 id="home-culture-title">一头醒狮，<br />一方风土。</h2>
+            <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，<br />一方风土。</h2><LionArchiveOrnament /></div>
           </div>
           <div className="home-culture-intro-copy">
             <p>醒狮文化 · 纵深图鉴</p>

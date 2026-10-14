@@ -4,6 +4,7 @@ import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
 import HomeLionBook from './HomeLionBook.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
+import '../../styles/home-archive.css';
 
 export default function HomePage({ onNavigate, settings }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
@@ -43,7 +44,9 @@ export default function HomePage({ onNavigate, settings }) {
     </div>
     <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
   </section>
-  <HomeLionBook />
-  <HomeCulture settings={settings} />
+  <div className="home-archive-scene" style={{ backgroundImage: `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")` }}>
+    <HomeLionBook />
+    <HomeCulture settings={settings} />
+  </div>
   </div>;
 }

@@ -12,6 +12,7 @@ export const assetPaths = {
   navExpressionIcon: 'assets/navigation/expression.png',
   navSettingsIcon: 'assets/navigation/settings.png',
   modelBackground: 'assets/backgrounds/lion-structure-background.png',
+  homeArchiveBackground: 'assets/backgrounds/home-archive-background.png',
   actionBackground: 'assets/backgrounds/lion-action-background.png',
   actionEntryPoster: 'assets/action/action-entry-poster.png',
   actionProbePoster: 'assets/action/action-probe-poster.png',

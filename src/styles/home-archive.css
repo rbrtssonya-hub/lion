@@ -1,0 +1,16 @@
+.home-archive-scene {
+  position: relative;
+  isolation: isolate;
+  background-color: #f5e9d5;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  --archive-brush: 'STXinwei', '华文新魏', 'STXingkai', '华文行楷', 'KaiTi', '楷体', serif;
+  --archive-body: 'STKaiti', 'KaiTi', '楷体', 'STSong', 'SimSun', serif;
+}
+.lion-archive-title-line { display: flex; align-items: center; gap: clamp(12px, 1.5cqw, 22px); min-width: 0; }
+.lion-archive-ornament { display: flex; align-items: center; flex: 0 0 auto; width: clamp(68px, 8cqw, 108px); color: #a87b44; pointer-events: none; user-select: none; }
+.lion-archive-ornament img { display: block; width: 58%; height: auto; filter: drop-shadow(0 3px 4px #88472a18); }
+.lion-archive-ornament svg { display: block; width: 48%; margin-left: -6%; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lion-archive-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: #8c4932; font: 13px/1.6 var(--archive-body); letter-spacing: .14em; }
+.lion-archive-tags i { width: 4px; height: 4px; background: #b1844c; transform: rotate(45deg); }

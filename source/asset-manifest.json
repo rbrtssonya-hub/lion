@@ -1387,6 +1387,48 @@
       "path": "source/reviews/navigation/2026-10-14-session-two-panels/state-details-1366.png",
       "bytes": 1468551,
       "sha256": "6410b9fed67561fe84dd665c347cf1f926a8283e20755ae402b13728adfc4920"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/首页下面的背景.png",
+      "path": "source/public/assets/backgrounds/home-archive-background.png",
+      "bytes": 3405118,
+      "sha256": "122b0e29187be3df663a5ccefe07347ad2d95ef19e78b407212f75730bc1f8ee"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/book-1920.png",
+      "bytes": 2350795,
+      "sha256": "146c3cf929dd22fbb2ab581f430561ecf1cb8cae2cfdde76d8f4756961853608"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/book-1366.png",
+      "bytes": 1328295,
+      "sha256": "944889e6bc1af84f502b3c36ab6dfcdc37bccd6a215515634fdb1a7bae57da71"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/book-2560.png",
+      "bytes": 3477155,
+      "sha256": "5f9e2175754beb51112acee9f61d3ede1a8c0374ea4a741da37c604980564374"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/reading-1920.png",
+      "bytes": 1816393,
+      "sha256": "4a5fe438858e83d58b37be58a94982f271d95d2d71107ed75ccb632c0b6fb838"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/culture-1920.png",
+      "bytes": 2051959,
+      "sha256": "8f160e3326f2ead6252500f372e36c37f2c88f26e45a6a1201c94964fb5bc5c1"
+    },
+    {
+      "from": "playwright:2026-10-14/home-archive-background-production-review",
+      "path": "source/reviews/homepage/2026-10-14-archive-background/settings-push-900.png",
+      "bytes": 1211692,
+      "sha256": "8b6ab5257561f06b6a34542dd2b9a2f8317c459fc98b12322b62e4b435e6e554"
     }
   ]
 }
