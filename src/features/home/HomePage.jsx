@@ -46,7 +46,12 @@ export default function HomePage({ onNavigate, settings }) {
   </section>
   <div className="home-archive-scene" style={{ backgroundImage: `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")` }}>
     <HomeLionBook />
-    <HomeCulture settings={settings} />
+    <div className="home-archive-next">
+      <div className="home-archive-peek" aria-hidden="true">
+        <img src={media.homeArchivePeek} alt="" draggable="false" loading="lazy" width="1536" height="1024" />
+      </div>
+      <HomeCulture settings={settings} />
+    </div>
   </div>
   </div>;
 }

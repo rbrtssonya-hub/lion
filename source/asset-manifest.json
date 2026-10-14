@@ -1390,7 +1390,7 @@
     },
     {
       "from": "F:/数媒竞赛/醒狮素材/首页下面的背景.png",
-      "path": "source/public/assets/backgrounds/home-archive-background.png",
+      "path": "source/design/home-archive/background-v1.png",
       "bytes": 3405118,
       "sha256": "122b0e29187be3df663a5ccefe07347ad2d95ef19e78b407212f75730bc1f8ee"
     },
@@ -1429,6 +1429,48 @@
       "path": "source/reviews/homepage/2026-10-14-archive-background/settings-push-900.png",
       "bytes": 1211692,
       "sha256": "8b6ab5257561f06b6a34542dd2b9a2f8317c459fc98b12322b62e4b435e6e554"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/首页背景最终版.png",
+      "path": "source/public/assets/backgrounds/home-archive-background-final.png",
+      "bytes": 3446671,
+      "sha256": "2266fc404bdb3821715413bd3fda158c9771976df391679193d5adf903421c66"
+    },
+    {
+      "from": "imagegen:exec-ab148310-6a50-4dc9-a532-be6d5d647cbf/nose-corrected-original-divider",
+      "path": "source/public/assets/decor/lion-peeking-divider.png",
+      "bytes": 2392827,
+      "sha256": "61cc43ea9fa347253c2f0edafb69fb73675a02136501049b866601926c665229"
+    },
+    {
+      "from": "playwright:2026-10-15/home-archive-peek-production-review",
+      "path": "source/reviews/homepage/2026-10-15-archive-peek/divider-1024.png",
+      "bytes": 648751,
+      "sha256": "e5336cdf0e3ddd857cec84855dc9e833ec7b7e3c2f19a4924c2faeaa4c70a27e"
+    },
+    {
+      "from": "playwright:2026-10-15/home-archive-peek-production-review",
+      "path": "source/reviews/homepage/2026-10-15-archive-peek/divider-1366.png",
+      "bytes": 831590,
+      "sha256": "bd3ea3ba9f0eb01e68f4f8d1a1ad589f1761c02996c50d54e5870824150500c3"
+    },
+    {
+      "from": "playwright:2026-10-15/home-archive-peek-production-review",
+      "path": "source/reviews/homepage/2026-10-15-archive-peek/divider-1920.png",
+      "bytes": 1544259,
+      "sha256": "8d0c6deb7929b1126a69f5a4afd00ba5665e75df4e767eeffa5c528ebca3c23a"
+    },
+    {
+      "from": "playwright:2026-10-15/home-archive-peek-production-review",
+      "path": "source/reviews/homepage/2026-10-15-archive-peek/divider-2560.png",
+      "bytes": 2376876,
+      "sha256": "7768c14d3c4b8ccf27c1f166f230d33596d0a4c02733a20c11d009f66c295327"
+    },
+    {
+      "from": "playwright:2026-10-15/home-archive-peek-production-review",
+      "path": "source/reviews/homepage/2026-10-15-archive-peek/settings-push-900.png",
+      "bytes": 876502,
+      "sha256": "d7fe141f786728dcdb0a434d9b35f4648590740a2ab5cd7ea46aaaf62b4c876c"
     }
   ]
 }

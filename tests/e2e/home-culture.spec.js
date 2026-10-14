@@ -184,25 +184,38 @@ test('轮播按设置间隔同步照片与文字，鼠标在解读文字内不�
   await expect(carousel.locator('.is-active .home-culture-credit a')).toHaveCount(2);
 });
 
-test('只有最前照片悬停微放大且左右移动稳定，点击一次切下一张', async ({ page }) => {
+test('只有最前照片悬停微放大且左右移动稳定，点击一次切下一张', async ({ page }, testInfo) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   const { carousel, gallery } = await openCulture(page, { carouselAutoplay: false });
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   await page.waitForTimeout(500);
   const canvas = gallery.locator('canvas');
-  const before = await canvas.screenshot();
+  // Isolate the photograph from subpixel resampling of the decorative bitmap.
+  // This affects screenshots only; the live background and input stay intact.
+  const photoScreenshot = () => canvas.screenshot({ style: '.home-archive-scene { background-image: none !important; }' });
+  const before = await photoScreenshot();
   const point = await photoPoint(gallery);
   await page.mouse.move(point.x, point.y);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
   await expect(canvas).toHaveCSS('cursor', 'pointer');
-  await page.waitForTimeout(700);
-  const focused = await canvas.screenshot();
+  let focused;
+  await expect.poll(async () => {
+    const next = await photoScreenshot();
+    const settled = focused?.equals(next) ?? false;
+    focused = next;
+    return settled;
+  }, { intervals: [100], timeout: 5000 }).toBe(true);
   expect(focused.equals(before)).toBe(false);
   await page.mouse.move(point.x - 90, point.y);
   await page.mouse.move(point.x + 90, point.y);
   await page.waitForTimeout(150);
-  expect((await canvas.screenshot()).equals(focused)).toBe(true);
+  const moved = await photoScreenshot();
+  if (!moved.equals(focused)) {
+    await testInfo.attach('focused-photo', { body: focused, contentType: 'image/png' });
+    await testInfo.attach('moved-photo', { body: moved, contentType: 'image/png' });
+  }
+  expect(moved.equals(focused)).toBe(true);
   await page.mouse.click(point.x, point.y);
   await expect(carousel).toHaveAttribute('data-culture-index', '1');
   await page.waitForTimeout(1000);
