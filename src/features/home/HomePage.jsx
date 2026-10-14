@@ -2,11 +2,12 @@ import VideoStage from '../../components/VideoStage.jsx';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
+import HomeLionBook from './HomeLionBook.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 
 export default function HomePage({ onNavigate, settings }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback();
-  const exploreCulture = () => document.querySelector('#homeCulture')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  const exploreCulture = () => document.querySelector('#homeLionBook')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 
   return <div className="home-page" data-intro-active={introActive}>
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
@@ -42,6 +43,7 @@ export default function HomePage({ onNavigate, settings }) {
     </div>
     <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
   </section>
+  <HomeLionBook />
   <HomeCulture settings={settings} />
   </div>;
 }

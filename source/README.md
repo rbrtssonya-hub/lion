@@ -8,6 +8,8 @@
 | `public/assets/intro/` | 当前入场视频与运行海报 | 复制到 `dist/assets/intro/` |
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
 | `public/assets/culture/` | 首页文化图文的四张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
+| `public/assets/lion-book/` | 《岭南醒狮志》七幅透明水彩展开页，AI辅助历史主题示意 | 复制到 `dist/assets/lion-book/` |
+| `public/assets/licenses/` | Codrops及ThreeUI运行许可、ThreeUI共享样式内嵌字体的OFL声明 | 复制到 `dist/assets/licenses/` |
 | `public/assets/fonts/` | 导航毛笔字体WOFF及随部署保留的OFL许可 | 复制到 `dist/assets/fonts/` |
 | `public/assets/backgrounds/` | 用户指定的结构、动作、神态三张PNG背景 | 复制到 `dist/assets/backgrounds/` |
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
@@ -32,7 +34,9 @@
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
-`asset-manifest.json` 目前登记145条二进制素材与审查记录；本轮保持原137条，只新增书法用户原图、透明运行图及6张首页/导航尺寸审查图，来源、编辑提示词与哈希见 [书法素材说明](references/explore-more-calligraphy.md)。此前背景替换保留原129条，仅新增用户3张原图与5张背景审查图，来源与SHA256见 [章节背景说明](references/chapter-backgrounds.md)。此前45张导航图和字体子集保持不变。字体来源与再生成方式见 [毛笔字体说明](fonts/navigation-brush/README.md)，原版权和OFL许可随WOFF部署。原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
+`asset-manifest.json` 当前登记187条二进制素材与审查记录；2026-10-14史册任务保留原177条，只增加7幅运行PNG与3张电脑审查图。七幅内置imagegen插画总13,225,556字节，提示词、实际尺寸和透明边界见 [插画记录](references/lion-book-art-prompts.md)，历史依据、ThreeUI源码与许可见 [史册说明](references/lion-book.md)。审查图在 `reviews/homepage/2026-10-14-lion-book/`。
+
+2026-10-12历史书法任务将清单从137条增至145条，新增书法用户原图、透明运行图及6张首页/导航尺寸审查图，来源、编辑提示词与哈希见 [书法素材说明](references/explore-more-calligraphy.md)。此前背景替换保留原129条，仅新增用户3张原图与5张背景审查图，来源与SHA256见 [章节背景说明](references/chapter-backgrounds.md)。此前45张导航图和字体子集保持不变。字体来源与再生成方式见 [毛笔字体说明](fonts/navigation-brush/README.md)，原版权和OFL许可随WOFF部署。原首页视频已归档到 `video/entry/home-lion-loop-v1.mp4`。运行首页视频来自用户提供的 `E:/数字媒体竞赛/张钧儒/首页/首页.mp4`，原样复制到现有 `home-lion-loop.mp4` 应用路径。文化照片的原始来源、作者和许可见 [文化图文来源](references/home-culture-sources.md)。来源路径、现路径、大小和 SHA256 都需可核对，生成截图使用 `generated:chrome-review/` 标识。`npm test` 检查这些资源是否完整保留；后续主动替换素材时应审核并同步对应记录，保留变更原因。
 
 本轮书法与自适应导航审查图在 `reviews/homepage/2026-10-12-centered-calligraphy/`，覆盖1024、1366、1920、2560、390与推开设置；正式浏览器输出为 `tmp/e2e-calligraphy-responsive-dev-final/`、`tmp/e2e-calligraphy-responsive-preview-final/`。此前背景浏览器验收输出在 `tmp/e2e-chapter-backgrounds-dev/`、`tmp/e2e-chapter-backgrounds-preview/`，5张审查图在 `reviews/backgrounds/2026-10-12-chapter-backgrounds/`。此前导航输出为 `tmp/e2e-unified-navigation-dev/`、`tmp/e2e-unified-navigation-preview/`，通过UI图在 `reviews/navigation/2026-10-12-larger-typography/`；首页融合三图仍在 `reviews/homepage/2026-10-12-unified-entry/`。tmp/test-results等运行产物不纳入历史素材快照。
 

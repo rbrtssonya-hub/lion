@@ -1063,6 +1063,66 @@
       "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1920-carousel-settings.png",
       "bytes": 1344511,
       "sha256": "c9629d67fa3a59c723fab5407d2f5e6adcf4e48e9f53b2a1a407eb34c2a44efe"
+    },
+    {
+      "from": "generated:imagegen/lion-book/cover.png",
+      "path": "source/public/assets/lion-book/cover.png",
+      "bytes": 1818502,
+      "sha256": "d14823734098edbc87d60c94a56ff7f46d773d2c4037a346944b1c61222de7d1"
+    },
+    {
+      "from": "generated:imagegen/lion-book/ending.png",
+      "path": "source/public/assets/lion-book/ending.png",
+      "bytes": 1793794,
+      "sha256": "1e38d0a844d879fca441a4acf4d1283bf8d356db9322ba346287781ddfa29132"
+    },
+    {
+      "from": "generated:imagegen/lion-book/formation.png",
+      "path": "source/public/assets/lion-book/formation.png",
+      "bytes": 1949885,
+      "sha256": "f96520c7dc3ae24823d73dd1b7957d4a0e560fa9dd91fe946efd1536970b1552"
+    },
+    {
+      "from": "generated:imagegen/lion-book/martial.png",
+      "path": "source/public/assets/lion-book/martial.png",
+      "bytes": 1963362,
+      "sha256": "8cbb9670b194059085d688623b47cefc48d78d3f73040478772453b54b635b9d"
+    },
+    {
+      "from": "generated:imagegen/lion-book/modern.png",
+      "path": "source/public/assets/lion-book/modern.png",
+      "bytes": 1946279,
+      "sha256": "c67f0f77e5fe9da933e3600bbf6f57518b6a59a1982d244acb8fe1f76c2318bd"
+    },
+    {
+      "from": "generated:imagegen/lion-book/origin.png",
+      "path": "source/public/assets/lion-book/origin.png",
+      "bytes": 1876763,
+      "sha256": "17c11521c523210ae7605bf7cf5d38405b088265648f0ed3f442d8f1e28063d0"
+    },
+    {
+      "from": "generated:imagegen/lion-book/spread.png",
+      "path": "source/public/assets/lion-book/spread.png",
+      "bytes": 1876971,
+      "sha256": "592f8d5f27b4df3b52dc36019aa574965e0dcdd7167c99a28f0680bc258326da"
+    },
+    {
+      "from": "generated:chrome-review/lion-book/book-1366-modern.png",
+      "path": "source/reviews/homepage/2026-10-14-lion-book/book-1366-modern.png",
+      "bytes": 1244011,
+      "sha256": "56b74d0e0f799c813483afb3b323d4fe311d2c6e5672366b137a3b5d3f1c70b7"
+    },
+    {
+      "from": "generated:chrome-review/lion-book/book-1920-cover.png",
+      "path": "source/reviews/homepage/2026-10-14-lion-book/book-1920-cover.png",
+      "bytes": 1476589,
+      "sha256": "ba64878cce4eadbaf8df2c64535373cc72bd7fabbc21149b360202587d33eca2"
+    },
+    {
+      "from": "generated:chrome-review/lion-book/book-1920-curved-leaf.png",
+      "path": "source/reviews/homepage/2026-10-14-lion-book/book-1920-curved-leaf.png",
+      "bytes": 1339494,
+      "sha256": "d0e1122e933e481feead3b9134b6d9cf3706f4a34ac92c51fd8567389fd8577c"
     }
   ]
 }

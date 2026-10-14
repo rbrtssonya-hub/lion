@@ -384,7 +384,7 @@ test('顶部导航随文化内容滚动保持可见，当前首页入口返回�
   await page.mouse.move(960, 400);
   await page.mouse.wheel(0, 900);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
-  await expect(page.locator('#homeCulture')).toBeInViewport();
+  await expect(page.locator('#homeLionBook')).toBeInViewport();
   const header = page.locator('.site-header');
   await expect(header).toBeInViewport();
   expect((await header.boundingBox()).y).toBeCloseTo(0, 0);

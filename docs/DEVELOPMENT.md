@@ -25,7 +25,7 @@ npm run preview
 | --- | --- |
 | `src/main.jsx` | 挂载 React 与加载全局样式 |
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
-| `src/features/home/` | 首页入场/循环视频、文化长页、探索更多跳转与向下文化入口 |
+| `src/features/home/` | 首页入场/循环视频、岭南醒狮史册、文化图鉴、探索更多跳转与向下文化入口 |
 | `src/features/model/` | 整体模型页、同页结构示意与信息面板 |
 | `src/features/chapters/` | 动作待接入页面与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
@@ -40,6 +40,12 @@ npm run preview
 React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
+
+首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
+
+七幅PNG位于 `source/public/assets/lion-book/`，保持原画布归一化书页位置、中央书脊和透明留白；不要把插画满铺或随意裁掉留白，否则会破坏曲面纹理对齐。实际生成尺寸为1494/1495×1052，与原1760/1240比例一致；资源就绪检查验证全部七页解码及比例，不能仅凭iframe加载事件显示成功。古代渊源与南狮形成纪年分开表述，AI插画明确为历史主题示意。新增史册回归在 `tests/e2e/lion-book.spec.js`，修改时覆盖真实拖拽的卷曲/取消/提交、时间线同步、首次加载、错误重试、滚轮、章节退出重入和电脑侧栏推开。
+
+`scripts/lion-book-vite-plugin.mjs` 只包裹锁定版本的官方文档工厂返回值，校验其完整源SHA256；`lionSketchbookFactory` 从 `assetBaseUrl` 的 `#lion-book=通道` 取出通信通道，清除hash后生成本地醒狮文档。普通未标记的Sketchbook实例保持官方原样。Vite明确排除该包的预构建以保证转换生效，不改 `node_modules`；升级包后必须重审工厂及原核心保留测试。React从第一次渲染就声明适配文档，不在加载后争抢srcdoc。官方sandbox维持 `allow-scripts`，父页面严格校验消息来源/通道/类型和索引；宿主监听/计时/滚动RAF在退出时清理，iframe销毁与其pagehide释放引擎。React StrictMode重放effect时不提前dispose仍挂载的书籍。共享样式内嵌字体的OFL声明与MIT许可一并部署。
 
 文化区由 `HomeCulture.jsx`、`home-culture.js` 与 `home-culture.css` 维护，四组图文在首屏之后直接呈现。“探索更多”跳转至结构 `#/model`，底部“向下了解醒狮文化”仍滚动到 `#homeCulture`。滚动入场动效使用 `IntersectionObserver`，减少动态偏好和缺少观察器时直接显示，离页清理观察器与媒体查询监听。图片路径仍集中在媒体配置，署名及许可在每张图注公开展示；依据见 [文化来源说明](../source/references/home-culture-sources.md)。
 

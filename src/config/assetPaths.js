@@ -18,4 +18,13 @@ export const assetPaths = {
   culturePerformance: 'assets/culture/hong-kong-lion-dance.jpg',
   culturePattern: 'assets/decor/lion-culture-pattern.svg',
   cultureDepthLicense: 'assets/licenses/codrops-depth-gallery-LICENSE.txt',
+  lionBookCover: 'assets/lion-book/cover.png',
+  lionBookOrigin: 'assets/lion-book/origin.png',
+  lionBookFormation: 'assets/lion-book/formation.png',
+  lionBookMartial: 'assets/lion-book/martial.png',
+  lionBookSpread: 'assets/lion-book/spread.png',
+  lionBookModern: 'assets/lion-book/modern.png',
+  lionBookEnding: 'assets/lion-book/ending.png',
+  lionBookLicense: 'assets/licenses/threeui-LICENSE.txt',
+  lionBookFontLicense: 'assets/licenses/threeui-FONT-LICENSES.txt',
 };

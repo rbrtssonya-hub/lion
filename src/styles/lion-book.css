@@ -1,0 +1,46 @@
+.lion-book-section { position: relative; padding: clamp(64px, 5.5vw, 104px) clamp(30px, 6vw, 112px) 50px; color: #4f332c; color-scheme: light; background: #f3ecdf; border-top: 1px solid #c8ad82; scroll-margin-top: calc(var(--site-header-height, 100px) + 16px); }
+.lion-book-section::before { position: absolute; inset: 0; pointer-events: none; content: ''; opacity: .35; background-image: repeating-linear-gradient(8deg, #86633b09 0 1px, transparent 1px 5px), repeating-linear-gradient(97deg, #aa784b09 0 1px, transparent 1px 7px); }
+.lion-book-inner { position: relative; max-width: 1390px; margin: auto; container-type: inline-size; }
+.lion-book-heading { display: flex; align-items: end; justify-content: space-between; gap: 48px; }
+.lion-book-overline { display: flex; align-items: center; gap: 24px; margin: 0 0 22px; color: #943429; font-size: 12px; letter-spacing: .24em; }
+.lion-book-overline span { color: #977d60; font: 10px Georgia, serif; letter-spacing: .16em; }
+.lion-book-heading h2 { display: flex; align-items: center; gap: 20px; margin: 0; color: #8f281e; font: 500 clamp(36px, 4.5cqw, 62px)/1.25 'STSong', 'SimSun', serif; letter-spacing: .08em; }
+.lion-book-seal { display: inline-block; padding: 5px 4px 3px 7px; border: 1px solid currentColor; color: #a03c2c; font: 16px/1.05 'STSong', 'SimSun', serif; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px #f3ecdf, inset 0 0 0 3px #a03c2c; }
+.lion-book-preface { padding-bottom: 4px; min-width: 260px; }
+.lion-book-preface p { margin: 0 0 10px; color: #9a4131; font: 21px/1.5 'STSong', 'SimSun', serif; letter-spacing: .1em; }
+.lion-book-preface>span { color: #8b7565; font-size: 13px; line-height: 1.9; letter-spacing: .04em; }
+.lion-book-figure-meta { display: flex; justify-content: space-between; margin: 35px 0 0; padding-top: 20px; border-top: 1px solid #9e6b412b; color: #a08667; font: 10px/1.5 'STSong', 'SimSun', serif; letter-spacing: .18em; }
+.lion-book-figure-meta>span { display: flex; align-items: center; gap: 12px; }
+.lion-book-figure-meta i { width: 24px; height: 1px; background: #b887615c; }
+.lion-book-stage { position: relative; width: 100%; height: clamp(350px, 45cqw, 625px); margin: 0 auto; }
+.lion-book-stage .sketchbook, .lion-book-stage .sketchbook__frame { background: transparent; }
+.lion-book-load { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); color: #9a4131; letter-spacing: .2em; pointer-events: none; }
+.lion-book-error { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f3ecdfeb; }
+.lion-book-error button, .lion-book-placeholder button { padding: 8px 22px; border: 1px solid #9a4131; color: #8f281e; background: transparent; cursor: pointer; }
+.lion-book-placeholder { position: relative; height: clamp(350px, 45cqw, 625px); display: grid; place-items: center; margin-top: 35px; }
+.lion-book-placeholder img { display: block; position: absolute; width: min(100%, 1200px); height: auto; }
+.lion-book-placeholder p { position: absolute; bottom: 5%; display: flex; align-items: center; gap: 20px; color: #8f281e; }
+.lion-book-instructions { display: flex; align-items: center; justify-content: center; gap: 12px; margin: -6px 0 32px; color: #977f6b; font: 12px/1.8 'STSong', 'SimSun', serif; letter-spacing: .12em; }
+.lion-book-instructions>span:first-child { color: #9f4737; font-size: 18px; }
+.lion-book-key-hint { color: #ad9881; font-size: 10px; letter-spacing: .05em; }
+.lion-book-timeline { display: grid; grid-template-columns: .75fr repeat(5, 1fr) .75fr; position: relative; width: min(100%, 1100px); margin: auto; }
+.lion-book-timeline::before { position: absolute; top: 18px; left: 6%; right: 6%; content: ''; height: 1px; background: #c9b393; }
+.lion-book-timeline button { display: flex; align-items: center; flex-direction: column; gap: 8px; position: relative; padding: 0 6px 16px; color: #8e7965; border: 0; background: transparent; cursor: pointer; font: 17px/1.4 'STSong', 'SimSun', serif; }
+.lion-book-timeline button:disabled { cursor: wait; }
+.lion-book-timeline .lion-book-node { display: grid; place-items: center; width: 37px; height: 37px; border: 1px solid transparent; border-radius: 50%; margin-bottom: 3px; background: #f3ecdf; color: #b29370; font: 11px Georgia, 'SimSun', serif; transition: background 180ms, color 180ms, border-color 180ms; }
+.lion-book-timeline button[aria-current] { color: #932c21; }
+.lion-book-timeline button[aria-current] .lion-book-node { background: #9e3327; border-color: #9e3327; color: #fff0da; box-shadow: inset 0 0 0 3px #9e3327, inset 0 0 0 4px #d5ad7c; }
+.lion-book-timeline button:hover:not(:disabled) .lion-book-node { border-color: #a24332; }
+.lion-book-timeline button small { color: #a48c73; font: 10px/1.6 'STSong', 'SimSun', serif; letter-spacing: .04em; }
+.lion-book-timeline .lion-book-endpoint { font-size: 13px; }
+.lion-book-timeline button:focus-visible { outline: 1px solid #a24332; outline-offset: 4px; }
+.lion-book-reading { display: grid; grid-template-columns: .72fr 1.5fr; gap: 48px; width: min(100%, 1100px); margin: 26px auto 0; padding: 25px 0; border-top: 1px solid #a675492a; min-height: 157px; }
+.lion-book-reading-title>p { margin: 0 0 12px; color: #a07c56; font-size: 11px; letter-spacing: .18em; }
+.lion-book-reading-title h3 { margin: 0; color: #8c3327; font: 23px/1.5 'STSong', 'SimSun', serif; }
+.lion-book-reading-copy>p { margin: 0 0 12px; color: #796353; font: 14px/1.95 'STSong', 'SimSun', serif; letter-spacing: .035em; }
+.lion-book-reading-copy>a { color: #a07c56; font-size: 10px; text-decoration: none; }
+.lion-book-reading-copy>a:hover { color: #923323; text-decoration: underline; }
+.lion-book-additional-source { margin-left: 18px; }
+.lion-book-provenance { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #a675491c; color: #ac9680; font-size: 10px; line-height: 1.7; }
+.lion-book-provenance a { color: #9e8263; text-decoration: none; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .lion-book-timeline .lion-book-node { transition: none; } }

@@ -17,6 +17,7 @@
     "memory:check": "python wiki_memory/工具/memory.py check --project ."
   },
   "dependencies": {
+    "@designcodeio/threeui": "1.2.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "three": "0.160.0"
