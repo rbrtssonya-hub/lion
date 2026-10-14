@@ -1093,6 +1093,48 @@
       "path": "source/reviews/chapters/2026-10-14-action-explorer/settings-push-1920.png",
       "bytes": 2318098,
       "sha256": "17f78d98f3ee7e1d14ef6d9c97b61acbf1b0172cc243050ce378d8edc21bcbc9"
+    },
+    {
+      "from": "user-provided:2026-10-14/expression-single-screen-reference",
+      "path": "source/design/expression/single-screen-reference.png",
+      "bytes": 2244411,
+      "sha256": "1e00236057e6636bee9fac2b6e84fb008088ae92f8dea9ae2a83896fd1ff918a"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/details-1440.png",
+      "bytes": 996447,
+      "sha256": "f82e7a7fed757f8f5d9c845104d2c1f20259ef1bf763c33e32169f4a354fcdd3"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/details-1920.png",
+      "bytes": 2318777,
+      "sha256": "fcfad18f224326999f17d4793d06dc3a0523d7c7a046f51e68a806a0e9a1fc2c"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-1024.png",
+      "bytes": 883138,
+      "sha256": "bd6990630986bb018da5bdb367471e6f60e2803a9689aff136186ab0a373c984"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-1920.png",
+      "bytes": 2306240,
+      "sha256": "d27039c3403300d21acf4ed11673c9fc718c7d9efd779c5619ca7c106428ceda"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-2560.png",
+      "bytes": 3678810,
+      "sha256": "2d28afca050869cb4c96363f6a320a7d0059eb5732d528b05b32ed45d76cfa42"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/short-1380-500.png",
+      "bytes": 557626,
+      "sha256": "1c719cfb3ad19983334e5376814db18d38e57f793adcd91e5fcc8a1a03cfb97c"
     }
   ]
 }
