@@ -3,13 +3,24 @@ import { assetPaths } from '../../src/config/assetPaths.js';
 
 const routes = [['entry', '首页'], ['model', '结构'], ['action', '动作'], ['state', '神态']];
 const removedNavigation = '.entry-chapter-nav, .entry-bottom-nav, .entry-bottom-item, .entry-nav-shell, .entry-nav-ribbon, .chapter-rail, .entry-dialog-backdrop';
-const iconRed = 'rgb(212, 56, 42)';
+const iconPaths = [assetPaths.navHomeIcon, assetPaths.navStructureIcon, assetPaths.navActionIcon, assetPaths.navExpressionIcon, assetPaths.navSettingsIcon];
 
-async function expectRedNavigationIcons(page) {
-  await expect.poll(() => page.locator('.site-nav-icon').evaluateAll(icons => icons.map(icon => ({
-    color: getComputedStyle(icon).color,
-    stroke: getComputedStyle(icon.querySelector('svg')).stroke,
-  })))).toEqual(Array.from({ length: 5 }, () => ({ color: iconRed, stroke: iconRed })));
+async function expectUserNavigationIcons(page) {
+  const images = page.locator('.site-nav-icon svg image');
+  await expect(images).toHaveCount(5);
+  for (let index = 0; index < iconPaths.length; index += 1) {
+    expect((await images.nth(index).getAttribute('href')).endsWith(iconPaths[index])).toBe(true);
+  }
+  await expect.poll(() => images.evaluateAll(async elements => {
+    const loaded = await Promise.all(elements.map(async element => {
+      const image = new Image();
+      image.src = element.getAttribute('href');
+      await image.decode();
+      return image.naturalWidth === 1254 && image.naturalHeight === 1254;
+    }));
+    return loaded.every(Boolean) && elements.every(element =>
+      getComputedStyle(element.closest('svg')).filter === 'none' && getComputedStyle(element.closest('svg')).opacity === '1');
+  })).toBe(true);
 }
 
 async function armNativeNavigationSampling(page, duration) {
@@ -21,7 +32,8 @@ async function armNativeNavigationSampling(page, duration) {
           const box = icon.getBoundingClientRect();
           return {
             x: box.left + box.width / 2, y: box.top + box.height / 2,
-            color: getComputedStyle(icon).color,
+            source: icon.querySelector('image').getAttribute('href'),
+            filter: getComputedStyle(icon.querySelector('svg')).filter,
             running: icon.getAnimations().some(animation => animation.playState === 'running'),
           };
         };
@@ -50,7 +62,8 @@ function expectNativeNavigationMotion(motion, duration, direction) {
   })).toBe(true);
   expect(Math.max(...middle.map(sample => Math.abs((sample.x - motion.initial.x) / distance - sample.time / duration)))).toBeGreaterThan(.12);
   expect(Math.max(...motion.samples.map(sample => Math.abs(sample.y - motion.initial.y)))).toBeLessThan(2);
-  expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.color))]).toEqual([iconRed]);
+  expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.source))]).toEqual([motion.initial.source]);
+  expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.filter))]).toEqual(['none']);
 }
 
 async function expectCompleteDesktopNavigation(page) {
@@ -88,9 +101,9 @@ async function expectCompleteDesktopNavigation(page) {
         violations.push(`${label}: button extends beyond the available page`);
       }
       const iconBounds = button.querySelector('.site-nav-icon').getBoundingClientRect();
-      if (getComputedStyle(button.querySelector('.site-nav-icon')).color !== 'rgb(212, 56, 42)'
-        || getComputedStyle(button.querySelector('.site-nav-icon svg')).stroke !== 'rgb(212, 56, 42)') {
-        violations.push(`${label}: the expanded icon lost its red color`);
+      if (!button.querySelector('.site-nav-icon svg image')
+        || getComputedStyle(button.querySelector('.site-nav-icon svg')).filter !== 'none') {
+        violations.push(`${label}: the supplied artwork is missing or filtered`);
       }
       if (bounds.top < headerBounds.top - 1 || bounds.bottom > headerBounds.bottom + 1
         || iconBounds.top < headerBounds.top - 1 || iconBounds.bottom > headerBounds.bottom + 1) {
@@ -168,9 +181,9 @@ async function expectCompactDesktopNavigation(page, route) {
     for (const button of buttons) {
       const bounds = button.getBoundingClientRect();
       const icon = button.querySelector('.site-nav-icon').getBoundingClientRect();
-      if (getComputedStyle(button.querySelector('.site-nav-icon')).color !== 'rgb(212, 56, 42)'
-        || getComputedStyle(button.querySelector('.site-nav-icon svg')).stroke !== 'rgb(212, 56, 42)') {
-        violations.push('A compact icon lost its red color');
+      if (!button.querySelector('.site-nav-icon svg image')
+        || getComputedStyle(button.querySelector('.site-nav-icon svg')).filter !== 'none') {
+        violations.push('A compact icon lost its supplied artwork or color');
       }
       if (bounds.left < previousRight - 1 || bounds.right > nav.right + 1) violations.push('Icon buttons overlap or exceed their group');
       if (icon.width <= 0 || icon.left < bounds.left - 1 || icon.right > bounds.right + 1) violations.push('An icon is hidden or clipped');
@@ -212,8 +225,8 @@ test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除',
     await expect(navigation.locator(`[data-route="${route}"]`)).toHaveAccessibleName(label);
     await expect(navigation.locator('[data-action="settings"]')).toHaveAttribute('aria-expanded', 'false');
     await expect(navigation.locator('.site-nav-icon svg')).toHaveCount(5);
-    await expect(navigation.locator('.site-nav-icon svg path')).toHaveCount(5);
-    await expect(navigation.locator('[data-route="action"] .site-nav-icon svg path')).toHaveAttribute('d', 'M12 15 8 12l2-5 5 1 3-4 5 2 1 6-4 5-7-2ZM14 8h1M10 12h6M20 16l9 8 7 9 4 9-4 2-5-8-7-5-3 4-5-2 4-6-5-5-3 2-7-4 1-4 6 2 1-4M28 24c6 0 8-4 7-8 5 0 5 8 0 12M25 31l-3 9-6 3-2-3 5-3 1-5');
+    await expect(navigation.locator('.site-nav-icon svg path')).toHaveCount(0);
+    await expectUserNavigationIcons(page);
     await expect(navigation.locator('img')).toHaveCount(0);
     await expect(navigation.locator('[data-route="intro"], [data-route="structure"], [data-route="score"]')).toHaveCount(0);
     await expect(page.locator(removedNavigation)).toHaveCount(0);
@@ -255,7 +268,7 @@ test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小�
   expect(typography.loadedFaces).toBeGreaterThan(0);
   expect(typography.items).toHaveLength(5);
   for (const { button, icon, title, helper } of typography.items) {
-    expect(icon.color).toBe(iconRed);
+    expect(icon.width).toBeGreaterThan(0);
     expect(helper.color).toBe('rgb(255, 255, 255)');
     expect(helper.opacity).toBeGreaterThan(0);
     expect(helper.opacity).toBeLessThan(1);
@@ -406,18 +419,18 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
   await expectCompleteDesktopNavigation(page);
   for (const button of await page.locator('.site-nav-item').all()) {
     await button.hover();
-    await expectRedNavigationIcons(page);
+    await expectUserNavigationIcons(page);
   }
   await page.mouse.move(0, 120);
   const icons = await page.locator('.site-nav-icon svg').elementHandles();
-  const paths = await page.locator('.site-nav-icon svg path').evaluateAll(elements => elements.map(element => element.getAttribute('d')));
+  const sources = await page.locator('.site-nav-icon svg image').evaluateAll(elements => elements.map(element => element.getAttribute('href')));
   const motion = await page.evaluate(async duration => {
     const icons = [...document.querySelectorAll('.site-nav-icon')];
     const positions = () => icons.map(icon => {
       const box = icon.getBoundingClientRect();
       return {
         x: box.left + box.width / 2, y: box.top + box.height / 2,
-        color: getComputedStyle(icon).color, stroke: getComputedStyle(icon.querySelector('svg')).stroke,
+        source: icon.querySelector('image').getAttribute('href'), filter: getComputedStyle(icon.querySelector('svg')).filter,
       };
     });
     const initial = positions();
@@ -438,8 +451,10 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
     return { initialX, initialY, initial, samples };
   }, duration);
   expect(motion.samples.length).toBeGreaterThan(15);
-  expect([...new Set([...motion.initial, ...motion.samples.flatMap(sample => sample.positions)]
-    .flatMap(position => [position.color, position.stroke]))]).toEqual([iconRed]);
+  for (const sample of motion.samples) {
+    expect(sample.positions.map(position => position.source)).toEqual(sources);
+    expect(sample.positions.map(position => position.filter)).toEqual(Array(5).fill('none'));
+  }
   const finalX = motion.samples.at(-1).x;
   const distance = finalX - motion.initialX;
   expect(distance).toBeGreaterThan(300);
@@ -461,8 +476,8 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
   }
   await expectCompactDesktopNavigation(page, 'model');
   await page.locator('.site-nav-item[data-route="action"]').hover();
-  await expectRedNavigationIcons(page);
-  expect(await page.locator('.site-nav-icon svg path').evaluateAll(elements => elements.map(element => element.getAttribute('d')))).toEqual(paths);
+  await expectUserNavigationIcons(page);
+  expect(await page.locator('.site-nav-icon svg image').evaluateAll(elements => elements.map(element => element.getAttribute('href')))).toEqual(sources);
   for (let index = 0; index < icons.length; index += 1) {
     expect(await icons[index].evaluate((element, index) => element === document.querySelectorAll('.site-nav-icon svg')[index], index)).toBe(true);
   }
@@ -475,12 +490,12 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
   const beforeSettings = page.url();
   await page.locator('.site-nav-item[data-action="settings"]').click();
   await expect(page.getByRole('region', { name: '开发者参数设置' })).toBeVisible();
-  await expectRedNavigationIcons(page);
+  await expectUserNavigationIcons(page);
   expect(page.url()).toBe(beforeSettings);
   await page.getByRole('button', { name: '关闭开发者参数' }).click();
   await page.locator('.site-nav-item[data-route="entry"]').click();
   await expectCompleteDesktopNavigation(page);
-  await expectRedNavigationIcons(page);
+  await expectUserNavigationIcons(page);
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'expanded');
   await expect.poll(() => page.locator('.site-nav-icon').first().evaluate(icon => icon.getBoundingClientRect().left + icon.getBoundingClientRect().width / 2)).toBeCloseTo(motion.initialX, 0);
 });
@@ -586,7 +601,7 @@ test('1366px电脑在紧凑模式修改字号后返回首页，五个图标的Y�
   expect(motion.initial[0].x - motion.samples.at(-1)[0].x).toBeGreaterThan(300);
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'stacked');
   await expectCompleteDesktopNavigation(page);
-  await expectRedNavigationIcons(page);
+  await expectUserNavigationIcons(page);
 });
 
 test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置侧栏后仍按页面边缘定位', async ({ page }) => {

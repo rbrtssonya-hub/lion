@@ -1063,6 +1063,54 @@
       "path": "source/reviews/homepage/2026-10-14-carousel-focus-settings/desktop-1920-carousel-settings.png",
       "bytes": 1344511,
       "sha256": "c9629d67fa3a59c723fab5407d2f5e6adcf4e48e9f53b2a1a407eb34c2a44efe"
+    },
+    {
+      "from": "用户提供：导航栏图案(1)/导航栏图案.png",
+      "path": "source/public/assets/navigation/home.png",
+      "bytes": 646689,
+      "sha256": "cedee6497ef0e0a02ed3f907ecf14981ae2950078cdbedf704eac6711e7abd99"
+    },
+    {
+      "from": "用户提供：导航栏图案(1)/2.png",
+      "path": "source/public/assets/navigation/structure.png",
+      "bytes": 1267277,
+      "sha256": "3fb9764ee71915e1c2fc3a2a80b81e59366bd77fc2404206b63249ea2c764a20"
+    },
+    {
+      "from": "用户提供：导航栏图案(1)/3.png",
+      "path": "source/public/assets/navigation/action.png",
+      "bytes": 1008107,
+      "sha256": "221553ccde70ed29b39c5ee4ff1c293ab6ec0af5a09c09d21c9f3df827081b16"
+    },
+    {
+      "from": "用户提供：导航栏图案(1)/4.png",
+      "path": "source/public/assets/navigation/expression.png",
+      "bytes": 818617,
+      "sha256": "b1232fda329b44450867457acff3677935c7e2309865931cb06a9fb8a55c00f1"
+    },
+    {
+      "from": "用户提供：导航栏图案(1)/5.png",
+      "path": "source/public/assets/navigation/settings.png",
+      "bytes": 612160,
+      "sha256": "4fdfc5b5bf17c5e14392fddef1a4a3710a325be7636b118999f1d7b929ef2737"
+    },
+    {
+      "from": "Chrome电脑端导航图案验收：desktop-1920-home-header.png",
+      "path": "source/reviews/navigation/2026-10-14-user-icons/desktop-1920-home-header.png",
+      "bytes": 117233,
+      "sha256": "2bc97dfdabfc2a931b2ec911e7752bc4da146cecbf5ee80f55980fa1f04b45d0"
+    },
+    {
+      "from": "Chrome电脑端导航图案验收：desktop-1366-home-header.png",
+      "path": "source/reviews/navigation/2026-10-14-user-icons/desktop-1366-home-header.png",
+      "bytes": 96427,
+      "sha256": "d42b06a49562139bb464023ffaaa3d8ecf5e0c329370149ecd0e762da86afd54"
+    },
+    {
+      "from": "Chrome电脑端导航图案验收：desktop-1920-compact-header.png",
+      "path": "source/reviews/navigation/2026-10-14-user-icons/desktop-1920-compact-header.png",
+      "bytes": 62133,
+      "sha256": "b90ea1fdb1588dd6d074ba3ea6d34e2ba61bd9a17dd7917d111a9589a4aa068e"
     }
   ]
 }
