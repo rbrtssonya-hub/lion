@@ -1021,6 +1021,24 @@
       "path": "source/reviews/chapters/2026-10-14-eight-states-integrated/state-joy-desktop.png",
       "bytes": 2286311,
       "sha256": "fde149fa78e5ab86b7e0e594fde44ad362c9bcc9c03dd2688a04f97393add9b4"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14: desktop-1920-craft.png",
+      "path": "source/reviews/homepage/2026-10-14-depth-gallery/desktop-1920-craft.png",
+      "bytes": 1034674,
+      "sha256": "a6169c150eec7f6b4ca5b854369a7ad9c3156eed01f4432859839886d59bfc3d"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14: desktop-1366-tradition.png",
+      "path": "source/reviews/homepage/2026-10-14-depth-gallery/desktop-1366-tradition.png",
+      "bytes": 603317,
+      "sha256": "04c10ce083bad01a1ea4b7fff14e83320813f7d7f341542425e194e126eb96a7"
+    },
+    {
+      "from": "Chrome desktop review 2026-10-14: desktop-900-available-settings.png",
+      "path": "source/reviews/homepage/2026-10-14-depth-gallery/desktop-900-available-settings.png",
+      "bytes": 672362,
+      "sha256": "9f9b433a2635ad689aa59135af1251822ddf683642af449735337111337b4747"
     }
   ]
 }

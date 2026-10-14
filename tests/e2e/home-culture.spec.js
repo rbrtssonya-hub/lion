@@ -109,11 +109,129 @@ test('首页文化图鉴会同步轮播图片、文字、署名与进度', async
   await expect(carousel.getByRole('button', { name: '上一项' })).toBeVisible();
   await expect(carousel.getByRole('button', { name: '暂停自动播放' })).toBeVisible();
 
+  await carousel.locator('.home-culture-carousel').scrollIntoViewIfNeeded();
+  await page.mouse.move(960, 20);
+
   await expect.poll(() => carousel.locator('[data-culture-slide].is-active').getAttribute('data-culture-id'), { timeout: 9_000 }).toBe('lion-head-craft');
   await expect(carousel.locator('[data-culture-slide].is-active .home-culture-title')).toHaveText('一扎一画，狮有了神采');
   await expect(carousel.locator('.home-culture-progress > span:first-child')).toHaveText('02 / 04');
   await expect(carousel.locator('[data-culture-slide].is-active .home-culture-credit a')).toHaveCount(2);
   await expect(carousel.locator('[data-culture-slide].is-active .home-culture-photo')).toHaveAttribute('alt', /狮头/);
+});
+
+test('纵深照片保留实际画面、首尾循环和局部键盘控制，滚轮仍能离开图鉴', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.addInitScript(() => sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'));
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  const gallery = carousel.locator('.culture-depth-gallery');
+  await gallery.scrollIntoViewIfNeeded();
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  await carousel.getByRole('button', { name: '暂停自动播放' }).click();
+  await expect(carousel.locator('canvas')).toHaveCount(1);
+  const photoPixels = await gallery.locator('canvas').evaluate(canvas => new Promise(resolve => {
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+    let attempts = 0;
+    const sample = () => {
+      const pixels = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+      gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+      let visible = 0;
+      let rear = 0;
+      for (let y = 0; y < gl.drawingBufferHeight; y += 4) {
+        for (let x = 0; x < gl.drawingBufferWidth; x += 4) {
+          if (pixels[(y * gl.drawingBufferWidth + x) * 4 + 3] > 8) {
+            visible++;
+            if (x > gl.drawingBufferWidth * .82) rear++;
+          }
+        }
+      }
+      if (visible > 10_000 || attempts++ > 90) resolve({ visible, rear });
+      else requestAnimationFrame(sample);
+    };
+    const bounds = canvas.getBoundingClientRect();
+    canvas.parentElement.dispatchEvent(new PointerEvent('pointermove', { clientX: bounds.left + 30, clientY: bounds.top + 50 }));
+    requestAnimationFrame(sample);
+  }));
+  expect(photoPixels.visible).toBeGreaterThan(10_000);
+  expect(photoPixels.rear).toBeGreaterThan(100);
+  await carousel.getByRole('button', { name: '上一项' }).click();
+  await expect(carousel).toHaveAttribute('data-culture-index', '3');
+  await expect(carousel.locator('.is-active .home-culture-title')).toHaveText('两个人，一头狮，一份默契');
+  await carousel.getByRole('button', { name: '下一项' }).click();
+  await expect(carousel).toHaveAttribute('data-culture-index', '0');
+  await carousel.getByRole('tab', { name: /第 1 项/ }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(carousel).toHaveAttribute('data-culture-index', '1');
+  await page.keyboard.press('End');
+  await expect(carousel).toHaveAttribute('data-culture-index', '3');
+  await page.keyboard.press('Home');
+  await expect(carousel).toHaveAttribute('data-culture-index', '0');
+  const box = await gallery.boundingBox();
+  await page.mouse.move(box.x + box.width * .5, box.y + box.height * .5);
+  const before = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, -230);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(before - 80);
+  await expect(carousel).toHaveAttribute('data-culture-index', '0');
+  expect(errors).toEqual([]);
+});
+
+test('WebGL不可用时保留照片、署名与手动轮播', async ({ page }) => {
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      if (/webgl/.test(type)) return null;
+      return getContext.call(this, type, ...args);
+    };
+  });
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  const gallery = carousel.locator('.culture-depth-gallery');
+  await gallery.scrollIntoViewIfNeeded();
+  await expect(gallery).toHaveAttribute('data-depth-state', 'fallback');
+  await expect(carousel.locator('.is-active .home-culture-photo')).toBeVisible();
+  await carousel.getByRole('button', { name: '下一项' }).click();
+  await expect(carousel.locator('.is-active .home-culture-photo')).toHaveAttribute('alt', /狮头/);
+  await expect(carousel.locator('.is-active .home-culture-credit a')).toHaveCount(2);
+  expect(errors).toEqual([]);
+});
+
+test('纵深画廊随电脑窗口调整，动态偏好变化及离页重入能释放画布', async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'));
+  await page.goto('/');
+  const carousel = page.locator('#homeCulture');
+  const gallery = carousel.locator('.culture-depth-gallery');
+  await gallery.scrollIntoViewIfNeeded();
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  for (const [width, height] of [[1366, 768], [1920, 1080], [2560, 1440]]) {
+    await page.setViewportSize({ width, height });
+    await gallery.scrollIntoViewIfNeeded();
+    await expect.poll(() => gallery.locator('canvas').evaluate(canvas => Math.abs(canvas.width / Math.min(devicePixelRatio, 1.75) - canvas.clientWidth) < 2)).toBe(true);
+    const bounds = await carousel.locator('.is-active').evaluate(slide => {
+      const canvas = slide.parentElement.querySelector('canvas').getBoundingClientRect();
+      const copy = slide.querySelector('.home-culture-copy').getBoundingClientRect();
+      return { imageRight: canvas.right, copyLeft: copy.left, overflow: document.documentElement.scrollWidth > innerWidth };
+    });
+    expect(bounds.imageRight).toBeLessThanOrEqual(bounds.copyLeft);
+    expect(bounds.overflow).toBe(false);
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'static');
+  await expect(carousel.locator('.is-active .home-culture-photo')).toBeVisible();
+  await expect(carousel.getByRole('button', { name: '开始自动播放' })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  const oldCanvas = await gallery.locator('canvas').evaluateHandle(canvas => canvas);
+  await page.getByRole('navigation', { name: '作品章节导航' }).getByRole('button', { name: '动作', exact: true }).click();
+  await expect(page.locator('.culture-depth-canvas')).toHaveCount(0);
+  await expect.poll(() => oldCanvas.evaluate(canvas => !canvas.isConnected && (canvas.getContext('webgl2') || canvas.getContext('webgl')).isContextLost())).toBe(true);
+  await page.getByRole('navigation', { name: '作品章节导航' }).getByRole('button', { name: '首页', exact: true }).click();
+  await gallery.scrollIntoViewIfNeeded();
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  await expect(carousel.locator('canvas')).toHaveCount(1);
 });
 
 test('首页文化图鉴支持手动切换，并在悬停与键盘聚焦时暂停', async ({ page }) => {
@@ -123,6 +241,7 @@ test('首页文化图鉴支持手动切换，并在悬停与键盘聚焦时暂�
   const next = carousel.getByRole('button', { name: '下一项' });
   await next.click();
   await expect(carousel.locator('[data-culture-slide].is-active')).toHaveAttribute('data-culture-id', 'lion-head-craft');
+  await expect(carousel.locator('[aria-live]')).toHaveAttribute('aria-live', 'polite');
   await carousel.getByRole('button', { name: '暂停自动播放' }).click();
   await expect(carousel.getByRole('button', { name: '开始自动播放' })).toBeVisible();
   await next.click();

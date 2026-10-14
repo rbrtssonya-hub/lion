@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { media } from '../../config/media.js';
 import { homeCultureSources, homeCultureStories } from '../../data/home-culture.js';
 import { useCultureCarousel } from './useCultureCarousel.js';
+import CultureDepthGallery from './CultureDepthGallery.jsx';
 import '../../styles/home-culture.css';
 
 function PhotoCredit({ photo }) {
@@ -9,7 +10,7 @@ function PhotoCredit({ photo }) {
     <span className="home-culture-credit">
       摄影：<a href={photo.sourceUrl} target="_blank" rel="noreferrer">{photo.author}</a>
       {' · '}<a href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>
-      <span> · 缩放展示</span>
+      <span> · 等比缩放展示</span>
     </span>
   );
 }
@@ -20,6 +21,7 @@ function CultureSlide({ story, active }) {
       className={`home-culture-slide${active ? ' is-active' : ''}`}
       data-culture-slide
       data-culture-id={story.id}
+      id={`culture-panel-${story.id}`}
       aria-labelledby={`culture-${story.id}`}
       aria-hidden={!active}
       hidden={!active}
@@ -56,6 +58,10 @@ export default function HomeCulture() {
   const sectionRef = useRef(null);
   const {
     currentIndex,
+    position,
+    reducedMotion,
+    isPageVisible,
+    isAutoplaying,
     isPlaying,
     next,
     previous,
@@ -63,12 +69,21 @@ export default function HomeCulture() {
     toggle,
     setHovered,
     setFocused,
+    setInView,
   } = useCultureCarousel(homeCultureStories.length);
   const currentStory = homeCultureStories[currentIndex];
   const handleKeyDown = useCallback((event) => {
-    if (event.key === 'ArrowRight') next();
-    if (event.key === 'ArrowLeft') previous();
-  }, [next, previous]);
+    if (event.altKey || event.ctrlKey || event.metaKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
+    if (event.key === 'ArrowRight') { event.preventDefault(); next(); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); previous(); }
+    if (event.key === 'Home') { event.preventDefault(); select(0); }
+    if (event.key === 'End') { event.preventDefault(); select(homeCultureStories.length - 1); }
+    if (event.target.getAttribute('role') === 'tab') {
+      const count = homeCultureStories.length;
+      const target = { ArrowRight: (currentIndex + 1) % count, ArrowLeft: (currentIndex + count - 1) % count, Home: 0, End: count - 1 }[event.key];
+      if (target !== undefined) event.currentTarget.querySelectorAll('.home-culture-dots [role="tab"]')[target]?.focus();
+    }
+  }, [currentIndex, next, previous, select]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -108,16 +123,18 @@ export default function HomeCulture() {
             <h2 id="home-culture-title">一头醒狮，<br />一方风土。</h2>
           </div>
           <div className="home-culture-intro-copy">
-            <p>醒狮文化自动图鉴</p>
+            <p>醒狮文化 · 纵深图鉴</p>
             <p>从岭南的街巷到远方的节庆，图片与文字同步展开，让一头醒狮背后的风土、工艺、动作与默契逐项显影。</p>
             <span className="home-culture-intro-mark">资料整理 · 四项文化切片</span>
           </div>
         </header>
 
-        <div className="home-culture-carousel" role="region" aria-roledescription="轮播" aria-label="醒狮文化自动图鉴">
-          <div className="home-culture-carousel-stage" aria-live="polite">
+        <div className="home-culture-carousel" role="region" aria-roledescription="轮播" aria-label="醒狮文化纵深图鉴">
+          <div className="home-culture-carousel-stage">
+            <CultureDepthGallery stories={homeCultureStories} currentIndex={currentIndex} position={position} reducedMotion={reducedMotion} isPageVisible={isPageVisible} onVisibilityChange={setInView} />
             {homeCultureStories.map((story, index) => <CultureSlide key={story.id} story={story} active={index === currentIndex} />)}
           </div>
+          <p className="sr-only" aria-live={isAutoplaying ? 'off' : 'polite'} aria-atomic="true">{currentStory.index} / {String(homeCultureStories.length).padStart(2, '0')}：{currentStory.title}</p>
           <div className="home-culture-carousel-controls">
             <div className="home-culture-progress" aria-label={`当前第 ${currentIndex + 1} 项，共 ${homeCultureStories.length} 项`}>
               <span>{String(currentIndex + 1).padStart(2, '0')} / {String(homeCultureStories.length).padStart(2, '0')}</span>
@@ -133,6 +150,8 @@ export default function HomeCulture() {
                     type="button"
                     role="tab"
                     aria-selected={index === currentIndex}
+                    aria-controls={`culture-panel-${story.id}`}
+                    tabIndex={index === currentIndex ? 0 : -1}
                     aria-label={`查看第 ${index + 1} 项：${story.eyebrow.split(' / ')[0]}`}
                     className={index === currentIndex ? 'is-current' : ''}
                     onClick={() => select(index)}

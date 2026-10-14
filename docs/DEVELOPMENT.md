@@ -97,6 +97,8 @@ npm test
 npm run test:e2e -- --grep-invert 手机
 ```
 
+首页文化照片采用局部纵深图鉴：React负责图文/连续序号和6秒轮播，`CultureDepthGallery`进入可视区域后动态载入 `src/services/cultureDepthGallery.js`。透明Three画布仅负责照片透视、平滑推进、视差和短暂光迹，稳定后停止RAF；不拦截页面滚轮，不改变首屏视频。图文、摄影许可和静态图片始终由React维护；减少动态、WebGL/纹理失败或上下文丢失时回退静态照片。修改此区时运行 `tests/e2e/home-culture.spec.js --grep-invert 手机`，覆盖真实绘制、循环、电脑窗口、动态偏好变化、不可用回退与释放重入，并核对 [源码参考与MIT许可](../source/references/home-culture-depth-gallery.md)。
+
 构建后可运行 `npm run test:e2e:preview -- --grep-invert 手机` 回归生产预览；两组命令按当前电脑端约束排除专项手机测试。Python 眼层检查使用 `python -B -m unittest discover -s tests/assets -p 'test_*.py'`；v4素材尚未生成时对应检查会显示 skip，需与通过项分开记录。本轮完整验证结果由当前任务日志记录，下列既有结果仅追溯当时版本。
 
 模型全页绘制的浏览器断言使用真实滚轮及WebGL读像素，检查整体与结构示意状态的模型在旧16:9和当前中央交互区域上下边界外均有实际像素，同时验证默认角落透明、同页共享单canvas、离页释放及重入。2026-10-11历史裁切修正验证见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)。2026-10-12融合首页任务实际完成资产8项（330.6ms）、生产构建（56模块）、开发19项（29.9秒）与生产预览19项（28.7秒）回归；构建仍有既有 `lionScene` 超500kB提示。预览首次18/19源于测试将 `/assets` 与 `./assets` 作字面比较，改用 `new URL` 解析后全量通过，产品未因此修改。实际播放脚本观察入场自然ended一次、首页循环回绕一次、返回/刷新不自动入场及手机四图载入，错误数组为空；结果见 [本轮日志](../wiki_memory/日志/功能添加/2026-10-12-入场首页融合与醒狮文化长页.md)。

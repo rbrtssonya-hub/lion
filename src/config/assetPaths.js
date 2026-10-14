@@ -17,4 +17,5 @@ export const assetPaths = {
   cultureCaiQing: 'assets/culture/lion-cai-qing.jpg',
   culturePerformance: 'assets/culture/hong-kong-lion-dance.jpg',
   culturePattern: 'assets/decor/lion-culture-pattern.svg',
+  cultureDepthLicense: 'assets/licenses/codrops-depth-gallery-LICENSE.txt',
 };
