@@ -3,6 +3,42 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "user-provided:2026-10-14/action-layout-reference",
+      "path": "source/design/action/action-hero-reference.png",
+      "bytes": 3153034,
+      "sha256": "9e4101fc1701bd2f149abf94b680cd6f94922f5b93767644f4572934eb01cf96"
+    },
+    {
+      "from": "user-provided:2026-10-14/action-layout-reference",
+      "path": "source/design/action/action-detail-reference.png",
+      "bytes": 4550979,
+      "sha256": "91398a300c33b7912a1f89ff4fe723f9ee28249758195ce984a8b876e8e3a18c"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-entry-poster.png",
+      "bytes": 2161930,
+      "sha256": "50697a5e3d546f6c39eb139f2faf84c69f9e64be6b8a7713397534f4e651691d"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-probe-poster.png",
+      "bytes": 2121230,
+      "sha256": "51a5f6f64823b384f52680ac91fe4d42c5498c696d708195bb3976dc8e2aece8"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-turn-poster.png",
+      "bytes": 2241116,
+      "sha256": "46ad3cc68afd465e6eba20ee09eaa80d0171e5ee2c6a612db03ef33d7c5c579d"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-settle-poster.png",
+      "bytes": 2100718,
+      "sha256": "581f6c71e0d2a57d5adc332fcbd89e15a21080deb6bfbaf96b07da64b578edfd"
+    },
+    {
       "from": "site/assets/entry/final-home.png",
       "path": "source/design/final-home.png",
       "bytes": 3534016,
@@ -1021,6 +1057,42 @@
       "path": "source/reviews/chapters/2026-10-14-eight-states-integrated/state-joy-desktop.png",
       "bytes": 2286311,
       "sha256": "fde149fa78e5ab86b7e0e594fde44ad362c9bcc9c03dd2688a04f97393add9b4"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/detail-start-1920.png",
+      "bytes": 2317796,
+      "sha256": "e4b10024f4a5de7b52d58b93974b265879757f6d5f4c0628a5311a9e8b482ee9"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1024.png",
+      "bytes": 962933,
+      "sha256": "418f4298a042b2158be5ddf1ed7faf64254a19c2991f9a08e03f5dfcb8d5f406"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1366.png",
+      "bytes": 1363873,
+      "sha256": "7b99ea796fd1ba2052d9928350f821b47b12f453099953ce4dd313b7f49d2f31"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1920.png",
+      "bytes": 2572052,
+      "sha256": "e8f9974594359dbafcda486f9b0030420c626f0d4436f5c6bd36662483eaa2d5"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-2560.png",
+      "bytes": 4168340,
+      "sha256": "dae9a5bd69b1934a55a7b66ad764478c29f3afaea4a83c0670b78200b9602426"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/settings-push-1920.png",
+      "bytes": 2318098,
+      "sha256": "17f78d98f3ee7e1d14ef6d9c97b61acbf1b0172cc243050ce378d8edc21bcbc9"
     }
   ]
 }

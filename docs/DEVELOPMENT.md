@@ -27,7 +27,8 @@ npm run preview
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
 | `src/features/home/` | 首页入场/循环视频、文化长页、探索更多跳转与向下文化入口 |
 | `src/features/model/` | 整体模型页、同页结构示意与信息面板 |
-| `src/features/chapters/` | 动作待接入页面与神态八态交互图鉴 |
+| `src/features/action/` | 动作首屏、四段长页、共享阶段时间轴与独立媒体播放器 |
+| `src/features/chapters/` | 动作/神态挂载入口与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
 | `src/features/navigation/` | 图标展开/向右收拢、曲线变速与动画清理 |
 | `src/components/` | 共用品牌狮头、章节导航、视频舞台、图片标题动效 |
@@ -48,6 +49,18 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；两侧模型档案卡与全页透明canvas保留。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
 
 神态页由 `ExpressionPage.jsx` 与 `src/data/lion-expressions.js` 提供喜、怒、哀、乐、动、静、惊、疑八态图鉴；左侧牌签、狮头层叠过渡、右侧标题/正文及下方神情/动作线索同步。点击、上下按钮、主视觉区域的上下滚轮及聚焦后的方向键/Home/End可切换，首尾循环。原生非被动wheel监听仅绑定主视觉，180ms无后续滚动才开启下一手势，累计36px才触发；忽略横向滚动及Ctrl缩放，离页解绑。区域外正常页面滚动，减少动态偏好仍保留手动功能。布局以 `lion-page` 容器查询适配电脑页面及设置推开后的余宽，既有窄宽回退不作为本轮最终验收目标。白红狮头是参考图经内置imagegen生成的透明提取版本，八态复用同一图片并以姿态/层叠辅助导航，下方局部由CSS取景；页面明确标为AI辅助视觉和真实样本待校核，详见 [八态来源](../source/references/lion-expressions.md)。动作/神态黄色渐变遮罩与卡片底层已去除，动作视频仍待接入。
+
+### 动作四段图鉴
+
+`ChapterPage` 对action挂载独立 `ActionPage`；不再使用旧三栏占位布局。`actionClips.js` 是入场、探步、转身、收势的唯一数据源。首屏左侧16:9媒体、右侧两句简介，以及下方四段左媒体/右简介长页共用选中状态。两条 `ActionTimeline` 共用 `skin="heritage"`，样式与阶段选择分离；后续可换关卡视觉，不把阶段选择当作真实加载百分比。
+
+首屏时间轴只切换内容、不滚动/自动播放；长页时间轴定位到对应段并为顶栏及吸顶目录留空间。程序定位期间锁定选中，到达后在同一滚动位置保留点击目标，真实滚动才恢复视口中部选择；pointer、wheel或滚动键中断时也停止浏览器原生平滑滚动。所有定位保持 `#/action`。减少动态偏好下直接定位、不做缩放过渡。
+
+`ActionVideo` 使用真实HTMLVideoElement，观看入口原位播放并轻放大1.04；播放/暂停、时间、拖动进度、静音、全屏和错误重试由媒体状态驱动。全页最多一个播放意图；离开视口、后台、换源或卸载取消意图和暂停。重复观看是幂等操作，旧play Promise不能暂停更新的播放。全屏豁免仅属于自身播放器，退出后重查可见性；离页断开观察器、文档/窗口事件和RAF/定位计时器。首页 `VideoStage` 不受此实现影响。
+
+当前四条videoKey均为null，不创建空地址请求。四幅海报是用户参考图经内置imagegen辅助提取/扩展的示意，不是正式视频首帧；页面保留“参考示意/视频待接入”。全身图与现有 `media.poster` 哈希一致，复用作错误回退，用户原件未修改。素材与后续视频接入步骤见 [动作来源说明](../source/references/lion-actions.md)。新增视频必须核对内容、画幅、解码、音轨及来源，再登记assetPaths/manifest、填videoKey并替换对应海报。
+
+`tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。
 
 Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以中央交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型越过中央边界的实际像素、面板与导航点击，以及退出后的观察器和图形资源释放。
 

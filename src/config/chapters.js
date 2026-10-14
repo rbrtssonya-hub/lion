@@ -1,4 +1,5 @@
 import { lionExpressions } from '../data/lion-expressions.js';
+import { actionClips } from '../features/action/actionClips.js';
 
 export const chapters = [
   { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南', icon: 'M7 22 24 8l17 14M11 19v21h26V19M20 40V28h8v12M14 23h3M31 23h3M32 14V8h5v10', viewBox: '0 0 48 48' },
@@ -13,8 +14,8 @@ export const chapterContent = {
     index: '03 / 04', kicker: '动作章节 / MOTION', title: '动作',
     lead: '从入场、摆头到收势，动作模块将在时间轴中记录醒狮的节奏变化。',
     module: 'MODULE 03', panelTitle: '动作时间轴',
-    panelText: '专用动作视频待提供，当前不复用入场视频。时间轴先保留入场、展开、收势三个定性节点。',
-    nodes: ['入场', '展开', '收势'],
+    panelText: '四段动作视频待提供，当前不复用首页或入场视频。配图与文字仅为参考示意。',
+    nodes: actionClips.map(({ name }) => name),
   },
   state: {
     index: '04 / 04', kicker: '神态章节 / EXPRESSION', title: '神态',

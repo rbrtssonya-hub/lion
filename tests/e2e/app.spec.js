@@ -285,26 +285,23 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   await page.goto('/#/action');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
   expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
-  await expect(page.locator('.chapter-layout')).toHaveClass(/chapter-layout--three-column/);
-  await expect(page.locator('.chapter-side-panel')).toHaveCount(2);
-  await expect(page.locator('.chapter-main-visual')).toHaveCount(1);
-  await expect(page.locator('#chapterMediaPlaceholder')).toContainText('动作视频待接入');
-  await expect(page.locator('#chapterMediaPlaceholder')).toHaveAttribute('data-media-state', 'pending');
-  await expect(page.locator('#chapterMediaViewport')).toBeVisible();
-  await expect(page.locator('#chapterMediaControls')).toBeVisible();
-  await expect(page.locator('#chapterMediaControls')).toContainText('资料状态 · 待核对');
+  await expect(page.locator('#actionHero')).toBeVisible();
+  await expect(page.locator('.action-clip')).toHaveCount(4);
+  await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
+  await expect(page.locator('#actionHero .action-media-status')).toContainText('视频待接入');
   expect(mediaRequests.some((url) => url.includes('entry-intro.mp4'))).toBe(false);
-  await expect(page.locator('.chapter-timeline')).toHaveClass(/chapter-timeline--horizontal/);
-  await expect(page.locator('.chapter-timeline .chapter-timeline-node strong')).toHaveText(['入场', '展开', '收势']);
-  const desktopNodes = await page.locator('.chapter-timeline-node').evaluateAll((nodes) => nodes.map((node) => {
+  await expect(page.locator('.action-timeline')).toHaveCount(2);
+  await expect(page.locator('[data-placement="hero"] button span')).toHaveText(['入场', '探步', '转身', '收势']);
+  const desktopNodes = await page.locator('[data-placement="hero"] button').evaluateAll((nodes) => nodes.map((node) => {
     const bounds = node.getBoundingClientRect();
     return { x: bounds.x, width: bounds.width };
   }));
-  expect(desktopNodes).toHaveLength(3);
+  expect(desktopNodes).toHaveLength(4);
   expect(desktopNodes.every(({ width }) => width > 0)).toBe(true);
   expect(desktopNodes[0].x).toBeLessThan(desktopNodes[1].x);
   expect(desktopNodes[1].x).toBeLessThan(desktopNodes[2].x);
-  await expect(page.locator('#chapterSourceTag')).toContainText('公开视频样本分析');
+  expect(desktopNodes[2].x).toBeLessThan(desktopNodes[3].x);
+  await expect(page.locator('#chapterEvidence')).toContainText('四段独立视频待接入');
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
 });
 
