@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { createServer } from 'node:http';
 
 async function view(page, locator) {
   await locator.scrollIntoViewIfNeeded();
@@ -54,12 +55,14 @@ test('首次快翻等待书面可见，使用原七页卷曲回到序卷且滚�
   await expect(book).toHaveAttribute('data-book-ready', 'true');
   await page.waitForTimeout(500);
   await expect(book).toHaveAttribute('data-book-intro', 'pending');
+  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBeNull();
   await frame.locator('body').evaluate(() => {
     window.seenBookPages = [idx];
     new MutationObserver(() => window.seenBookPages.push(idx)).observe(document.querySelector('#sbBook'), { childList: true });
   });
   await view(page, page.locator('.lion-book-stage'));
   await expect(book).toHaveAttribute('data-book-intro', 'playing');
+  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBe('1');
   await expect(frame.locator('#sbWrap')).toHaveClass(/intro/);
   await expect(frame.locator('.curl .strip')).toHaveCount(18);
   await expect(book).toHaveAttribute('data-book-intro', 'done');
@@ -70,6 +73,120 @@ test('首次快翻等待书面可见，使用原七页卷曲回到序卷且滚�
   await view(page, page.locator('.lion-book-stage'));
   await page.waitForTimeout(500);
   await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await idle(book, frame, 0);
+});
+
+test('真实首次快翻开始后离页返回和同会话刷新均不重播', async ({ page }) => {
+  let { book, frame } = await open(page, { intro: false });
+  await expect(book).toHaveAttribute('data-book-intro', 'playing');
+  await expect(frame.locator('#sbWrap')).toHaveClass(/intro/);
+  await page.locator('.site-header [data-route="state"]').click();
+  await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
+  await page.locator('.site-brand-capsule').click();
+  await view(page, page.locator('#homeLionBook'));
+  book = page.locator('.lion-book-experience');
+  frame = page.frameLocator('#homeLionBook iframe');
+  await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await view(page, page.locator('.lion-book-stage'));
+  await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await page.waitForTimeout(650);
+  expect(await frame.locator('body').evaluate(() => ({ sequence: riffle, running: introOn }))).toEqual({ sequence: null, running: false });
+  await idle(book, frame, 0);
+
+  await page.reload();
+  await view(page, page.locator('#homeLionBook'));
+  await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await view(page, page.locator('.lion-book-stage'));
+  await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await page.waitForTimeout(650);
+  expect(await frame.locator('body').evaluate(() => ({ sequence: riffle, running: introOn }))).toEqual({ sequence: null, running: false });
+  await idle(book, frame, 0);
+});
+
+test('会话存储不可用时首次快翻仍只在当前页面会话播放一次', async ({ page }) => {
+  await page.addInitScript(() => {
+    const originalGet = Storage.prototype.getItem;
+    const originalSet = Storage.prototype.setItem;
+    Storage.prototype.getItem = function(key) {
+      if (key === 'nanfeng-lion:book-intro-seen:v1') throw new DOMException('Storage disabled', 'SecurityError');
+      return originalGet.call(this, key);
+    };
+    Storage.prototype.setItem = function(key, value) {
+      if (key === 'nanfeng-lion:book-intro-seen:v1') throw new DOMException('Storage disabled', 'SecurityError');
+      return originalSet.call(this, key, value);
+    };
+  });
+  const { book, frame } = await open(page, { intro: false });
+  await expect(book).toHaveAttribute('data-book-intro', 'playing');
+  await page.locator('.site-header [data-route="state"]').click();
+  await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
+  await page.locator('.site-brand-capsule').click();
+  await view(page, page.locator('#homeLionBook'));
+  await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await view(page, page.locator('.lion-book-stage'));
+  await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await page.waitForTimeout(650);
+  expect(await frame.locator('body').evaluate(() => riffle)).toBeNull();
+  await idle(book, frame, 0);
+});
+
+test('书页加载失败不消费首次机会，重新展开成功后才开始快翻', async ({ page, baseURL }) => {
+  let failImage = true;
+  const server = createServer(async (request, response) => {
+    if (failImage && request.url.split('?')[0].endsWith('/assets/lion-book/formation.png')) {
+      response.writeHead(503, { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' });
+      response.end('Unavailable for the first-visit regression');
+      return;
+    }
+    try {
+      const upstream = await fetch(new URL(request.url, baseURL));
+      response.writeHead(upstream.status, { 'Content-Type': upstream.headers.get('content-type') || 'application/octet-stream', 'Cache-Control': 'no-store' });
+      response.end(Buffer.from(await upstream.arrayBuffer()));
+    } catch { response.writeHead(502); response.end(); }
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  try {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
+    await page.goto(`http://127.0.0.1:${server.address().port}/`);
+    await view(page, page.locator('#homeLionBook'));
+    const book = page.locator('.lion-book-experience');
+    const frame = page.frameLocator('#homeLionBook iframe');
+    await expect(book.locator('[role="alert"]')).toBeVisible();
+    await expect(book).toHaveAttribute('data-book-ready', 'false');
+    expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBeNull();
+    expect(await frame.locator('body').evaluate(() => riffle)).toBeNull();
+    failImage = false;
+    await book.getByRole('button', { name: '重新展开' }).click();
+    await expect(book).toHaveAttribute('data-book-ready', 'true');
+    await view(page, page.locator('.lion-book-stage'));
+    await expect(book).toHaveAttribute('data-book-intro', 'playing');
+    expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBe('1');
+    await expect(book).toHaveAttribute('data-book-intro', 'done');
+    await idle(book, frame, 0);
+  } finally {
+    await page.goto('about:blank');
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('减少动态跳过不消费首次机会，手动接管后离页不会补播', async ({ page }) => {
+  const { book, frame } = await open(page, { reduced: true });
+  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBeNull();
+  await view(page, book.locator('.lion-book-timeline'));
+  await book.locator('[data-book-page="origin"]').click();
+  await idle(book, frame, 1);
+  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBe('1');
+  await page.locator('.site-header [data-route="state"]').click();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.locator('.site-brand-capsule').click();
+  await view(page, page.locator('#homeLionBook'));
+  await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await view(page, page.locator('.lion-book-stage'));
+  await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await page.waitForTimeout(650);
+  expect(await frame.locator('body').evaluate(() => riffle)).toBeNull();
   await idle(book, frame, 0);
 });
 

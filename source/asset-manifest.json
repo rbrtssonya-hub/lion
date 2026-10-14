@@ -1333,6 +1333,60 @@
       "path": "source/reviews/integration/2026-10-14-lion-next-merge/home-gallery-1920.png",
       "bytes": 996313,
       "sha256": "e75cad57a388824d9de5928cbc969956128f6c7709b25a080139ec7eea9c45d1"
+    },
+    {
+      "from": "user-provided:2026-10-14/book-and-navigation-adjustments",
+      "path": "source/design/navigation/2026-10-14-two-panels/book-first-open-reference.png",
+      "bytes": 2538668,
+      "sha256": "c0958011c739fcbaf59d9c01764e63f044cef276ed8afa89e7034745529a4d5f"
+    },
+    {
+      "from": "user-provided:2026-10-14/book-and-navigation-adjustments",
+      "path": "source/design/navigation/2026-10-14-two-panels/chapter-navigation-captions-reference.png",
+      "bytes": 88682,
+      "sha256": "04917d85398050ced2eeee2c78721e527b42139234767cd0683fa8fe99e650a8"
+    },
+    {
+      "from": "user-provided:2026-10-14/book-and-navigation-adjustments",
+      "path": "source/design/navigation/2026-10-14-two-panels/chapter-navigation-groups-reference.png",
+      "bytes": 532552,
+      "sha256": "e032d63db41eed9e781b56dbcf9e38da7b93b0a9e55360e67f72ae5b721cdf19"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/action-1920.png",
+      "bytes": 2674352,
+      "sha256": "a25ce39a0254f008e7451623c5224b20284d273211fa1d25dbbc089651feb522"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/home-1920.png",
+      "bytes": 2907223,
+      "sha256": "14748d71434a77b8b418bd450e2495565a526854e44316e9b022f982537447b1"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/model-1920.png",
+      "bytes": 2318451,
+      "sha256": "ce9aa9e2801f53fbba24cae1dd52cad42c33d4dfcbb760e3464dccd41b1dd62e"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/settings-push-1920.png",
+      "bytes": 2147550,
+      "sha256": "ee846395d1998b6df2e4aab77dff877a235ab46f067c24c5bb5e6ecfe599a894"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/state-1920.png",
+      "bytes": 2407326,
+      "sha256": "8579d313cf2b9d318023940ff0eb9008930bfc7a91ea10ffc5c142c72fefae2d"
+    },
+    {
+      "from": "playwright:2026-10-14/session-two-panels-production-review",
+      "path": "source/reviews/navigation/2026-10-14-session-two-panels/state-details-1366.png",
+      "bytes": 1468551,
+      "sha256": "6410b9fed67561fe84dd665c347cf1f926a8283e20755ae402b13728adfc4920"
     }
   ]
 }

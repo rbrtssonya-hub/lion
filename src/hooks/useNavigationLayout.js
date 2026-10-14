@@ -26,6 +26,18 @@ export function useNavigationLayout(headerRef, current, settings) {
       const size = Number.parseFloat(getComputedStyle(element).fontSize);
       return size > 0 ? range.getBoundingClientRect().width / size : 0;
     };
+    const measureCopy = (item, font, helperFont) => {
+      // Visible copy can be in the middle of a compressed return flight.
+      // Measure an untransformed clone so font/resize notifications cannot
+      // change the grid based on the current animation scale.
+      const copy = item.querySelector('.site-nav-copy').cloneNode(true);
+      copy.style.cssText = 'display:flex;position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;width:max-content;transform:none;opacity:1';
+      header.append(copy);
+      const width = textUnits(copy.querySelector('.site-nav-heading strong')) * font
+        + textUnits(copy.querySelector('.site-nav-description')) * helperFont;
+      copy.remove();
+      return width;
+    };
     const update = () => {
       frame = 0;
       if (!active) return;
@@ -45,34 +57,23 @@ export function useNavigationLayout(headerRef, current, settings) {
       const requestedPadding = readPixels(requested, '--brand-padding', 24);
       const density = Math.min(1, width / 1600);
       // Include the button's vertical padding and the header border in the height budget.
-      const icon = Math.min(requestedIcon, Math.max(20, requestedIcon * density * density), requestedHeight - 21);
+      const icon = Math.min(requestedIcon, Math.max(20, requestedIcon * density * density), requestedHeight - 44);
+      const homeOffset = Math.min(readPixels(requested, '--home-brand-offset', 24), Math.max(0, width * .12));
+      write(header, '--navigation-home-brand-offset', `${homeOffset}px`);
       if (current !== 'entry') {
-        // Measure the hidden copy outside the layout so parameter edits also predict
-        // the homepage row correctly, keeping the return flight horizontal.
-        header.dataset.navLayout = 'inline';
-        const items = [...header.querySelectorAll('.site-nav-item')];
-        const totalTextWidth = items.reduce((sum, item) => {
-          const copy = item.querySelector('.site-nav-copy').cloneNode(true);
-          copy.style.cssText = 'display:flex;position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;width:max-content';
-          header.append(copy);
-          const textWidth = textUnits(copy.querySelector('.site-nav-heading strong')) * font
-            + textUnits(copy.querySelector('.site-nav-description')) * helperFont;
-          copy.remove();
-          return sum + textWidth;
-        }, 0);
         const sidePadding = Math.min(requestedPadding, Math.max(8, width * .02));
-        const available = width - 2 * sidePadding - header.querySelector('.site-brand').getBoundingClientRect().width
-          - Math.min(28, width * .011);
-        const fixedWidth = icon + (6 + 8 + 8 + 12) * density;
-        const stacked = font * Math.min(1, (available - fixedWidth * items.length) / totalTextWidth) < Math.min(font, 16);
-        header.dataset.navLayout = stacked ? 'compact-stacked' : 'compact';
         const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
         const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
-        write(header, '--navigation-icon-size', `${icon}px`);
+        const brandWidth = header.querySelector('.site-brand-capsule').getBoundingClientRect().width;
+        const available = width - sidePadding - inset - brandWidth - Math.min(28, width * .011) - 28 - 3 * gap;
+        const compactIcon = Math.max(18, Math.min(icon, available / 4 - 24));
+        header.dataset.navLayout = 'compact';
+        write(header, '--navigation-icon-size', `${compactIcon}px`);
         write(header, '--navigation-compact-gap', `${gap}px`);
         write(header, '--navigation-compact-inset', `${inset}px`);
-        write(header, '--navigation-side-padding', `${Math.min(requestedPadding, Math.max(8, width * .02))}px`);
-        write(shell, '--site-header-height', `${Math.max(stacked ? 116 : 0, requestedHeight)}px`);
+        write(header, '--navigation-copy-shift', `${Math.min(36, Math.max(8, inset - 16))}px`);
+        write(header, '--navigation-side-padding', `${sidePadding}px`);
+        write(shell, '--site-header-height', `${requestedHeight}px`);
         return;
       }
       // Expose the complete text before measuring when leaving the compact layout.
@@ -85,13 +86,11 @@ export function useNavigationLayout(headerRef, current, settings) {
       const headerGap = Math.min(28, width * .011);
       const items = [...header.querySelectorAll('.site-nav-item')];
       // Fit both text sizes together so narrowing the page preserves their hierarchy.
-      const textWidths = items.map(item =>
-        textUnits(item.querySelector('.site-nav-heading strong')) * font
-        + textUnits(item.querySelector('.site-nav-description')) * helperFont);
+      const textWidths = items.map(item => measureCopy(item, font, helperFont));
       const totalTextWidth = textWidths.reduce((sum, value) => sum + value, 0);
       const fixedWidth = icon + headingGap + copyGap + itemGap + 2 * itemPadding;
-      const brandWidth = header.querySelector('.site-brand').getBoundingClientRect().width;
-      let available = width - 2 * sidePadding - brandWidth - headerGap;
+      const brandWidth = header.querySelector('.site-brand-capsule').getBoundingClientRect().width;
+      let available = width - 2 * sidePadding - brandWidth - homeOffset - headerGap;
       let scale = Math.min(1, (available - fixedWidth * items.length) / totalTextWidth);
       const stacked = font * scale < Math.min(font, 16);
       if (stacked) {
@@ -137,5 +136,5 @@ export function useNavigationLayout(headerRef, current, settings) {
       else shell.style.removeProperty('--site-header-height');
     };
   }, [headerRef, current, settings.headerHeight, settings.navFontSize, settings.helperFontSize,
-    settings.navIconSize, settings.brandPadding, settings.compactNavGap, settings.compactNavInset]);
+    settings.navIconSize, settings.brandPadding, settings.homeBrandOffset, settings.compactNavGap, settings.compactNavInset]);
 }

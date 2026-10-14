@@ -76,6 +76,7 @@ function bridgeSource(channelId, pages) {
   let disposed=false, imagesReady=false, ready=false, failure='', lastState='';
   let bookObserver=null, readyObserver=null;
   let intro='pending', introTimer=null, hostVisible=false, windowFocused=true, paused=false;
+  let introAllowed=null, introConsumed=false;
   let pointerId=null;
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const coarse=matchMedia('(max-width: 640px), (pointer: coarse)');
@@ -85,7 +86,7 @@ function bridgeSource(channelId, pages) {
     if(disposed)return;
     if(intro==='playing'&&!introOn)intro='done';
     const state={type:'lion-book:state',index:typeof idx==='number'?idx:0,
-      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure,intro};
+      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure,intro,introConsumed};
     if(failure)state.error=failure;
     const signature=JSON.stringify(state);
     if(force||signature!==lastState){lastState=signature;post(state);}
@@ -116,9 +117,10 @@ function bridgeSource(channelId, pages) {
     drag=null;spring=null;viewActive=false;stopFrame();releasePointer();
     if(turn){idx=next;turn=null;paint();}
   };
-  const cancelIntro=()=>{
+  const cancelIntro=(manual=false)=>{
     clearIntroTimer();
     if(introOn)endIntro();
+    if(manual)introConsumed=true;
     intro='done';paused=false;
   };
   const canPlay=()=>ready&&!disposed&&!failure&&hostVisible&&!document.hidden&&windowFocused;
@@ -129,11 +131,15 @@ function bridgeSource(channelId, pages) {
       clearIntroTimer();stopFrame();paused=true;return;
     }
     if(paused){paused=false;if(spring||viewActive)kick();}
-    if(intro==='pending'&&introTimer===null){
+    if(intro==='pending'&&introAllowed===true&&introTimer===null){
       introTimer=setTimeout(()=>{
         introTimer=null;
         if(!canPlay()||intro!=='pending')return;
-        intro='playing';startIntro();report();
+        if(introAllowed!==true)return;
+        startIntro();
+        if(introOn){intro='playing';introConsumed=true;}
+        else intro='done';
+        report();
       },220);
     }
   }
@@ -142,7 +148,7 @@ function bridgeSource(channelId, pages) {
     // A validated host command is fresh user input there, so it can take over
     // the book without requiring the user to refocus the iframe first.
     windowFocused=true;
-    cancelIntro();settleFlight(true);
+    cancelIntro(true);settleFlight(true);
     if(action==='goTo')goTo(index);
     else step(action==='next'?'next':'prev');
     // Timeline controls can remain visible after the paper leaves its exposure
@@ -168,7 +174,7 @@ function bridgeSource(channelId, pages) {
     // The original full-image zones include transparent image margins. The
     // archive limits their CSS boxes to real paper, and ignores blank space.
     if(!ready||!event.target.closest?.('.sb-zone')){event.stopImmediatePropagation();return;}
-    cancelIntro();settleFlight(true);pointerId=event.pointerId;report();
+    cancelIntro(true);settleFlight(true);pointerId=event.pointerId;report();
   };
   const onPointerUp=(event)=>{
     if(!REDUCED||!drag)return;
@@ -217,6 +223,13 @@ function bridgeSource(channelId, pages) {
     if(!data||data.type!=='lion-book:command'||data.channelId!==channelId)return;
     if(data.action==='dispose'){dispose();return;}
     if(data.action==='sync'){report(true);return;}
+    if(data.action==='intro-policy'&&typeof data.enabled==='boolean'){
+      introAllowed=data.enabled;
+      // Replayed host effects can publish a consumed session while this same
+      // iframe is still playing. Preserve that sequence and its paused spring.
+      if(!introAllowed&&intro==='pending'){clearIntroTimer();intro='done';}
+      updatePlayback();report();return;
+    }
     if(data.action==='visibility'&&typeof data.visible==='boolean'){
       hostVisible=data.visible;
       // The host distinguishes application focus from focus moving between

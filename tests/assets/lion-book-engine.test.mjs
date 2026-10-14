@@ -93,7 +93,7 @@ test('archive data cannot escape its script', () => {
   for (const script of scriptSource(html)) assert.doesNotThrow(() => new Function(script));
 });
 
-function bridgeHarness({ reduced = false, coarse = false } = {}) {
+function bridgeHarness({ reduced = false, coarse = false, introAllowed = true } = {}) {
   const messages = [], images = [], observers = [], cancelled = [], frames = new Map(), timers = new Map();
   let clock = 0, handle = 100;
   function eventTarget() {
@@ -165,6 +165,7 @@ function bridgeHarness({ reduced = false, coarse = false } = {}) {
       callbacks.forEach((callback) => callback(clock));
     }
   };
+  if (typeof introAllowed === 'boolean') command('intro-policy', { enabled: introAllowed });
   return { context, messages, images, observers, cancelled, listeners: windowEvents.listeners, body, book, notify, emit, command,
     motion, documentEvents, frames, timers, captures, advance,
     state: () => messages.filter((message) => message.type === 'lion-book:state').at(-1) };
@@ -266,6 +267,75 @@ async function readyBridge(harness, { visible = true } = {}) {
   harness.notify(harness.body);
   assert.equal(harness.state().ready, true);
 }
+
+test('the sandbox waits for host session eligibility and never consumes an unseen or failed introduction', async () => {
+  const unknown = bridgeHarness({ introAllowed: null });
+  await readyBridge(unknown);
+  unknown.advance(1000);
+  assert.equal(unknown.state().intro, 'pending');
+  assert.equal(unknown.state().introConsumed, false);
+  assert.equal(unknown.context.riffle, null);
+  assert.equal(unknown.timers.size, 0, 'readiness and exposure cannot bypass the host session handshake');
+  unknown.command('intro-policy', { enabled: false }, {});
+  assert.equal(unknown.state().intro, 'pending', 'only the owning parent can grant or deny eligibility');
+  unknown.command('intro-policy', { enabled: false });
+  unknown.advance(1000);
+  assert.equal(unknown.state().intro, 'done');
+  assert.equal(unknown.state().introConsumed, false);
+  assert.equal(unknown.context.riffle, null);
+
+  const unseen = bridgeHarness();
+  await readyBridge(unseen, { visible: false });
+  unseen.advance(1000);
+  assert.equal(unseen.state().introConsumed, false);
+  assert.equal(unseen.context.riffle, null);
+  const failed = bridgeHarness();
+  failed.command('visibility', { visible: true });
+  failed.body.dataset.ready = '1'; failed.notify(failed.body);
+  failed.images[0].onerror();
+  await flushPromises();
+  failed.advance(1000);
+  assert.equal(failed.state().introConsumed, false);
+  assert.equal(failed.context.riffle, null);
+});
+
+test('session consumption begins with the original riffle and repeated host handshakes preserve an active sequence', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.advance(100);
+  assert.equal(harness.state().introConsumed, false, 'the lead-in timer does not consume the first visit');
+  harness.advance(200);
+  assert.equal(harness.context.introOn, true);
+  assert.equal(harness.state().introConsumed, true);
+  const sequence = harness.context.riffle;
+  harness.command('intro-policy', { enabled: false });
+  harness.command('sync');
+  assert.equal(harness.state().intro, 'playing', 'StrictMode or host re-sync cannot cancel the same playing instance');
+  harness.advance(2500);
+  assert.equal(harness.state().intro, 'done');
+  assert.equal(harness.state().introConsumed, true);
+  assert.equal(harness.context.riffle, sequence);
+  const returned = bridgeHarness({ introAllowed: false });
+  await readyBridge(returned);
+  returned.advance(2500);
+  assert.equal(returned.context.riffle, null, 'a recreated iframe cannot replay a consumed session intro');
+  assert.equal(returned.context.idx, 0);
+});
+
+test('reduced motion alone does not consume eligibility, while a ready manual takeover does', async () => {
+  const reduced = bridgeHarness({ reduced: true });
+  await readyBridge(reduced);
+  assert.equal(reduced.state().intro, 'done');
+  assert.equal(reduced.state().introConsumed, false);
+  reduced.command('next');
+  assert.equal(reduced.state().introConsumed, true, 'deliberate paper reading supersedes the automatic first visit');
+  const pending = bridgeHarness();
+  await readyBridge(pending);
+  pending.command('goTo', { index: 3 });
+  assert.equal(pending.state().introConsumed, true);
+  assert.equal(pending.state().intro, 'done');
+  assert.equal(pending.context.riffle, null);
+});
 
 test('original seven-page riffle waits for readiness and visible exposure, then runs once and returns to the cover', async () => {
   const harness = bridgeHarness();

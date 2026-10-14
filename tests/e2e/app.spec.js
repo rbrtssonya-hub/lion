@@ -3,6 +3,35 @@ import { assetPaths } from '../../src/config/assetPaths.js';
 
 const routeButton = (page, route) => page.locator(`.site-header .site-navigation .site-nav-item[data-route="${route}"]`);
 
+async function expectDecodedBackground(page, locator, assetPath, property = 'background-image') {
+  const decoded = await locator.evaluate(async (element, property) => {
+    const background = getComputedStyle(element).getPropertyValue(property).trim();
+    const url = background.match(/^url\("([^"]+)"\)$/)?.[1];
+    if (!url) throw new Error(`Expected one background image in ${property}: ${background}`);
+    const image = new Image();
+    image.src = url;
+    await image.decode();
+    return { url: image.currentSrc || image.src, width: image.naturalWidth, height: image.naturalHeight };
+  }, property);
+  expect(decoded.url).toBe(new URL(assetPath, page.url()).href);
+  expect({ width: decoded.width, height: decoded.height }).toEqual({ width: 2048, height: 1152 });
+  return decoded.url;
+}
+
+async function expectPushedChapterBackdrop(page, assetPath) {
+  await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
+  const shell = page.locator('.site-shell');
+  const sidebar = page.locator('#developerSettingsPanel');
+  await expect(sidebar).toBeVisible();
+  await expect(shell).toHaveAttribute('data-settings-layout', 'push');
+  const shellBackground = await expectDecodedBackground(page, shell, assetPath);
+  // The sidebar's translucent material looks through to the full-page shell;
+  // its inherited backdrop URL must resolve to that same decoded chapter PNG.
+  const sidebarBackdrop = await expectDecodedBackground(page, sidebar, assetPath, '--settings-backdrop-image');
+  expect(sidebarBackdrop).toBe(shellBackground);
+  await sidebar.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+}
+
 async function sampleModelPixels(page) {
   return page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
     const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
@@ -125,7 +154,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
   await page.goBack();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
-  await routeButton(page, 'entry').click();
+  await page.locator('.site-brand-capsule').click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   expect(errors).toEqual([]);
   expect(failedResources).toEqual([]);
@@ -141,7 +170,7 @@ test('入场仅首次自动播放，返回与刷新保留循环背景，支持�
   await expect(page.locator('#introVideo')).toHaveCount(0);
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStage')).toBeVisible();
-  await routeButton(page, 'entry').click();
+  await page.locator('.site-brand-capsule').click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await page.getByRole('button', { name: '重播入场', exact: true }).click();
   await expect(page.locator('#introVideo')).toBeVisible();
@@ -169,14 +198,15 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await expect(page.locator('#structureDepthValue')).toHaveText('65%');
   await page.locator('#hotspotList [data-id="mouth"]').click();
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('structure-mobile.png'), fullPage: true });
-  await expect(page.locator('.site-header .site-navigation .site-nav-item[data-route]')).toHaveCount(4);
-  for (const route of ['entry', 'model', 'action', 'state']) await expect(routeButton(page, route)).toBeInViewport();
+  await expect(page.locator('.site-header .site-navigation .site-nav-item[data-route]:visible')).toHaveCount(3);
+  for (const route of ['model', 'action', 'state']) await expect(routeButton(page, route)).toBeInViewport();
+  await expect(page.locator('.site-brand-capsule')).toBeInViewport();
   await routeButton(page, 'action').click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await routeButton(page, 'entry').click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
+  await page.locator('.site-brand-capsule').click();
   await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
 });
 
@@ -229,6 +259,7 @@ test('整体及同页结构示意透明融入指定背景，展示区没有内�
     });
     expect(presentation.stage).toBe('none');
     expect(presentation.pageBackground).toContain(assetPaths.modelBackground);
+    await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.modelBackground);
     expect(presentation.frameColor).toBe('rgba(0, 0, 0, 0)');
     expect(presentation.frameImage).toBe('none');
     expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
@@ -247,6 +278,7 @@ test('整体及同页结构示意透明融入指定背景，展示区没有内�
     expect(pixels.modelPixels).toBeGreaterThan(100);
     expect(pixels.cornerPixels).toBe(0);
   }
+  await expectPushedChapterBackdrop(page, assetPaths.modelBackground);
 });
 
 test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
@@ -285,6 +317,7 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   await page.goto('/#/action');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
   expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
+  await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.actionBackground);
   await expect(page.locator('#actionHero')).toBeVisible();
   await expect(page.locator('.action-clip')).toHaveCount(4);
   await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
@@ -303,17 +336,20 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   expect(desktopNodes[2].x).toBeLessThan(desktopNodes[3].x);
   await expect(page.locator('#chapterEvidence')).toContainText('四段独立视频待接入');
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
+  await expectPushedChapterBackdrop(page, assetPaths.actionBackground);
 });
 
 test('神态章节展示八态图鉴且保留样本待校核说明', async ({ page }) => {
   await page.goto('/#/state');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'state');
   expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
+  await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.stateBackground);
   await expect(page.getByRole('navigation', { name: '醒狮八态' }).getByRole('button')).toHaveCount(8);
   await expect(page.locator('#expressionObservation')).toBeVisible();
   await expect(page.locator('#chapterEvidence')).toContainText('等待真实图片/视频样本校核');
   await expect(page.locator('[data-quantified-result]')).toHaveCount(0);
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
+  await expectPushedChapterBackdrop(page, assetPaths.stateBackground);
 });
 
 test('模型页复用全局品牌与章节导航并高亮当前章节', async ({ page }) => {
@@ -327,12 +363,17 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect(header.locator('.site-navigation img')).toHaveCount(0);
   await expect(header.locator('.site-navigation')).toBeVisible();
-  await expect(header.locator('.site-nav-item[data-route]')).toHaveCount(4);
+  await expect(header.locator('.site-nav-item[data-route]:visible')).toHaveCount(3);
+  await expect(header.locator('.site-brand-capsule')).toHaveAccessibleName('南风有狮，返回首页');
   await expect(page.locator('.model-header .site-navigation, .model-header .site-brand')).toHaveCount(0);
   await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
   await expect(routeButton(page, 'model')).toHaveAttribute('aria-current', 'page');
   await expect(routeButton(page, 'model')).toHaveAccessibleName('结构');
-  await expect(routeButton(page, 'model').locator('.site-nav-copy')).toBeHidden();
+  const copy = routeButton(page, 'model').locator('.site-nav-copy');
+  await expect(copy).toHaveCSS('opacity', '0');
+  await expect(copy).toHaveAttribute('aria-hidden', 'true');
+  await expect(copy).toHaveCSS('pointer-events', 'none');
+  await expect(routeButton(page, 'model').locator('.site-nav-short-label')).toBeVisible();
   const settings = header.getByRole('button', { name: '打开开发者参数设置', exact: true });
   await expect(settings).toBeVisible();
   await expect(settings).toHaveAttribute('aria-expanded', 'false');
@@ -387,7 +428,7 @@ test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出�
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
   await expect(page.locator('#structureDepthValue')).toHaveText('18%');
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
-  await routeButton(page, 'entry').click();
+  await page.locator('.site-brand-capsule').click();
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
   expect(await canvas.evaluate((element) => element.isConnected)).toBe(false);
   await expect.poll(() => canvas.evaluate((element) => {
@@ -405,7 +446,7 @@ test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   expect(await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);
 });
 
@@ -415,7 +456,7 @@ test('快速离开载入中的模型时取消请求，重新进入只有一个ca
   await page.route('**/assets/models/lion-overall.glb', (route) => route.abort('aborted'));
   await page.goto('/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
-  await routeButton(page, 'entry').click();
+  await page.locator('.site-brand-capsule').click();
   await page.unroute('**/assets/models/lion-overall.glb');
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });

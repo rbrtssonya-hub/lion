@@ -44,7 +44,7 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
-书本容器至少60%可见、七图与引擎就绪并处于前台后，桥接延迟220ms启动官方七页快翻一次，最终回序卷；滚出视野暂停并保留进度，手动操作接管，减少动态偏好跳过开场。桥接统一收敛时间线/键盘与旧动画的交接，取消失焦、尺寸变化或指针中断中的未提交拖拽，运行中响应减少动态变化。真实纸面之外的透明区域不接收翻页。书下独立三层投影及照片背景氛围均在自身边界前淡出，避免嵌入盒子裁切形成矩形硬边；不通过扩大iframe覆盖正文或时间线。
+书本容器至少60%可见、七图与引擎就绪并处于前台后，桥接延迟220ms启动官方七页快翻，最终回序卷。快翻资格由宿主通过 `intro-policy` 提供，只有实际开始或用户主动接管才写入独立sessionStorage键 `nanfeng-lion:book-intro-seen:v1`；返回首页、同会话刷新与新iframe不重播，未看见/加载失败不提前消费。存储不可用时模块内存保证当前页面跨路由不重复，不能跨整页刷新保存。滚出视野仍暂停保留进度，减少动态跳过开场；StrictMode重复握手不打断已开始的同一序列。桥接收敛时间线/键盘交接，取消失焦、尺寸变化或指针中断中的未提交拖拽。真实纸面之外不接收翻页；书下投影及照片氛围在自身边界前淡出，保持原曲面/物理引擎。
 
 七幅PNG位于 `source/public/assets/lion-book/`，保持原画布归一化书页位置、中央书脊和透明留白；不要把插画满铺或随意裁掉留白，否则会破坏曲面纹理对齐。实际生成尺寸为1494/1495×1052，与原1760/1240比例一致；资源就绪检查验证全部七页解码及比例，不能仅凭iframe加载事件显示成功。古代渊源与南狮形成纪年分开表述，AI插画明确为历史主题示意。新增史册回归在 `tests/e2e/lion-book.spec.js`，修改时覆盖真实拖拽的卷曲/取消/提交、时间线同步、首次加载、错误重试、滚轮、章节退出重入和电脑侧栏推开。
 
@@ -78,11 +78,11 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
-`ChapterNav` 的第五项是设置开关，不增加Hash路由。首页五项保留完整标题与辅助文字；进入结构、动作或神态后仅显示同一组五个用户PNG图案，收拢到顶栏右侧，返回首页重新展开。`NavigationIcon`经assetPaths/media载入原1254×1254 RGBA，使用chapters.js的navigationIcons配置viewBox对透明留白取景，保留金白配色和比例；图案无颜色滤镜。紧凑导航以当前图案外层的 `::after` 红色横线标记章节，图案节点在导航动画中保持同一个实例，可访问名称与 `aria-current`由按钮提供。素材对应与取景参数见[导航图案说明](../source/references/navigation-user-icons.md)。
+首页仍为五项完整文字顶栏；章节页顶栏容器透明，改为左侧品牌首页按钮与右侧结构/动作/神态/设置四项两块红色导航。`NavigationSurface` 用CSS材质、切角细边及SVG低对比云纹包住各组内容；原首页图案DOM只参与退场后隐藏，返回由品牌按钮提供。图案和高亮红线下保留普通sans标题，原标题/辅助文字仍在DOM用于过渡，但紧凑时opacity0、aria-hidden且不可交互。`NavigationIcon`继续载入用户1254×1254金白透明PNG与原viewBox，不改变字节、颜色或节点实例。素材与新设计对应见[原图案说明](../source/references/navigation-user-icons.md)、[分块导航参考](../source/references/navigation-two-panels.md)。
 
-`useNavigationMotion` 在导航或CTA操作前记录图标实际横坐标，布局切换后通过FLIP和Web Animations API的 `translateX` 补间水平运动，不复制图标或运行资产。快速再次导航从当前动画位置接续；原生hash/history切换由useChapterRoute在同一hashchange回调内先捕获、再更新React路由，避免依赖多个监听器的调用顺序。默认720ms，可调200–1600ms、步长10ms；曲线为平滑进出 `smooth`、快速收拢 `swift`、柔和缓出 `soft` 三种cubic-bezier。收拢图标间距默认14px（4–36px），右侧留白默认48px（16–160px），实际值随电脑页面可用宽度限制。宽度或相关参数变化、减少动态偏好开启和卸载时取消动画；动画结束后移除 `will-change` 并取消填充效果，卸载清理观察器与事件监听。
+`useNavigationMotion` 捕获实际合成后的symbol/品牌/copy位置；布局更新后用WAAPI补间到最终位置，快速导航从正在显示的位置接续。图案与普通标题在symbol内同步移动；原标题/辅助文案整组右移、水平压缩并淡出，返回反向展开/渐显。品牌章节固定落位，首页额外右移默认24px，在动画页可调0–160px；既有品牌留白仍决定基准位置。默认720ms、200–1600/10ms步长与三条曲线保留，紧凑间距14px/4–36与右留白48px/16–160保留，实际受电脑余宽限制。原生hash/history仍先捕获后更新route；真实宽度/参数变化、减弱动态及卸载取消并清理will-change/监听/观察器。html采用 `scrollbar-gutter: stable`，避免首页长页到神态单屏的滚动条消失改变宽度、误取消刚开始的动画。新回归显示经典滚动条并测中间坐标、缩放/透明度及自然完成。
 
-`DeveloperSettingsPanel` 贴右覆盖完整视口高度，按“外观 / 导航 / 动画 / 轮播 / 布局”分为五页；页签采用tablist/tab/tabpanel关联及单一可Tab聚焦页签，左右方向键与Home/End自动切换。每页仅显示相关控件，内容独立滚动，关闭入口与底部恢复默认按钮固定可达。`App` 常挂此组件，关闭时内部返回null，因此重新打开保留当前分类；刷新后从外观页开始，打开状态不持久化。`useDeveloperSettings` 保存 `nanfeng-lion:developer-settings:v1`，校验类型、范围、步长与动画曲线枚举；旧数据补齐动画/位置和轮播默认值，其他参数保持。读写不可用时仍能现场调整。字体参数的 `navigationTypographyVersion: 2` 仅将未升级的旧20默认值一次提升至26，其他字段保持；随后手选20仍保留。历史数据未记录是否手选20，因此无法区别这两种旧值。
+`DeveloperSettingsPanel` 贴右完整视口，仍为外观/导航/动画/轮播/布局五页，保留页签键盘、独立滚动、关闭与恢复默认。面板默认关闭，推开偏好默认开启，顶栏透明度默认20%；已有明确保存的18%/覆盖/零品牌偏移等参数保留，缺少新字段时补默认值，恢复默认采用新值。`homeBrandOffset` 独立于brandPadding，动画页“首页品牌右移距离”可保存/刷新/校验/复原。存储key与字体版本2保持，旧20→26的一次性迁移规则不变；读写失败仍可现场调整，打开状态不持久化。
 
 设置结构只读参考 `E:/Software Development/WebPage`，未修改该工程。页签交互参考 [WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)，代码动画参考 [MDN Element.animate](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) 与 [MDN cubic-bezier](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/cubic-bezier)。
 
@@ -92,7 +92,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。导航标题和辅助文字均为真实字体，设置“导航”页可分别调节首页标题字号（14–28px，默认26px）和辅助字号（10–28px，默认18px），辅助透明度独立调整；导航按两类文字的实际字宽计算栏宽，空间不足时共同缩小并保留设定比例。旧保存参数自动补齐辅助字号，标题偏好保留，刷新和恢复默认沿用现有机制。顶部章节数字已移除；修改导航或品牌文字时检查本地字体子集是否覆盖新字。本轮简称“结构”使用既有字符，未更换运行字体或其他资产。运行检查包含字体和全部审查图的大小及SHA256。
 
-导航适配由 `useNavigationLayout` 统一测量 DOM Range 真实字宽。首页按内容分配五项宽度，电脑端不隐藏或省略辅助文字；字体参数是实际字号上限，图标和间距随可用空间缩小，不足时品牌独立第一行、导航仍完整单行，顶栏最少116px。章节紧凑模式另算图标间距与右侧留白，并测量脱离布局的隐藏文字，保持回首页时展开位置一致。实际顶栏高度写入独立 `--site-header-height` 供正文与拖动边界读取，保存请求 `--header-height` 不变；图标按请求高度减去按钮上下padding与border适配，64px顶栏也不越界。页面ResizeObserver、壳style MutationObserver、字体ready/loadingdone和窗口resize合并单RAF，在卸载时取消观察与监听，ready回调检查active状态。
+导航适配用未动画的离屏copy克隆及DOM Range测真实字宽，避免返回途中字体完成通知把正在压缩的宽度当作排版宽度。首页五项按内容共同缩放，完整单行及字号比例保持；不足时品牌独立第一行、顶栏至少116px。章节四项保持单行紧凑组，独立算间距/右留白/图案与普通标题的高度预算，64px顶栏也不越界。实际高度写 `--site-header-height`、请求 `--header-height` 不变；观察器、字体通知和resize合并单RAF，卸载清理。章节/设置背景先在App解析为完整URL，避免生产stylesheet从assets目录消费相对CSS变量时形成assets/assets；验收直接解码计算后的背景地址，不能只核对文件名。
 
 首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label并跳转结构，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
 

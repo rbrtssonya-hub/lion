@@ -27,14 +27,15 @@ async function armNativeNavigationSampling(page, duration) {
   await page.evaluate(duration => {
     window.nativeNavigationSamples = new Promise(resolve => {
       window.addEventListener('hashchange', () => {
-        const icon = document.querySelector('.site-nav-icon');
+        const icon = document.querySelector('[data-route="model"] .site-nav-icon');
+        const symbol = icon.closest('.site-nav-symbol');
         const read = () => {
           const box = icon.getBoundingClientRect();
           return {
             x: box.left + box.width / 2, y: box.top + box.height / 2,
             source: icon.querySelector('image').getAttribute('href'),
             filter: getComputedStyle(icon.querySelector('svg')).filter,
-            running: icon.getAnimations().some(animation => animation.playState === 'running'),
+            running: symbol.getAnimations().some(animation => animation.playState === 'running'),
           };
         };
         const initial = read();
@@ -61,13 +62,36 @@ function expectNativeNavigationMotion(motion, duration, direction) {
     return progress > .05 && progress < .95 && sample.running;
   })).toBe(true);
   expect(Math.max(...middle.map(sample => Math.abs((sample.x - motion.initial.x) / distance - sample.time / duration)))).toBeGreaterThan(.12);
-  expect(Math.max(...motion.samples.map(sample => Math.abs(sample.y - motion.initial.y)))).toBeLessThan(2);
+  expectSmoothVerticalMotion(motion.initial.y, motion.samples, duration);
+  expect(motion.samples.at(-1).running).toBe(false);
   expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.source))]).toEqual([motion.initial.source]);
   expect([...new Set([motion.initial, ...motion.samples].map(sample => sample.filter))]).toEqual(['none']);
 }
 
+function expectSmoothVerticalMotion(initialY, samples, duration) {
+  const finalY = samples.at(-1).y;
+  const distance = finalY - initialY;
+  expect(Math.max(...samples.map(sample => Math.abs(sample.y - initialY)))).toBeLessThan(Math.abs(distance) + 2);
+  if (Math.abs(distance) > 2) {
+    expect(samples.some(sample => sample.time > duration * .15 && sample.time < duration * .85
+      && (sample.y - initialY) / distance > .05 && (sample.y - initialY) / distance < .95 && sample.running)).toBe(true);
+  }
+  for (let index = 1; index < samples.length; index += 1) {
+    expect(Math.abs(samples[index].y - samples[index - 1].y)).toBeLessThan(Math.max(2, Math.abs(distance) * .35));
+  }
+}
+
+async function expectPageReserve(page, reserve = 0) {
+  await expect.poll(() => page.locator('.site-page').evaluate((element, reserve) => {
+    const shell = element.closest('.site-shell').getBoundingClientRect();
+    const bounds = element.getBoundingClientRect();
+    return Math.round(shell.width - bounds.width - reserve);
+  }, reserve)).toBe(0);
+}
+
 async function expectCompleteDesktopNavigation(page) {
   await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
   await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => {
     const violations = [];
     const requested = getComputedStyle(navigation.closest('.site-shell'));
@@ -159,18 +183,30 @@ async function editNavigationParameter(page, label, value) {
 
 async function expectCompactDesktopNavigation(page, route) {
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'compact');
   const navigation = page.locator('.site-navigation');
-  for (const [chapter, label] of routes) {
+  for (const [chapter, label] of routes.slice(1)) {
     await expect(navigation.locator(`[data-route="${chapter}"]`)).toHaveAccessibleName(label);
   }
-  for (const copy of await navigation.locator('.site-nav-copy').all()) await expect(copy).toBeHidden();
+  const home = navigation.locator('[data-route="entry"]');
+  await expect(home).toBeHidden();
+  await expect(home).toHaveAttribute('aria-hidden', 'true');
+  await expect(home).toHaveAttribute('tabindex', '-1');
+  await expect(page.getByRole('button', { name: '南风有狮，返回首页', exact: true })).toBeVisible();
+  for (const copy of await navigation.locator('.site-nav-copy').all()) {
+    await expect(copy).toHaveCSS('opacity', '0');
+    await expect(copy).toHaveCSS('pointer-events', 'none');
+    await expect(copy).toHaveAttribute('aria-hidden', 'true');
+  }
   await expect.poll(() => navigation.evaluate((element) => {
     const violations = [];
     const page = element.closest('.site-page').getBoundingClientRect();
     const header = element.closest('.site-header').getBoundingClientRect();
     const brand = element.closest('.site-header').querySelector('.site-brand').getBoundingClientRect();
     const nav = element.getBoundingClientRect();
-    const buttons = [...element.querySelectorAll('.site-nav-item')];
+    const buttons = [...element.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden');
+    if (buttons.length !== 4) violations.push('Compact navigation must contain four visible chapter/settings buttons');
     const firstIcon = buttons[0].querySelector('.site-nav-icon').getBoundingClientRect();
     const sharesBrandRow = nav.top < brand.bottom - 1 && nav.bottom > brand.top + 1;
     const overlapsBrand = sharesBrandRow ? nav.left < brand.right - 1 : nav.top < brand.bottom - 1;
@@ -188,6 +224,11 @@ async function expectCompactDesktopNavigation(page, route) {
       if (bounds.left < previousRight - 1 || bounds.right > nav.right + 1) violations.push('Icon buttons overlap or exceed their group');
       if (icon.width <= 0 || icon.left < bounds.left - 1 || icon.right > bounds.right + 1) violations.push('An icon is hidden or clipped');
       if (icon.top < header.top - 1 || icon.bottom > header.bottom + 1) violations.push('An icon exceeds the header vertically');
+      const label = button.querySelector('.site-nav-short-label');
+      const labelBounds = label.getBoundingClientRect();
+      if (labelBounds.width <= 0 || labelBounds.top < icon.bottom + 10 || labelBounds.bottom > nav.bottom + 1) {
+        violations.push('A normal-text caption is missing or clipped below the icon highlight');
+      }
       if (Math.abs((icon.top + icon.bottom) / 2 - (firstIcon.top + firstIcon.bottom) / 2) > 1) violations.push('Icons are not on one horizontal line');
       previousRight = bounds.right;
       const underline = getComputedStyle(button.querySelector('.site-nav-icon'), '::after');
@@ -320,7 +361,7 @@ test('电脑常见宽度与连续窗口缩放均完整显示五项导航辅助�
   for (const width of [1024, 1280, 1366, 1440, 1536, 1920, 2560, 3440, 1024, 1920]) {
     await test.step(`${width}px viewport`, async () => {
       await page.setViewportSize({ width, height: 1080 });
-      await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width);
+      await expectPageReserve(page);
       await expectCompleteDesktopNavigation(page);
     });
   }
@@ -331,6 +372,7 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await page.goto('/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
+  const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
   await panel.getByRole('tab', { name: '布局', exact: true }).click();
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
@@ -343,9 +385,9 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
 
   for (const [viewport, available] of [[1920, 1160], [1660, 900], [2126, 1366], [2680, 1920]]) {
     await test.step(`${viewport}px viewport, ${available}px available page`, async () => {
-      await page.setViewportSize({ width: viewport, height: 1080 });
+      await page.setViewportSize({ width: viewport + gutter, height: 1080 });
       await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
-      await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(available);
+      await expectPageReserve(page, 760);
       await expectCompleteDesktopNavigation(page);
     });
   }
@@ -366,6 +408,7 @@ test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持�
   await page.goto('/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
+  const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
   await panel.getByRole('tab', { name: '布局', exact: true }).click();
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
@@ -375,9 +418,9 @@ test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持�
     await editNavigationParameter(page, '导航辅助文字字号', helper);
     for (const width of [1660, 2126, 2680]) {
       await test.step(`title ${title}px, helper ${helper}px, viewport ${width}px`, async () => {
-        await page.setViewportSize({ width, height: 1080 });
+        await page.setViewportSize({ width: width + gutter, height: 1080 });
         await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
-        await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width - 760);
+        await expectPageReserve(page, 760);
         await expectCompleteDesktopNavigation(page);
       });
     }
@@ -407,7 +450,7 @@ test('顶部导航随文化内容滚动保持可见，当前首页入口返回�
   await expect(page.locator('.entry-gate')).toBeInViewport();
 });
 
-test('进入章节时五个原图标水平变速收拢到右侧，保留高亮与操作，回首页重新展开', async ({ page }) => {
+test('进入章节时四项图案变速收拢并平滑调整高度，品牌返回首页重新展开', async ({ page }) => {
   const duration = 1400;
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -431,18 +474,19 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
       return {
         x: box.left + box.width / 2, y: box.top + box.height / 2,
         source: icon.querySelector('image').getAttribute('href'), filter: getComputedStyle(icon.querySelector('svg')).filter,
+        running: icon.closest('.site-nav-symbol').getAnimations().some(animation => animation.playState === 'running'),
       };
     });
     const initial = positions();
-    const initialX = initial[0].x;
-    const initialY = initial[0].y;
+    const initialX = initial[1].x;
+    const initialY = initial[1].y;
     const samples = [];
     const started = performance.now();
     document.querySelector('.site-nav-item[data-route="model"]').click();
     await new Promise(resolve => {
       const sample = now => {
         const current = positions();
-        samples.push({ time: now - started, x: current[0].x, y: current[0].y, positions: current });
+        samples.push({ time: now - started, x: current[1].x, y: current[1].y, running: current[1].running, positions: current });
         if (now - started < duration + 180) requestAnimationFrame(sample);
         else resolve();
       };
@@ -462,14 +506,16 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
   expect(intermediates.some(sample => sample.x > motion.initialX + distance * .05 && sample.x < finalX - distance * .05)).toBe(true);
   const deviation = Math.max(...intermediates.map(sample => Math.abs((sample.x - motion.initialX) / distance - sample.time / duration)));
   expect(deviation).toBeGreaterThan(.12);
-  expect(Math.max(...motion.samples.map(sample => Math.abs(sample.y - motion.initialY)))).toBeLessThan(2);
-  for (let index = 0; index < motion.initial.length; index += 1) {
+  expectSmoothVerticalMotion(motion.initialY, motion.samples, duration);
+  for (let index = 1; index < motion.initial.length; index += 1) {
     const start = motion.initial[index];
     const finish = motion.samples.at(-1).positions[index];
-    expect(finish.x - start.x).toBeGreaterThan(10);
-    expect(intermediates.some(sample => sample.positions[index].x > start.x + (finish.x - start.x) * .05
-      && sample.positions[index].x < finish.x - (finish.x - start.x) * .05)).toBe(true);
-    expect(Math.max(...motion.samples.map(sample => Math.abs(sample.positions[index].y - start.y)))).toBeLessThan(2);
+    expect(Math.abs(finish.x - start.x)).toBeGreaterThan(10);
+    expect(intermediates.some(sample => {
+      const progress = (sample.positions[index].x - start.x) / (finish.x - start.x);
+      return progress > .05 && progress < .95 && sample.positions[index].running;
+    })).toBe(true);
+    expectSmoothVerticalMotion(start.y, motion.samples.map(sample => ({ time: sample.time, ...sample.positions[index] })), duration);
   }
   for (let index = 1; index < motion.samples.length; index += 1) {
     expect(motion.samples[index].x).toBeGreaterThanOrEqual(motion.samples[index - 1].x - 2);
@@ -482,7 +528,8 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
     expect(await icons[index].evaluate((element, index) => element === document.querySelectorAll('.site-nav-icon svg')[index], index)).toBe(true);
   }
   const navBounds = await page.locator('.site-navigation').boundingBox();
-  expect(1920 - navBounds.x - navBounds.width).toBeCloseTo(48, 0);
+  const pageBounds = await page.locator('.site-page').boundingBox();
+  expect(pageBounds.x + pageBounds.width - navBounds.x - navBounds.width).toBeCloseTo(48, 0);
   for (const route of ['action', 'state']) {
     await page.locator(`.site-nav-item[data-route="${route}"]`).click();
     await expectCompactDesktopNavigation(page, route);
@@ -493,11 +540,11 @@ test('进入章节时五个原图标水平变速收拢到右侧，保留高亮�
   await expectUserNavigationIcons(page);
   expect(page.url()).toBe(beforeSettings);
   await page.getByRole('button', { name: '关闭开发者参数' }).click();
-  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await page.locator('.site-brand-capsule').click();
   await expectCompleteDesktopNavigation(page);
   await expectUserNavigationIcons(page);
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'expanded');
-  await expect.poll(() => page.locator('.site-nav-icon').first().evaluate(icon => icon.getBoundingClientRect().left + icon.getBoundingClientRect().width / 2)).toBeCloseTo(motion.initialX, 0);
+  await expect.poll(() => page.locator('[data-route="model"] .site-nav-icon').evaluate(icon => icon.getBoundingClientRect().left + icon.getBoundingClientRect().width / 2)).toBeCloseTo(motion.initialX, 0);
 });
 
 test('动画中连续切换章节与首页会收敛到最终位置并清理旧动画', async ({ page }) => {
@@ -509,7 +556,7 @@ test('动画中连续切换章节与首页会收敛到最终位置并清理旧�
   await expectCompleteDesktopNavigation(page);
   await page.evaluate(async () => {
     for (const route of ['model', 'entry', 'action', 'state', 'entry', 'action']) {
-      document.querySelector(`.site-nav-item[data-route="${route}"]`).click();
+      document.querySelector(route === 'entry' ? '.site-brand-capsule' : `.site-nav-item[data-route="${route}"]`).click();
       await new Promise(resolve => setTimeout(resolve, 80));
     }
   });
@@ -519,7 +566,7 @@ test('动画中连续切换章节与首页会收敛到最终位置并清理旧�
   const settled = await page.locator('.site-nav-icon').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().left));
   await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 200)));
   expect(await page.locator('.site-nav-icon').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().left))).toEqual(settled);
-  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await page.locator('.site-brand-capsule').click();
   await expectCompleteDesktopNavigation(page);
   await expect.poll(() => page.locator('.site-navigation').evaluate(element =>
     element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
@@ -555,7 +602,7 @@ test('浏览器返回与原生Hash跳转继续使用真实的水平变速动画'
     element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
 });
 
-test('1366px电脑在紧凑模式修改字号后返回首页，五个图标的Y位置保持不变', async ({ page }) => {
+test('1366px电脑紧凑模式修改字号后返回首页，图案和文字平滑归位', async ({ page }) => {
   const duration = 1000;
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1366, height: 1080 });
@@ -571,22 +618,23 @@ test('1366px电脑在紧凑模式修改字号后返回首页，五个图标的Y�
   await editNavigationParameter(page, '导航辅助文字字号', 28);
   await editNavigationParameter(page, '导航图标尺寸', 56);
   await page.getByRole('button', { name: '关闭开发者参数' }).click();
-  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'compact-stacked');
+  await expectPageReserve(page);
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'compact');
   await expectCompactDesktopNavigation(page, 'action');
 
   const motion = await page.evaluate(async duration => {
-    const icons = [...document.querySelectorAll('.site-nav-icon')];
+    const icons = [...document.querySelectorAll('.site-nav-item:not([data-route="entry"]) .site-nav-icon')];
     const positions = () => icons.map(icon => {
       const box = icon.getBoundingClientRect();
-      return { x: box.left + box.width / 2, y: box.top + box.height / 2 };
+      return { x: box.left + box.width / 2, y: box.top + box.height / 2, running: icon.closest('.site-nav-symbol').getAnimations().some(animation => animation.playState === 'running') };
     });
     const initial = positions();
     const samples = [];
     const started = performance.now();
-    document.querySelector('.site-nav-item[data-route="entry"]').click();
+    document.querySelector('.site-brand-capsule').click();
     await new Promise(resolve => {
       const sample = now => {
-        samples.push(positions());
+        samples.push({ time: now - started, positions: positions() });
         if (now - started < duration + 180) requestAnimationFrame(sample);
         else resolve();
       };
@@ -595,10 +643,12 @@ test('1366px电脑在紧凑模式修改字号后返回首页，五个图标的Y�
     return { initial, samples };
   }, duration);
   expect(motion.samples.length).toBeGreaterThan(15);
-  for (let index = 0; index < 5; index += 1) {
-    expect(Math.max(...motion.samples.map(sample => Math.abs(sample[index].y - motion.initial[index].y)))).toBeLessThan(2);
+  for (let index = 0; index < 4; index += 1) {
+    expectSmoothVerticalMotion(motion.initial[index].y, motion.samples.map(sample => ({ time: sample.time, ...sample.positions[index] })), duration);
+    expect(motion.samples.some(sample => sample.time > duration * .6 && sample.positions[index].running)).toBe(true);
+    expect(motion.samples.at(-1).positions[index].running).toBe(false);
   }
-  expect(motion.initial[0].x - motion.samples.at(-1)[0].x).toBeGreaterThan(300);
+  expect(motion.initial[0].x - motion.samples.at(-1).positions[0].x).toBeGreaterThan(300);
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'stacked');
   await expectCompleteDesktopNavigation(page);
   await expectUserNavigationIcons(page);
@@ -615,19 +665,20 @@ test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置�
   await panel.getByRole('tab', { name: '布局', exact: true }).click();
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 480);
-  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(1440);
+  await expectPageReserve(page, 480);
   await expectCompactDesktopNavigation(page, 'action');
   await expect.poll(() => page.locator('.site-navigation').evaluate(navigation => {
     const page = navigation.closest('.site-page').getBoundingClientRect();
     const nav = navigation.getBoundingClientRect();
-    const buttons = [...navigation.querySelectorAll('.site-nav-item')].map(button => button.getBoundingClientRect());
+    const buttons = [...navigation.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden').map(button => button.getBoundingClientRect());
     return { inset: Math.round(page.right - nav.right), gaps: buttons.slice(1).map((button, index) => Math.round(button.left - buttons[index].right)) };
-  })).toEqual({ inset: 96, gaps: [28, 28, 28, 28] });
+  })).toEqual({ inset: 96, gaps: [28, 28, 28] });
   await panel.getByRole('button', { name: '关闭开发者参数' }).click();
-  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(1920);
+  await expectPageReserve(page);
   await expectCompactDesktopNavigation(page, 'action');
   const finalBounds = await page.locator('.site-navigation').boundingBox();
-  expect(1920 - finalBounds.x - finalBounds.width).toBeCloseTo(96, 0);
+  const pageBounds = await page.locator('.site-page').boundingBox();
+  expect(pageBounds.x + pageBounds.width - finalBounds.x - finalBounds.width).toBeCloseTo(96, 0);
 });
 
 test('减少动态偏好时章节图标直接就位并保留可访问导航和返回首页', async ({ page }) => {
@@ -646,7 +697,7 @@ test('减少动态偏好时章节图标直接就位并保留可访问导航和�
   });
   expect(state).toEqual({ route: 'action', running: 0 });
   await expectCompactDesktopNavigation(page, 'action');
-  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await page.locator('.site-brand-capsule').click();
   await expectCompleteDesktopNavigation(page);
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'expanded');
 });

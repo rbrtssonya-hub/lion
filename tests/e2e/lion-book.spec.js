@@ -148,7 +148,7 @@ test('翻页中离开首页释放旧文档，返回重新打开并可继续翻�
   await page.locator('.site-header [data-route="state"]').click();
   await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
   expect(previousFrame.isDetached()).toBe(true);
-  await page.locator('.site-header [data-route="entry"]').click();
+  await page.locator('.site-brand-capsule').click();
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   book = page.locator('.lion-book-experience');
   frame = page.frameLocator('#homeLionBook iframe');
@@ -196,12 +196,15 @@ test('书页加载失败显示明确错误，重新展开恢复真实引擎', as
 });
 
 test('电脑宽度变化与设置推开保持同一本书，照片图鉴和章节仍可使用', async ({ page }) => {
+  await page.addInitScript(() => {
+    if (window === window.top) localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: false }));
+  });
   const { book, frame } = await openBook(page);
   for (const [width, height] of [[1366, 768], [1920, 1080], [2560, 1440]]) {
     await page.setViewportSize({ width, height });
     await view(page, page.locator('.lion-book-stage'));
     await settled(book, frame, 0);
-    const dimensions = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: innerWidth }));
+    const dimensions = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: document.querySelector('.site-shell').getBoundingClientRect().width }));
     expect(dimensions.scroll).toBe(dimensions.width);
     const image = await frame.locator('#sbBook>.sb-full img').boundingBox();
     const viewport = await page.locator('#homeLionBook iframe').boundingBox();
@@ -213,6 +216,7 @@ test('电脑宽度变化与设置推开保持同一本书，照片图鉴和章�
   }
   await page.locator('.site-header [data-action="settings"]').click();
   await expect(page.locator('#developerSettingsPanel')).toBeVisible();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
   await page.getByRole('tab', { name: '布局', exact: true }).click();
   await page.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');

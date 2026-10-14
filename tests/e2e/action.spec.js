@@ -81,8 +81,11 @@ test('审查回归：高窗口和设置推开定位结束后不漂移到下一�
     await page.setViewportSize({ width, height });
     await page.goto(`/?panel=${panelWidth}&header=${headerHeight}#/action`);
     if (panelWidth) {
+      const gutter = await page.locator('.site-shell').evaluate(element => innerWidth - element.getBoundingClientRect().width);
+      await page.setViewportSize({ width: Math.round(width + gutter), height });
       await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
       await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+      await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width - panelWidth);
     }
     await page.locator('#actionDetails').scrollIntoViewIfNeeded();
     for (const i of [2, 0, 1, 3]) {
@@ -143,6 +146,9 @@ test('动作页减弱动态时键盘切段仍联动并可立即定位', async ({
 });
 
 test('动作页电脑窗口与设置推开不横溢、媒体与简介不重叠', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: false }));
+  });
   for (const [width, height] of [[1920,1080],[2560,1440],[1366,768],[1024,768]]) {
     await page.setViewportSize({ width, height });
     await page.goto('/#/action');
@@ -153,17 +159,18 @@ test('动作页电脑窗口与设置推开不横溢、媒体与简介不重叠',
     const geometry = await page.locator('#actionHero').evaluate(el => {
       const media = el.querySelector('.action-player').getBoundingClientRect();
       const copy = el.querySelector('.action-hero-copy').getBoundingClientRect();
-      return { overflow: document.documentElement.scrollWidth > innerWidth, separated: media.right < copy.left };
+      return { overflow: document.documentElement.scrollWidth > document.querySelector('.site-shell').getBoundingClientRect().width, separated: media.right < copy.left };
     });
     expect(geometry).toEqual({ overflow: false, separated: true });
   }
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
   await expect(page.locator('#developerSettingsPanel')).toBeVisible();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
   await page.getByRole('tab', { name: '布局', exact: true }).click();
   await page.getByRole('checkbox', { name: '设置面板推开页面', exact: true }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expect.poll(() => page.locator('.site-page').evaluate(el => el.getBoundingClientRect().width)).toBeLessThan(1800);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   await page.screenshot({ path: 'tmp/action-ui/settings-push-1920.png' });
 });

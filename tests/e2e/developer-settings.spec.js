@@ -6,6 +6,7 @@ const trigger = page => page.locator('.site-navigation [data-action="settings"]'
 const topEdge = page => page.getByRole('separator', { name: '调整顶栏高度' });
 const sideEdge = page => page.getByRole('separator', { name: '调整侧栏宽度' });
 const pageWidth = page => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
+const shellWidth = page => page.locator('.site-shell').evaluate(element => element.getBoundingClientRect().width);
 const headerHeight = page => page.locator('.site-header').evaluate(element => element.getBoundingClientRect().height);
 const sidebarWidth = page => panel(page).evaluate(element => element.getBoundingClientRect().width);
 const carouselDefaults = {
@@ -16,7 +17,7 @@ const carouselDefaults = {
 const controlTabs = {
   顶栏透明度: '外观', 顶栏模糊强度: '外观', 侧栏透明度: '外观', 侧栏模糊强度: '外观',
   顶栏高度: '导航', 导航标题字号: '导航', 导航辅助文字字号: '导航', 导航图标尺寸: '导航', 品牌左侧留白: '导航',
-  导航动画时长: '动画', 紧凑导航图标间距: '动画', 紧凑导航右侧留白: '动画', 设置面板宽度: '布局',
+  导航动画时长: '动画', 紧凑导航图标间距: '动画', 紧凑导航右侧留白: '动画', 首页品牌右移距离: '动画', 设置面板宽度: '布局',
   自动播放间隔: '轮播', 离开后恢复等待: '轮播', 照片过渡时长: '轮播', 照片聚焦比例: '轮播',
 };
 
@@ -32,6 +33,10 @@ async function savedSettings(page) {
 
 async function expectSaved(page, values) {
   await expect.poll(() => savedSettings(page)).toMatchObject(values);
+}
+
+async function expectPageWidth(page, reserve = 0) {
+  await expect.poll(() => pageWidth(page)).toBe(await shellWidth(page) - reserve);
 }
 
 async function openSettings(page) {
@@ -84,9 +89,14 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await expect(panel(page)).toHaveCount(0);
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'false');
   await expect(page.locator('.developer-settings-trigger')).toHaveCount(0);
+  await expectSaved(page, { headerTransparency: 20, pushPage: true, homeBrandOffset: 24 });
+  await expectPageWidth(page);
 
   await openSettings(page);
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await expectPageWidth(page, 340);
+  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('20');
   const bounds = await panel(page).boundingBox();
   const viewport = await page.evaluate(() => ({ width: document.documentElement.clientWidth, height: innerHeight }));
   expect(bounds.y).toBe(0);
@@ -98,6 +108,7 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
   await expect(panel(page)).toHaveCount(0);
   await expect(trigger(page)).toBeFocused();
+  await expectPageWidth(page);
 
   await openSettings(page);
   await page.keyboard.press('Escape');
@@ -131,6 +142,7 @@ test('五个设置页签仅显示选中类别，支持键盘切换并保留已�
   await expect(animation).toBeFocused();
   await expect(animation).toHaveAttribute('aria-selected', 'true');
   await expect(panel(page).getByRole('spinbutton', { name: '导航动画时长数值' })).toBeVisible();
+  await expect(panel(page).getByRole('spinbutton', { name: '首页品牌右移距离数值' })).toBeVisible();
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', includeHidden: true })).toBeHidden();
   await animation.press('ArrowRight');
   const carousel = panel(page).getByRole('tab', { name: '轮播', exact: true });
@@ -171,6 +183,28 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   await expect(easing.locator('option')).toHaveText(['平滑进出', '快速收拢', '柔和缓出']);
   await expect(panel(page).getByRole('spinbutton', { name: '紧凑导航图标间距数值' })).toHaveValue('14');
   await expect(panel(page).getByRole('spinbutton', { name: '紧凑导航右侧留白数值' })).toHaveValue('48');
+  const brandOffset = panel(page).getByRole('spinbutton', { name: '首页品牌右移距离数值', exact: true });
+  await expect(brandOffset).toHaveValue('24');
+  await expect(brandOffset).toHaveAttribute('min', '0');
+  await expect(brandOffset).toHaveAttribute('max', '160');
+  await expect(brandOffset).toHaveAttribute('step', '1');
+  for (const [draft, expected] of [['-5', 0], ['161', 160], ['35.7', 36], ['', 36]]) {
+    await brandOffset.fill(draft);
+    await brandOffset.press('Tab');
+    await expect(brandOffset).toHaveValue(String(expected));
+    await expectSaved(page, { homeBrandOffset: expected });
+  }
+  const brandOffsetSlider = panel(page).getByRole('slider', { name: '首页品牌右移距离', exact: true });
+  await expect(brandOffsetSlider).toHaveAttribute('min', '0');
+  await expect(brandOffsetSlider).toHaveAttribute('max', '160');
+  await expect(brandOffsetSlider).toHaveAttribute('step', '1');
+  await brandOffsetSlider.focus();
+  await brandOffsetSlider.press('Home');
+  await expectSaved(page, { homeBrandOffset: 0 });
+  await brandOffsetSlider.press('ArrowRight');
+  await expectSaved(page, { homeBrandOffset: 1 });
+  await brandOffsetSlider.press('End');
+  await expectSaved(page, { homeBrandOffset: 160 });
   for (const [draft, expected] of [['99', 200], ['1800', 1600], ['755', 760], ['', 760]]) {
     await duration.fill(draft);
     await duration.press('Tab');
@@ -190,8 +224,9 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   }
   await editNumber(page, '紧凑导航图标间距', 28);
   await editNumber(page, '紧凑导航右侧留白', 96);
+  await editNumber(page, '首页品牌右移距离', 64);
   await editNumber(page, '导航辅助文字字号', 16);
-  await expectSaved(page, { navigationDuration: 1300, navigationEasing: 'swift', compactNavGap: 28, compactNavInset: 96, helperFontSize: 16 });
+  await expectSaved(page, { navigationDuration: 1300, navigationEasing: 'swift', compactNavGap: 28, compactNavInset: 96, homeBrandOffset: 64, helperFontSize: 16 });
 
   await page.reload();
   await expect(panel(page)).toHaveCount(0);
@@ -202,10 +237,12 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   await expect(easing).toHaveValue('swift');
   await expect(panel(page).getByRole('spinbutton', { name: '紧凑导航图标间距数值' })).toHaveValue('28');
   await expect(panel(page).getByRole('spinbutton', { name: '紧凑导航右侧留白数值' })).toHaveValue('96');
+  await expect(brandOffset).toHaveValue('64');
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
-  await expectSaved(page, { navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48, helperFontSize: 18 });
+  await expectSaved(page, { navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48, homeBrandOffset: 24, helperFontSize: 18, headerTransparency: 20, pushPage: true });
   await expect(duration).toHaveValue('720');
   await expect(easing).toHaveValue('smooth');
+  await expect(brandOffset).toHaveValue('24');
 });
 
 test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢复默认', async ({ page }) => {
@@ -247,7 +284,7 @@ test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', exact: true })).toHaveValue('20');
   await selectSettingsTab(page, '轮播');
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
-  await expectSaved(page, { ...carouselDefaults, navFontSize: 26, navigationTypographyVersion: 2, pushPage: false });
+  await expectSaved(page, { ...carouselDefaults, navFontSize: 26, navigationTypographyVersion: 2, pushPage: true, headerTransparency: 20, homeBrandOffset: 24 });
   await expect(autoplay).toBeChecked();
   for (const [label, value] of [['自动播放间隔', 6], ['离开后恢复等待', 3], ['照片过渡时长', 800], ['照片聚焦比例', 104]]) {
     await expect(panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true })).toHaveValue(String(value));
@@ -350,16 +387,21 @@ test('推开页面按侧栏宽度留空，窄窗口自动覆盖并在加宽后�
   await page.goto('/');
   await openSettings(page);
   await selectSettingsTab(page, '布局');
-  await expect.poll(() => pageWidth(page)).toBe(1920);
+  await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).toBeChecked();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await expectPageWidth(page, 340);
+  await panel(page).getByRole('checkbox', { name: '设置面板推开页面' }).uncheck();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
+  await expectPageWidth(page);
   await panel(page).getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
-  await expect.poll(() => pageWidth(page)).toBe(1580);
+  await expectPageWidth(page, 340);
   await editNumber(page, '设置面板宽度', 480);
-  await expect.poll(() => pageWidth(page)).toBe(1440);
+  await expectPageWidth(page, 480);
 
   await page.setViewportSize({ width: 1200, height: 900 });
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
-  await expect.poll(() => pageWidth(page)).toBe(1200);
+  await expectPageWidth(page);
   await expect(panel(page)).toContainText('窗口空间不足');
   await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).toBeChecked();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -367,9 +409,9 @@ test('推开页面按侧栏宽度留空，窄窗口自动覆盖并在加宽后�
 
   await page.setViewportSize({ width: 1920, height: 1080 });
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
-  await expect.poll(() => pageWidth(page)).toBe(1440);
+  await expectPageWidth(page, 480);
   await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
-  await expect.poll(() => pageWidth(page)).toBe(1920);
+  await expectPageWidth(page);
 });
 
 test('导航标题与辅助文字可独立调整，滑块和数值输入校验字号边界', async ({ page }) => {
@@ -407,6 +449,8 @@ test('导航标题与辅助文字可独立调整，滑块和数值输入校验�
 });
 
 test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默认同时恢复外观与尺寸', async ({ page }) => {
+  // Leave enough width for the requested fonts while the panel now pushes by default.
+  await page.setViewportSize({ width: 3440, height: 1440 });
   await page.goto('/');
   await openSettings(page);
   await editNumber(page, '顶栏透明度', 42);
@@ -432,7 +476,7 @@ test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默�
   await expect(panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值' })).toHaveValue('15');
   await expectNavigationSizes(page, 23, 15);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
-  await expectSaved(page, { headerTransparency: 18, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, helperFontSize: 18, panelWidth: 340, pushPage: false });
+  await expectSaved(page, { headerTransparency: 20, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, helperFontSize: 18, panelWidth: 340, pushPage: true, homeBrandOffset: 24 });
   await expectNavigationSizes(page, 26, 18);
   await expect.poll(() => headerHeight(page)).toBe(90);
   await expect.poll(() => sidebarWidth(page)).toBe(340);
@@ -463,23 +507,55 @@ test('已有 v2 的标题字号 20 保留，缺失的辅助字号补为 18 且�
   }, { key: settingsKey, saved: { navigationTypographyVersion: 2, navFontSize: 20, helperTransparency: 37 } });
   await page.goto('/');
   await expectSaved(page, { navigationTypographyVersion: 2, navFontSize: 20, helperFontSize: 18, helperTransparency: 37,
-    navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48 });
+    navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48,
+    headerTransparency: 20, pushPage: true, homeBrandOffset: 24 });
   await expectNavigationSizes(page, 20, 18);
   await page.reload();
-  await expectSaved(page, { navFontSize: 20, helperFontSize: 18, helperTransparency: 37 });
+  await expectSaved(page, { navFontSize: 20, helperFontSize: 18, helperTransparency: 37,
+    headerTransparency: 20, pushPage: true, homeBrandOffset: 24 });
   await openSettings(page);
   await selectSettingsTab(page, '导航');
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('20');
   await expect(panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值' })).toHaveValue('18');
 });
 
+test('已有透明度、覆盖偏好和零品牌位移保留，恢复默认采用新参数', async ({ page }) => {
+  const saved = { navigationTypographyVersion: 2, navFontSize: 20, headerTransparency: 18,
+    pushPage: false, homeBrandOffset: 0, brandPadding: 37 };
+  await page.addInitScript(({ key, saved }) => {
+    if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(saved));
+  }, { key: settingsKey, saved });
+  await page.goto('/');
+  await expectSaved(page, saved);
+  await openSettings(page);
+  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('18');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
+  await expectPageWidth(page);
+  await selectSettingsTab(page, '动画');
+  await expect(panel(page).getByRole('spinbutton', { name: '首页品牌右移距离数值' })).toHaveValue('0');
+  await page.reload();
+  await expect(panel(page)).toHaveCount(0);
+  await expectSaved(page, saved);
+  await openSettings(page);
+  await selectSettingsTab(page, '布局');
+  await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).not.toBeChecked();
+  await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await expectSaved(page, { navigationTypographyVersion: 2, navFontSize: 26, headerTransparency: 20,
+    pushPage: true, homeBrandOffset: 24, brandPadding: 24 });
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await expectPageWidth(page, 340);
+  await selectSettingsTab(page, '动画');
+  await expect(panel(page).getByRole('spinbutton', { name: '首页品牌右移距离数值' })).toHaveValue('24');
+});
+
 test('损坏或不合法的保存参数可恢复，浏览器存储不可用时仍能实时调整', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
+  await page.setViewportSize({ width: 3440, height: 1440 });
   await page.goto('/');
   for (const [badSaved, expected] of [
-    ['{broken', { headerTransparency: 18, headerBlur: 12, headerHeight: 90, helperFontSize: 18 }],
-    [JSON.stringify({ headerTransparency: 180, headerBlur: -8, sidebarTransparency: 'bad', navFontSize: '20', helperFontSize: '18', headerHeight: 999, panelWidth: null, pushPage: 'yes' }),
+    ['{broken', { headerTransparency: 20, headerBlur: 12, headerHeight: 90, helperFontSize: 18 }],
+    [JSON.stringify({ headerTransparency: 180, headerBlur: -8, sidebarTransparency: 'bad', navFontSize: '20', helperFontSize: '18', headerHeight: 999, panelWidth: null, pushPage: 'yes', homeBrandOffset: '24' }),
       { headerTransparency: 100, headerBlur: 0, sidebarTransparency: 14, headerHeight: 180, helperFontSize: 18 }],
     [JSON.stringify({ helperFontSize: 99 }), { helperFontSize: 28 }],
     [JSON.stringify({ helperFontSize: -1 }), { helperFontSize: 10 }],
@@ -487,11 +563,14 @@ test('损坏或不合法的保存参数可恢复，浏览器存储不可用时�
       { navigationDuration: 200, navigationEasing: 'smooth', compactNavGap: 4, compactNavInset: 160 }],
     [JSON.stringify({ navigationDuration: 1799, navigationEasing: 2, compactNavGap: 99, compactNavInset: -1 }),
       { navigationDuration: 1600, navigationEasing: 'smooth', compactNavGap: 36, compactNavInset: 16 }],
+    [JSON.stringify({ homeBrandOffset: -1 }), { homeBrandOffset: 0 }],
+    [JSON.stringify({ homeBrandOffset: 999 }), { homeBrandOffset: 160 }],
+    [JSON.stringify({ homeBrandOffset: 31.6 }), { homeBrandOffset: 32 }],
   ]) {
     await page.evaluate(({ key, value }) => localStorage.setItem(key, value), { key: settingsKey, value: badSaved });
     await page.reload();
     await expect(panel(page)).toHaveCount(0);
-    await expectSaved(page, { ...expected, navFontSize: 26, panelWidth: 340, pushPage: false });
+    await expectSaved(page, { homeBrandOffset: 24, ...expected, navFontSize: 26, panelWidth: 340, pushPage: true });
   }
 
   await page.addInitScript(() => Object.defineProperty(window, 'localStorage', {
@@ -511,7 +590,7 @@ test('损坏或不合法的保存参数可恢复，浏览器存储不可用时�
   await page.reload();
   await expect(panel(page)).toHaveCount(0);
   await openSettings(page);
-  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('18');
+  await expect(panel(page).getByRole('spinbutton', { name: '顶栏透明度数值' })).toHaveValue('20');
   await expectNavigationSizes(page, 26, 18);
   expect(errors).toEqual([]);
 });
@@ -523,7 +602,7 @@ test('整条边界可悬停显示中央握柄，拖动实时预览并仅在松�
   let bounds = await top.boundingBox();
   await page.mouse.move(100, bounds.y + bounds.height / 2);
   await expect(top.locator('span')).toHaveCSS('opacity', '1');
-  expect(bounds.width).toBe(1920);
+  expect(bounds.width).toBe(await shellWidth(page));
   const grip = await top.locator('span').boundingBox();
   expect(grip.width).toBeLessThan(bounds.width / 4);
   expect(grip.x + grip.width / 2).toBeCloseTo(bounds.x + bounds.width / 2, 1);

@@ -5,6 +5,19 @@ import { media } from '../../config/media.js';
 import { lionBookPages } from '../../data/lion-book.js';
 
 const fileBase = media.lionBookCover.slice(0, media.lionBookCover.lastIndexOf('/') + 1);
+const introSessionKey = 'nanfeng-lion:book-intro-seen:v1';
+let introConsumedInThisPage = false;
+
+function hasConsumedIntro() {
+  try { return introConsumedInThisPage || sessionStorage.getItem(introSessionKey) === '1'; }
+  catch { return introConsumedInThisPage; }
+}
+
+function consumeIntro() {
+  introConsumedInThisPage = true;
+  try { sessionStorage.setItem(introSessionKey, '1'); }
+  catch { /* Preserve once-per-page-session behavior when storage is unavailable. */ }
+}
 
 export default function LionBookExperience() {
   const hostRef = useRef(null);
@@ -22,6 +35,7 @@ export default function LionBookExperience() {
   const send = useCallback((action, value) => {
     const command = { type: 'lion-book:command', channelId: channelRef.current, action };
     if (action === 'visibility') command.visible = value;
+    else if (action === 'intro-policy') command.enabled = value;
     else if (Number.isInteger(value)) command.index = value;
     frameRef.current?.contentWindow?.postMessage(command, '*');
   }, []);
@@ -58,6 +72,10 @@ export default function LionBookExperience() {
         if (!Number.isInteger(data.index) || data.index < 0 || data.index >= lionBookPages.length) return;
         if (typeof data.ready !== 'boolean' || typeof data.turning !== 'boolean') return;
         if (!['pending', 'playing', 'done'].includes(data.intro)) return;
+        if (typeof data.introConsumed !== 'boolean') return;
+        // Only the real engine start or deliberate paper input consumes the
+        // visit. Lazy mounting, loading and visibility alone do not.
+        if (data.introConsumed) consumeIntro();
         if (data.ready || data.error) clearTimeout(loadTimeout);
         setBook({ index: data.index, turning: data.turning, ready: data.ready, intro: data.intro, error: data.error ? '书页加载失败' : null });
       } else if (data.type === 'lion-book:wheel' && Number.isFinite(data.deltaY)) {
@@ -74,6 +92,7 @@ export default function LionBookExperience() {
     }, 25_000);
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
+      send('intro-policy', !hasConsumedIntro());
       send('sync');
       publishVisibility();
     };

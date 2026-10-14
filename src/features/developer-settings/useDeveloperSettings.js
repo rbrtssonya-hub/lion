@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
 export const defaultDeveloperSettings = Object.freeze({
-  headerTransparency: 18,
+  headerTransparency: 20,
   headerBlur: 12,
   sidebarTransparency: 14,
   sidebarBlur: 18,
@@ -13,6 +13,7 @@ export const defaultDeveloperSettings = Object.freeze({
   navIconSize: 40,
   helperTransparency: 50,
   brandPadding: 24,
+  homeBrandOffset: 24,
   navigationDuration: 720,
   navigationEasing: 'smooth',
   compactNavGap: 14,
@@ -23,7 +24,7 @@ export const defaultDeveloperSettings = Object.freeze({
   carouselTransitionDuration: 800,
   carouselFocusScale: 104,
   panelWidth: 340,
-  pushPage: false,
+  pushPage: true,
 });
 
 const ranges = {
@@ -33,6 +34,7 @@ const ranges = {
   helperFontSize: [10, 28, 1],
   navIconSize: [24, 56, 1], helperTransparency: [0, 100, 1],
   brandPadding: [8, 80, 1], panelWidth: [280, 760, 1],
+  homeBrandOffset: [0, 160, 1],
   navigationDuration: [200, 1600, 10],
   compactNavGap: [4, 36, 1], compactNavInset: [16, 160, 1],
   carouselInterval: [2, 30, 1], carouselResumeDelay: [1, 15, 1],

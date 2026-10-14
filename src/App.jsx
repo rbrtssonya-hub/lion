@@ -37,7 +37,10 @@ export default function App() {
   }, [route, navigate, captureNavigation]);
   const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth);
   const pushing = settingsOpen && settings.pushPage && canPush;
-  const chapterBackground = chapterBackgrounds[route];
+  // CSS variables are consumed by the built stylesheet in dist/assets.
+  // Resolve media at the document first so './assets' cannot become assets/assets.
+  const chapterBackground = chapterBackgrounds[route]
+    ? new URL(chapterBackgrounds[route], window.location.href).href : undefined;
   const closeSettings = useCallback(() => {
     setSettingsOpen(false);
     triggerRef.current?.focus({ preventScroll: true });
@@ -87,10 +90,12 @@ export default function App() {
     '--compact-nav-inset': `${settings.compactNavInset}px`,
     '--helper-opacity': 1 - settings.helperTransparency / 100,
     '--brand-padding': `${settings.brandPadding}px`,
+    '--home-brand-offset': `${settings.homeBrandOffset}px`,
+    '--navigation-duration': `${settings.navigationDuration}ms`,
     '--settings-panel-width': `${settings.panelWidth}px`,
     '--settings-page-reserve': pushing ? `${settings.panelWidth}px` : '0px',
     '--resize-header-width': settingsOpen ? `calc(100% - min(${settings.panelWidth}px, 100vw))` : '100%',
-    '--settings-backdrop-image': `url("${chapterBackground || media.cover}")`,
+    '--settings-backdrop-image': `url("${new URL(chapterBackground || media.cover, window.location.href).href}")`,
   };
 
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}

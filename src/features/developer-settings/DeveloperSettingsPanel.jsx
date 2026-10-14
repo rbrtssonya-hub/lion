@@ -89,7 +89,7 @@ function SettingsGroup({ title, note, children }) {
 const pages = [
   { id: 'appearance', label: '外观', title: '外观材质', note: '分别调整顶栏与设置侧栏的透明和模糊。', icon: 'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id: 'navigation', label: '导航', title: '导航文字与尺寸', note: '首页导航的文字层级、图标和顶栏留白。', icon: 'M4 6h12M4 10h8M4 14h12' },
-  { id: 'animation', label: '动画', title: '图标收拢动画', note: '进入结构、动作或神态时，图标向右收拢。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
+  { id: 'animation', label: '动画', title: '导航与品牌过渡', note: '进入章节时，图标与文字一起收拢，品牌向左归位；返回首页时恢复展开。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
   { id: 'carousel', label: '轮播', title: '首页照片轮播', note: '调整醒狮文化图鉴的播放节奏与照片动效。', icon: 'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
   { id: 'layout', label: '布局', title: '面板与页面布局', note: '选择覆盖或推开页面，并调整面板宽度。', icon: 'M3 4h14v12H3zM12 4v12' },
 ];
@@ -248,7 +248,7 @@ export default function DeveloperSettingsPanel({
                 {range('navIconSize', '导航图标尺寸', 24, 56)}
                 {range('brandPadding', '品牌左侧留白', 8, 80)}
                 {range('helperTransparency', '辅助文字透明度', 0, 100, 1, '%')}
-                <p className="developer-settings-note">首页标题与辅助文字独立调节。进入章节后仅显示图标；窗口空间不足时，导航按可用宽度调整。</p>
+                <p className="developer-settings-note">标题与辅助文字独立调节。切换章节时，图标与文字一起过渡；窗口空间不足时，导航按可用宽度调整。</p>
               </SettingsGroup>
             </>}
 
@@ -267,10 +267,12 @@ export default function DeveloperSettingsPanel({
                   <p className="developer-settings-note">{easingOptions.find(option => option.value === settings.navigationEasing)?.note}</p>
                 </div>
               </SettingsGroup>
-              <SettingsGroup title="收拢后的图标" note="位置与间距">
+              <SettingsGroup title="导航与品牌位置" note="位置与间距">
                 {range('compactNavGap', '紧凑导航图标间距', 4, 36)}
                 {range('compactNavInset', '紧凑导航右侧留白', 16, 160)}
-                <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，图标直接切换到目标位置。</p>
+                {range('homeBrandOffset', '首页品牌右移距离', 0, 160)}
+                <p className="developer-settings-note">首页的狮头与“南风有狮”一起右移，进入章节后向左归位；品牌左侧留白另在导航页调整。</p>
+                <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，导航与品牌直接切换到目标位置。</p>
               </SettingsGroup>
             </>}
 

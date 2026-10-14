@@ -2,6 +2,7 @@ import BrandLockup from './BrandLockup.jsx';
 import ChapterNav from './ChapterNav.jsx';
 import { media } from '../config/media.js';
 import { useNavigationLayout } from '../hooks/useNavigationLayout.js';
+import NavigationSurface from './NavigationSurface.jsx';
 
 const navigationFontFace = `@font-face {
   font-family: 'Nanfeng Navigation Brush';
@@ -21,7 +22,10 @@ export default function SiteHeader({ current, onNavigate, settingsOpen, onToggle
   return <header className="site-header" ref={headerRef} data-nav-mode={current === 'entry' ? 'expanded' : 'compact'}>
     <style>{navigationFontFace}</style>
     <div className="site-header-inner">
-      <BrandLockup />
+      <button type="button" className="site-brand-capsule" onClick={() => navigate('entry')} aria-label="南风有狮，返回首页">
+        <NavigationSurface />
+        <BrandLockup />
+      </button>
       <ChapterNav current={current} onNavigate={navigate} settingsOpen={settingsOpen}
         onToggleSettings={onToggleSettings} settingsTriggerRef={settingsTriggerRef} />
     </div>

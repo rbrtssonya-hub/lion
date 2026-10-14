@@ -39,6 +39,7 @@ test('探索更多保留透明金色书法与电脑端居中对齐，点击进�
         return { centerX: box.left + box.width / 2, centerY: box.top + box.height / 2, left: box.left, right: box.right };
       };
       return {
+        available: { left: document.querySelector('.site-shell').getBoundingClientRect().left, right: document.querySelector('.site-shell').getBoundingClientRect().right },
         button: read('.entry-cta'), image: read('.entry-cta-calligraphy'),
         title: read('.entry-title-live2d'), motto: read('.entry-motto'), english: read('.entry-english'),
       };
@@ -47,8 +48,8 @@ test('探索更多保留透明金色书法与电脑端居中对齐，点击进�
     expect(Math.abs(alignment.image.centerY - alignment.button.centerY)).toBeLessThan(1);
     for (const part of [alignment.title, alignment.motto, alignment.english]) {
       expect(Math.abs(part.centerX - alignment.button.centerX)).toBeLessThan(1);
-      expect(part.left).toBeGreaterThanOrEqual(0);
-      expect(part.right).toBeLessThanOrEqual(width);
+      expect(part.left).toBeGreaterThanOrEqual(alignment.available.left);
+      expect(part.right).toBeLessThanOrEqual(alignment.available.right);
     }
   }
   await button.click();
@@ -109,9 +110,10 @@ test('照片暖色氛围自然淡出，电脑尺寸下四周没有矩形色带',
     await atmosphere.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const box = await atmosphere.boundingBox();
-    expect(box.x).toBeGreaterThanOrEqual(0);
+    const available = await page.locator('.site-shell').boundingBox();
+    expect(box.x).toBeGreaterThanOrEqual(available.x);
     expect(box.y).toBeGreaterThanOrEqual(0);
-    expect(box.x + box.width).toBeLessThanOrEqual(width);
+    expect(box.x + box.width).toBeLessThanOrEqual(available.x + available.width);
     expect(box.y + box.height).toBeLessThanOrEqual(height);
     const clip = { x: Math.floor(box.x), y: Math.floor(box.y), width: Math.ceil(box.x + box.width) - Math.floor(box.x), height: Math.ceil(box.y + box.height) - Math.floor(box.y) };
     const painted = (await page.screenshot({ clip })).toString('base64');
@@ -167,7 +169,7 @@ test('首页照片下方控制栏已删除，照片与摄影许可保留且页�
   const before = await page.evaluate(() => scrollY);
   await page.mouse.wheel(0, -230);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(before - 80);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
 });
 
 test('轮播按设置间隔同步照片与文字，鼠标在解读文字内不暂停', async ({ page }) => {
@@ -485,7 +487,7 @@ test('电脑窗口和运行中参数变化保持同一画布，减少动态与�
     await page.setViewportSize({ width, height });
     await gallery.scrollIntoViewIfNeeded();
     await expect.poll(() => gallery.locator('canvas').evaluate(element => Math.abs(element.width / Math.min(devicePixelRatio, 1.75) - element.clientWidth) < 2)).toBe(true);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   }
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
@@ -508,7 +510,7 @@ test('电脑窗口和运行中参数变化保持同一画布，减少动态与�
   await page.locator('.site-nav-item[data-route="action"]').click();
   await expect(page.locator('.culture-depth-canvas')).toHaveCount(0);
   await expect.poll(() => nextCanvas.evaluate(element => !element.isConnected && (element.getContext('webgl2') || element.getContext('webgl')).isContextLost())).toBe(true);
-  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await page.locator('.site-brand-capsule').click();
   await gallery.scrollIntoViewIfNeeded();
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   await expect(carousel.locator('canvas')).toHaveCount(1);
@@ -529,5 +531,5 @@ test('减少动态效果时文化内容立即可读，手机页面仍能自然�
   await page.mouse.move(190, 80);
   await page.mouse.wheel(0, 800);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
 });
