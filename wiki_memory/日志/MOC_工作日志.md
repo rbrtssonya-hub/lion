@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-14 | maintenance | completed | [本地快进同步GitHub更新](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E6%9C%AC%E5%9C%B0%E5%BF%AB%E8%BF%9B%E5%90%8C%E6%AD%A5GitHub%E6%9B%B4%E6%96%B0.md) |
 | 2026-10-14 | maintenance | completed | [导航图案支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E5%AF%BC%E8%88%AA%E5%9B%BE%E6%A1%88%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
+| 2026-10-14 | maintenance | completed | [同步最新主线到F盘工程](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E5%88%B0F%E7%9B%98%E5%B7%A5%E7%A8%8B.md) |
 | 2026-10-14 | maintenance | completed | [双线开发合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E5%8F%8C%E7%BA%BF%E5%BC%80%E5%8F%91%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-14 | feature | completed | [轮播设置与照片聚焦交互](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-14-%E8%BD%AE%E6%92%AD%E8%AE%BE%E7%BD%AE%E4%B8%8E%E7%85%A7%E7%89%87%E8%81%9A%E7%84%A6%E4%BA%A4%E4%BA%92.md) |
 | 2026-10-14 | feature | completed | [岭南醒狮志真实翻页史册](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-14-%E5%B2%AD%E5%8D%97%E9%86%92%E7%8B%AE%E5%BF%97%E7%9C%9F%E5%AE%9E%E7%BF%BB%E9%A1%B5%E5%8F%B2%E5%86%8C.md) |
