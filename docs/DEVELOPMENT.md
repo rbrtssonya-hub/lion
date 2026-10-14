@@ -59,7 +59,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
-`ChapterNav` 的第五项是设置开关，不增加Hash路由。首页五项保留完整标题与辅助文字；进入结构、动作或神态后仅显示同一组五个原SVG，收拢到顶栏右侧，返回首页重新展开。图标始终为朱红 `#d4382a`；紧凑导航以当前图标的 `::after` 红色横线标记章节，图标按钮保留可访问名称与 `aria-current`。
+`ChapterNav` 的第五项是设置开关，不增加Hash路由。首页五项保留完整标题与辅助文字；进入结构、动作或神态后仅显示同一组五个用户PNG图案，收拢到顶栏右侧，返回首页重新展开。`NavigationIcon`经assetPaths/media载入原1254×1254 RGBA，使用chapters.js的navigationIcons配置viewBox对透明留白取景，保留金白配色和比例；图案无颜色滤镜。紧凑导航以当前图案外层的 `::after` 红色横线标记章节，图案节点在导航动画中保持同一个实例，可访问名称与 `aria-current`由按钮提供。素材对应与取景参数见[导航图案说明](../source/references/navigation-user-icons.md)。
 
 `useNavigationMotion` 在导航或CTA操作前记录图标实际横坐标，布局切换后通过FLIP和Web Animations API的 `translateX` 补间水平运动，不复制图标或运行资产。快速再次导航从当前动画位置接续；原生hash/history切换由useChapterRoute在同一hashchange回调内先捕获、再更新React路由，避免依赖多个监听器的调用顺序。默认720ms，可调200–1600ms、步长10ms；曲线为平滑进出 `smooth`、快速收拢 `swift`、柔和缓出 `soft` 三种cubic-bezier。收拢图标间距默认14px（4–36px），右侧留白默认48px（16–160px），实际值随电脑页面可用宽度限制。宽度或相关参数变化、减少动态偏好开启和卸载时取消动画；动画结束后移除 `will-change` 并取消填充效果，卸载清理观察器与事件监听。
 

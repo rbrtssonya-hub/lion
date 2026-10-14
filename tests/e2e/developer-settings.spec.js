@@ -316,8 +316,9 @@ test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控�
   await expect(page.locator('.site-header')).toHaveCSS('backdrop-filter', 'none');
   await expect(page.locator('.site-nav-heading strong').first()).toHaveCSS('opacity', '1');
   for (const icon of await page.locator('.site-nav-icon').all()) {
-    await expect(icon).toHaveCSS('color', 'rgb(212, 56, 42)');
-    await expect(icon.locator('svg')).toHaveCSS('stroke', 'rgb(212, 56, 42)');
+    await expect(icon).toHaveCSS('opacity', '1');
+    await expect(icon.locator('svg')).toHaveCSS('filter', 'none');
+    await expect(icon.locator('svg image')).toHaveCount(1);
   }
   expect(await page.locator('.site-header').evaluate(element => {
     const style = getComputedStyle(element);

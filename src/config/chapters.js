@@ -1,11 +1,20 @@
 import { lionExpressions } from '../data/lion-expressions.js';
 
 export const chapters = [
-  { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南', icon: 'M7 22 24 8l17 14M11 19v21h26V19M20 40V28h8v12M14 23h3M31 23h3M32 14V8h5v10', viewBox: '0 0 48 48' },
-  { route: 'model', label: '结构', description: '认识广府醒狮', icon: 'M12 37a8 8 0 0 1-2-16 9 9 0 0 1 8-10 10 10 0 0 1 18 8 9 9 0 0 1 0 18H12ZM12 28c-6-6 4-11 6-4 0-7 10-7 10 0 6-6 12 2 5 6M19 31c-4 3-1 8 3 5M26 30c4-4 7 2 3 4', viewBox: '0 0 48 48' },
-  { route: 'action', label: '动作', description: '探秘经典招式', icon: 'M12 15 8 12l2-5 5 1 3-4 5 2 1 6-4 5-7-2ZM14 8h1M10 12h6M20 16l9 8 7 9 4 9-4 2-5-8-7-5-3 4-5-2 4-6-5-5-3 2-7-4 1-4 6 2 1-4M28 24c6 0 8-4 7-8 5 0 5 8 0 12M25 31l-3 9-6 3-2-3 5-3 1-5', viewBox: '0 0 48 48' },
-  { route: 'state', label: '神态', description: '解读狮之神韵', icon: 'M3 24S11 10 24 10s21 14 21 14-8 14-21 14S3 24 3 24ZM34 24a10 10 0 1 1-20 0 10 10 0 1 1 20 0M29 24a5 5 0 1 1-5-5', viewBox: '0 0 48 48' },
+  { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南' },
+  { route: 'model', label: '结构', description: '认识广府醒狮' },
+  { route: 'action', label: '动作', description: '探秘经典招式' },
+  { route: 'state', label: '神态', description: '解读狮之神韵' },
 ];
+
+// Insets frame the visible artwork while keeping the supplied PNG bytes intact.
+export const navigationIcons = {
+  entry: { mediaKey: 'navHomeIcon', viewBox: '193 242 868 773' },
+  model: { mediaKey: 'navStructureIcon', viewBox: '156 135 942 987' },
+  action: { mediaKey: 'navActionIcon', viewBox: '210 140 888 963' },
+  state: { mediaKey: 'navExpressionIcon', viewBox: '109 311 1038 611' },
+  settings: { mediaKey: 'navSettingsIcon', viewBox: '270 272 715 715' },
+};
 
 // These are the existing chapter outlines. Editorial content is still pending.
 export const chapterContent = {

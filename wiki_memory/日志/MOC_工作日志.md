@@ -13,12 +13,14 @@ sources: []
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
 | 2026-10-14 | maintenance | completed | [本地快进同步GitHub更新](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E6%9C%AC%E5%9C%B0%E5%BF%AB%E8%BF%9B%E5%90%8C%E6%AD%A5GitHub%E6%9B%B4%E6%96%B0.md) |
+| 2026-10-14 | maintenance | completed | [导航图案支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-14-%E5%AF%BC%E8%88%AA%E5%9B%BE%E6%A1%88%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-14 | feature | completed | [轮播设置与照片聚焦交互](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-14-%E8%BD%AE%E6%92%AD%E8%AE%BE%E7%BD%AE%E4%B8%8E%E7%85%A7%E7%89%87%E8%81%9A%E7%84%A6%E4%BA%A4%E4%BA%92.md) |
 | 2026-10-14 | feature | completed | [岭南醒狮志真实翻页史册](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-14-%E5%B2%AD%E5%8D%97%E9%86%92%E7%8B%AE%E5%BF%97%E7%9C%9F%E5%AE%9E%E7%BF%BB%E9%A1%B5%E5%8F%B2%E5%86%8C.md) |
 | 2026-10-14 | feature | completed | [导航图标变速收拢与设置分页](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-14-%E5%AF%BC%E8%88%AA%E5%9B%BE%E6%A0%87%E5%8F%98%E9%80%9F%E6%94%B6%E6%8B%A2%E4%B8%8E%E8%AE%BE%E7%BD%AE%E5%88%86%E9%A1%B5.md) |
 | 2026-10-14 | feature | completed | [导航标题与辅助字号独立调节](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-13-%E5%AF%BC%E8%88%AA%E6%A0%87%E9%A2%98%E4%B8%8E%E8%BE%85%E5%8A%A9%E5%AD%97%E5%8F%B7%E7%8B%AC%E7%AB%8B%E8%B0%83%E8%8A%82.md) |
 | 2026-10-14 | ui | completed | [首页文化纵深照片轮播](UI%E4%BF%AE%E6%94%B9/2026-10-14-%E9%A6%96%E9%A1%B5%E6%96%87%E5%8C%96%E7%BA%B5%E6%B7%B1%E7%85%A7%E7%89%87%E8%BD%AE%E6%92%AD.md) |
 | 2026-10-14 | ui | completed | [神态八态参考布局与滚轮联动](UI%E4%BF%AE%E6%94%B9/2026-10-14-%E7%A5%9E%E6%80%81%E5%85%AB%E6%80%81%E5%8F%82%E8%80%83%E5%B8%83%E5%B1%80%E4%B8%8E%E6%BB%9A%E8%BD%AE%E8%81%94%E5%8A%A8.md) |
+| 2026-10-14 | ui | completed | [导航图案替换](UI%E4%BF%AE%E6%94%B9/2026-10-14-%E5%AF%BC%E8%88%AA%E5%9B%BE%E6%A1%88%E6%9B%BF%E6%8D%A2.md) |
 | 2026-10-14 | ui | completed | [动作、神态移除全页黄色遮罩](UI%E4%BF%AE%E6%94%B9/2026-10-14-%E5%8A%A8%E4%BD%9C%E7%A5%9E%E6%80%81%E7%A7%BB%E9%99%A4%E5%85%A8%E9%A1%B5%E9%BB%84%E8%89%B2%E9%81%AE%E7%BD%A9.md) |
 | 2026-10-14 | bug | completed | [轮播悬停残留与自动恢复修复](Bug%E5%A4%84%E7%90%86/2026-10-14-%E8%BD%AE%E6%92%AD%E6%82%AC%E5%81%9C%E6%AE%8B%E7%95%99%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%81%A2%E5%A4%8D%E4%BF%AE%E5%A4%8D.md) |
 | 2026-10-13 | maintenance | completed | [本地快进同步 GitHub 最新更新](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-13-%E6%9C%AC%E5%9C%B0%E5%BF%AB%E8%BF%9B%E5%90%8C%E6%AD%A5GitHub%E6%9B%B4%E6%96%B0.md) |
