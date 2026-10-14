@@ -182,6 +182,175 @@ test('悬停停止自动切换，不点击离开后按等待时间恢复，重�
   await expect(carousel).toHaveAttribute('data-culture-index', '3', { timeout: 3200 });
 });
 
+test('悬停后滚动使照片移离静止指针时自动解除暂停', async ({ page }) => {
+  const { carousel, gallery, action } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  const photo = await action.boundingBox();
+  const point = { x: photo.x + photo.width / 2, y: photo.y + 15 };
+  await page.mouse.move(point.x, point.y);
+  await expect(carousel).toHaveAttribute('data-culture-status', 'focused');
+  await page.mouse.wheel(0, -65);
+  // The pointer remains inside the canvas, so a whole-gallery pointerleave
+  // cannot release this pause. The photograph itself has moved out from it.
+  await expect.poll(async () => (await action.boundingBox()).y > point.y + 20).toBe(true);
+  const bounds = await gallery.boundingBox();
+  expect(point.y).toBeGreaterThan(bounds.y);
+  await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+  await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
+  await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
+});
+
+test('自动切图经过静止指针时不会自行获取悬停并停播', async ({ page }) => {
+  const { carousel, gallery, action } = await openCulture(page, {
+    carouselInterval: 2, carouselResumeDelay: 1, carouselTransitionDuration: 300,
+  });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  const center = await photoPoint(gallery);
+  await page.mouse.click(center.x, center.y);
+  await page.mouse.click(center.x, center.y);
+  await expect(carousel).toHaveAttribute('data-culture-index', '2');
+  await page.waitForTimeout(650);
+  const narrowPhoto = await action.boundingBox();
+  // The third photograph is narrower. The next, wider photo will slide under
+  // this stationary pointer without any new user input.
+  await page.mouse.move(narrowPhoto.x - 20, center.y);
+  await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+  await expect(carousel).toHaveAttribute('data-culture-index', '3', { timeout: 4000 });
+  await page.waitForTimeout(500);
+  const widePhoto = await action.boundingBox();
+  expect(narrowPhoto.x - 20).toBeGreaterThan(widePhoto.x);
+  await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+  await expect(carousel).toHaveAttribute('data-culture-index', '0', { timeout: 3000 });
+});
+
+test('照片加载期间悬停，画布就绪后移开仍能恢复自动轮播', async ({ page }) => {
+  let releaseModule;
+  const moduleGate = new Promise(resolve => { releaseModule = resolve; });
+  await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
+    await moduleGate;
+    await route.continue();
+  });
+  try {
+    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+    await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
+    const point = await photoPoint(gallery);
+    await page.mouse.move(point.x, point.y);
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    releaseModule();
+    await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+    // A valid hover survives the handoff; loading must not cancel the user's
+    // current interaction merely to avoid retaining a stale pause on exit.
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    await page.waitForTimeout(2300);
+    await expect(carousel).toHaveAttribute('data-culture-index', '0');
+    await page.mouse.move(1800, point.y);
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
+    await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
+  } finally {
+    releaseModule();
+  }
+});
+
+test('加载交接期间新的指针离开不会被较旧坐标覆盖', async ({ page }) => {
+  let releaseModule;
+  const moduleGate = new Promise(resolve => { releaseModule = resolve; });
+  await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
+    await moduleGate;
+    await route.continue();
+  });
+  try {
+    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+    await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
+    const point = await photoPoint(gallery);
+    await page.mouse.move(point.x, point.y);
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    await gallery.evaluate(element => {
+      // Inject a newer boundary event at the exact DOM/effect handoff, which
+      // physical input cannot reliably time. The engine must not replay the
+      // older loading pointer afterward and reacquire a stale pause.
+      const observer = new MutationObserver(() => {
+        if (element.dataset.depthState !== 'ready') return;
+        observer.disconnect();
+        const event = { bubbles: true, clientX: 1800, clientY: 600, relatedTarget: document.body };
+        element.dispatchEvent(new PointerEvent('pointerout', event));
+        element.dispatchEvent(new PointerEvent('pointerleave', event));
+      });
+      observer.observe(element, { attributes: true, attributeFilter: ['data-depth-state'] });
+    });
+    releaseModule();
+    await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 4000 });
+  } finally {
+    releaseModule();
+  }
+});
+
+test('窗口高度变化使静止指针移出视口后释放照片暂停', async ({ page }) => {
+  const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  const point = await photoPoint(gallery);
+  await page.mouse.move(point.x, point.y);
+  await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+  const before = await gallery.boundingBox();
+  await page.setViewportSize({ width: 1920, height: Math.floor(point.y - 40) });
+  const after = await gallery.boundingBox();
+  // This height-only resize does not resize the gallery, so ResizeObserver
+  // alone cannot invalidate the stored pointer's viewport coordinates.
+  expect(after.width).toBeCloseTo(before.width, 1);
+  expect(after.height).toBeCloseTo(before.height, 1);
+  await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+  await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
+  await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
+});
+
+test('窗口失焦和指针取消事件清理悬停，返回后仍可再次聚焦和自动恢复', async ({ page }) => {
+  const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  const point = await photoPoint(gallery);
+  // Dispatch lifecycle events explicitly: headless bringToFront does not
+  // reliably change OS window focus or document visibility.
+  for (const [index, type] of ['blur', 'pointercancel'].entries()) {
+    await page.mouse.move(point.x + index, point.y);
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    await page.evaluate(eventType => window.dispatchEvent(new Event(eventType)), type);
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
+  }
+  await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
+});
+
+test('连续三个完整自动循环保持图文同步，滚出后返回仍继续播放', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselTransitionDuration: 300 });
+  await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+  await page.mouse.move(1800, 600);
+  const ids = ['living-tradition', 'lion-head-craft', 'cai-qing', 'shared-rhythm'];
+  const canvas = gallery.locator('canvas');
+  let previousFrame;
+  for (let step = 1; step <= 12; step += 1) {
+    const index = step % ids.length;
+    await expect(carousel).toHaveAttribute('data-culture-index', String(index), { timeout: 3200 });
+    await expect(carousel.locator('.is-active')).toHaveAttribute('data-culture-id', ids[index]);
+    await expect(carousel).toHaveAttribute('data-culture-status', 'playing');
+    await page.waitForTimeout(450);
+    const frame = await canvas.screenshot();
+    if (previousFrame) expect(frame.equals(previousFrame)).toBe(false);
+    previousFrame = frame;
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await expect(carousel).toHaveAttribute('data-culture-status', 'offscreen');
+  const pausedIndex = await carousel.getAttribute('data-culture-index');
+  await page.waitForTimeout(2300);
+  await expect(carousel).toHaveAttribute('data-culture-index', pausedIndex);
+  await gallery.scrollIntoViewIfNeeded();
+  await expect(carousel).toHaveAttribute('data-culture-status', 'playing');
+  await expect(carousel).toHaveAttribute('data-culture-index', String((Number(pausedIndex) + 1) % 4), { timeout: 3200 });
+  expect(errors).toEqual([]);
+});
+
 test('减少动态时保留点击与键盘首尾循环并停止自动播放', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const { carousel, gallery, action } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });

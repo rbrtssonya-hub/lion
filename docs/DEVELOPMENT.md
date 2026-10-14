@@ -57,7 +57,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 `useNavigationMotion` 在导航或CTA操作前记录图标实际横坐标，布局切换后通过FLIP和Web Animations API的 `translateX` 补间水平运动，不复制图标或运行资产。快速再次导航从当前动画位置接续；原生hash/history切换由useChapterRoute在同一hashchange回调内先捕获、再更新React路由，避免依赖多个监听器的调用顺序。默认720ms，可调200–1600ms、步长10ms；曲线为平滑进出 `smooth`、快速收拢 `swift`、柔和缓出 `soft` 三种cubic-bezier。收拢图标间距默认14px（4–36px），右侧留白默认48px（16–160px），实际值随电脑页面可用宽度限制。宽度或相关参数变化、减少动态偏好开启和卸载时取消动画；动画结束后移除 `will-change` 并取消填充效果，卸载清理观察器与事件监听。
 
-`DeveloperSettingsPanel` 贴右覆盖完整视口高度，按“外观 / 导航 / 动画 / 布局”分为四页；页签采用tablist/tab/tabpanel关联及单一可Tab聚焦页签，左右方向键与Home/End自动切换。每页仅显示相关控件，内容独立滚动，关闭入口与底部恢复默认按钮固定可达。`App` 常挂此组件，关闭时内部返回null，因此重新打开保留当前分类；刷新后从外观页开始，打开状态不持久化。`useDeveloperSettings` 保存 `nanfeng-lion:developer-settings:v1`，校验类型、范围、步长与动画曲线枚举；旧数据补齐四项动画/位置默认值，其他参数保持。读写不可用时仍能现场调整。字体参数的 `navigationTypographyVersion: 2` 仅将未升级的旧20默认值一次提升至26，其他字段保持；随后手选20仍保留。历史数据未记录是否手选20，因此无法区别这两种旧值。
+`DeveloperSettingsPanel` 贴右覆盖完整视口高度，按“外观 / 导航 / 动画 / 轮播 / 布局”分为五页；页签采用tablist/tab/tabpanel关联及单一可Tab聚焦页签，左右方向键与Home/End自动切换。每页仅显示相关控件，内容独立滚动，关闭入口与底部恢复默认按钮固定可达。`App` 常挂此组件，关闭时内部返回null，因此重新打开保留当前分类；刷新后从外观页开始，打开状态不持久化。`useDeveloperSettings` 保存 `nanfeng-lion:developer-settings:v1`，校验类型、范围、步长与动画曲线枚举；旧数据补齐动画/位置和轮播默认值，其他参数保持。读写不可用时仍能现场调整。字体参数的 `navigationTypographyVersion: 2` 仅将未升级的旧20默认值一次提升至26，其他字段保持；随后手选20仍保留。历史数据未记录是否手选20，因此无法区别这两种旧值。
 
 设置结构只读参考 `E:/Software Development/WebPage`，未修改该工程。页签交互参考 [WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)，代码动画参考 [MDN Element.animate](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) 与 [MDN cubic-bezier](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/cubic-bezier)。
 
@@ -100,6 +100,8 @@ npm run test:e2e -- --grep-invert 手机
 首页文化照片采用局部纵深图鉴：React负责图文/连续序号，`CultureDepthGallery`进入可视区域后动态载入 `src/services/cultureDepthGallery.js`。透明Three画布负责透视推进和前景微放大，Raycaster只允许真实前景照片命中/点击，位置稳定且已删除视差/光迹，稳定后停止RAF；不拦截页面滚轮，不改变首屏视频。底部控制栏已移除，直接点击照片下一张，键盘方向键/Home/End保留；暂停开关与间隔/离开等待/过渡时长/聚焦比例在设置的独立“轮播”页，参数通过App→HomePage→HomeCulture传递并原位更新引擎。移开先等待恢复时间，再从头计算播放间隔；重新进入清旧计时。图文、摄影许可和静态图片始终由React维护，减少动态或WebGL故障时照片仍可点选。修改此区时运行 `tests/e2e/home-culture.spec.js tests/e2e/developer-settings.spec.js --grep-invert 手机`，覆盖稳定聚焦/点击/延时恢复/设置迁移、电脑窗口、动态偏好变化、不可用回退及释放重入，并核对 [源码参考与MIT许可](../source/references/home-culture-depth-gallery.md)。
 
 构建后可运行 `npm run test:e2e:preview -- --grep-invert 手机` 回归生产预览；两组命令按当前电脑端约束排除专项手机测试。Python 眼层检查使用 `python -B -m unittest discover -s tests/assets -p 'test_*.py'`；v4素材尚未生成时对应检查会显示 skip，需与通过项分开记录。本轮完整验证结果由当前任务日志记录，下列既有结果仅追溯当时版本。
+
+轮播悬停以真实指针输入进入前景照片为起点。滚动捕获、容器/窗口尺寸变化会复核已有命中并释放无效暂停；高度单独变化也需要窗口resize监听。窗口blur、pointercancel和离开文档清旧指针，自动切图完成只解除失效悬停，不用旧坐标获取新暂停。加载中的静态按钮记录真实指针输入，向就绪画布交接时先清旧暂停，在同一次DOM提交的layout effects中先setActive，再消费一次坐标交给服务syncPointer重新命中验证；仍在主图内保持暂停，移开后恢复，失焦清交接坐标，防止延后的旧坐标覆盖新离开事件。新增监听随组件/服务卸载移除，不用常驻RAF或定时轮询兜底。首页回归包含加载中悬停及交接后继续悬停、精确注入较新离开事件的交接竞态、静止指针下滚动/切图/高度变化、失焦/取消事件及连续三圈图文和画布变化；合成生命周期事件不等于真实操作系统Alt+Tab验收。
 
 模型全页绘制的浏览器断言使用真实滚轮及WebGL读像素，检查整体与结构示意状态的模型在旧16:9和当前中央交互区域上下边界外均有实际像素，同时验证默认角落透明、同页共享单canvas、离页释放及重入。2026-10-11历史裁切修正验证见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)。2026-10-12融合首页任务实际完成资产8项（330.6ms）、生产构建（56模块）、开发19项（29.9秒）与生产预览19项（28.7秒）回归；构建仍有既有 `lionScene` 超500kB提示。预览首次18/19源于测试将 `/assets` 与 `./assets` 作字面比较，改用 `new URL` 解析后全量通过，产品未因此修改。实际播放脚本观察入场自然ended一次、首页循环回绕一次、返回/刷新不自动入场及手机四图载入，错误数组为空；结果见 [本轮日志](../wiki_memory/日志/功能添加/2026-10-12-入场首页融合与醒狮文化长页.md)。
 

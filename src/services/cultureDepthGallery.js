@@ -153,9 +153,9 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     const focusMoving = Math.abs(focusScale - targetScale) > 0.00001;
     if (!focusMoving) focusScale = targetScale;
     render();
-    // Different photographs can have different aspect ratios. Recheck once
-    // after travel settles, without introducing per-frame hover oscillation.
-    if (settled && lastPointer) setFocused(hitsFront(lastPointer));
+    // Travel can move a photograph away from an existing hover. A photograph
+    // arriving under a parked pointer must not acquire hover and stop autoplay.
+    if (settled) releaseInvalidFocus();
     if (transition || focusMoving) requestDraw();
     else lastFrameTime = 0;
   }
@@ -173,6 +173,7 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     if (ready) {
       // Static draws also keep an inactive view correct after container resize.
       render();
+      releaseInvalidFocus();
       requestDraw();
     }
   }
@@ -187,6 +188,11 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
 
   function hitsFront(event) {
     if (!ready || !active || document.hidden || disposed || failed) return false;
+    // Pointer coordinates can outlive scrolling, resizing, or a covering panel.
+    // The visible canvas must still be the actual target at that screen point.
+    if (event.clientX < 0 || event.clientX >= window.innerWidth ||
+      event.clientY < 0 || event.clientY >= window.innerHeight ||
+      document.elementFromPoint(event.clientX, event.clientY) !== canvas) return false;
     const bounds = canvas.getBoundingClientRect();
     if (!bounds.width || !bounds.height || event.clientX < bounds.left || event.clientX > bounds.right ||
       event.clientY < bounds.top || event.clientY > bounds.bottom) return false;
@@ -219,6 +225,14 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
   function onPointerLeave() {
     lastPointer = null;
     setFocused(false);
+  }
+
+  function releaseInvalidFocus() {
+    if (focused && (!lastPointer || !hitsFront(lastPointer))) setFocused(false);
+  }
+
+  function onPointerOut(event) {
+    if (!event.relatedTarget) onPointerLeave();
   }
 
   function onClick(event) {
@@ -293,6 +307,10 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     container?.removeEventListener('pointerenter', onPointerMove);
     container?.removeEventListener('pointerleave', onPointerLeave);
     container?.removeEventListener('click', onClick);
+    window.removeEventListener('scroll', releaseInvalidFocus, true);
+    window.removeEventListener('blur', onPointerLeave);
+    window.removeEventListener('pointercancel', onPointerLeave, true);
+    window.removeEventListener('pointerout', onPointerOut);
     document.removeEventListener('visibilitychange', onVisibilityChange);
     canvas.removeEventListener('webglcontextlost', onContextLost);
     window.removeEventListener('resize', resize);
@@ -313,7 +331,7 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     }
   }
 
-  const service = { select, setActive, setSettings, resize, dispose };
+  const service = { select, setActive, setSettings, syncPointer: onPointerMove, resize, dispose };
   setSettings(settings);
   try {
     if (!container || !items.length) throw new Error('首页纵深照片画廊缺少容器或照片。');
@@ -326,11 +344,17 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     container.addEventListener('pointerenter', onPointerMove, { passive: true });
     container.addEventListener('pointerleave', onPointerLeave, { passive: true });
     container.addEventListener('click', onClick);
+    window.addEventListener('scroll', releaseInvalidFocus, { capture: true, passive: true });
+    window.addEventListener('blur', onPointerLeave);
+    window.addEventListener('pointercancel', onPointerLeave, { capture: true, passive: true });
+    window.addEventListener('pointerout', onPointerOut, { passive: true });
     document.addEventListener('visibilitychange', onVisibilityChange);
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(resize);
       resizeObserver.observe(container);
-    } else window.addEventListener('resize', resize, { passive: true });
+    }
+    // Viewport height can change without resizing this fixed-height container.
+    window.addEventListener('resize', resize, { passive: true });
     resize();
   } catch (error) {
     queueMicrotask(() => fail(error));
