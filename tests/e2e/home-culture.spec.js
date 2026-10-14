@@ -92,6 +92,11 @@ async function photoPoint(gallery) {
 test('照片暖色氛围自然淡出，电脑尺寸下四周没有矩形色带', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const { gallery } = await openCulture(page, { carouselAutoplay: false });
+  // Resolve the preceding lazy book before comparing a fixed viewport clip.
+  // Its placeholder replacement would otherwise move the paper between shots.
+  await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
+  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
+  await gallery.scrollIntoViewIfNeeded();
   // Compare the actual rendered decoration against the same paper beneath it.
   // Hide foreground content and paper pattern so they cannot conceal a clipped
   // boundary or introduce unrelated raster differences between screenshots.
@@ -100,7 +105,8 @@ test('照片暖色氛围自然淡出，电脑尺寸下四周没有矩形色带',
   const atmosphere = gallery.locator('.culture-depth-atmosphere');
   for (const [width, height] of [[1366, 900], [1920, 1080], [2560, 1440]]) {
     await page.setViewportSize({ width, height });
-    await atmosphere.scrollIntoViewIfNeeded();
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await atmosphere.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const box = await atmosphere.boundingBox();
     expect(box.x).toBeGreaterThanOrEqual(0);

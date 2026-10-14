@@ -1195,6 +1195,144 @@
       "path": "source/reviews/homepage/2026-10-14-book-gallery-shadow-stability/desktop-1920-native-intro.png",
       "bytes": 1390156,
       "sha256": "742b6ad515433dd1381c23c6705b1fd0964380bb5616085073054927d2f751b1"
+    },
+    {
+      "from": "user-provided:2026-10-14/action-layout-reference",
+      "path": "source/design/action/action-hero-reference.png",
+      "bytes": 3153034,
+      "sha256": "9e4101fc1701bd2f149abf94b680cd6f94922f5b93767644f4572934eb01cf96"
+    },
+    {
+      "from": "user-provided:2026-10-14/action-layout-reference",
+      "path": "source/design/action/action-detail-reference.png",
+      "bytes": 4550979,
+      "sha256": "91398a300c33b7912a1f89ff4fe723f9ee28249758195ce984a8b876e8e3a18c"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-entry-poster.png",
+      "bytes": 2161930,
+      "sha256": "50697a5e3d546f6c39eb139f2faf84c69f9e64be6b8a7713397534f4e651691d"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-probe-poster.png",
+      "bytes": 2121230,
+      "sha256": "51a5f6f64823b384f52680ac91fe4d42c5498c696d708195bb3976dc8e2aece8"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-turn-poster.png",
+      "bytes": 2241116,
+      "sha256": "46ad3cc68afd465e6eba20ee09eaa80d0171e5ee2c6a612db03ef33d7c5c579d"
+    },
+    {
+      "from": "imagegen:2026-10-14/action-reference-extraction",
+      "path": "source/public/assets/action/action-settle-poster.png",
+      "bytes": 2100718,
+      "sha256": "581f6c71e0d2a57d5adc332fcbd89e15a21080deb6bfbaf96b07da64b578edfd"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/detail-start-1920.png",
+      "bytes": 2317796,
+      "sha256": "e4b10024f4a5de7b52d58b93974b265879757f6d5f4c0628a5311a9e8b482ee9"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1024.png",
+      "bytes": 962933,
+      "sha256": "418f4298a042b2158be5ddf1ed7faf64254a19c2991f9a08e03f5dfcb8d5f406"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1366.png",
+      "bytes": 1363873,
+      "sha256": "7b99ea796fd1ba2052d9928350f821b47b12f453099953ce4dd313b7f49d2f31"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-1920.png",
+      "bytes": 2572052,
+      "sha256": "e8f9974594359dbafcda486f9b0030420c626f0d4436f5c6bd36662483eaa2d5"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/hero-2560.png",
+      "bytes": 4168340,
+      "sha256": "dae9a5bd69b1934a55a7b66ad764478c29f3afaea4a83c0670b78200b9602426"
+    },
+    {
+      "from": "browser-review:2026-10-14/action-explorer",
+      "path": "source/reviews/chapters/2026-10-14-action-explorer/settings-push-1920.png",
+      "bytes": 2318098,
+      "sha256": "17f78d98f3ee7e1d14ef6d9c97b61acbf1b0172cc243050ce378d8edc21bcbc9"
+    },
+    {
+      "from": "user-provided:2026-10-14/expression-single-screen-reference",
+      "path": "source/design/expression/single-screen-reference.png",
+      "bytes": 2244411,
+      "sha256": "1e00236057e6636bee9fac2b6e84fb008088ae92f8dea9ae2a83896fd1ff918a"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/details-1440.png",
+      "bytes": 996447,
+      "sha256": "f82e7a7fed757f8f5d9c845104d2c1f20259ef1bf763c33e32169f4a354fcdd3"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/details-1920.png",
+      "bytes": 2318777,
+      "sha256": "fcfad18f224326999f17d4793d06dc3a0523d7c7a046f51e68a806a0e9a1fc2c"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-1024.png",
+      "bytes": 883138,
+      "sha256": "bd6990630986bb018da5bdb367471e6f60e2803a9689aff136186ab0a373c984"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-1920.png",
+      "bytes": 2306240,
+      "sha256": "d27039c3403300d21acf4ed11673c9fc718c7d9efd779c5619ca7c106428ceda"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/overview-2560.png",
+      "bytes": 3678810,
+      "sha256": "2d28afca050869cb4c96363f6a320a7d0059eb5732d528b05b32ed45d76cfa42"
+    },
+    {
+      "from": "browser-review:2026-10-14/expression-single",
+      "path": "source/reviews/chapters/2026-10-14-expression-single/short-1380-500.png",
+      "bytes": 557626,
+      "sha256": "1c719cfb3ad19983334e5376814db18d38e57f793adcd91e5fcc8a1a03cfb97c"
+    },
+    {
+      "from": "playwright:2026-10-14/lion-next-merge-production-review",
+      "path": "source/reviews/integration/2026-10-14-lion-next-merge/action-1920.png",
+      "bytes": 1321579,
+      "sha256": "6f035fac1fc72ca3f5fd58171137284c757cd25786efa25a5616f57c33d5526a"
+    },
+    {
+      "from": "playwright:2026-10-14/lion-next-merge-production-review",
+      "path": "source/reviews/integration/2026-10-14-lion-next-merge/expression-details-1920.png",
+      "bytes": 762432,
+      "sha256": "accd4958a571e65a1b837e28190959cc5d24ca240338d116d2fd6804d665c172"
+    },
+    {
+      "from": "playwright:2026-10-14/lion-next-merge-production-review",
+      "path": "source/reviews/integration/2026-10-14-lion-next-merge/home-book-1920.png",
+      "bytes": 1508980,
+      "sha256": "2358df1712b102f276fd6322b297f02b15481917f98e2737520a9342f833c18f"
+    },
+    {
+      "from": "playwright:2026-10-14/lion-next-merge-production-review",
+      "path": "source/reviews/integration/2026-10-14-lion-next-merge/home-gallery-1920.png",
+      "bytes": 996313,
+      "sha256": "e75cad57a388824d9de5928cbc969956128f6c7709b25a080139ec7eea9c45d1"
     }
   ]
 }
