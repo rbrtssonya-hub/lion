@@ -63,6 +63,10 @@ test('lion archive has seven local spreads and no lens, zoom controls, scenery, 
   assert.ok(engine.includes(`const DIR=${JSON.stringify(base)};`));
   assert.ok(engine.includes('const M=PAGES.length, LAND=0;'));
   assert.ok(!engine.includes('setTimeout(startIntro,220)'));
+  assert.ok(engine.includes("const Q=new URLSearchParams('');"));
+  assert.ok(!engine.includes("URLSearchParams('nointro')"));
+  assert.equal((adapted.match(/id="sb-mblur-1"/g) || []).length, 1);
+  assert.equal((adapted.match(/id="sb-mblur-2"/g) || []).length, 1);
   for (const old of ['bg-wash.jpg', 'marina-bay', 'gardens-by-the-bay', 'merlion.png', 'botany-', 'bloom.png', 'divider.png', '.woff2', '@font-face', 'class="loupe"', 'class="zoomwrap"', 'id="loupeBtn"', 'id="zIn"', 'id="zOut"', 'function loupeSize', 'function placeLoupe', 'function shoveLoupe', 'const MAG=', 'x.com/MengTo', 'mailto:', 'Designer / Creator']) {
     assert.ok(!adapted.includes(old), `removed ${old}`);
   }
@@ -89,21 +93,41 @@ test('archive data cannot escape its script', () => {
   for (const script of scriptSource(html)) assert.doesNotThrow(() => new Function(script));
 });
 
-function bridgeHarness() {
-  const messages = [], images = [], observers = [], cancelled = [];
-  const listeners = new Map();
+function bridgeHarness({ reduced = false, coarse = false } = {}) {
+  const messages = [], images = [], observers = [], cancelled = [], frames = new Map(), timers = new Map();
+  let clock = 0, handle = 100;
+  function eventTarget() {
+    const listeners = new Map();
+    return {
+      listeners,
+      addEventListener(type, handler) { if (!listeners.has(type)) listeners.set(type, new Set()); listeners.get(type).add(handler); },
+      removeEventListener(type, handler) { listeners.get(type)?.delete(handler); },
+      emit(type, event = {}) { [...listeners.get(type) || []].forEach((handler) => handler(event)); },
+    };
+  }
+  const windowEvents = eventTarget(), documentEvents = eventTarget();
+  const motion = { ...eventTarget(), matches: reduced }, coarseQuery = { matches: coarse };
   const body = { dataset: { ready: '0' } }, book = {};
+  const captures = new Set();
+  const stage = { hasPointerCapture: (id) => captures.has(id), releasePointerCapture: (id) => captures.delete(id) };
   const notify = (target) => observers.filter((observer) => observer.target === target && observer.active).forEach((observer) => observer.callback());
   const context = {
     parent: { postMessage(message, destination) { assert.equal(destination, '*'); messages.push(structuredClone(message)); } },
-    document: { body }, book,
+    document: { body, hidden: false, ...documentEvents }, book, stage,
+    wrap: { classList: { add() {}, remove() {}, toggle() {} } },
     PAGES: pages.map((page) => ({ ...page, url: base + page.file })),
-    idx: 0, turn: null, raf: 51, spring: {}, viewActive: true, drag: {}, introOn: false,
+    M: 7, LAND: 0, Q: new URLSearchParams(), REDUCED: reduced,
+    idx: 0, turn: null, raf: null, spring: null, viewActive: false, drag: null, introOn: false,
+    riffle: null, riffleAt: 0, last: 0,
+    matchMedia: (query) => query.includes('reduced-motion') ? motion : coarseQuery,
+    performance: { now: () => clock },
     innerHeight: 600,
     getComputedStyle: () => ({ lineHeight: '20px' }),
-    cancelAnimationFrame: (id) => cancelled.push(id),
-    addEventListener(type, handler) { if (!listeners.has(type)) listeners.set(type, new Set()); listeners.get(type).add(handler); },
-    removeEventListener(type, handler) { listeners.get(type)?.delete(handler); },
+    requestAnimationFrame: (callback) => { const id = ++handle; frames.set(id, callback); return id; },
+    cancelAnimationFrame: (id) => { cancelled.push(id); frames.delete(id); },
+    setTimeout: (callback, delay) => { const id = ++handle; timers.set(id, { callback, at: clock + delay }); return id; },
+    clearTimeout: (id) => timers.delete(id),
+    ...windowEvents,
     MutationObserver: class {
       constructor(callback) { this.callback = callback; this.active = true; observers.push(this); }
       observe(target) { this.target = target; }
@@ -115,14 +139,34 @@ function bridgeHarness() {
     },
   };
   context.window = context;
-  context.goTo = (index) => { context.idx = index; notify(book); };
-  context.step = (direction) => { context.turn = { to: (context.idx + (direction === 'next' ? 1 : 6)) % 7 }; notify(book); };
-  vm.runInNewContext(scriptSource(adapted)[2], context);
-  const emit = (type, event) => [...listeners.get(type) || []].forEach((handler) => handler(event));
+  context.paint = () => notify(book);
+  context.applyTurn = () => {};
+  context.viewSpring = () => { context.viewActive = false; };
+  context.loupeEase = () => false;
+  const sandbox = vm.createContext(context);
+  // Execute the real navigation, gesture completion, spring, and riffle code.
+  // Only DOM painting is stubbed; command races must exercise upstream goTo's
+  // early return and tick's real spring/turn scheduling relationship.
+  const engine = scriptSource(adapted)[1];
+  for (const name of ['animateTo', 'tweenTo', 'tick', 'kick', 'endDrag', 'startTurn', 'commit', 'cancel', 'step', 'goTo', 'endIntro', 'riffleStep', 'startIntro']) {
+    vm.runInContext(namedFunction(engine, name), sandbox);
+  }
+  vm.runInContext(scriptSource(adapted)[2], sandbox);
+  const emit = windowEvents.emit;
   const command = (action, extra = {}, source = context.parent) => emit('message', {
     source, data: { type: 'lion-book:command', channelId: options.channelId, action, ...extra },
   });
-  return { context, messages, images, observers, cancelled, listeners, body, book, notify, emit, command,
+  const advance = (duration) => {
+    const end = clock + duration;
+    while (clock < end) {
+      clock = Math.min(end, clock + 16);
+      for (const [id, timer] of [...timers]) if (timer.at <= clock) { timers.delete(id); timer.callback(); }
+      const callbacks = [...frames.values()]; frames.clear();
+      callbacks.forEach((callback) => callback(clock));
+    }
+  };
+  return { context, messages, images, observers, cancelled, listeners: windowEvents.listeners, body, book, notify, emit, command,
+    motion, documentEvents, frames, timers, captures, advance,
     state: () => messages.filter((message) => message.type === 'lion-book:state').at(-1) };
 }
 
@@ -141,6 +185,7 @@ test('bridge accepts proportional pages, waits for all seven and the engine, the
   assert.equal(state().ready, false, 'independent assets cannot claim the engine initialized');
   body.dataset.ready = '1'; notify(body);
   assert.equal(state().ready, true);
+  command('visibility', { visible: true });
   command('next', {}, {});
   command('next', { channelId: 'other-frame' });
   command('goTo', { index: 7 });
@@ -193,12 +238,15 @@ test('wheel units, book keyboard boundaries and disposal obey the host lifecycle
   const wheelCount = harness.messages.length;
   harness.emit('wheel', { deltaX: 0, deltaY: 1, deltaMode: 0, cancelable: false, preventDefault() { throw Error('noncancelable wheel hijacked'); } });
   assert.equal(harness.messages.length, wheelCount, 'a noncancelable event keeps native scroll only');
+  harness.command('visibility', { visible: true });
   let prevented = false;
-  harness.emit('keydown', { key: 'End', target: { tagName: 'BUTTON' }, preventDefault() { prevented = true; } });
+  harness.emit('keydown', { key: 'End', target: { tagName: 'BUTTON' }, preventDefault() { prevented = true; }, stopImmediatePropagation() {} });
+  harness.advance(1400);
   assert.equal(prevented, true);
   assert.equal(harness.context.idx, 6);
   harness.emit('keydown', { key: 'Home', target: { tagName: 'INPUT' }, preventDefault() { throw Error('input hijacked'); } });
   assert.equal(harness.context.idx, 6);
+  Object.assign(harness.context, { raf: 51, spring: {}, drag: {} });
   harness.command('dispose');
   assert.deepEqual(harness.cancelled, [51]);
   assert.ok(harness.observers.every((observer) => !observer.active));
@@ -208,6 +256,261 @@ test('wheel units, book keyboard boundaries and disposal obey the host lifecycle
   const count = harness.messages.length;
   harness.command('sync');
   assert.equal(harness.messages.length, count);
+});
+
+async function readyBridge(harness, { visible = true } = {}) {
+  harness.command('visibility', { visible });
+  harness.images.forEach((image) => image.onload());
+  harness.body.dataset.ready = '1';
+  await flushPromises();
+  harness.notify(harness.body);
+  assert.equal(harness.state().ready, true);
+}
+
+test('original seven-page riffle waits for readiness and visible exposure, then runs once and returns to the cover', async () => {
+  const harness = bridgeHarness();
+  harness.command('visibility', { visible: true });
+  harness.advance(1000);
+  assert.equal(harness.state().intro, 'pending');
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.timers.size, 0, 'visibility alone cannot start unloaded paper');
+  await readyBridge(harness);
+  assert.equal(harness.timers.size, 1);
+  harness.advance(208);
+  assert.equal(harness.state().intro, 'pending', 'the original 220ms lead-in is retained');
+  harness.command('visibility', { visible: false });
+  assert.equal(harness.timers.size, 0);
+  harness.advance(800);
+  assert.equal(harness.context.turn, null);
+  harness.command('visibility', { visible: true });
+  harness.advance(240);
+  assert.equal(harness.state().intro, 'playing');
+  assert.equal(harness.context.introOn, true);
+  assert.equal(harness.context.riffle.length, 7);
+  const sequence = harness.context.riffle;
+  harness.advance(2500);
+  assert.equal(harness.state().intro, 'done');
+  assert.equal(harness.context.idx, 0);
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.frames.size, 0);
+  harness.command('visibility', { visible: false });
+  harness.command('visibility', { visible: true });
+  harness.advance(1500);
+  assert.equal(harness.context.riffle, sequence, 'returning to the book never replays the first-exposure riffle');
+  assert.equal(harness.context.riffleAt, 7);
+});
+
+test('offscreen, document visibility and window blur pause the original intro spring without restarting its sequence', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.advance(300);
+  const sequence = harness.context.riffle;
+  for (const reason of ['host', 'document', 'blur']) {
+    const before = { index: harness.context.idx, t: harness.context.turn.t, elapsed: harness.context.spring.e, at: harness.context.riffleAt };
+    if (reason === 'host') harness.command('visibility', { visible: false });
+    else if (reason === 'document') { harness.context.document.hidden = true; harness.documentEvents.emit('visibilitychange'); }
+    else harness.emit('blur');
+    harness.advance(1000);
+    assert.equal(harness.frames.size, 0);
+    assert.equal(harness.state().intro, 'playing');
+    assert.deepEqual({ index: harness.context.idx, t: harness.context.turn.t, elapsed: harness.context.spring.e, at: harness.context.riffleAt }, before);
+    if (reason === 'host') harness.command('visibility', { visible: true });
+    else if (reason === 'document') { harness.context.document.hidden = false; harness.documentEvents.emit('visibilitychange'); }
+    else harness.emit('focus');
+    assert.equal(harness.frames.size, 1);
+    harness.advance(32);
+    assert.ok(harness.context.turn.t > before.t);
+    assert.equal(harness.context.riffle, sequence);
+  }
+  harness.advance(2500);
+  assert.equal(harness.context.idx, 0);
+  assert.equal(harness.state().intro, 'done');
+});
+
+test('positive host exposure resumes an intro after local iframe focus moves to the parent', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.advance(300);
+  const sequence = harness.context.riffle;
+  harness.emit('blur');
+  assert.equal(harness.frames.size, 0);
+  harness.command('visibility', { visible: true });
+  assert.equal(harness.frames.size, 1, 'the host knows whether the complete application is focused');
+  harness.advance(2500);
+  assert.equal(harness.context.idx, 0);
+  assert.equal(harness.context.riffle, sequence);
+  assert.equal(harness.state().intro, 'done');
+});
+
+test('manual selection cancels a pending intro and targets the requested page during the original riffle', async () => {
+  const pending = bridgeHarness();
+  await readyBridge(pending);
+  pending.advance(100);
+  pending.command('goTo', { index: 3 });
+  pending.advance(3000);
+  assert.equal(pending.context.idx, 3);
+  assert.equal(pending.state().intro, 'done');
+  assert.equal(pending.context.riffle, null);
+
+  for (const index of [0, 3]) {
+    const playing = bridgeHarness();
+    await readyBridge(playing);
+    playing.advance(300);
+    assert.equal(playing.context.idx, 0);
+    assert.equal(playing.context.turn.to, 1);
+    playing.command('goTo', { index });
+    playing.advance(1600);
+    assert.equal(playing.context.idx, index, 'a same-page request must not finish on the intro leaf destination');
+    assert.equal(playing.context.turn, null);
+    assert.equal(playing.context.spring, null);
+    assert.equal(playing.frames.size, 0);
+    assert.equal(playing.state().intro, 'done');
+  }
+});
+
+test('rapid timeline and keyboard navigation clears old springs and never leaves an idle RAF loop', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.command('next');
+  harness.advance(64);
+  harness.command('goTo', { index: 0 });
+  harness.advance(1600);
+  assert.equal(harness.context.idx, 0);
+  harness.command('next');
+  harness.advance(64);
+  harness.command('goTo', { index: 3 });
+  assert.equal(harness.context.idx, 3);
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.context.spring, null);
+  assert.equal(harness.context.raf, null);
+  assert.equal(harness.frames.size, 0, 'far navigation must cancel tick as well as its old spring');
+  let prevented = 0;
+  for (let index = 0; index < 12; index += 1) {
+    harness.emit('keydown', { key: 'ArrowRight', target: { tagName: 'BUTTON' }, preventDefault() { prevented += 1; }, stopImmediatePropagation() {} });
+    harness.advance(16);
+  }
+  harness.advance(1600);
+  assert.equal(prevented, 12);
+  assert.equal(harness.context.idx, 1);
+  assert.equal(harness.context.spring, null);
+  assert.equal(harness.frames.size, 0);
+});
+
+test('a trusted host timeline command takes over after iframe focus moves to its parent', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.command('goTo', { index: 0 });
+  harness.emit('blur');
+  harness.command('visibility', { visible: true });
+  assert.equal(harness.frames.size, 0);
+  harness.command('next');
+  assert.equal(harness.frames.size, 1, 'host input must not wait for another iframe focus event');
+  harness.advance(1600);
+  assert.equal(harness.context.idx, 1);
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.context.spring, null);
+  assert.equal(harness.frames.size, 0);
+});
+
+test('manual adjacent selection commits while paper is offscreen instead of parking an unseen spring', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness, { visible: false });
+  for (const [action, index, expected] of [['next', undefined, 1], ['previous', undefined, 0], ['goTo', 6, 6]]) {
+    harness.command(action, { index });
+    assert.equal(harness.context.idx, expected);
+    assert.equal(harness.state().index, expected);
+    assert.equal(harness.context.turn, null);
+    assert.equal(harness.context.spring, null);
+    assert.equal(harness.context.raf, null);
+    assert.equal(harness.frames.size, 0);
+  }
+  assert.equal(harness.state().intro, 'done');
+});
+
+test('interrupted gestures return to committed paper and release capture on every lifecycle boundary', async () => {
+  for (const reason of ['blur', 'resize', 'lostpointercapture', 'pointercancel', 'document', 'host']) {
+    const harness = bridgeHarness();
+    await readyBridge(harness);
+    harness.emit('pointerdown', { button: 0, pointerId: 7, target: { closest: () => ({}) }, stopImmediatePropagation() {} });
+    assert.equal(harness.state().intro, 'done', 'manual paper input cancels a pending riffle');
+    harness.context.startTurn('next', .3);
+    harness.context.drag = { dir: 'next', moved: 50, vel: 4 };
+    harness.captures.add(7);
+    if (reason === 'document') { harness.context.document.hidden = true; harness.documentEvents.emit('visibilitychange'); }
+    else if (reason === 'host') harness.command('visibility', { visible: false });
+    else harness.emit(reason, { stopImmediatePropagation() {} });
+    assert.equal(harness.context.idx, 0, reason);
+    assert.equal(harness.context.drag, null, reason);
+    assert.equal(harness.context.turn, null, reason);
+    assert.equal(harness.context.spring, null, reason);
+    assert.equal(harness.captures.size, 0, reason);
+    assert.equal(harness.frames.size, 0, reason);
+  }
+});
+
+test('dynamic reduced motion immediately settles active paper and keeps short drag cancellation static', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.command('next'); harness.advance(64);
+  assert.ok(harness.context.turn);
+  harness.motion.matches = true; harness.motion.emit('change');
+  assert.equal(harness.context.REDUCED, true);
+  assert.equal(harness.context.idx, 1);
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.frames.size, 0);
+  harness.command('next');
+  assert.equal(harness.context.idx, 2);
+  assert.equal(harness.context.turn, null);
+  harness.context.startTurn('prev', .2);
+  harness.context.drag = { moved: 50, vel: 0 };
+  harness.emit('pointerup', { stopImmediatePropagation() {} });
+  assert.equal(harness.context.idx, 2);
+  assert.equal(harness.context.turn, null);
+  assert.equal(harness.context.spring, null);
+  assert.equal(harness.frames.size, 0);
+  harness.motion.matches = false; harness.motion.emit('change');
+  harness.command('next');
+  assert.equal(harness.context.REDUCED, false);
+  assert.ok(harness.context.spring);
+});
+
+test('reduced or coarse input skips the intro and blank paper margins cannot start an interaction', async () => {
+  for (const preference of [{ reduced: true }, { coarse: true }]) {
+    const harness = bridgeHarness(preference);
+    await readyBridge(harness, { visible: false });
+    assert.equal(harness.state().intro, 'done');
+    assert.equal(harness.timers.size, 0);
+    harness.command('visibility', { visible: true }); harness.advance(2500);
+    assert.equal(harness.context.idx, 0);
+    assert.equal(harness.context.riffle, null);
+  }
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  let blocked = false;
+  harness.emit('pointerdown', { button: 0, target: { closest: () => null }, stopImmediatePropagation() { blocked = true; } });
+  assert.equal(blocked, true);
+  assert.equal(harness.state().intro, 'pending', 'blank margins do not cancel the first-exposure animation');
+  assert.match(adapted, /\.sb-zone\{top:21\.8%;bottom:21\.8%\}/);
+  assert.match(adapted, /\.sb-cast\.ambient\{top:65%;bottom:19\.2%;[^}]*filter:none/);
+});
+
+test('disposing pending or playing intro cancels timers, frames, image work and all bridge listeners', async () => {
+  for (const advance of [0, 300]) {
+    const harness = bridgeHarness();
+    await readyBridge(harness);
+    harness.advance(advance);
+    harness.command('dispose');
+    const count = harness.messages.length;
+    harness.advance(3000);
+    assert.equal(harness.messages.length, count);
+    assert.equal(harness.timers.size, 0);
+    assert.equal(harness.frames.size, 0);
+    assert.equal(harness.context.spring, null);
+    assert.equal(harness.context.introOn, false);
+    for (const registry of [harness.listeners, harness.documentEvents.listeners, harness.motion.listeners]) {
+      assert.ok([...registry.values()].every((handlers) => handlers.size === 0));
+    }
+  }
 });
 
 test('factory adapts only marked absolute asset URLs and strips their channel before generating content', () => {

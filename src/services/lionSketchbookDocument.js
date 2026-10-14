@@ -69,36 +69,136 @@ function checkOptions(pages, assetBaseUrl, channelId, maxWidth) {
 
 function bridgeSource(channelId, pages) {
   return `
-/* The archive bridge observes the original engine; it does not replace it. */
+/* Host/input boundaries around the unchanged paper and animation functions. */
 (() => {
   const channelId=${scriptJson(channelId)};
   const files=${scriptJson(pages.map((page) => page.file))};
   let disposed=false, imagesReady=false, ready=false, failure='', lastState='';
   let bookObserver=null, readyObserver=null;
+  let intro='pending', introTimer=null, hostVisible=false, windowFocused=true, paused=false;
+  let pointerId=null;
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  const coarse=matchMedia('(max-width: 640px), (pointer: coarse)');
   const pendingImages=new Set();
   const post=(value)=>parent.postMessage({channelId,...value},'*');
   const report=(force=false)=>{
     if(disposed)return;
+    if(intro==='playing'&&!introOn)intro='done';
     const state={type:'lion-book:state',index:typeof idx==='number'?idx:0,
-      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure};
+      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure,intro};
     if(failure)state.error=failure;
     const signature=JSON.stringify(state);
     if(force||signature!==lastState){lastState=signature;post(state);}
   };
   const onError=(event)=>{
-    failure='史册交互加载失败，请重新载入。';ready=false;report();
+    failure='史册交互加载失败，请重新载入。';ready=false;updatePlayback();report();
     if(event.type==='unhandledrejection')event.preventDefault();
   };
   const validateReady=()=>{
     ready=imagesReady&&document.body.dataset.ready==='1'&&!failure;
+    updatePlayback();report();
+  };
+  const clearIntroTimer=()=>{
+    if(introTimer!==null){clearTimeout(introTimer);introTimer=null;}
+  };
+  const stopFrame=()=>{
+    if(raf!==null){cancelAnimationFrame(raf);raf=null;}
+  };
+  const releasePointer=()=>{
+    const id=pointerId;pointerId=null;
+    if(id!==null&&stage.hasPointerCapture(id))stage.releasePointerCapture(id);
+  };
+  // Commands settle a leaf at its destination before asking the original
+  // navigation functions for a new target. Interrupted gestures return to the
+  // last committed spread. Neither path leaves an orphaned spring or capture.
+  const settleFlight=(destination)=>{
+    const next=destination&&turn?turn.to:idx;
+    drag=null;spring=null;viewActive=false;stopFrame();releasePointer();
+    if(turn){idx=next;turn=null;paint();}
+  };
+  const cancelIntro=()=>{
+    clearIntroTimer();
+    if(introOn)endIntro();
+    intro='done';paused=false;
+  };
+  const canPlay=()=>ready&&!disposed&&!failure&&hostVisible&&!document.hidden&&windowFocused;
+  function updatePlayback(){
+    if(!ready||disposed||failure){clearIntroTimer();stopFrame();return;}
+    if(intro==='pending'&&(REDUCED||coarse.matches))intro='done';
+    if(!canPlay()){
+      clearIntroTimer();stopFrame();paused=true;return;
+    }
+    if(paused){paused=false;if(spring||viewActive)kick();}
+    if(intro==='pending'&&introTimer===null){
+      introTimer=setTimeout(()=>{
+        introTimer=null;
+        if(!canPlay()||intro!=='pending')return;
+        intro='playing';startIntro();report();
+      },220);
+    }
+  }
+  const navigate=(action,index)=>{
+    // The opaque iframe also blurs when focus moves to the host timeline.
+    // A validated host command is fresh user input there, so it can take over
+    // the book without requiring the user to refocus the iframe first.
+    windowFocused=true;
+    cancelIntro();settleFlight(true);
+    if(action==='goTo')goTo(index);
+    else step(action==='next'?'next':'prev');
+    // Timeline controls can remain visible after the paper leaves its exposure
+    // threshold. A manual choice still commits immediately in that case.
+    if(!canPlay())settleFlight(true);
     report();
+  };
+  const cancelGesture=()=>{
+    if(!drag)return;
+    settleFlight(false);report();
+  };
+  const onBlur=()=>{windowFocused=false;cancelGesture();updatePlayback();};
+  const onFocus=()=>{windowFocused=true;updatePlayback();};
+  const onVisibility=()=>{if(document.hidden)cancelGesture();updatePlayback();};
+  const onResize=()=>{cancelGesture();updatePlayback();report();};
+  const onLostPointer=()=>cancelGesture();
+  const onPointerCancel=(event)=>{
+    if(!drag)return;
+    cancelGesture();event.stopImmediatePropagation();
+  };
+  const onPointerDown=(event)=>{
+    if(disposed||event.button!==0)return;
+    // The original full-image zones include transparent image margins. The
+    // archive limits their CSS boxes to real paper, and ignores blank space.
+    if(!ready||!event.target.closest?.('.sb-zone')){event.stopImmediatePropagation();return;}
+    cancelIntro();settleFlight(true);pointerId=event.pointerId;report();
+  };
+  const onPointerUp=(event)=>{
+    if(!REDUCED||!drag)return;
+    // Original commit() is already instantaneous in reduced motion, whereas
+    // cancel() has a spring. Reuse endDrag, then finish only its cancel path.
+    endDrag(event);
+    if(turn)settleFlight(false);
+    event.stopImmediatePropagation();report();
+  };
+  const onMotion=()=>{
+    REDUCED=motion.matches;
+    if(REDUCED){cancelIntro();settleFlight(true);}
+    updatePlayback();report();
   };
   const dispose=()=>{
     disposed=true;
+    clearIntroTimer();
     bookObserver?.disconnect();readyObserver?.disconnect();
     removeEventListener('message',onCommand);
     removeEventListener('wheel',onWheel);
-    removeEventListener('keydown',onArchiveKey);
+    removeEventListener('keydown',onArchiveKey,true);
+    removeEventListener('pointerdown',onPointerDown,true);
+    removeEventListener('pointerup',onPointerUp,true);
+    removeEventListener('pointercancel',onPointerCancel,true);
+    removeEventListener('lostpointercapture',onLostPointer,true);
+    removeEventListener('blur',onBlur);
+    removeEventListener('focus',onFocus);
+    removeEventListener('resize',onResize);
+    document.removeEventListener('visibilitychange',onVisibility);
+    motion.removeEventListener('change',onMotion);
     removeEventListener('error',onError);
     removeEventListener('unhandledrejection',onError);
     removeEventListener('pagehide',dispose);
@@ -109,6 +209,7 @@ function bridgeSource(channelId, pages) {
     if(typeof viewActive!=='undefined')viewActive=false;
     if(typeof drag!=='undefined')drag=null;
     if(typeof introOn!=='undefined')introOn=false;
+    releasePointer();
   };
   function onCommand(event){
     if(event.source!==parent||disposed)return;
@@ -116,11 +217,18 @@ function bridgeSource(channelId, pages) {
     if(!data||data.type!=='lion-book:command'||data.channelId!==channelId)return;
     if(data.action==='dispose'){dispose();return;}
     if(data.action==='sync'){report(true);return;}
+    if(data.action==='visibility'&&typeof data.visible==='boolean'){
+      hostVisible=data.visible;
+      // The host distinguishes application focus from focus moving between
+      // this opaque iframe and its own controls. Its positive exposure report
+      // is authoritative for resuming after either kind of iframe blur.
+      if(hostVisible)windowFocused=true;
+      if(!hostVisible)cancelGesture();
+      updatePlayback();report();return;
+    }
     if(!ready)return;
-    if(data.action==='goTo'&&Number.isInteger(data.index)&&data.index>=0&&data.index<files.length)goTo(data.index);
-    else if(data.action==='next')step('next');
-    else if(data.action==='previous')step('prev');
-    report();
+    if(data.action==='goTo'&&Number.isInteger(data.index)&&data.index>=0&&data.index<files.length)navigate('goTo',data.index);
+    else if(data.action==='next'||data.action==='previous')navigate(data.action);
   }
   function onWheel(event){
     if(disposed||event.ctrlKey||event.metaKey||event.cancelable===false)return;
@@ -133,14 +241,26 @@ function bridgeSource(channelId, pages) {
   }
   function onArchiveKey(event){
     if(!ready||disposed||event.metaKey||event.ctrlKey||event.altKey)return;
-    if(event.key!=='Home'&&event.key!=='End')return;
+    const actions={Home:'goTo',End:'goTo',ArrowRight:'next',ArrowLeft:'previous'};
+    const action=actions[event.key];
+    if(!action)return;
     const target=event.target;
     if(target&&(target.tagName==='INPUT'||target.tagName==='TEXTAREA'||target.isContentEditable))return;
-    event.preventDefault();goTo(event.key==='Home'?0:files.length-1);
+    event.preventDefault();event.stopImmediatePropagation();
+    navigate(action,event.key==='End'?files.length-1:0);
   }
   addEventListener('message',onCommand);
   addEventListener('wheel',onWheel,{passive:false});
-  addEventListener('keydown',onArchiveKey);
+  addEventListener('keydown',onArchiveKey,true);
+  addEventListener('pointerdown',onPointerDown,true);
+  addEventListener('pointerup',onPointerUp,true);
+  addEventListener('pointercancel',onPointerCancel,true);
+  addEventListener('lostpointercapture',onLostPointer,true);
+  addEventListener('blur',onBlur);
+  addEventListener('focus',onFocus);
+  addEventListener('resize',onResize);
+  document.addEventListener('visibilitychange',onVisibility);
+  motion.addEventListener('change',onMotion);
   addEventListener('error',onError);
   addEventListener('unhandledrejection',onError);
   addEventListener('pagehide',dispose,{once:true});
@@ -167,7 +287,7 @@ function bridgeSource(channelId, pages) {
   }))).then(()=>{
     if(disposed)return;imagesReady=true;validateReady();
   }).catch(()=>{
-    if(disposed)return;failure='史册书页加载失败，请重新载入。';ready=false;report();
+    if(disposed)return;failure='史册书页加载失败，请重新载入。';ready=false;updatePlayback();report();
   });
 })();
 `;
@@ -201,14 +321,15 @@ export function adaptLionSketchbookDocument(original, {
   engine = engine.replace(originalPages, `const PAGES=${scriptJson(pages.map((page) => ({ ...page, place: page.era })))};\n`);
   engine = replaceOne(engine, directory[0], `const DIR=${scriptJson(base)};`);
   engine = replaceOne(engine, 'const M=PAGES.length, LAND=6;', 'const M=PAGES.length, LAND=0;');
-  engine = replaceOne(engine, 'const Q=new URLSearchParams(location.search);', "const Q=new URLSearchParams('nointro');");
+  engine = replaceOne(engine, 'const Q=new URLSearchParams(location.search);', "const Q=new URLSearchParams('');");
+  engine = replaceOne(engine, "const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;", "let REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;");
   const oldSiteHandler = between(engine, "document.getElementById('heroDown').onclick=", LOUPE_SCRIPT_START);
   engine = engine.replace(oldSiteHandler, '');
   // Compatibility hooks keep the original tick/paint/boot untouched while the
   // optional magnifier and view toolbar are completely absent.
   engine = engine.replace(between(engine, LOUPE_SCRIPT_START, INDEX_SCRIPT_START),
     '/* Optional lens and toolbar removed for the archive. */\nfunction loupeEase(){return false;}\nfunction syncZoom(){}\nfunction restLoupe(){}\n\n');
-  engine = replaceOne(engine, '  setTimeout(startIntro,220);', '  /* Archive starts open at spread zero; automatic riffle is disabled. */');
+  engine = replaceOne(engine, '  setTimeout(startIntro,220);', '  /* The archive bridge starts the original riffle once the book is visible. */');
   // A zoom reset belongs to the removed optional view controls, not page turns.
   engine = replaceOne(engine, "stage.addEventListener('dblclick',()=>setView(view.trx,view.try_,1));", '');
 
@@ -218,6 +339,10 @@ export function adaptLionSketchbookDocument(original, {
 body{font-family:"Noto Serif CJK SC","Songti SC",SimSun,serif;-webkit-font-smoothing:antialiased}
 button{font:inherit}.page,.hero{width:100%;height:100%;min-height:0;margin:0;padding:0;display:grid;align-content:center;justify-items:center}
 .sb-wrap{gap:0}.sb-3d{max-width:min(${maxWidth}px,100%)}.sb-arrow,.sb-captions,.sb-hint{display:none!important}
+.sb-cast.ambient{top:65%;bottom:19.2%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(58,44,26,.28) 0%,rgba(58,44,26,.13) 38%,rgba(58,44,26,0) 100%);filter:none}
+.sb-cast.contact{top:73%;bottom:19.7%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(44,32,14,.30) 0%,rgba(44,32,14,.10) 40%,rgba(44,32,14,0) 100%);filter:none}
+.sb-cast.hair{top:76.3%;bottom:20.8%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(40,28,10,.25) 0%,rgba(40,28,10,0) 100%);filter:none}
+.sb-zone{top:21.8%;bottom:21.8%}.sb-prev{left:5.1%;width:44.9%}.sb-next{left:50%;right:auto;width:44.9%}
 .sb-zone:focus-visible{outline:2px solid #a33024;outline-offset:-2px}
 @media(prefers-reduced-motion:reduce){.sb-caption{animation:none}}
 `;

@@ -1171,6 +1171,30 @@
       "path": "source/reviews/navigation/2026-10-14-user-icons/desktop-1920-compact-header.png",
       "bytes": 62133,
       "sha256": "b90ea1fdb1588dd6d074ba3ea6d34e2ba61bd9a17dd7917d111a9589a4aa068e"
+    },
+    {
+      "from": "Chrome电脑端生产预览：书册稳定性与阴影边界复核 desktop-1366-book-natural-shadow.png",
+      "path": "source/reviews/homepage/2026-10-14-book-gallery-shadow-stability/desktop-1366-book-natural-shadow.png",
+      "bytes": 1352150,
+      "sha256": "9ca8c727c9b509b71b78b2c8c3875f272ac80e8315e1d18de0f42c6b7d21fd73"
+    },
+    {
+      "from": "Chrome电脑端生产预览：书册稳定性与阴影边界复核 desktop-1920-book-natural-shadow.png",
+      "path": "source/reviews/homepage/2026-10-14-book-gallery-shadow-stability/desktop-1920-book-natural-shadow.png",
+      "bytes": 1602449,
+      "sha256": "12f79bf96456a976de1fa6bf821749ea4697e25ba90d2c7a6c5a11d005c799aa"
+    },
+    {
+      "from": "Chrome电脑端生产预览：书册稳定性与阴影边界复核 desktop-1920-gallery-natural-atmosphere.png",
+      "path": "source/reviews/homepage/2026-10-14-book-gallery-shadow-stability/desktop-1920-gallery-natural-atmosphere.png",
+      "bytes": 1114438,
+      "sha256": "d266173afc61dbc0884e7e2495277d2b9568ebdc470f278e219dc984dfbeb69b"
+    },
+    {
+      "from": "Chrome电脑端生产预览：书册稳定性与阴影边界复核 desktop-1920-native-intro.png",
+      "path": "source/reviews/homepage/2026-10-14-book-gallery-shadow-stability/desktop-1920-native-intro.png",
+      "bytes": 1390156,
+      "sha256": "742b6ad515433dd1381c23c6705b1fd0964380bb5616085073054927d2f751b1"
     }
   ]
 }

@@ -16,7 +16,10 @@ async function openBook(page, { reduced = false, ready = true, url = '/' } = {})
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   const book = page.locator('.lion-book-experience');
   if (ready) await expect(book).toHaveAttribute('data-book-ready', 'true');
-  if (ready) await view(page, page.locator('.lion-book-stage'));
+  if (ready) {
+    await view(page, page.locator('.lion-book-stage'));
+    await expect(book).toHaveAttribute('data-book-intro', 'done');
+  }
   return { book, frame: page.frameLocator('#homeLionBook iframe') };
 }
 
@@ -150,6 +153,8 @@ test('翻页中离开首页释放旧文档，返回重新打开并可继续翻�
   book = page.locator('.lion-book-experience');
   frame = page.frameLocator('#homeLionBook iframe');
   await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await view(page, page.locator('.lion-book-stage'));
+  await expect(book).toHaveAttribute('data-book-intro', 'done');
   await settled(book, frame, 0);
   await drag(page, frame, 'next');
   await settled(book, frame, 1);

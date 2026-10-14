@@ -57,7 +57,7 @@
 .culture-depth-photo-action:focus-visible { outline: 2px solid #9f3625; outline-offset: 6px; }
 .home-culture[data-culture-focused="true"] .home-culture-photo { transform: scale(var(--culture-focus-scale, 1.04)); }
 .home-culture-photo { transition: transform 240ms ease; }
-.culture-depth-atmosphere { position: absolute; inset: -8% -4%; pointer-events: none; background: radial-gradient(ellipse at 35% 55%, #d5ab7040, transparent 64%), radial-gradient(ellipse at 83% 42%, #a8402a12, transparent 52%); }
+.culture-depth-atmosphere { position: absolute; inset: -8% -4%; pointer-events: none; background: radial-gradient(ellipse 38% 45% at 42% 50%, #d5ab7040, transparent 100%), radial-gradient(ellipse 15% 38% at 80% 44%, #a8402a12, transparent 100%); }
 .culture-depth-label { position: absolute; z-index: 2; top: 0; left: 2.5%; display: flex; align-items: center; gap: 12px; color: #a0784e; font: 11px/1.6 'STSong', 'SimSun', serif; letter-spacing: .2em; pointer-events: none; }
 .culture-depth-label i { width: 22px; height: 1px; background: #ad795c80; }
 .culture-depth-axis { position: absolute; left: 2.5%; right: 17%; bottom: 2%; display: flex; align-items: center; gap: 12px; color: #ac8965; font: 10px/1.5 'STSong', 'SimSun', serif; pointer-events: none; }

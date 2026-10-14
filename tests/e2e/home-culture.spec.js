@@ -89,6 +89,64 @@ async function photoPoint(gallery) {
   return { x: box.x + box.width * .42, y: box.y + box.height * .5 };
 }
 
+test('照片暖色氛围自然淡出，电脑尺寸下四周没有矩形色带', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const { gallery } = await openCulture(page, { carouselAutoplay: false });
+  // Compare the actual rendered decoration against the same paper beneath it.
+  // Hide foreground content and paper pattern so they cannot conceal a clipped
+  // boundary or introduce unrelated raster differences between screenshots.
+  await page.addStyleTag({ content: '#homeCulture .home-culture-slide, #homeCulture .culture-depth-label, #homeCulture .culture-depth-axis, #homeCulture::before { visibility: hidden; } #homeCulture { background-image: none; }' });
+  await page.evaluate(() => document.fonts.ready);
+  const atmosphere = gallery.locator('.culture-depth-atmosphere');
+  for (const [width, height] of [[1366, 900], [1920, 1080], [2560, 1440]]) {
+    await page.setViewportSize({ width, height });
+    await atmosphere.scrollIntoViewIfNeeded();
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const box = await atmosphere.boundingBox();
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.y).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(width);
+    expect(box.y + box.height).toBeLessThanOrEqual(height);
+    const clip = { x: Math.floor(box.x), y: Math.floor(box.y), width: Math.ceil(box.x + box.width) - Math.floor(box.x), height: Math.ceil(box.y + box.height) - Math.floor(box.y) };
+    const painted = (await page.screenshot({ clip })).toString('base64');
+    await atmosphere.evaluate(element => { element.style.visibility = 'hidden'; });
+    const paper = (await page.screenshot({ clip })).toString('base64');
+    await atmosphere.evaluate(element => { element.style.visibility = ''; });
+    const pixels = await page.evaluate(async ({ painted, paper }) => {
+      const decode = async data => {
+        const image = new Image();
+        image.src = `data:image/png;base64,${data}`;
+        await image.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        const context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0);
+        return { data: context.getImageData(0, 0, canvas.width, canvas.height).data, width: canvas.width, height: canvas.height };
+      };
+      const [paint, plain] = await Promise.all([decode(painted), decode(paper)]);
+      let edgeDifference = 0;
+      let interiorDifference = 0;
+      let warmDifference = 0;
+      for (let y = 0; y < paint.height; y += 1) {
+        for (let x = 0; x < paint.width; x += 1) {
+          const index = (y * paint.width + x) * 4;
+          const difference = Math.max(...[0, 1, 2].map(channel => Math.abs(paint.data[index + channel] - plain.data[index + channel])));
+          if (x < 2 || y < 2 || x >= paint.width - 2 || y >= paint.height - 2) edgeDifference = Math.max(edgeDifference, difference);
+          else {
+            interiorDifference = Math.max(interiorDifference, difference);
+            warmDifference = Math.max(warmDifference, paint.data[index] - paint.data[index + 2] - plain.data[index] + plain.data[index + 2]);
+          }
+        }
+      }
+      return { edgeDifference, interiorDifference, warmDifference };
+    }, { painted, paper });
+    expect(pixels.edgeDifference, `${width}px decoration must reach transparency before its box edge`).toBeLessThanOrEqual(1);
+    expect(pixels.interiorDifference, `${width}px retains the visible atmosphere`).toBeGreaterThan(5);
+    expect(pixels.warmDifference, `${width}px retains the warm paper tint`).toBeGreaterThan(3);
+  }
+});
+
 test('首页照片下方控制栏已删除，照片与摄影许可保留且页面自然滚动', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const { carousel, gallery } = await openCulture(page);

@@ -17,10 +17,13 @@ export default function LionBookExperience() {
     url.hash = `lion-book=${channelId}`;
     return url.href;
   }, [channelId]);
-  const [book, setBook] = useState({ index: 0, turning: false, ready: false, error: null });
+  const [book, setBook] = useState({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
   const current = lionBookPages[book.index];
-  const send = useCallback((action, index) => {
-    frameRef.current?.contentWindow?.postMessage({ type: 'lion-book:command', channelId: channelRef.current, action, index }, '*');
+  const send = useCallback((action, value) => {
+    const command = { type: 'lion-book:command', channelId: channelRef.current, action };
+    if (action === 'visibility') command.visible = value;
+    else if (Number.isInteger(value)) command.index = value;
+    frameRef.current?.contentWindow?.postMessage(command, '*');
   }, []);
 
   useLayoutEffect(() => {
@@ -31,14 +34,32 @@ export default function LionBookExperience() {
     let active = true;
     let scrollFrame = null;
     let scrollDelta = 0;
+    let stageVisible = false;
+    let focusTimer = null;
+    const publishVisibility = () => send('visibility', stageVisible && !document.hidden && document.hasFocus());
+    // Focusing the sandbox also blurs the parent window. Wait until the focus
+    // transfer completes, then test the whole document (including its iframe).
+    const onWindowBlur = () => {
+      clearTimeout(focusTimer);
+      focusTimer = setTimeout(publishVisibility, 0);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      stageVisible = entry.isIntersecting && entry.intersectionRatio >= .6;
+      publishVisibility();
+    }, { threshold: [0, .6] });
+    observer.observe(hostRef.current);
+    document.addEventListener('visibilitychange', publishVisibility);
+    window.addEventListener('focus', publishVisibility);
+    window.addEventListener('blur', onWindowBlur);
     const receive = (event) => {
       if (!active || event.source !== frame.contentWindow || event.data?.channelId !== channelId) return;
       const data = event.data;
       if (data.type === 'lion-book:state') {
         if (!Number.isInteger(data.index) || data.index < 0 || data.index >= lionBookPages.length) return;
         if (typeof data.ready !== 'boolean' || typeof data.turning !== 'boolean') return;
+        if (!['pending', 'playing', 'done'].includes(data.intro)) return;
         if (data.ready || data.error) clearTimeout(loadTimeout);
-        setBook({ index: data.index, turning: data.turning, ready: data.ready, error: data.error ? '书页加载失败' : null });
+        setBook({ index: data.index, turning: data.turning, ready: data.ready, intro: data.intro, error: data.error ? '书页加载失败' : null });
       } else if (data.type === 'lion-book:wheel' && Number.isFinite(data.deltaY)) {
         scrollDelta += Math.max(-1600, Math.min(1600, data.deltaY));
         if (scrollFrame === null) scrollFrame = requestAnimationFrame(() => {
@@ -54,6 +75,7 @@ export default function LionBookExperience() {
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
       send('sync');
+      publishVisibility();
     };
     frame.addEventListener('load', sync);
     frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
@@ -65,6 +87,11 @@ export default function LionBookExperience() {
       // StrictMode must not dispose a document that remains mounted.
       window.removeEventListener('message', receive);
       frame.removeEventListener('load', sync);
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', publishVisibility);
+      window.removeEventListener('focus', publishVisibility);
+      window.removeEventListener('blur', onWindowBlur);
+      clearTimeout(focusTimer);
       clearTimeout(loadTimeout);
       if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
       frameRef.current = null;
@@ -72,10 +99,10 @@ export default function LionBookExperience() {
   }, [channelId, send]);
 
   const retry = () => {
-    setBook({ index: 0, turning: false, ready: false, error: null });
+    setBook({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
     setAttempt((value) => value + 1);
   };
-  return <div className="lion-book-experience" data-book-ready={book.ready} data-book-index={book.index} data-book-turning={book.turning} data-book-error={Boolean(book.error)}
+  return <div className="lion-book-experience" data-book-ready={book.ready} data-book-index={book.index} data-book-turning={book.turning} data-book-intro={book.intro} data-book-error={Boolean(book.error)}
     onKeyDown={(event) => {
       if (event.metaKey || event.ctrlKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
       const action = { ArrowRight: 'next', ArrowLeft: 'previous', Home: 'goTo', End: 'goTo' }[event.key];
@@ -98,7 +125,7 @@ export default function LionBookExperience() {
         <span>{page.stage}</span><small>{index > 0 && index < 6 ? page.era : index === 0 ? '开启史册' : '南风有狮'}</small>
       </button>)}
     </nav>
-    <div className="lion-book-reading" aria-live="polite" aria-atomic="true">
+    <div className="lion-book-reading" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
       <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
         {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}

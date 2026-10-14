@@ -43,6 +43,8 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
+书本容器至少60%可见、七图与引擎就绪并处于前台后，桥接延迟220ms启动官方七页快翻一次，最终回序卷；滚出视野暂停并保留进度，手动操作接管，减少动态偏好跳过开场。桥接统一收敛时间线/键盘与旧动画的交接，取消失焦、尺寸变化或指针中断中的未提交拖拽，运行中响应减少动态变化。真实纸面之外的透明区域不接收翻页。书下独立三层投影及照片背景氛围均在自身边界前淡出，避免嵌入盒子裁切形成矩形硬边；不通过扩大iframe覆盖正文或时间线。
+
 七幅PNG位于 `source/public/assets/lion-book/`，保持原画布归一化书页位置、中央书脊和透明留白；不要把插画满铺或随意裁掉留白，否则会破坏曲面纹理对齐。实际生成尺寸为1494/1495×1052，与原1760/1240比例一致；资源就绪检查验证全部七页解码及比例，不能仅凭iframe加载事件显示成功。古代渊源与南狮形成纪年分开表述，AI插画明确为历史主题示意。新增史册回归在 `tests/e2e/lion-book.spec.js`，修改时覆盖真实拖拽的卷曲/取消/提交、时间线同步、首次加载、错误重试、滚轮、章节退出重入和电脑侧栏推开。
 
 `scripts/lion-book-vite-plugin.mjs` 只包裹锁定版本的官方文档工厂返回值，校验其完整源SHA256；`lionSketchbookFactory` 从 `assetBaseUrl` 的 `#lion-book=通道` 取出通信通道，清除hash后生成本地醒狮文档。普通未标记的Sketchbook实例保持官方原样。Vite明确排除该包的预构建以保证转换生效，不改 `node_modules`；升级包后必须重审工厂及原核心保留测试。React从第一次渲染就声明适配文档，不在加载后争抢srcdoc。官方sandbox维持 `allow-scripts`，父页面严格校验消息来源/通道/类型和索引；宿主监听/计时/滚动RAF在退出时清理，iframe销毁与其pagehide释放引擎。React StrictMode重放effect时不提前dispose仍挂载的书籍。共享样式内嵌字体的OFL声明与MIT许可一并部署。
