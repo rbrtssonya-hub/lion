@@ -1,12 +1,12 @@
 // Editorial observation prompts from the user's eight-state reference.
 // These describe what to look for, not verified samples or measured findings.
 export const lionExpressions = [
-  { name: '喜', summary: '轻快回应，传达欢喜。', meaning: '欢喜', description: ['神态不只在脸上，也在身体的起伏中。', '观察目光、嘴部与动作之间的配合。', '看它如何回应周围的人与节奏。'], emotion: '观察明亮的目光与嘴部开合，寻找欢喜的回应。', motion: '留意轻快的起伏、点头与迎向观众的动作。' },
-  { name: '怒', summary: '昂首凝视，展现气势。', meaning: '威势', description: ['目光的集中，让醒狮的气势更鲜明。', '从眉眼张力与嘴部开合寻找线索。', '再看昂首与顿步如何回应鼓点。'], emotion: '观察集中的目光、眉眼张力与有力的嘴部开合。', motion: '留意昂首、顿步与摆头，感受动作的力量。' },
-  { name: '哀', summary: '低首缓行，流露低回。', meaning: '低回', description: ['低垂的姿态，为神态留下柔缓的空间。', '将目光方向与嘴部变化放在一起看。', '从放慢的步伐中寻找情绪的转折。'], emotion: '观察低垂的目光与缓慢的嘴部变化。', motion: '留意低首、缓行与停顿，寻找收敛的节奏。' },
-  { name: '乐', summary: '灵动嬉戏，呼应节奏。', meaning: '嬉趣', description: ['嬉戏的趣味，藏在连续的回应里。', '看目光如何跟随，嘴部如何配合。', '再从摇头与跳跃中读出活泼的节奏。'], emotion: '观察灵动的视线与轻巧的嘴部回应。', motion: '留意摇头、跃动与往返，读出嬉戏的趣味。' },
-  { name: '动', summary: '起伏腾挪，蓄势而发。', meaning: '动势', description: ['动作展开时，神态也随身体一起变化。', '观察头部朝向与目光如何衔接。', '从重心转移到腾挪，追踪连续的动势。'], emotion: '观察目光与头部朝向，寻找动作前后的衔接。', motion: '留意起伏、转身与重心移动，追踪动势。' },
-  { name: '静', summary: '敛息驻足，静中有神。', meaning: '沉静', description: ['安静的停驻，也能传达醒狮的精神。', '看目光的落点与嘴部的细微变化。', '留意停顿之后，下一次动作如何开启。'], emotion: '观察稳定的目光与细微的嘴部变化。', motion: '留意驻足、收势与呼吸般的微小起伏。' },
-  { name: '惊', summary: '抬头探望，瞬间警觉。', meaning: '警觉', description: ['突然的回应，让视线与姿态一起转变。', '观察抬头时眉眼和嘴部的变化。', '再看短暂后撤如何接上新的探索。'], emotion: '观察抬头时的眼神变化与快速的嘴部回应。', motion: '留意突然抬头、停顿与后撤的动作。' },
-  { name: '疑', summary: '侧首探寻，欲进还停。', meaning: '探寻', description: ['好奇与迟疑，常在反复的探望间出现。', '观察视线如何转移，头部如何偏转。', '从试探与停顿中寻找下一步的回应。'], emotion: '观察来回探望的目光与侧首时的细微变化。', motion: '留意试探、侧首与欲进还停的节奏。' },
+  { name: '喜', imageKey: 'expressionJoy', summary: '灵动欢喜', verse: '喜气盈门 · 生机盎然', meaning: '欢喜', description: ['醒狮扬眉含笑，向人间送来好意。', '狮口轻启，白须随鼓点轻颤。', '一俯一仰间，是迎客纳福的欢喜。'], emotion: '看狮眼是否明亮舒展，狮口轻开时有无迎人的笑意。', motion: '随锣鼓观察点头与小碎步，留意醒狮向观众靠近的回应。' },
+  { name: '怒', imageKey: 'expressionAnger', summary: '威严刚猛', verse: '气势如虹 · 势不可挡', meaning: '威势', description: ['醒狮凝目昂首，威势收在眉间。', '狮口一张一合，劲力随鼓声迸发。', '顿步扬头，见南狮刚健的精神。'], emotion: '看狮眉是否压向目光，狮口有力开合时张力怎样变化。', motion: '对照重鼓中的昂首、顿步与摆头，辨认醒狮的发力停顿。' },
+  { name: '哀', imageKey: 'expressionSorrow', summary: '低回沉思', verse: '缓步低首 · 含蓄深沉', meaning: '低回', description: ['醒狮垂首敛目，把情绪藏进停顿。', '长须低拂，狮口缓缓收合。', '轻鼓慢步里，也有细腻的心事。'], emotion: '看狮头低垂时的视线落点，狮口收合是否缓慢而克制。', motion: '留意轻鼓下的低首、缓行与驻足，看醒狮怎样收住劲力。' },
+  { name: '乐', imageKey: 'expressionDelight', summary: '欢腾雀跃', verse: '载歌载舞 · 热烈欢腾', meaning: '嬉趣', description: ['醒狮仰头张口，喜乐溢出眉眼。', '摇头摆须，与锣鼓你来我往。', '腾起落下，满场都是嬉戏的趣味。'], emotion: '看仰首时狮口的张幅，狮眼与眉梢是否形成活泼的回应。', motion: '跟随快鼓观察摇头、跃动与回望，读出醒狮连续嬉戏的节奏。' },
+  { name: '动', imageKey: 'expressionMotion', summary: '腾挪起势', verse: '灵活敏捷 · 力与美结合', meaning: '动势', description: ['醒狮侧身起势，把目光送向前方。', '狮头领动，披身随步法舒展。', '鼓催身转，腾挪之间蓄足力量。'], emotion: '先看狮头朝向，再追踪目光，观察转身前后是否彼此衔接。', motion: '沿鼓点追踪起伏与重心转移，看狮头怎样带动狮尾配合。' },
+  { name: '静', imageKey: 'expressionStillness', summary: '凝神守势', verse: '稳如泰山 · 蓄势待发', meaning: '沉静', description: ['醒狮驻足凝神，静中仍藏着气韵。', '狮目有落点，狮口微合不散神。', '锣鼓暂歇，一息之后再启新势。'], emotion: '看狮眼的落点是否稳定，眉眼与狮口有无细小的收放。', motion: '留意驻足收势后的轻微起伏，寻找醒狮静候下一鼓的蓄势。' },
+  { name: '惊', imageKey: 'expressionSurprise', summary: '警觉骤起', verse: '瞬间反应 · 机警敏锐', meaning: '警觉', description: ['醒狮忽然抬头，目光与狮口一同张开。', '白须扬起，像听见了新的动静。', '一记急鼓，惊而不乱地再探前方。'], emotion: '看狮眼、眉梢与狮口是否同时展开，注意抬头一瞬的变化。', motion: '对照急鼓中的抬头、短停与后撤，看醒狮如何转回探索。' },
+  { name: '疑', imageKey: 'expressionDoubt', summary: '探索试探', verse: '左右观望 · 小心靠近', meaning: '探寻', description: ['醒狮侧首探望，好奇里带着几分迟疑。', '一眼看去，又轻轻收回狮口。', '碎鼓试步，欲近还停地寻找答案。'], emotion: '看狮头偏转时目光如何转移，狮口微开是否带着试探感。', motion: '留意侧首、试步与停顿，观察醒狮怎样随着碎鼓欲进还停。' },
 ];

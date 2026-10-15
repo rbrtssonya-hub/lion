@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { lionExpressions } from '../../src/data/lion-expressions.js';
+import { assetPaths } from '../../src/config/assetPaths.js';
 
 async function openPage(page, url) {
   await page.goto(url);
@@ -6,6 +8,7 @@ async function openPage(page, url) {
 }
 
 const states = ['喜', '怒', '哀', '乐', '动', '静', '惊', '疑'];
+const expressions = new Map(lionExpressions.map(expression => [expression.name, expression]));
 const observation = page => page.getByRole('region', { name: '醒狮神态切换', exact: true });
 const menu = page => page.getByRole('navigation', { name: '醒狮八态', exact: true });
 const stateButton = (page, state) => menu(page).getByRole('button', { name: state, exact: true });
@@ -29,14 +32,51 @@ async function expectLoadedLion(page) {
     image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
 }
 
+async function expectCopyTextFits(page) {
+  await expect.poll(() => page.locator('#expressionStateCopy').evaluate(panel => {
+    const panelBox = panel.getBoundingClientRect();
+    const failures = [];
+    const labels = '.expression-copy-kicker, #expressionSummary, #expressionDetailTitle, .expression-description p, .expression-detail-subtitle, .expression-cues h3, .expression-cues p, .expression-return, .expression-state-count';
+    for (const element of panel.querySelectorAll(labels)) {
+      const style = getComputedStyle(element);
+      if (style.display === 'none' || !element.textContent.trim()) continue;
+      const label = element.id || element.className || element.tagName;
+      const textNodes = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => node.textContent.trim() && !node.parentElement.closest('[aria-hidden="true"], svg') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT,
+      });
+      const textBoxes = [];
+      for (let node = textNodes.nextNode(); node; node = textNodes.nextNode()) {
+        const range = document.createRange(); range.selectNodeContents(node);
+        textBoxes.push(...range.getClientRects());
+      }
+      for (const textBox of textBoxes) {
+        if (!textBox.width || !textBox.height) continue;
+        if (textBox.left < panelBox.left - 2 || textBox.right > panelBox.right + 2 || textBox.top < panelBox.top - 2 || textBox.bottom > panelBox.bottom + 2) {
+          failures.push(`${label}: text outside reading panel`);
+        }
+        for (let ancestor = element; ancestor && panel.contains(ancestor); ancestor = ancestor.parentElement) {
+          const css = getComputedStyle(ancestor);
+          const box = ancestor.getBoundingClientRect();
+          if (/hidden|clip|auto|scroll/.test(css.overflowX) && (textBox.left < box.left - 2 || textBox.right > box.right + 2)) failures.push(`${label}: horizontally clipped`);
+          if (/hidden|clip|auto|scroll/.test(css.overflowY) && (textBox.top < box.top - 2 || textBox.bottom > box.bottom + 2)) failures.push(`${label}: vertically clipped`);
+        }
+      }
+      if (element.clientWidth && element.scrollWidth > element.clientWidth + 2) failures.push(`${label}: horizontal text overflow`);
+      if (element.clientHeight && element.scrollHeight > element.clientHeight + 2) failures.push(`${label}: vertical text overflow`);
+    }
+    return [...new Set(failures)];
+  }), { timeout: 5000, message: 'Reading text and return controls must fit inside the visible panel' }).toEqual([]);
+}
+
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
 });
 
-test('八态目录与狮头点击同步右侧简介和详细解读，移除下半区图片', async ({ page }) => {
+test('八态独立狮头与目录同步右侧简介和详细解读，移除下半区图片', async ({ page }) => {
   await openPage(page, '/#/state');
   await expect(menu(page).getByRole('button')).toHaveCount(8, { timeout: 5_000 });
+  await expect(menu(page).getByRole('button')).toHaveText(states);
   for (const state of states) await expect(stateButton(page, state)).toBeVisible();
   await expectState(page, '喜');
   await expectLoadedLion(page);
@@ -51,27 +91,86 @@ test('八态目录与狮头点击同步右侧简介和详细解读，移除下�
   const summaries = [];
   const emotions = [];
   const motions = [];
+  const images = [];
   for (const state of states) {
+    const expression = expressions.get(state);
     await stateButton(page, state).click();
     await expectState(page, state);
+    await expectLoadedLion(page);
+    expect(typeof assetPaths[expression.imageKey]).toBe('string');
+    const expectedPath = new URL(assetPaths[expression.imageKey], page.url()).pathname;
+    await expect.poll(() => page.locator('#expressionLion').evaluate(image => new URL(image.currentSrc || image.src).pathname)).toBe(expectedPath);
+    await expect(page.locator('#expressionLion')).toHaveAttribute('alt', `${state}态醒狮，按用户八态参考图AI辅助提取`);
+    await expect(page.locator('.expression-badge-lion')).toHaveAttribute('src', await page.locator('#expressionLion').getAttribute('src'));
+    images.push(expectedPath);
     await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'overview');
-    await expect(page.locator('#expressionSummary')).toBeVisible();
+    await expect(page.locator('.expression-copy-kicker')).toHaveText('醒狮八态 · 神态简介');
+    await expect(page.locator('#expressionSummary')).toHaveText(expression.summary);
+    await expect(page.locator('.expression-description p')).toHaveText(expression.description);
     summaries.push(await page.locator('#expressionSummary').innerText());
     await page.locator('#expressionLionTrigger').click();
     await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'details');
+    await expect(page.locator('.expression-copy-kicker')).toHaveText('狮艺解读 · 观形识意');
     await expect(page.locator('#expressionStateCopy #expressionDetailTitle')).toHaveText(`${state}态怎么看`);
     await expect(page.locator('#expressionSummary')).toHaveCount(0);
     for (const id of ['expressionEmotionCue', 'expressionMotionCue']) {
       await expect(page.locator(`#${id}`)).toBeVisible();
       await expect(page.locator(`#${id}`)).not.toHaveText('');
     }
+    await expect(page.locator('#expressionEmotionCue')).toHaveText(expression.emotion);
+    await expect(page.locator('#expressionMotionCue')).toHaveText(expression.motion);
     emotions.push(await page.locator('#expressionEmotionCue').innerText());
     motions.push(await page.locator('#expressionMotionCue').innerText());
   }
   expect(new Set(summaries).size).toBe(8);
   expect(new Set(emotions).size).toBe(8);
   expect(new Set(motions).size).toBe(8);
+  expect(new Set(images).size).toBe(8);
   await expect(page).toHaveURL(/#\/state$/);
+});
+
+test('点击狮头由书法简介切换为印章与编号解读卡，同一触发器和当前图像保持', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await openPage(page, '/#/state');
+  await expectLoadedLion(page);
+  const trigger = await page.locator('#expressionLionTrigger').elementHandle();
+  const imageSrc = await page.locator('#expressionLion').getAttribute('src');
+  const url = page.url();
+  const copy = page.locator('#expressionStateCopy');
+  await expect(copy).toHaveAttribute('data-surface', 'expressionOverlay');
+  await expect(copy.locator('.expression-copy-kicker')).toHaveText('醒狮八态 · 神态简介');
+  await expect(copy.locator('.expression-description p')).toHaveCount(3);
+  await expect(copy.locator('.expression-cues')).toHaveCount(0);
+  await expectCopyTextFits(page);
+  const overview = await copy.evaluate(element => ({
+    characterSize: parseFloat(getComputedStyle(element.querySelector('#expressionStateTitle')).fontSize),
+    titleFamily: getComputedStyle(element.querySelector('#expressionSummary')).fontFamily,
+  }));
+  await page.locator('#expressionLionTrigger').click();
+  await expect(copy).toHaveAttribute('data-view', 'details');
+  await expect(copy.locator('.expression-copy-kicker')).toHaveText('狮艺解读 · 观形识意');
+  await expect(copy.locator('#expressionSummary, .expression-description')).toHaveCount(0);
+  await expect(copy.locator('.expression-cues h3')).toHaveCount(2);
+  await expect(copy.locator('.expression-cues p')).toHaveCount(2);
+  expect(await copy.locator('.expression-cues svg, .expression-cues img').count()).toBeGreaterThanOrEqual(2);
+  await expect(copy.locator('#expressionEmotionCue')).toHaveText(expressions.get('喜').emotion);
+  await expect(copy.locator('#expressionMotionCue')).toHaveText(expressions.get('喜').motion);
+  await expect(copy.locator('.expression-return')).toBeVisible();
+  await expectCopyTextFits(page);
+  const details = await copy.evaluate(element => ({
+    characterSize: parseFloat(getComputedStyle(element.querySelector('#expressionStateTitle')).fontSize),
+    titleFamily: getComputedStyle(element.querySelector('#expressionDetailTitle')).fontFamily,
+    titleWeight: Number(getComputedStyle(element.querySelector('#expressionDetailTitle')).fontWeight),
+  }));
+  expect(details.characterSize).toBeLessThan(overview.characterSize);
+  expect(details.titleFamily).not.toBe(overview.titleFamily);
+  expect(details.titleWeight).toBeGreaterThanOrEqual(600);
+  expect(await trigger.evaluate(element => element.isConnected && element === document.querySelector('#expressionLionTrigger'))).toBe(true);
+  await expect(page.locator('#expressionLion')).toHaveAttribute('src', imageSrc);
+  await expectState(page, '喜');
+  await expect(page).toHaveURL(url);
+  await trigger.dispose();
 });
 
 test('狮头重复点击保留解读，返回和Escape恢复简介及狮头焦点', async ({ page }) => {
@@ -81,10 +180,10 @@ test('狮头重复点击保留解读，返回和Escape恢复简介及狮头焦�
   await expect(page.locator('#expressionInteractionHint')).toContainText('点击狮头');
   await trigger.click();
   await trigger.click();
-  await expect(page.locator('#expressionEmotionCue')).toHaveText('观察明亮的目光与嘴部开合，寻找欢喜的回应。');
-  await expect(page.locator('#expressionMotionCue')).toHaveText('留意轻快的起伏、点头与迎向观众的动作。');
+  await expect(page.locator('#expressionEmotionCue')).toHaveText(expressions.get('喜').emotion);
+  await expect(page.locator('#expressionMotionCue')).toHaveText(expressions.get('喜').motion);
   await page.getByRole('button', { name: '返回神态简介', exact: true }).click();
-  await expect(page.locator('#expressionSummary')).toHaveText('轻快回应，传达欢喜。');
+  await expect(page.locator('#expressionSummary')).toHaveText(expressions.get('喜').summary);
   await expect(trigger).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'details');
@@ -240,6 +339,7 @@ test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', 
     });
   });
   expect(contentFits).toBe(true);
+  await expectCopyTextFits(page);
 });
 
 test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留第二屏', async ({ page }) => {
@@ -259,6 +359,7 @@ test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留�
         return { oneScreen: document.documentElement.scrollHeight <= innerHeight + 2, noHorizontal: document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width, inView: rects.every(r => r.top >= header.bottom - 1 && r.bottom <= innerHeight + 1 && r.left >= page.left && r.right <= page.right), threeColumns: rects[0].right < rects[1].left && rects[1].right < rects[2].left };
       });
       expect(fits).toEqual({ oneScreen: true, noHorizontal: true, inView: true, threeColumns: true });
+      await expectCopyTextFits(page);
       await page.screenshot({ path: `tmp/expression-single/${mode}-${width}.png` });
     }
   }
@@ -279,6 +380,7 @@ test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换�
     await expect.poll(() => page.locator('.site-page').evaluate(el => el.getBoundingClientRect().width)).toBe(900);
     for (const state of states) {
       await stateButton(page, state).click();
+      await expectCopyTextFits(page);
       await page.locator('#expressionLionTrigger').click();
       await expect(page.locator('#expressionStateCopy #expressionDetailTitle')).toHaveText(`${state}态怎么看`);
       await page.waitForTimeout(550);
@@ -291,6 +393,7 @@ test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换�
         }) && document.documentElement.scrollHeight <= innerHeight + 2;
       });
       expect(inside).toBe(true);
+      await expectCopyTextFits(page);
     }
     await page.screenshot({ path: `tmp/expression-single/push900-header${height}.png` });
     await page.locator('#expressionLionTrigger').click();
@@ -316,8 +419,9 @@ test('短高桌面与180px顶栏仍完整显示解读文字、返回及上下箭
       await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
       await expect.poll(() => page.locator('.site-page').evaluate(el => el.getBoundingClientRect().width)).toBe(900);
     }
-    for (const state of ['喜','怒','惊','疑']) {
+    for (const state of states) {
       await stateButton(page, state).click();
+      await expectCopyTextFits(page);
       await page.locator('#expressionLionTrigger').click();
       await page.waitForTimeout(550);
       const fits = await page.locator('#chapterStage').evaluate(el => {
@@ -329,6 +433,7 @@ test('短高桌面与180px顶栏仍完整显示解读文字、返回及上下箭
         }) };
       });
       expect(fits).toEqual({ oneScreen: true, visible: true });
+      await expectCopyTextFits(page);
     }
     await page.screenshot({ path: `tmp/expression-single/short-${width}-${height}.png` });
   }

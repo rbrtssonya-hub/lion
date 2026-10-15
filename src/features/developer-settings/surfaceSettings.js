@@ -7,6 +7,7 @@ export const surfaceDefinitions = Object.freeze([
   { prefix: 'cultureSources', label: '参考资料区域', color: '#f8edda', transparency: 0, blur: 0, radius: 18 },
   { prefix: 'cultureSourceCard', label: '参考资料卡片', color: '#fff8eb', transparency: 0, blur: 0, radius: 9, height: 186, heightStep: 1 },
   { prefix: 'modelOverlay', label: '结构资料底板', color: '#68170f', transparency: 20, blur: 12, radius: 24, height: 620 },
+  { prefix: 'expressionOverlay', label: '神态文字底板', color: '#fff8ea', transparency: 22, blur: 6, radius: 24 },
   { prefix: 'actionOverlay', label: '动作目录底板', color: '#faf7f1', transparency: 9, blur: 10, radius: 0 },
   { prefix: 'videoOverlay', label: '视频提示底板', color: '#080b0a', transparency: 12, blur: 0, radius: 8, width: 80 },
 ]);
@@ -65,6 +66,8 @@ export function getGlobalSurfaceStyles(settings) {
     '--header-width': `${settings.headerWidth}%`,
     '--header-radius': `${settings.headerRadius}px`,
     '--header-rgb': colorChannels(settings.headerColor),
+    '--expression-overview-font-size': `${settings.expressionOverviewFontSize}px`,
+    '--expression-detail-font-size': `${settings.expressionDetailFontSize}px`,
     '--sidebar-height': `${settings.sidebarHeight}dvh`,
     '--sidebar-radius': `${settings.sidebarRadius}px`,
     '--sidebar-rgb': colorChannels(settings.sidebarColor),
