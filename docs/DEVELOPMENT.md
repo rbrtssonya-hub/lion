@@ -6,6 +6,8 @@
 
 2026-10-15新增最前置水墨加载屏、模型/书册/图鉴预热及跨章节实例复用。设置左侧纵排分类，外观页分别调节所有透明模糊底板；动画页调书册尺寸和水墨时间线，布局页调页面选中命中。运行机制、参数范围和原加载HTML来源见 [本轮实现说明](../source/references/2026-10-15-desktop-iteration.md)。本轮用户要求仅提交推送支线。
 
+同日追加整改：首页导航恢复原版连续红栏并删除新增框饰，同底板仍参与章节收缩/展开且保留右侧“首页”；外观新增参考资料外区和卡片两组完整材质参数；动作只保留讲解区一条阶段目录。当前行为及参数默认值见 [三项整改说明](../source/references/2026-10-15-desktop-rectification.md)。
+
 ## 环境与运行
 
 在根目录运行 `npm ci` 安装锁定版本，再运行 `npm run dev`。Vite 使用根 `index.html`，生产构建输出到独立 `dist/`，不会覆盖源码或创作资源。
@@ -68,9 +70,9 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 ### 动作四段图鉴
 
-`ChapterPage` 对action挂载独立 `ActionPage`；不再使用旧三栏占位布局。`actionClips.js` 是入场、探步、转身、收势的唯一数据源。首屏左侧16:9媒体、右侧两句简介，以及下方四段左媒体/右简介长页共用选中状态。两条 `ActionTimeline` 共用 `skin="heritage"`，样式与阶段选择分离；后续可换关卡视觉，不把阶段选择当作真实加载百分比。
+`ChapterPage` 对action挂载独立 `ActionPage`；不再使用旧三栏占位布局。`actionClips.js` 是入场、探步、转身、收势的唯一数据源。首屏左侧16:9媒体、右侧两句简介，以及下方四段左媒体/右简介长页共用选中状态。讲解区仅保留一条 `ActionTimeline`（`skin="heritage"`），首屏重复目录及向下提示已按2026-10-15整改删除；不把阶段选择当作真实加载百分比。
 
-首屏时间轴只切换内容、不滚动/自动播放；长页时间轴定位到对应段并为顶栏及吸顶目录留空间。程序定位期间锁定选中，到达后在同一滚动位置保留点击目标，真实滚动才恢复视口中部选择；pointer、wheel或滚动键中断时也停止浏览器原生平滑滚动。所有定位保持 `#/action`。减少动态偏好下直接定位、不做缩放过渡。
+唯一目录定位到对应段并为顶栏及吸顶目录留空间，同时更新首屏内容、不自动播放。程序定位期间锁定选中，到达后在同一滚动位置保留点击目标，真实滚动才恢复视口中部选择；pointer、wheel或滚动键中断时也停止浏览器原生平滑滚动。所有定位保持 `#/action`。减少动态偏好下直接定位、不做缩放过渡。
 
 `ActionVideo` 使用真实HTMLVideoElement，观看入口原位播放并轻放大1.04；播放/暂停、时间、拖动进度、静音、全屏和错误重试由媒体状态驱动。全页最多一个播放意图；离开视口、后台、换源或卸载取消意图和暂停。重复观看是幂等操作，旧play Promise不能暂停更新的播放。全屏豁免仅属于自身播放器，退出后重查可见性；离页断开观察器、文档/窗口事件和RAF/定位计时器。首页 `VideoStage` 不受此实现影响。
 
@@ -82,9 +84,9 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
-首页仍为五项完整文字顶栏；章节页顶栏容器透明，改为左侧品牌首页按钮与右侧结构/动作/神态/设置四项两块红色导航。`NavigationSurface` 用CSS材质、切角细边及SVG低对比云纹包住各组内容；原首页图案DOM只参与退场后隐藏，返回由品牌按钮提供。图案和高亮红线下保留普通sans标题，原标题/辅助文字仍在DOM用于过渡，但紧凑时opacity0、aria-hidden且不可交互。`NavigationIcon`继续载入用户1254×1254金白透明PNG与原viewBox，不改变字节、颜色或节点实例。素材与新设计对应见[原图案说明](../source/references/navigation-user-icons.md)、[分块导航参考](../source/references/navigation-two-panels.md)。
+首页为原版连续红色五项文字横栏，无新增双框或云纹装饰；同两个 `NavigationSurface` 拼满顶栏并在章节页收缩为左品牌块及右首页/结构/动作/神态/设置五入口，保持节点实例。图案和高亮红线下保留普通sans标题，原标题/辅助文字仍在DOM用于过渡，但紧凑时opacity0、aria-hidden且不可交互。`NavigationIcon`继续载入用户1254×1254金白透明PNG与原viewBox，不改变字节、颜色或节点实例。当前恢复标准见[三项整改](../source/references/2026-10-15-desktop-rectification.md)，原图案及分块设计背景见[原图案说明](../source/references/navigation-user-icons.md)、[分块导航参考](../source/references/navigation-two-panels.md)。
 
-`useNavigationMotion` 捕获实际合成后的symbol/品牌/copy位置；布局更新后用WAAPI补间到最终位置，快速导航从正在显示的位置接续。图案与普通标题在symbol内同步移动；原标题/辅助文案整组右移、水平压缩并淡出，返回反向展开/渐显。品牌章节固定落位，首页额外右移默认24px，在动画页可调0–160px；既有品牌留白仍决定基准位置。默认720ms、200–1600/10ms步长与三条曲线保留，紧凑间距14px/4–36与右留白48px/16–160保留，实际受电脑余宽限制。原生hash/history仍先捕获后更新route；真实宽度/参数变化、减弱动态及卸载取消并清理will-change/监听/观察器。html采用 `scrollbar-gutter: stable`，避免首页长页到神态单屏的滚动条消失改变宽度、误取消刚开始的动画。新回归显示经典滚动条并测中间坐标、缩放/透明度及自然完成。
+`useNavigationMotion` 捕获实际合成后的symbol/品牌/copy及两块底板位置；布局更新后先统一测量再用WAAPI补间到最终位置，品牌内底板扣除父级位移，快速导航从正在显示的位置接续。布局字宽与动画平移统一换算CSS像素，125%缩放时不重复放大；图案与普通标题在symbol内同步移动；原标题/辅助文案整组右移、水平压缩并淡出，返回反向展开/渐显。品牌章节固定落位，首页额外右移默认24px，在动画页可调0–160px；既有品牌留白仍决定基准位置。默认720ms、200–1600/10ms步长与三条曲线保留，紧凑间距14px/4–36与右留白48px/16–160保留，实际受电脑余宽限制。原生hash/history仍先捕获后更新route；真实宽度/参数变化、减弱动态及卸载取消并清理will-change/监听/观察器。html采用 `scrollbar-gutter: stable`，避免首页长页到神态单屏的滚动条消失改变宽度、误取消刚开始的动画。新回归显示经典滚动条并测中间坐标、缩放/透明度及自然完成。
 
 `DeveloperSettingsPanel` 贴右完整视口，仍为外观/导航/动画/轮播/布局五页，保留页签键盘、独立滚动、关闭与恢复默认。面板默认关闭，推开偏好默认开启，顶栏透明度默认20%；已有明确保存的18%/覆盖/零品牌偏移等参数保留，缺少新字段时补默认值，恢复默认采用新值。`homeBrandOffset` 独立于brandPadding，动画页“首页品牌右移距离”可保存/刷新/校验/复原。存储key与字体版本2保持，旧20→26的一次性迁移规则不变；读写失败仍可现场调整，打开状态不持久化。
 
@@ -96,9 +98,9 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。导航标题和辅助文字均为真实字体，设置“导航”页可分别调节首页标题字号（14–28px，默认26px）和辅助字号（10–28px，默认18px），辅助透明度独立调整；导航按两类文字的实际字宽计算栏宽，空间不足时共同缩小并保留设定比例。旧保存参数自动补齐辅助字号，标题偏好保留，刷新和恢复默认沿用现有机制。顶部章节数字已移除；修改导航或品牌文字时检查本地字体子集是否覆盖新字。本轮简称“结构”使用既有字符，未更换运行字体或其他资产。运行检查包含字体和全部审查图的大小及SHA256。
 
-导航适配用未动画的离屏copy克隆及DOM Range测真实字宽，避免返回途中字体完成通知把正在压缩的宽度当作排版宽度。首页五项按内容共同缩放，完整单行及字号比例保持；不足时品牌独立第一行、顶栏至少116px。章节四项保持单行紧凑组，独立算间距/右留白/图案与普通标题的高度预算，64px顶栏也不越界。实际高度写 `--site-header-height`、请求 `--header-height` 不变；观察器、字体通知和resize合并单RAF，卸载清理。章节/设置背景先在App解析为完整URL，避免生产stylesheet从assets目录消费相对CSS变量时形成assets/assets；验收直接解码计算后的背景地址，不能只核对文件名。
+导航适配用未动画的离屏copy克隆及DOM Range测真实字宽，避免返回途中字体完成通知把正在压缩的宽度当作排版宽度。首页五项按内容共同缩放，完整单行及字号比例保持；不足时品牌独立第一行、顶栏至少116px。章节五项保持单行紧凑组，独立算间距/右留白/图案与普通标题的高度预算，64px顶栏也不越界。实际高度写 `--site-header-height`、请求 `--header-height` 不变；观察器、字体通知和resize合并单RAF，卸载清理。章节/设置背景先在App解析为完整URL，避免生产stylesheet从assets目录消费相对CSS变量时形成assets/assets；验收直接解码计算后的背景地址，不能只核对文件名。
 
-首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label并跳转结构，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
+首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label并按顶栏实际高度滚到首页书册区，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
 
 ## 资源更新
 

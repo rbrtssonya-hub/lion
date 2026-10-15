@@ -144,14 +144,14 @@ export default function HomeCulture({ settings, preload = false, playbackEnabled
           <p id="culture-photo-instructions" className="sr-only">点击照片查看下一张，左右方向键切换，Home和End到首尾；悬停暂停，离开后按设置恢复自动播放。</p>
         </div>
 
-        <footer className="home-culture-sources" aria-labelledby="culture-sources-title">
+        <footer className="home-culture-sources" data-surface="cultureSources" aria-labelledby="culture-sources-title">
           <div className="home-culture-sources-heading">
             <span className="home-culture-sources-emblem" aria-hidden="true"><svg viewBox="0 0 56 56" fill="none"><path d="M8 13c8-3 15-2 20 3 5-5 12-6 20-3v31c-8-3-15-2-20 2-5-4-12-5-20-2Z" /><path d="M28 16v30M14 21c3-.4 6 0 9 1.5M14 28c3-.4 6 0 9 1.5M14 35c3-.4 6 0 9 1.5M33 22.5c3-1.5 6-1.9 9-1.5M33 29.5c3-1.5 6-1.9 9-1.5M33 36.5c3-1.5 6-1.9 9-1.5" /></svg></span>
             <div><p className="home-culture-sources-kicker">文化资料整理 / SOURCES & CREDITS</p><h2 id="culture-sources-title">参考资料</h2></div>
             <p className="home-culture-sources-intro">循着资料，读到更深处。<br /><span>文化文字据公开资料整理，点击卡片可查阅原文。</span></p>
           </div>
           <div className="home-culture-source-cards">
-            {homeCultureSources.map((source, index) => <a className="home-culture-source-card" key={source.url} href={source.url} target="_blank" rel="noreferrer">
+            {homeCultureSources.map((source, index) => <a className="home-culture-source-card" data-surface="cultureSourceCard" key={source.url} href={source.url} target="_blank" rel="noreferrer">
               <span className="home-culture-source-number">0{index + 1}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></span>
               <span className="home-culture-source-publisher">{source.label}</span><strong>{source.title}</strong><span className="home-culture-source-description">{source.description}</span>
             </a>)}

@@ -19,6 +19,44 @@
   --surface-opacity: var(--cultureBody-surface-opacity); --surface-blur: var(--cultureBody-surface-blur);
   --surface-radius: var(--cultureBody-surface-radius); --surface-rgb: var(--cultureBody-surface-rgb);
 }
+[data-surface='cultureSources'] {
+  --surface-width: var(--cultureSources-surface-width); --surface-height: var(--cultureSources-surface-height);
+  --surface-opacity: var(--cultureSources-surface-opacity); --surface-blur: var(--cultureSources-surface-blur);
+  --surface-radius: var(--cultureSources-surface-radius); --surface-rgb: var(--cultureSources-surface-rgb);
+}
+[data-surface='cultureSourceCard'] {
+  --surface-width: var(--cultureSourceCard-surface-width); --surface-height: var(--cultureSourceCard-surface-height);
+  --surface-opacity: var(--cultureSourceCard-surface-opacity); --surface-blur: var(--cultureSourceCard-surface-blur);
+  --surface-radius: var(--cultureSourceCard-surface-radius); --surface-rgb: var(--cultureSourceCard-surface-rgb);
+}
+.home-culture .home-culture-sources[data-surface='cultureSources'] {
+  width: var(--surface-width, 100%);
+  min-height: var(--surface-height, 0px);
+  margin-inline: auto;
+  border-color: rgb(203 164 110 / var(--surface-opacity, 1));
+  border-radius: var(--surface-radius, 18px);
+  background: rgb(var(--surface-rgb, 248 237 218) / var(--surface-opacity, 1));
+  backdrop-filter: var(--surface-blur, none);
+  -webkit-backdrop-filter: var(--surface-blur, none);
+  box-shadow: 0 14px 40px rgb(104 69 40 / calc(var(--surface-opacity, 1) * .078431372549));
+}
+.home-culture .home-culture-sources[data-surface='cultureSources']::before {
+  background: rgb(165 57 37 / var(--surface-opacity, 1));
+}
+.home-culture a.home-culture-source-card[data-surface='cultureSourceCard'] {
+  width: var(--surface-width, 100%);
+  min-height: var(--surface-height, 186px);
+  justify-self: center;
+  border-color: rgb(216 189 150 / var(--surface-opacity, 1));
+  border-radius: var(--surface-radius, 9px);
+  background: rgb(var(--surface-rgb, 255 248 235) / var(--surface-opacity, 1));
+  backdrop-filter: var(--surface-blur, none);
+  -webkit-backdrop-filter: var(--surface-blur, none);
+}
+.home-culture a.home-culture-source-card[data-surface='cultureSourceCard']:hover {
+  border-color: rgb(169 93 56 / var(--surface-opacity, 1));
+  box-shadow: 0 7px 18px rgb(123 74 40 / calc(var(--surface-opacity, 1) * .070588235294));
+}
 .home-archive-scene .archive-reading-panel[data-surface] {
   box-sizing: border-box;
   width: var(--surface-width, 100%);

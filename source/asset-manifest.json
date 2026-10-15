@@ -1627,6 +1627,30 @@
       "path": "source/reviews/homepage/2026-10-15-iteration/startup-1920.png",
       "bytes": 2857833,
       "sha256": "f367df97ed7b9438a4648d680e4890384e97c7ebef433589538dfd3eefb42457"
+    },
+    {
+      "from": "2026-10-15 desktop rectification browser review",
+      "path": "source/reviews/navigation/2026-10-15-rectification/action-single-timeline-1920.png",
+      "bytes": 2821171,
+      "sha256": "1339bee466c669dcd4a6e0fba4cb03e1ecfcf2d05319d99699fcaff72ea7b1dc"
+    },
+    {
+      "from": "2026-10-15 desktop rectification browser review",
+      "path": "source/reviews/navigation/2026-10-15-rectification/chapter-compact-1920.png",
+      "bytes": 2074319,
+      "sha256": "4f3cf9b81f183102702f9e30d1c096c35bef4eb513cccb1115ccbe4818c8ea27"
+    },
+    {
+      "from": "2026-10-15 desktop rectification browser review",
+      "path": "source/reviews/navigation/2026-10-15-rectification/home-original-1920.png",
+      "bytes": 2909720,
+      "sha256": "1efb596fd6f52968fb816c6dd8ff795be1047f1250ed25b7cee6040199195bf8"
+    },
+    {
+      "from": "2026-10-15 desktop rectification browser review",
+      "path": "source/reviews/navigation/2026-10-15-rectification/references-settings-1920.png",
+      "bytes": 1373408,
+      "sha256": "6b51319f55169a4b71b7c8da5db73a579a16d82c42a4299ed58c1e571660bc63"
     }
   ]
 }

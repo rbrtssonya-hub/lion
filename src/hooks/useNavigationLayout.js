@@ -18,13 +18,14 @@ export function useNavigationLayout(headerRef, current, settings) {
     const range = document.createRange();
     let frame = 0;
     let active = true;
+    let coordinateScale = 1;
     const write = (element, property, value) => {
       if (element.style.getPropertyValue(property) !== value) element.style.setProperty(property, value);
     };
     const textUnits = element => {
       range.selectNodeContents(element);
       const size = Number.parseFloat(getComputedStyle(element).fontSize);
-      return size > 0 ? range.getBoundingClientRect().width / size : 0;
+      return size > 0 ? range.getBoundingClientRect().width / coordinateScale / size : 0;
     };
     const measureCopy = (item, font, helperFont) => {
       // Visible copy can be in the middle of a compressed return flight.
@@ -41,12 +42,16 @@ export function useNavigationLayout(headerRef, current, settings) {
     const update = () => {
       frame = 0;
       if (!active) return;
-      const width = header.getBoundingClientRect().width;
+      // Layout uses CSS pixels; DOM rectangles also include page zoom.
+      const bounds = header.getBoundingClientRect();
+      const width = parseFloat(getComputedStyle(header).width);
+      coordinateScale = bounds.width / width;
+      write(header, '--navigation-surface-full-width', `${width}px`);
       const requested = getComputedStyle(shell);
       const requestedHeight = readPixels(requested, '--header-height', 90);
       const font = readPixels(requested, '--nav-font-size', 26);
       const helperFont = readPixels(requested, '--nav-helper-font-size', 18);
-      if (width < 700) {
+      if (page.clientWidth < 700) {
         header.dataset.navLayout = 'mobile';
         write(header, '--site-nav-font-size', `${Math.min(16, Math.max(12, font * .58))}px`);
         write(shell, '--site-header-height', `${Math.max(116, requestedHeight)}px`);
@@ -64,7 +69,7 @@ export function useNavigationLayout(headerRef, current, settings) {
         const sidePadding = Math.min(requestedPadding, Math.max(8, width * .02));
         const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
         const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
-        const brandWidth = header.querySelector('.site-brand-capsule').getBoundingClientRect().width;
+        const brandWidth = parseFloat(getComputedStyle(header.querySelector('.site-brand-capsule')).width);
         const available = width - sidePadding - inset - brandWidth - Math.min(28, width * .011) - 28 - 4 * gap;
         const compactIcon = Math.max(18, Math.min(icon, available / 5 - 24));
         header.dataset.navLayout = 'compact';
@@ -89,7 +94,7 @@ export function useNavigationLayout(headerRef, current, settings) {
       const textWidths = items.map(item => measureCopy(item, font, helperFont));
       const totalTextWidth = textWidths.reduce((sum, value) => sum + value, 0);
       const fixedWidth = icon + headingGap + copyGap + itemGap + 2 * itemPadding;
-      const brandWidth = header.querySelector('.site-brand-capsule').getBoundingClientRect().width;
+      const brandWidth = parseFloat(getComputedStyle(header.querySelector('.site-brand-capsule')).width);
       let available = width - 2 * sidePadding - brandWidth - homeOffset - headerGap;
       let scale = Math.min(1, (available - fixedWidth * items.length) / totalTextWidth);
       const stacked = font * scale < Math.min(font, 16);
@@ -113,6 +118,10 @@ export function useNavigationLayout(headerRef, current, settings) {
       write(header, '--navigation-header-gap', `${headerGap}px`);
       write(header, '--navigation-columns', columns);
       write(shell, '--site-header-height', `${Math.max(stacked ? 116 : 0, requestedHeight)}px`);
+      const navigation = header.querySelector('.site-navigation');
+      const navigationBounds = navigation.getBoundingClientRect();
+      write(navigation, '--navigation-surface-offset', `${stacked ? 0 : (bounds.left - navigationBounds.left) / coordinateScale}px`);
+      write(navigation, '--navigation-surface-offset-y', `${(bounds.top - navigationBounds.top) / coordinateScale}px`);
     };
     const schedule = () => {
       if (active && !frame) frame = requestAnimationFrame(update);

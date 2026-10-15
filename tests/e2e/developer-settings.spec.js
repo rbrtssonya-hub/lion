@@ -380,7 +380,7 @@ test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控�
   expect(await page.locator('.site-header').evaluate(element => {
     const style = getComputedStyle(element);
     return style.backgroundImage === 'none' && style.backgroundColor === 'rgba(0, 0, 0, 0)' &&
-      Array.from(element.querySelectorAll('.navigation-surface')).every(surface => getComputedStyle(surface).backgroundImage.includes('rgba(128, 29, 23, 0)'));
+      Array.from(element.querySelectorAll('.navigation-surface')).every(surface => getComputedStyle(surface).backgroundImage.includes('rgba(104, 23, 15, 0)'));
   })).toBe(true);
   await expect(panel(page).getByRole('spinbutton', { name: '侧栏透明度数值' })).toHaveValue('14');
   await expect(panel(page)).toHaveCSS('backdrop-filter', 'blur(18px)');
@@ -882,7 +882,7 @@ test('顶栏与设置背板宽高圆角和颜色同步到实际材质并持久�
   await expect(headerSurfaces(page)).toHaveCount(2);
   for (const surface of await headerSurfaces(page).all()) {
     await expect(surface).toHaveCSS('border-radius', '33px');
-    expect(await surface.evaluate(element => getComputedStyle(element).backgroundImage)).toContain('rgba(109, 49, 37, 0.8)');
+    expect(await surface.evaluate(element => getComputedStyle(element).backgroundImage)).toContain('rgba(89, 39, 24, 0.8)');
   }
   await expect(panel(page)).toHaveCSS('border-radius', '26px');
   await expect(panel(page)).toHaveCSS('background-color', 'rgba(246, 237, 220, 0.86)');
@@ -890,4 +890,158 @@ test('顶栏与设置背板宽高圆角和颜色同步到实际材质并持久�
   await expect.poll(() => page.locator('.site-header').evaluate(element => Math.round(element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width * 100))).toBe(84);
   await reloadPage(page);
   await expectSaved(page, { headerWidth: 84, headerRadius: 33, headerColor: '#6d3125', sidebarHeight: 70, sidebarRadius: 26, sidebarColor: '#f6eddc' });
+});
+
+test('参考资料区域与卡片分别公开六参数，旧偏好补齐默认且可保存刷新恢复', async ({ page }) => {
+  test.setTimeout(90_000);
+  await page.addInitScript(({ key }) => {
+    if (window.top !== window || localStorage.getItem(key)) return;
+    localStorage.setItem(key, JSON.stringify({ archivePanelTransparency: 67, headerTransparency: 34, navigationTypographyVersion: 2, navFontSize: 23 }));
+  }, { key: settingsKey });
+  await loadPage(page);
+  const sources = page.locator('.home-culture-sources');
+  const cards = sources.locator('.home-culture-source-card');
+  const defaults = {
+    cultureSourcesWidth: 100, cultureSourcesHeight: 0, cultureSourcesTransparency: 0,
+    cultureSourcesBlur: 0, cultureSourcesRadius: 18, cultureSourcesColor: '#f8edda',
+    cultureSourceCardWidth: 100, cultureSourceCardHeight: 186, cultureSourceCardTransparency: 0,
+    cultureSourceCardBlur: 0, cultureSourceCardRadius: 9, cultureSourceCardColor: '#fff8eb',
+  };
+  await expectSaved(page, { ...defaults, archivePanelTransparency: 67, headerTransparency: 34, navFontSize: 23 });
+  await expect(sources).toHaveCSS('background-color', 'rgb(248, 237, 218)');
+  await expect(sources).toHaveCSS('border-radius', '18px');
+  await expect(sources).toHaveCSS('backdrop-filter', 'none');
+  await expect(cards).toHaveCount(3);
+  for (const card of await cards.all()) {
+    await expect(card).toHaveCSS('background-color', 'rgb(255, 248, 235)');
+    await expect(card).toHaveCSS('border-radius', '9px');
+    await expect(card).toHaveCSS('min-height', '186px');
+  }
+  await openSettings(page);
+  const changed = {};
+  for (const { prefix, label, values, color } of [
+    { prefix: 'cultureSources', label: '参考资料区域', values: [84, 700, 25, 14, 28], color: '#ede0ca' },
+    { prefix: 'cultureSourceCard', label: '参考资料卡片', values: [92, 260, 35, 11, 21], color: '#efe0c6' },
+  ]) {
+    for (const [index, [suffix, field]] of [['Width', '宽度'], ['Height', '高度'], ['Transparency', '透明度'], ['Blur', '模糊强度'], ['Radius', '圆角']].entries()) {
+      const value = values[index];
+      const input = panel(page).getByRole('spinbutton', { name: `${label}${field}数值`, exact: true });
+      await input.fill(String(value));
+      await input.press('Tab');
+      changed[`${prefix}${suffix}`] = value;
+    }
+    await panel(page).getByLabel(`${label}底色`, { exact: true }).evaluate((input, value) => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, value);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, color);
+    changed[`${prefix}Color`] = color;
+  }
+  await expectSaved(page, { ...changed, archivePanelTransparency: 67, headerTransparency: 34, navFontSize: 23 });
+  await expect(sources).toHaveCSS('background-color', 'rgba(237, 224, 202, 0.75)');
+  await expect(sources).toHaveCSS('backdrop-filter', 'blur(14px)');
+  await expect(sources).toHaveCSS('border-radius', '28px');
+  await expect(sources).toHaveCSS('min-height', '700px');
+  expect(await sources.evaluate(element => element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width * 100)).toBeCloseTo(84, 1);
+  for (const card of await cards.all()) {
+    await expect(card).toHaveCSS('background-color', 'rgba(239, 224, 198, 0.65)');
+    await expect(card).toHaveCSS('backdrop-filter', 'blur(11px)');
+    await expect(card).toHaveCSS('border-radius', '21px');
+    await expect(card).toHaveCSS('min-height', '260px');
+  }
+  expect(await cards.first().evaluate(element => element.getBoundingClientRect().width / parseFloat(getComputedStyle(element.parentElement).gridTemplateColumns) * 100)).toBeCloseTo(92, 1);
+  await reloadPage(page);
+  await expectSaved(page, changed);
+  await expect(sources).toHaveCSS('backdrop-filter', 'blur(14px)');
+  await expect(cards.first()).toHaveCSS('min-height', '260px');
+  await openSettings(page);
+  await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await expectSaved(page, defaults);
+  await expect(sources).toHaveCSS('background-color', 'rgb(248, 237, 218)');
+  await expect(cards.first()).toHaveCSS('background-color', 'rgb(255, 248, 235)');
+  await expect(cards.first()).toHaveCSS('min-height', '186px');
+});
+
+test('参考资料外区与卡片完全透明时移除材质，文字和链接仍可用', async ({ page }) => {
+  await page.addInitScript(({ key }) => {
+    if (window.top !== window) return;
+    localStorage.setItem(key, JSON.stringify({
+      cultureSourcesTransparency: 100, cultureSourcesBlur: 18,
+      cultureSourceCardTransparency: 100, cultureSourceCardBlur: 12,
+    }));
+  }, { key: settingsKey });
+  await loadPage(page);
+  const sources = page.locator('.home-culture-sources');
+  const cards = sources.locator('.home-culture-source-card');
+  await sources.scrollIntoViewIfNeeded();
+  await expect(sources).toHaveCSS('background-color', 'rgba(248, 237, 218, 0)');
+  await expect(sources).toHaveCSS('backdrop-filter', 'none');
+  await expect(sources).toHaveCSS('border-color', 'rgba(203, 164, 110, 0)');
+  await expect(sources).toHaveCSS('opacity', '1');
+  expect(await sources.evaluate(element => getComputedStyle(element, '::before').backgroundColor)).toBe('rgba(165, 57, 37, 0)');
+  await expect(sources.getByRole('heading', { name: '参考资料', exact: true })).toHaveCSS('opacity', '1');
+  for (const card of await cards.all()) {
+    await expect(card).toHaveCSS('background-color', 'rgba(255, 248, 235, 0)');
+    await expect(card).toHaveCSS('backdrop-filter', 'none');
+    await expect(card.locator('strong')).toHaveCSS('opacity', '1');
+    await expect(card).toHaveAttribute('href', /^https:\/\//);
+  }
+  await cards.first().hover();
+  await expect(cards.first()).toHaveCSS('border-color', 'rgba(169, 93, 56, 0)');
+  expect(await cards.first().evaluate(element => getComputedStyle(element).boxShadow)).toContain('rgba(123, 74, 40, 0)');
+  await cards.first().focus();
+  await expect(cards.first()).toBeFocused();
+});
+
+test('参考资料在900/1920px桌面余宽与两层40/100%宽度极值均无溢出重叠', async ({ page }) => {
+  test.setTimeout(90_000);
+  await loadPage(page);
+  await openSettings(page);
+  const sources = page.locator('.home-culture-sources');
+  const matrix = [];
+  for (const availableWidth of [900, 1920]) {
+    await page.setViewportSize({ width: availableWidth + 380, height: 1080 });
+    await editNumber(page, '设置面板宽度', Math.round(await shellWidth(page) - availableWidth));
+    await expect.poll(() => pageWidth(page)).toBe(availableWidth);
+    await selectSettingsTab(page, '外观');
+    for (const areaWidth of [40, 100]) {
+      const areaInput = panel(page).getByRole('spinbutton', { name: '参考资料区域宽度数值', exact: true });
+      await areaInput.fill(String(areaWidth));
+      await areaInput.press('Tab');
+      for (const cardWidth of [40, 100]) {
+        const cardInput = panel(page).getByRole('spinbutton', { name: '参考资料卡片宽度数值', exact: true });
+        await cardInput.fill(String(cardWidth));
+        await cardInput.press('Tab');
+        await sources.scrollIntoViewIfNeeded();
+        const geometry = await sources.evaluate(element => {
+          const cards = [...element.querySelectorAll('.home-culture-source-card')];
+          const rectangles = cards.map(card => card.getBoundingClientRect());
+          const fit = card => {
+            const bounds = card.getBoundingClientRect();
+            return card.scrollWidth <= card.clientWidth + 1 && [...card.querySelectorAll('*')].every(child => {
+              const childBounds = child.getBoundingClientRect();
+              return childBounds.left >= bounds.left - 1 && childBounds.right <= bounds.right + 1;
+            });
+          };
+          return {
+            areaFits: element.scrollWidth <= element.clientWidth + 1,
+            headingFits: fit(element.querySelector('.home-culture-sources-heading')),
+            cardsFit: cards.every(fit),
+            noOverlap: rectangles.every((rect, index) => rectangles.slice(index + 1).every(next =>
+              rect.right <= next.left + 1 || next.right <= rect.left + 1 || rect.bottom <= next.top + 1 || next.bottom <= rect.top + 1)),
+            areaPixels: element.getBoundingClientRect().width,
+            cardPixels: rectangles.map(rect => rect.width),
+            columns: getComputedStyle(element.querySelector('.home-culture-source-cards')).gridTemplateColumns.split(' ').length,
+          };
+        });
+        matrix.push({ availableWidth, areaWidth, cardWidth, ...geometry });
+        expect(geometry.areaFits).toBe(true);
+        expect(geometry.headingFits).toBe(true);
+        expect(geometry.cardsFit).toBe(true);
+        expect(geometry.noOverlap).toBe(true);
+        await expect(sources.getByRole('link')).toHaveCount(3);
+      }
+    }
+  }
+  await test.info().attach('sources-size-matrix', { body: JSON.stringify(matrix, null, 2), contentType: 'application/json' });
 });

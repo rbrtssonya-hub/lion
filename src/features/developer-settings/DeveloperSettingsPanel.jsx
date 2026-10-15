@@ -271,14 +271,15 @@ export default function DeveloperSettingsPanel({
                 {range('archivePanelTransparency', '首页阅读底板透明度', 0, 100, 1, '%')}
                 <p className="developer-settings-note">一起调整四处阅读底板的透明度，下方可继续分别细调。</p>
               </SettingsGroup>
-              {surfaceDefinitions.map(({ prefix, label }) => <SettingsGroup key={prefix} title={label} note="独立材质">
+              {surfaceDefinitions.map(({ prefix, label, heightStep = 10 }) => <SettingsGroup key={prefix} title={label} note="独立材质">
                 {range(`${prefix}Width`, `${label}宽度`, 40, 100, 1, '%')}
-                {range(`${prefix}Height`, `${label}高度`, 0, 900, 10)}
+                {range(`${prefix}Height`, `${label}高度`, 0, 900, heightStep)}
                 {range(`${prefix}Transparency`, `${label}透明度`, 0, 100, 1, '%')}
                 {range(`${prefix}Blur`, `${label}模糊强度`, 0, 40)}
                 {range(`${prefix}Radius`, `${label}圆角`, 0, 100)}
                 <ColorControl name={`${prefix}Color`} label={`${label}底色`} value={settings[`${prefix}Color`]} onChange={onChange} />
                 <p className="developer-settings-note">宽度相对所属区域；高度 0 为自动，内容较多时自动撑高。透明度 100 时移除底色与模糊。</p>
+                {prefix === 'cultureSources' && <p className="developer-settings-note">此处调整参考资料外区，内部三张卡片在“参考资料卡片”中独立调整。</p>}
               </SettingsGroup>)}
             </>}
 

@@ -325,9 +325,10 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
   await expect(page.locator('#actionHero .action-media-status')).toContainText('视频待接入');
   expect(await page.locator('#introVideo').evaluate(video => video.paused)).toBe(true);
-  await expect(page.locator('.action-timeline')).toHaveCount(2);
-  await expect(page.locator('[data-placement="hero"] button span')).toHaveText(['入场', '探步', '转身', '收势']);
-  const desktopNodes = await page.locator('[data-placement="hero"] button').evaluateAll((nodes) => nodes.map((node) => {
+  await expect(page.locator('.action-timeline')).toHaveCount(1);
+  await expect(page.locator('#actionHero .action-timeline, .action-explore-link')).toHaveCount(0);
+  await expect(page.locator('[data-placement="details"] button span')).toHaveText(['入场', '探步', '转身', '收势']);
+  const desktopNodes = await page.locator('[data-placement="details"] button').evaluateAll((nodes) => nodes.map((node) => {
     const bounds = node.getBoundingClientRect();
     return { x: bounds.x, width: bounds.width };
   }));

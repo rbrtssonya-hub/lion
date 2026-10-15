@@ -23,7 +23,6 @@ export default function ActionPage({ clips = actionClips, assets = media }) {
   const jumpTimer = useRef(null);
   const stopAll = useCallback((except) => players.current.forEach((player, id) => { if (id !== except) player?.pause(); }), []);
   const onStart = useCallback((playerId, clipId) => { stopAll(playerId); setSelectedId(clipId); }, [stopAll]);
-  const selectHero = useCallback(id => { jump.current = null; landed.current = { top: scrollY }; stopAll(); setSelectedId(id); }, [stopAll]);
   const goToClip = useCallback(id => {
     const row = rows.current.get(id);
     if (!row) return;
@@ -98,8 +97,6 @@ export default function ActionPage({ clips = actionClips, assets = media }) {
             <p className="action-copy-note">{selected.sourceNote}</p>
           </div>
         </div>
-        <ActionTimeline items={clips} activeId={selected.id} onSelect={selectHero} placement="hero" />
-        <a className="action-explore-link" href="#/action" onClick={event => { event.preventDefault(); goToClip(selected.id); }}>向下读懂动作 <span>↓</span></a>
       </section>
       <section className="action-details" id="actionDetails" aria-labelledby="actionGuideTitle">
         <div ref={detailBar} className="action-sticky-index"><ActionTimeline items={clips} activeId={selected.id} onSelect={goToClip} placement="details" /></div>

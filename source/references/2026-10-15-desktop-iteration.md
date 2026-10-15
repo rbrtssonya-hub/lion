@@ -2,6 +2,8 @@
 
 本轮依据用户的十一项清单和十一张标注截图实施；用户追加要求推送支线，当前开发分支为 `codex/huangzhi10.15`，不合并主线。
 
+后续三项整改已更新导航视觉、参考资料参数与动作目录；当前行为以 [整改说明](2026-10-15-desktop-rectification.md) 为准，下方保留十一项实施背景。
+
 ## 加载来源与实际预热
 
 - 用户提供的 `醒狮加载界面(1).html` 完整原字节存于 `source/design/loading/supplied-loading.html`，SHA256 `720007fee164f185832b132a541fc73bb8c72681703e71b7c4cd122c4b2e588d`。

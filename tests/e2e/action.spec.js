@@ -16,7 +16,9 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
   await openPage(page, '/#/action');
   await expect(page.locator('#actionHero')).toBeVisible();
   await expect(page.locator('.action-clip')).toHaveCount(4);
-  await expect(page.locator('.action-timeline')).toHaveCount(2);
+  await expect(page.locator('.action-timeline')).toHaveCount(1);
+  await expect(page.locator('#actionHero .action-timeline, .action-explore-link')).toHaveCount(0);
+  await expect(timeline(page, 'details').getByRole('button')).toHaveText(names);
   await expect(page.locator('#actionHero [data-action-count]')).toHaveText('01 / 04');
   await expect(page.locator('#actionHero [data-action-name]')).toHaveText('入场');
   await expect(page.locator('.action-poster')).toHaveCount(5);
@@ -34,7 +36,6 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
     await expect.poll(() => poster.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
   }
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await timeline(page, 'hero').getByRole('button', { name: '入场', exact: true }).click();
   await page.waitForTimeout(240); // Capture the settled visual, not a previous node's transition.
   await page.screenshot({ path: 'tmp/action-ui/action-long-1920.png', fullPage: true });
   await page.evaluate(() => scrollTo({ top: document.querySelector('#actionDetails').getBoundingClientRect().top + scrollY - document.querySelector('.site-header').getBoundingClientRect().height, behavior: 'instant' }));
@@ -43,17 +44,17 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
   await page.screenshot({ path: 'tmp/action-ui/detail-start-1920.png' });
 });
 
-test('动作页首屏时间轴切换编号图片与两句简介，不自动播放或滚动', async ({ page }) => {
+test('动作页唯一阶段目录同步首屏编号图片与两句简介，不自动播放', async ({ page }) => {
   await openPage(page, '/#/action');
   for (let i = 0; i < 4; i++) {
-    await timeline(page, 'hero').getByRole('button', { name: names[i], exact: true }).click();
+    await timeline(page, 'details').getByRole('button', { name: names[i], exact: true }).click();
     await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', ids[i]);
     await expect(page.locator('#actionHero [data-action-count]')).toHaveText(`0${i + 1} / 04`);
     await expect(page.locator('#actionHero [data-action-name]')).toHaveText(names[i]);
     await expect(page.locator('#actionHero .action-intro-lines p')).toHaveCount(2);
     await expect(page.locator('#actionHero .action-poster')).toHaveAttribute('src', new RegExp(`action-${ids[i]}-poster`));
     await expect(timeline(page, 'details').getByRole('button', { name: names[i], exact: true })).toHaveAttribute('aria-pressed', 'true');
-    expect(await page.evaluate(() => scrollY)).toBeLessThan(4);
+    await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
   }
   await expect(page).toHaveURL(/#\/action$/);
 });
@@ -107,7 +108,7 @@ test('审查回归：高窗口和设置推开定位结束后不漂移到下一�
       await page.waitForTimeout(250);
       await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', ids[i]);
       await expect(page.locator('#actionHero [data-action-count]')).toHaveText(`0${i + 1} / 04`);
-      for (const placement of ['hero', 'details']) await expect(timeline(page, placement).getByRole('button', { name: names[i], exact: true })).toHaveAttribute('aria-pressed', 'true');
+      await expect(timeline(page, 'details').getByRole('button', { name: names[i], exact: true })).toHaveAttribute('aria-pressed', 'true');
     }
   }
 });
@@ -133,11 +134,12 @@ test('审查回归：定位途中点击、滚轮和滚动键会终止旧平滑�
   }
 });
 
-test('动作页自然滚动更新两条时间轴，未接入片段仍可查看配图简介', async ({ page }) => {
+test('动作页自然滚动同步唯一阶段目录与首屏，未接入片段仍可查看配图简介', async ({ page }) => {
   await openPage(page, '/#/action');
   await page.locator('#action-clip-turn').scrollIntoViewIfNeeded();
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', 'turn');
-  await expect(timeline(page, 'hero').getByRole('button', { name: '转身', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(timeline(page, 'details').getByRole('button', { name: '转身', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#actionHero [data-action-name]')).toHaveText('转身');
   await page.locator('#action-clip-turn [data-watch-clip]').click();
   await expect(page.locator('#action-clip-turn .action-media-status')).toContainText('视频待接入');
   await expect(page.locator('#action-clip-turn .action-intro-lines')).toContainText('狮头引导，身体跟随。');
@@ -146,7 +148,8 @@ test('动作页自然滚动更新两条时间轴，未接入片段仍可查看�
 test('动作页减弱动态时键盘切段仍联动并可立即定位', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openPage(page, '/#/action');
-  await timeline(page, 'hero').getByRole('button', { name: '入场', exact: true }).focus();
+  await page.locator('#actionDetails').scrollIntoViewIfNeeded();
+  await timeline(page, 'details').getByRole('button', { name: '入场', exact: true }).focus();
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Enter');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', 'probe');

@@ -130,17 +130,19 @@ test('审查回归：全屏豁免只属于当前播放器，退出全屏重新�
   await expect(video(page, 'entry')).toHaveJSProperty('paused', true, { timeout: 1000 });
 });
 
-test('测试媒体：首屏切段暂停旧实例，新片段从起点等待播放', async ({ page }) => {
+test('测试媒体：唯一目录切段暂停首屏旧实例，新片段从起点等待播放', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await mount(page);
   const hero = page.locator('#actionHero');
   await hero.getByRole('button', { name: '播放入场视频', exact: true }).last().click();
   const oldVideo = await hero.locator('video').elementHandle();
   await expect.poll(() => oldVideo.evaluate(el => !el.paused && el.currentTime > .1)).toBe(true);
-  await hero.getByRole('button', { name: '探步', exact: true }).click();
+  await page.locator('.action-timeline[data-placement="details"]').getByRole('button', { name: '探步', exact: true }).click();
   expect(await oldVideo.evaluate(el => el.paused)).toBe(true);
   await expect(hero.locator('video')).toHaveJSProperty('paused', true);
   await expect(hero.locator('video')).toHaveJSProperty('currentTime', 0);
   await expect(hero.locator('[data-action-count]')).toHaveText('02 / 04');
+  await hero.scrollIntoViewIfNeeded();
   await hero.getByRole('button', { name: '播放探步视频', exact: true }).last().click();
   await expect(hero.locator('video')).toHaveJSProperty('paused', false);
 });

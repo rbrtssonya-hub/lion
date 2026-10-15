@@ -29,7 +29,7 @@ export function useNavigationMotion(headerRef, current, settings) {
     const header = headerRef.current;
     if (!header) return;
     // Read the composited positions before cancellation, including an interrupted flight.
-    pending.current = new Map([...header.querySelectorAll('.site-nav-symbol, .site-nav-copy, .site-brand-capsule, .site-navigation > .navigation-surface')]
+    pending.current = new Map([...header.querySelectorAll('.site-nav-symbol, .site-nav-copy, .site-brand-capsule, .navigation-surface')]
       .map(element => {
         const rect = element.getBoundingClientRect();
         return [element, { left: rect.left, top: rect.top, width: rect.width, height: rect.height,
@@ -77,22 +77,32 @@ export function useNavigationMotion(headerRef, current, settings) {
         }
       };
     };
+    // Measure every destination before starting the parent brand's animation.
+    const targets = new Map();
+    for (const [element] of positions) {
+      const style = getComputedStyle(element);
+      const transform = style.transform === 'none' ? 'translate(0px, 0px)' : style.transform;
+      const opacity = Number(style.opacity);
+      element.style.transform = 'none';
+      const rect = element.getBoundingClientRect();
+      element.style.removeProperty('transform');
+      targets.set(element, { rect, transform, opacity });
+    }
+    const brand = header.querySelector('.site-brand-capsule');
+    const brandFrom = positions.get(brand);
+    const brandTarget = targets.get(brand)?.rect;
+    const coordinateScale = header.getBoundingClientRect().width / parseFloat(getComputedStyle(header).width);
     for (const [element, from] of positions) {
       if (!element.isConnected || typeof element.animate !== 'function' || !from.width) continue;
       const copy = element.classList.contains('site-nav-copy');
       const surface = element.classList.contains('navigation-surface');
-      const style = getComputedStyle(element);
-      const targetTransform = style.transform === 'none' ? 'translate(0px, 0px)' : style.transform;
-      const targetOpacity = Number(style.opacity);
+      const { rect: target, transform: targetTransform, opacity: targetOpacity } = targets.get(element);
       if (copy && from.opacity === 0 && targetOpacity === 0) continue;
-      // Neutralize only the target transform while measuring its layout box.
-      // The captured box includes any interrupted animation, so a new flight
-      // starts from the actually visible text/brand position without a flash.
-      element.style.transform = 'none';
-      const target = element.getBoundingClientRect();
-      element.style.removeProperty('transform');
-      const dx = from.left - target.left;
-      const dy = from.top - target.top;
+      // The nested brand surface also shrinks. Subtract its parent's flight
+      // so its global position stays continuous, including interrupted returns.
+      const nestedSurface = surface && element.parentElement === brand;
+      const dx = (from.left - target.left - (nestedSurface ? brandFrom.left - brandTarget.left : 0)) / coordinateScale;
+      const dy = (from.top - target.top - (nestedSurface ? brandFrom.top - brandTarget.top : 0)) / coordinateScale;
       const fromScale = copy || surface ? ` scale(${from.width / Math.max(1, target.width)}, ${from.height / Math.max(1, target.height)})` : '';
       if (!copy && !surface && Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
       const fromTransform = `translate(${dx}px, ${dy}px)${fromScale}`;
