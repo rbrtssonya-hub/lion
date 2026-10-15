@@ -148,7 +148,7 @@ test('醒狮装饰和文字在电脑宽度及900px推开空间内完整可读，
         ornamentHidden: ornament?.getAttribute('aria-hidden'),
       };
     });
-    expect(layout.title.right).toBeLessThanOrEqual(layout.preface.left);
+    expect(layout.title.bottom).toBeLessThan(layout.preface.top);
     expect(layout.preface.right).toBeLessThanOrEqual(layout.pageRight);
     expect(layout.heading.bottom).toBeLessThanOrEqual(layout.stage.top);
     expect(layout.scroll).toBeLessThanOrEqual(layout.viewport);

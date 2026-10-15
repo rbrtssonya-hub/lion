@@ -238,6 +238,10 @@ export default function DeveloperSettingsPanel({
                 {range('sidebarBlur', '侧栏模糊强度', 0, 30)}
                 <p className="developer-settings-note">调整侧栏背景，文字和控件保持清楚。</p>
               </SettingsGroup>
+              <SettingsGroup title="首页阅读底板" note="文字与背景分层">
+                {range('archivePanelTransparency', '首页阅读底板透明度', 0, 100, 1, '%')}
+                <p className="developer-settings-note">仅调整首页下方的文字底板；0为不透明，100为完全透明，文字保持清晰。</p>
+              </SettingsGroup>
             </>}
 
             {page.id === 'navigation' && <>
@@ -273,6 +277,10 @@ export default function DeveloperSettingsPanel({
                 {range('homeBrandOffset', '首页品牌右移距离', 0, 160)}
                 <p className="developer-settings-note">首页的狮头与“南风有狮”一起右移，进入章节后向左归位；品牌左侧留白另在导航页调整。</p>
                 <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，导航与品牌直接切换到目标位置。</p>
+              </SettingsGroup>
+              <SettingsGroup title="画册首次翻阅" note="自动开卷节奏">
+                {range('bookIntroDuration', '画册首次翻阅时长', 3, 30, 1, '秒')}
+                <p className="developer-settings-note">默认12秒完成七次翻页。进行中调整会平滑改变剩余速度，不影响手动翻页，也不会重播已经结束的首次翻阅。</p>
               </SettingsGroup>
             </>}
 

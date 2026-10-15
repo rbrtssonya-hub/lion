@@ -299,6 +299,64 @@ test('the sandbox waits for host session eligibility and never consumes an unsee
   assert.equal(failed.context.riffle, null);
 });
 
+test('first exposure uses twelve seconds across all seven original turns, including the active first leaf', async () => {
+  const harness = bridgeHarness();
+  await readyBridge(harness);
+  harness.advance(240);
+  assert.equal(harness.context.introOn, true);
+  assert.equal(harness.context.riffle.length, 7);
+  assert.ok(Math.abs(harness.context.riffle.reduce((sum, step) => sum + step.dur, 0) - 12) < 1e-8);
+  assert.ok(Math.abs(harness.context.spring.dur - 12 / 7) < 1e-8, 'the already-started first leaf must also slow down');
+  harness.advance(4000);
+  assert.equal(harness.state().intro, 'playing', 'the slower preview must not finish at the old fast-riffle timing');
+  harness.advance(8100);
+  assert.equal(harness.state().intro, 'done');
+  assert.equal(harness.context.idx, 0);
+  assert.equal(harness.frames.size, 0);
+  harness.command('next');
+  assert.equal(harness.state().intro, 'done');
+  harness.advance(1600);
+  assert.equal(harness.context.idx, 1, 'manual turns retain their normal spring timing');
+});
+
+test('host duration config applies before loading and preserves current turn progress when changed live', async () => {
+  const harness = bridgeHarness();
+  harness.command('intro-duration', { seconds: 21 });
+  await readyBridge(harness);
+  harness.advance(900);
+  assert.equal(harness.context.spring.dur, 3);
+  assert.equal(harness.context.riffle.reduce((sum, leaf) => sum + leaf.dur, 0), 21);
+  const before = { progress: harness.context.spring.e / harness.context.spring.dur, t: harness.context.turn.t, at: harness.context.riffleAt };
+  harness.command('intro-duration', { seconds: 28 });
+  assert.equal(harness.context.spring.dur, 4);
+  assert.equal(harness.context.spring.e / harness.context.spring.dur, before.progress);
+  assert.equal(harness.context.turn.t, before.t);
+  assert.equal(harness.context.riffleAt, before.at);
+  harness.command('intro-duration', { seconds: NaN });
+  harness.command('intro-duration', { seconds: 3 }, {});
+  assert.equal(harness.context.spring.dur, 4, 'invalid values and foreign frames are ignored');
+  harness.advance(29000);
+  assert.equal(harness.state().intro, 'done');
+  harness.command('intro-duration', { seconds: 3 });
+  harness.advance(1000);
+  assert.equal(harness.context.riffleAt, 7, 'changing duration never replays a consumed intro');
+  harness.command('next');
+  const manual = harness.context.spring;
+  harness.command('intro-duration', { seconds: 30 });
+  assert.equal(harness.context.spring, manual);
+  harness.advance(1600);
+  assert.equal(harness.context.idx, 1);
+});
+
+test('intro duration clamps to the supported three-to-thirty second range', async () => {
+  for (const [value, expected] of [[0, 3], [90, 30]]) {
+    const harness = bridgeHarness();
+    harness.command('intro-duration', { seconds: value });
+    await readyBridge(harness); harness.advance(240);
+    assert.ok(Math.abs(harness.context.spring.dur - expected / 7) < 1e-8);
+  }
+});
+
 test('session consumption begins with the original riffle and repeated host handshakes preserve an active sequence', async () => {
   const harness = bridgeHarness();
   await readyBridge(harness);
@@ -311,7 +369,7 @@ test('session consumption begins with the original riffle and repeated host hand
   harness.command('intro-policy', { enabled: false });
   harness.command('sync');
   assert.equal(harness.state().intro, 'playing', 'StrictMode or host re-sync cannot cancel the same playing instance');
-  harness.advance(2500);
+  harness.advance(13000);
   assert.equal(harness.state().intro, 'done');
   assert.equal(harness.state().introConsumed, true);
   assert.equal(harness.context.riffle, sequence);
@@ -358,7 +416,7 @@ test('original seven-page riffle waits for readiness and visible exposure, then 
   assert.equal(harness.context.introOn, true);
   assert.equal(harness.context.riffle.length, 7);
   const sequence = harness.context.riffle;
-  harness.advance(2500);
+  harness.advance(13000);
   assert.equal(harness.state().intro, 'done');
   assert.equal(harness.context.idx, 0);
   assert.equal(harness.context.turn, null);
@@ -392,7 +450,7 @@ test('offscreen, document visibility and window blur pause the original intro sp
     assert.ok(harness.context.turn.t > before.t);
     assert.equal(harness.context.riffle, sequence);
   }
-  harness.advance(2500);
+  harness.advance(13000);
   assert.equal(harness.context.idx, 0);
   assert.equal(harness.state().intro, 'done');
 });
@@ -406,7 +464,7 @@ test('positive host exposure resumes an intro after local iframe focus moves to 
   assert.equal(harness.frames.size, 0);
   harness.command('visibility', { visible: true });
   assert.equal(harness.frames.size, 1, 'the host knows whether the complete application is focused');
-  harness.advance(2500);
+  harness.advance(13000);
   assert.equal(harness.context.idx, 0);
   assert.equal(harness.context.riffle, sequence);
   assert.equal(harness.state().intro, 'done');

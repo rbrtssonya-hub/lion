@@ -45,7 +45,7 @@ function CultureSlide({ story, active }) {
           <PhotoCredit photo={story.photo} />
         </figcaption>
       </figure>
-      <div className="home-culture-copy">
+      <div className="home-culture-copy archive-reading-panel">
         <p className="home-culture-eyebrow">{story.eyebrow}</p>
         <h3 id={`culture-${story.id}`} className="home-culture-title">{story.title}</h3>
         <p className="home-culture-text">{story.text}</p>
@@ -121,10 +121,10 @@ export default function HomeCulture({ settings }) {
       onKeyDown={handleKeyDown}
     >
       <div className="home-culture-inner">
-        <header className="home-culture-intro" data-culture-reveal>
+        <header className="home-culture-intro archive-reading-panel" data-culture-reveal>
           <div>
             <p className="home-culture-overline">南风 · 狮语 <span>LION CULTURE / ARCHIVE</span></p>
-            <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，<br />一方风土。</h2><LionArchiveOrnament /></div>
+            <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，一方风土。</h2><LionArchiveOrnament /></div>
           </div>
           <div className="home-culture-intro-copy">
             <p>醒狮文化 · 纵深图鉴</p>

@@ -7,6 +7,8 @@ export const defaultDeveloperSettings = Object.freeze({
   headerBlur: 12,
   sidebarTransparency: 14,
   sidebarBlur: 18,
+  archivePanelTransparency: 40,
+  bookIntroDuration: 12,
   headerHeight: 90,
   navFontSize: 26,
   helperFontSize: 18,
@@ -30,6 +32,8 @@ export const defaultDeveloperSettings = Object.freeze({
 const ranges = {
   headerTransparency: [0, 100, 1], headerBlur: [0, 30, 1],
   sidebarTransparency: [0, 100, 1], sidebarBlur: [0, 30, 1],
+  archivePanelTransparency: [0, 100, 1],
+  bookIntroDuration: [3, 30, 1],
   headerHeight: [64, 180, 1], navFontSize: [14, 28, 1],
   helperFontSize: [10, 28, 1],
   navIconSize: [24, 56, 1], helperTransparency: [0, 100, 1],

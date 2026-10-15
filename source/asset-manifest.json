@@ -1102,9 +1102,15 @@
     },
     {
       "from": "generated:imagegen/lion-book/spread.png",
-      "path": "source/public/assets/lion-book/spread.png",
+      "path": "source/design/lion-book/spread-v1.png",
       "bytes": 1876971,
       "sha256": "592f8d5f27b4df3b52dc36019aa574965e0dcdd7167c99a28f0680bc258326da"
+    },
+    {
+      "from": "generated:imagegen/2026-10-15/exec-80915f92-aeaf-401f-aec2-5ad8e50af07e.png",
+      "path": "source/public/assets/lion-book/spread.png",
+      "bytes": 1901476,
+      "sha256": "2b9b6b37d53dfe072c46c8f235ed0f95851ab91e644cf95327687ccbfc1e76a8"
     },
     {
       "from": "generated:chrome-review/lion-book/book-1366-modern.png",
@@ -1471,6 +1477,78 @@
       "path": "source/reviews/homepage/2026-10-15-archive-peek/settings-push-900.png",
       "bytes": 876502,
       "sha256": "d7fe141f786728dcdb0a434d9b35f4648590740a2ab5cd7ea46aaaf62b4c876c"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/book-heading-1024.png",
+      "bytes": 646736,
+      "sha256": "70c76130114f712b5c5bd892a88b03b7eec54063f492e84affd6c7dc09919a50"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/book-heading-1366.png",
+      "bytes": 734781,
+      "sha256": "b13f3e03da212e796736baccf51ac90e3052969bdb35cd16ab5343282e9ccc33"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/book-heading-1920.png",
+      "bytes": 1780624,
+      "sha256": "ee1542f3564c72686a8cf47e7bde1568b856fcb7f861d7bff84c40db1670402b"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/book-heading-2560.png",
+      "bytes": 3010826,
+      "sha256": "d28645efbb3dd27be9497425015e3d53b1d47d85279efcd4c5828f7292e5912e"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/book-reading-divider-1920.png",
+      "bytes": 1111770,
+      "sha256": "50655e1f9d7455e3cabd658ec4d218bd5a724e7de1660ef1221c5cac332ad9cc"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/culture-heading-1920.png",
+      "bytes": 1454865,
+      "sha256": "159adba3acf57adfc8a8fb97a65280a37110fc7a2180ab1bd65465c3cb0685b1"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/culture-reading-1920.png",
+      "bytes": 1741427,
+      "sha256": "06b64aab3d1e806af50ca12dbbab054e18a103d2ba14d99381ac0308807ea5f8"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/settings-duration-push-900.png",
+      "bytes": 988973,
+      "sha256": "15d63f44cc31a7f75995c4c2c233046553f190009f8d8516601eb2b427b8ba3f"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/spread-continuous-1920.png",
+      "bytes": 2011362,
+      "sha256": "6b77062bb403bb8ae126da162433a5b844ef05b3b43cbef78c5dd62892e1df85"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/spread-forward-curl.png",
+      "bytes": 1987883,
+      "sha256": "cba8bfe9bde99de304b54d2c0ab40a9f827c65631f0ee0d7f4417619307d6c29"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/spread-reverse-curl.png",
+      "bytes": 1930280,
+      "sha256": "ca613d33a5c642f2aae20cfb1a285c4e492f5dedf41a7e9fab7755619e69a8f2"
+    },
+    {
+      "from": "playwright:2026-10-15/home-reading-production-review",
+      "path": "source/reviews/homepage/2026-10-15-reading-panels/spread-spine.png",
+      "bytes": 186904,
+      "sha256": "943014bf8d90f67f4d4422c3bf9b4a66eda7081ff7e13b8061aa2772628dbdcc"
     }
   ]
 }

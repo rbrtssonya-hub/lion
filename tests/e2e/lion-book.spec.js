@@ -10,7 +10,13 @@ async function view(page, locator) {
 
 async function openBook(page, { reduced = false, ready = true, url = '/' } = {}) {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
+  await page.addInitScript(() => { if (window === window.top) {
+    sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
+    // These lifecycle tests use the supported fast setting; home-reading tests measure the 12s default.
+    const key = 'nanfeng-lion:developer-settings:v1';
+    const saved = JSON.parse(localStorage.getItem(key) || '{}');
+    localStorage.setItem(key, JSON.stringify({ ...saved, bookIntroDuration: 3 }));
+  } });
   await page.emulateMedia({ reducedMotion: reduced ? 'reduce' : 'no-preference' });
   await page.goto(url);
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();

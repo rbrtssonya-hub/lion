@@ -44,8 +44,8 @@ export default function HomePage({ onNavigate, settings }) {
     </div>
     <button type="button" className="entry-scroll-cue" onClick={exploreCulture}><span>向下了解醒狮文化</span><i aria-hidden="true">↓</i></button>
   </section>
-  <div className="home-archive-scene" style={{ backgroundImage: `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")` }}>
-    <HomeLionBook />
+  <div className="home-archive-scene" style={{ backgroundImage: `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
+    <HomeLionBook introDuration={settings.bookIntroDuration} />
     <div className="home-archive-next">
       <div className="home-archive-peek" aria-hidden="true">
         <img src={media.homeArchivePeek} alt="" draggable="false" loading="lazy" width="1536" height="1024" />

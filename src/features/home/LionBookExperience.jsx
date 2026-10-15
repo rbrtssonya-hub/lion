@@ -19,8 +19,10 @@ function consumeIntro() {
   catch { /* Preserve once-per-page-session behavior when storage is unavailable. */ }
 }
 
-export default function LionBookExperience() {
+export default function LionBookExperience({ introDuration = 12 }) {
   const hostRef = useRef(null);
+  const introDurationRef = useRef(introDuration);
+  introDurationRef.current = introDuration;
   const frameRef = useRef(null);
   const channelRef = useRef(null);
   const [attempt, setAttempt] = useState(0);
@@ -36,6 +38,7 @@ export default function LionBookExperience() {
     const command = { type: 'lion-book:command', channelId: channelRef.current, action };
     if (action === 'visibility') command.visible = value;
     else if (action === 'intro-policy') command.enabled = value;
+    else if (action === 'intro-duration') command.seconds = value;
     else if (Number.isInteger(value)) command.index = value;
     frameRef.current?.contentWindow?.postMessage(command, '*');
   }, []);
@@ -92,6 +95,7 @@ export default function LionBookExperience() {
     }, 25_000);
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
+      send('intro-duration', introDurationRef.current);
       send('intro-policy', !hasConsumedIntro());
       send('sync');
       publishVisibility();
@@ -116,6 +120,10 @@ export default function LionBookExperience() {
       frameRef.current = null;
     };
   }, [channelId, send]);
+
+  useLayoutEffect(() => {
+    send('intro-duration', introDuration);
+  }, [introDuration, send]);
 
   const retry = () => {
     setBook({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
@@ -144,7 +152,7 @@ export default function LionBookExperience() {
         <span>{page.stage}</span><small>{index > 0 && index < 6 ? page.era : index === 0 ? '开启史册' : '南风有狮'}</small>
       </button>)}
     </nav>
-    <div className="lion-book-reading" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
+    <div className="lion-book-reading archive-reading-panel" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
       <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
         {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}

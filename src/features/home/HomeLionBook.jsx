@@ -18,7 +18,7 @@ class BookBoundary extends Component {
   render() { return this.state.failed ? <BookPlaceholder failed onRetry={() => window.location.reload()} /> : this.props.children; }
 }
 
-export default function HomeLionBook() {
+export default function HomeLionBook({ introDuration = 12 }) {
   const sectionRef = useRef(null);
   const [entered, setEntered] = useState(false);
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function HomeLionBook() {
 
   return <section className="lion-book-section" id="homeLionBook" ref={sectionRef} aria-labelledby="lion-book-title">
     <div className="lion-book-inner">
-      <header className="lion-book-heading">
+      <header className="lion-book-heading archive-reading-panel">
         <div className="lion-book-title-group">
           <p className="lion-book-overline">南风 · 藏卷 <span>LINGNAN HERITAGE CHRONICLE</span></p>
           <div className="lion-archive-title-line"><h2 id="lion-book-title"><span>岭南</span>醒狮志</h2><LionArchiveOrnament /></div>
@@ -40,7 +40,7 @@ export default function HomeLionBook() {
         <div className="lion-book-preface"><span className="lion-book-preface-label">循鼓入卷 · 读狮知岭南</span><p>一狮一鼓，百年传承</p><span>翻一页纸，循一脉鼓声。<br />从瑞兽的想象，读到今日岭南。</span></div>
       </header>
       <BookBoundary><Suspense fallback={<BookPlaceholder />}>
-        {entered ? <LionBookExperience /> : <BookPlaceholder />}
+        {entered ? <LionBookExperience introDuration={introDuration} /> : <BookPlaceholder />}
       </Suspense></BookBoundary>
     </div>
   </section>;

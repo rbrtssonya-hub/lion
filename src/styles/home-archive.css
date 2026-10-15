@@ -36,3 +36,45 @@
 .lion-archive-ornament svg { display: block; width: 48%; margin-left: -6%; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .lion-archive-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: #8c4932; font: 13px/1.6 var(--archive-body); letter-spacing: .14em; }
 .lion-archive-tags i { width: 4px; height: 4px; background: #b1844c; transform: rotate(45deg); }
+
+/* A scoped reading surface: alpha affects the paper, never its text. */
+.home-archive-scene .archive-reading-panel {
+  padding: clamp(22px, 2.3cqw, 34px);
+  border: 1px solid rgb(186 145 91 / calc(var(--archive-panel-opacity, .6) * .34));
+  border-radius: 14px;
+  background: rgb(255 249 238 / var(--archive-panel-opacity, .6));
+  backdrop-filter: blur(calc(8px * var(--archive-panel-opacity, .6)));
+  box-shadow: 0 6px 24px rgb(92 56 31 / calc(var(--archive-panel-opacity, .6) * .06));
+}
+.home-archive-scene .lion-book-heading,
+.home-archive-scene .home-culture-intro { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 24px; text-align: center; }
+.home-archive-scene .lion-book-title-group,
+.home-archive-scene .home-culture-intro>div:first-child { width: 100%; min-width: 0; }
+.home-archive-scene .lion-archive-title-line { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0; align-items: center; }
+.home-archive-scene .lion-archive-title-line h2 { grid-column: 2; min-width: 0; }
+.home-archive-scene .lion-archive-title-line .lion-archive-ornament { grid-column: 3; justify-self: start; margin-left: clamp(10px, 1.5cqw, 22px); }
+.home-archive-scene .lion-book-overline,
+.home-archive-scene .home-culture-overline,
+.home-archive-scene .lion-archive-tags { justify-content: center; }
+.home-archive-scene .lion-book-heading h2 { font-size: clamp(42px, 5.4cqw, 74px); }
+.home-archive-scene .home-culture-intro h2 { font-size: clamp(36px, 4.9cqw, 68px); }
+.home-archive-scene .lion-book-preface { max-width: 760px; padding: 0; border: 0; background: none; }
+.home-archive-scene .lion-book-preface p { margin: 0 0 10px; font-size: 26px; }
+.home-archive-scene .lion-book-preface>span,
+.home-archive-scene .home-culture-intro-copy p,
+.home-archive-scene .lion-book-reading-copy>p,
+.home-archive-scene .home-culture-text { font-size: clamp(18px, 1.45cqw, 20px); line-height: 1.9; }
+.home-archive-scene .lion-book-preface>.lion-book-preface-label { display: block; margin-bottom: 12px; font-size: 14px; }
+.home-archive-scene .home-culture-intro-copy { max-width: 760px; padding: 0; }
+.home-archive-scene .home-culture-intro-copy p:first-child { margin-bottom: 10px; font-size: 26px; }
+.home-archive-scene .home-culture-intro-copy p:last-of-type { margin-bottom: 16px; }
+.home-archive-scene .lion-book-reading-title h3 { font-size: clamp(28px, 2.4cqw, 32px); }
+.home-archive-scene .home-culture-copy h3 { font-size: clamp(28px, 2.75cqw, 38px); }
+.home-archive-scene .home-culture-note { font-size: 17px; }
+.home-archive-scene .lion-book-overline,
+.home-archive-scene .home-culture-overline,
+.home-archive-scene .lion-book-reading-title>p { font-size: 14px; }
+.home-archive-scene .lion-book-overline span,
+.home-archive-scene .home-culture-overline span,
+.home-archive-scene .home-culture-eyebrow,
+.home-archive-scene .lion-book-reading-copy>a { font-size: 13px; }

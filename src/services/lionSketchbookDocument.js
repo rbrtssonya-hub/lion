@@ -77,6 +77,7 @@ function bridgeSource(channelId, pages) {
   let bookObserver=null, readyObserver=null;
   let intro='pending', introTimer=null, hostVisible=false, windowFocused=true, paused=false;
   let introAllowed=null, introConsumed=false;
+  let introDuration=12;
   let pointerId=null;
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const coarse=matchMedia('(max-width: 640px), (pointer: coarse)');
@@ -124,6 +125,17 @@ function bridgeSource(channelId, pages) {
     intro='done';paused=false;
   };
   const canPlay=()=>ready&&!disposed&&!failure&&hostVisible&&!document.hidden&&windowFocused;
+  const setIntroDuration=(seconds)=>{
+    if(typeof seconds!=='number'||!Number.isFinite(seconds))return;
+    introDuration=Math.max(3,Math.min(30,Math.round(seconds)));
+    if(!introOn||!riffle||!riffle.length)return;
+    const duration=introDuration/riffle.length;
+    riffle.forEach(leaf=>{leaf.dur=duration;});
+    if(spring&&spring.kind==='tween'){
+      const progress=spring.e/spring.dur;
+      spring.dur=duration;spring.e=progress*duration;
+    }
+  };
   function updatePlayback(){
     if(!ready||disposed||failure){clearIntroTimer();stopFrame();return;}
     if(intro==='pending'&&(REDUCED||coarse.matches))intro='done';
@@ -137,6 +149,8 @@ function bridgeSource(channelId, pages) {
         if(!canPlay()||intro!=='pending')return;
         if(introAllowed!==true)return;
         startIntro();
+        // Change only the first-exposure sequence, including its active leaf.
+        setIntroDuration(introDuration);
         if(introOn){intro='playing';introConsumed=true;}
         else intro='done';
         report();
@@ -223,6 +237,7 @@ function bridgeSource(channelId, pages) {
     if(!data||data.type!=='lion-book:command'||data.channelId!==channelId)return;
     if(data.action==='dispose'){dispose();return;}
     if(data.action==='sync'){report(true);return;}
+    if(data.action==='intro-duration'){setIntroDuration(data.seconds);return;}
     if(data.action==='intro-policy'&&typeof data.enabled==='boolean'){
       introAllowed=data.enabled;
       // Replayed host effects can publish a consumed session while this same
