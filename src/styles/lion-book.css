@@ -30,13 +30,12 @@
 .lion-book-wave-wash { stroke: #5c4d3b; stroke-width: 13; opacity: .1; stroke-linecap: round; }
 .lion-book-wave-line { stroke: #7d6350; stroke-width: 2.2; opacity: .65; stroke-linecap: round; }
 .lion-book-wave-gold { stroke: #e1b878; stroke-width: .8; transform: translateY(-3px); opacity: .8; }
-.lion-book-ink-flow { stroke: #594d40; stroke-width: 9; stroke-linecap: round; stroke-dasharray: .045 .18 .018 .12; animation: lion-book-ink-stream 22s linear infinite; opacity: .27; }
-.lion-book-ink-trail { stroke: #6d3928; stroke-width: 17; stroke-linecap: round; animation: lion-book-ink-disperse 1.5s ease-out both; }
-.lion-book-timeline[data-ink-playing="false"] .lion-book-ink-flow { animation-play-state: paused; }
-.lion-book-timeline[data-ink-enabled="false"] .lion-book-ink-flow,
+.lion-book-ink-wash { stroke: #b82b1e; stroke-width: 12; stroke-linecap: round; opacity: 0; }
+.lion-book-ink-trail { stroke: #b72419; stroke-width: 4; stroke-linecap: round; opacity: 0; }
+.lion-book-timeline[data-ink-enabled="false"] .lion-book-ink-wash,
 .lion-book-timeline[data-ink-enabled="false"] .lion-book-ink-trail { display: none; }
-.lion-book-traveling-lion { position: absolute; z-index: 2; display: block; width: 65px; height: 65px; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 4px 4px #7a392329); transition: left 650ms cubic-bezier(.22,.75,.22,1), top 650ms cubic-bezier(.22,.75,.22,1); }
-.lion-book-traveling-lion svg { display: block; width: 100%; height: 100%; }
+.lion-book-traveling-lion { position: absolute; z-index: 2; display: block; width: 65px; height: 65px; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 4px 4px #7a392329); }
+.lion-book-traveling-lion img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .lion-book-timeline button { display: flex; align-items: center; flex-direction: column; gap: 9px; position: absolute; z-index: 3; width: 13.6%; transform: translateX(-50%); padding: 0 4px 14px; color: #745a43; border: 0; background: transparent; cursor: pointer; font: 19px/1.4 var(--archive-body, 'STSong', 'SimSun', serif); }
 .lion-book-timeline button:disabled { cursor: wait; }
 .lion-book-timeline .lion-book-node { display: grid; place-items: center; width: 37px; height: 37px; border: 1px solid #b18a58; border-radius: 50%; margin-bottom: 3px; background: #f4e8cf; color: #96764e; font: 12px Georgia, 'SimSun', serif; box-shadow: 0 0 0 5px #f6ead44a; transition: background 180ms, color 180ms, border-color 180ms, opacity 180ms, transform 180ms; }
@@ -61,11 +60,9 @@
 /* The divider lion keeps the shared 1390px archive alignment. Reserve its
    complete footprint when the wider book extends beyond that reading column. */
 .home-archive-scene .lion-book-section .lion-book-provenance { padding-left: calc(var(--archive-peek-width) + 28px + max(0px, (100cqw - 1390px) / 2)); }
-@keyframes lion-book-ink-stream { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
-@keyframes lion-book-ink-disperse { 0% { opacity: 0; stroke-width: 5; } 18% { opacity: .4; } 100% { opacity: 0; stroke-width: 22; } }
 @media (prefers-reduced-motion: reduce) {
   .lion-book-timeline .lion-book-node, .lion-book-traveling-lion, .lion-book-wave-label { transition: none; }
-  .lion-book-ink-flow { animation: none; opacity: .14; }
+  .lion-book-ink-wash,
   .lion-book-ink-trail { display: none; }
 }
 @container (max-width: 900px) {

@@ -273,7 +273,11 @@ export default function DeveloperSettingsPanel({
               </SettingsGroup>
               {surfaceDefinitions.map(({ prefix, label, heightStep = 10 }) => <SettingsGroup key={prefix} title={label} note="独立材质">
                 {range(`${prefix}Width`, `${label}宽度`, 40, 100, 1, '%')}
-                {range(`${prefix}Height`, `${label}高度`, 0, 900, heightStep)}
+                {range(`${prefix}Height`, `${label}${prefix === 'bookTitle' ? '最小高度' : '高度'}`, 0, 900, heightStep)}
+                {prefix === 'bookTitle' && <>
+                  {range('bookTitleSpacing', '标题底板留白', 50, 150, 1, '%')}
+                  <p className="developer-settings-note">缩小留白可压紧标题与简介；最小高度 0 为自动，文字完整显示所需的高度不会被裁掉。</p>
+                </>}
                 {range(`${prefix}Transparency`, `${label}透明度`, 0, 100, 1, '%')}
                 {range(`${prefix}Blur`, `${label}模糊强度`, 0, 40)}
                 {range(`${prefix}Radius`, `${label}圆角`, 0, 100)}
@@ -326,7 +330,7 @@ export default function DeveloperSettingsPanel({
                 {range('bookScale', '书册放大比例', 90, 145, 1, '%')}
                 {range('bookStageHeight', '书册展示区高度', 480, 960, 10)}
                 {range('bookIntroDuration', '画册首次翻阅时长', 3, 30, 1, '秒')}
-                <ToggleControl name="bookInkEnabled" label="书册导航持续水墨动效" value={settings.bookInkEnabled} onChange={onChange} />
+                <ToggleControl name="bookInkEnabled" label="书册导航红墨拖尾" value={settings.bookInkEnabled} onChange={onChange} />
                 <p className="developer-settings-note">默认12秒完成七次翻页。进行中调整会平滑改变剩余速度，不影响手动翻页，也不会重播已经结束的首次翻阅。</p>
               </SettingsGroup>
             </>}

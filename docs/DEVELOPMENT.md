@@ -48,6 +48,8 @@ npm run preview
 
 React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
 
+书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；留白50–150%不缩放文字，新增`bookTitleSpacing`默认100。历史波浪导航由`BookTimeline`负责，以SVG实测弧长统一狮头/红墨定位，不用CSS横纵坐标插值或提前绘制整段。650ms行进、900ms消散，开关在“动画→书册导航红墨拖尾”；组件退出清理RAF，跨路由预热保留时通过`playbackEnabled`暂停。用户随后取消逐项图片确认，加载页已直接接入独立横排深墨透明字稿，失败时显示原真实文字；来源、提示词和确认历史见[本轮记录](../source/references/2026-10-16-archive-panel-timeline.md)。
+
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。

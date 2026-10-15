@@ -58,7 +58,7 @@ test('七个年代沿波浪排列，狮头与书页同步并产生可关闭的�
   const levels = await timeline.locator('button').evaluateAll(buttons => [...new Set(buttons.map(button => button.style.top))]);
   expect(levels.length).toBeGreaterThanOrEqual(3);
   await expect(timeline).toHaveAttribute('data-ink-playing', 'true');
-  await expect(timeline.locator('.lion-book-ink-flow')).toHaveCSS('animation-name', 'lion-book-ink-stream');
+  await expect(timeline.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
   await timeline.locator('[data-book-page="spread"]').click();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '4');
   await expect(timeline.locator('[data-book-page="spread"]')).toHaveAttribute('aria-current', 'step');
@@ -70,9 +70,9 @@ test('七个年代沿波浪排列，狮头与书页同步并产生可关闭的�
   }).toBeLessThan(2);
   await page.locator('.site-header [data-action="settings"]').click();
   await page.getByRole('tab', { name: '动画', exact: true }).click();
-  await page.getByRole('checkbox', { name: '书册导航持续水墨动效' }).uncheck();
+  await page.getByRole('checkbox', { name: '书册导航红墨拖尾' }).uncheck();
   await expect(timeline).toHaveAttribute('data-ink-enabled', 'false');
-  await expect(timeline.locator('.lion-book-ink-flow')).toHaveCSS('display', 'none');
+  await expect(timeline.locator('.lion-book-ink-trail')).toHaveCSS('display', 'none');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const duration = await timeline.locator('.lion-book-traveling-lion').evaluate(element => parseFloat(getComputedStyle(element).transitionDuration));
   expect(duration).toBeLessThanOrEqual(.001);

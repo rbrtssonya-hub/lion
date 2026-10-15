@@ -33,13 +33,25 @@ h1{font-size:clamp(34px,3.6vw,56px);letter-spacing:.16em;color:#353d32}
 @media(max-width:700px){.painting{height:auto;object-fit:contain;inset:0 0 auto}.center{left:50%;top:58%;width:92vw}h1{font-size:36px}.ribbon{margin:32px 0 28px}.eyebrow{font-size:8px;letter-spacing:.2em}.bottom{bottom:3%}.note{font-size:9px}}
 @media(max-height:520px) and (min-width:701px){.center{left:34%;top:49%;width:55vw}.ribbon{margin:0}.readout{width:70%}.bottom{display:none}}
 </style>
+<style>
+/* Independent transparent lettering; the real heading remains a readable fallback. */
+.loading-title{width:min(440px,38vw);aspect-ratio:3/1;margin-inline:auto;display:grid;place-items:center}
+.loading-title>img,.loading-title>span{grid-area:1/1}
+.loading-title>img{display:block;width:100%;height:auto}
+.loading-title>img[hidden]{display:none}
+.loading-title>span{white-space:nowrap}
+@media(max-height:520px) and (min-width:701px){
+  .loading-title{width:min(360px,34vw,42vh);font-size:clamp(24px,7vh,40px);letter-spacing:.1em}
+  .ribbon{max-height:55vh}
+}
+</style>
 </head>
 <body>
 <main class="loading" id="loading" aria-label="醒狮加载界面">
   <img class="painting" alt="" aria-hidden="true" src="./painting.png">
   <section class="center">
     <p class="eyebrow">THE QUIET ART OF AWAKENING</p>
-    <h1>南风有狮</h1>
+    <h1 class="loading-title" aria-label="南风有狮"><span>南风有狮</span><img id="loadingBrushTitle" src="./title-ink.png" alt="" aria-hidden="true" hidden></h1>
     <p class="subtitle">墨韵入场，静候狮醒</p>
     <svg class="ribbon" viewBox="0 0 1000 245" role="progressbar" aria-label="入场资源准备进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
       <defs>
@@ -68,6 +80,16 @@ h1{font-size:clamp(34px,3.6vw,56px);letter-spacing:.16em;color:#353d32}
   <footer class="bottom"><span>承岭南之韵 · 赴醒狮之约</span></footer>
 </main>
 <script>
+const brushTitleImage = document.getElementById('loadingBrushTitle');
+const brushTitleFallback = brushTitleImage.previousElementSibling;
+function revealBrushTitle() {
+  const ready = brushTitleImage.complete && brushTitleImage.naturalWidth > 0;
+  brushTitleImage.hidden = !ready;
+  brushTitleFallback.hidden = ready;
+}
+brushTitleImage.addEventListener('load', revealBrushTitle);
+brushTitleImage.addEventListener('error', revealBrushTitle);
+revealBrushTitle();
 // 保留用户原画面；由父页面实际资源准备任务驱动，不进行页面跳转。
 // 百分比是准备任务的加权完成比例，不是下载字节比例。
 let target = 0, complete = false, leaving = false, displayed = 0;

@@ -1,6 +1,7 @@
 export const assetPaths = {
   startupLoading: 'assets/loading/index.html',
   startupPainting: 'assets/loading/painting.png',
+  startupBrushTitle: 'assets/loading/title-ink.png',
   home: 'assets/entry/home-lion-loop.mp4',
   cover: 'assets/entry/home-cover.png',
   intro: 'assets/intro/entry-intro.mp4',

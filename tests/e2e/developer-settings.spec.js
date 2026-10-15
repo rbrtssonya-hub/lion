@@ -772,7 +772,7 @@ test('七类底板独立参数可保存刷新，完全透明时文字与按钮�
   const saved = {};
   for (const [prefix, label] of surfaces) {
     for (const [suffix, field, value] of [['Width', '宽度', 82], ['Height', '高度', 230], ['Transparency', '透明度', 36], ['Blur', '模糊强度', 17], ['Radius', '圆角', 27]]) {
-      const input = panel(page).getByRole('spinbutton', { name: `${label}${field}数值`, exact: true });
+      const input = panel(page).getByRole('spinbutton', { name: `${label}${prefix === 'bookTitle' && suffix === 'Height' ? '最小高度' : field}数值`, exact: true });
       await input.fill(String(value));
       await input.press('Tab');
       saved[`${prefix}${suffix}`] = value;
@@ -829,7 +829,7 @@ test('旧统一底板透明度迁移，书册尺寸与页面命中可单独保�
   await height.fill('755');
   await height.press('Tab');
   await expect(height).toHaveValue('760');
-  await panel(page).getByRole('checkbox', { name: '书册导航持续水墨动效', exact: true }).uncheck();
+  await panel(page).getByRole('checkbox', { name: '书册导航红墨拖尾', exact: true }).uncheck();
   await selectSettingsTab(page, '布局');
   await panel(page).getByRole('checkbox', { name: '网页页面是否能被命中', exact: true }).check();
   await expect(page.locator('.home-page')).toHaveCSS('user-select', 'auto');

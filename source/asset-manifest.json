@@ -1795,6 +1795,72 @@
       "path": "source/reviews/expression/2026-10-15-eight-poses/short-900-500.png",
       "bytes": 541458,
       "sha256": "4ae558a5030d6983687201741b355dff408d90b14b5e3bbfee24780791961e44"
+    },
+    {
+      "from": "2026-10-16 generated brush lettering and browser composition preview; pending approval",
+      "path": "source/design/loading/2026-10-16-brush-title/loading-composite-preview.png",
+      "bytes": 2876890,
+      "sha256": "8c3bb84f0f940b9068816cdf65e8df2d7b69d3abfea0d198f7b3ff924bda6742"
+    },
+    {
+      "from": "2026-10-16 generated brush lettering and browser composition preview; pending approval",
+      "path": "source/design/loading/2026-10-16-brush-title/title-ink-horizontal-preview.png",
+      "bytes": 827279,
+      "sha256": "e484178805cead8fd076f4966425c4e0cfbe848ba46816297a73caffa06614a1"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/panel-1024.png",
+      "bytes": 391792,
+      "sha256": "c67f4e2fe5d9e53c83c39013138eeef6fba1cf15cbb7ff41f7a5abc8627556dc"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/panel-1366.png",
+      "bytes": 550557,
+      "sha256": "8c23215ef794ac2324e8b49f079f302f48353cf4148447597691377693479376"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/panel-1920.png",
+      "bytes": 1690461,
+      "sha256": "b84a62770b084b6a8b18942536bb4422f605156444d01503baedf21c4b4cc568"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/panel-2560.png",
+      "bytes": 3043785,
+      "sha256": "1366031b1200845137828c7207a988cfa4bc2e504daf490fdedc871f0135e2b7"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/timeline-moving.png",
+      "bytes": 1576849,
+      "sha256": "d7c0851fcdb8b93a835fd2cf07c0a56bda466e13da39f5c3b0446fca9d8e72e5"
+    },
+    {
+      "from": "2026-10-16 desktop archive panel and red timeline browser review",
+      "path": "source/reviews/homepage/2026-10-16-archive-panel-timeline/timeline-settled.png",
+      "bytes": 1575455,
+      "sha256": "d377efbdafa290459488ed8209ad503434f42d3e47f43297c152bcdd8993c6b0"
+    },
+    {
+      "from": "2026-10-16 built-in imagegen horizontal ink lettering; user waived further approval before integration",
+      "path": "source/public/assets/loading/title-ink.png",
+      "bytes": 827279,
+      "sha256": "e484178805cead8fd076f4966425c4e0cfbe848ba46816297a73caffa06614a1"
+    },
+    {
+      "from": "2026-10-16 actual production loading title and image failure fallback review",
+      "path": "source/reviews/loading/2026-10-16-brush-title/fallback-1920.png",
+      "bytes": 2856452,
+      "sha256": "20abdc335023b2ced47a511dee560545e3f06c6b5d1cb968562b29a9027ab229"
+    },
+    {
+      "from": "2026-10-16 actual production loading title and image failure fallback review",
+      "path": "source/reviews/loading/2026-10-16-brush-title/final-1920.png",
+      "bytes": 2876755,
+      "sha256": "5b753c9549662d5909f339160b71bc7764a0804d0512c8dbe9aea8ff21658805"
     }
   ]
 }

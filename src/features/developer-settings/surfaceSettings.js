@@ -63,6 +63,7 @@ export function getGlobalSurfaceStyles(settings) {
   return {
     ...surfaces,
     ...navigationColorStops(settings.headerColor),
+    '--book-title-spacing': settings.bookTitleSpacing / 100,
     '--header-width': `${settings.headerWidth}%`,
     '--header-radius': `${settings.headerRadius}px`,
     '--header-rgb': colorChannels(settings.headerColor),

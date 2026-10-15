@@ -78,3 +78,25 @@
 .home-archive-scene .home-culture-overline span,
 .home-archive-scene .home-culture-eyebrow,
 .home-archive-scene .lion-book-reading-copy>a { font-size: 13px; }
+
+/* Size the paper, not the lettering; narrow paper uses its own container. */
+.home-archive-scene .lion-book-heading[data-surface='bookTitle'] {
+  container: book-title / inline-size;
+  font-size: clamp(42px, 5.4cqw, 74px);
+  padding: calc(clamp(22px, 2.3cqw, 34px) * var(--book-title-spacing, 1));
+  gap: calc(24px * var(--book-title-spacing, 1));
+}
+.home-archive-scene .lion-book-heading .lion-book-overline { margin-bottom: calc(16px * var(--book-title-spacing, 1)); overflow-wrap: anywhere; }
+.home-archive-scene .lion-book-heading .lion-archive-tags { margin-top: calc(16px * var(--book-title-spacing, 1)); }
+.home-archive-scene .lion-book-heading .lion-book-preface p { margin-bottom: calc(10px * var(--book-title-spacing, 1)); }
+.home-archive-scene .lion-book-heading .lion-book-preface>.lion-book-preface-label { margin-bottom: calc(12px * var(--book-title-spacing, 1)); }
+/* These sizes stay tied to the outer archive, so paper width doesn't scale text. */
+.home-archive-scene .lion-book-heading h2 { font-size: inherit; }
+.home-archive-scene .lion-book-heading .lion-book-preface { font-size: 20px; line-height: 1.9; }
+.home-archive-scene .lion-book-heading .lion-book-preface>span { font-size: 20px; }
+.home-archive-scene .lion-book-heading .lion-book-preface>.lion-book-preface-label { font-size: 14px; }
+@container book-title (max-width: 750px) {
+  .home-archive-scene .lion-book-heading .lion-archive-title-line { grid-template-columns: minmax(0, 1fr); gap: calc(12px * var(--book-title-spacing, 1)); }
+  .home-archive-scene .lion-book-heading .lion-archive-title-line h2 { grid-column: 1; justify-self: center; white-space: normal; overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
+  .home-archive-scene .lion-book-heading .lion-archive-title-line .lion-archive-ornament { grid-column: 1; justify-self: center; margin-left: 0; }
+}
