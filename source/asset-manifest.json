@@ -1651,6 +1651,150 @@
       "path": "source/reviews/navigation/2026-10-15-rectification/references-settings-1920.png",
       "bytes": 1373408,
       "sha256": "6b51319f55169a4b71b7c8da5db73a579a16d82c42a4299ed58c1e571660bc63"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-anger-original.png",
+      "bytes": 2148975,
+      "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-delight-original.png",
+      "bytes": 2210847,
+      "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-doubt-original.png",
+      "bytes": 1899231,
+      "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-joy-original.png",
+      "bytes": 1973680,
+      "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-motion-original.png",
+      "bytes": 2272850,
+      "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-sorrow-original.png",
+      "bytes": 2072160,
+      "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-stillness-original.png",
+      "bytes": 2045186,
+      "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/generated/lion-surprise-original.png",
+      "bytes": 1975024,
+      "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/design/expression/2026-10-15-eight-poses/reference.jpg",
+      "bytes": 224665,
+      "sha256": "6005319e0304fd7e1ac6af52b1c81c251138cec3b345ce715e6bb4df0ad41cca"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-anger-v2.png",
+      "bytes": 2148975,
+      "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-delight-v2.png",
+      "bytes": 2210847,
+      "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-doubt-v2.png",
+      "bytes": 1899231,
+      "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-joy-v2.png",
+      "bytes": 1973680,
+      "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-motion-v2.png",
+      "bytes": 2272850,
+      "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-sorrow-v2.png",
+      "bytes": 2072160,
+      "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-stillness-v2.png",
+      "bytes": 2045186,
+      "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+    },
+    {
+      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
+      "path": "source/public/assets/expression/lion-surprise-v2.png",
+      "bytes": 1975024,
+      "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/details-1920.png",
+      "bytes": 2238026,
+      "sha256": "d9d42c5c6aeb281699b07c14cbf6e853c2b7c8a842568665896ab5ffeaa3703a"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/doubt-1920.png",
+      "bytes": 2168685,
+      "sha256": "81e00913c68768dae6ce5a1c0d9609a0fc02a0bf9d255a1753b5dfa0b3d4aaa1"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/eight-poses-review.png",
+      "bytes": 1589082,
+      "sha256": "8af20852b739b918f8bc5bf15523f7c70f3287df574464704a5020f4a6761fca"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/overview-1920.png",
+      "bytes": 2172932,
+      "sha256": "cb5a9aee391cea0f9667a19e442093b2a5cace24457572f3345e5da029dd5811"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/settings-surface-1920.png",
+      "bytes": 1902061,
+      "sha256": "586b964043962b11bd510054684cc29092abf3960784832f6cc93880403d6f87"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/settings-type-1920.png",
+      "bytes": 1874992,
+      "sha256": "57b19d7e340b8af8c762d1fe1a90180d7e5091d8bfeeb3e24a2a14945a0c9d0a"
+    },
+    {
+      "from": "2026-10-15 expression eight-pose final browser review",
+      "path": "source/reviews/expression/2026-10-15-eight-poses/short-900-500.png",
+      "bytes": 541458,
+      "sha256": "4ae558a5030d6983687201741b355dff408d90b14b5e3bbfee24780791961e44"
     }
   ]
 }

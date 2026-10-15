@@ -20,6 +20,7 @@ const controlTabs = {
   顶栏高度: '导航', 导航标题字号: '导航', 导航辅助文字字号: '导航', 导航图标尺寸: '导航', 品牌左侧留白: '导航',
   导航动画时长: '动画', 紧凑导航图标间距: '动画', 紧凑导航右侧留白: '动画', 首页品牌右移距离: '动画', 设置面板宽度: '布局',
   自动播放间隔: '轮播', 离开后恢复等待: '轮播', 照片过渡时长: '轮播', 照片聚焦比例: '轮播',
+  神态简介字号: '导航', 神态解读字号: '导航',
 };
 
 async function selectSettingsTab(page, name) {
@@ -1044,4 +1045,95 @@ test('参考资料在900/1920px桌面余宽与两层40/100%宽度极值均无溢
     }
   }
   await test.info().attach('sources-size-matrix', { body: JSON.stringify(matrix, null, 2), contentType: 'application/json' });
+});
+
+test('神态底板六参数与简介解读字号独立保存，点击前后使用对应字号', async ({ page }) => {
+  test.setTimeout(90_000);
+  await page.setViewportSize({ width: 3440, height: 1440 });
+  await page.addInitScript(({ key }) => {
+    if (window.top !== window || localStorage.getItem(key)) return;
+    localStorage.setItem(key, JSON.stringify({ headerTransparency: 34, cultureSourcesWidth: 82, navigationTypographyVersion: 2, navFontSize: 23 }));
+  }, { key: settingsKey });
+  await loadPage(page);
+  await page.locator('.site-navigation [data-route="state"]').click();
+  const copy = page.locator('#expressionStateCopy');
+  const defaults = {
+    expressionOverlayWidth: 100, expressionOverlayHeight: 0, expressionOverlayTransparency: 22,
+    expressionOverlayBlur: 6, expressionOverlayRadius: 24, expressionOverlayColor: '#fff8ea',
+    expressionOverviewFontSize: 22, expressionDetailFontSize: 18,
+  };
+  await expectSaved(page, { ...defaults, headerTransparency: 34, cultureSourcesWidth: 82, navFontSize: 23 });
+  await expect(copy).toHaveAttribute('data-surface', 'expressionOverlay');
+  await expect(copy).toHaveAttribute('data-view', 'overview');
+  expect(await copy.locator('.expression-description p').count()).toBeGreaterThan(0);
+  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '22px');
+  await openSettings(page);
+  await expectPageWidth(page, 340);
+  const initialWidth = await copy.evaluate(element => element.getBoundingClientRect().width);
+  const changes = {
+    expressionOverlayWidth: 68, expressionOverlayHeight: 300, expressionOverlayTransparency: 37,
+    expressionOverlayBlur: 12, expressionOverlayRadius: 33, expressionOverlayColor: '#f6e6c7',
+    expressionOverviewFontSize: 28, expressionDetailFontSize: 20,
+  };
+  for (const [label, value] of [['宽度', 68], ['高度', 300], ['透明度', 37], ['模糊强度', 12], ['圆角', 33]]) {
+    const input = panel(page).getByRole('spinbutton', { name: `神态文字底板${label}数值`, exact: true });
+    await input.fill(String(value));
+    await input.press('Tab');
+  }
+  await panel(page).getByLabel('神态文字底板底色', { exact: true }).evaluate(input => {
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, '#f6e6c7');
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await expect(copy).toHaveCSS('background-color', 'rgba(246, 230, 199, 0.63)');
+  await expect(copy).toHaveCSS('backdrop-filter', 'blur(12px)');
+  await expect(copy).toHaveCSS('border-radius', '33px');
+  await expect(copy).toHaveCSS('--surface-height', '300px');
+  await expect.poll(() => copy.evaluate(element => element.getBoundingClientRect().width)).toBeLessThan(initialWidth - 2);
+  await editNumber(page, '神态简介字号', 28);
+  await editNumber(page, '神态解读字号', 20);
+  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
+  await page.locator('#expressionLionTrigger').click();
+  await expect(copy).toHaveAttribute('data-view', 'details');
+  await expect(copy.locator('.expression-cues p')).toHaveCount(2);
+  for (const paragraph of await copy.locator('.expression-cues p').all()) await expect(paragraph).toHaveCSS('font-size', '20px');
+  await expectSaved(page, { ...changes, headerTransparency: 34, cultureSourcesWidth: 82 });
+  await reloadPage(page);
+  await expectSaved(page, changes);
+  await expect(copy).toHaveAttribute('data-view', 'overview');
+  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
+  await openSettings(page);
+  await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await expectSaved(page, defaults);
+  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0.78)');
+  await expect(copy).toHaveCSS('backdrop-filter', 'blur(6px)');
+  await expect(copy).toHaveCSS('border-radius', '24px');
+});
+
+test('神态两种字号校验16至32边界，透明底板仍保留前后文字', async ({ page }) => {
+  await loadPage(page);
+  await page.locator('.site-navigation [data-route="state"]').click();
+  await openSettings(page);
+  const transparency = panel(page).getByRole('spinbutton', { name: '神态文字底板透明度数值', exact: true });
+  await transparency.fill('100');
+  await transparency.press('Tab');
+  const copy = page.locator('#expressionStateCopy');
+  await expect(copy).toHaveCSS('backdrop-filter', 'none');
+  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0)');
+  await expect(copy).toHaveCSS('opacity', '1');
+  await selectSettingsTab(page, '导航');
+  for (const [label, key] of [['神态简介字号', 'expressionOverviewFontSize'], ['神态解读字号', 'expressionDetailFontSize']]) {
+    const input = panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true });
+    for (const [draft, expected] of [['15', 16], ['33', 32], ['19.6', 20]]) {
+      await input.fill(draft);
+      await input.press('Tab');
+      await expect(input).toHaveValue(String(expected));
+      await expectSaved(page, { [key]: expected });
+    }
+  }
+  await page.locator('#expressionLionTrigger').click();
+  await expect(copy).toHaveAttribute('data-view', 'details');
+  await expect(copy).toHaveCSS('backdrop-filter', 'none');
+  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0)');
+  for (const paragraph of await copy.locator('.expression-cues p').all()) await expect(paragraph).toHaveCSS('opacity', '1');
 });

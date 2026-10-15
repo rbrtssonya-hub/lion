@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import { lionExpressions } from '../../data/lion-expressions.js';
+import ExpressionMotif from './ExpressionMotif.jsx';
 
 function Cloud({ className = '' }) {
   return <svg className={`expression-cloud ${className}`} viewBox="0 0 100 56" aria-hidden="true" focusable="false">
@@ -92,7 +93,7 @@ export default function ExpressionPage() {
       <h1 className="sr-only" id="chapterTitle">神态</h1>
       <div className="expression-hero">
         <nav className="expression-state-nav" aria-label="醒狮八态" style={{ '--active-state': selection.index }}>
-          <div className="expression-active-badge" aria-hidden="true"><img className="expression-badge-lion" src={media.navLion} alt="" /><Cloud /></div>
+          <div className="expression-active-badge" aria-hidden="true"><img className="expression-badge-lion" src={media[current.imageKey]} alt="" /><Cloud /></div>
           {lionExpressions.map((expression, index) => <button type="button" key={expression.name} className={`expression-state-button${index === selection.index ? ' is-active' : ''}`} aria-pressed={index === selection.index} aria-controls="expressionStateCopy" onClick={() => select(index)}>
             <span className="expression-state-dot" aria-hidden="true" /><strong>{expression.name}</strong>
           </button>)}
@@ -110,29 +111,31 @@ export default function ExpressionPage() {
               if (spaceActivation.current === false) event.preventDefault();
               spaceActivation.current = null;
             }} onBlur={() => { spaceActivation.current = null; }}>
-            {selection.previous !== null && <div className="expression-lion-layer is-leaving" key={`out-${selection.revision}`} data-direction={selection.direction} aria-hidden="true"><div className="expression-lion-pose" data-expression={lionExpressions[selection.previous].name}><img className="expression-lion-image" src={media.expressionLion} alt="" draggable="false" /></div></div>}
-            <div className="expression-lion-layer is-current" key={`in-${selection.revision}`} data-direction={selection.direction}><div className="expression-lion-pose" data-expression={current.name}><img className="expression-lion-image" id="expressionLion" src={media.expressionLion} alt="白毛红纹醒狮正面狮头，AI辅助视觉" draggable="false" /></div></div>
+            {selection.previous !== null && <div className="expression-lion-layer is-leaving" key={`out-${selection.revision}`} data-direction={selection.direction} aria-hidden="true"><div className="expression-lion-pose" data-expression={lionExpressions[selection.previous].name}><img className="expression-lion-image" src={media[lionExpressions[selection.previous].imageKey]} alt="" draggable="false" /></div></div>}
+            <div className="expression-lion-layer is-current" key={`in-${selection.revision}`} data-direction={selection.direction}><div className="expression-lion-pose" data-expression={current.name}><img className="expression-lion-image" id="expressionLion" src={media[current.imageKey]} alt={`${current.name}态醒狮，按用户八态参考图AI辅助提取`} draggable="false" /></div></div>
           </button>
           <button type="button" className="expression-step expression-step--next" id="expressionNext" aria-label="下一神态" onClick={() => step(1)}><svg viewBox="0 0 40 24" aria-hidden="true"><path d="m4 4 16 16 16-16" /></svg></button>
           <p className="expression-interaction-hint" id="expressionInteractionHint">点击狮头，查看神态解读 · 滚轮或箭头切态</p>
         </div>
 
-        <div className="expression-copy" id="expressionStateCopy" data-view={viewMode} aria-live="polite" aria-atomic="true">
+        <div className="expression-copy" id="expressionStateCopy" data-view={viewMode} data-surface="expressionOverlay" aria-live="polite" aria-atomic="true">
           <div key={`copy-${selection.revision}-${viewMode}`} className="expression-copy-content">
-            <div className="expression-state-heading"><strong className="expression-state-character" id="expressionStateTitle">{current.name}</strong><Cloud /></div>
-            {viewMode === 'overview' ? <h2 id="expressionSummary">{current.summary}</h2> : <>
-              <h2 id="expressionDetailTitle">{current.name}态怎么看</h2>
-              <p className="expression-detail-subtitle">从目光到动作，读懂{current.meaning}。</p>
-            </>}
+            <p className="expression-copy-kicker"><ExpressionMotif />{viewMode === 'overview' ? '醒狮八态 · 神态简介' : '狮艺解读 · 观形识意'}</p>
+            <div className="expression-copy-heading">
+              <div className="expression-state-heading"><strong className="expression-state-character" id="expressionStateTitle">{current.name}</strong><Cloud /></div>
+              {viewMode === 'overview' ? <h2 id="expressionSummary">{current.summary}</h2>
+                : <h2 id="expressionDetailTitle">{current.name}态怎么看</h2>}
+              <p className="expression-detail-subtitle">{viewMode === 'overview' ? current.verse : `从狮头到鼓点，寻找${current.meaning}的线索。`}</p>
+            </div>
             <div className="expression-copy-rule" aria-hidden="true" />
             {viewMode === 'overview' ? <div className="expression-description">{current.description.map(line => <p key={line}>{line}</p>)}</div> : <>
               <div className="expression-cues">
-                <div><h3>神情线索</h3><p id="expressionEmotionCue">{current.emotion}</p></div>
-                <div><h3>动作线索</h3><p id="expressionMotionCue">{current.motion}</p></div>
+                <div className="expression-cue"><span className="expression-cue-emblem"><ExpressionMotif /><span>壹</span></span><div><h3>看狮头 · 眉眼与狮口</h3><p id="expressionEmotionCue">{current.emotion}</p></div></div>
+                <div className="expression-cue"><span className="expression-cue-emblem"><ExpressionMotif kind="drum" /><span>贰</span></span><div><h3>听锣鼓 · 身段与步法</h3><p id="expressionMotionCue">{current.motion}</p></div></div>
               </div>
               <button type="button" className="expression-return" onClick={returnToOverview}>返回神态简介 <span aria-hidden="true">↗</span></button>
             </>}
-            <p className="expression-state-count">八态图鉴 <span>{String(selection.index + 1).padStart(2, '0')} / 08</span></p>
+            <p className="expression-state-count"><span>一狮一态 · 八面生辉</span><span>{String(selection.index + 1).padStart(2, '0')} / 08</span></p>
           </div>
         </div>
       </div>

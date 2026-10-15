@@ -29,6 +29,11 @@
   --surface-opacity: var(--cultureSourceCard-surface-opacity); --surface-blur: var(--cultureSourceCard-surface-blur);
   --surface-radius: var(--cultureSourceCard-surface-radius); --surface-rgb: var(--cultureSourceCard-surface-rgb);
 }
+[data-surface='expressionOverlay'] {
+  --surface-width: var(--expressionOverlay-surface-width); --surface-height: var(--expressionOverlay-surface-height);
+  --surface-opacity: var(--expressionOverlay-surface-opacity); --surface-blur: var(--expressionOverlay-surface-blur);
+  --surface-radius: var(--expressionOverlay-surface-radius); --surface-rgb: var(--expressionOverlay-surface-rgb);
+}
 .home-culture .home-culture-sources[data-surface='cultureSources'] {
   width: var(--surface-width, 100%);
   min-height: var(--surface-height, 0px);

@@ -293,6 +293,11 @@ export default function DeveloperSettingsPanel({
                 {range('helperTransparency', '辅助文字透明度', 0, 100, 1, '%')}
                 <p className="developer-settings-note">标题与辅助文字独立调节。切换章节时，图标与文字一起过渡；窗口空间不足时，导航按可用宽度调整。</p>
               </SettingsGroup>
+              <SettingsGroup title="神态文字" note="简介与解读">
+                {range('expressionOverviewFontSize', '神态简介字号', 16, 32)}
+                {range('expressionDetailFontSize', '神态解读字号', 16, 32)}
+                <p className="developer-settings-note">简介与点击狮头后的解读分别调整，两组字号独立保存。文字底板的尺寸和材质在外观页调整。</p>
+              </SettingsGroup>
             </>}
 
             {page.id === 'animation' && <>
