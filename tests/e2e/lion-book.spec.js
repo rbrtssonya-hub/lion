@@ -22,6 +22,7 @@ async function openBook(page, { reduced = false, ready = true, url = '/' } = {})
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   const book = page.locator('.lion-book-experience');
   if (ready) await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   if (ready) {
     await view(page, page.locator('.lion-book-stage'));
     await expect(book).toHaveAttribute('data-book-intro', 'done');
@@ -144,7 +145,7 @@ test('书面上的滚轮继续滚动首页，消息伪造不能切换当前史�
   await settled(book, frame, 0);
 });
 
-test('翻页中离开首页释放旧文档，返回重新打开并可继续翻阅', async ({ page }) => {
+test('翻页中离开首页暂停预热文档，返回复用并可继续翻阅', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   let { book, frame } = await openBook(page);
@@ -152,8 +153,10 @@ test('翻页中离开首页释放旧文档，返回重新打开并可继续翻�
   await page.mouse.up();
   const previousFrame = page.frames().find(item => item.url() === 'about:srcdoc');
   await page.locator('.site-header [data-route="state"]').click();
-  await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
-  expect(previousFrame.isDetached()).toBe(true);
+  await expect(page.locator('#homeLionBook iframe')).toHaveCount(1);
+  await expect(page.locator('#homeLionBook')).toBeHidden();
+  expect(previousFrame.isDetached()).toBe(false);
+  await expect.poll(() => previousFrame.evaluate(() => raf)).toBeNull();
   await page.locator('.site-brand-capsule').click();
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   book = page.locator('.lion-book-experience');
@@ -161,9 +164,10 @@ test('翻页中离开首页释放旧文档，返回重新打开并可继续翻�
   await expect(book).toHaveAttribute('data-book-ready', 'true');
   await view(page, page.locator('.lion-book-stage'));
   await expect(book).toHaveAttribute('data-book-intro', 'done');
-  await settled(book, frame, 0);
+  await book.locator('[data-book-page="formation"]').click();
+  await settled(book, frame, 2);
   await drag(page, frame, 'next');
-  await settled(book, frame, 1);
+  await settled(book, frame, 3);
   expect(errors).toEqual([]);
 });
 

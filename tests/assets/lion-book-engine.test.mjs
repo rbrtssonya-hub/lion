@@ -167,7 +167,7 @@ function bridgeHarness({ reduced = false, coarse = false, introAllowed = true } 
   };
   if (typeof introAllowed === 'boolean') command('intro-policy', { enabled: introAllowed });
   return { context, messages, images, observers, cancelled, listeners: windowEvents.listeners, body, book, notify, emit, command,
-    motion, documentEvents, frames, timers, captures, advance,
+    motion, coarseQuery, documentEvents, frames, timers, captures, advance,
     state: () => messages.filter((message) => message.type === 'lion-book:state').at(-1) };
 }
 
@@ -602,13 +602,33 @@ test('dynamic reduced motion immediately settles active paper and keeps short dr
   assert.ok(harness.context.spring);
 });
 
-test('reduced or coarse input skips the intro and blank paper margins cannot start an interaction', async () => {
+test('zero-size prewarming cannot permanently apply the narrow iframe input policy', async () => {
+  const harness = bridgeHarness({ coarse: true });
+  harness.context.innerWidth = 0;
+  harness.context.innerHeight = 0;
+  await readyBridge(harness, { visible: false });
+  harness.advance(1000);
+  assert.equal(harness.state().intro, 'pending');
+  assert.equal(harness.state().introConsumed, false);
+  assert.equal(harness.timers.size, 0);
+  harness.context.innerWidth = 1540;
+  harness.context.innerHeight = 680;
+  harness.coarseQuery.matches = false;
+  harness.command('visibility', { visible: true });
+  harness.advance(300);
+  assert.equal(harness.state().intro, 'playing');
+  assert.equal(harness.state().introConsumed, true);
+  assert.equal(harness.context.riffle.length, 7);
+});
+
+test('reduced or coarse input skips the intro on exposure and blank paper margins cannot start an interaction', async () => {
   for (const preference of [{ reduced: true }, { coarse: true }]) {
     const harness = bridgeHarness(preference);
     await readyBridge(harness, { visible: false });
-    assert.equal(harness.state().intro, 'done');
+    assert.equal(harness.state().intro, 'pending');
     assert.equal(harness.timers.size, 0);
     harness.command('visibility', { visible: true }); harness.advance(2500);
+    assert.equal(harness.state().intro, 'done');
     assert.equal(harness.context.idx, 0);
     assert.equal(harness.context.riffle, null);
   }

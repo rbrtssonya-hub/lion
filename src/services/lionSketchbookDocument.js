@@ -77,7 +77,7 @@ function bridgeSource(channelId, pages) {
   let bookObserver=null, readyObserver=null;
   let intro='pending', introTimer=null, hostVisible=false, windowFocused=true, paused=false;
   let introAllowed=null, introConsumed=false;
-  let introDuration=12;
+  let introDuration=12, bookScale=1.16;
   let pointerId=null;
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const coarse=matchMedia('(max-width: 640px), (pointer: coarse)');
@@ -138,7 +138,9 @@ function bridgeSource(channelId, pages) {
   };
   function updatePlayback(){
     if(!ready||disposed||failure){clearIntroTimer();stopFrame();return;}
-    if(intro==='pending'&&(REDUCED||coarse.matches))intro='done';
+    // A prewarmed iframe can initially report a zero-width viewport. Decide
+    // input/motion policy only after the host confirms real visible exposure.
+    if(intro==='pending'&&hostVisible&&(REDUCED||coarse.matches))intro='done';
     if(!canPlay()){
       clearIntroTimer();stopFrame();paused=true;return;
     }
@@ -238,6 +240,16 @@ function bridgeSource(channelId, pages) {
     if(data.action==='dispose'){dispose();return;}
     if(data.action==='sync'){report(true);return;}
     if(data.action==='intro-duration'){setIntroDuration(data.seconds);return;}
+    if(data.action==='book-scale'&&typeof data.scale==='number'&&Number.isFinite(data.scale)){
+      const next=Math.max(.9,Math.min(1.45,data.scale));
+      if(next!==bookScale){
+        bookScale=next;document.documentElement.style.setProperty('--archive-book-scale',String(next));
+        // Reflow the host presentation only; the original layout function
+        // recomputes strip coordinates through its unchanged resize listener.
+        dispatchEvent(new Event('resize'));
+      }
+      return;
+    }
     if(data.action==='intro-policy'&&typeof data.enabled==='boolean'){
       introAllowed=data.enabled;
       // Replayed host effects can publish a consumed session while this same
@@ -366,7 +378,7 @@ export function adaptLionSketchbookDocument(original, {
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;color:var(--ink)}
 body{font-family:"Noto Serif CJK SC","Songti SC",SimSun,serif;-webkit-font-smoothing:antialiased}
 button{font:inherit}.page,.hero{width:100%;height:100%;min-height:0;margin:0;padding:0;display:grid;align-content:center;justify-items:center}
-.sb-wrap{gap:0}.sb-3d{max-width:min(${maxWidth}px,100%)}.sb-arrow,.sb-captions,.sb-hint{display:none!important}
+.sb-wrap{gap:0}.sb-3d{max-width:min(calc(${maxWidth}px * var(--archive-book-scale,1.16)),100%,calc(100vh * 2.48))}.sb-arrow,.sb-captions,.sb-hint{display:none!important}
 .sb-cast.ambient{top:65%;bottom:19.2%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(58,44,26,.28) 0%,rgba(58,44,26,.13) 38%,rgba(58,44,26,0) 100%);filter:none}
 .sb-cast.contact{top:73%;bottom:19.7%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(44,32,14,.30) 0%,rgba(44,32,14,.10) 40%,rgba(44,32,14,0) 100%);filter:none}
 .sb-cast.hair{top:76.3%;bottom:20.8%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(40,28,10,.25) 0%,rgba(40,28,10,0) 100%);filter:none}

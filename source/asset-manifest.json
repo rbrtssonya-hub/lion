@@ -1549,6 +1549,84 @@
       "path": "source/reviews/homepage/2026-10-15-reading-panels/spread-spine.png",
       "bytes": 186904,
       "sha256": "943014bf8d90f67f4d4422c3bf9b4a66eda7081ff7e13b8061aa2772628dbdcc"
+    },
+    {
+      "from": "Wikimedia Commons / see source/references/home-culture-sources.md",
+      "path": "source/public/assets/culture/san-francisco-pole-lions.jpg",
+      "bytes": 340405,
+      "sha256": "018f48c980399c016d1cf3bfc1653b31446cfea21fb0c87d6ff72095857dfe45"
+    },
+    {
+      "from": "Wikimedia Commons / see source/references/home-culture-sources.md",
+      "path": "source/public/assets/culture/singapore-community-lions.jpg",
+      "bytes": 378744,
+      "sha256": "b0fb705ccf505d9f1ff60e90d5477808c85f0ac5d13852f1f312989153bb19a1"
+    },
+    {
+      "from": "Wikimedia Commons / see source/references/home-culture-sources.md",
+      "path": "source/public/assets/culture/singapore-lion-drum.jpg",
+      "bytes": 383528,
+      "sha256": "a987c94eea4c18213b24dfca3b8c223bbe300cb2479619c5db90e34f105023a5"
+    },
+    {
+      "from": "Wikimedia Commons / see source/references/home-culture-sources.md",
+      "path": "source/public/assets/culture/singapore-lion-expression.jpg",
+      "bytes": 192659,
+      "sha256": "69579213c3b4f0f21e456e8864956c7d1ef040b1bc9b010929a0abacc5dc865d"
+    },
+    {
+      "from": "user-supplied loading HTML embedded PNG",
+      "path": "source/public/assets/loading/painting.png",
+      "bytes": 2527651,
+      "sha256": "2bf33e1ab7a5fd29ee13ec90dc998a7dafe78fa68e10333110eb7431b481a037"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/book-wave-1920.png",
+      "bytes": 2393337,
+      "sha256": "e67265218a584ea77ae3ac70a55223d9e6b2b6a483716b1a4ce40dd0a0aad31e"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/chapter-navigation-1920.png",
+      "bytes": 2395938,
+      "sha256": "3588818d7398fcd271471cade9fa4843eb15fa9a26cf3cae23f9a1374a031d69"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/home-explore-boundary-1920.png",
+      "bytes": 1607895,
+      "sha256": "d154df5c7978c6c1b8bcf1a0b45d8a87b60f4d9d7250c3f7c6e3e19691293e32"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/home-hero-1920.png",
+      "bytes": 2889325,
+      "sha256": "bdd2b1d8a7d3cc994d84d28c9235f20127e7cc896d27da3915ec1339c31314a6"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/home-photo-credits-1920.png",
+      "bytes": 766265,
+      "sha256": "666c42c70ffdefc932053ce9678599e8529849312ba6d63bfc3b4083a97668f0"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/home-references-1920.png",
+      "bytes": 1189900,
+      "sha256": "494c7713f094e69e348a9c1a57cce05a6480303db1dc7e74829f38ec2f9a496a"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/settings-1920.png",
+      "bytes": 1819490,
+      "sha256": "b6d4f2325f8e70c13d9aef1e054b57d2d8f08301e517ea43927b7394f9b30e49"
+    },
+    {
+      "from": "2026-10-15 desktop iteration browser review",
+      "path": "source/reviews/homepage/2026-10-15-iteration/startup-1920.png",
+      "bytes": 2857833,
+      "sha256": "f367df97ed7b9438a4648d680e4890384e97c7ebef433589538dfd3eefb42457"
     }
   ]
 }

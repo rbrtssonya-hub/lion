@@ -9,8 +9,6 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
       <button key={route} data-route={route} type="button"
         className={`site-nav-item${current === route ? ' is-current' : ''}`}
         onClick={() => onNavigate(route)} aria-label={label} title={label}
-        aria-hidden={current !== 'entry' && route === 'entry' ? true : undefined}
-        tabIndex={current !== 'entry' && route === 'entry' ? -1 : undefined}
         aria-current={current === route ? 'page' : undefined}>
         <span className="site-nav-symbol">
           <NavigationIcon name={route} />

@@ -10,8 +10,11 @@ import ResizeHandle from './components/ResizeHandle.jsx';
 import { defaultDeveloperSettings } from './features/developer-settings/useDeveloperSettings.js';
 import { media } from './config/media.js';
 import { useNavigationMotion } from './features/navigation/useNavigationMotion.js';
+import { useStartupLoading, reportStartupTask, withStartupTimeout } from './features/loading/useStartupLoading.js';
+import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSettings.js';
+import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
 
-const ModelPage = lazy(() => import('./features/model/ModelPage.jsx'));
+const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
   model: media.modelBackground,
   action: media.actionBackground,
@@ -19,6 +22,7 @@ const chapterBackgrounds = {
 };
 
 export default function App() {
+  const startupReady = useStartupLoading();
   const navigationCaptureRef = useRef(null);
   const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
   const [route, navigate] = useChapterRoute(beforeRouteChange);
@@ -68,12 +72,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route]);
 
-  let page;
-  if (route === 'entry') page = <HomePage onNavigate={navigateTo} settings={settings} />;
-  else if (route === 'model') page = <ModelPage />;
-  else page = <ChapterPage route={route} />;
-
   const variables = {
+    ...getGlobalSurfaceStyles(settings),
     '--page-background-color': chapterBackground ? '#f8f2e9' : '#68170f',
     '--chapter-background-image': chapterBackground ? `url("${chapterBackground}")` : 'none',
     '--header-height': `${settings.headerHeight}px`,
@@ -100,13 +100,25 @@ export default function App() {
 
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}
     data-settings-layout={pushing ? 'push' : 'overlay'}>
-    <div className="site-page">
+    <div className="site-page" inert={!startupReady} data-page-hit-enabled={settings.pageHitEnabled}>
       <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen}
         headerRef={headerRef} settings={settings}
         onToggleSettings={() => settingsOpen ? closeSettings() : setSettingsOpen(true)}
         settingsTriggerRef={triggerRef} />
       <main id="react-app" data-route={route}>
-        <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>{page}</Suspense>
+        <div className="prewarmed-page" data-active={route === 'entry'} inert={route !== 'entry'} aria-hidden={route !== 'entry'}>
+          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={startupReady && route === 'entry'}
+            onBookReady={success => reportStartupTask('book', success)} onGalleryReady={success => reportStartupTask('gallery', success)}
+            onVideoReady={success => reportStartupTask('video', success)} />
+        </div>
+        <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
+          <ModelPreparationBoundary onReady={success => reportStartupTask('model', success)}>
+          <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
+            <ModelPage active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} />
+          </Suspense>
+          </ModelPreparationBoundary>
+        </div>
+        {route !== 'entry' && route !== 'model' && <ChapterPage route={route} />}
       </main>
     </div>
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}

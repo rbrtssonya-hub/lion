@@ -5,18 +5,18 @@
   right: 0;
   bottom: 0;
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   box-sizing: border-box;
   width: var(--settings-panel-width, 340px);
   max-width: 100vw;
-  height: 100dvh;
+  height: var(--sidebar-height, 100dvh);
   overflow: visible;
   border-left: 1px solid rgba(199, 148, 86, var(--sidebar-decoration-opacity, .86));
+  border-radius: var(--sidebar-radius, 0px);
   color: #613022;
   color-scheme: light;
-  background: linear-gradient(145deg,
-    rgba(255, 246, 228, var(--sidebar-fill-opacity, .86)),
-    rgba(245, 231, 205, var(--sidebar-fill-opacity, .86)));
+  background: rgb(var(--sidebar-rgb, 255 246 228) / var(--sidebar-fill-opacity, .86));
   backdrop-filter: var(--sidebar-backdrop-filter, blur(18px));
   -webkit-backdrop-filter: var(--sidebar-backdrop-filter, blur(18px));
   box-shadow: -12px 0 40px rgba(49, 12, 7, calc(.2 * var(--sidebar-decoration-opacity, .86)));
@@ -26,9 +26,11 @@
 }
 
 .developer-settings-scroll {
+  grid-column: 2;
+  grid-row: 2;
   box-sizing: border-box;
   min-height: 0;
-  padding: 18px 18px 24px;
+  padding: 10px 12px 24px;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
@@ -38,6 +40,7 @@
 }
 
 .developer-settings-header {
+  grid-column: 1 / -1;
   padding: 24px 18px 0;
 }
 
@@ -96,25 +99,29 @@
 }
 
 .developer-settings-tabs {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 2px;
-  margin: 0 18px;
-  padding: 4px;
-  border: 1px solid rgba(157, 104, 60, calc(.24 * var(--sidebar-decoration-opacity, .86)));
-  border-radius: 8px;
-  background: rgba(221, 195, 151, calc(.24 * var(--sidebar-fill-opacity, .86)));
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  margin: 0;
+  padding: 10px 6px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(157, 104, 60, calc(.2 * var(--sidebar-decoration-opacity, .86)));
+  background: rgba(221, 195, 151, calc(.15 * var(--sidebar-fill-opacity, .86)));
 }
 
 .developer-settings-tabs > button {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 48px;
+  flex: 0 0 auto;
+  min-height: 64px;
   align-items: center;
   justify-content: center;
-  gap: 1px;
-  padding: 5px 2px;
+  gap: 6px;
+  padding: 9px 2px;
   border: 1px solid transparent;
   border-radius: 5px;
   color: #805742;
@@ -125,9 +132,9 @@
 }
 
 .developer-settings-tabs > button svg {
-  flex: 0 0 13px;
-  width: 13px;
-  height: 13px;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -179,8 +186,9 @@
 .developer-settings-group-heading {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 13px;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding: 12px 10px;
   color: #7e251b;
   font-size: 13px;
   font-weight: 600;
@@ -202,7 +210,7 @@
 .developer-settings-group-content {
   display: grid;
   gap: 16px;
-  padding: 15px 13px;
+  padding: 15px 10px;
 }
 
 .developer-range-control {
@@ -214,10 +222,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .developer-range-heading > label {
+  overflow-wrap: anywhere;
   min-width: 0;
   color: #613022;
   font-size: 12px;
@@ -362,11 +371,13 @@
 }
 
 .developer-settings-footer {
+  grid-column: 1 / -1;
   display: grid;
   gap: 9px;
   padding: 13px 18px 18px;
   border-top: 1px solid rgba(157, 104, 60, calc(.22 * var(--sidebar-decoration-opacity, .86)));
-  background: rgba(245, 231, 205, var(--sidebar-fill-opacity, .86));
+  border-radius: 0 0 var(--sidebar-radius, 0px) var(--sidebar-radius, 0px);
+  background: rgb(var(--sidebar-rgb, 255 246 228) / var(--sidebar-fill-opacity, .86));
 }
 
 .developer-settings-reset {
@@ -385,6 +396,11 @@
 .developer-settings-reset:hover {
   background: #f7ddae;
 }
+
+.developer-color-control { display: grid; gap: 8px; color: #613022; font-size: 12px; font-weight: 500; }
+.developer-color-control > span { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.developer-color-control input { width: 42px; height: 30px; padding: 2px; border: 1px solid rgba(157, 104, 60, .3); border-radius: 5px; background: #fffaf0; cursor: pointer; }
+.developer-color-control output { color: #98734f; font: 11px/1.5 var(--sans); font-variant-numeric: tabular-nums; }
 
 @media (prefers-reduced-motion: reduce) {
   .developer-settings-tabs > button,

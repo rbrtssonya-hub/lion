@@ -1,1 +1,5 @@
 source/public/assets/decor/lion-culture-pattern.svg -text
+
+# Preserve the user-supplied single-file loading design byte for byte.
+source/design/loading/supplied-loading.html -text -diff
+source/public/assets/loading/index.html text eol=lf

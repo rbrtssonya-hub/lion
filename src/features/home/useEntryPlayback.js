@@ -11,19 +11,19 @@ function hasPlayedIntro() {
   }
 }
 
-export function useEntryPlayback() {
+export function useEntryPlayback(enabled = true) {
   const [introActive, setIntroActive] = useState(() => !hasPlayedIntro());
   const [playbackId, setPlaybackId] = useState(0);
 
   useEffect(() => {
-    if (!introActive) return;
+    if (!introActive || !enabled) return;
     startedInThisPage = true;
     try {
       sessionStorage.setItem(sessionKey, '1');
     } catch {
       // Keep once-per-visit playback within this page when storage is unavailable.
     }
-  }, [introActive]);
+  }, [introActive, enabled]);
 
   const finishIntro = () => setIntroActive(false);
   const replayIntro = () => {

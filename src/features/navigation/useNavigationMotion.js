@@ -29,7 +29,7 @@ export function useNavigationMotion(headerRef, current, settings) {
     const header = headerRef.current;
     if (!header) return;
     // Read the composited positions before cancellation, including an interrupted flight.
-    pending.current = new Map([...header.querySelectorAll('.site-nav-symbol, .site-nav-copy, .site-brand-capsule')]
+    pending.current = new Map([...header.querySelectorAll('.site-nav-symbol, .site-nav-copy, .site-brand-capsule, .site-navigation > .navigation-surface')]
       .map(element => {
         const rect = element.getBoundingClientRect();
         return [element, { left: rect.left, top: rect.top, width: rect.width, height: rect.height,
@@ -80,11 +80,10 @@ export function useNavigationMotion(headerRef, current, settings) {
     for (const [element, from] of positions) {
       if (!element.isConnected || typeof element.animate !== 'function' || !from.width) continue;
       const copy = element.classList.contains('site-nav-copy');
-      const retiringHome = current !== 'entry' && element.closest('[data-route="entry"]');
-      if (retiringHome && oldRoute !== 'entry') continue;
+      const surface = element.classList.contains('navigation-surface');
       const style = getComputedStyle(element);
       const targetTransform = style.transform === 'none' ? 'translate(0px, 0px)' : style.transform;
-      const targetOpacity = retiringHome ? 0 : Number(style.opacity);
+      const targetOpacity = Number(style.opacity);
       if (copy && from.opacity === 0 && targetOpacity === 0) continue;
       // Neutralize only the target transform while measuring its layout box.
       // The captured box includes any interrupted animation, so a new flight
@@ -94,10 +93,10 @@ export function useNavigationMotion(headerRef, current, settings) {
       element.style.removeProperty('transform');
       const dx = from.left - target.left;
       const dy = from.top - target.top;
-      const fromScale = copy ? ` scale(${from.width / Math.max(1, target.width)}, ${from.height / Math.max(1, target.height)})` : '';
-      if (!copy && !retiringHome && Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
+      const fromScale = copy || surface ? ` scale(${from.width / Math.max(1, target.width)}, ${from.height / Math.max(1, target.height)})` : '';
+      if (!copy && !surface && Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
       const fromTransform = `translate(${dx}px, ${dy}px)${fromScale}`;
-      if (copy) {
+      if (copy || surface) {
         // Both title and helper text move and compress as one readable group.
         start(element, [
           { transform: fromTransform, opacity: from.opacity },
@@ -113,7 +112,7 @@ export function useNavigationMotion(headerRef, current, settings) {
     header.dataset.navAnimating = String(running.current.size > 0);
   }, [headerRef, current, settings.navigationDuration, settings.navigationEasing,
     settings.compactNavGap, settings.compactNavInset, settings.navIconSize,
-    settings.navFontSize, settings.helperFontSize, settings.headerHeight, settings.brandPadding,
+    settings.navFontSize, settings.helperFontSize, settings.headerHeight, settings.headerWidth, settings.brandPadding,
     settings.homeBrandOffset, stop]);
 
   useEffect(() => {

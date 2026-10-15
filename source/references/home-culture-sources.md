@@ -1,6 +1,6 @@
 # 首页醒狮文化图文：内容与图片来源
 
-核实日期：2026-10-12。用于 `src/features/home/HomeCulture.jsx`、`src/data/home-culture.js`，在首页视频首屏之后直接阅读，不增加章节、分页或内容跳转。
+核实日期：2026-10-12；2026-10-15补充四张独立实景摄影，复核三项文化来源，扩为八项图文。用于 `src/features/home/HomeCulture.jsx`、`src/data/home-culture.js`，在首页视频首屏之后直接阅读，不增加章节、分页或内容跳转。
 
 ## 文化文字依据
 
@@ -16,7 +16,7 @@
 
 ## 图片来源与授权
 
-四张均为真实摄影，通过 Wikimedia Commons 文件说明页及官方 `imageinfo` API 核对作者、许可、地点、年份和原始尺寸。运行文件下载 Commons 提供的1280像素宽JPEG版本；没有本地重绘、生成、改色或替换画面。2026-10-14轮播改为纵深图鉴，照片按原比例呈现，图注注明“等比缩放展示”；来源及许可保持，交互源码说明见 [home-culture-depth-gallery.md](home-culture-depth-gallery.md)。
+八张均为真实摄影，通过 Wikimedia Commons 文件说明页及官方 `imageinfo` API 核对作者、许可、地点、年份和原始尺寸。运行文件下载 Commons 提供的1280像素宽JPEG版本；07原图1236像素宽，直接保留原件，不放大重采样。没有本地重绘、生成、改色或替换画面。2026-10-14轮播改为纵深图鉴，照片按原比例呈现，图注注明“等比缩放展示”；来源及许可保持，交互源码说明见 [home-culture-depth-gallery.md](home-culture-depth-gallery.md)。
 
 图片是依各自许可使用的独立素材；作者、来源页面和许可链接在对应图注中公开展示。CC BY-SA图片及其可能的图片改编继续按相应CC BY-SA许可提供，不改变其他独立源码、文案或资产的许可。未使用博物馆/新闻网站中未给出再利用授权的照片。
 
@@ -61,9 +61,51 @@
 - 下载地址：[Commons 1280px JPEG](https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/06834_20091004_lion_dance_Hong_Kong_Kowloon.jpg/1280px-06834_20091004_lion_dance_Hong_Kong_Kowloon.jpg)
 - 运行文件：1280×851，403391字节，SHA-256 `6f83643f370e3b9bd41bd99723cfc978fe9e112dc4a2d85af55fd2c3d6b73234`。
 
+### 05 狮队与锣鼓
+
+- 本地文件：`source/public/assets/culture/singapore-lion-drum.jpg`；media key：`cultureDrum`。
+- 文件说明：[Singapore Hok San Lion Dance at Ann Siang Road 3.jpg](https://commons.wikimedia.org/wiki/File:Singapore_Hok_San_Lion_Dance_at_Ann_Siang_Road_3.jpg)。
+- 作者：Red Eyes Black Dragon 92；许可：[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。
+- 拍摄说明：2023-01-29，新加坡安祥路清远会馆外，鹤山会馆狮队表演；前景鼓面覆有防小雨的透明塑料膜。原图3264×2448。
+- 下载：[Commons 1280px JPEG](https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Singapore_Hok_San_Lion_Dance_at_Ann_Siang_Road_3.jpg/1280px-Singapore_Hok_San_Lion_Dance_at_Ann_Siang_Road_3.jpg)。
+- 运行文件1280×960，383528字节，SHA-256 `a987c94eea4c18213b24dfca3b8c223bbe300cb2479619c5db90e34f105023a5`。
+- 文字支持：南海博物馆广东醒狮资料的鼓、锣、钹与身段配合；有关画面空间的描述仅为实景观察，不新增鼓谱或技法规则。
+
+### 06 春节狮头近景
+
+- 本地文件：`source/public/assets/culture/singapore-lion-expression.jpg`；media key：`cultureExpression`。
+- 文件说明：[LionDance-LionHead-ChineseNewYear-Singapore-20090126.jpg](https://commons.wikimedia.org/wiki/File:LionDance-LionHead-ChineseNewYear-Singapore-20090126.jpg)。
+- 作者：Eustaquio Santimano；许可：[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)。原摄影来源为文件页所列Flickr照片。
+- 拍摄说明：2009-01-26，新加坡春节舞狮狮头近景；原图1418×1131。
+- 下载：[Commons 1280px JPEG](https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/LionDance-LionHead-ChineseNewYear-Singapore-20090126.jpg/1280px-LionDance-LionHead-ChineseNewYear-Singapore-20090126.jpg)。
+- 运行文件1280×1021，192659字节，SHA-256 `69579213c3b4f0f21e456e8864956c7d1ef040b1bc9b010929a0abacc5dc865d`。
+- 文字支持：南海博物馆广东醒狮资料的睁眼、洗须、抖毛等动作及佛鹤狮头制作资料的外形特征。图文明确为观察线索，不将单幅照片归入某种确定情绪。
+
+### 07 唐人街桩上表演
+
+- 本地文件：`source/public/assets/culture/san-francisco-pole-lions.jpg`；media key：`culturePole`。
+- 文件说明：[Lion Dance in Chinatown, San Francisco 04.jpg](https://commons.wikimedia.org/wiki/File:Lion_Dance_in_Chinatown,_San_Francisco_04.jpg)。
+- 作者：Mattsjc；许可：[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。
+- 拍摄说明：2022-04-02，美国旧金山唐人街，LionDanceME表演；画面可见桩柱、高台、保护垫和不同高度的两头醒狮。
+- 下载：[Commons原始JPEG](https://upload.wikimedia.org/wikipedia/commons/d/d1/Lion_Dance_in_Chinatown%2C_San_Francisco_04.jpg)。API虽请求1280宽，实际提供1236×927原图，尺寸以Pillow读取的真实文件为准。
+- 运行文件1236×927，340405字节，SHA-256 `018f48c980399c016d1cf3bfc1653b31446cfea21fb0c87d6ff72095857dfe45`。
+- 文字依据为图片本身的可见内容，结合文化资料中的武术传统/二人合作作为阅读角度；不新增比赛年份、规则、分值或动作判定。
+
+### 08 社区里的醒狮
+
+- 本地文件：`source/public/assets/culture/singapore-community-lions.jpg`；media key：`cultureCommunity`。
+- 文件说明：[Singapore Hok San Lion Dance at ABC Brickworks Food Centre.jpg](https://commons.wikimedia.org/wiki/File:Singapore_Hok_San_Lion_Dance_at_ABC_Brickworks_Food_Centre.jpg)。
+- 作者：Red Eyes Black Dragon 92；许可：[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。
+- 拍摄说明：2023-01-29，新加坡ABC Brickworks Food Centre，鹤山会馆狮队表演；原图3264×2448。
+- 下载：[Commons 1280px JPEG](https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Singapore_Hok_San_Lion_Dance_at_ABC_Brickworks_Food_Centre.jpg/1280px-Singapore_Hok_San_Lion_Dance_at_ABC_Brickworks_Food_Centre.jpg)。
+- 运行文件1280×960，378744字节，SHA-256 `b0fb705ccf505d9f1ff60e90d5477808c85f0ac5d13852f1f312989153bb19a1`。
+- 文字支持：中国非遗网的海外华人社区传播、南海博物馆的年节喜庆活动，配合画面中居民围观的直接观察；不将照片中人物冒认为特定传承人。
+
 ## 核实方式与更新边界
 
 - 2026-10-12实际运行 Commons `action=query&prop=imageinfo&iiprop=url|extmetadata|size&iiurlwidth=1280`，核对四文件的元数据与下载地址；JPEG下载后用Pillow只读检查格式及尺寸，以SHA-256记录下载内容。四图总计1267125字节。
 - 已逐张打开本地图片视觉核对：狮头、完整表演、桩狮与采青场景不同，均不是AI生成图或模型审查截图。
+- 2026-10-15复核三项文化原文，新增四文件再次运行相同Commons API，检查具体`Artist`、`LicenseShortName`、`LicenseUrl`、`DateTimeOriginal`及`ImageDescription`。下载后的四图以Pillow检查实际尺寸并逐张视觉核对，新增共1295336字节；八项使用八个不同照片文件。
+- 2026-10-15首页底部改为独立“参考资料”纸面区，三张大来源卡链接原文；可展开查看八张照片的完整作者、来源及许可，对应轮播当前图注继续保留。来源区为不透明纸面，无透明模糊遮罩。
 - 更新图片时重新核对具体文件的作者和许可；保留署名、来源及许可链接，不以Commons网站通用页脚授权替代具体图片授权。
 - 运行图片的完整性登记、生产构建与浏览器回归由本轮集成任务记录；本页的素材检查不代替页面验证。

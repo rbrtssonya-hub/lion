@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+async function openPage(page, url) {
+  await page.goto(url);
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
+}
+
 const names = ['入场', '探步', '转身', '收势'];
 const ids = ['entry', 'probe', 'turn', 'settle'];
 const timeline = (page, placement) => page.locator(`.action-timeline[data-placement="${placement}"]`);
@@ -8,7 +13,7 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
   const videoRequests = [];
   page.on('request', r => { if (/\.mp4|\.webm/.test(r.url())) videoRequests.push(r.url()); });
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/#/action');
+  await openPage(page, '/#/action');
   await expect(page.locator('#actionHero')).toBeVisible();
   await expect(page.locator('.action-clip')).toHaveCount(4);
   await expect(page.locator('.action-timeline')).toHaveCount(2);
@@ -21,7 +26,9 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
   await expect(page.locator('#actionHero .action-media-status')).toContainText('视频待接入');
   await expect(page.locator('.action-clip [data-watch-clip]')).toHaveCount(4);
   await expect(page.locator('.action-clip [data-watch-clip]')).toHaveText(Array(4).fill('观看片段 →'));
-  expect(videoRequests).toEqual([]);
+  // The global startup now prepares the persistent home video behind each
+  // chapter. No unprovided action clip may create its own media request.
+  expect(videoRequests.filter(url => !/\/assets\/(?:entry\/home-lion-loop|intro\/entry-intro)\.mp4(?:\?|$)/.test(url))).toEqual([]);
   for (const poster of await page.locator('.action-poster').all()) {
     await poster.scrollIntoViewIfNeeded();
     await expect.poll(() => poster.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
@@ -37,7 +44,7 @@ test('动作页首屏与四段配图保持独立媒体、真实待接入和16:9'
 });
 
 test('动作页首屏时间轴切换编号图片与两句简介，不自动播放或滚动', async ({ page }) => {
-  await page.goto('/#/action');
+  await openPage(page, '/#/action');
   for (let i = 0; i < 4; i++) {
     await timeline(page, 'hero').getByRole('button', { name: names[i], exact: true }).click();
     await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', ids[i]);
@@ -52,7 +59,7 @@ test('动作页首屏时间轴切换编号图片与两句简介，不自动播�
 });
 
 test('动作页下方时间轴定位四段并保持Hash、吸顶和正确高亮', async ({ page }) => {
-  await page.goto('/#/action');
+  await openPage(page, '/#/action');
   await page.locator('#actionDetails').scrollIntoViewIfNeeded();
   for (const i of [3, 1, 2, 0]) {
     await timeline(page, 'details').getByRole('button', { name: names[i], exact: true }).click();
@@ -72,14 +79,16 @@ test('动作页下方时间轴定位四段并保持Hash、吸顶和正确高亮'
 });
 
 test('审查回归：高窗口和设置推开定位结束后不漂移到下一段', async ({ page }) => {
+  test.setTimeout(180_000);
   await page.addInitScript(() => {
+    if (window !== window.top) return;
     const query = new URLSearchParams(location.search);
     const panelWidth = Number(query.get('panel'));
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: Boolean(panelWidth), panelWidth: panelWidth || 340, headerHeight: Number(query.get('header')) }));
   });
   for (const [width, height, panelWidth, headerHeight] of [[1600,1200,700,90],[1920,1440,760,64],[3840,2160,0,90]]) {
     await page.setViewportSize({ width, height });
-    await page.goto(`/?panel=${panelWidth}&header=${headerHeight}#/action`);
+    await openPage(page, `/?panel=${panelWidth}&header=${headerHeight}#/action`);
     if (panelWidth) {
       const gutter = await page.locator('.site-shell').evaluate(element => innerWidth - element.getBoundingClientRect().width);
       await page.setViewportSize({ width: Math.round(width + gutter), height });
@@ -104,9 +113,10 @@ test('审查回归：高窗口和设置推开定位结束后不漂移到下一�
 });
 
 test('审查回归：定位途中点击、滚轮和滚动键会终止旧平滑滚动', async ({ page }) => {
+  test.setTimeout(150_000);
   await page.setViewportSize({ width: 1920, height: 1080 });
   for (const cancel of ['pointer', 'wheel', 'keyboard']) {
-    await page.goto('/#/action');
+    await openPage(page, '/#/action');
     await page.locator('#actionDetails').scrollIntoViewIfNeeded();
     const start = await page.evaluate(() => scrollY);
     await timeline(page, 'details').getByRole('button', { name: '收势', exact: true }).click();
@@ -124,7 +134,7 @@ test('审查回归：定位途中点击、滚轮和滚动键会终止旧平滑�
 });
 
 test('动作页自然滚动更新两条时间轴，未接入片段仍可查看配图简介', async ({ page }) => {
-  await page.goto('/#/action');
+  await openPage(page, '/#/action');
   await page.locator('#action-clip-turn').scrollIntoViewIfNeeded();
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-active-action', 'turn');
   await expect(timeline(page, 'hero').getByRole('button', { name: '转身', exact: true })).toHaveAttribute('aria-pressed', 'true');
@@ -135,7 +145,7 @@ test('动作页自然滚动更新两条时间轴，未接入片段仍可查看�
 
 test('动作页减弱动态时键盘切段仍联动并可立即定位', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/#/action');
+  await openPage(page, '/#/action');
   await timeline(page, 'hero').getByRole('button', { name: '入场', exact: true }).focus();
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Enter');
@@ -146,12 +156,14 @@ test('动作页减弱动态时键盘切段仍联动并可立即定位', async ({
 });
 
 test('动作页电脑窗口与设置推开不横溢、媒体与简介不重叠', async ({ page }) => {
+  test.setTimeout(180_000);
   await page.addInitScript(() => {
+    if (window !== window.top) return;
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: false }));
   });
   for (const [width, height] of [[1920,1080],[2560,1440],[1366,768],[1024,768]]) {
     await page.setViewportSize({ width, height });
-    await page.goto('/#/action');
+    await openPage(page, '/#/action');
     await expect(page.locator('#actionHero')).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     await expect.poll(() => page.locator('#actionHero .action-poster').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);

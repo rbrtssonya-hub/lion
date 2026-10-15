@@ -1,4 +1,6 @@
 export const assetPaths = {
+  startupLoading: 'assets/loading/index.html',
+  startupPainting: 'assets/loading/painting.png',
   home: 'assets/entry/home-lion-loop.mp4',
   cover: 'assets/entry/home-cover.png',
   intro: 'assets/intro/entry-intro.mp4',
@@ -27,6 +29,10 @@ export const assetPaths = {
   cultureLionHead: 'assets/culture/guangzhou-lion-head.jpg',
   cultureCaiQing: 'assets/culture/lion-cai-qing.jpg',
   culturePerformance: 'assets/culture/hong-kong-lion-dance.jpg',
+  cultureDrum: 'assets/culture/singapore-lion-drum.jpg',
+  cultureExpression: 'assets/culture/singapore-lion-expression.jpg',
+  culturePole: 'assets/culture/san-francisco-pole-lions.jpg',
+  cultureCommunity: 'assets/culture/singapore-community-lions.jpg',
   culturePattern: 'assets/decor/lion-culture-pattern.svg',
   cultureDepthLicense: 'assets/licenses/codrops-depth-gallery-LICENSE.txt',
   lionBookCover: 'assets/lion-book/cover.png',

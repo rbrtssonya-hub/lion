@@ -41,7 +41,7 @@ export function useNavigationLayout(headerRef, current, settings) {
     const update = () => {
       frame = 0;
       if (!active) return;
-      const width = page.getBoundingClientRect().width;
+      const width = header.getBoundingClientRect().width;
       const requested = getComputedStyle(shell);
       const requestedHeight = readPixels(requested, '--header-height', 90);
       const font = readPixels(requested, '--nav-font-size', 26);
@@ -65,8 +65,8 @@ export function useNavigationLayout(headerRef, current, settings) {
         const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
         const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
         const brandWidth = header.querySelector('.site-brand-capsule').getBoundingClientRect().width;
-        const available = width - sidePadding - inset - brandWidth - Math.min(28, width * .011) - 28 - 3 * gap;
-        const compactIcon = Math.max(18, Math.min(icon, available / 4 - 24));
+        const available = width - sidePadding - inset - brandWidth - Math.min(28, width * .011) - 28 - 4 * gap;
+        const compactIcon = Math.max(18, Math.min(icon, available / 5 - 24));
         header.dataset.navLayout = 'compact';
         write(header, '--navigation-icon-size', `${compactIcon}px`);
         write(header, '--navigation-compact-gap', `${gap}px`);

@@ -99,6 +99,7 @@ export async function createLionScene({
   modelUrl,
   signal,
   autoRotate = true,
+  active = true,
   onStatus = () => {},
   onAutoRotateChange = () => {},
 }) {
@@ -114,8 +115,11 @@ export async function createLionScene({
   let controls;
   let observer;
   let animationFrame = 0;
+  let loadTimeout = 0;
   let disposed = false;
   let modelReady = false;
+  let isActive = active;
+  let draw;
   let modelScenes = [];
   let viewTween = null;
   const initialCameraPosition = new Vector3();
@@ -150,6 +154,7 @@ export async function createLionScene({
     if (disposed) return;
     disposed = true;
     loadController.abort();
+    clearTimeout(loadTimeout);
     if (activeScenes.get(container) === dispose) activeScenes.delete(container);
     window.cancelAnimationFrame(animationFrame);
     observer?.disconnect();
@@ -235,15 +240,20 @@ export async function createLionScene({
         }
         controls.update();
         renderer.render(scene, camera);
-        animationFrame = window.requestAnimationFrame(render);
+        if (isActive) animationFrame = window.requestAnimationFrame(render);
       } catch (error) {
         report({ phase: 'error', message: '3D 显示暂不可用 · 保留结构预览' });
         console.error('醒狮模型渲染失败', error);
         dispose();
       }
     };
+    draw = render;
 
     report({ phase: 'loading', message: '正在载入醒狮模型' });
+    loadTimeout = setTimeout(() => {
+      report({ phase: 'error', message: '模型准备超时 · 保留结构预览，可重新载入' });
+      dispose();
+    }, 45_000);
     const buffer = await readModel(modelUrl, loadController.signal, report);
     if (disposed || signal?.aborted) throw aborted();
     report({ phase: 'loading', message: '正在解析醒狮模型' });
@@ -280,11 +290,22 @@ export async function createLionScene({
     scene.add(modelGroup);
     modelReady = true;
     controls.update();
+    // Compile on the renderer that remains mounted for later chapter visits.
+    if (renderer.compileAsync) await renderer.compileAsync(scene, camera);
+    else renderer.compile(scene, camera);
+    if (disposed || signal?.aborted) throw aborted();
     render();
     if (disposed) throw new Error('WebGL 渲染失败');
+    clearTimeout(loadTimeout);
     report({ phase: 'ready', message: '模型已载入 · 可交互' });
 
     return {
+      setActive(value) {
+        if (disposed || isActive === Boolean(value)) return;
+        isActive = Boolean(value);
+        cancelAnimationFrame(animationFrame);
+        if (isActive) { resize(); draw(); }
+      },
       setAutoRotate(value) {
         if (!disposed && modelReady) controls.autoRotate = Boolean(value);
       },

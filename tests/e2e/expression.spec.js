@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+async function openPage(page, url) {
+  await page.goto(url);
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
+}
+
 const states = ['喜', '怒', '哀', '乐', '动', '静', '惊', '疑'];
 const observation = page => page.getByRole('region', { name: '醒狮神态切换', exact: true });
 const menu = page => page.getByRole('navigation', { name: '醒狮八态', exact: true });
@@ -26,11 +31,11 @@ async function expectLoadedLion(page) {
 
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.addInitScript(() => sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'));
+  await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
 });
 
 test('八态目录与狮头点击同步右侧简介和详细解读，移除下半区图片', async ({ page }) => {
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await expect(menu(page).getByRole('button')).toHaveCount(8, { timeout: 5_000 });
   for (const state of states) await expect(stateButton(page, state)).toBeVisible();
   await expectState(page, '喜');
@@ -70,7 +75,7 @@ test('八态目录与狮头点击同步右侧简介和详细解读，移除下�
 });
 
 test('狮头重复点击保留解读，返回和Escape恢复简介及狮头焦点', async ({ page }) => {
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   const trigger = page.locator('#expressionLionTrigger');
   await trigger.hover();
   await expect(page.locator('#expressionInteractionHint')).toContainText('点击狮头');
@@ -102,7 +107,7 @@ test('狮头重复点击保留解读，返回和Escape恢复简介及狮头焦�
 });
 
 test('切态取消尚未完成的Space激活，松开不重新打开旧意图', async ({ page }) => {
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await page.locator('#expressionLionTrigger').focus();
   await page.keyboard.down('Space');
   await page.keyboard.press('ArrowDown');
@@ -115,7 +120,7 @@ test('切态取消尚未完成的Space激活，松开不重新打开旧意图', 
 });
 
 test('上下切换按钮遍历八态并在首尾循环', async ({ page }) => {
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await expectState(page, '喜');
   await page.locator('#expressionPrevious').click();
   await expectState(page, '疑');
@@ -129,7 +134,7 @@ test('上下切换按钮遍历八态并在首尾循环', async ({ page }) => {
 
 test('主视觉滚轮切态并限制连续手势，视觉外不误触切态', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 620 });
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await expectState(page, '喜');
   await observation(page).hover();
   const scrollBefore = await page.evaluate(() => scrollY);
@@ -177,7 +182,7 @@ test('减弱动态效果下键盘可切态，离页重入没有残留交互', as
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await observation(page).focus();
   await expect(observation(page)).toBeFocused();
   for (const [key, state] of [
@@ -206,10 +211,11 @@ test('减弱动态效果下键盘可切态，离页重入没有残留交互', as
 
 test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', async ({ page }) => {
   await page.addInitScript(() => {
+    if (window !== window.top) return;
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: false }));
   });
   await page.setViewportSize({ width: 1380, height: 900 });
-  await page.goto('/#/state');
+  await openPage(page, '/#/state');
   await setAvailableWidth(page, 1380, 900);
   await page.locator('.site-navigation [data-action="settings"]').click();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
@@ -237,9 +243,10 @@ test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', 
 });
 
 test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留第二屏', async ({ page }) => {
+  test.setTimeout(180_000);
   for (const [width, height] of [[1920,1080],[2560,1440],[1366,768],[1024,768],[1440,620]]) {
     await page.setViewportSize({ width, height });
-    await page.goto(`/?expressionFit=${width}#/state`);
+    await openPage(page, `/?expressionFit=${width}#/state`);
     await expectLoadedLion(page);
     for (const mode of ['overview', 'details']) {
       if (mode === 'details') await page.locator('#expressionLionTrigger').click();
@@ -258,12 +265,14 @@ test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留�
 });
 
 test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换无旧内容', async ({ page }) => {
+  test.setTimeout(150_000);
   await page.addInitScript(() => {
+    if (window !== window.top) return;
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: true, panelWidth: 480, headerHeight: Number(new URLSearchParams(location.search).get('header')) }));
   });
   await page.setViewportSize({ width: 1380, height: 768 });
   for (const height of [64,180]) {
-    await page.goto(`/?header=${height}#/state`);
+    await openPage(page, `/?header=${height}#/state`);
     await setAvailableWidth(page, 1380, 768);
     await page.locator('.site-navigation [data-action="settings"]').click();
     await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
@@ -292,13 +301,15 @@ test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换�
 });
 
 test('短高桌面与180px顶栏仍完整显示解读文字、返回及上下箭头', async ({ page }) => {
+  test.setTimeout(180_000);
   await page.addInitScript(() => {
+    if (window !== window.top) return;
     const query = new URLSearchParams(location.search);
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: query.get('push') === '1', panelWidth: 480, headerHeight: 180 }));
   });
   for (const [width, height, push] of [[1440,540,false],[1440,500,false],[1380,540,true],[1380,500,true]]) {
     await page.setViewportSize({ width, height });
-    await page.goto(`/?short=${height}&push=${push ? 1 : 0}#/state`);
+    await openPage(page, `/?short=${height}&push=${push ? 1 : 0}#/state`);
     if (push) {
       await setAvailableWidth(page, width, height);
       await page.locator('.site-navigation [data-action="settings"]').click();

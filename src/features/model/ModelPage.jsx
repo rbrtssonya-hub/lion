@@ -23,7 +23,7 @@ function DetailList({ entries, className = 'panel-detail-list' }) {
   );
 }
 
-export default function ModelPage() {
+export default function ModelPage({ active = true, onReady }) {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [structureDepth, setStructureDepth] = useState(18);
@@ -38,10 +38,21 @@ export default function ModelPage() {
   const headerRef = useRef(null);
   const sceneRef = useRef(null);
   const autoRotateRef = useRef(autoRotate);
+  const activeRef = useRef(active);
+  const onReadyRef = useRef(onReady);
+  activeRef.current = active;
+  onReadyRef.current = onReady;
   const selectedRef = useRef(null);
   const focusStateRef = useRef(focusState);
   const selectedIndex = hotspots.findIndex((item) => item.id === selectedId);
   const selected = hotspots[selectedIndex] ?? hotspots[0];
+
+  useEffect(() => {
+    const syncActivity = () => sceneRef.current?.setActive(active && !document.hidden);
+    syncActivity();
+    document.addEventListener('visibilitychange', syncActivity);
+    return () => document.removeEventListener('visibilitychange', syncActivity);
+  }, [active]);
 
   useEffect(() => {
     selectedRef.current = selected;
@@ -57,6 +68,13 @@ export default function ModelPage() {
     const controller = new AbortController();
     let mountedScene;
     setStatus(initialStatus);
+    // Include the service-module import in the model's preparation budget.
+    const preparationTimeout = setTimeout(() => {
+      if (controller.signal.aborted) return;
+      controller.abort();
+      setStatus({ phase: 'error', message: '模型准备超时 · 保留结构预览，可重新载入' });
+      onReadyRef.current?.(false);
+    }, 45_000);
 
     async function loadScene() {
       try {
@@ -69,8 +87,12 @@ export default function ModelPage() {
           modelUrl: media.model,
           signal: controller.signal,
           autoRotate: autoRotateRef.current,
+          active: activeRef.current,
           onStatus: (nextStatus) => {
-            if (!controller.signal.aborted) setStatus(nextStatus);
+            if (!controller.signal.aborted) {
+              setStatus(nextStatus);
+              if (nextStatus.phase === 'error') { clearTimeout(preparationTimeout); onReadyRef.current?.(false); }
+            }
           },
           onAutoRotateChange: (value) => {
             if (!controller.signal.aborted) setAutoRotate(value);
@@ -81,21 +103,27 @@ export default function ModelPage() {
           return;
         }
         sceneRef.current = mountedScene;
+        clearTimeout(preparationTimeout);
         mountedScene.setAutoRotate(autoRotateRef.current);
+        mountedScene.setActive(activeRef.current && !document.hidden);
+        onReadyRef.current?.(true);
         const latestSelected = selectedRef.current;
         if (focusStateRef.current !== 'overall' && latestSelected) {
           mountedScene.focusOn({ target: latestSelected.focusTarget, distance: latestSelected.focusDistance });
         }
       } catch (error) {
-        if (controller.signal.aborted || error.name === 'AbortError') return;
+        if (controller.signal.aborted) return;
+        clearTimeout(preparationTimeout);
         console.error('醒狮三维场景无法载入', error);
         setStatus({ phase: 'error', message: '模型载入失败 · 保留结构预览' });
+        onReadyRef.current?.(false);
       }
     }
 
     loadScene();
     return () => {
       controller.abort();
+      clearTimeout(preparationTimeout);
       mountedScene?.dispose();
       if (sceneRef.current === mountedScene) sceneRef.current = null;
     };

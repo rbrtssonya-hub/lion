@@ -22,6 +22,7 @@ async function open(page, settings = {}, route = 'entry') {
     }
   }, settings);
   await page.goto(route === 'entry' ? '/' : `/#/${route}`);
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await page.evaluate(() => document.fonts.ready);
   await doubleFrame(page);
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'false');
@@ -155,6 +156,7 @@ test('品牌右移距离控制往返落点，0归位且快速回首页从可见�
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify(settings));
   });
   await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await page.evaluate(() => document.fonts.ready);
   await doubleFrame(page);
   const zero = await sampleFlight(page, '.site-nav-item[data-route="action"]');
@@ -164,10 +166,10 @@ test('品牌右移距离控制往返落点，0归位且快速回首页从可见�
   await expect(brand(page)).toBeVisible();
 });
 
-test('章节导航仅两块切角红色纹样材质，中间透明且四项短标位于高亮下方', async ({ page }) => {
+test('章节导航保留原底板和首页入口，中间透明且五项短标位于高亮下方', async ({ page }) => {
   await open(page, {}, 'state');
   await expect(page.locator('.navigation-surface')).toHaveCount(2);
-  await expect(page.locator('.site-nav-item[data-route="entry"]')).toBeHidden();
+  await expect(page.locator('.site-nav-item[data-route="entry"]')).toBeVisible();
   const geometry = await header(page).evaluate(element => {
     const rect = node => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
     const style = getComputedStyle(element);
@@ -192,11 +194,11 @@ test('章节导航仅两块切角红色纹样材质，中间透明且四项短�
   expect(geometry.surfaces[1].left - geometry.surfaces[0].right).toBeGreaterThan(100);
   for (const surface of geometry.surfaces) {
     expect(surface.opacity).toBe('1');
-    expect(surface.clip).toMatch(/^polygon\(/);
+    expect(surface.clip).toBe('none');
     expect(surface.background).toMatch(/linear-gradient/);
     expect(surface.svg).toBeGreaterThan(1);
   }
-  expect(geometry.buttons.map(button => button.label)).toEqual(['结构', '动作', '神态', '设置']);
+  expect(geometry.buttons.map(button => button.label)).toEqual(['首页', '结构', '动作', '神态', '设置']);
   for (const button of geometry.buttons) {
     expect(button.labelRect.top).toBeGreaterThanOrEqual(button.underlineBottom + 1);
     expect(button.labelRect.bottom).toBeLessThanOrEqual(geometry.surfaces[1].bottom);

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>南风有狮 · 水墨入场</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f5efe4}body{color:#705c44;font-family:"Microsoft YaHei",sans-serif}.loading{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 55% 42%,#fffcf5 0,#f5efe4 65%,#eae1d2 100%);transition:opacity .8s,filter .8s}.loading.leaving{opacity:0;filter:blur(8px)}.top,.bottom{position:absolute;left:6%;right:6%;display:flex;align-items:center;justify-content:space-between}.top{top:7%;font-size:10px;letter-spacing:.24em;color:#a08d70}.brand{font:25px "STKaiti","KaiTi",serif;letter-spacing:.22em;color:#695236}.brand::before{content:"";display:inline-block;width:6px;height:6px;margin:0 15px 4px 0;transform:rotate(45deg);background:#b08a4c}.bottom{bottom:6%;font-size:10px;letter-spacing:.22em;color:#ab9c87}.center{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:min(950px,90vw);text-align:center}.eyebrow{font:10px Georgia,serif;letter-spacing:.45em;color:#b29b77;margin:0 0 24px}h1{font:normal clamp(32px,4vw,54px)/1.3 "STKaiti","KaiTi",serif;letter-spacing:.25em;color:#735537;margin:0}h1 span{color:#ad7949}.subtitle{margin:18px 0 0;font-size:11px;letter-spacing:.25em;color:#ac9a7f}.ribbon{width:100%;height:auto;overflow:visible;display:block;margin:25px 0 10px}.ribbon path{fill:none;stroke-linecap:round}.track{stroke:#b69b7226;stroke-width:1;stroke-dasharray:2 10}.glow{stroke:url(#colors);stroke-width:40;opacity:.17;filter:url(#soft)}.silk{stroke:url(#colors);stroke-width:19}.shade{stroke:url(#shade);stroke-width:8;opacity:.6;transform:translateY(5px)}.shine{stroke:#fff6d7;stroke-width:1.4;opacity:.85;transform:translateY(-6px)}.tail{stroke-width:1.6;opacity:.62}.gold{stroke:#d8ad63}.red{stroke:#c98577}.teal{stroke:#79aaa0}.particle{fill:#bf9859}.tip{fill:#fff9dc;stroke:#bd9556;stroke-width:1;filter:drop-shadow(0 0 8px #d6ae62)}.readout{width:min(360px,82%);margin:auto;display:flex;justify-content:space-between;align-items:center}.status{font-size:10px;letter-spacing:.18em;color:#9a8464}.number{font:italic 30px Georgia,serif;color:#9f7a4b}.number small{font-size:12px;margin-left:5px}.hairline{width:min(360px,82%);height:1px;background:#bba27b26;margin:16px auto 0}.fill{height:1px;background:linear-gradient(90deg,#d4b677,#9e875e);width:0}.note{font-size:9px;letter-spacing:.25em;color:#b9a88e;margin:20px 0 0}.decor{position:absolute;inset:0;width:100%;height:100%;color:#b69766;pointer-events:none}.cloud{fill:none;stroke:currentColor;stroke-width:1;opacity:.19}.lion{fill:none;stroke:currentColor;stroke-width:1.3;opacity:.085}.halo{fill:none;stroke:#b1967220;stroke-width:1}.seal{position:absolute;right:10%;top:23%;font:16px/1.1 "KaiTi",serif;color:#a27859;opacity:.5;border:1px solid #a2785970;padding:7px 5px;transform:rotate(5deg)}button{border:0;border-bottom:1px solid #aa8c5d60;background:none;color:#96774c;padding:8px 0;font-size:11px;letter-spacing:.12em;cursor:pointer;margin-top:15px}button[hidden]{display:none}button:focus-visible{outline:2px solid #aa8c5d;outline-offset:5px}
+@media(max-width:600px){.top span:last-child,.bottom span:last-child{display:none}.brand{font-size:22px}.center{width:94vw}.eyebrow{font-size:8px;letter-spacing:.28em}h1{font-size:34px}.subtitle{font-size:10px;letter-spacing:.1em}.ribbon{margin:38px 0 30px}.seal{top:20%;right:9%}.note{font-size:8px}.bottom{font-size:9px}.readout{width:78%}}
+@media(max-height:520px){.center{top:52%;width:min(700px,76vw)}.eyebrow,.subtitle,.note{display:none}.ribbon{margin:0}.top{top:5%}.bottom{bottom:4%}}
+@media(prefers-reduced-motion:reduce){.loading{transition:none}}
+/* 宣纸、墨色与朱砂；水墨笔触为逐帧绘制的变宽轮廓。 */
+html,body{background:#f4f4ed;color:#626a60}
+.loading{background:radial-gradient(ellipse at 52% 42%,#fdfdf8 0,#f5f5ef 65%,#e9ece4 100%)}
+.loading::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.21;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23535e4c' filter='url(%23n)' opacity='.18' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+.top,.bottom{color:#9ba195}.brand{color:#4b574c}.brand::before{background:#8a4d40;width:5px;height:14px;transform:none;margin-bottom:0}
+.eyebrow{color:#9aa493;font-size:9px;letter-spacing:.35em}h1{color:#3b4b40;font-size:clamp(34px,4vw,52px);letter-spacing:.28em}h1 span{color:#899185}.subtitle{color:#929c8a;font-size:11px;letter-spacing:.3em}
+.decor{color:#748372}.cloud{opacity:.085}.lion{opacity:.035;stroke-width:1.1}.seal{border-color:#934d4160;color:#9c5244;opacity:.68;font-size:14px;top:24%;right:12%;transform:rotate(-3deg)}
+.ribbon{margin-top:33px}.track{stroke:#7a8876;opacity:.09;stroke-dasharray:none;stroke-width:.6}
+.ink-brush{fill:url(#ink)!important;stroke:none!important;filter:url(#ink-edge)}
+.ink-wash{fill:#708c73!important;stroke:none!important;opacity:.11;filter:url(#soft);transform:translate(0 7px)}
+.glow{stroke:#718472;stroke-width:22;opacity:.08}.silk{stroke:none;opacity:0}.shade{stroke:#516555;stroke-width:1;opacity:.12;transform:translateY(8px)}.shine{stroke:#f9faf3;stroke-width:.7;opacity:.44;transform:translateY(1px)}
+.tail{stroke-width:.55;opacity:.13;filter:url(#ink-edge)}.teal,.red,.gold{stroke:#687d68}.particle{fill:#4e6753}.tip{display:none}
+.status{color:#88927f;font-size:10px}.number{color:#6a7963;font-size:25px}.hairline{background:#8b967c20}.fill{background:#788a704d}.note{color:#a5ab9d;font-size:9px}.readout{width:min(320px,78%)}.hairline{width:min(320px,78%)}button{color:#64755c;border-bottom-color:#70806860}
+@media(max-width:600px){h1{font-size:34px}.seal{top:20%}.ribbon{margin-top:40px}.subtitle{font-size:10px}.ink-wash{opacity:.15}}
+/* 原创彩墨背景内嵌，保持HTML单文件可直接打开。 */
+.loading{background:#f9f6ee}.loading::after{display:none}
+.painting{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.center{left:34%;top:48%;width:min(820px,55vw);z-index:1}
+h1{font-size:clamp(34px,3.6vw,56px);letter-spacing:.16em;color:#353d32}
+.eyebrow{color:#81846f;font-size:9px}.subtitle{color:#777e6a}.status{color:#69735c}.number{color:#5f6c54}.note{color:#838c76}
+.bottom{z-index:1;bottom:3%;color:#687056;left:5%;font-size:9px}
+@media(max-width:700px){.painting{height:auto;object-fit:contain;inset:0 0 auto}.center{left:50%;top:58%;width:92vw}h1{font-size:36px}.ribbon{margin:32px 0 28px}.eyebrow{font-size:8px;letter-spacing:.2em}.bottom{bottom:3%}.note{font-size:9px}}
+@media(max-height:520px) and (min-width:701px){.center{left:34%;top:49%;width:55vw}.ribbon{margin:0}.readout{width:70%}.bottom{display:none}}
+</style>
+</head>
+<body>
+<main class="loading" id="loading" aria-label="醒狮加载界面">
+  <img class="painting" alt="" aria-hidden="true" src="./painting.png">
+  <section class="center">
+    <p class="eyebrow">THE QUIET ART OF AWAKENING</p>
+    <h1>南风有狮</h1>
+    <p class="subtitle">墨韵入场，静候狮醒</p>
+    <svg class="ribbon" viewBox="0 0 1000 245" role="progressbar" aria-label="入场资源准备进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
+      <defs>
+        <linearGradient id="colors" x1="0" x2="1"><stop stop-color="#d5b76a"/><stop offset=".3" stop-color="#ce9770"/><stop offset=".58" stop-color="#c17c88"/><stop offset=".78" stop-color="#a39bb3"/><stop offset="1" stop-color="#70a69c"/></linearGradient>
+        <linearGradient id="shade"><stop stop-color="#a5813c"/><stop offset=".55" stop-color="#995067"/><stop offset="1" stop-color="#4d8278"/></linearGradient>
+        <linearGradient id="ink" x1="0" x2="1"><stop stop-color="#a2aaa3" stop-opacity=".55"/><stop offset=".25" stop-color="#56635c" stop-opacity=".8"/><stop offset=".68" stop-color="#26352f"/><stop offset="1" stop-color="#151f1b"/></linearGradient>
+        <filter id="ink-edge" x="-10%" y="-60%" width="120%" height="220%">
+          <feTurbulence type="fractalNoise" baseFrequency=".035 .28" numOctaves="3" seed="14" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="edge"/>
+          <feTurbulence type="fractalNoise" baseFrequency=".04 .5" numOctaves="2" seed="4" result="fiber"/>
+          <feColorMatrix in="fiber" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.2 0 0 0 .1" result="grain"/>
+          <feComposite in="edge" in2="grain" operator="in"/>
+        </filter>
+        <filter id="soft" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="12"/></filter>
+      </defs>
+      <path class="track" id="track"/>
+      <path id="ink-wash" class="ink-wash"/><path id="ink-brush" class="ink-brush"/><g id="ribbons"><path class="glow"/><path class="tail teal"/><path class="tail red"/><path class="tail gold"/><path class="silk" id="silk"/><path class="shade"/><path class="shine"/></g>
+      <g id="particles" aria-hidden="true"></g>
+      <g id="tip"><circle r="3" fill="#343c38" opacity=".35" filter="url(#soft)"/></g>
+    </svg>
+    <div class="readout"><span class="status" id="status">墨色渐起 · 岭南将至</span><span class="number"><span id="number">00</span><small>%</small></span></div>
+    <div class="hairline"><div class="fill" id="fill"></div></div>
+    <p class="note">墨染南风，狮醒岭南</p>
+    <button type="button" id="replay" hidden>再看一次</button>
+  </section>
+  <footer class="bottom"><span>承岭南之韵 · 赴醒狮之约</span></footer>
+</main>
+<script>
+// 保留用户原画面；由父页面实际资源准备任务驱动，不进行页面跳转。
+// 百分比是准备任务的加权完成比例，不是下载字节比例。
+let target = 0, complete = false, leaving = false, displayed = 0;
+window.addEventListener('message', event => {
+  if (event.source !== parent || event.origin !== location.origin || event.data?.type !== 'lion:startup-progress') return;
+  target = Math.max(target, Math.min(1, Number(event.data.progress) || 0));
+  complete = event.data.complete === true;
+  status.textContent = event.data.message || '墨色渐起 · 岭南将至';
+});
+parent.postMessage({type:'lion:loader-ready'}, location.origin);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const duration = reduced ? 1800 : 6200;
+const paths = [...document.querySelectorAll('#ribbons path')];
+const silk = document.getElementById('silk');
+const inkBrush = document.getElementById('ink-brush');
+const inkWash = document.getElementById('ink-wash');
+const track = document.getElementById('track');
+const tip = document.getElementById('tip');
+const progress = document.getElementById('progress');
+const number = document.getElementById('number');
+const fill = document.getElementById('fill');
+const status = document.getElementById('status');
+const replay = document.getElementById('replay');
+const loading = document.getElementById('loading');
+const particles = document.getElementById('particles');
+for(let i=0;i<10;i++){
+  const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  dot.setAttribute('r',i%3===0?'1.4':'.7');dot.setAttribute('class','particle');particles.append(dot);
+}
+let frame,leaveTimer,start;
+function animate(now){
+  start ??= now;
+  const t=Math.min((now-start)/duration,1);
+  displayed += (Math.min(target, t*t*(3-2*t)) - displayed) * .1;
+  const p=complete && t===1 && displayed>.998 ? 1 : displayed;
+  const wave=reduced?0:Math.sin((now-start)/2200)*3;
+  const d=`M40 153 C190 ${156+wave} 235 ${65-wave} 405 96 S640 ${181+wave} 760 117 S870 ${96-wave} 960 100`;
+  track.setAttribute('d',d);
+  paths.forEach((path,i)=>{
+    path.setAttribute('d',d);path.setAttribute('pathLength','100');path.setAttribute('stroke-dasharray',`${p*100} 100`);
+    if(i>=1&&i<=3)path.setAttribute('transform',`translate(0 ${(i-2)*8+wave*.2})`);
+  });
+  const length=silk.getTotalLength(),point=silk.getPointAtLength(length*p);
+  const edgeA=[],edgeB=[];
+  for(let i=0;i<=90;i++){
+    const distance=length*p*i/90;
+    const a=silk.getPointAtLength(distance), b=silk.getPointAtLength(Math.min(length,distance+1));
+    const angle=Math.atan2(b.y-a.y,b.x-a.x), fraction=distance/length;
+    const taper=Math.min(1,distance/65)*Math.min(1,(length*p-distance)/48);
+    const width=(5+10*Math.sin(fraction*Math.PI)**2+2*Math.sin(distance*.034))*taper;
+    edgeA.push(`${a.x-Math.sin(angle)*width},${a.y+Math.cos(angle)*width}`);
+    edgeB.push(`${a.x+Math.sin(angle)*width*.72},${a.y-Math.cos(angle)*width*.72}`);
+  }
+  const outline=`M${edgeA.join('L')}L${edgeB.reverse().join('L')}Z`;
+  inkBrush.setAttribute('d',outline);inkWash.setAttribute('d',outline);
+  tip.setAttribute('transform' ,`translate(${point.x} ${point.y})`);
+  [...particles.children].forEach((dot,i)=>{
+    const drift=((now-start)/2000+i/10)%1;
+    const behind=silk.getPointAtLength(Math.max(0,length*p-25-drift*145));
+    dot.setAttribute('cx',behind.x);dot.setAttribute('cy',behind.y+Math.sin(i*2.4)*(4+drift*14));
+    dot.setAttribute('opacity',reduced?0:(1-drift)*.16*Math.min(p*10,1));
+  });
+  number.textContent=String(Math.floor(p*100)).padStart(2,'0');fill.style.width=`${p*100}%`;
+  progress.setAttribute('aria-valuenow',Math.floor(p*100));
+  if(p<1 || !complete){frame=requestAnimationFrame(animate);return;}
+  if(leaving)return; leaving=true;
+  if(!status.textContent.includes('预览'))status.textContent='狮已醒 · 欢迎入场';
+  if(location.protocol==='http:'||location.protocol==='https:'){
+    leaveTimer=setTimeout(()=>{loading.classList.add('leaving');leaveTimer=setTimeout(()=>parent.postMessage({type:'lion:loader-complete'},location.origin),reduced?0:800);},350);
+  }else{replay.hidden=false;}
+}
+replay.addEventListener('click',()=>{start=undefined;replay.hidden=true;status.textContent='墨色渐起 · 岭南将至';frame=requestAnimationFrame(animate);});
+window.addEventListener('pagehide',()=>{cancelAnimationFrame(frame);clearTimeout(leaveTimer);});
+frame=requestAnimationFrame(animate);
+</script>
+</body>
+</html>

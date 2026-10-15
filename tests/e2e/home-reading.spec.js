@@ -15,6 +15,7 @@ async function openReading(page, saved) {
   await page.goto('/');
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   await page.evaluate(() => document.fonts.ready);
 }
 
@@ -153,6 +154,7 @@ async function prepareIntro(page, seconds) {
   const book = page.locator('.lion-book-experience');
   await expect(book).toHaveAttribute('data-book-ready', 'true');
   await expect(book).toHaveAttribute('data-book-intro', 'pending');
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   return { book, frame: page.frameLocator('#homeLionBook iframe') };
 }
 

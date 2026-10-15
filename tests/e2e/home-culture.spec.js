@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('探索更多保留透明金色书法与电脑端居中对齐，点击进入结构章节', async ({ page }) => {
+test('探索更多保留透明金色书法与电脑端居中对齐，滚到史册并让导航遮住视频边缘', async ({ page }) => {
   await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -53,25 +53,29 @@ test('探索更多保留透明金色书法与电脑端居中对齐，点击进�
     }
   }
   await button.click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-  await expect(page).toHaveURL(/#\/model$/);
-  await expect(page.locator('#modelStage')).toBeVisible();
-  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  await expect(page.locator('#homeLionBook')).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#homeLionBook').getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom))).toBeLessThanOrEqual(1);
+  expect(await page.locator('.entry-gate').evaluate(section => section.getBoundingClientRect().bottom)).toBeLessThanOrEqual(await page.locator('.site-header').evaluate(header => header.getBoundingClientRect().bottom + 1));
 });
 
-test('首页向下了解文化入口滚动衔接处史册并保持首页地址', async ({ page }) => {
+test('首页删除旧向下入口与循环来源字，重播使用更大的SVG入口', async ({ page }) => {
+  await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('/');
-  const initialUrl = page.url();
-  await page.getByRole('button', { name: '向下了解醒狮文化' }).click();
-  await expect(page.locator('#homeLionBook')).toBeInViewport();
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-  expect(page.url()).toBe(initialUrl);
+  await expect(page.locator('.entry-scroll-cue')).toHaveCount(0);
+  await expect(page.getByText('循环影像 · 用户提供', { exact: true })).toHaveCount(0);
+  const replay = page.locator('#replayIntro');
+  await expect(replay).toBeVisible();
+  await expect(replay.locator('svg')).toHaveCount(1);
+  expect((await replay.boundingBox()).height).toBeGreaterThanOrEqual(64);
+  await replay.click();
+  await expect(page.locator('#introVideo')).toBeVisible();
+  await expect(page.getByText('开场影像 · AI辅助创作', { exact: true })).toBeVisible();
 });
 
-async function openCulture(page, settings = {}) {
+async function openCulture(page, settings = {}, { waitForStartup = true } = {}) {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(value => {
     if (window !== window.top) return;
@@ -79,6 +83,7 @@ async function openCulture(page, settings = {}) {
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationTypographyVersion: 2, ...value }));
   }, settings);
   await page.goto('/');
+  if (waitForStartup) await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
   const carousel = page.locator('#homeCulture');
   const gallery = carousel.locator('.culture-depth-gallery');
   await gallery.scrollIntoViewIfNeeded();
@@ -160,10 +165,31 @@ test('首页照片下方控制栏已删除，照片与摄影许可保留且页�
   const { carousel, gallery } = await openCulture(page);
   await expect(carousel.locator('.home-culture-carousel-controls, .home-culture-progress, .home-culture-dots')).toHaveCount(0);
   await expect(carousel.getByRole('button')).toHaveCount(1);
-  await expect(carousel.locator('[data-culture-slide]')).toHaveCount(4);
+  await expect(carousel.locator('[data-culture-slide]')).toHaveCount(8);
   await expect(carousel.locator('.is-active .home-culture-credit a')).toHaveCount(2);
   await expect(carousel.locator('.is-active .home-culture-photo')).toBeVisible();
   await expect.poll(() => carousel.locator('.is-active .home-culture-photo').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+  const shown = new Set();
+  for (let index = 0; index < 8; index += 1) {
+    const active = carousel.locator('.is-active');
+    const photo = active.locator('.home-culture-photo');
+    await expect.poll(() => photo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    shown.add(await photo.getAttribute('src'));
+    await expect(active.locator('.home-culture-title')).not.toBeEmpty();
+    await expect(active.locator('.home-culture-credit a')).toHaveCount(2);
+    await gallery.getByRole('button', { name: '下一张文化照片', exact: true }).click();
+  }
+  expect(shown.size).toBe(8);
+  await expect(carousel).toHaveAttribute('data-culture-index', '0');
+  const references = carousel.locator('.home-culture-sources');
+  await references.scrollIntoViewIfNeeded();
+  await expect(references.getByRole('heading', { name: '参考资料', exact: true })).toBeVisible();
+  await expect(references.locator('.home-culture-source-card')).toHaveCount(3);
+  expect((await references.boundingBox()).height).toBeGreaterThan(350);
+  await references.locator('summary').click();
+  await expect(references.locator('.home-culture-photo-license')).toHaveCount(8);
+  await expect(references.locator('.home-culture-photo-license').last()).toBeVisible();
+  await gallery.scrollIntoViewIfNeeded();
   const center = await photoPoint(gallery);
   await page.mouse.move(center.x, center.y);
   const before = await page.evaluate(() => scrollY);
@@ -228,7 +254,7 @@ test('只有最前照片悬停微放大且左右移动稳定，点击一次切�
   await expect(carousel).toHaveAttribute('data-culture-index', '1');
   await page.mouse.move(point.x, point.y);
   for (let index = 0; index < 3; index += 1) await page.mouse.click(point.x, point.y);
-  await expect(carousel).toHaveAttribute('data-culture-index', '0');
+  await expect(carousel).toHaveAttribute('data-culture-index', '4');
   expect(errors).toEqual([]);
 });
 
@@ -300,10 +326,10 @@ test('自动切图经过静止指针时不会自行获取悬停并停播', async
   const widePhoto = await action.boundingBox();
   expect(narrowPhoto.x - 20).toBeGreaterThan(widePhoto.x);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
-  await expect(carousel).toHaveAttribute('data-culture-index', '0', { timeout: 3000 });
+  await expect(carousel).toHaveAttribute('data-culture-index', '4', { timeout: 3000 });
 });
 
-test('照片加载期间悬停，画布就绪后移开仍能恢复自动轮播', async ({ page }) => {
+test('启动预热期间照片不接受悬停，入场后聚焦与移开恢复正常', async ({ page }) => {
   let releaseModule;
   const moduleGate = new Promise(resolve => { releaseModule = resolve; });
   await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
@@ -311,19 +337,22 @@ test('照片加载期间悬停，画布就绪后移开仍能恢复自动轮播',
     await route.continue();
   });
   try {
-    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 }, { waitForStartup: false });
     await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
     const point = await photoPoint(gallery);
     await page.mouse.move(point.x, point.y);
-    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await expect(page.locator('#startupLoading')).toBeVisible();
     releaseModule();
     await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
-    // A valid hover survives the handoff; loading must not cancel the user's
-    // current interaction merely to avoid retaining a stale pause on exit.
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
+    await gallery.scrollIntoViewIfNeeded();
+    const readyPoint = await photoPoint(gallery);
+    await page.mouse.move(readyPoint.x + 1, readyPoint.y);
     await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
     await page.waitForTimeout(2300);
     await expect(carousel).toHaveAttribute('data-culture-index', '0');
-    await page.mouse.move(1800, point.y);
+    await page.mouse.move(1800, readyPoint.y);
     await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
     await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
     await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
@@ -332,7 +361,7 @@ test('照片加载期间悬停，画布就绪后移开仍能恢复自动轮播',
   }
 });
 
-test('加载交接期间新的指针离开不会被较旧坐标覆盖', async ({ page }) => {
+test('启动预热期间指针取消与失焦不会残留照片暂停', async ({ page }) => {
   let releaseModule;
   const moduleGate = new Promise(resolve => { releaseModule = resolve; });
   await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
@@ -340,26 +369,17 @@ test('加载交接期间新的指针离开不会被较旧坐标覆盖', async ({
     await route.continue();
   });
   try {
-    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
+    const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 }, { waitForStartup: false });
     await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
     const point = await photoPoint(gallery);
     await page.mouse.move(point.x, point.y);
-    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
-    await gallery.evaluate(element => {
-      // Inject a newer boundary event at the exact DOM/effect handoff, which
-      // physical input cannot reliably time. The engine must not replay the
-      // older loading pointer afterward and reacquire a stale pause.
-      const observer = new MutationObserver(() => {
-        if (element.dataset.depthState !== 'ready') return;
-        observer.disconnect();
-        const event = { bubbles: true, clientX: 1800, clientY: 600, relatedTarget: document.body };
-        element.dispatchEvent(new PointerEvent('pointerout', event));
-        element.dispatchEvent(new PointerEvent('pointerleave', event));
-      });
-      observer.observe(element, { attributes: true, attributeFilter: ['data-depth-state'] });
-    });
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await page.evaluate(() => { window.dispatchEvent(new Event('pointercancel')); window.dispatchEvent(new Event('blur')); });
+    await page.mouse.move(1800, point.y);
     releaseModule();
     await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
+    await gallery.scrollIntoViewIfNeeded();
     await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
     await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 4000 });
   } finally {
@@ -402,15 +422,16 @@ test('窗口失焦和指针取消事件清理悬停，返回后仍可再次聚�
 });
 
 test('连续三个完整自动循环保持图文同步，滚出后返回仍继续播放', async ({ page }) => {
+  test.setTimeout(85000);
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselTransitionDuration: 300 });
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   await page.mouse.move(1800, 600);
-  const ids = ['living-tradition', 'lion-head-craft', 'cai-qing', 'shared-rhythm'];
+  const ids = ['living-tradition', 'lion-head-craft', 'cai-qing', 'shared-rhythm', 'drum-language', 'expressive-lion', 'balance-in-air', 'community-celebration'];
   const canvas = gallery.locator('canvas');
   let previousFrame;
-  for (let step = 1; step <= 12; step += 1) {
+  for (let step = 1; step <= ids.length * 3; step += 1) {
     const index = step % ids.length;
     await expect(carousel).toHaveAttribute('data-culture-index', String(index), { timeout: 3200 });
     await expect(carousel.locator('.is-active')).toHaveAttribute('data-culture-id', ids[index]);
@@ -427,7 +448,7 @@ test('连续三个完整自动循环保持图文同步，滚出后返回仍继�
   await expect(carousel).toHaveAttribute('data-culture-index', pausedIndex);
   await gallery.scrollIntoViewIfNeeded();
   await expect(carousel).toHaveAttribute('data-culture-status', 'playing');
-  await expect(carousel).toHaveAttribute('data-culture-index', String((Number(pausedIndex) + 1) % 4), { timeout: 3200 });
+  await expect(carousel).toHaveAttribute('data-culture-index', String((Number(pausedIndex) + 1) % ids.length), { timeout: 3200 });
   expect(errors).toEqual([]);
 });
 
@@ -441,11 +462,11 @@ test('减少动态时保留点击与键盘首尾循环并停止自动播放', as
   await page.keyboard.press('ArrowLeft');
   await expect(carousel).toHaveAttribute('data-culture-index', '0');
   await page.keyboard.press('ArrowLeft');
-  await expect(carousel).toHaveAttribute('data-culture-index', '3');
+  await expect(carousel).toHaveAttribute('data-culture-index', '7');
   await page.keyboard.press('Enter');
   await expect(carousel).toHaveAttribute('data-culture-index', '0');
   await page.keyboard.press('End');
-  await expect(carousel).toHaveAttribute('data-culture-index', '3');
+  await expect(carousel).toHaveAttribute('data-culture-index', '7');
   await page.keyboard.press('Home');
   await expect(carousel).toHaveAttribute('data-culture-index', '0');
   await expect(carousel.locator('[aria-live]')).toHaveAttribute('aria-live', 'polite');
@@ -492,7 +513,7 @@ test('WebGL不可用时照片仍可点击切换且保留来源', async ({ page }
   expect(errors).toEqual([]);
 });
 
-test('电脑窗口和运行中参数变化保持同一画布，减少动态与离页可释放重入', async ({ page }) => {
+test('电脑窗口和参数变化保持同一画布，减少动态释放引擎且跨章复用预热实例', async ({ page }) => {
   const { carousel, gallery } = await openCulture(page, { carouselAutoplay: false });
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   const canvas = await gallery.locator('canvas').evaluateHandle(element => element);
@@ -521,12 +542,13 @@ test('电脑窗口和运行中参数变化保持同一画布，减少动态与�
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   const nextCanvas = await gallery.locator('canvas').evaluateHandle(element => element);
   await page.locator('.site-nav-item[data-route="action"]').click();
-  await expect(page.locator('.culture-depth-canvas')).toHaveCount(0);
-  await expect.poll(() => nextCanvas.evaluate(element => !element.isConnected && (element.getContext('webgl2') || element.getContext('webgl')).isContextLost())).toBe(true);
+  await expect(gallery).toBeHidden();
+  expect(await nextCanvas.evaluate(element => element.isConnected && !(element.getContext('webgl2') || element.getContext('webgl')).isContextLost())).toBe(true);
   await page.locator('.site-brand-capsule').click();
   await gallery.scrollIntoViewIfNeeded();
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   await expect(carousel.locator('canvas')).toHaveCount(1);
+  expect(await nextCanvas.evaluate(element => element === document.querySelector('.culture-depth-canvas'))).toBe(true);
 });
 
 

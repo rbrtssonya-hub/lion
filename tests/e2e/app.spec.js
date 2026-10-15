@@ -100,7 +100,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('response', (response) => { if (response.status() >= 400) failedResources.push(response.url()); });
   page.on('request', (request) => requests.push(request.url()));
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('.entry-title-art')).toHaveCount(1);
   const homeLion = page.locator('.site-header .site-brand .entry-lion-emblem');
@@ -109,7 +109,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   expect(await homeLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
   expect(await page.locator('#introVideo').evaluate((video) => video.loop)).toBe(false);
-  expect(requests.some((url) => /three|GLTFLoader|lion-overall/.test(url))).toBe(false);
+  expect(requests.some((url) => /lion-overall/.test(url))).toBe(true);
   await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('#entryLionVideo')).toHaveJSProperty('src', new URL(assetPaths.home, page.url()).href);
@@ -147,10 +147,12 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
     await routeButton(page, route).click();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
     await expect(page.locator('#chapterTitle')).toHaveText(label);
-    await expect(page.locator('iframe')).toHaveCount(0);
-    await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
+    await expect(page.locator('.lion-book-stage iframe')).toHaveCount(1);
+    await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+    await expect(page.locator('#modelStage')).toBeHidden();
   }
   await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
   await page.goBack();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
@@ -161,11 +163,12 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
 });
 
 test('入场仅首次自动播放，返回与刷新保留循环背景，支持重播和跳过', async ({ page }) => {
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expect(page.locator('#introVideo')).toBeVisible();
   await page.getByRole('button', { name: '跳过入场', exact: true }).click();
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await expect(page.locator('#introVideo')).toHaveCount(0);
   await routeButton(page, 'model').click();
@@ -180,14 +183,13 @@ test('入场仅首次自动播放，返回与刷新保留循环背景，支持�
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await page.getByRole('button', { name: '探索更多', exact: true }).click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-  await expect(page).toHaveURL(/#\/model$/);
-  await expect(page.locator('#modelStage')).toBeVisible();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  await expect.poll(() => page.locator('#homeLionBook').evaluate(book => Math.abs(book.getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom))).toBeLessThan(2);
 });
 
 test('手机视口保持章节导航与结构交互，页面可正常滚动', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await page.screenshot({ path: test.info().outputPath('home-mobile.png'), fullPage: true });
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -216,7 +218,7 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
     if (fail) await route.fulfill({ status: 503, body: 'temporarily unavailable' });
     else await route.continue();
   });
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStatus')).toContainText('模型载入失败');
   await expect(page.locator('#modelFallback')).toBeVisible();
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
@@ -227,7 +229,7 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
 });
 
 test('整体及同页结构示意透明融入指定背景，展示区没有内框或地面', async ({ page }) => {
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   for (const showGuide of [false, true]) {
     if (showGuide) await page.locator('#viewStructure').click();
     await expect(page.locator('#modelStage')).toBeVisible();
@@ -284,8 +286,8 @@ test('整体及同页结构示意透明融入指定背景，展示区没有内�
 test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   for (const showGuide of [false, true]) {
-    await page.goto('/');
-    await page.goto('/#/model');
+    await openPrepared(page, '/');
+    await openPrepared(page, '/#/model');
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
     if (showGuide) await page.locator('#viewStructure').click();
     await page.getByRole('button', { name: '暂停自动旋转', exact: true }).click();
@@ -314,7 +316,7 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   await page.setViewportSize({ width: 1920, height: 1080 });
   const mediaRequests = [];
   page.on('request', (request) => mediaRequests.push(request.url()));
-  await page.goto('/#/action');
+  await openPrepared(page, '/#/action');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
   expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
   await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.actionBackground);
@@ -322,7 +324,7 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
   await expect(page.locator('.action-clip')).toHaveCount(4);
   await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
   await expect(page.locator('#actionHero .action-media-status')).toContainText('视频待接入');
-  expect(mediaRequests.some((url) => url.includes('entry-intro.mp4'))).toBe(false);
+  expect(await page.locator('#introVideo').evaluate(video => video.paused)).toBe(true);
   await expect(page.locator('.action-timeline')).toHaveCount(2);
   await expect(page.locator('[data-placement="hero"] button span')).toHaveText(['入场', '探步', '转身', '收势']);
   const desktopNodes = await page.locator('[data-placement="hero"] button').evaluateAll((nodes) => nodes.map((node) => {
@@ -340,7 +342,7 @@ test('动作章节使用透明底层并保留待接入视频和定性时间轴',
 });
 
 test('神态章节展示八态图鉴且保留样本待校核说明', async ({ page }) => {
-  await page.goto('/#/state');
+  await openPrepared(page, '/#/state');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'state');
   expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
   await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.stateBackground);
@@ -353,7 +355,7 @@ test('神态章节展示八态图鉴且保留样本待校核说明', async ({ pa
 });
 
 test('模型页复用全局品牌与章节导航并高亮当前章节', async ({ page }) => {
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   const header = page.locator('.site-header');
   await expect(header).toHaveCount(1);
   await expect(header).toBeVisible();
@@ -363,7 +365,7 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect(header.locator('.site-navigation img')).toHaveCount(0);
   await expect(header.locator('.site-navigation')).toBeVisible();
-  await expect(header.locator('.site-nav-item[data-route]:visible')).toHaveCount(3);
+  await expect(header.locator('.site-nav-item[data-route]:visible')).toHaveCount(4);
   await expect(header.locator('.site-brand-capsule')).toHaveAccessibleName('南风有狮，返回首页');
   await expect(page.locator('.model-header .site-navigation, .model-header .site-brand')).toHaveCount(0);
   await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
@@ -380,9 +382,9 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   await expect(settings).toHaveAttribute('aria-controls', 'developerSettingsPanel');
 });
 
-test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出释放场景', async ({ page }) => {
+test('模型页数字图鉴联动热点与同页结构开关，离页暂停并复用预热场景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#culturePanel')).toBeVisible();
   await expect(page.locator('#structurePanel')).toBeVisible();
@@ -429,36 +431,38 @@ test('模型页数字图鉴联动热点、聚焦和同页结构开关，退出�
   await expect(page.locator('#structureDepthValue')).toHaveText('18%');
   expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('.site-brand-capsule').click();
-  await expect(page.locator('#sceneContainer canvas')).toHaveCount(0);
-  expect(await canvas.evaluate((element) => element.isConnected)).toBe(false);
-  await expect.poll(() => canvas.evaluate((element) => {
+  await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+  await expect(page.locator('#modelStage')).toBeHidden();
+  expect(await canvas.evaluate((element) => element.isConnected)).toBe(true);
+  expect(await canvas.evaluate((element) => {
     const gl = element.getContext('webgl2') ?? element.getContext('webgl');
     return gl?.isContextLost();
-  })).toBe(true);
+  })).toBe(false);
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
-  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(false);
+  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await canvas.dispose();
 });
 
 test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   expect(await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);
 });
 
-test('快速离开载入中的模型时取消请求，重新进入只有一个canvas', async ({ page }) => {
+test('模型预热失败后切换页面可重试，恢复时只有一个canvas', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.route('**/assets/models/lion-overall.glb', (route) => route.abort('aborted'));
-  await page.goto('/#/model');
+  await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
   await page.locator('.site-brand-capsule').click();
   await page.unroute('**/assets/models/lion-overall.glb');
   await routeButton(page, 'model').click();
+  await page.getByRole('button', { name: '重新载入', exact: true }).click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   expect(errors).toEqual([]);
@@ -467,7 +471,7 @@ test('快速离开载入中的模型时取消请求，重新进入只有一个ca
 test('首页入场视频失败可重试与跳过，未知链接返回首页', async ({ page }) => {
   let fail = true;
   await page.route('**/assets/intro/entry-intro.mp4', (route) => fail ? route.abort('failed') : route.continue());
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expect(page.locator('.video-status')).toContainText('视频暂时无法播放');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   fail = false;
@@ -477,13 +481,13 @@ test('首页入场视频失败可重试与跳过，未知链接返回首页', as
   await expect(page.locator('#entryLionVideo')).toBeVisible();
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStage')).toBeVisible();
-  await page.goto('/#/unknown-chapter');
+  await openPrepared(page, '/#/unknown-chapter');
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
 });
 
 test('旧入场与结构链接兼容到首页与整体，不再保留独立页面', async ({ page }) => {
   for (const [hash, route] of [['#/intro', 'entry'], ['#intro', 'entry'], ['#/structure', 'model'], ['#structure', 'model']]) {
-    await page.goto(`/${hash}`);
+    await openPrepared(page, `/${hash}`);
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
     await expect(page).toHaveURL(new RegExp(`#/${route}$`));
     if (route === 'entry') {
@@ -495,19 +499,26 @@ test('旧入场与结构链接兼容到首页与整体，不再保留独立页�
       await expect(page.locator('#structureLayer')).not.toBeVisible();
     }
     await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', route);
   }
 });
 
 test('已删除的评分章节链接均返回首页', async ({ page }) => {
   for (const hash of ['#/score', '#score']) {
-    await page.goto(`/${hash}`);
+    await openPrepared(page, `/${hash}`);
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
     await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
     await expect(page.locator('#chapterTitle')).toHaveCount(0);
     await expect(page.locator('.site-header .site-navigation')).not.toContainText('评分');
     await expect(routeButton(page, 'score')).toHaveCount(0);
     await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   }
 });
+
+async function openPrepared(page, url) {
+  await page.goto(url);
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
+}

@@ -10,6 +10,7 @@ async function openArchive(page) {
     }
   });
   await page.goto('/');
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
   await page.evaluate(() => document.fonts.ready);

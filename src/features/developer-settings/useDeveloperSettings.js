@@ -1,14 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { surfaceDefaults, surfaceRanges } from './surfaceSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
 export const defaultDeveloperSettings = Object.freeze({
   headerTransparency: 20,
   headerBlur: 12,
+  headerWidth: 100,
+  headerRadius: 0,
+  headerColor: '#801d17',
   sidebarTransparency: 14,
   sidebarBlur: 18,
+  sidebarHeight: 100,
+  sidebarRadius: 0,
+  sidebarColor: '#fff6e4',
   archivePanelTransparency: 40,
   bookIntroDuration: 12,
+  bookScale: 116,
+  bookStageHeight: 680,
+  bookInkEnabled: true,
+  pageHitEnabled: false,
   headerHeight: 90,
   navFontSize: 26,
   helperFontSize: 18,
@@ -27,13 +38,17 @@ export const defaultDeveloperSettings = Object.freeze({
   carouselFocusScale: 104,
   panelWidth: 340,
   pushPage: true,
+  ...surfaceDefaults,
 });
 
 const ranges = {
   headerTransparency: [0, 100, 1], headerBlur: [0, 30, 1],
+  headerWidth: [60, 100, 1], headerRadius: [0, 100, 1],
   sidebarTransparency: [0, 100, 1], sidebarBlur: [0, 30, 1],
+  sidebarHeight: [50, 100, 1], sidebarRadius: [0, 100, 1],
   archivePanelTransparency: [0, 100, 1],
   bookIntroDuration: [3, 30, 1],
+  bookScale: [90, 145, 1], bookStageHeight: [480, 960, 10],
   headerHeight: [64, 180, 1], navFontSize: [14, 28, 1],
   helperFontSize: [10, 28, 1],
   navIconSize: [24, 56, 1], helperTransparency: [0, 100, 1],
@@ -43,11 +58,17 @@ const ranges = {
   compactNavGap: [4, 36, 1], compactNavInset: [16, 160, 1],
   carouselInterval: [2, 30, 1], carouselResumeDelay: [1, 15, 1],
   carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
+  ...surfaceRanges,
 };
 
-function normalize(name, value) {
-  if (name === 'pushPage' || name === 'carouselAutoplay') {
+export function normalizeDeveloperSetting(name, value) {
+  if (!Object.hasOwn(defaultDeveloperSettings, name)) return undefined;
+  if (typeof defaultDeveloperSettings[name] === 'boolean') {
     return typeof value === 'boolean' ? value : defaultDeveloperSettings[name];
+  }
+  if (name.endsWith('Color')) {
+    return typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value)
+      ? value.toLowerCase() : defaultDeveloperSettings[name];
   }
   if (name === 'navigationEasing') {
     return ['smooth', 'swift', 'soft'].includes(value) ? value : defaultDeveloperSettings.navigationEasing;
@@ -71,7 +92,13 @@ function readSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
     if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return resolveSettings();
-    const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalize(name, saved[name])]));
+    const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalizeDeveloperSetting(name, saved[name])]));
+    // Preserve the previously shared reading-paper preference when splitting it into four surfaces.
+    for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) {
+      if (!Object.hasOwn(saved, `${prefix}Transparency`) && Object.hasOwn(saved, 'archivePanelTransparency')) {
+        normalized[`${prefix}Transparency`] = normalized.archivePanelTransparency;
+      }
+    }
     return resolveSettings({ ...normalized, navigationTypographyVersion: saved.navigationTypographyVersion });
   } catch {
     return resolveSettings();
@@ -91,12 +118,19 @@ export function useDeveloperSettings() {
   const changeSettings = useCallback((name, value) => {
     if (!Object.hasOwn(defaultDeveloperSettings, name)) return;
     shouldPersist.current = true;
-    setSettings(current => ({ ...resolveSettings(current), [name]: normalize(name, value) }));
+    setSettings(current => {
+      const normalized = normalizeDeveloperSetting(name, value);
+      const next = { ...resolveSettings(current), [name]: normalized };
+      if (name === 'archivePanelTransparency') {
+        for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) next[`${prefix}Transparency`] = normalized;
+      }
+      return next;
+    });
   }, []);
   const previewSettings = useCallback((name, value) => {
     if (!Object.hasOwn(defaultDeveloperSettings, name)) return;
     shouldPersist.current = false;
-    setSettings(current => ({ ...resolveSettings(current), [name]: normalize(name, value) }));
+    setSettings(current => ({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }));
   }, []);
   const commitSettings = useCallback(() => {
     shouldPersist.current = true;

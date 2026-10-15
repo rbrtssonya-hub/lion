@@ -8,10 +8,21 @@
 .entry-playback-tools { position: absolute; top: calc(var(--site-header-height) + 24px); left: clamp(24px, 3vw, 64px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: #ffe6b9; font-size: 11px; }
 .entry-playback-tools button { padding: 8px 13px; border: 1px solid rgba(242, 205, 142, .6); border-radius: 999px; color: #fff0d2; background: rgba(86, 18, 11, .58); cursor: pointer; transition: background 180ms ease, transform 180ms ease; }
 .entry-playback-tools button:hover { background: #aa2516; transform: translateY(-2px); }
+.entry-playback-tools .entry-replay { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 9px 23px 9px 10px; border-color: #edc68d9c; border-radius: 10px 30px 30px 10px; background: linear-gradient(120deg, #7a1b10ed, #65160ede); box-shadow: inset 0 0 0 3px #efcc8d0d, 0 5px 20px #21060029; font-family: var(--sans); text-align: left; }
+.entry-replay-icon { display: block; width: 44px; height: 44px; color: #f5d18f; }
+.entry-replay-icon svg { display: block; width: 100%; height: 100%; overflow: visible; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.entry-replay-icon circle { stroke: #f5d18f66; stroke-width: .8; }
+.entry-replay-icon .entry-replay-play { fill: #f5d18f; stroke: none; }
+.entry-replay-icon .entry-replay-spark { stroke-width: 1; }
+.entry-replay strong { display: block; font-size: 16px; font-weight: 500; letter-spacing: .15em; line-height: 1.5; }
+.entry-replay small { display: block; margin-top: 2px; color: #d8b47c; font-size: 10px; letter-spacing: .12em; line-height: 1.6; }
+.entry-playback-tools .entry-replay:hover { border-color: #ffe1a8; background: linear-gradient(120deg, #a22a19, #791a10); box-shadow: inset 0 0 0 3px #efcc8d14, 0 7px 24px #21060040; }
+.entry-replay:hover .entry-replay-icon { transform: rotate(-12deg); }
+.entry-replay-icon { transition: transform 240ms ease; }
 .entry-video-note { color: rgba(255, 230, 185, .7); font-size: 10px; letter-spacing: .08em; }
-.entry-scroll-cue { position: absolute; right: 42px; bottom: 32px; z-index: 3; display: flex; align-items: center; gap: 14px; padding: 10px 0; border: 0; color: #ffe6bc; background: transparent; cursor: pointer; font-size: 11px; letter-spacing: .12em; }
-.entry-scroll-cue i { display: grid; width: 30px; height: 38px; place-items: center; border: 1px solid rgba(242, 205, 142, .6); border-radius: 999px; font-style: normal; animation: scrollNudge 2.4s ease-in-out infinite; }
-@keyframes scrollNudge { 50% { transform: translateY(5px); } }
+.home-page[data-page-hit-enabled="false"] { user-select: none; -webkit-user-select: none; }
+.home-page[data-page-hit-enabled="false"] .entry-visual-video { pointer-events: none; }
+.home-page[data-page-hit-enabled="false"] .entry-visual-video .video-status { pointer-events: auto; }
 .entry-title-live2d { width: var(--entry-title-width); transform-origin: 22% 54%; animation: titleFloat 5.2s ease-in-out infinite; }
 .entry-title-art { display: block; width: 100%; height: auto; --title-scale: 1; --title-shift-x: 0px; --title-shift-y: 0px; transform-origin: left bottom; transform: translate3d(var(--title-shift-x), var(--title-shift-y), 0) scale(var(--title-scale)); filter: drop-shadow(0 12px 12px rgba(33, 0, 0, .24)); }
 .entry-cta { position: relative; display: inline-flex; gap: 24px; align-items: center; justify-content: space-between; width: var(--entry-cta-width); min-height: 60px; aspect-ratio: 326 / 74; margin-top: 34px; padding: 14px clamp(32px, 2.4vw, 62px); border: 2px solid #f4d38e; border-radius: 999px; color: #fff1d9; background: linear-gradient(180deg, rgba(178, 29, 16, .94), rgba(125, 16, 10, .96)); box-shadow: inset 0 0 0 3px rgba(118, 20, 10, .65), 0 3px 0 rgba(130, 38, 13, .65); cursor: pointer; font-family: 'STSong', 'SimSun', '宋体', serif; font-size: clamp(20px, 1.55vw, 34px); line-height: 1.3; font-weight: 600; letter-spacing: .12em; transition: background 180ms, border-color 180ms, box-shadow 180ms; }
@@ -38,7 +49,6 @@
 @keyframes titleFloat { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(0, -6px, 0) rotate(-.65deg); } }
 @media (max-width: 900px) {
   .entry-playback-tools { top: calc(var(--site-header-height) + 20px); left: 24px; right: 24px; gap: 8px; }
-  .entry-scroll-cue { right: 24px; bottom: 24px; font-size: 9px; }
   .entry-copy { --entry-title-width: min(330px, 44vw, 48svh); left: 32px; }
   .entry-cloud-top { display: none; }
   .entry-cloud-side { width: 58px; left: 7px; top: auto; bottom: 20%; opacity: .45; }

@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Sketchbook } from '@designcodeio/threeui';
 import '@designcodeio/threeui/style.css';
 import { media } from '../../config/media.js';
@@ -7,6 +7,68 @@ import { lionBookPages } from '../../data/lion-book.js';
 const fileBase = media.lionBookCover.slice(0, media.lionBookCover.lastIndexOf('/') + 1);
 const introSessionKey = 'nanfeng-lion:book-intro-seen:v1';
 let introConsumedInThisPage = false;
+const wavePoints = lionBookPages.map((_, index) => ({ x: 60 + index * 880 / 6, y: [64, 38, 64, 90, 64, 38, 64][index] }));
+const wavePath = wavePoints.reduce((path, point, index) => {
+  if (!index) return `M ${point.x} ${point.y}`;
+  const previous = wavePoints[index - 1];
+  return `${path} C ${previous.x + 49} ${previous.y}, ${point.x - 49} ${point.y}, ${point.x} ${point.y}`;
+}, '');
+
+function LionTimelineEmblem() {
+  return <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
+    <path d="M17 27 9 20l3-10 16 8M63 27l8-7-3-10-16 8" fill="#a43629" stroke="#d5a763" strokeWidth="2" />
+    <path d="M40 8c9 0 15 5 18 13 10 2 15 11 12 21-1 7-5 13-10 18-6 6-12 11-20 13-8-2-14-7-20-13-5-5-9-11-10-18-3-10 2-19 12-21C25 13 31 8 40 8Z" fill="#a43629" stroke="#ebc483" strokeWidth="2" />
+    <path d="m40 12 5 7-5 6-5-6 5-7ZM20 28c5-5 12-5 16 0M44 28c4-5 11-5 16 0" stroke="#f3d49d" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M16 37c0-6 6-10 12-9 7 1 10 8 7 13-4 7-19 4-19-4Zm48 0c0-6-6-10-12-9-7 1-10 8-7 13 4 7 19 4 19-4Z" fill="#fbebca" stroke="#d6aa68" strokeWidth="1.5" />
+    <circle cx="27" cy="36" r="5" fill="#332d27" /><circle cx="53" cy="36" r="5" fill="#332d27" />
+    <circle cx="28.5" cy="34.5" r="1.7" fill="#fff8e8" /><circle cx="51.5" cy="34.5" r="1.7" fill="#fff8e8" />
+    <path d="M33 46c2-6 12-6 14 0l-3 5h-8l-3-5Z" fill="#e4bb78" stroke="#f8db9e" strokeWidth="1.5" />
+    <path d="M23 49c4 7 10 5 17 8 7-3 13-1 17-8M25 57c8 11 22 11 30 0M31 63l2 5m7-3v5m7-7-2 5M16 45l5 2m43-2-5 2" stroke="#f5d9a4" strokeWidth="2.4" strokeLinecap="round" />
+  </svg>;
+}
+
+function BookTimeline({ book, send, inkEnabled, playbackEnabled }) {
+  const navRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const [trail, setTrail] = useState({ from: 0, to: 0, id: 0 });
+  const previousIndex = useRef(book.index);
+  const filterId = useMemo(() => `book-ink-${crypto.randomUUID()}`, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
+    observer.observe(navRef.current);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (previousIndex.current !== book.index) {
+      setTrail({ from: previousIndex.current, to: book.index, id: performance.now() });
+      previousIndex.current = book.index;
+    }
+  }, [book.index]);
+  const currentPoint = wavePoints[book.index];
+  return <nav ref={navRef} className="lion-book-timeline" aria-label="醒狮历史时间线" aria-describedby="lion-book-instructions"
+    data-ink-enabled={inkEnabled} data-ink-playing={visible && playbackEnabled}>
+    <svg className="lion-book-wave" viewBox="0 0 1000 142" preserveAspectRatio="none" fill="none" aria-hidden="true">
+      <defs><filter id={filterId} x="-10%" y="-100%" width="120%" height="300%"><feTurbulence type="fractalNoise" baseFrequency=".035 .14" numOctaves="2" seed="8" result="grain" /><feDisplacementMap in="SourceGraphic" in2="grain" scale="5" xChannelSelector="R" yChannelSelector="G" /><feGaussianBlur stdDeviation=".6" /></filter></defs>
+      <path className="lion-book-wave-wash" d={wavePath} filter={`url(#${filterId})`} />
+      <path className="lion-book-wave-line" d={wavePath} />
+      <path className="lion-book-wave-gold" d={wavePath} />
+      <path className="lion-book-ink-flow" d={wavePath} pathLength="1" filter={`url(#${filterId})`} />
+      {trail.from !== trail.to && <path key={trail.id} className="lion-book-ink-trail" d={wavePath} pathLength="1" filter={`url(#${filterId})`}
+        strokeDasharray={`${Math.abs(trail.to - trail.from) / 6} 1`} strokeDashoffset={-Math.min(trail.from, trail.to) / 6} />}
+    </svg>
+    <span className="lion-book-traveling-lion" aria-hidden="true" style={{ left: `${currentPoint.x / 10}%`, top: `${currentPoint.y}px` }}><LionTimelineEmblem /></span>
+    {lionBookPages.map((page, index) => <button type="button" key={page.id} data-book-page={page.id} className={index === 0 || index === 6 ? 'lion-book-endpoint' : ''}
+      style={{ left: `${wavePoints[index].x / 10}%`, top: `${wavePoints[index].y - 18}px` }}
+      aria-label={`翻阅${page.stage}：${page.title}`} aria-current={book.index === index ? 'step' : undefined} disabled={!book.ready || !playbackEnabled}
+      onClick={() => {
+        setTrail({ from: book.index, to: index, id: performance.now() });
+        send('goTo', index);
+      }}>
+      <span className="lion-book-node" aria-hidden="true">{index === 0 ? '序' : index === 6 ? '终' : String(index).padStart(2, '0')}</span>
+      <span className="lion-book-wave-label">{page.stage}</span><small>{index > 0 && index < 6 ? page.era : index === 0 ? '开启史册' : '南风有狮'}</small>
+    </button>)}
+  </nav>;
+}
 
 function hasConsumedIntro() {
   try { return introConsumedInThisPage || sessionStorage.getItem(introSessionKey) === '1'; }
@@ -19,12 +81,19 @@ function consumeIntro() {
   catch { /* Preserve once-per-page-session behavior when storage is unavailable. */ }
 }
 
-export default function LionBookExperience({ introDuration = 12 }) {
+export default function LionBookExperience({ introDuration = 12, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady }) {
   const hostRef = useRef(null);
   const introDurationRef = useRef(introDuration);
   introDurationRef.current = introDuration;
+  const scaleRef = useRef(scale);
+  scaleRef.current = scale;
   const frameRef = useRef(null);
   const channelRef = useRef(null);
+  const playbackEnabledRef = useRef(playbackEnabled);
+  const visibilityPublisher = useRef(null);
+  const onReadyRef = useRef(onReady);
+  playbackEnabledRef.current = playbackEnabled;
+  onReadyRef.current = onReady;
   const [attempt, setAttempt] = useState(0);
   const channelId = useMemo(() => crypto.randomUUID(), [attempt]);
   const assetBaseUrl = useMemo(() => {
@@ -39,6 +108,7 @@ export default function LionBookExperience({ introDuration = 12 }) {
     if (action === 'visibility') command.visible = value;
     else if (action === 'intro-policy') command.enabled = value;
     else if (action === 'intro-duration') command.seconds = value;
+    else if (action === 'book-scale') command.scale = value;
     else if (Number.isInteger(value)) command.index = value;
     frameRef.current?.contentWindow?.postMessage(command, '*');
   }, []);
@@ -53,7 +123,8 @@ export default function LionBookExperience({ introDuration = 12 }) {
     let scrollDelta = 0;
     let stageVisible = false;
     let focusTimer = null;
-    const publishVisibility = () => send('visibility', stageVisible && !document.hidden && document.hasFocus());
+    const publishVisibility = () => send('visibility', playbackEnabledRef.current && stageVisible && !document.hidden && document.hasFocus());
+    visibilityPublisher.current = publishVisibility;
     // Focusing the sandbox also blurs the parent window. Wait until the focus
     // transfer completes, then test the whole document (including its iframe).
     const onWindowBlur = () => {
@@ -61,9 +132,12 @@ export default function LionBookExperience({ introDuration = 12 }) {
       focusTimer = setTimeout(publishVisibility, 0);
     };
     const observer = new IntersectionObserver(([entry]) => {
-      stageVisible = entry.isIntersecting && entry.intersectionRatio >= .6;
+      // A deliberately tall stage must still play in a short desktop window.
+      // Require most of the paper stage, or a substantial part of the viewport.
+      const requiredHeight = Math.min(entry.boundingClientRect.height * .6, window.innerHeight * .48);
+      stageVisible = entry.isIntersecting && entry.intersectionRect.height >= requiredHeight;
       publishVisibility();
-    }, { threshold: [0, .6] });
+    }, { threshold: Array.from({ length: 101 }, (_, index) => index / 100) });
     observer.observe(hostRef.current);
     document.addEventListener('visibilitychange', publishVisibility);
     window.addEventListener('focus', publishVisibility);
@@ -96,6 +170,7 @@ export default function LionBookExperience({ introDuration = 12 }) {
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
       send('intro-duration', introDurationRef.current);
+      send('book-scale', scaleRef.current);
       send('intro-policy', !hasConsumedIntro());
       send('sync');
       publishVisibility();
@@ -118,12 +193,19 @@ export default function LionBookExperience({ introDuration = 12 }) {
       clearTimeout(loadTimeout);
       if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
       frameRef.current = null;
+      visibilityPublisher.current = null;
     };
   }, [channelId, send]);
 
   useLayoutEffect(() => {
     send('intro-duration', introDuration);
   }, [introDuration, send]);
+  useLayoutEffect(() => { send('book-scale', scale); }, [scale, send]);
+
+  useLayoutEffect(() => { visibilityPublisher.current?.(); }, [playbackEnabled]);
+  useEffect(() => {
+    if (book.ready || book.error) onReadyRef.current?.(book.ready, book.error);
+  }, [book.ready, book.error]);
 
   const retry = () => {
     setBook({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
@@ -133,7 +215,7 @@ export default function LionBookExperience({ introDuration = 12 }) {
     onKeyDown={(event) => {
       if (event.metaKey || event.ctrlKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
       const action = { ArrowRight: 'next', ArrowLeft: 'previous', Home: 'goTo', End: 'goTo' }[event.key];
-      if (!action || !book.ready) return;
+      if (!action || !book.ready || !playbackEnabled) return;
       event.preventDefault();
       send(action, event.key === 'End' ? lionBookPages.length - 1 : 0);
     }}>
@@ -144,15 +226,8 @@ export default function LionBookExperience({ introDuration = 12 }) {
       {book.error && <div className="lion-book-error" role="alert"><p>{book.error}</p><button type="button" onClick={retry}>重新展开</button></div>}
     </div>
     <p className="lion-book-instructions" id="lion-book-instructions"><span aria-hidden="true">↔</span> 拖动左右书页，翻阅醒狮往事 <span className="lion-book-key-hint">也可点选年代 · 左右方向键翻页</span></p>
-    <nav className="lion-book-timeline" aria-label="醒狮历史时间线" aria-describedby="lion-book-instructions">
-      {lionBookPages.map((page, index) => <button type="button" key={page.id} data-book-page={page.id} className={index === 0 || index === 6 ? 'lion-book-endpoint' : ''}
-        aria-label={`翻阅${page.stage}：${page.title}`} aria-current={book.index === index ? 'step' : undefined} disabled={!book.ready}
-        onClick={() => send('goTo', index)}>
-        <span className="lion-book-node" aria-hidden="true">{index === 0 ? '序' : index === 6 ? '终' : String(index).padStart(2, '0')}</span>
-        <span>{page.stage}</span><small>{index > 0 && index < 6 ? page.era : index === 0 ? '开启史册' : '南风有狮'}</small>
-      </button>)}
-    </nav>
-    <div className="lion-book-reading archive-reading-panel" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
+    <BookTimeline book={book} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
+    <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
       <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
         {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}

@@ -18,6 +18,7 @@ async function open(page, { intro = true, reduced = false } = {}) {
   await view(page, page.locator('#homeLionBook'));
   const book = page.locator('.lion-book-experience');
   await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   await view(page, page.locator('.lion-book-stage'));
   if (intro) await expect(book).toHaveAttribute('data-book-intro', 'done');
   return { book, frame: page.frameLocator('#homeLionBook iframe') };
@@ -85,7 +86,9 @@ test('真实首次快翻开始后离页返回和同会话刷新均不重播', as
   await expect(book).toHaveAttribute('data-book-intro', 'playing');
   await expect(frame.locator('#sbWrap')).toHaveClass(/intro/);
   await page.locator('.site-header [data-route="state"]').click();
-  await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
+  await expect(page.locator('#homeLionBook iframe')).toHaveCount(1);
+  await expect(page.locator('#homeLionBook')).toBeHidden();
+  await expect.poll(() => frame.locator('body').evaluate(() => raf)).toBeNull();
   await page.locator('.site-brand-capsule').click();
   await view(page, page.locator('#homeLionBook'));
   book = page.locator('.lion-book-experience');
@@ -94,7 +97,7 @@ test('真实首次快翻开始后离页返回和同会话刷新均不重播', as
   await view(page, page.locator('.lion-book-stage'));
   await expect(book).toHaveAttribute('data-book-intro', 'done');
   await page.waitForTimeout(650);
-  expect(await frame.locator('body').evaluate(() => ({ sequence: riffle, running: introOn }))).toEqual({ sequence: null, running: false });
+  expect(await frame.locator('body').evaluate(() => ({ completed: riffleAt, running: introOn }))).toEqual({ completed: 7, running: false });
   await idle(book, frame, 0);
 
   await page.reload();
@@ -123,14 +126,15 @@ test('会话存储不可用时首次快翻仍只在当前页面会话播放一�
   const { book, frame } = await open(page, { intro: false });
   await expect(book).toHaveAttribute('data-book-intro', 'playing');
   await page.locator('.site-header [data-route="state"]').click();
-  await expect(page.locator('#homeLionBook iframe')).toHaveCount(0);
+  await expect(page.locator('#homeLionBook iframe')).toHaveCount(1);
+  await expect(page.locator('#homeLionBook')).toBeHidden();
   await page.locator('.site-brand-capsule').click();
   await view(page, page.locator('#homeLionBook'));
   await expect(book).toHaveAttribute('data-book-ready', 'true');
   await view(page, page.locator('.lion-book-stage'));
   await expect(book).toHaveAttribute('data-book-intro', 'done');
   await page.waitForTimeout(650);
-  expect(await frame.locator('body').evaluate(() => riffle)).toBeNull();
+  expect(await frame.locator('body').evaluate(() => ({ completed: riffleAt, running: introOn }))).toEqual({ completed: 7, running: false });
   await idle(book, frame, 0);
 });
 
@@ -191,7 +195,7 @@ test('减少动态跳过不消费首次机会，手动接管后离页不会补�
   await expect(book).toHaveAttribute('data-book-intro', 'done');
   await page.waitForTimeout(650);
   expect(await frame.locator('body').evaluate(() => riffle)).toBeNull();
-  await idle(book, frame, 0);
+  await idle(book, frame, 1);
 });
 
 test('快翻中选择序卷立即归位，手动接管后没有旧动画再次翻页', async ({ page }) => {

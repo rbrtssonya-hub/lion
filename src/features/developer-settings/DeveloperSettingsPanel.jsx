@@ -1,5 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { surfaceDefinitions } from './surfaceSettings.js';
 import './developer-settings.css';
+import './surface-settings.css';
 
 function normalizeValue(value, min, max, step) {
   const clamped = Math.min(max, Math.max(min, value));
@@ -86,12 +88,31 @@ function SettingsGroup({ title, note, children }) {
   );
 }
 
+function ColorControl({ name, label, value, onChange }) {
+  const id = useId();
+  return <div className="developer-color-control">
+    <label htmlFor={id}>{label}</label>
+    <span><input id={id} type="color" value={value} onChange={event => onChange(name, event.target.value)} /><output htmlFor={id}>{value.toUpperCase()}</output></span>
+  </div>;
+}
+
+function ToggleControl({ name, label, value, onChange }) {
+  const id = useId();
+  return <label className="developer-settings-toggle" htmlFor={id}>
+    <span>{label}</span>
+    <span className="developer-settings-switch">
+      <input id={id} type="checkbox" checked={value} onChange={event => onChange(name, event.target.checked)} />
+      <span aria-hidden="true" />
+    </span>
+  </label>;
+}
+
 const pages = [
-  { id: 'appearance', label: '外观', title: '外观材质', note: '分别调整顶栏与设置侧栏的透明和模糊。', icon: 'M4 5h12v10H4zM4 9h12M8 9v6' },
+  { id: 'appearance', label: '外观', title: '透明底板与材质', note: '逐一调整各区域的宽高、透明度、模糊、圆角和颜色；文字保持清晰。', icon: 'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id: 'navigation', label: '导航', title: '导航文字与尺寸', note: '首页导航的文字层级、图标和顶栏留白。', icon: 'M4 6h12M4 10h8M4 14h12' },
-  { id: 'animation', label: '动画', title: '导航与品牌过渡', note: '进入章节时，图标与文字一起收拢，品牌向左归位；返回首页时恢复展开。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
+  { id: 'animation', label: '动画', title: '导航过渡与书册', note: '调整导航移动、书册尺寸、首次翻阅和水墨动效。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
   { id: 'carousel', label: '轮播', title: '首页照片轮播', note: '调整醒狮文化图鉴的播放节奏与照片动效。', icon: 'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
-  { id: 'layout', label: '布局', title: '面板与页面布局', note: '选择覆盖或推开页面，并调整面板宽度。', icon: 'M3 4h14v12H3zM12 4v12' },
+  { id: 'layout', label: '布局', title: '布局与页面交互', note: '调整面板布局，并控制页面文字是否接受选中命中。', icon: 'M3 4h14v12H3zM12 4v12' },
 ];
 
 const easingOptions = [
@@ -136,8 +157,8 @@ export default function DeveloperSettingsPanel({
   function navigateTabs(event, index) {
     if (event.nativeEvent.isComposing) return;
     let nextIndex;
-    if (event.key === 'ArrowRight') nextIndex = (index + 1) % pages.length;
-    else if (event.key === 'ArrowLeft') nextIndex = (index + pages.length - 1) % pages.length;
+    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % pages.length;
+    else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index + pages.length - 1) % pages.length;
     else if (event.key === 'Home') nextIndex = 0;
     else if (event.key === 'End') nextIndex = pages.length - 1;
     else return;
@@ -190,7 +211,7 @@ export default function DeveloperSettingsPanel({
         <p className="developer-settings-intro">按用途分组，调整后立即预览。</p>
       </div>
 
-      <div className="developer-settings-tabs" role="tablist" aria-label="设置分类">
+      <div className="developer-settings-tabs" role="tablist" aria-label="设置分类" aria-orientation="vertical">
         {pages.map((page, index) => (
           <button
             key={page.id}
@@ -227,21 +248,38 @@ export default function DeveloperSettingsPanel({
             </div>
 
             {page.id === 'appearance' && <>
-              <SettingsGroup title="顶栏外观" note="透明与模糊">
+              <SettingsGroup title="顶栏外观" note="导航底板">
+                {range('headerWidth', '顶栏宽度', 60, 100, 1, '%')}
+                {range('headerHeight', '顶栏高度', 64, 180)}
                 {range('headerTransparency', '顶栏透明度', 0, 100, 1, '%')}
                 {range('headerBlur', '顶栏模糊强度', 0, 30)}
+                {range('headerRadius', '顶栏圆角', 0, 100)}
+                <ColorControl name="headerColor" label="顶栏底色" value={settings.headerColor} onChange={onChange} />
                 <p className="developer-settings-note">透明度越高，越能透出页面；模糊让背景更柔和。</p>
               </SettingsGroup>
 
-              <SettingsGroup title="侧栏外观" note="透明与模糊">
+              <SettingsGroup title="侧栏外观" note="设置背板">
+                {range('panelWidth', '设置背板宽度', 280, 760)}
+                {range('sidebarHeight', '侧栏高度', 50, 100, 1, '%')}
                 {range('sidebarTransparency', '侧栏透明度', 0, 100, 1, '%')}
                 {range('sidebarBlur', '侧栏模糊强度', 0, 30)}
+                {range('sidebarRadius', '侧栏圆角', 0, 100)}
+                <ColorControl name="sidebarColor" label="侧栏底色" value={settings.sidebarColor} onChange={onChange} />
                 <p className="developer-settings-note">调整侧栏背景，文字和控件保持清楚。</p>
               </SettingsGroup>
-              <SettingsGroup title="首页阅读底板" note="文字与背景分层">
+              <SettingsGroup title="阅读底板快速调整" note="同步四处">
                 {range('archivePanelTransparency', '首页阅读底板透明度', 0, 100, 1, '%')}
-                <p className="developer-settings-note">仅调整首页下方的文字底板；0为不透明，100为完全透明，文字保持清晰。</p>
+                <p className="developer-settings-note">一起调整四处阅读底板的透明度，下方可继续分别细调。</p>
               </SettingsGroup>
+              {surfaceDefinitions.map(({ prefix, label }) => <SettingsGroup key={prefix} title={label} note="独立材质">
+                {range(`${prefix}Width`, `${label}宽度`, 40, 100, 1, '%')}
+                {range(`${prefix}Height`, `${label}高度`, 0, 900, 10)}
+                {range(`${prefix}Transparency`, `${label}透明度`, 0, 100, 1, '%')}
+                {range(`${prefix}Blur`, `${label}模糊强度`, 0, 40)}
+                {range(`${prefix}Radius`, `${label}圆角`, 0, 100)}
+                <ColorControl name={`${prefix}Color`} label={`${label}底色`} value={settings[`${prefix}Color`]} onChange={onChange} />
+                <p className="developer-settings-note">宽度相对所属区域；高度 0 为自动，内容较多时自动撑高。透明度 100 时移除底色与模糊。</p>
+              </SettingsGroup>)}
             </>}
 
             {page.id === 'navigation' && <>
@@ -279,7 +317,10 @@ export default function DeveloperSettingsPanel({
                 <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，导航与品牌直接切换到目标位置。</p>
               </SettingsGroup>
               <SettingsGroup title="画册首次翻阅" note="自动开卷节奏">
+                {range('bookScale', '书册放大比例', 90, 145, 1, '%')}
+                {range('bookStageHeight', '书册展示区高度', 480, 960, 10)}
                 {range('bookIntroDuration', '画册首次翻阅时长', 3, 30, 1, '秒')}
+                <ToggleControl name="bookInkEnabled" label="书册导航持续水墨动效" value={settings.bookInkEnabled} onChange={onChange} />
                 <p className="developer-settings-note">默认12秒完成七次翻页。进行中调整会平滑改变剩余速度，不影响手动翻页，也不会重播已经结束的首次翻阅。</p>
               </SettingsGroup>
             </>}
@@ -310,6 +351,10 @@ export default function DeveloperSettingsPanel({
             </>}
 
             {page.id === 'layout' && <>
+              <SettingsGroup title="页面命中" note="文字选择">
+                <ToggleControl name="pageHitEnabled" label="网页页面是否能被命中" value={settings.pageHitEnabled} onChange={onChange} />
+                <p className="developer-settings-note">默认关闭正文选中与首页视频命中，减少取词、画中画等浮窗；导航、模型与书册按钮仍可操作。浏览器扩展自身的浮窗由扩展管理。</p>
+              </SettingsGroup>
               <SettingsGroup title="面板布局" note="覆盖或推开">
                 <label className="developer-settings-toggle" htmlFor={pushId}>
                   <span>设置面板推开页面</span>

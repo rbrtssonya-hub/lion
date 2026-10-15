@@ -186,13 +186,12 @@ async function expectCompactDesktopNavigation(page, route) {
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-layout', 'compact');
   const navigation = page.locator('.site-navigation');
-  for (const [chapter, label] of routes.slice(1)) {
+  for (const [chapter, label] of routes) {
     await expect(navigation.locator(`[data-route="${chapter}"]`)).toHaveAccessibleName(label);
   }
   const home = navigation.locator('[data-route="entry"]');
-  await expect(home).toBeHidden();
-  await expect(home).toHaveAttribute('aria-hidden', 'true');
-  await expect(home).toHaveAttribute('tabindex', '-1');
+  await expect(home).toBeVisible();
+  await expect(home).toHaveAccessibleName('首页');
   await expect(page.getByRole('button', { name: '南风有狮，返回首页', exact: true })).toBeVisible();
   for (const copy of await navigation.locator('.site-nav-copy').all()) {
     await expect(copy).toHaveCSS('opacity', '0');
@@ -206,7 +205,7 @@ async function expectCompactDesktopNavigation(page, route) {
     const brand = element.closest('.site-header').querySelector('.site-brand').getBoundingClientRect();
     const nav = element.getBoundingClientRect();
     const buttons = [...element.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden');
-    if (buttons.length !== 4) violations.push('Compact navigation must contain four visible chapter/settings buttons');
+    if (buttons.length !== 5) violations.push('Compact navigation must retain all five home/chapter/settings buttons');
     const firstIcon = buttons[0].querySelector('.site-nav-icon').getBoundingClientRect();
     const sharesBrandRow = nav.top < brand.bottom - 1 && nav.bottom > brand.top + 1;
     const overlapsBrand = sharesBrandRow ? nav.left < brand.right - 1 : nav.top < brand.bottom - 1;
@@ -250,7 +249,7 @@ async function expectCompactDesktopNavigation(page, route) {
 
 test('四页共用顶部五项导航，旧上下导航及搜索菜单已移除', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   const navigation = page.getByRole('navigation', { name: '作品章节导航', exact: true });
   for (const [route, label] of routes) {
     await navigation.locator(`[data-route="${route}"]`).click();
@@ -284,7 +283,7 @@ test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小�
   page.on('response', response => {
     if (response.url().endsWith(assetPaths.navBrushFont)) fontResponses.push(response.status());
   });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await page.evaluate(() => document.fonts.ready);
   const typography = await page.locator('.site-navigation').evaluate(navigation => {
     const read = element => {
@@ -357,7 +356,7 @@ test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小�
 
 test('电脑常见宽度与连续窗口缩放均完整显示五项导航辅助文字', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   for (const width of [1024, 1280, 1366, 1440, 1536, 1920, 2560, 3440, 1024, 1920]) {
     await test.step(`${width}px viewport`, async () => {
       await page.setViewportSize({ width, height: 1080 });
@@ -369,7 +368,7 @@ test('电脑常见宽度与连续窗口缩放均完整显示五项导航辅助�
 
 test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单行文字', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
@@ -395,6 +394,7 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await page.setViewportSize({ width: 1024, height: 1080 });
   await expectCompleteDesktopNavigation(page);
   await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expectCompleteDesktopNavigation(page);
   await page.setViewportSize({ width: 1920, height: 1080 });
   await expectCompleteDesktopNavigation(page);
@@ -405,7 +405,7 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
 
 test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持完整单行', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
@@ -431,12 +431,13 @@ test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持�
   await page.setViewportSize({ width: 900, height: 1080 });
   await expectCompleteDesktopNavigation(page);
   await page.reload();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expectCompleteDesktopNavigation(page);
 });
 
 test('顶部导航随文化内容滚动保持可见，当前首页入口返回顶部', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await page.mouse.move(960, 400);
   await page.mouse.wheel(0, 900);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(100);
@@ -455,10 +456,11 @@ test('进入章节时四项图案变速收拢并平滑调整高度，品牌返�
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(({ duration }) => {
+    if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationDuration: duration, navigationTypographyVersion: 2 }));
   }, { duration });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expectCompleteDesktopNavigation(page);
   for (const button of await page.locator('.site-nav-item').all()) {
     await button.hover();
@@ -552,7 +554,7 @@ test('动画中连续切换章节与首页会收敛到最终位置并清理旧�
   page.on('pageerror', error => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expectCompleteDesktopNavigation(page);
   await page.evaluate(async () => {
     for (const route of ['model', 'entry', 'action', 'state', 'entry', 'action']) {
@@ -578,10 +580,11 @@ test('浏览器返回与原生Hash跳转继续使用真实的水平变速动画'
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(duration => {
+    if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationTypographyVersion: 2, navigationDuration: duration }));
   }, duration);
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expectCompleteDesktopNavigation(page);
   await page.locator('.site-nav-item[data-route="action"]').click();
   await expectCompactDesktopNavigation(page, 'action');
@@ -607,10 +610,11 @@ test('1366px电脑紧凑模式修改字号后返回首页，图案和文字平�
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1366, height: 1080 });
   await page.addInitScript(duration => {
+    if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ navigationTypographyVersion: 2, navigationDuration: duration }));
   }, duration);
-  await page.goto('/#/action');
+  await openPrepared(page, '/#/action');
   await page.evaluate(() => document.fonts.ready);
   await expectCompactDesktopNavigation(page, 'action');
   await page.locator('.site-nav-item[data-action="settings"]').click();
@@ -656,7 +660,7 @@ test('1366px电脑紧凑模式修改字号后返回首页，图案和文字平�
 
 test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置侧栏后仍按页面边缘定位', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/#/action');
+  await openPrepared(page, '/#/action');
   await expectCompactDesktopNavigation(page, 'action');
   await page.locator('.site-nav-item[data-action="settings"]').click();
   await editNavigationParameter(page, '紧凑导航图标间距', 28);
@@ -672,7 +676,7 @@ test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置�
     const nav = navigation.getBoundingClientRect();
     const buttons = [...navigation.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden').map(button => button.getBoundingClientRect());
     return { inset: Math.round(page.right - nav.right), gaps: buttons.slice(1).map((button, index) => Math.round(button.left - buttons[index].right)) };
-  })).toEqual({ inset: 96, gaps: [28, 28, 28] });
+  })).toEqual({ inset: 96, gaps: [28, 28, 28, 28] });
   await panel.getByRole('button', { name: '关闭开发者参数' }).click();
   await expectPageReserve(page);
   await expectCompactDesktopNavigation(page, 'action');
@@ -684,7 +688,7 @@ test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置�
 test('减少动态偏好时章节图标直接就位并保留可访问导航和返回首页', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   await expectCompleteDesktopNavigation(page);
   const state = await page.evaluate(async () => {
     document.querySelector('.site-nav-item[data-route="action"]').click();
@@ -704,7 +708,7 @@ test('减少动态偏好时章节图标直接就位并保留可访问导航和�
 
 test('导航可用键盘逐项切换，设置入口保持当前页面与地址', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   const navigation = page.locator('.site-navigation');
   await navigation.locator('[data-route="entry"]').focus();
   await page.keyboard.press('Tab');
@@ -739,7 +743,7 @@ test('导航可用键盘逐项切换，设置入口保持当前页面与地址',
 
 test('手机顶部五项入口可见且可切换，无旧菜单或横向溢出', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
+  await openPrepared(page, '/');
   const navigation = page.locator('.site-navigation');
   await expect(navigation.locator('.site-nav-item')).toHaveCount(5);
   for (const item of await navigation.locator('.site-nav-item').all()) await expect(item).toBeInViewport();
@@ -752,3 +756,8 @@ test('手机顶部五项入口可见且可切换，无旧菜单或横向溢出',
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
 });
+
+async function openPrepared(page, url) {
+  await page.goto(url);
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
+}

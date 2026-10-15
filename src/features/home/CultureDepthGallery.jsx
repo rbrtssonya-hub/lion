@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 
-export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext }) {
+export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext, preload = false, onReady }) {
   const hostRef = useRef(null);
   const canvasRef = useRef(null);
   const engineRef = useRef(null);
@@ -9,6 +9,8 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
   const activeRef = useRef(false);
   const interactionRef = useRef({ settings, onPhotoHover, onNext });
   const fallbackPointerRef = useRef(null);
+  const onReadyRef = useRef(onReady);
+  onReadyRef.current = onReady;
   const [isInView, setInView] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [status, setStatus] = useState('static');
@@ -30,12 +32,22 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
   }, [onVisibilityChange]);
 
   useEffect(() => {
-    if (!hasEntered || reducedMotion) {
+    if ((!hasEntered && !preload) || reducedMotion) {
       setStatus('static');
+      if (reducedMotion) onReadyRef.current?.(true);
       return undefined;
     }
     let disposed = false;
     let engine;
+    const preparationTimeout = setTimeout(() => {
+      if (disposed) return;
+      setStatus('fallback');
+      onReadyRef.current?.(false);
+      interactionRef.current.onPhotoHover(false);
+      disposed = true;
+      engine?.dispose();
+      engineRef.current = null;
+    }, 25_000);
     setStatus('loading');
     import('../../services/cultureDepthGallery.js').then(({ createCultureDepthGallery }) => {
       if (disposed) return;
@@ -47,25 +59,28 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
         onNext: () => { if (!disposed) interactionRef.current.onNext(); },
         onReady: () => {
           if (disposed) return;
+          clearTimeout(preparationTimeout);
           // Retire the fallback pause. After the canvas is revealed, hand its
           // last real pointer input over and verify the new photo's hit area.
           interactionRef.current.onPhotoHover(false);
           setStatus('ready');
+          onReadyRef.current?.(true);
         },
-        onError: () => { if (!disposed) { setStatus('fallback'); interactionRef.current.onPhotoHover(false); } },
+        onError: () => { if (!disposed) { clearTimeout(preparationTimeout); setStatus('fallback'); interactionRef.current.onPhotoHover(false); onReadyRef.current?.(false); } },
       });
       engineRef.current = engine;
       engine.select(selectionRef.current.currentIndex, selectionRef.current.position);
       engine.setActive(activeRef.current);
     }).catch(() => {
-      if (!disposed) setStatus('fallback');
+      if (!disposed) { clearTimeout(preparationTimeout); setStatus('fallback'); onReadyRef.current?.(false); }
     });
     return () => {
       disposed = true;
+      clearTimeout(preparationTimeout);
       engineRef.current = null;
       engine?.dispose();
     };
-  }, [hasEntered, reducedMotion, stories]);
+  }, [hasEntered || preload, reducedMotion, stories]);
 
   useEffect(() => {
     engineRef.current?.setSettings(engineSettings(settings));
