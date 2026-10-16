@@ -83,7 +83,7 @@ async function traceMove(page, id) {
     function sample(now) {
       started ??= now;
       const marker = nav.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-      const path = nav.querySelector('.lion-book-wave-line');
+      const path = nav.querySelector('.lion-book-track-line');
       const matrix = path.getScreenCTM();
       const center = new DOMPoint((marker.left + marker.right) / 2, (marker.top + marker.bottom) / 2).matrixTransform(matrix.inverse());
       let low = 0, high = path.getTotalLength();
@@ -92,11 +92,16 @@ async function traceMove(page, id) {
         if (path.getPointAtLength(middle).x < center.x) low = middle; else high = middle;
       }
       const onCurve = path.getPointAtLength((low + high) / 2);
-      const trail = nav.querySelector('.lion-book-ink-trail');
-      const css = trail && getComputedStyle(trail);
+      const canvas = nav.querySelector('.lion-book-particles');
+      const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+      let count = 0, red = 0, min = 1000, max = 0;
+      for (let i = 3; i < pixels.length; i += 4) if (pixels[i]) {
+        count++; if (pixels[i - 3] > 130 && pixels[i - 2] < 100) red++;
+        const x = ((i - 3) / 4 % canvas.width) / canvas.width * 1000;
+        min = Math.min(min, x); max = Math.max(max, x);
+      }
       frames.push({ x: center.x, y: center.y, arc: (low + high) / 2, error: Math.abs(onCurve.y - center.y),
-        opacity: css ? Number(css.opacity) : 0, stroke: css?.stroke,
-        dash: css?.strokeDasharray, offset: css?.strokeDashoffset });
+        count, red, min, max });
       if (now - started < 1750) requestAnimationFrame(sample); else resolve(frames);
     }
     const observer = new MutationObserver(() => {
@@ -108,7 +113,7 @@ async function traceMove(page, id) {
   }), id);
 }
 
-test('狮头沿真实波浪曲线行进，红墨只绘到当前位置并在抵达后消散，支持倒向', async ({ page }) => {
+test('狮头水平行进，离散红金粒子只出现在身后并消散，支持倒向', async ({ page }) => {
   await openArchive(page);
   await page.locator('.lion-book-timeline').scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
@@ -117,29 +122,27 @@ test('狮头沿真实波浪曲线行进，红墨只绘到当前位置并在抵�
     const moving = frames.filter(f => Math.abs(f.x - targetX) > 1);
     expect(moving.length).toBeGreaterThan(4);
     expect(Math.max(...frames.map(f => f.error))).toBeLessThan(1);
-    const redFrames = frames.filter(f => f.opacity > .01);
+    const redFrames = frames.filter(f => f.count > 0);
     expect(redFrames.length).toBeGreaterThan(4);
+    expect(redFrames.some(f => f.red > 0)).toBe(true);
     for (const f of redFrames) {
-      const [red, green, blue] = f.stroke.match(/[\d.]+/g).map(Number);
-      expect(red).toBeGreaterThan(130); expect(green).toBeLessThan(90); expect(blue).toBeLessThan(80);
-      const [length] = f.dash.split(/[ ,]+/).map(parseFloat);
-      const start = -parseFloat(f.offset);
-      expect(Math.min(Math.abs(start - f.arc), Math.abs(start + length - f.arc))).toBeLessThan(.1);
+      if (id === 'martial') expect(f.max).toBeLessThanOrEqual(f.x + 4);
+      else expect(f.min).toBeGreaterThanOrEqual(f.x - 4);
     }
     expect(frames.at(-1).x).toBeCloseTo(targetX, 1);
-    expect(frames.at(-1).opacity).toBe(0);
+    expect(frames.at(-1).count).toBe(0);
   }
 });
 
-test('减少动态时狮头直接到节点且没有拖尾，关闭墨迹仍可翻阅', async ({ page }) => {
+test('减少动态时狮头直接到节点且没有拖尾，关闭粒子仍可翻阅', async ({ page }) => {
   await openArchive(page, { reduced: true, saved: { bookInkEnabled: false } });
   const nav = page.locator('.lion-book-timeline');
   await nav.scrollIntoViewIfNeeded();
   await nav.locator('[data-book-page="formation"]').click();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '2');
-  await expect(nav).toHaveAttribute('data-ink-enabled', 'false');
+  await expect(nav).toHaveAttribute('data-particles-enabled', 'false');
   await expect(page.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
-  await expect(page.locator('.lion-book-ink-trail')).not.toBeVisible();
+  await expect(page.locator('.lion-book-particles')).not.toBeVisible();
   const offset = await nav.evaluate(el => {
     const marker = el.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
     const node = el.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
@@ -164,12 +167,12 @@ test('快速反向选择从可见位置接续，离屏暂停且回到视口后�
   const after = await nav.locator('.lion-book-traveling-lion').boundingBox();
   expect(Math.abs(before.x - after.x)).toBeLessThan(140);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-  await expect(nav).toHaveAttribute('data-ink-playing', 'false');
+  await expect(nav).toHaveAttribute('data-particles-playing', 'false');
   const paused = await nav.locator('.lion-book-traveling-lion').getAttribute('style');
   await page.waitForTimeout(250);
   expect(await nav.locator('.lion-book-traveling-lion').getAttribute('style')).toBe(paused);
   await nav.scrollIntoViewIfNeeded();
-  await expect(nav).toHaveAttribute('data-ink-playing', 'true');
+  await expect(nav).toHaveAttribute('data-particles-playing', 'true');
   await expect.poll(() => nav.evaluate(el => {
     const marker = el.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
     const node = el.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
@@ -179,7 +182,7 @@ test('快速反向选择从可见位置接续，离屏暂停且回到视口后�
   await page.locator('.site-header [data-route="state"]').click();
   // Home is intentionally prewarmed across routes: it must stop, not be destroyed.
   await expect(nav).not.toBeVisible();
-  await expect(nav).toHaveAttribute('data-ink-playing', 'false');
+  await expect(nav).toHaveAttribute('data-particles-playing', 'false');
   const away = await nav.locator('.lion-book-traveling-lion').getAttribute('style');
   await page.waitForTimeout(200);
   expect(await nav.locator('.lion-book-traveling-lion').getAttribute('style')).toBe(away);

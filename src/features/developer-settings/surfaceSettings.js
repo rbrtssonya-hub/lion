@@ -1,6 +1,6 @@
 // Surface dimensions describe the paper, while opacity never affects its text.
 export const surfaceDefinitions = Object.freeze([
-  { prefix: 'bookTitle', label: '书册标题底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
+  { prefix: 'bookTitle', label: '书册标题底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14, width: 69 },
   { prefix: 'bookDetails', label: '书册详情底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
   { prefix: 'cultureTitle', label: '文化标题底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
   { prefix: 'cultureBody', label: '文化正文底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },

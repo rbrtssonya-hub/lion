@@ -1,0 +1,673 @@
+{
+  "sourceArchive": "source/design/action/2026-10-17-game-guide/adam-lion-v2-original.zip",
+  "sourceArchiveSha256": "eb10f5e1e2c5b97ab038c5dbadce24809349af966bbe8ef6d32de36264efc44c",
+  "runtimeUrl": "https://raw.githubusercontent.com/esterTion/spine-runtimes/8d79291441394b3a279d5d36f054d563dbc15e16/spine-ts/build/spine-canvas.js",
+  "runtimeSha256": "c626474dc3af7840cde499cd07f38f6d104606954293994c7fcd85401000cd70",
+  "runtimeLicenseUrl": "https://raw.githubusercontent.com/esterTion/spine-runtimes/8d79291441394b3a279d5d36f054d563dbc15e16/spine-ts/LICENSE",
+  "runtimeLicenseSha256": "d2af98ecac7e4bb6e4c4491fc734db7762b94626b18bcc87c7eac6febd86e1b5",
+  "runtimeCacheOnly": true,
+  "sourceFiles": [
+    {
+      "name": "adam.skel",
+      "bytes": 47944,
+      "sha256": "827f077a6c9d63df85c4b4121d3cb29ed40fccfa63627e05ceca6cc4569411dd"
+    },
+    {
+      "name": "adam.atlas",
+      "bytes": 3962,
+      "sha256": "46d7629df10a0fc9cd6a90e6e6349c1bfbc001c4c23e9b2b464538d78c1a6130"
+    },
+    {
+      "name": "adam.png",
+      "bytes": 390748,
+      "sha256": "3cded822ef80168bb0c7fde6cec15895351585fe007d7a8241d37027dcce4278"
+    },
+    {
+      "name": "adam.spine",
+      "bytes": 34211,
+      "sha256": "7130bfc262e0b449aaa14bdf65a29a720da36b3a85a75707ccceaf47e120f22d"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "sourceVersion": "3.6.53",
+  "bones": 58,
+  "visibleSlots": [
+    "cape",
+    "thigh_left",
+    "foot_left",
+    "thigh_right",
+    "foot_right",
+    "skirt",
+    "hip_lower",
+    "arm_left",
+    "neck_deco",
+    "body",
+    "shoulder_left",
+    "face",
+    "hip_mid",
+    "neck",
+    "eye",
+    "arm_right",
+    "shoulder_right",
+    "hand_right",
+    "hand_left"
+  ],
+  "slots": 54,
+  "slotNames": [
+    "shadow",
+    "sword_right",
+    "sowrd_left",
+    "cape",
+    "thigh_left",
+    "foot_left",
+    "thigh_right",
+    "foot_right",
+    "skirt",
+    "hip_lower",
+    "arm_left",
+    "neck_deco",
+    "body",
+    "shoulder_left",
+    "face",
+    "hip_mid",
+    "neck",
+    "eye",
+    "arm_right",
+    "shoulder_right",
+    "hand_right",
+    "hand_left",
+    "sword",
+    "shield",
+    "ads_01",
+    "ads_02",
+    "ads_03",
+    "point",
+    "ads_18",
+    "sword2",
+    "sowrd_left2",
+    "sowrd_left3",
+    "sowrd_left9",
+    "sowrd_left10",
+    "sowrd_left4",
+    "sowrd_left5",
+    "sowrd_left6",
+    "sowrd_left7",
+    "sowrd_left8",
+    "sword3",
+    "floor_01_01",
+    "floor_01_1",
+    "floor_01_2",
+    "floor_01_3",
+    "floor_01_4",
+    "floor_01_5",
+    "floor_01_6",
+    "floor_01_7",
+    "floor_01_8",
+    "floor_01_9",
+    "sword4",
+    "ad_5",
+    "ad_6",
+    "ads_15"
+  ],
+  "hiddenSlots": [
+    "shadow",
+    "sword_right",
+    "sowrd_left",
+    "sword",
+    "shield",
+    "ads_01",
+    "ads_02",
+    "ads_03",
+    "point",
+    "ads_18",
+    "sword2",
+    "sowrd_left2",
+    "sowrd_left3",
+    "sowrd_left9",
+    "sowrd_left10",
+    "sowrd_left4",
+    "sowrd_left5",
+    "sowrd_left6",
+    "sowrd_left7",
+    "sowrd_left8",
+    "sword3",
+    "floor_01_01",
+    "floor_01_1",
+    "floor_01_2",
+    "floor_01_3",
+    "floor_01_4",
+    "floor_01_5",
+    "floor_01_6",
+    "floor_01_7",
+    "floor_01_8",
+    "floor_01_9",
+    "sword4",
+    "ad_5",
+    "ad_6",
+    "ads_15"
+  ],
+  "animations": [
+    {
+      "name": "atk01",
+      "duration": 1.1666666269302368
+    },
+    {
+      "name": "backJump",
+      "duration": 0.46666666865348816
+    },
+    {
+      "name": "hit",
+      "duration": 0.2666666805744171
+    },
+    {
+      "name": "idle",
+      "duration": 0.8333333134651184
+    },
+    {
+      "name": "knock1",
+      "duration": 0
+    },
+    {
+      "name": "knock2",
+      "duration": 0
+    },
+    {
+      "name": "knock3",
+      "duration": 0
+    },
+    {
+      "name": "knock4",
+      "duration": 0
+    },
+    {
+      "name": "knock5",
+      "duration": 0
+    },
+    {
+      "name": "knock6",
+      "duration": 0.6666666865348816
+    },
+    {
+      "name": "mov",
+      "duration": 0.5
+    },
+    {
+      "name": "movJump",
+      "duration": 0.5
+    },
+    {
+      "name": "skill01",
+      "duration": 2.1666667461395264
+    },
+    {
+      "name": "spSkill01",
+      "duration": 2.6666667461395264
+    },
+    {
+      "name": "stun",
+      "duration": 0.6666666865348816
+    }
+  ],
+  "renderer": "Canvas2D triangleRendering=true",
+  "boundsSamplingFps": 120,
+  "unionBounds": {
+    "minX": -260.18820834755604,
+    "minY": -25.464299495528124,
+    "maxX": 222.91348829270032,
+    "maxY": 398.2423184612428
+  },
+  "transform": {
+    "scale": 0.471950319333656,
+    "centerX": -18.63736002742786,
+    "centerY": 186.38900948285735,
+    "padding": 14,
+    "cellWidth": 256,
+    "cellHeight": 256
+  },
+  "clips": [
+    {
+      "animation": "idle",
+      "file": "adam-idle.png",
+      "frames": 20,
+      "columns": 8,
+      "rows": 3,
+      "seconds": 0.8333333333333334,
+      "sourceSeconds": 0.8333333134651184,
+      "fps": 24,
+      "cellWidth": 256,
+      "cellHeight": 256,
+      "width": 2048,
+      "height": 768,
+      "frameInfo": [
+        {
+          "frame": 0,
+          "time": 0,
+          "opaquePixels": 20347,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 45,
+            "minY": 51,
+            "maxX": 217,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 1,
+          "time": 0.041666666666666664,
+          "opaquePixels": 20306,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 45,
+            "minY": 51,
+            "maxX": 217,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 2,
+          "time": 0.08333333333333333,
+          "opaquePixels": 20299,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 44,
+            "minY": 52,
+            "maxX": 217,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 3,
+          "time": 0.125,
+          "opaquePixels": 20279,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 44,
+            "minY": 52,
+            "maxX": 217,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 4,
+          "time": 0.16666666666666666,
+          "opaquePixels": 20276,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 43,
+            "minY": 53,
+            "maxX": 217,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 5,
+          "time": 0.20833333333333334,
+          "opaquePixels": 20284,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 42,
+            "minY": 53,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "opaquePixels": 20295,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 42,
+            "minY": 54,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 7,
+          "time": 0.2916666666666667,
+          "opaquePixels": 20336,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 41,
+            "minY": 55,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 8,
+          "time": 0.3333333333333333,
+          "opaquePixels": 20309,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 41,
+            "minY": 55,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 9,
+          "time": 0.375,
+          "opaquePixels": 20334,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 40,
+            "minY": 56,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 10,
+          "time": 0.4166666666666667,
+          "opaquePixels": 20332,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 40,
+            "minY": 56,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 11,
+          "time": 0.4583333333333333,
+          "opaquePixels": 20362,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 40,
+            "minY": 56,
+            "maxX": 219,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 12,
+          "time": 0.5,
+          "opaquePixels": 20404,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 40,
+            "minY": 55,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 13,
+          "time": 0.5416666666666666,
+          "opaquePixels": 20407,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 41,
+            "minY": 55,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 14,
+          "time": 0.5833333333333334,
+          "opaquePixels": 20406,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 41,
+            "minY": 54,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 15,
+          "time": 0.625,
+          "opaquePixels": 20423,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 42,
+            "minY": 54,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 16,
+          "time": 0.6666666666666666,
+          "opaquePixels": 20406,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 43,
+            "minY": 53,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 17,
+          "time": 0.7083333333333334,
+          "opaquePixels": 20393,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 43,
+            "minY": 52,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 18,
+          "time": 0.75,
+          "opaquePixels": 20405,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 44,
+            "minY": 52,
+            "maxX": 218,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 19,
+          "time": 0.7916666666666666,
+          "opaquePixels": 20369,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 44,
+            "minY": 51,
+            "maxX": 217,
+            "maxY": 217
+          }
+        }
+      ]
+    },
+    {
+      "animation": "mov",
+      "file": "adam-move.png",
+      "frames": 12,
+      "columns": 8,
+      "rows": 2,
+      "seconds": 0.5,
+      "sourceSeconds": 0.5,
+      "fps": 24,
+      "cellWidth": 256,
+      "cellHeight": 256,
+      "width": 2048,
+      "height": 512,
+      "frameInfo": [
+        {
+          "frame": 0,
+          "time": 0,
+          "opaquePixels": 19864,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 33,
+            "minY": 35,
+            "maxX": 237,
+            "maxY": 201
+          }
+        },
+        {
+          "frame": 1,
+          "time": 0.041666666666666664,
+          "opaquePixels": 19333,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 26,
+            "minY": 45,
+            "maxX": 228,
+            "maxY": 210
+          }
+        },
+        {
+          "frame": 2,
+          "time": 0.08333333333333333,
+          "opaquePixels": 18660,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 21,
+            "minY": 59,
+            "maxX": 210,
+            "maxY": 223
+          }
+        },
+        {
+          "frame": 3,
+          "time": 0.125,
+          "opaquePixels": 18162,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 27,
+            "minY": 58,
+            "maxX": 204,
+            "maxY": 225
+          }
+        },
+        {
+          "frame": 4,
+          "time": 0.16666666666666666,
+          "opaquePixels": 17999,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 36,
+            "minY": 50,
+            "maxX": 203,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 5,
+          "time": 0.20833333333333334,
+          "opaquePixels": 17805,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 39,
+            "minY": 44,
+            "maxX": 200,
+            "maxY": 207
+          }
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "opaquePixels": 17332,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 33,
+            "minY": 37,
+            "maxX": 203,
+            "maxY": 199
+          }
+        },
+        {
+          "frame": 7,
+          "time": 0.2916666666666667,
+          "opaquePixels": 17332,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 24,
+            "minY": 40,
+            "maxX": 205,
+            "maxY": 203
+          }
+        },
+        {
+          "frame": 8,
+          "time": 0.3333333333333333,
+          "opaquePixels": 17460,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 24,
+            "minY": 54,
+            "maxX": 204,
+            "maxY": 217
+          }
+        },
+        {
+          "frame": 9,
+          "time": 0.375,
+          "opaquePixels": 18142,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 30,
+            "minY": 60,
+            "maxX": 204,
+            "maxY": 225
+          }
+        },
+        {
+          "frame": 10,
+          "time": 0.4166666666666667,
+          "opaquePixels": 18906,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 38,
+            "minY": 48,
+            "maxX": 209,
+            "maxY": 214
+          }
+        },
+        {
+          "frame": 11,
+          "time": 0.4583333333333333,
+          "opaquePixels": 19775,
+          "edgePixels": 0,
+          "alphaBounds": {
+            "minX": 37,
+            "minY": 42,
+            "maxX": 224,
+            "maxY": 206
+          }
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "source/public/assets/action-guide/adam-idle.png",
+      "bytes": 1342738,
+      "sha256": "1055c03b17cfa76e4730b1bd5d5e6bde4acf18fd73ac7fedaf8f307eb820ff76"
+    },
+    {
+      "path": "source/public/assets/action-guide/adam-move.png",
+      "bytes": 744782,
+      "sha256": "36c58dddc1a815d58d884a14a1fed058ffb87fea9a6b7ea7fd86c6d49b33caf8"
+    },
+    {
+      "path": "source/public/assets/action-guide/adam-poster.png",
+      "bytes": 68780,
+      "sha256": "5967dbc37423020cc00af4e804df6d3894624819c17d5904548e21faa88d3d2d"
+    },
+    {
+      "path": "source/reviews/action/2026-10-17-game-guide/adam-contact-sheet.png",
+      "bytes": 3101209,
+      "sha256": "d54b5fbc7460ac15650882962f3b229ed0c93ec31169d80e97c45b5a2ba9f46d"
+    },
+    {
+      "path": "source/design/action/2026-10-17-game-guide/adam-lion-v2-original.zip",
+      "bytes": 758846,
+      "sha256": "eb10f5e1e2c5b97ab038c5dbadce24809349af966bbe8ef6d32de36264efc44c"
+    }
+  ],
+  "browserErrors": []
+}

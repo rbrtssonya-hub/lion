@@ -330,7 +330,7 @@ export default function DeveloperSettingsPanel({
                 {range('bookScale', '书册放大比例', 90, 145, 1, '%')}
                 {range('bookStageHeight', '书册展示区高度', 480, 960, 10)}
                 {range('bookIntroDuration', '画册首次翻阅时长', 3, 30, 1, '秒')}
-                <ToggleControl name="bookInkEnabled" label="书册导航红墨拖尾" value={settings.bookInkEnabled} onChange={onChange} />
+                <ToggleControl name="bookInkEnabled" label="书册导航粒子拖尾" value={settings.bookInkEnabled} onChange={onChange} />
                 <p className="developer-settings-note">默认12秒完成七次翻页。进行中调整会平滑改变剩余速度，不影响手动翻页，也不会重播已经结束的首次翻阅。</p>
               </SettingsGroup>
             </>}

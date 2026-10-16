@@ -45,6 +45,20 @@
 .action-sticky-index .action-timeline-line { top: 23px; }
 .action-sticky-index .action-timeline button { gap: 8px; padding-bottom: 6px; }
 .action-sticky-index .action-timeline button span { font-size: 22px; }
+.action-sticky-index .action-timeline[data-skin='game'] { width: min(90%, 1120px); height: 174px; padding: 104px 0 0; box-sizing: border-box; }
+.action-timeline[data-skin='game'] .action-timeline-line { top: 110px; height: 2px; background: linear-gradient(90deg, #cda269, #b18b59, #cda269); }
+.action-game-caption { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); color: #9b7957; font: 11px/1.5 var(--sans); letter-spacing: .14em; white-space: nowrap; }
+.action-timeline[data-skin='game'] button { gap: 10px; padding: 0 4px 4px; }
+.action-timeline[data-skin='game'] button i { position: relative; box-sizing: border-box; width: 52px; height: 14px; border: 1px solid #bd945e; border-radius: 4px 4px 7px 7px; background: linear-gradient(#f7e7c8 0 4px, #d7bb8e 4px); box-shadow: 0 3px 0 #b9925f33; }
+.action-timeline[data-skin='game'] button i::before { content: attr(data-step); position: absolute; left: 50%; top: -22px; transform: translateX(-50%); color: #9c805f; font: 11px/18px Georgia, serif; }
+.action-timeline[data-skin='game'] button.is-current i::before { opacity: 0; }
+.action-timeline[data-skin='game'] button.is-current i { border-color: #b3271d; background: linear-gradient(#d9835a 0 4px, #b94a34 4px); box-shadow: 0 3px 0 #9d31242b; }
+.action-timeline[data-skin='game'] button:hover i { border-color: #ad3927; }
+.action-guide-character { position: absolute; top: -25px; left: 12.5%; z-index: 2; width: 144px; height: 144px; transform: translateX(-50%); pointer-events: none; }
+.action-guide-character img, .action-guide-character canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.action-guide-character canvas { visibility: hidden; }
+.action-guide-character[data-ready='true'] canvas { visibility: visible; }
+.action-guide-character[data-ready='true'] img { visibility: hidden; }
 .action-guide-heading { padding: 42px 0 58px; text-align: center; }
 .action-guide-heading > div { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .action-guide-heading h2 { margin: 0; color: #231c16; font: 400 clamp(54px, 5cqw, 96px)/1.2 var(--action-serif); letter-spacing: .05em; }

@@ -3,6 +3,7 @@ import { surfaceDefaults, surfaceRanges } from './surfaceSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
+const bookTitleLayoutVersion = 1;
 export const defaultDeveloperSettings = Object.freeze({
   headerTransparency: 20,
   headerBlur: 12,
@@ -90,6 +91,10 @@ function resolveSettings(settings) {
     resolved.navFontSize = defaultDeveloperSettings.navFontSize;
   }
   resolved.navigationTypographyVersion = navigationTypographyVersion;
+  if (resolved.bookTitleLayoutVersion !== bookTitleLayoutVersion && resolved.bookTitleWidth === 100) {
+    resolved.bookTitleWidth = defaultDeveloperSettings.bookTitleWidth;
+  }
+  resolved.bookTitleLayoutVersion = bookTitleLayoutVersion;
   return resolved;
 }
 
@@ -104,7 +109,7 @@ function readSettings() {
         normalized[`${prefix}Transparency`] = normalized.archivePanelTransparency;
       }
     }
-    return resolveSettings({ ...normalized, navigationTypographyVersion: saved.navigationTypographyVersion });
+    return resolveSettings({ ...normalized, navigationTypographyVersion: saved.navigationTypographyVersion, bookTitleLayoutVersion: saved.bookTitleLayoutVersion });
   } catch {
     return resolveSettings();
   }

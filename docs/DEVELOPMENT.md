@@ -48,7 +48,7 @@ npm run preview
 
 React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
 
-书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；留白50–150%不缩放文字，新增`bookTitleSpacing`默认100。历史波浪导航由`BookTimeline`负责，以SVG实测弧长统一狮头/红墨定位，不用CSS横纵坐标插值或提前绘制整段。650ms行进、900ms消散，开关在“动画→书册导航红墨拖尾”；组件退出清理RAF，跨路由预热保留时通过`playbackEnabled`暂停。用户随后取消逐项图片确认，加载页已直接接入独立横排深墨透明字稿，失败时显示原真实文字；来源、提示词和确认历史见[本轮记录](../source/references/2026-10-16-archive-panel-timeline.md)。
+书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
@@ -82,7 +82,9 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 当前四条videoKey均为null，不创建空地址请求。四幅海报是用户参考图经内置imagegen辅助提取/扩展的示意，不是正式视频首帧；页面保留“参考示意/视频待接入”。全身图与现有 `media.poster` 哈希一致，复用作错误回退，用户原件未修改。素材与后续视频接入步骤见 [动作来源说明](../source/references/lion-actions.md)。新增视频必须核对内容、画幅、解码、音轨及来源，再登记assetPaths/manifest、填videoKey并替换对应海报。
 
-`tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。
+2026-10-17动作唯一吸顶目录使用`ActionTimeline skin="game"`，四个按钮仍从原片段数据取值并保留键盘操作、实际吸顶高度定位与自然滚动高亮。`ActionGuideCharacter`用用户原ZIP的idle/mov透明图集显示角色，静态poster用于减少动态或图集加载失败；24fps、480ms连续接续移动、离屏/失焦/后台暂停，退出释放。角色是游戏式导览装饰，不是正式片段或动作示范。源ZIP、metadata及制作记录见`source/design/action/2026-10-17-game-guide/`，本地内部预渲染工具`node scripts/render-action-guide.mjs`，仅解码/哈希复验用`node scripts/render-action-guide.mjs --verify`；Spine运行库不分发到网页，不增加npm依赖。
+
+`tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。新增直线粒子、纸面迁移和角色导览的行为回归见`guide-refresh.spec.js`；并行开发/生产测试必须用不同`--output=tmp/...`目录，防止默认trace产物互相清理。
 
 Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以中央交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型越过中央边界的实际像素、面板与导航点击，以及退出后的观察器和图形资源释放。
 

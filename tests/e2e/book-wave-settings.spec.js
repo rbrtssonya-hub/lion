@@ -49,20 +49,20 @@ test('书册默认放大，尺寸设置即时生效而不重建纸张文档', as
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
 });
 
-test('七个年代沿波浪排列，狮头与书页同步并产生可关闭的水墨拖尾', async ({ page }) => {
+test('七个年代水平排列，狮头与书页同步且粒子拖尾可以关闭', async ({ page }) => {
   await openBook(page);
   const timeline = page.locator('.lion-book-timeline');
   await timeline.scrollIntoViewIfNeeded();
   await expect(timeline.locator('button')).toHaveCount(7);
-  expect(await timeline.locator('.lion-book-wave-line').getAttribute('d')).toContain(' C ');
+  expect(await timeline.locator('.lion-book-track-line').getAttribute('d')).toBe('M 60 64 H 940');
   const levels = await timeline.locator('button').evaluateAll(buttons => [...new Set(buttons.map(button => button.style.top))]);
-  expect(levels.length).toBeGreaterThanOrEqual(3);
-  await expect(timeline).toHaveAttribute('data-ink-playing', 'true');
+  expect(levels.length).toBe(1);
+  await expect(timeline).toHaveAttribute('data-particles-playing', 'true');
   await expect(timeline.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
   await timeline.locator('[data-book-page="spread"]').click();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '4');
   await expect(timeline.locator('[data-book-page="spread"]')).toHaveAttribute('aria-current', 'step');
-  await expect(timeline.locator('.lion-book-ink-trail')).toHaveCount(1);
+  await expect(timeline.locator('.lion-book-particles')).toHaveCount(1);
   await expect.poll(async () => {
     const lion = await timeline.locator('.lion-book-traveling-lion').boundingBox();
     const node = await timeline.locator('[data-book-page="spread"] .lion-book-node').boundingBox();
@@ -70,9 +70,9 @@ test('七个年代沿波浪排列，狮头与书页同步并产生可关闭的�
   }).toBeLessThan(2);
   await page.locator('.site-header [data-action="settings"]').click();
   await page.getByRole('tab', { name: '动画', exact: true }).click();
-  await page.getByRole('checkbox', { name: '书册导航红墨拖尾' }).uncheck();
-  await expect(timeline).toHaveAttribute('data-ink-enabled', 'false');
-  await expect(timeline.locator('.lion-book-ink-trail')).toHaveCSS('display', 'none');
+  await page.getByRole('checkbox', { name: '书册导航粒子拖尾' }).uncheck();
+  await expect(timeline).toHaveAttribute('data-particles-enabled', 'false');
+  await expect(timeline.locator('.lion-book-particles')).toHaveCSS('display', 'none');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const duration = await timeline.locator('.lion-book-traveling-lion').evaluate(element => parseFloat(getComputedStyle(element).transitionDuration));
   expect(duration).toBeLessThanOrEqual(.001);

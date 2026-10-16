@@ -829,7 +829,7 @@ test('旧统一底板透明度迁移，书册尺寸与页面命中可单独保�
   await height.fill('755');
   await height.press('Tab');
   await expect(height).toHaveValue('760');
-  await panel(page).getByRole('checkbox', { name: '书册导航红墨拖尾', exact: true }).uncheck();
+  await panel(page).getByRole('checkbox', { name: '书册导航粒子拖尾', exact: true }).uncheck();
   await selectSettingsTab(page, '布局');
   await panel(page).getByRole('checkbox', { name: '网页页面是否能被命中', exact: true }).check();
   await expect(page.locator('.home-page')).toHaveCSS('user-select', 'auto');

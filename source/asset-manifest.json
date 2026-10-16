@@ -1861,6 +1861,102 @@
       "path": "source/reviews/loading/2026-10-16-brush-title/final-1920.png",
       "bytes": 2876755,
       "sha256": "5b753c9549662d5909f339160b71bc7764a0804d0512c8dbe9aea8ff21658805"
-    }
+    },
+    {
+      "from": "generated:adam-spine-3.6.53-offline-render",
+      "path": "source/public/assets/action-guide/adam-idle.png",
+      "bytes": 1342738,
+      "sha256": "1055c03b17cfa76e4730b1bd5d5e6bde4acf18fd73ac7fedaf8f307eb820ff76"
+    },
+    {
+      "from": "generated:adam-spine-3.6.53-offline-render",
+      "path": "source/public/assets/action-guide/adam-move.png",
+      "bytes": 744782,
+      "sha256": "36c58dddc1a815d58d884a14a1fed058ffb87fea9a6b7ea7fd86c6d49b33caf8"
+    },
+    {
+      "from": "generated:adam-spine-3.6.53-offline-render",
+      "path": "source/public/assets/action-guide/adam-poster.png",
+      "bytes": 68780,
+      "sha256": "5967dbc37423020cc00af4e804df6d3894624819c17d5904548e21faa88d3d2d"
+    },
+    {
+      "from": "generated:chromium-offline-action-guide-review",
+      "path": "source/reviews/action/2026-10-17-game-guide/adam-contact-sheet.png",
+      "bytes": 3101209,
+      "sha256": "d54b5fbc7460ac15650882962f3b229ed0c93ec31169d80e97c45b5a2ba9f46d"
+    },
+    {
+      "from": "user-supplied:adam_醒狮替换包_v2 (2)(1).zip",
+      "path": "source/design/action/2026-10-17-game-guide/adam-lion-v2-original.zip",
+      "bytes": 758846,
+      "sha256": "eb10f5e1e2c5b97ab038c5dbadce24809349af966bbe8ef6d32de36264efc44c"
+    },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/game-action-1024.png",
+    "bytes": 766541,
+    "sha256": "92ca46092ff470631c0e5599aae6551a926f6249e493fd8b9d8a7d2381f992ee"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/game-action-1366.png",
+    "bytes": 1130675,
+    "sha256": "48a9f1657957303c8c16142bb86f5b8ba8c3a700b269a8d6ac7dab2387f1734b"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/game-action-1920.png",
+    "bytes": 2156631,
+    "sha256": "95a713afafcd22bb1d8d921efa370b5e73e26a048f2d2d57ec53333419c476da"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/game-action-2560.png",
+    "bytes": 3840381,
+    "sha256": "14a9c2c4f06a25b8c13c23de89c58f87ebbedf4480d081e93653136b57e05775"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/game-action-push.png",
+    "bytes": 807994,
+    "sha256": "3caa1563259d1e496ab9ad6371a7011d048c92b10b7db149f57b6b2f811d7d61"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/particles-moving-1920.png",
+    "bytes": 1544919,
+    "sha256": "34327604e10edf933dd10576a2c8c91824f840fb433d8ffe702b2678194d0f57"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/straight-1920.png",
+    "bytes": 1497174,
+    "sha256": "aaf179c9e62ec22d3c6e5058ee8e07e84ec585ba85ced377648d3635b1878b7b"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/title-1024.png",
+    "bytes": 477916,
+    "sha256": "c4c2100f136206348a766fda4ea14ac221e516320d91b7ba16fd800fbc88b7b1"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/title-1366.png",
+    "bytes": 612549,
+    "sha256": "a70b020245d2a0ce62d16f32094b4f4323c74621be8ef24ac891467cc0fb8dc2"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/title-1920.png",
+    "bytes": 1653538,
+    "sha256": "a0db18ca2cc08b10a586ea96aae6666ff341588c29b6abd7c1100801c7cfbf7b"
+  },
+  {
+    "from": "2026-10-17 actual production guide and title desktop review",
+    "path": "source/reviews/home/2026-10-17-guide-refresh/title-2560.png",
+    "bytes": 3322550,
+    "sha256": "fcdca01fe86735ea562893433dbaab9c840a5584723b616a080c97edb8485023"
+  }
   ]
 }

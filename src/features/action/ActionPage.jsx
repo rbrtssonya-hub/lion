@@ -99,7 +99,7 @@ export default function ActionPage({ clips = actionClips, assets = media }) {
         </div>
       </section>
       <section className="action-details" id="actionDetails" aria-labelledby="actionGuideTitle">
-        <div ref={detailBar} className="action-sticky-index"><ActionTimeline items={clips} activeId={selected.id} onSelect={goToClip} placement="details" /></div>
+        <div ref={detailBar} className="action-sticky-index"><ActionTimeline items={clips} activeId={selected.id} onSelect={goToClip} placement="details" skin="game" /></div>
         <header className="action-guide-heading">
           <div><Cloud /><h2 id="actionGuideTitle"><em>动作</em>怎么读</h2><img src={assets.navLion} alt="" /><Cloud /></div>
           <p>从狮头、步伐与身体配合看懂表演。</p>

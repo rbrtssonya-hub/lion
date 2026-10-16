@@ -95,7 +95,9 @@
 .home-archive-scene .lion-book-heading .lion-book-preface { font-size: 20px; line-height: 1.9; }
 .home-archive-scene .lion-book-heading .lion-book-preface>span { font-size: 20px; }
 .home-archive-scene .lion-book-heading .lion-book-preface>.lion-book-preface-label { font-size: 14px; }
-@container book-title (max-width: 750px) {
+/* Query em follows the title's actual type size: compact desktops need less
+   room than 74px wide-screen lettering, even at the same paper percentage. */
+@container book-title (max-width: 10em) {
   .home-archive-scene .lion-book-heading .lion-archive-title-line { grid-template-columns: minmax(0, 1fr); gap: calc(12px * var(--book-title-spacing, 1)); }
   .home-archive-scene .lion-book-heading .lion-archive-title-line h2 { grid-column: 1; justify-self: center; white-space: normal; overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
   .home-archive-scene .lion-book-heading .lion-archive-title-line .lion-archive-ornament { grid-column: 1; justify-self: center; margin-left: 0; }
