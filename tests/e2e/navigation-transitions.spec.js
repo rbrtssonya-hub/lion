@@ -30,16 +30,26 @@ async function open(page, settings = {}, route = 'entry') {
 
 async function sampleFlight(page, selector, interrupt = null, remeasure = false) {
   return page.evaluate(async ({ selector, interrupt, duration, remeasure }) => {
+    const primaryLabels = [...document.querySelectorAll('.site-nav-heading strong')];
+    const descriptions = [...document.querySelectorAll('.site-nav-description')];
     const read = () => {
       const box = element => {
         const r = element.getBoundingClientRect();
         return { x: r.x, y: r.y, width: r.width, height: r.height, right: r.right, bottom: r.bottom };
       };
       const state = element => ({ ...box(element), opacity: Number(getComputedStyle(element).opacity),
+        visibility: getComputedStyle(element).visibility,
         transform: getComputedStyle(element).transform,
         running: element.getAnimations().some(animation => animation.playState === 'running'),
         currentTime: element.getAnimations().find(animation => animation.playState === 'running')?.currentTime ?? null,
         willChange: element.style.willChange });
+      const label = element => {
+        const text = element.querySelector('strong');
+        const style = getComputedStyle(text);
+        return { ...state(element), text: text.textContent,
+          font: style.fontFamily, fontSize: style.fontSize, weight: style.fontWeight, letterSpacing: style.letterSpacing,
+          sameNode: primaryLabels.includes(text) };
+      };
       const background = element => {
         const style = getComputedStyle(element);
         return { ...box(element), animations: element.getAnimations().length,
@@ -58,10 +68,14 @@ async function sampleFlight(page, selector, interrupt = null, remeasure = false)
       return { time: performance.now(), route: document.querySelector('#react-app').dataset.route,
         animating: h.dataset.navAnimating, columns: h.style.getPropertyValue('--navigation-columns'),
         pageWidth: document.querySelector('.site-page').getBoundingClientRect().width,
-        brand: state(h.querySelector('.site-brand-capsule')), backgrounds, covered,
+        brand: state(h.querySelector('.site-brand-capsule')),
+        brandName: state(h.querySelector('.site-brand-copy')), backgrounds, covered,
         items: [...h.querySelectorAll('.site-nav-item')].map(element => ({
           key: element.dataset.route || 'settings', button: box(element),
           symbol: state(element.querySelector('.site-nav-icon')), copy: state(element.querySelector('.site-nav-copy')),
+          heading: label(element.querySelector('.site-nav-heading')),
+          helper: { ...state(element.querySelector('.site-nav-description')),
+            sameNode: descriptions.includes(element.querySelector('.site-nav-description')) },
         })) };
     };
     const initial = read();
@@ -111,6 +125,57 @@ function expectNaturalFlight(flight, key = 'model') {
   expect(flight.final.animating).toBe('false');
   expect(final.running).toBe(false);
   expect(final.willChange).toBe('');
+  const brandFade = flight.final.brandName.opacity - flight.initial.brandName.opacity;
+  expect(Math.abs(brandFade)).toBeGreaterThan(.1);
+  expect(flight.frames.some(frame => {
+    const progress = (frame.brandName.opacity - flight.initial.brandName.opacity) / brandFade;
+    return frame.brandName.running && frame.brandName.visibility === 'visible' && progress > .08 && progress < .92;
+  })).toBe(true);
+  expect(flight.final.brandName.running).toBe(false);
+  expect(flight.final.brandName.willChange).toBe('');
+  expect(flight.final.brandName.visibility).toBe(flight.final.brandName.opacity > 0 ? 'visible' : 'hidden');
+  for (const entry of flight.initial.items) {
+    const from = entry.heading;
+    const to = item(flight.final, entry.key).heading;
+    const distance = Math.hypot(to.x - from.x, to.y - from.y);
+    expect(distance).toBeGreaterThan(10);
+    const moving = flight.frames.filter(frame => item(frame, entry.key).heading.running);
+    expect(moving.length).toBeGreaterThan(8);
+    expect(moving.some(frame => item(frame, entry.key).heading.currentTime > duration * .65)).toBe(true);
+    expect(moving.some(frame => {
+      const label = item(frame, entry.key).heading;
+      const travelled = Math.hypot(label.x - from.x, label.y - from.y);
+      return travelled > distance * .08 && travelled < distance * .92 && label.opacity > 0;
+    })).toBe(true);
+    expect(to.text).toBe(from.text);
+    expect(to.font).toBe(from.font);
+    expect(to.font).toContain('Nanfeng Navigation Brush');
+    expect(to.fontSize).toBe(from.fontSize);
+    expect(to.weight).toBe(from.weight);
+    expect(to.letterSpacing).toBe(from.letterSpacing);
+    expect(to.opacity).toBe(1);
+    expect(to.sameNode).toBe(true);
+    expect(to.running).toBe(false);
+    expect(to.willChange).toBe('');
+    expect(flight.frames.every(frame => item(frame, entry.key).heading.sameNode)).toBe(true);
+    const helperFrom = entry.helper;
+    const helperTo = item(flight.final, entry.key).helper;
+    const fade = helperTo.opacity - helperFrom.opacity;
+    expect(Math.abs(fade)).toBeGreaterThan(.1);
+    const movingHelpers = flight.frames.map(frame => item(frame, entry.key).helper).filter(helper => helper.running);
+    expect(movingHelpers.length).toBeGreaterThan(8);
+    expect(movingHelpers.some(helper => helper.currentTime > duration * .65)).toBe(true);
+    expect(movingHelpers.some(helper => {
+      const progress = (helper.opacity - helperFrom.opacity) / fade;
+      return progress > .08 && progress < .92 && helper.visibility === 'visible'
+        && Math.hypot(helper.x - helperFrom.x, helper.y - helperFrom.y) > 2;
+    })).toBe(true);
+    expect(helperTo.sameNode).toBe(true);
+    expect(helperTo.running).toBe(false);
+    expect(helperTo.willChange).toBe('');
+    expect(helperTo.visibility).toBe(helperTo.opacity > 0 ? 'visible' : 'hidden');
+    expect(flight.frames.every(frame => item(frame, entry.key).helper.sameNode)).toBe(true);
+  }
 }
 
 function expectStationaryBackground(flight) {
@@ -126,9 +191,6 @@ function expectStationaryBackground(flight) {
       }
       if (JSON.stringify(layer.style) !== JSON.stringify(original.style)) violations.push({ frame: frameIndex, background: index, style: layer.style, original: original.style });
       if (layer.animations !== 0) violations.push({ frame: frameIndex, background: index, animations: layer.animations });
-    }
-    for (const entry of frame.items) {
-      if (entry.copy.running || entry.copy.transform !== 'none' || entry.copy.willChange !== '') violations.push({ frame: frameIndex, label: entry.key, copy: entry.copy });
     }
   }
   // One assertion still checks every captured frame without producing tens of
@@ -147,7 +209,7 @@ function expectBrandBeforeHome(frame) {
   expect(item(frame, 'settings').button.right).toBeLessThanOrEqual(bounds.right + .75);
 }
 
-test('经典滚动条下三章只有图标和品牌移动，完整红底板逐帧不变', async ({ page }) => {
+test('经典滚动条下三章图标、原毛笔标题与品牌移动，完整红底板逐帧不变', async ({ page }) => {
   await open(page);
   const homepageWidth = await page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
   expect(homepageWidth).toBeLessThan(1920);
@@ -159,7 +221,9 @@ test('经典滚动条下三章只有图标和品牌移动，完整红底板逐�
     expect(leaving.frames.some(frame => frame.brand.running)).toBe(true);
     expect(leaving.final.brand.x - leaving.initial.brand.x).toBeGreaterThan(150);
     expectBrandBeforeHome(leaving.final);
-    expect(item(leaving.final, 'model').copy.opacity).toBe(0);
+    expect(item(leaving.final, 'model').heading.opacity).toBe(1);
+    expect(leaving.final.brandName.opacity).toBe(0);
+    expect(leaving.final.brandName.visibility).toBe('hidden');
     await expect(header(page)).toHaveAttribute('data-nav-layout', 'compact');
     const returning = await sampleFlight(page, '.site-brand-capsule');
     expectNaturalFlight(returning);
@@ -169,7 +233,7 @@ test('经典滚动条下三章只有图标和品牌移动，完整红底板逐�
   }
 });
 
-test('返回首页恢复原文字和布局，字体复测不触发文字压缩飞行或底板动画', async ({ page }) => {
+test('返回首页恢复原文字和布局，字体复测不打断标题飞行或触发底板动画', async ({ page }) => {
   await open(page);
   const originalColumns = await header(page).evaluate(element => element.style.getPropertyValue('--navigation-columns'));
   const original = await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => ({
@@ -195,6 +259,10 @@ test('快速中断从品牌可见位置返回，零首页偏移仍让章节品�
   expect(flight.preInterrupt.brand.running).toBe(true);
   expect(Math.abs(flight.postInterrupt.brand.x - flight.preInterrupt.brand.x)).toBeLessThan(25);
   expect(Math.abs(item(flight.postInterrupt, 'model').symbol.x - item(flight.preInterrupt, 'model').symbol.x)).toBeLessThan(25);
+  expect(Math.abs(item(flight.postInterrupt, 'model').heading.x - item(flight.preInterrupt, 'model').heading.x)).toBeLessThan(25);
+  expect(Math.abs(item(flight.postInterrupt, 'model').helper.x - item(flight.preInterrupt, 'model').helper.x)).toBeLessThan(25);
+  expect(Math.abs(item(flight.postInterrupt, 'model').helper.opacity - item(flight.preInterrupt, 'model').helper.opacity)).toBeLessThan(.08);
+  expect(Math.abs(flight.postInterrupt.brandName.opacity - flight.preInterrupt.brandName.opacity)).toBeLessThan(.12);
   expectStationaryBackground(flight);
   expect(flight.final.route).toBe('entry');
   expect(flight.final.brand.x).toBeCloseTo(flight.initial.brand.x, 1);
@@ -217,16 +285,17 @@ test('快速中断从品牌可见位置返回，零首页偏移仍让章节品�
   await expect(brand(page)).toBeVisible();
 });
 
-test('直接打开章节仍为完整平直红栏，右侧品牌紧邻首页且短标在图标下方', async ({ page }) => {
+test('直接打开章节仍为完整平直红栏，品牌只留狮头且原毛笔标题在图标下方', async ({ page }) => {
   await open(page, {}, 'state');
   const geometry = await header(page).evaluate(element => {
     const rect = node => { const r = node.getBoundingClientRect(); return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height }; };
     const buttons = [...element.querySelectorAll('.site-nav-item')].map(button => {
       const icon = button.querySelector('.site-nav-icon');
-      const label = button.querySelector('.site-nav-short-label');
+      const label = button.querySelector('.site-nav-heading strong');
       return { label: label.textContent, button: rect(button), icon: rect(icon), labelRect: rect(label),
         underlineBottom: rect(icon).bottom - parseFloat(getComputedStyle(icon, '::after').bottom),
-        font: getComputedStyle(label).fontFamily, current: button.getAttribute('aria-current') };
+        font: getComputedStyle(label).fontFamily, weight: getComputedStyle(label).fontWeight,
+        current: button.getAttribute('aria-current') };
     });
     return { header: rect(element), brand: rect(element.querySelector('.site-brand-capsule')), buttons };
   });
@@ -237,8 +306,13 @@ test('直接打开章节仍为完整平直红栏，右侧品牌紧邻首页且�
   for (const button of geometry.buttons) {
     expect(button.labelRect.top).toBeGreaterThanOrEqual(button.underlineBottom + 1);
     expect(button.labelRect.bottom).toBeLessThanOrEqual(geometry.header.bottom);
-    expect(button.font).not.toMatch(/Nanfeng Navigation Brush/);
+    expect(button.font).toContain('Nanfeng Navigation Brush');
+    expect(button.weight).toBe('400');
   }
+  await expect(page.locator('.site-nav-short-label')).toHaveCount(0);
+  await expect(page.locator('.site-brand-copy')).toBeHidden();
+  await expect(page.locator('.site-brand-capsule .entry-lion-emblem')).toBeVisible();
+  for (const helper of await page.locator('.site-nav-description').all()) await expect(helper).toBeHidden();
   expect(geometry.buttons.find(button => button.label === '神态').current).toBe('page');
   const returning = await sampleFlight(page, '.site-brand-capsule');
   expectStationaryBackground(returning);
@@ -295,7 +369,7 @@ test('短顶栏飞行中resize清理旧位移，缩放后品牌仍在首页左�
     await doubleFrame(page);
     const geometry = await header(page).evaluate(element => {
       const bounds = element.getBoundingClientRect();
-      return [...element.querySelectorAll('.site-brand-capsule, .site-nav-icon, .navigation-surface')].map(node => {
+      return [...element.querySelectorAll('.site-brand-capsule, .site-nav-icon, .site-nav-heading, .navigation-surface')].map(node => {
         const r = node.getBoundingClientRect();
         return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, header: { left: bounds.left, right: bounds.right, top: bounds.top, bottom: bounds.bottom },
           running: node.getAnimations().some(animation => animation.playState === 'running'), willChange: node.style.willChange };
@@ -345,7 +419,7 @@ test('减少动态在飞行中清理品牌图案，键盘返回首页保留焦�
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'true');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'false');
-  const active = await page.locator('.site-nav-icon, .site-nav-copy, .site-brand-capsule, .navigation-surface').evaluateAll(elements => elements.map(element => ({
+  const active = await page.locator('.site-nav-icon, .site-nav-heading, .site-nav-description, .site-nav-copy, .site-brand-capsule, .site-brand-copy, .navigation-surface').evaluateAll(elements => elements.map(element => ({
     running: element.getAnimations().some(animation => animation.playState === 'running'), willChange: element.style.willChange,
   })));
   expect(active.every(value => !value.running && value.willChange === '')).toBe(true);

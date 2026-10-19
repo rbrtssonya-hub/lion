@@ -29,10 +29,11 @@ export function useNavigationMotion(headerRef, current, settings) {
     const header = headerRef.current;
     if (!header) return;
     // Read the composited positions before cancellation, including an interrupted flight.
-    pending.current = new Map([...header.querySelectorAll('.site-nav-icon, .site-brand-capsule')]
+    pending.current = new Map([...header.querySelectorAll('.site-nav-icon, .site-nav-heading, .site-nav-description, .site-brand-capsule, .site-brand-copy')]
       .map(element => {
         const rect = element.getBoundingClientRect();
-        return [element, { left: rect.left, top: rect.top, width: rect.width }];
+        return [element, { left: rect.left, top: rect.top, width: rect.width, height: rect.height,
+          opacity: getComputedStyle(element).opacity }];
       }));
     stop();
   }, [headerRef, stop]);
@@ -55,8 +56,8 @@ export function useNavigationMotion(headerRef, current, settings) {
 
     layoutWidth.current = header.closest('.site-page').getBoundingClientRect().width;
     header.dataset.navFrom = oldRoute === 'entry' ? 'expanded' : 'compact';
-    const start = (element, keyframes) => {
-      element.style.willChange = 'transform';
+    const start = (element, keyframes, properties = 'transform') => {
+      element.style.willChange = properties;
       const animation = element.animate(keyframes, {
         duration: settings.navigationDuration,
         easing: navigationEasings[settings.navigationEasing] || navigationEasings.smooth,
@@ -76,8 +77,9 @@ export function useNavigationMotion(headerRef, current, settings) {
         }
       };
     };
-    // The background and labels stay outside the animation. Measure every
-    // destination first, including when a route change interrupts a flight.
+    // Titles and helpers retain their own DOM nodes throughout the transition.
+    // Keep the full red background stationary and measure all destinations
+    // before starting any flight, including an interrupted return.
     const targets = new Map();
     for (const [element] of positions) {
       targets.set(element, element.getBoundingClientRect());
@@ -86,13 +88,27 @@ export function useNavigationMotion(headerRef, current, settings) {
     for (const [element, from] of positions) {
       if (!element.isConnected || typeof element.animate !== 'function' || !from.width) continue;
       const target = targets.get(element);
+      const targetOpacity = getComputedStyle(element).opacity;
+      if (element.matches('.site-brand-copy')) {
+        // The lion's parent already flies. Fade its lettering locally instead
+        // of applying the parent's world-space movement a second time.
+        if (from.opacity !== targetOpacity) start(element, [
+          { opacity: from.opacity, visibility: 'visible' },
+          { opacity: targetOpacity, visibility: 'visible' },
+        ], 'opacity');
+        continue;
+      }
       const dx = (from.left - target.left) / coordinateScale;
-      const dy = (from.top - target.top) / coordinateScale;
-      if (Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
+      // Text keeps the same font but has a tighter compact line box. Align
+      // centers so changing line-height cannot make the glyphs jump on frame 1.
+      const text = element.matches('.site-nav-heading, .site-nav-description');
+      const dy = (from.top - target.top + (text ? (from.height - target.height) / 2 : 0)) / coordinateScale;
+      const helper = element.matches('.site-nav-description');
+      if (Math.abs(dx) < .5 && Math.abs(dy) < .5 && (!helper || from.opacity === targetOpacity)) continue;
       start(element, [
-        { transform: `translate(${dx}px, ${dy}px)` },
-        { transform: 'translate(0px, 0px)' },
-      ]);
+        { transform: `translate(${dx}px, ${dy}px)`, ...(helper ? { opacity: from.opacity, visibility: 'visible' } : {}) },
+        { transform: 'translate(0px, 0px)', ...(helper ? { opacity: targetOpacity, visibility: 'visible' } : {}) },
+      ], helper ? 'transform, opacity' : 'transform');
     }
     header.dataset.navAnimating = String(running.current.size > 0);
   }, [headerRef, current, settings.navigationDuration, settings.navigationEasing,

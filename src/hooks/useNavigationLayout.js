@@ -28,14 +28,32 @@ export function useNavigationLayout(headerRef, current, settings) {
       return size > 0 ? range.getBoundingClientRect().width / coordinateScale / size : 0;
     };
     const measureCopy = (item, font, helperFont) => {
-      // Compact copy is hidden. Measure a detached-layout clone so all routes
-      // use the same expanded layout budget and background height.
+      // Helpers are hidden in compact mode. Restore them on a layout-only clone
+      // so all routes retain the expanded font budget and background height.
       const copy = item.querySelector('.site-nav-copy').cloneNode(true);
       copy.style.cssText = 'display:flex;position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;width:max-content;transform:none;opacity:1';
+      copy.style.fontSize = `${font}px`;
+      const helper = copy.querySelector('.site-nav-description');
+      helper.style.display = 'block';
+      helper.style.position = 'static';
+      helper.style.fontSize = `${helperFont}px`;
       header.append(copy);
-      const width = textUnits(copy.querySelector('.site-nav-heading strong')) * font
-        + textUnits(copy.querySelector('.site-nav-description')) * helperFont;
+      const heading = textUnits(copy.querySelector('.site-nav-heading strong')) * font;
+      const description = textUnits(copy.querySelector('.site-nav-description')) * helperFont;
       copy.remove();
+      return { heading, description };
+    };
+    const measureBrand = expanded => {
+      // Hiding the compact brand name must not change how the homepage fits.
+      const brand = header.querySelector('.site-brand-capsule').cloneNode(true);
+      brand.style.cssText = 'position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;margin-left:0;transform:none';
+      const copy = brand.querySelector('.site-brand-copy');
+      copy.style.position = expanded ? 'static' : 'absolute';
+      copy.style.transform = 'none';
+      copy.style.opacity = '1';
+      header.append(brand);
+      const width = Number.parseFloat(getComputedStyle(brand).width);
+      brand.remove();
       return width;
     };
     const update = () => {
@@ -74,10 +92,11 @@ export function useNavigationLayout(headerRef, current, settings) {
       const headerGap = Math.min(28, width * .011);
       const items = [...header.querySelectorAll('.site-nav-item')];
       // Fit both text sizes together so narrowing the page preserves their hierarchy.
-      const textWidths = items.map(item => measureCopy(item, font, helperFont));
+      const copies = items.map(item => measureCopy(item, font, helperFont));
+      const textWidths = copies.map(({ heading, description }) => heading + description);
       const totalTextWidth = textWidths.reduce((sum, value) => sum + value, 0);
       const fixedWidth = icon + headingGap + copyGap + itemGap + 2 * itemPadding;
-      const brandWidth = parseFloat(getComputedStyle(header.querySelector('.site-brand-capsule')).width);
+      const brandWidth = measureBrand(true);
       let available = width - 2 * sidePadding - brandWidth - homeOffset - headerGap;
       let scale = Math.min(1, (available - fixedWidth * items.length) / totalTextWidth);
       const stacked = font * scale < Math.min(font, 16);
@@ -100,14 +119,21 @@ export function useNavigationLayout(headerRef, current, settings) {
       write(header, '--navigation-side-padding', `${sidePadding}px`);
       write(header, '--navigation-header-gap', `${headerGap}px`);
       write(header, '--navigation-columns', columns);
-      write(shell, '--site-header-height', `${Math.max(stacked ? 116 : 0, requestedHeight)}px`);
+      const headerHeight = Math.max(stacked ? 116 : 0, requestedHeight);
+      write(shell, '--site-header-height', `${headerHeight}px`);
       if (current !== 'entry') {
         const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
         const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
-        const compactAvailable = width - sidePadding - inset - brandWidth - headerGap - 28 - 4 * gap;
-        const compactIcon = Math.max(18, Math.min(icon, compactAvailable / items.length - 24));
+        const compactAvailable = width - sidePadding - inset - measureBrand(false) - headerGap - 28 - 4 * gap;
+        const labelWidth = Math.max(...copies.map(({ heading }) => heading * scale));
+        // Reuse the original brush title under each icon, fitting the two within
+        // the requested header instead of substituting a separate small label.
+        const compactIcon = Math.max(18, Math.min(icon, compactAvailable / items.length - 24,
+          headerHeight - 10 - font * scale - 8));
+        const itemWidth = Math.max(compactIcon, labelWidth) + 24;
         header.dataset.navLayout = 'compact';
         write(header, '--navigation-icon-size', `${compactIcon}px`);
+        write(header, '--navigation-compact-item-width', `${itemWidth}px`);
         write(header, '--navigation-compact-gap', `${gap}px`);
         write(header, '--navigation-compact-inset', `${inset}px`);
       }

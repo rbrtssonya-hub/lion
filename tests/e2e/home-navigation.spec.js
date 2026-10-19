@@ -192,11 +192,16 @@ async function expectCompactDesktopNavigation(page, route) {
   await expect(home).toBeVisible();
   await expect(home).toHaveAccessibleName('首页');
   await expect(page.getByRole('button', { name: '南风有狮，返回首页', exact: true })).toBeVisible();
-  for (const copy of await navigation.locator('.site-nav-copy').all()) {
-    await expect(copy).toHaveCSS('opacity', '0');
-    await expect(copy).toHaveCSS('pointer-events', 'none');
-    await expect(copy).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.site-brand-copy')).toBeHidden();
+  await expect(page.locator('.site-brand-capsule .entry-lion-emblem')).toBeVisible();
+  await expect(navigation.locator('.site-nav-short-label')).toHaveCount(0);
+  for (const heading of await navigation.locator('.site-nav-heading strong').all()) {
+    await expect(heading).toBeVisible();
+    await expect(heading).toHaveCSS('opacity', '1');
+    await expect(heading).toHaveCSS('font-weight', '400');
+    expect(await heading.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Nanfeng Navigation Brush');
   }
+  for (const helper of await navigation.locator('.site-nav-description').all()) await expect(helper).toBeHidden();
   await expect.poll(() => navigation.evaluate((element) => {
     const violations = [];
     const page = element.closest('.site-page').getBoundingClientRect();
@@ -225,10 +230,13 @@ async function expectCompactDesktopNavigation(page, route) {
       if (bounds.left < previousRight - 1 || bounds.right > nav.right + 1) violations.push('Icon buttons overlap or exceed their group');
       if (icon.width <= 0 || icon.left < bounds.left - 1 || icon.right > bounds.right + 1) violations.push('An icon is hidden or clipped');
       if (icon.top < header.top - 1 || icon.bottom > header.bottom + 1) violations.push('An icon exceeds the header vertically');
-      const label = button.querySelector('.site-nav-short-label');
+      const label = button.querySelector('.site-nav-heading strong');
       const labelBounds = label.getBoundingClientRect();
-      if (labelBounds.width <= 0 || labelBounds.top < icon.bottom + 10 || labelBounds.bottom > nav.bottom + 1) {
-        violations.push('A normal-text caption is missing or clipped below the icon highlight');
+      const highlight = getComputedStyle(button.querySelector('.site-nav-icon'), '::after');
+      const highlightBottom = icon.bottom - parseFloat(highlight.bottom);
+      if (labelBounds.width <= 0 || labelBounds.top < highlightBottom + 1 || labelBounds.bottom > nav.bottom + 1
+        || labelBounds.left < bounds.left - 1 || labelBounds.right > bounds.right + 1) {
+        violations.push('An original brush title is missing or clipped below the icon highlight');
       }
       if (Math.abs((icon.top + icon.bottom) / 2 - (firstIcon.top + firstIcon.bottom) / 2) > 1) violations.push('Icons are not on one horizontal line');
       previousRight = bounds.right;
@@ -337,6 +345,12 @@ test('桌面品牌居中对齐，导航加载毛笔字体且辅助文字较小�
     await expect(lion).toBeVisible();
     await expect(lion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
     await expect.poll(() => lion.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    if (route !== 'entry') {
+      await expect(brand.locator('.site-brand-copy')).toBeHidden();
+      await expect(page.locator('.entry-lion-emblem')).toHaveCount(1);
+      continue;
+    }
+    await expect(brand.locator('.site-brand-copy')).toBeVisible();
     const placement = await brand.evaluate(element => {
       const image = element.querySelector('img').getBoundingClientRect();
       const nameElement = element.querySelector('.site-brand-name');
@@ -453,7 +467,7 @@ test('顶部导航随文化内容滚动保持可见，当前首页入口返回�
   await expect(page.locator('.entry-gate')).toBeInViewport();
 });
 
-test('进入章节时仅图案和品牌变速收拢，完整底板保持原位置与面积并可返回展开', async ({ page }) => {
+test('进入章节时图案、原毛笔标题和品牌变速收拢，完整底板保持原位置与面积并可返回展开', async ({ page }) => {
   const duration = 1400;
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -470,15 +484,20 @@ test('进入章节时仅图案和品牌变速收拢，完整底板保持原位�
   }
   await page.mouse.move(0, 120);
   const icons = await page.locator('.site-nav-icon svg').elementHandles();
+  const labels = await page.locator('.site-nav-heading strong').elementHandles();
   const sources = await page.locator('.site-nav-icon svg image').evaluateAll(elements => elements.map(element => element.getAttribute('href')));
   const motion = await page.evaluate(async duration => {
     const icons = [...document.querySelectorAll('.site-nav-icon')];
     const positions = () => icons.map(icon => {
       const box = icon.getBoundingClientRect();
+      const heading = icon.closest('.site-nav-item').querySelector('.site-nav-heading');
+      const text = heading.getBoundingClientRect();
       return {
         x: box.left + box.width / 2, y: box.top + box.height / 2,
         source: icon.querySelector('image').getAttribute('href'), filter: getComputedStyle(icon.querySelector('svg')).filter,
         running: icon.getAnimations().some(animation => animation.playState === 'running'),
+        label: { x: text.left + text.width / 2, y: text.top + text.height / 2,
+          running: heading.getAnimations().some(animation => animation.playState === 'running') },
       };
     });
     const backdrop = () => {
@@ -492,8 +511,7 @@ test('进入章节时仅图案和品牌变速收拢，完整底板保持原位�
         header: { x: headerBounds.x, y: headerBounds.y, width: headerBounds.width, height: headerBounds.height },
         background: style.backgroundImage, opacity: style.opacity, blur: style.backdropFilter, radius: style.borderRadius,
         running: surface.getAnimations().some(animation => animation.playState === 'running'),
-        contentRunning: [...header.querySelectorAll('.site-nav-symbol, .site-nav-copy')]
-          .some(element => element.getAnimations().some(animation => animation.playState === 'running')) };
+      };
     };
     const initial = positions();
     const initialBackdrop = backdrop();
@@ -539,6 +557,18 @@ test('进入章节时仅图案和品牌变速收拢，完整底板保持原位�
     })).toBe(true);
     expectSmoothVerticalMotion(start.y, motion.samples.map(sample => ({ time: sample.time, ...sample.positions[index] })), duration);
   }
+  for (let index = 0; index < motion.initial.length; index += 1) {
+    const start = motion.initial[index].label;
+    const finish = motion.samples.at(-1).positions[index].label;
+    const distance = Math.hypot(finish.x - start.x, finish.y - start.y);
+    expect(distance).toBeGreaterThan(10);
+    expect(intermediates.some(sample => {
+      const label = sample.positions[index].label;
+      const travelled = Math.hypot(label.x - start.x, label.y - start.y);
+      return label.running && travelled > distance * .05 && travelled < distance * .95;
+    })).toBe(true);
+    expect(finish.running).toBe(false);
+  }
   for (let index = 1; index < motion.samples.length; index += 1) {
     expect(motion.samples[index].x).toBeGreaterThanOrEqual(motion.samples[index - 1].x - 2);
   }
@@ -548,6 +578,7 @@ test('进入章节时仅图案和品牌变速收拢，完整底板保持原位�
   expect(await page.locator('.site-nav-icon svg image').evaluateAll(elements => elements.map(element => element.getAttribute('href')))).toEqual(sources);
   for (let index = 0; index < icons.length; index += 1) {
     expect(await icons[index].evaluate((element, index) => element === document.querySelectorAll('.site-nav-icon svg')[index], index)).toBe(true);
+    expect(await labels[index].evaluate((element, index) => element === document.querySelectorAll('.site-nav-heading strong')[index], index)).toBe(true);
   }
   const navBounds = await page.locator('.site-navigation').boundingBox();
   const pageBounds = await page.locator('.site-page').boundingBox();

@@ -471,6 +471,36 @@ test('导航标题与辅助文字可独立调整，滑块和数值输入校验�
   await expectNavigationSizes(page, 14, 19);
 });
 
+test('章节原毛笔标题继承导航字号设置，刷新与返回首页后保持且品牌文字只在首页出现', async ({ page }) => {
+  await page.setViewportSize({ width: 3440, height: 1440 });
+  await loadPage(page);
+  const labels = await page.locator('.site-nav-heading strong').elementHandles();
+  await page.locator('.site-nav-item[data-route="state"]').click();
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
+  await openSettings(page);
+  await editNumber(page, '导航标题字号', 28);
+  await editNumber(page, '导航辅助文字字号', 15);
+  await expectNavigationSizes(page, 28, 15);
+  await expect(page.locator('.site-brand-copy')).toBeHidden();
+  await expect(page.locator('.site-brand-capsule .entry-lion-emblem')).toBeVisible();
+  await expect(page.locator('.site-nav-short-label')).toHaveCount(0);
+  for (const [index, label] of labels.entries()) {
+    expect(await label.evaluate((element, index) => element === document.querySelectorAll('.site-nav-heading strong')[index], index)).toBe(true);
+    expect(await label.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Nanfeng Navigation Brush');
+  }
+  for (const helper of await page.locator('.site-nav-description').all()) await expect(helper).toBeHidden();
+  await reloadPage(page);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
+  await expectNavigationSizes(page, 28, 15);
+  await expect(page.locator('.site-brand-copy')).toBeHidden();
+  for (const label of await page.locator('.site-nav-heading strong').all()) await expect(label).toBeVisible();
+  await page.locator('.site-brand-capsule').click();
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
+  await expect(page.locator('.site-brand-name')).toBeVisible();
+  await expectNavigationSizes(page, 28, 15);
+  for (const helper of await page.locator('.site-nav-description').all()) await expect(helper).toBeVisible();
+});
+
 test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默认同时恢复外观与尺寸', async ({ page }) => {
   // Leave enough width for the requested fonts while the panel now pushes by default.
   await page.setViewportSize({ width: 3440, height: 1440 });

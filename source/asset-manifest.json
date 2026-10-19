@@ -2119,6 +2119,48 @@
       "path": "source/reviews/integration/2026-10-19-main-merge/expression-overview-1920.png",
       "bytes": 2092904,
       "sha256": "7ab02822b6ab37926a9e31431f9fa015b44bbd824da2fdc7989db8aa2de14195"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/compact-1920-header.png",
+      "bytes": 79891,
+      "sha256": "bf22d972c3d62bee5d61fd3040c7ea2302e95c73e7b8afcc8d757100d256c89a"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/compact-900.png",
+      "bytes": 737636,
+      "sha256": "795d24b82c72029c0affbc24414788a304d0adbc86eaa03a466bb70607d895e3"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/compact-short-64-font-28-header.png",
+      "bytes": 55026,
+      "sha256": "30a88dfbc6fc2c5eb3698e76d7ed95b5bbd26ebc99d17b88e39c9d03d074248c"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/expanded-1920-header.png",
+      "bytes": 117622,
+      "sha256": "ade381ce250224cc57e4f6f87580e8a73656bd86bc7d73ddd74bb34850abbe4a"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/inbound-mid-1920-header.png",
+      "bytes": 115519,
+      "sha256": "c72222d1120ab40b5587edab141b6e9b73fd7854df75ee495b39d14987466b54"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/outbound-mid-1920-header.png",
+      "bytes": 90556,
+      "sha256": "de310caf3b13ad9a7098da9aa31c391e3517611bfe01fcd1cefbd79afd48dd95"
+    },
+    {
+      "from": "2026-10-19 final production shared navigation title and helper animation review",
+      "path": "source/reviews/navigation/2026-10-19-shared-text-motion/settings-push-900.png",
+      "bytes": 1102299,
+      "sha256": "dbc4f5a81a6b9d3e88647f8115e5dc0f49a9a1d91d1789e6316c572122b93c2e"
     }
   ]
 }

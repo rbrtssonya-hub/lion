@@ -372,11 +372,13 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
   await expect(routeButton(page, 'model')).toHaveAttribute('aria-current', 'page');
   await expect(routeButton(page, 'model')).toHaveAccessibleName('结构');
-  const copy = routeButton(page, 'model').locator('.site-nav-copy');
-  await expect(copy).toHaveCSS('opacity', '0');
-  await expect(copy).toHaveAttribute('aria-hidden', 'true');
-  await expect(copy).toHaveCSS('pointer-events', 'none');
-  await expect(routeButton(page, 'model').locator('.site-nav-short-label')).toBeVisible();
+  const title = routeButton(page, 'model').locator('.site-nav-heading strong');
+  await expect(title).toBeVisible();
+  await expect(title).toHaveText('结构');
+  expect(await title.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Nanfeng Navigation Brush');
+  await expect(routeButton(page, 'model').locator('.site-nav-description')).toBeHidden();
+  await expect(header.locator('.site-nav-short-label')).toHaveCount(0);
+  await expect(header.locator('.site-brand-copy')).toBeHidden();
   const settings = header.getByRole('button', { name: '打开开发者参数设置', exact: true });
   await expect(settings).toBeVisible();
   await expect(settings).toHaveAttribute('aria-expanded', 'false');

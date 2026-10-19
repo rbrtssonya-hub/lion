@@ -10,11 +10,10 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
         aria-current={current === route ? 'page' : undefined}>
         <span className="site-nav-symbol">
           <NavigationIcon name={route} />
-          <span className="site-nav-short-label" aria-hidden="true">{label}</span>
         </span>
-        <span className="site-nav-copy" aria-hidden={current !== 'entry' ? true : undefined}>
+        <span className="site-nav-copy">
           <span className="site-nav-heading"><strong>{label}</strong></span>
-          <span className="site-nav-description">{description}</span>
+          <span className="site-nav-description" aria-hidden={current !== 'entry' ? true : undefined}>{description}</span>
         </span>
       </button>
     ))}
@@ -24,11 +23,10 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
       aria-expanded={settingsOpen} aria-controls="developerSettingsPanel">
       <span className="site-nav-symbol">
         <NavigationIcon name="settings" />
-        <span className="site-nav-short-label" aria-hidden="true">设置</span>
       </span>
-      <span className="site-nav-copy" aria-hidden={current !== 'entry' ? true : undefined}>
+      <span className="site-nav-copy">
         <span className="site-nav-heading"><strong>设置</strong></span>
-        <span className="site-nav-description">界面参数</span>
+        <span className="site-nav-description" aria-hidden={current !== 'entry' ? true : undefined}>界面参数</span>
       </span>
     </button>
   </nav>;
