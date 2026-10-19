@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-19 | maintenance | completed | [切回GitHub主线并快进同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-19-%E5%88%87%E5%9B%9EGitHub%E4%B8%BB%E7%BA%BF%E5%B9%B6%E5%BF%AB%E8%BF%9B%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-19 | feature | completed | [结构新模型与部件聚焦](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-19-%E7%BB%93%E6%9E%84%E6%96%B0%E6%A8%A1%E5%9E%8B%E4%B8%8E%E9%83%A8%E4%BB%B6%E8%81%9A%E7%84%A6.md) |
+| 2026-10-19 | bug | completed | [结构材质与旋转性能修复](Bug%E5%A4%84%E7%90%86/2026-10-19-%E7%BB%93%E6%9E%84%E6%9D%90%E8%B4%A8%E4%B8%8E%E6%97%8B%E8%BD%AC%E6%80%A7%E8%83%BD%E4%BF%AE%E5%A4%8D.md) |
 | 2026-10-17 | ui | completed | [直线粒子与角色游戏导览](UI%E4%BF%AE%E6%94%B9/2026-10-17-%E7%9B%B4%E7%BA%BF%E7%B2%92%E5%AD%90%E4%B8%8E%E8%A7%92%E8%89%B2%E6%B8%B8%E6%88%8F%E5%AF%BC%E8%A7%88.md) |
 | 2026-10-16 | maintenance | completed | [同步最新八态分支到F盘主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-16-%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E5%85%AB%E6%80%81%E5%88%86%E6%94%AF%E5%88%B0F%E7%9B%98%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-16 | ui | completed | [阅读尺寸与笔刷红墨时间线](UI%E4%BF%AE%E6%94%B9/2026-10-16-%E9%98%85%E8%AF%BB%E5%B0%BA%E5%AF%B8%E4%B8%8E%E7%AC%94%E5%88%B7%E7%BA%A2%E5%A2%A8%E6%97%B6%E9%97%B4%E7%BA%BF.md) |

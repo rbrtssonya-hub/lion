@@ -53,6 +53,29 @@ def readable_json(value):
     return re.sub(pattern, lambda match: '[' + re.sub(r'\n\s+', ' ', match.group(1)) + ']', result) + '\n'
 
 
+def correct_exported_sheen(path, source_sheen):
+    """Preserve Blender's authored Sheen Weight in glTF's combined color factor."""
+    data = path.read_bytes()
+    json_length = struct.unpack_from('<I', data, 12)[0]
+    gltf = json.loads(data[20:20 + json_length])
+    corrections = []
+    for material in gltf.get('materials', []):
+        source = source_sheen.get(material.get('name'))
+        sheen = material.get('extensions', {}).get('KHR_materials_sheen')
+        if not source or not sheen:
+            continue
+        before = sheen.get('sheenColorFactor', [0, 0, 0])
+        after = [channel * source['weight'] for channel in source['tint']]
+        sheen['sheenColorFactor'] = after
+        corrections.append({'material': material['name'], 'source_weight': source['weight'], 'source_tint': source['tint'], 'exporter_factor': before, 'corrected_factor': after})
+    encoded = json.dumps(gltf, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    encoded += b' ' * (-len(encoded) % 4)
+    remaining_chunks = data[20 + json_length:]
+    result = struct.pack('<4sII', b'glTF', 2, 20 + len(encoded) + len(remaining_chunks))
+    path.write_bytes(result + struct.pack('<I4s', len(encoded), b'JSON') + encoded + remaining_chunks)
+    return corrections
+
+
 _MATERIAL_FINGERPRINTS = {}
 
 
@@ -130,7 +153,34 @@ def structure_groups(objects):
     return groups
 
 
-def approximate_fibers(obj, stride):
+def simplify_curve_points(points, matrix, radius_scale, tolerance):
+    """Keep strand ends/taper, with bounded world-space centerline/width error."""
+    if len(points) <= 2 or tolerance <= 0:
+        return points
+    from mathutils import Vector
+
+    positions = [matrix @ Vector(point.position) for point in points]
+    radii = [point.radius * radius_scale for point in points]
+    retained, pending = {0, len(points) - 1}, [(0, len(points) - 1)]
+    while pending:
+        first, last = pending.pop()
+        axis = positions[last] - positions[first]
+        length_squared = axis.length_squared
+        maximum, pivot = tolerance, None
+        for index in range(first + 1, last):
+            alpha = max(0, min(1, (positions[index] - positions[first]).dot(axis) / length_squared)) if length_squared > 1e-20 else (index - first) / (last - first)
+            position_error = (positions[index] - positions[first].lerp(positions[last], alpha)).length
+            radius_error = abs(radii[index] - (radii[first] * (1 - alpha) + radii[last] * alpha))
+            error = max(position_error, radius_error)
+            if error > maximum:
+                maximum, pivot = error, index
+        if pivot is not None:
+            retained.add(pivot)
+            pending.extend(((first, pivot), (pivot, last)))
+    return [points[index] for index in sorted(retained)]
+
+
+def approximate_fibers(obj, stride, point_tolerance):
     """Sample authored hair centerlines as tiny, double-sided web mesh ribbons.
 
     glTF does not carry Blender hair curves. Source curve radius attributes in
@@ -143,7 +193,7 @@ def approximate_fibers(obj, stride):
     from mathutils import Vector
 
     vertices, faces = [], []
-    retained = 0
+    retained, source_points, retained_points = 0, 0, 0
     authored_radius = obj.get('fiber_world_radius_max')
     radius_scale = float(authored_radius) if authored_radius else 1.0
     for curve_index in range(0, len(obj.data.curves), stride):
@@ -152,6 +202,10 @@ def approximate_fibers(obj, stride):
         if count < 2:
             continue
         points = [obj.data.points[start + offset] for offset in range(count)]
+        source_points += len(points)
+        points = simplify_curve_points(points, obj.matrix_world, radius_scale, point_tolerance)
+        retained_points += len(points)
+        count = len(points)
         positions = [Vector(point.position) for point in points]
         tangent = positions[-1] - positions[0]
         if tangent.length < 1e-9:
@@ -184,7 +238,7 @@ def approximate_fibers(obj, stride):
     result['source_object'] = obj.name
     result['web_approximation'] = 'Sampled double-sided ribbon mesh from authored Blender hair centerlines'
     result['sample_stride'] = stride
-    return result, {'source_object': obj.name, 'export_object': result.name, 'source_curves': len(obj.data.curves), 'retained_curves': retained, 'stride': stride, 'radius_scale': radius_scale, 'triangles': len(faces) * 2}
+    return result, {'source_object': obj.name, 'export_object': result.name, 'source_curves': len(obj.data.curves), 'retained_curves': retained, 'source_sampled_points': source_points, 'retained_points': retained_points, 'centerline_and_radius_tolerance_m': point_tolerance, 'stride': stride, 'radius_scale': radius_scale, 'triangles': len(faces) * 2}
 
 
 def main():
@@ -194,6 +248,9 @@ def main():
     parser.add_argument('--report', default='source/references/lion-structure-model.json')
     parser.add_argument('--inspect-only', action='store_true')
     parser.add_argument('--fiber-stride', type=int, default=12)
+    parser.add_argument('--fiber-point-tolerance', type=float, default=0.000025, help='World-space strand centerline/taper reduction tolerance in meters; preserves every sampled strand endpoint.')
+    parser.add_argument('--simplify-ratio', type=float, default=0.25)
+    parser.add_argument('--simplify-error', type=float, default=0.003, help='Maximum meshoptimizer weighted geometry/normal/UV error relative to each primitive size.')
     parser.add_argument('--overwrite', action='store_true', help='Explicitly replace an existing web export; the .blend source is always protected.')
     parser.add_argument('--skip-quantization', action='store_true', help='Skip the pinned, offline-compatible glTF vertex quantization stage (requires npm).')
     arguments = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else sys.argv[1:]
@@ -201,6 +258,8 @@ def main():
     source, target, report_path = map(project_path, (options.input, options.output, options.report))
     if not source.is_file():
         raise FileNotFoundError(f'Blender source not found: {source}')
+    if source.suffix.lower() != '.blend' or target.suffix.lower() != '.glb' or report_path.suffix.lower() != '.json':
+        raise ValueError('Expected .blend source, .glb export and .json inspection report paths')
     if source == target or source == report_path:
         raise ValueError('Export and report must not overwrite the Blender source')
     if target == report_path:
@@ -215,6 +274,8 @@ def main():
     bpy.ops.wm.open_mainfile(filepath=str(source), load_ui=False)
     if options.fiber_stride < 1:
         raise ValueError('Fiber stride must be a positive integer')
+    if not math.isfinite(options.fiber_point_tolerance) or options.fiber_point_tolerance < 0 or not 0 < options.simplify_ratio <= 1 or not 0 < options.simplify_error < 1:
+        raise ValueError('Invalid fiber tolerance or simplification bounds')
     meshes = [obj for obj in bpy.context.scene.objects if obj.type == 'MESH']
     objects = []
     for obj in meshes:
@@ -286,12 +347,16 @@ def main():
                 mesh_repairs.append({'object': obj.name, 'before': before, 'after': {'vertices': len(obj.data.vertices), 'polygons': len(obj.data.polygons)}})
         report['mesh_objects'] = [{key: value for key, value in data.items() if key in ('name', 'vertices', 'triangles', 'uv_layers', 'materials', 'gltf_bounds')} for data in objects if data['name'] in {obj.name for obj in unique_meshes}]
         material_adaptations = []
+        source_sheen = {}
         for material in bpy.data.materials:
             if not material.node_tree:
                 continue
             for node in material.node_tree.nodes:
                 if node.type != 'BSDF_PRINCIPLED':
                     continue
+                weight, tint = node.inputs.get('Sheen Weight'), node.inputs.get('Sheen Tint')
+                if weight and tint and not weight.is_linked and not tint.is_linked:
+                    source_sheen[material.name] = {'weight': float(weight.default_value), 'tint': list(tint.default_value)[:3]}
                 normal = node.inputs.get('Normal')
                 for link in list(normal.links) if normal else []:
                     if link.from_node.type == 'BUMP':
@@ -305,7 +370,7 @@ def main():
             if obj.type == 'CURVES':
                 # Keep all special short muzzle strands; sample the dense fur.
                 stride = 1 if 'PhotoGroom' in obj.name else options.fiber_stride
-                result, fiber_report = approximate_fibers(obj, stride)
+                result, fiber_report = approximate_fibers(obj, stride, options.fiber_point_tolerance)
                 fibers.append(result)
                 fiber_reports.append(fiber_report)
         # Hair ribbons must remain visible from both sides when orbiting.
@@ -332,22 +397,21 @@ def main():
         with tempfile.TemporaryDirectory(prefix='lion-structure-export-') as temporary:
             raw = Path(temporary) / 'lion-structure-raw.glb'
             bpy.ops.export_scene.gltf(filepath=str(raw), **settings)
+            report['material_sheen_corrections'] = correct_exported_sheen(raw, source_sheen)
             if options.skip_quantization:
                 shutil.copyfile(raw, target)
             else:
                 npm = shutil.which('npm.cmd') or shutil.which('npm')
                 if not npm:
                     raise RuntimeError('npm is required for standard glTF quantization; use --skip-quantization only for an unoptimized inspection export')
-                base_command = [npm, 'exec', '--yes', '--package=@gltf-transform/cli@4.2.1', '--', 'gltf-transform']
-                quantized, pruned, welded = [Path(temporary) / (name + '.glb') for name in ('quantized', 'pruned', 'welded')]
-                commands = [
-                    ['quantize', str(raw), str(quantized), '--quantize-position', '16', '--quantize-normal', '8', '--quantize-texcoord', '16'],
-                    ['prune', str(quantized), str(pruned)],
-                    ['weld', str(pruned), str(welded)],
-                ]
-                for command in commands:
-                    subprocess.run(base_command + command, check=True, cwd=ROOT)
-                shutil.copyfile(welded, target)
+                optimization_path = Path(temporary) / 'optimization.json'
+                subprocess.run([
+                    npm, 'exec', '--yes', '--package=@gltf-transform/cli@4.2.1', '--',
+                    'node', str(ROOT / 'scripts/optimize_lion_structure.mjs'), str(raw), str(target),
+                    '--report', str(optimization_path),
+                    '--ratio', str(options.simplify_ratio), '--error', str(options.simplify_error),
+                ], check=True, cwd=ROOT)
+                report['web_optimization'] = json.loads(optimization_path.read_text(encoding='utf-8'))
         data = target.read_bytes()
         gltf = json.loads(data[20:20 + struct.unpack_from('<I', data, 12)[0]])
         image_info = [{'name': image.get('name'), 'mime_type': image['mimeType'], 'bytes': gltf['bufferViews'][image['bufferView']]['byteLength']} for image in gltf.get('images', [])]
@@ -366,7 +430,7 @@ def main():
             'gltf_triangles': sum(gltf['accessors'][primitive['indices']]['count'] // 3 for mesh in gltf['meshes'] for primitive in mesh['primitives']),
             'gltf_vertices': sum(gltf['accessors'][primitive['attributes']['POSITION']]['count'] for mesh in gltf['meshes'] for primitive in mesh['primitives']),
             'gltf_images': image_info,
-            'quantization': None if options.skip_quantization else {'tool': '@gltf-transform/cli@4.2.1', 'steps': ['quantize', 'prune unused attributes', 'weld bitwise identical vertices'], 'position_bits': 16, 'normal_bits': 8, 'texcoord_bits': 16, 'tiling_uvs_outside_unit_square': 'Preserved as Float32', 'runtime_extension': 'KHR_mesh_quantization', 'external_decoder': False},
+            'quantization': None if options.skip_quantization else {'tool': '@gltf-transform/cli@4.2.1', 'steps': ['weld bitwise identical vertices', 'weighted normal/UV-aware surface simplification', 'prune unused attributes', 'deduplicate identical materials/textures', 'quantize', 'weld identical quantized vertex tuples'], 'position_bits': 16, 'normal_bits': 8, 'texcoord_bits': 16, 'tiling_uvs_outside_unit_square': 'Preserved as Float32', 'runtime_extension': 'KHR_mesh_quantization', 'external_decoder': False},
             'hair_approximation': {
                 'method': 'Deterministic sampled centerlines become double-sided ribbon meshes; normalized radii use each source object fiber_world_radius_max (about 0.14–0.16 mm), and muzzle radii keep source world units. Groom BSDF uses the existing scarlet Principled material for web compatibility.',
                 'objects': fiber_reports,

@@ -34,7 +34,9 @@
 
 2026-10-19 结构页运行模型为 `public/assets/models/lion-structure-optimized.glb`，从用户指定的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出，通过 `assetPaths.model`/`media.model` 加载。旧 `public/assets/models/lion-overall.glb` 原字节移至 `models/lion-head-overall-v1.glb` 归档，不再进入网页构建。用户原始 Blender 文件仍保留在根 `model/` 作为本次外部输入，未改写、未迁移或提交，不能把它放入运行目录。模型转换、复现和显示边界见 [导出说明](references/lion-structure-model.md)，数值见 [模型记录](references/lion-structure-model.json)，实际交付及验证以 [本轮任务日志](../wiki_memory/日志/功能添加/2026-10-19-结构新模型与部件聚焦.md) 为准。
 
-结构页使用左模型、右部件与资料卡的电脑双栏；六组可见结构由真实网格名前缀和头壳表面区域共同映射。眼部表面语义不等于独立内部零件，须毛导出外观也不代表原 Blender 毛发系统在网页中运行。旧屏幕百分比热点和结构滑杆不再使用。
+结构页使用左模型、右部件与资料卡的电脑双栏；六组可见结构由真实网格名前缀和头壳表面区域共同映射，视口内的标签与连线随三维聚焦点投影更新。眼部表面语义不等于独立内部零件，须毛导出外观也不代表原 Blender 毛发系统在网页中运行。旧屏幕百分比热点和结构滑杆不再使用。
+
+同日材质与性能修复已恢复源材质的绒面反射权重，并优化网页几何；贴图原字节和原始 Blender 文件保持。当前 GLB 为20,238,640B、513,600三角，统计及复现以导出记录为准。[同机性能对照](references/2026-10-19-structure-performance.json)记录实际测试方法与设备；最终验证及交付见[修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 

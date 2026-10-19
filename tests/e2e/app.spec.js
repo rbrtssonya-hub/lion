@@ -37,50 +37,59 @@ async function expectPushedChapterBackdrop(page, assetPath) {
 }
 
 async function sampleModelPixels(page) {
-  return page.locator('#sceneContainer canvas').evaluate((canvas) => new Promise((resolve) => {
-    const gl = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
-    const attributes = gl?.getContextAttributes();
-    if (!gl || !attributes) return resolve({ alpha: false, modelPixels: 0 });
-    let attempts = 0;
-    const sample = () => {
-      const width = gl.drawingBufferWidth;
-      const height = gl.drawingBufferHeight;
-      const bounds = canvas.getBoundingClientRect();
-      const buffer = new Uint8Array(width * height * 4);
-      gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
-      let modelPixels = 0;
-      let cornerPixels = 0;
-      let minX = width;
-      let maxX = -1;
-      let minY = height;
-      let maxY = -1;
-      const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
-      for (let y = 0; y < height; y += 1) {
-        for (let x = 0; x < width; x += 1) {
-          if (buffer[(y * width + x) * 4 + 3] === 0) continue;
-          modelPixels += 1;
-          minX = Math.min(minX, x);
-          maxX = Math.max(maxX, x);
-          minY = Math.min(minY, y);
-          maxY = Math.max(maxY, y);
-          const corner = (x < margin || x >= width - margin) && (y < margin || y >= height - margin);
-          if (corner) cornerPixels += 1;
-        }
+  const canvas = page.locator('#sceneContainer canvas');
+  const bounds = await canvas.boundingBox();
+  const alpha = await canvas.evaluate(element => {
+    const gl = element.getContext('webgl2') ?? element.getContext('webgl');
+    return gl?.getContextAttributes()?.alpha === true;
+  });
+  // Sample the composited WebGL image. A settled demand-rendered scene has no
+  // fresh drawing buffer to readPixels from after the browser presents it.
+  // Screenshot-only visibility styles isolate the actual transparent canvas
+  // without restarting animation or changing the selected part/camera.
+  const png = await canvas.screenshot({
+    omitBackground: true,
+    style: 'html,body{background:transparent!important}body *{visibility:hidden!important}#sceneContainer,#sceneContainer canvas{visibility:visible!important}',
+  });
+  return page.evaluate(async ({ imageData, bounds, alpha }) => {
+    const image = new Image();
+    image.src = imageData;
+    await image.decode();
+    const sample = document.createElement('canvas');
+    sample.width = image.naturalWidth;
+    sample.height = image.naturalHeight;
+    const context = sample.getContext('2d');
+    context.drawImage(image, 0, 0);
+    const { width, height } = sample;
+    const buffer = context.getImageData(0, 0, width, height).data;
+    let modelPixels = 0;
+    let cornerPixels = 0;
+    let minX = width;
+    let maxX = -1;
+    let minY = height;
+    let maxY = -1;
+    const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
+    for (let y = 0; y < height; y += 1) {
+      for (let x = 0; x < width; x += 1) {
+        if (buffer[(y * width + x) * 4 + 3] === 0) continue;
+        modelPixels += 1;
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+        minY = Math.min(minY, y);
+        maxY = Math.max(maxY, y);
+        const corner = (x < margin || x >= width - margin) && (y < margin || y >= height - margin);
+        if (corner) cornerPixels += 1;
       }
-      if (modelPixels === 0 && ++attempts < 10) return requestAnimationFrame(sample);
-      resolve({
-        alpha: attributes.alpha,
-        modelPixels,
-        cornerPixels,
-        modelCenterX: maxX >= minX ? bounds.left + (minX + maxX + 1) * bounds.width / (width * 2) : null,
-        modelWidth: maxX >= minX ? (maxX - minX + 1) * bounds.width / width : 0,
-        modelHeight: maxY >= minY ? (maxY - minY + 1) * bounds.height / height : 0,
-      });
+    }
+    return {
+      alpha,
+      modelPixels,
+      cornerPixels,
+      modelCenterX: maxX >= minX ? bounds.x + (minX + maxX + 1) * bounds.width / (width * 2) : null,
+      modelWidth: maxX >= minX ? (maxX - minX + 1) * bounds.width / width : 0,
+      modelHeight: maxY >= minY ? (maxY - minY + 1) * bounds.height / height : 0,
     };
-    // A nonempty model is required so a cleared WebGL buffer cannot pass.
-    // Read during rAF before compositing clears a non-preserved drawing buffer.
-    requestAnimationFrame(sample);
-  }));
+  }, { imageData: 'data:image/png;base64,' + png.toString('base64'), bounds, alpha });
 }
 
 test('首页入场结束后原地循环背景，整体与章节交互由当前页面运行', async ({ page }) => {

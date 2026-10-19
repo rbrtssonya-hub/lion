@@ -20,7 +20,8 @@
     "@designcodeio/threeui": "1.2.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "three": "0.160.0"
+    "three": "0.160.0",
+    "three-mesh-bvh": "0.8.0"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0",

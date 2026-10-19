@@ -6,7 +6,6 @@ import {
   HemisphereLight,
   PerspectiveCamera,
   PMREMGenerator,
-  PointLight,
   Raycaster,
   Scene,
   SRGBColorSpace,
@@ -17,6 +16,7 @@ import {
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from 'three-mesh-bvh';
 
 const activeScenes = new WeakMap();
 
@@ -53,7 +53,10 @@ function disposeResources(...roots) {
   });
   images.forEach((image) => image.close?.());
   materials.forEach((material) => material.dispose());
-  geometries.forEach((geometry) => geometry.dispose());
+  geometries.forEach((geometry) => {
+    disposeBoundsTree.call(geometry);
+    geometry.dispose();
+  });
 }
 
 async function readModel(modelUrl, signal, report) {
@@ -108,6 +111,7 @@ export async function createLionScene({
   onStatus = () => {},
   onAutoRotateChange = () => {},
   onSelectPart = () => {},
+  onProjectParts = () => {},
 }) {
   if (signal?.aborted || !container.isConnected || !interactionElement?.isConnected) throw aborted();
   activeScenes.get(container)?.();
@@ -122,6 +126,11 @@ export async function createLionScene({
   let controls;
   let observer;
   let animationFrame = 0;
+  let settlingTimer = 0;
+  let interacting = false;
+  let rendering = false;
+  let needsRender = true;
+  let lastCameraChange = 0;
   let loadTimeout = 0;
   let disposed = false;
   let modelReady = false;
@@ -142,12 +151,19 @@ export async function createLionScene({
   let focusedPart = 'overall';
   let manuallyAdjusted = false;
   const raycaster = new Raycaster();
+  raycaster.firstHitOnly = true;
   const pointer = new Vector2();
   const pickMeshes = [];
   const meshParts = new WeakMap();
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const initialCameraPosition = new Vector3();
   const initialTarget = new Vector3();
+  const requestDraw = () => {
+    needsRender = true;
+    if (!disposed && isActive && modelReady && !animationFrame && !rendering) {
+      animationFrame = window.requestAnimationFrame(draw);
+    }
+  };
 
   const report = (status) => {
     if (!disposed && !signal?.aborted) onStatus(status);
@@ -158,6 +174,16 @@ export async function createLionScene({
     manuallyAdjusted = true;
     controls.autoRotate = false;
     onAutoRotateChange(false);
+    interacting = true;
+    requestDraw();
+  };
+  const endInteraction = () => {
+    interacting = false;
+    requestDraw();
+  };
+  const onCameraChange = () => {
+    lastCameraChange = performance.now();
+    requestDraw();
   };
 
   const classifyHit = (hit) => {
@@ -194,6 +220,7 @@ export async function createLionScene({
     pointerPosition = { x: event.clientX, y: event.clientY };
     pointerNeedsCheck = true;
     if (pointerDown && Math.hypot(event.clientX - pointerDown.x, event.clientY - pointerDown.y) > 6) pointerDown.dragged = true;
+    if (!pointerDown) requestDraw();
   };
   const onPointerUp = (event) => {
     const start = pointerDown;
@@ -205,6 +232,8 @@ export async function createLionScene({
   const clearPointer = () => {
     pointerDown = null;
     pointerPosition = null;
+    pointerNeedsCheck = false;
+    interacting = false;
     interactionElement.style.cursor = '';
   };
   const projectClient = (point) => {
@@ -223,7 +252,9 @@ export async function createLionScene({
     const target = projectClient(controls.target);
     canvas.dataset.targetScreen = JSON.stringify({ x: target.x, y: target.y });
     const signature = [...camera.position.toArray(), ...controls.target.toArray()].map(value => value.toFixed(3)).join(',');
-    if (isActive && !viewTween && !controls.autoRotate && signature !== lastPickSignature) {
+    // Actual-surface observations are only needed after the view has settled.
+    if (isActive && !interacting && !pointerDown && !viewTween && !controls.autoRotate
+        && performance.now() - lastCameraChange > 140 && signature !== lastPickSignature) {
       lastPickSignature = signature;
       projections = {};
       hotspots.forEach((part) => {
@@ -239,6 +270,15 @@ export async function createLionScene({
     }
     canvas.dataset.partProjections = JSON.stringify(projections);
   };
+  const updatePartAnchors = () => {
+    const frame = interactionElement.getBoundingClientRect();
+    onProjectParts(hotspots.map((part) => {
+      const point = projectClient(modelRoot.localToWorld(new Vector3(...part.focusTarget)));
+      return { id: part.id, x: point.x - frame.left, y: point.y - frame.top,
+        visible: point.visible && point.x >= frame.left && point.x <= frame.right
+          && point.y >= frame.top && point.y <= frame.bottom };
+    }));
+  };
   const resize = () => {
     if (disposed || !renderer) return;
     const { clientWidth: width, clientHeight: height } = container;
@@ -253,7 +293,8 @@ export async function createLionScene({
       canvasBounds.left - frame.left, canvasBounds.top - frame.top,
       width, height,
     );
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2, maxRenderSize / Math.max(width, height)));
+    const pixelBudget = Math.sqrt(2_600_000 / (width * height));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5, pixelBudget, maxRenderSize / Math.max(width, height)));
     renderer.setSize(width, height, false);
     if (modelReady) fitOverview(focusedPart === 'overall' && !viewTween && !manuallyAdjusted);
     if (modelReady && focusedPart === 'overall' && viewTween) {
@@ -261,18 +302,22 @@ export async function createLionScene({
       viewTween.toTarget.copy(initialTarget);
     }
     lastPickSignature = '';
+    requestDraw();
   };
   const dispose = () => {
     if (disposed) return;
     disposed = true;
     loadController.abort();
     clearTimeout(loadTimeout);
+    clearTimeout(settlingTimer);
     if (activeScenes.get(container) === dispose) activeScenes.delete(container);
     window.cancelAnimationFrame(animationFrame);
     observer?.disconnect();
     window.removeEventListener('resize', resize);
     signal?.removeEventListener('abort', dispose);
     controls?.removeEventListener('start', stopRotation);
+    controls?.removeEventListener('end', endInteraction);
+    controls?.removeEventListener('change', onCameraChange);
     interactionElement.removeEventListener('pointerdown', onPointerDown);
     interactionElement.removeEventListener('pointermove', onPointerMove);
     interactionElement.removeEventListener('pointerup', onPointerUp);
@@ -309,7 +354,7 @@ export async function createLionScene({
     maxRenderSize = context.getParameter(context.MAX_RENDERBUFFER_SIZE);
     renderer.outputColorSpace = SRGBColorSpace;
     renderer.toneMapping = ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.12;
+    renderer.toneMappingExposure = 1;
     // The authored PBR model includes metallic trim. A neutral environment
     // gives those surfaces reflections without adding any visible backdrop.
     const environment = new RoomEnvironment();
@@ -334,6 +379,8 @@ export async function createLionScene({
     controls.maxDistance = 8;
     controls.target.set(0, 0.08, 0);
     controls.addEventListener('start', stopRotation);
+    controls.addEventListener('end', endInteraction);
+    controls.addEventListener('change', onCameraChange);
     interactionElement.addEventListener('pointerdown', onPointerDown);
     interactionElement.addEventListener('pointermove', onPointerMove);
     interactionElement.addEventListener('pointerup', onPointerUp);
@@ -343,16 +390,13 @@ export async function createLionScene({
     initialCameraPosition.copy(camera.position);
     initialTarget.copy(controls.target);
 
-    scene.add(new HemisphereLight(0xd5c7a4, 0x0b1513, 1.9));
-    const key = new DirectionalLight(0xffe2b2, 3.3);
+    scene.add(new HemisphereLight(0xffffff, 0x6d645c, 0.4));
+    const key = new DirectionalLight(0xfff2df, 2);
     key.position.set(-3, 5, 4);
     scene.add(key);
-    const rim = new DirectionalLight(0x8eb5a3, 1.8);
+    const rim = new DirectionalLight(0xdde7ff, 0.6);
     rim.position.set(4, 3, -4);
     scene.add(rim);
-    const fill = new PointLight(0xa84431, 5, 7, 2);
-    fill.position.set(-2, 1.2, 2.4);
-    scene.add(fill);
 
     signal?.addEventListener('abort', dispose, { once: true });
     if (typeof ResizeObserver !== 'undefined') {
@@ -366,8 +410,11 @@ export async function createLionScene({
     resize();
 
     const render = () => {
+      animationFrame = 0;
       if (disposed) return;
       try {
+        rendering = true;
+        needsRender = false;
         if (viewTween) {
           const elapsed = performance.now() - viewTween.startedAt;
           const progress = viewTween.duration === 0 ? 1 : Math.min(1, elapsed / viewTween.duration);
@@ -376,17 +423,29 @@ export async function createLionScene({
           controls.target.lerpVectors(viewTween.fromTarget, viewTween.toTarget, eased);
           if (progress >= 1) viewTween = null;
         }
-        controls.update();
+        const cameraChanged = controls.update();
         renderer.render(scene, camera);
         const now = performance.now();
-        if (modelReady && now - lastDiagnostics >= 160) { updateDiagnostics(); lastDiagnostics = now; }
-        if (pointerNeedsCheck && pointerPosition && !pointerDown && now - lastPointerCheck > 100) {
+        if (modelReady) updatePartAnchors();
+        if (modelReady && (now - lastDiagnostics >= 160 || (!cameraChanged && !viewTween))) { updateDiagnostics(); lastDiagnostics = now; }
+        if (pointerNeedsCheck && pointerPosition && !pointerDown && !interacting && !viewTween
+            && now - lastCameraChange > 100 && now - lastPointerCheck > 100) {
           interactionElement.style.cursor = pick(pointerPosition.x, pointerPosition.y) ? 'pointer' : '';
           lastPointerCheck = now;
           pointerNeedsCheck = false;
         }
-        if (isActive) animationFrame = window.requestAnimationFrame(render);
+        rendering = false;
+        if (isActive && (viewTween || controls.autoRotate || cameraChanged || needsRender)) {
+          animationFrame = window.requestAnimationFrame(render);
+        } else if (isActive && modelReady) {
+          // One settled frame refreshes hover and surface observations. A static
+          // model then uses no animation frames or GPU draws until new input.
+          clearTimeout(settlingTimer);
+          const signature = [...camera.position.toArray(), ...controls.target.toArray()].map(value => value.toFixed(3)).join(',');
+          if (lastPickSignature !== signature || pointerNeedsCheck) settlingTimer = setTimeout(requestDraw, 170);
+        }
       } catch (error) {
+        rendering = false;
         report({ phase: 'error', message: '3D 显示暂不可用 · 保留结构预览' });
         console.error('醒狮模型渲染失败', error);
         dispose();
@@ -418,6 +477,10 @@ export async function createLionScene({
       if (!object.isMesh) return;
       object.castShadow = true;
       object.receiveShadow = true;
+      // Acceleration is instance-local; other Three.js features are unaffected.
+      // Indirect mode also preserves the authored index / material group order.
+      if (!object.geometry.boundsTree) computeBoundsTree.call(object.geometry, { indirect: true, maxLeafTris: 12 });
+      object.raycast = acceleratedRaycast;
       pickMeshes.push(object);
       const part = hotspots.find((item) => item.objectNames?.some((prefix) => object.name.startsWith(prefix)));
       if (part) meshParts.set(object, part.id);
@@ -487,13 +550,16 @@ export async function createLionScene({
         if (disposed || isActive === Boolean(value)) return;
         isActive = Boolean(value);
         cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        clearTimeout(settlingTimer);
         if (!isActive) clearPointer();
-        if (isActive) { lastPickSignature = ''; resize(); draw(); }
+        if (isActive) { lastPickSignature = ''; resize(); requestDraw(); }
       },
       setAutoRotate(value) {
         if (!disposed && modelReady) {
           controls.autoRotate = Boolean(value);
           if (value) manuallyAdjusted = true;
+          requestDraw();
         }
       },
       focusOn({ id, target, distance, point }) {
@@ -522,6 +588,7 @@ export async function createLionScene({
           startedAt: performance.now(),
           duration: reducedMotion.matches ? 0 : 720,
         };
+        requestDraw();
       },
       resetView() {
         if (disposed || !modelReady) return;
@@ -541,6 +608,7 @@ export async function createLionScene({
           startedAt: performance.now(),
           duration: reducedMotion.matches ? 0 : 620,
         };
+        requestDraw();
       },
       dispose,
     };

@@ -100,6 +100,41 @@ test('navigation brush font is a WOFF with its redistributable license', () => {
   assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
 });
 
+test('structure web export preserves source sheen weights and stays within the desktop geometry budget', () => {
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));
+  const model = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString('utf8'));
+  const report = readJson(resolve(sourceRoot, 'references/lion-structure-model.json'));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), report.export.sha256);
+  const triangles = model.meshes.reduce((total, mesh) => total + mesh.primitives.reduce((sum, primitive) => (
+    sum + model.accessors[primitive.indices].count / 3
+  ), 0), 0);
+  assert.equal(triangles, report.export.gltf_triangles);
+  assert.ok(triangles < 550_000, `Desktop web geometry exceeds the reviewed budget: ${triangles}`);
+  assert.equal(model.nodes.length, 41, 'Keep the complete named model instead of dropping body parts for speed');
+
+  const authoredWeights = new Map([
+    ['Lion_Atlas_PBR_Refined', .12], ['HighDetail_Head_Atlas_PBR', .12],
+  ]);
+  for (const [name, weight] of authoredWeights) {
+    const material = model.materials.find(item => item.name === name);
+    assert.ok(material, `Missing authored atlas material: ${name}`);
+    const sheen = material.extensions?.KHR_materials_sheen?.sheenColorFactor;
+    assert.ok(sheen?.every(channel => Math.abs(channel - weight) < 1e-6), `${name}: white sheen must retain the source's 12% weight`);
+    assert.ok(material.pbrMetallicRoughness.baseColorTexture, `${name}: preserve the source color texture`);
+  }
+  assert.ok(report.material_sheen_corrections.length >= 10);
+  for (const correction of report.material_sheen_corrections) {
+    const material = model.materials.find(item => item.name === correction.material);
+    // Dedup may merge identical material copies; the retained materials must
+    // preserve their actual authored reflection rather than full white sheen.
+    if (!material) continue;
+    const actual = material.extensions.KHR_materials_sheen.sheenColorFactor;
+    correction.source_tint.forEach((channel, index) => {
+      assert.ok(Math.abs(actual[index] - channel * correction.source_weight) < 1e-6);
+    });
+  }
+});
+
 test('all six structure regions describe real model meshes or finite surface volumes', () => {
   const structure = readJson(resolve(root, 'src/data/lion-structure.json'));
   const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));

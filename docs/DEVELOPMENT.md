@@ -70,6 +70,10 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 六组数据来自 `lion-structure.json`：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。`objectNames` 用实际网格名前缀匹配眉、口、额饰、须、身体与尾等分件；共用头壳中的眼部等区域使用 `surfaceRegions` 椭球标记可见表面语义，不宣称内部结构已经拆分。Raycaster 命中真实模型后同步右侧选择，并聚焦实际命中点；拖动、取消手势或点击空白不触发选择。右侧目录提供同一选择入口，默认关闭自动旋转。
 
+同日材质/卡顿修复后，网页 GLB 为 20,238,640B、513,600 三角、740,169 顶点。`scripts/export_lion_structure.py` 修复 Blender 导出遗漏的 Sheen Weight，按源 `Tint RGB × Weight` 写入扩展（atlas 0.12、织锦 0.18）；再调用 `scripts/optimize_lion_structure.mjs` 执行法线/UV 加权减面、等值去重和量化，保留六张嵌入 JPEG 原字节。原 `.blend` 不保存、不修改。参数、逐项修正与误差边界见[模型导出说明](../source/references/lion-structure-model.md)。场景使用曝光1及经对照校准的中性主/辅照明，保留 PMREM 反射。
+
+场景仅为本模型实例启用 `three-mesh-bvh@0.8.0` 的加速求交，间接索引保留材质组，不改 Three 全局原型；静止后停止模型 RAF/绘制，拖动、阻尼、聚焦、复原、自动旋转或尺寸变化再按需绘制。多部件命中观察仅在镜头稳定后刷新，避免转动中反复逐三角形求交。`onProjectParts` 将六个源模型锚点的真实投影交给 DOM refs，更新标签、点和连线；框外标签隐藏，窄桌面使用短名，右侧目录保留全部入口。标签不进行遮挡射线探测，不能将背侧锚点的投影可见等同于表面可命中。
+
 `focusOn({ id, target, distance, point })` 中，目录 `target`、数据中的 `surfaceRegions` 与 `pickPoints` 使用源 glTF 场景坐标，服务通过模型变换换算；点击回传的 `point` 使用当前世界坐标。`distance` 是模型最长边缩放到1.78后的世界距离。聚焦/复原共用单一渲染循环内的相机补间，目标对齐左侧展示中心；减少动态偏好下直接定位。只读 canvas `dataset` 发布实际相机距离、目标投影、部件可命中投影及补间状态，供浏览器回归核对。
 
 结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；结构页采用右侧单一资料卡与全页透明canvas。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
@@ -94,7 +98,7 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 `tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。新增直线粒子、纸面迁移和角色导览的行为回归见`guide-refresh.spec.js`；并行开发/生产测试必须用不同`--output=tmp/...`目录，防止默认trace产物互相清理。
 
-Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以左侧交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型真实绘制、聚焦中心、面板与导航点击、离页暂停复用，以及组件卸载或重试后的观察器和图形资源释放。中性 `RoomEnvironment` 经 PMREM 生成反射贴图，不显示额外背景；生成器与临时场景及时释放，保留的环境渲染目标随服务 `dispose` 释放。
+Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以左侧交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比取设备 DPR、1.5、`sqrt(2600000 / (width × height))` 与硬件 `MAX_RENDERBUFFER_SIZE` 上限中的最小值；修改时需检查模型真实绘制、聚焦中心、面板与导航点击、离页暂停复用，以及组件卸载或重试后的观察器、收敛计时器、BVH和图形资源释放。中性 `RoomEnvironment` 经 PMREM 生成反射贴图，不显示额外背景；生成器与临时场景及时释放，保留的环境渲染目标随服务 `dispose` 释放。
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
@@ -133,6 +137,8 @@ Live2D 创作源与运行包分开放置。当前运行包为重制参考，首�
 2026-10-12首页循环视频已按用户指定文件替换，运行路径仍为 `assets/entry/home-lion-loop.mp4`；旧运行视频原字节保留在 `source/video/entry/home-lion-loop-v1.mp4`，原资产清单记录迁到该归档路径。新运行视频、dist拷贝与用户源视频SHA-256一致，最终资产清单83条。文化摄影从具体Commons文件许可核对后接入，更新时需同步图注、来源说明和资产清单；不要批量重写已有快照。
 
 ## 验证与辅助工具
+
+结构材质与转动性能新增 `tests/e2e/structure-interaction.spec.js`，核对六个真实投影标签/点击聚焦、旋转后锚点移动和稳定后停止模型绘制。可在开发服务器运行时通过 `node scripts/benchmark_lion_scene.mjs --dpr=1 --output=tmp/structure-after-dpr1` 复现性能采样；加 `--baseline-ref=1f8f206` 读取修复前同一场景与 GLB，`--dpr=2` 核对高分屏预算。该工具只在浏览器请求中注入计时，默认每阶段6秒，分别输出 JSON 和 CPUProfile，不改产品源码。2026-10-19同机 RTX5070Ti/Chrome155 的实际前后结果、源码/模型hash及限制见[性能报告](../source/references/2026-10-19-structure-performance.json)；约180FPS是高刷新率同机对照，不能推广为所有电脑保证，JS提交耗时也不等于GPU计时。本轮最终门禁与生产QA见[材质/性能修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
 
 `npm test` 使用 Node 测试运行器执行 `tests/assets/*.test.mjs`；`npm run test:e2e` 使用 Playwright，配置负责启动应用服务器。首次准备浏览器可运行：
 

@@ -31,6 +31,22 @@
 .scene-container canvas { display: block; width: 100%; height: 100%; }
 .scene-interaction { position: absolute; inset: 0; pointer-events: auto; cursor: grab; touch-action: none; }
 .scene-interaction:active { cursor: grabbing; }
+.model-hotspots { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.model-hotspots[hidden], .model-hotspot[hidden] { display: none; }
+.model-hotspots-caption { position: absolute; top: 6px; left: 4px; margin: 0; padding: 5px 8px; border-radius: 3px; color: #803728; background: rgba(255, 244, 222, .9); font-size: 12px; line-height: 1.6; letter-spacing: .12em; }
+.model-hotspots-caption span { margin-left: 12px; color: rgba(112, 61, 42, .62); font-size: 10px; letter-spacing: .04em; }
+.model-anchor-guides { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.model-anchor-line { fill: none; stroke: rgba(126, 61, 35, .5); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.model-anchor-dot { fill: #f5d49c; stroke: #963e27; stroke-width: 1; }
+.model-anchor-guides .is-active .model-anchor-line { stroke: #a73c25; stroke-width: 1.5; }
+.model-anchor-guides .is-active .model-anchor-dot { fill: #a73c25; stroke: #fff0d4; }
+.model-hotspot { position: absolute; top: 0; left: 0; display: flex; align-items: center; gap: 7px; width: var(--model-hotspot-width, 128px); height: 32px; padding: 5px 8px; border: 1px solid rgba(148, 77, 43, .46); border-radius: 3px; color: #743323; background: rgba(255, 244, 222, .93); box-shadow: 0 2px 8px rgba(87, 40, 21, .08); font-size: 11px; line-height: 1.6; white-space: nowrap; cursor: pointer; pointer-events: auto; }
+.model-hotspot-number { color: #a36d39; font: 10px/1.6 var(--display); }
+.model-hotspot-short, .model-hotspots[data-compact="true"] .model-hotspot-label { display: none; }
+.model-hotspots[data-compact="true"] .model-hotspot-short { display: inline; }
+.model-hotspot:hover, .model-hotspot.is-active { border-color: #a24228; color: #fff2d7; background: #8c3526; }
+.model-hotspot:hover .model-hotspot-number, .model-hotspot.is-active .model-hotspot-number { color: #efc388; }
+.model-hotspot:focus-visible { outline: 2px solid #b1502d; outline-offset: 3px; }
 .model-fallback { position: absolute; inset: 12%; width: 76%; height: 76%; object-fit: contain; opacity: .14; filter: saturate(.75); pointer-events: none; }
 .model-stage > .model-fallback { inset: 20% auto 12% 4%; width: 58%; height: 68%; }
 .model-stage > .loading-panel { position: absolute; top: 50%; right: 5%; z-index: 3; display: grid; gap: 16px; width: min(32%, 380px); color: #723523; font-size: 12px; line-height: 1.8; pointer-events: auto; }

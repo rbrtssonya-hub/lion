@@ -1961,8 +1961,8 @@
     {
       "from": "derived:Blender/source model/醒狮_保留UV_三角转四边_优化.blend; scripts/export_lion_structure.py",
       "path": "source/public/assets/models/lion-structure-optimized.glb",
-      "bytes": 24428652,
-      "sha256": "f4f7f6a25f84d8457afd6fd42e44702607213b037613d019b936d10c4422b0e0"
+      "bytes": 20238640,
+      "sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f"
     },
     {
       "from": "generated:production-chrome-review/2026-10-19-structure-focus",
@@ -2005,6 +2005,48 @@
       "path": "source/reviews/model/2026-10-19-structure-focus/settings-push-900.png",
       "bytes": 1186467,
       "sha256": "73d926506e9413c6ffba85996b5c4af75b10def317d2f5e785d3462281d423c4"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/focus-eyes-1920.png",
+      "bytes": 2572027,
+      "sha256": "59b334b21004d11a69763686dc03e34e15d5f7358594a80a70e4f2df1672db98"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/focus-lion_cloth-1920.png",
+      "bytes": 2729825,
+      "sha256": "834fab96ccacf8b79b36be5e12335a54ad6f2c7f6ac7b4874053141c97ef498a"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/focus-mouth-1920.png",
+      "bytes": 2512158,
+      "sha256": "f8748bef6bcb7acaaec7f2baab906ddf39bddebdb750870f496c97d9346ccaef"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/overview-1366.png",
+      "bytes": 1414315,
+      "sha256": "f97eb7a1cfa6d2c78a42ca2ed701983deeda263be468b82e667a4afeb51bbd75"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/overview-1920.png",
+      "bytes": 2656927,
+      "sha256": "169bcec1b190e46b113efbb67fdb457d8afe6ec67a3cbae4bd26ef481d4f7c2c"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/overview-900.png",
+      "bytes": 951358,
+      "sha256": "857a726e4a3c3430271837c7a5fee90792d38a7f41adb749fe4a0ffe907b819d"
+    },
+    {
+      "from": "2026-10-19 final production material, performance and model anchor desktop review",
+      "path": "source/reviews/model/2026-10-19-material-performance/settings-push-900.png",
+      "bytes": 1183847,
+      "sha256": "cfee77d1610d6b709da3fa1d4eb29bf07a05794faa2f3c67d5f6c3760ca4c9ff"
     }
   ]
 }
