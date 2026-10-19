@@ -1582,7 +1582,7 @@
     },
     {
       "from": "F:/数媒竞赛/醒狮素材/首页背景最终版.png",
-      "path": "source/public/assets/backgrounds/home-archive-background-final.png",
+      "path": "source/design/home-heritage/2026-10-20-refresh/previous-archive-background.png",
       "bytes": 3446671,
       "sha256": "2266fc404bdb3821715413bd3fda158c9771976df391679193d5adf903421c66"
     },
@@ -2455,6 +2455,72 @@
       "path": "source/reviews/action-theater/2026-10-19/action-theater-tuqiu-1920.png",
       "bytes": 1964397,
       "sha256": "3b845c9be00a13d0f8fe56928bbb14cbe048a42586093f67381c69d198cbd059"
+    },
+    {
+      "from": "user:codex-clipboard-7c95355c-04c5-441a-bfa3-0771437f346f.png",
+      "path": "source/public/assets/backgrounds/home-archive-ink-2026-10-20.png",
+      "bytes": 3411525,
+      "sha256": "05300bcdfe5a51338026e22fe2b8e2ddec214e4cd30964c13e34d83bd7385597"
+    },
+    {
+      "from": "generated:image_gen/2026-10-20-user-approved-small-ornaments",
+      "path": "source/public/assets/decor/archive-ornament-peeking.png",
+      "bytes": 1608685,
+      "sha256": "e41ba0262ff5536fe07ad09fb11020a08147428be751e6f5575373d661e2e178"
+    },
+    {
+      "from": "generated:image_gen/2026-10-20-user-approved-small-ornaments",
+      "path": "source/public/assets/decor/archive-ornament-paw.png",
+      "bytes": 1696354,
+      "sha256": "6d33ff08d00f4f02888b82e197fce487879a4e8a89e02770b105abe7203c0f6d"
+    },
+    {
+      "from": "generated:image_gen/2026-10-20-user-approved-small-ornaments",
+      "path": "source/public/assets/decor/archive-ornament-tail.png",
+      "bytes": 1835690,
+      "sha256": "633b35c80a6a5da49ccd16e2f82ed6c50f7bf94b7039e1d3c876023d3668edcd"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/book-guide-1920.png",
+      "bytes": 1524028,
+      "sha256": "66d2c8ef879f8cfa0778424177fac7f36dc4d0d42717faef6983a739cf06437e"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/book-title-1920.png",
+      "bytes": 2373530,
+      "sha256": "bbc2c8f8a17dfb48356a0915a7f097876f8800f0b71717b735108bd9ca86d633"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/inheritors-public-1920.png",
+      "bytes": 889500,
+      "sha256": "993c0dd7372184fbde4dac264c108cc04af0d2672b23f253f0069618df6ecd1c"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/ornament-approval.png",
+      "bytes": 185739,
+      "sha256": "86441c2a20c29b30d6cf3df75b2c5216467bb9bacdab1561c87deba91649932e"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/sources-1920.png",
+      "bytes": 905676,
+      "sha256": "ba27c8064d5c70aca6acacf7345e779b7258def43e1ce005701959797b964ffb"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/types-collapsed-1920.png",
+      "bytes": 1875515,
+      "sha256": "2c81675c7d49be24fcb7900228f00578c0d1f9e21b92ecce736dbfc3ab443c43"
+    },
+    {
+      "from": "generated:chrome-review/2026-10-20-home-refresh",
+      "path": "source/reviews/home/2026-10-20-refresh/types-expanded-1920.png",
+      "bytes": 1764951,
+      "sha256": "06bb9a28a0687920eeddfc73b2bc059f9a44844b9b261703a3fbd1b7ce6b8a72"
     }
   ]
 }

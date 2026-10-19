@@ -108,7 +108,8 @@ test('五个历史节点与序终卷可选，图像、文案、来源及当前�
     await expect(book.locator('.lion-book-reading-copy>p')).toHaveText(pageData.description);
     await expect(book.locator('.lion-book-reading-copy>a').first()).toHaveAttribute('href', pageData.sourceUrl);
   }
-  await expect(book.locator('.lion-book-provenance')).toContainText('AI辅助绘制');
+  await page.locator('.archive-provenance summary').click();
+  await expect(page.locator('.archive-provenance')).toContainText('AI辅助示意');
 });
 
 test('减少动态仍可手动翻阅，书内方向键与外部Home/End可达且无自动翻页', async ({ page }) => {

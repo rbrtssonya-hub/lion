@@ -11,7 +11,6 @@ export function PhotoCredit({ photo }) {
     <span className="home-culture-credit">
       摄影：<a href={photo.sourceUrl} target="_blank" rel="noreferrer">{photo.author}</a>
       {' · '}<a href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>
-      <span> · 等比缩放展示</span>
     </span>
   );
 }
@@ -38,7 +37,6 @@ function CultureSlide({ story, active }) {
             loading={active ? 'eager' : 'lazy'}
             decoding="async"
           />
-          <span className="home-culture-photo-index" aria-hidden="true">{story.index}</span>
         </div>
         <figcaption>
           <span className="home-culture-caption">{story.photo.caption}</span>
@@ -46,7 +44,6 @@ function CultureSlide({ story, active }) {
         </figcaption>
       </figure>
       <div className="home-culture-copy archive-reading-panel" data-surface="cultureBody">
-        <p className="home-culture-eyebrow">{story.eyebrow}</p>
         <h3 id={`culture-${story.id}`} className="home-culture-title">{story.title}</h3>
         <p className="home-culture-text">{story.text}</p>
         <p className="home-culture-note">{story.note}</p>
@@ -123,13 +120,11 @@ export default function HomeCulture({ settings, preload = false, playbackEnabled
       <div className="home-culture-inner">
         <header className="home-culture-intro archive-reading-panel" data-culture-reveal data-surface="cultureTitle">
           <div>
-            <p className="home-culture-overline">南风 · 狮语 <span>LION CULTURE / ARCHIVE</span></p>
-            <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，一方风土。</h2><LionArchiveOrnament /></div>
+            <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，一方风土。</h2><LionArchiveOrnament kind="paw" /></div>
           </div>
           <div className="home-culture-intro-copy">
             <p>醒狮文化 · 纵深图鉴</p>
             <p>从岭南的街巷到远方的节庆，图片与文字同步展开，让一头醒狮背后的风土、工艺、动作与默契逐项显影。</p>
-            <span className="home-culture-intro-mark">资料整理 · 八项文化切片</span>
           </div>
         </header>
 

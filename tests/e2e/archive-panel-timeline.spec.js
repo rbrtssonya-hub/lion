@@ -74,38 +74,33 @@ test('标题底板40%窄宽与留白极值下标题居中，文字及装饰完�
   }
 });
 
-// Actual marker positions are compared to the rendered SVG, not a duplicated easing function.
+// Compare against the rendered seven platforms in CSS pixels. The role sprite
+// travels above their straight track; its independent atlas canvas is excluded.
 async function traceMove(page, id) {
   return page.locator('.lion-book-experience').evaluate((book, id) => new Promise(resolve => {
     const nav = book.querySelector('.lion-book-timeline');
+    const bounds = nav.getBoundingClientRect();
+    const target = nav.querySelector(`[data-book-page="${id}"] .lion-book-game-platform`).getBoundingClientRect();
+    const targetX = (target.left + target.right) / 2 - bounds.left;
+    const initial = nav.querySelector('.lion-book-guide-character').getBoundingClientRect();
+    const baseline = (initial.top + initial.bottom) / 2 - bounds.top;
     const frames = [];
     let started;
     function sample(now) {
       started ??= now;
-      const marker = nav.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-      const path = nav.querySelector('.lion-book-track-line');
-      const matrix = path.getScreenCTM();
-      const center = new DOMPoint((marker.left + marker.right) / 2, (marker.top + marker.bottom) / 2).matrixTransform(matrix.inverse());
-      let low = 0, high = path.getTotalLength();
-      for (let n = 0; n < 24; n++) {
-        const middle = (low + high) / 2;
-        if (path.getPointAtLength(middle).x < center.x) low = middle; else high = middle;
-      }
-      const onCurve = path.getPointAtLength((low + high) / 2);
+      const marker = nav.querySelector('.lion-book-guide-character').getBoundingClientRect();
+      const center = { x: (marker.left + marker.right) / 2 - bounds.left, y: (marker.top + marker.bottom) / 2 - bounds.top };
       const canvas = nav.querySelector('.lion-book-particles');
       const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
-      let count = 0, red = 0, min = 1000, max = 0;
+      let count = 0, red = 0, min = bounds.width, max = 0;
       for (let i = 3; i < pixels.length; i += 4) if (pixels[i]) {
         count++; if (pixels[i - 3] > 130 && pixels[i - 2] < 100) red++;
-        const x = ((i - 3) / 4 % canvas.width) / canvas.width * 1000;
+        const x = ((i - 3) / 4 % canvas.width) / canvas.width * bounds.width;
         min = Math.min(min, x); max = Math.max(max, x);
       }
-      frames.push({ x: center.x, y: center.y, arc: (low + high) / 2, error: Math.abs(onCurve.y - center.y),
-        count, red, min, max });
+      frames.push({ ...center, targetX, error: Math.abs(baseline - center.y), count, red, min, max });
       if (now - started < 1750) requestAnimationFrame(sample); else resolve(frames);
     }
-    // Start at the user's click. Waiting for data-book-index would hide the
-    // adjacent-page spring delay that the traveling marker must avoid.
     book.querySelector(`[data-book-page="${id}"]`).click();
     requestAnimationFrame(sample);
   }), id);
@@ -126,7 +121,7 @@ async function placeTimelineWithPaperVisible(page) {
 async function traceChoice(page, input) {
   return page.locator('.lion-book-experience').evaluate((book, input) => new Promise(resolve => {
     const nav = book.querySelector('.lion-book-timeline');
-    const marker = nav.querySelector('.lion-book-traveling-lion');
+    const marker = nav.querySelector('.lion-book-guide-character');
     const read = () => ({ time: performance.now() - start, x: marker.getBoundingClientRect().x,
       index: Number(book.dataset.bookIndex), turning: book.dataset.bookTurning,
       selected: nav.querySelector('[aria-current="step"]')?.dataset.bookPage,
@@ -211,8 +206,8 @@ test('时间线尚在翻页时可移焦真实纸面并继续按键，狮头跟�
   await expect(book).toHaveAttribute('data-book-turning', 'false');
   await expect(book.locator('[aria-current="step"]')).toHaveAttribute('data-book-page', 'formation');
   await expect.poll(() => book.locator('.lion-book-timeline').evaluate(nav => {
-    const marker = nav.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-    const node = nav.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
+    const marker = nav.querySelector('.lion-book-guide-character').getBoundingClientRect();
+    const node = nav.querySelector('[aria-current="step"] .lion-book-game-platform').getBoundingClientRect();
     return Math.abs(marker.x + marker.width / 2 - node.x - node.width / 2);
   })).toBeLessThan(2);
 });
@@ -220,9 +215,10 @@ test('时间线尚在翻页时可移焦真实纸面并继续按键，狮头跟�
 test('狮头水平行进，离散红金粒子只出现在身后并消散，支持倒向', async ({ page }) => {
   await openArchive(page);
   await page.locator('.lion-book-timeline').scrollIntoViewIfNeeded();
-  await expect(page.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
-  for (const [id, targetX] of [['martial', 500], ['origin', 60 + 880 / 6]]) {
+  await expect(page.locator('.lion-book-guide-character img')).toHaveAttribute('src', /adam-poster\.png$/);
+  for (const id of ['martial', 'origin']) {
     const frames = await traceMove(page, id);
+    const targetX = frames[0].targetX;
     const moving = frames.filter(f => Math.abs(f.x - targetX) > 1);
     expect(moving.length).toBeGreaterThan(4);
     expect(Math.max(...frames.map(f => f.error))).toBeLessThan(1);
@@ -245,12 +241,12 @@ test('减少动态时狮头直接到节点且没有拖尾，关闭粒子仍可�
   await nav.locator('[data-book-page="formation"]').click();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '2');
   await expect(nav).toHaveAttribute('data-particles-enabled', 'false');
-  await expect(page.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
+  await expect(page.locator('.lion-book-guide-character img')).toHaveAttribute('src', /adam-poster\.png$/);
   await expect(page.locator('.lion-book-particles')).not.toBeVisible();
   const offset = await nav.evaluate(el => {
-    const marker = el.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-    const node = el.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
-    return Math.hypot((marker.left + marker.right - node.left - node.right) / 2, (marker.top + marker.bottom - node.top - node.bottom) / 2);
+    const marker = el.querySelector('.lion-book-guide-character').getBoundingClientRect();
+    const node = el.querySelector('[aria-current="step"] .lion-book-game-platform').getBoundingClientRect();
+    return Math.abs((marker.left + marker.right - node.left - node.right) / 2);
   });
   expect(offset).toBeLessThan(2);
 });
@@ -263,22 +259,22 @@ test('快速反向选择从可见位置接续，离屏暂停且回到视口后�
     book.querySelector('[data-book-page="ending"]').click();
     setTimeout(resolve, 150);
   }));
-  const before = await nav.locator('.lion-book-traveling-lion').boundingBox();
+  const before = await nav.locator('.lion-book-guide-character').boundingBox();
   // Retarget 150ms after input, independently of the paper's commit timing.
   await nav.locator('[data-book-page="origin"]').evaluate(button => button.click());
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '1');
-  const after = await nav.locator('.lion-book-traveling-lion').boundingBox();
+  const after = await nav.locator('.lion-book-guide-character').boundingBox();
   expect(Math.abs(before.x - after.x)).toBeLessThan(140);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await expect(nav).toHaveAttribute('data-particles-playing', 'false');
-  const paused = await nav.locator('.lion-book-traveling-lion').getAttribute('style');
+  const paused = await nav.locator('.lion-book-guide-character').getAttribute('style');
   await page.waitForTimeout(250);
-  expect(await nav.locator('.lion-book-traveling-lion').getAttribute('style')).toBe(paused);
+  expect(await nav.locator('.lion-book-guide-character').getAttribute('style')).toBe(paused);
   await nav.scrollIntoViewIfNeeded();
-  await expect(nav).toHaveAttribute('data-particles-playing', 'true');
+  await expect(nav).toHaveAttribute('data-playing', 'true');
   await expect.poll(() => nav.evaluate(el => {
-    const marker = el.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-    const node = el.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
+    const marker = el.querySelector('.lion-book-guide-character').getBoundingClientRect();
+    const node = el.querySelector('[aria-current="step"] .lion-book-game-platform').getBoundingClientRect();
     return Math.abs(marker.x + marker.width / 2 - node.x - node.width / 2);
   })).toBeLessThan(2);
   await expect(nav.locator('[aria-current="step"]')).toHaveAttribute('data-book-page', 'origin');
@@ -286,9 +282,9 @@ test('快速反向选择从可见位置接续，离屏暂停且回到视口后�
   // Home is intentionally prewarmed across routes: it must stop, not be destroyed.
   await expect(nav).not.toBeVisible();
   await expect(nav).toHaveAttribute('data-particles-playing', 'false');
-  const away = await nav.locator('.lion-book-traveling-lion').getAttribute('style');
+  const away = await nav.locator('.lion-book-guide-character').getAttribute('style');
   await page.waitForTimeout(200);
-  expect(await nav.locator('.lion-book-traveling-lion').getAttribute('style')).toBe(away);
+  expect(await nav.locator('.lion-book-guide-character').getAttribute('style')).toBe(away);
   await page.locator('.site-header [data-route="entry"]').click();
   await page.locator('.lion-book-timeline').scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '1');

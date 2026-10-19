@@ -1,9 +1,11 @@
 .home-archive-scene {
   position: relative;
   isolation: isolate;
-  background-color: #f5e9d5;
+  box-sizing: border-box;
+  padding-left: 184px;
+  background-color: #faf7f1;
   background-position: center top;
-  background-size: cover;
+  background-size: 100% auto;
   background-repeat: no-repeat;
   container-type: inline-size;
   /* Both nested sections need the same resolved width, not their own cqw. */
@@ -11,6 +13,16 @@
   --archive-brush: 'STXinwei', '华文新魏', 'STXingkai', '华文行楷', 'KaiTi', '楷体', serif;
   --archive-body: 'STKaiti', 'KaiTi', '楷体', 'STSong', 'SimSun', serif;
 }
+.archive-background-layer { position: absolute; z-index: -1; left: 0; right: 0; pointer-events: none; background-image: var(--archive-background-image); background-size: 100% auto; background-repeat: no-repeat; }
+.archive-background-layer.is-top { top: 0; height: min(177.78vw, 3400px); background-position: center top; mask-image: linear-gradient(#000 65%, transparent); }
+.archive-background-layer.is-side { top: 30%; height: 2400px; background-position: left center; mask-image: linear-gradient(transparent, #000 25%, #000 65%, transparent); }
+.archive-background-layer.is-bottom { bottom: 0; height: min(177.78vw, 2400px); background-position: center bottom; mask-image: linear-gradient(transparent, #000 65%); }
+@container lion-page (max-width: 1250px) {
+  .home-archive-scene { padding-left: 96px; }
+  .home-archive-scene .lion-book-section, .home-archive-scene .home-culture { padding-inline: 28px; }
+  .home-archive-scene .heritage-inner { width: calc(100% - 56px); }
+}
+.home-archive-scene .lion-book-divider-space { height: max(130px, calc(var(--archive-peek-width) * .57)); border-bottom: 1px solid #a6754925; }
 .home-archive-next { position: relative; }
 .home-archive-peek {
   position: absolute;
@@ -34,6 +46,10 @@
 .lion-archive-ornament { display: flex; align-items: center; flex: 0 0 auto; width: clamp(68px, 8cqw, 108px); color: #a87b44; pointer-events: none; user-select: none; }
 .lion-archive-ornament img { display: block; width: 58%; height: auto; filter: drop-shadow(0 3px 4px #88472a18); }
 .lion-archive-ornament svg { display: block; width: 48%; margin-left: -6%; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.home-archive-scene .lion-archive-ornament { width: 48px; height: 48px; }
+.home-archive-scene .lion-archive-ornament img { width: 48px; height: 48px; object-fit: contain; filter: none; }
+.home-archive-scene .lion-archive-ornament svg { display: none; }
+.home-archive-scene .home-culture-sources-emblem img { width: 40px; height: 40px; left: 20px; }
 .lion-archive-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: #8c4932; font: 13px/1.6 var(--archive-body); letter-spacing: .14em; }
 .lion-archive-tags i { width: 4px; height: 4px; background: #b1844c; transform: rotate(45deg); }
 
@@ -46,6 +62,24 @@
   backdrop-filter: blur(calc(8px * var(--archive-panel-opacity, .6)));
   box-shadow: 0 6px 24px rgb(92 56 31 / calc(var(--archive-panel-opacity, .6) * .06));
 }
+/* Existing paper controls also govern the user's faint lion texture; never text. */
+.home-archive-scene :is(.archive-reading-panel[data-surface], .home-culture-sources[data-surface], a.home-culture-source-card[data-surface]) { position: relative; isolation: isolate; }
+.home-archive-scene :is(.archive-reading-panel[data-surface], .home-culture-sources[data-surface], a.home-culture-source-card[data-surface])::after {
+  content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: var(--archive-background-image); background-repeat: no-repeat; background-size: 380px auto; background-position: left 38%;
+  opacity: calc(var(--surface-opacity, .6) * .08); mask-image: linear-gradient(90deg, #000, transparent 72%);
+}
+.home-archive-scene :is([data-surface='bookDetails'], [data-surface='cultureBody'])::after { background-position: right 38%; mask-image: linear-gradient(270deg, #000, transparent 72%); }
+.home-archive-scene :is(h2, .heritage-copy h3, .lion-book-reading-title h3, .home-culture-copy h3) { text-shadow: .012em .018em .01em #6e241313; }
+.home-archive-scene h2 { text-rendering: optimizeLegibility; }
+.home-archive-scene .lion-book-heading { padding-block: calc(44px * var(--book-title-spacing, 1)); }
+.home-archive-scene .lion-book-stage { margin-top: 32px; }
+.archive-provenance { margin-top: 24px; border-top: 1px solid #d5ba94; }
+.archive-provenance summary { padding: 18px 0; color: #8b3828; cursor: pointer; font: 19px/1.7 var(--archive-body); }
+.archive-provenance p, .archive-provenance li { font: 14px/1.85 var(--archive-body); }
+.archive-provenance a { color: #8c4932; text-underline-offset: 3px; }
+.archive-portrait-sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; padding: 12px 0; list-style: none; }
+.archive-portrait-sources a { display: block; }
 .home-archive-scene .lion-book-heading,
 .home-archive-scene .home-culture-intro { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 24px; text-align: center; }
 .home-archive-scene .lion-book-title-group,
@@ -57,7 +91,7 @@
 .home-archive-scene .home-culture-overline,
 .home-archive-scene .lion-archive-tags { justify-content: center; }
 .home-archive-scene .lion-book-heading h2 { font-size: clamp(42px, 5.4cqw, 74px); }
-.home-archive-scene .home-culture-intro h2 { font-size: clamp(36px, 4.9cqw, 68px); }
+.home-archive-scene .home-culture-intro h2 { font-size: clamp(36px, 5.4cqw, 68px); }
 .home-archive-scene .lion-book-preface { max-width: 760px; padding: 0; border: 0; background: none; }
 .home-archive-scene .lion-book-preface p { margin: 0 0 10px; font-size: 26px; }
 .home-archive-scene .lion-book-preface>span,

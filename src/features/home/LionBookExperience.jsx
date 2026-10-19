@@ -196,13 +196,12 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
       event.preventDefault();
       send(action, event.key === 'End' ? lionBookPages.length - 1 : 0);
     }}>
-    <div className="lion-book-figure-meta"><span>手绘档案 <i /> {String(book.index + 1).padStart(2, '0')} / 07</span><span>岭南风物 · 纸上留声</span></div>
     <div className="lion-book-stage" ref={hostRef}>
       <Sketchbook assetBaseUrl={assetBaseUrl} />
       {!book.ready && !book.error && <p className="lion-book-load" role="status">正在展开史册…</p>}
       {book.error && <div className="lion-book-error" role="alert"><p>{book.error}</p><button type="button" onClick={retry}>重新展开</button></div>}
     </div>
-    <p className="lion-book-instructions" id="lion-book-instructions"><span aria-hidden="true">↔</span> 拖动左右书页，翻阅醒狮往事 <span className="lion-book-key-hint">也可点选年代 · 左右方向键翻页</span></p>
+    <p className="sr-only" id="lion-book-instructions">拖动左右书页，或点选年代；左右方向键翻页。</p>
     <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
     <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
@@ -210,6 +209,6 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
         {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}
       </div>
     </div>
-    <footer className="lion-book-provenance"><span>AI辅助绘制 · 历史主题示意，非文物或史料影像。年代为叙事分期，文化传承延续交叠。</span><span><a href={media.lionBookLicense} target="_blank" rel="noreferrer">Sketchbook · ThreeUI / MIT</a>{' · '}<a href={media.lionBookFontLicense} target="_blank" rel="noreferrer">字体许可</a></span></footer>
+    <div className="lion-book-divider-space" aria-hidden="true" />
   </div>;
 }

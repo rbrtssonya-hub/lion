@@ -40,22 +40,24 @@ test('书册七节点同高，狮头行进时出现离散粒子，停下后自�
   const nav = page.locator('.lion-book-timeline');
   await nav.scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
-  const levels = await nav.locator('button .lion-book-node').evaluateAll(nodes => nodes.map(el => el.getBoundingClientRect().top));
+  await expect(nav.locator('button')).toHaveCount(7);
+  await expect(nav.locator('.lion-book-guide-character canvas')).toHaveCount(1);
+  const levels = await nav.locator('button .lion-book-game-platform').evaluateAll(nodes => nodes.map(el => el.getBoundingClientRect().top));
   expect(Math.max(...levels) - Math.min(...levels)).toBeLessThan(1);
   await expect(nav.locator('filter, .lion-book-ink-trail, .lion-book-ink-wash')).toHaveCount(0);
-  expect(await nav.evaluate(el => Number(getComputedStyle(el.querySelector('.lion-book-traveling-lion')).zIndex)
+  expect(await nav.evaluate(el => Number(getComputedStyle(el.querySelector('.lion-book-guide-character')).zIndex)
     > Math.max(...[...el.querySelectorAll('button')].map(button => Number(getComputedStyle(button).zIndex))))).toBe(true);
   await nav.locator('[data-book-page="ending"]').click();
-  await expect.poll(() => nav.locator('canvas').evaluate(el => {
+  await expect.poll(() => nav.locator('.lion-book-particles').evaluate(el => {
     const data = el.getContext('2d').getImageData(0, 0, el.width, el.height).data;
     return data.some((v, i) => i % 4 === 3 && v > 0);
   })).toBe(true);
   await expect.poll(() => nav.evaluate(el => {
-    const a = el.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
-    const b = el.querySelector('[aria-current] .lion-book-node').getBoundingClientRect();
+    const a = el.querySelector('.lion-book-guide-character').getBoundingClientRect();
+    const b = el.querySelector('[aria-current] .lion-book-game-platform').getBoundingClientRect();
     return Math.abs(a.x + a.width / 2 - b.x - b.width / 2);
   })).toBeLessThan(2);
-  await expect.poll(() => nav.locator('canvas').evaluate(el => el.getContext('2d').getImageData(0, 0, el.width, el.height).data.every((v, i) => i % 4 !== 3 || v === 0))).toBe(true);
+  await expect.poll(() => nav.locator('.lion-book-particles').evaluate(el => el.getContext('2d').getImageData(0, 0, el.width, el.height).data.every((v, i) => i % 4 !== 3 || v === 0))).toBe(true);
 });
 
 test('动作页新四站选择在减弱动态时保持标题和键盘联动', async ({ page }) => {

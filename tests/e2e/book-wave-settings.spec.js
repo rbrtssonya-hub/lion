@@ -49,33 +49,70 @@ test('书册默认放大，尺寸设置即时生效而不重建纸张文档', as
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
 });
 
-test('七个年代水平排列，狮头与书页同步且粒子拖尾可以关闭', async ({ page }) => {
+test('七个年代台阶水平排列，角色与书页同步且粒子拖尾可以关闭', async ({ page }) => {
   await openBook(page);
   const timeline = page.locator('.lion-book-timeline');
+  const sprite = timeline.locator('.lion-book-guide-character');
+  const particles = timeline.locator('.lion-book-particles');
   await timeline.scrollIntoViewIfNeeded();
   await expect(timeline.locator('button')).toHaveCount(7);
-  expect(await timeline.locator('.lion-book-track-line').getAttribute('d')).toBe('M 60 64 H 940');
-  const levels = await timeline.locator('button').evaluateAll(buttons => [...new Set(buttons.map(button => button.style.top))]);
-  expect(levels.length).toBe(1);
-  await expect(timeline).toHaveAttribute('data-particles-playing', 'true');
-  await expect(timeline.locator('.lion-book-traveling-lion img')).toHaveAttribute('src', /nav-lion-head\.png$/);
+  const geometry = await timeline.evaluate(element => {
+    const track = element.querySelector('.lion-book-game-track').getBoundingClientRect();
+    const platforms = [...element.querySelectorAll('.lion-book-game-platform')].map(node => {
+      const box = node.getBoundingClientRect();
+      return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    });
+    return { left: track.left, right: track.right, y: track.y + track.height / 2, platforms };
+  });
+  expect(geometry.platforms).toHaveLength(7);
+  for (const [index, platform] of geometry.platforms.entries()) {
+    expect(Math.abs(platform.y - geometry.y)).toBeLessThan(1);
+    if (index) expect(platform.x).toBeGreaterThan(geometry.platforms[index - 1].x);
+  }
+  expect(Math.abs(geometry.left - geometry.platforms[0].x)).toBeLessThan(1);
+  expect(Math.abs(geometry.right - geometry.platforms.at(-1).x)).toBeLessThan(1);
+  await expect(sprite.locator('img')).toHaveAttribute('src', /adam-poster\.png$/);
+  await expect(sprite).toHaveAttribute('data-ready', 'true');
+  await expect(sprite).toHaveAttribute('data-animation', 'idle');
+  await expect(sprite.locator('canvas')).toBeVisible();
+  await expect(particles).toHaveCount(1);
+  await expect(timeline).toHaveAttribute('data-particles-playing', 'false');
   await timeline.locator('[data-book-page="spread"]').click();
+  await expect(sprite).toHaveAttribute('data-animation', 'mov');
+  await expect(timeline).toHaveAttribute('data-particles-playing', 'true');
+  await expect.poll(() => particles.evaluate(canvas => {
+    const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+    return pixels.some((alpha, index) => index % 4 === 3 && alpha > 0);
+  })).toBe(true);
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '4');
   await expect(timeline.locator('[data-book-page="spread"]')).toHaveAttribute('aria-current', 'step');
-  await expect(timeline.locator('.lion-book-particles')).toHaveCount(1);
   await expect.poll(async () => {
-    const lion = await timeline.locator('.lion-book-traveling-lion').boundingBox();
-    const node = await timeline.locator('[data-book-page="spread"] .lion-book-node').boundingBox();
+    const lion = await sprite.boundingBox();
+    const node = await timeline.locator('[data-book-page="spread"] .lion-book-game-platform').boundingBox();
     return Math.abs(lion.x + lion.width / 2 - node.x - node.width / 2);
   }).toBeLessThan(2);
+  await expect(sprite).toHaveAttribute('data-animation', 'idle');
+  await expect(timeline).toHaveAttribute('data-particles-playing', 'false');
   await page.locator('.site-header [data-action="settings"]').click();
   await page.getByRole('tab', { name: '动画', exact: true }).click();
   await page.getByRole('checkbox', { name: '书册导航粒子拖尾' }).uncheck();
   await expect(timeline).toHaveAttribute('data-particles-enabled', 'false');
-  await expect(timeline.locator('.lion-book-particles')).toHaveCSS('display', 'none');
+  await expect(particles).toHaveCSS('display', 'none');
+  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await timeline.locator('[data-book-page="formation"]').click();
+  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '2');
+  await expect(timeline.locator('[data-book-page="formation"]')).toHaveAttribute('aria-current', 'step');
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  const duration = await timeline.locator('.lion-book-traveling-lion').evaluate(element => parseFloat(getComputedStyle(element).transitionDuration));
-  expect(duration).toBeLessThanOrEqual(.001);
+  await expect(sprite).toHaveAttribute('data-animation', 'poster');
+  await expect(sprite).toHaveAttribute('data-playing', 'false');
+  await expect(timeline).toHaveAttribute('data-observing', 'false');
+  await timeline.locator('[data-book-page="ending"]').click();
+  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '6');
+  await expect.poll(async () => {
+    const lion = await sprite.boundingBox();
+    const node = await timeline.locator('[data-book-page="ending"] .lion-book-game-platform').boundingBox();
+    return Math.abs(lion.x + lion.width / 2 - node.x - node.width / 2);
+  }).toBeLessThan(2);
 });
 
 test('加载遮罩期间书册已预热且不消费首翻资格，短桌面大舞台可启动首翻', async ({ page }) => {

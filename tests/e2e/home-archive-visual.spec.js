@@ -22,7 +22,7 @@ test('书册与文化图鉴实际解码同一醒狮背景，首屏视频不被�
   await expect(scene).toHaveCount(1, { timeout: 1500 });
   const background = await scene.evaluate(async element => {
     const css = getComputedStyle(element);
-    const url = css.backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1];
+    const url = getComputedStyle(element.querySelector('.archive-background-layer')).backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1];
     const image = new Image();
     image.src = url;
     await image.decode();
@@ -30,8 +30,8 @@ test('书册与文化图鉴实际解码同一醒狮背景，首屏视频不被�
       bookInside: element.contains(document.querySelector('#homeLionBook')),
       cultureInside: element.contains(document.querySelector('#homeCulture')) };
   });
-  expect(new URL(background.url).pathname).toMatch(/\/assets\/backgrounds\/home-archive-background-final\.png$/);
-  expect(background).toMatchObject({ width: 1536, height: 2048, filter: 'none', bookInside: true, cultureInside: true });
+  expect(new URL(background.url).pathname).toMatch(/\/assets\/backgrounds\/home-archive-ink-2026-10-20\.png$/);
+  expect(background).toMatchObject({ width: 1152, height: 2048, filter: 'none', bookInside: true, cultureInside: true });
   expect(background.url).not.toContain('/assets/assets/');
   for (const selector of ['#homeLionBook', '#homeCulture']) {
     const painted = await page.locator(selector).evaluate(element => getComputedStyle(element).backgroundColor);
@@ -97,7 +97,7 @@ test('透明探头醒狮跨过书册与图鉴边界，电脑窗口及侧栏推�
         return { above: count(seamY - 24, seamY), below: count(seamY, seamY + 24) };
       });
       return { peek: box('.home-archive-peek'), seam: box('#homeCulture'), reading: box('.lion-book-reading'),
-        note: box('.lion-book-provenance>span:first-child'), licenses: box('.lion-book-provenance>span:last-child'),
+        dividerSpace: box('.lion-book-divider-space'),
         heading: box('.home-culture-intro'), page: box('.site-page'),
         pointer: getComputedStyle(document.querySelector('.home-archive-peek')).pointerEvents, paws,
         scroll: document.documentElement.scrollWidth, viewport: document.documentElement.clientWidth };
@@ -110,18 +110,19 @@ test('透明探头醒狮跨过书册与图鉴边界，电脑窗口及侧栏推�
     }
     expect(layout.peek.width / layout.peek.height).toBeCloseTo(1.5, 2);
     expect(layout.peek.top).toBeGreaterThanOrEqual(layout.reading.bottom + 12);
-    expect(layout.note.left).toBeGreaterThanOrEqual(layout.peek.right + 12);
-    expect(layout.licenses.left).toBeGreaterThanOrEqual(layout.peek.right + 12);
+    expect(layout.dividerSpace.bottom).toBeLessThanOrEqual(layout.seam.top);
     expect(layout.peek.bottom + 12).toBeLessThanOrEqual(layout.heading.top);
     expect(layout.peek.left).toBeGreaterThanOrEqual(layout.page.left);
     expect(layout.peek.right).toBeLessThanOrEqual(layout.page.right);
     expect(layout.pointer).toBe('none');
     expect(layout.scroll).toBeLessThanOrEqual(layout.viewport);
   }
-  await expect(page.locator('.lion-book-provenance')).toContainText('非文物或史料影像');
-  await expect(page.locator('.lion-book-provenance a')).toHaveCount(2);
-  await expect(page.locator('.lion-book-provenance a').first()).toHaveAttribute('href', /threeui-LICENSE\.txt$/);
-  await expect(page.locator('.lion-book-provenance a').last()).toHaveAttribute('href', /threeui-FONT-LICENSES\.txt$/);
+  const provenance = page.locator('.archive-provenance');
+  await provenance.locator('summary').click();
+  await expect(provenance).toContainText('历史或实物鉴定证据');
+  await expect(provenance.locator('a[href*="threeui-"]')).toHaveCount(2);
+  await expect(provenance.getByRole('link', { name: /ThreeUI/ })).toHaveAttribute('href', /threeui-LICENSE\.txt$/);
+  await expect(provenance.getByRole('link', { name: '字体许可' })).toHaveAttribute('href', /threeui-FONT-LICENSES\.txt$/);
 });
 
 test('醒狮装饰和文字在电脑宽度及900px推开空间内完整可读，不遮挡书页交互', async ({ page }) => {

@@ -5,6 +5,7 @@ import HomeCulture from './HomeCulture.jsx';
 import HomeLionBook from './HomeLionBook.jsx';
 import { HomeLionTypes, HomeInheritors } from './HomeHeritage.jsx';
 import HomeCultureSources from './HomeCultureSources.jsx';
+import HomeArchiveNav from './HomeArchiveNav.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 import '../../styles/home-archive.css';
 
@@ -56,7 +57,8 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
   </section>
-  <div className="home-archive-scene" style={{ backgroundImage: `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
+  <div className="home-archive-scene" style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
+    {['top', 'side', 'bottom'].map(position => <div key={position} className={`archive-background-layer is-${position}`} aria-hidden="true" />)}
     <HomeLionBook settings={settings} introDuration={settings.bookIntroDuration} preload={true} playbackEnabled={playbackEnabled} onReady={onBookReady} />
     <div className="home-archive-next">
       <div className="home-archive-peek" aria-hidden="true">
@@ -68,5 +70,6 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <HomeCultureSources />
     </div>
   </div>
+  <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />
   </div>;
 }

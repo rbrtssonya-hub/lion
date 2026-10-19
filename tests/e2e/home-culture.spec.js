@@ -186,7 +186,7 @@ test('首页照片下方控制栏已删除，照片与摄影许可保留且页�
   await expect(references.getByRole('heading', { name: '参考资料', exact: true })).toBeVisible();
   await expect(references.locator('.home-culture-source-card')).toHaveCount(3);
   expect((await references.boundingBox()).height).toBeGreaterThan(350);
-  await references.locator('summary').click();
+  await references.locator('.home-culture-photo-licenses summary').click();
   await expect(references.locator('.home-culture-photo-license')).toHaveCount(8);
   await expect(references.locator('.home-culture-photo-license').last()).toBeVisible();
   await gallery.scrollIntoViewIfNeeded();
