@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-10-19",
+  "scope": "User supplied four action clips for the immersive action page",
+  "source_directory": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作",
+  "ffprobe_path": "D:/SoftWare/FFmpeg-n8.0-latest-win64-gpl-shared-8.0/bin/ffprobe.EXE",
+  "ffmpeg_path": "D:/SoftWare/FFmpeg-n8.0-latest-win64-gpl-shared-8.0/bin/ffmpeg.EXE",
+  "provenance_note": "User-provided stylized action demonstrations; not classified as live documentary footage. Creative method and generation provenance remain unverified.",
+  "clips": [
+    {
+      "id": "tanqing",
+      "title": "探青采青",
+      "label": "用户提供 · 动作演示素材",
+      "source_path": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/探青采青.mp4",
+      "deployment_path": "source/public/assets/action/videos/tanqing.mp4",
+      "bytes": 7593974,
+      "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143",
+      "original_bytes_preserved": true,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "profile": "High",
+            "codec_type": "video",
+            "width": 2560,
+            "height": 1440,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "24/1",
+            "duration": "8.000000"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "profile": "LC",
+            "codec_type": "audio",
+            "sample_rate": "32000",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "duration": "8.000000"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "8.000000",
+          "bit_rate": "7593974"
+        }
+      },
+      "full_video_audio_decode_exit": 0,
+      "content_review": {
+        "method": "Four sampled frames using FFmpeg fps=1/2 across the 8-second clip, followed by full video/audio decode",
+        "creative_method": "Unverified. Stylized appearance alone is not proof of AI generation or provenance.",
+        "filename_content_match": true,
+        "observations": [
+          "狮身靠近放有生菜和红包的矮盘。",
+          "狮头低伏试探，随后抬头，嘴部叼起绿色菜叶。"
+        ]
+      },
+      "poster": {
+        "width": 1280,
+        "timestamp_seconds": 0.5,
+        "bytes": 239641,
+        "extract_exit": 0,
+        "source_video_sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143",
+        "derivation": "FFmpeg frame extraction at 0.5 seconds, Lanczos scale to 1280x720, JPEG q:v 2; no generative editing",
+        "path": "source/public/assets/action/videos/tanqing-poster.jpg",
+        "height": 720,
+        "sha256": "97797623d1ce2730ae2d1b18a5e1f977dc0d34f4644982049a4b0307918feacc"
+      }
+    },
+    {
+      "id": "doumao",
+      "title": "抖毛",
+      "label": "用户提供 · 动作演示素材",
+      "source_path": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/抖毛.mp4",
+      "deployment_path": "source/public/assets/action/videos/doumao.mp4",
+      "bytes": 6159115,
+      "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a",
+      "original_bytes_preserved": true,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "profile": "High",
+            "codec_type": "video",
+            "width": 2560,
+            "height": 1440,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "24/1",
+            "duration": "8.000000"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "profile": "LC",
+            "codec_type": "audio",
+            "sample_rate": "32000",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "duration": "8.000000"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "8.000000",
+          "bit_rate": "6159115"
+        }
+      },
+      "full_video_audio_decode_exit": 0,
+      "content_review": {
+        "method": "Four sampled frames using FFmpeg fps=1/2 across the 8-second clip, followed by full video/audio decode",
+        "creative_method": "Unverified. Stylized appearance alone is not proof of AI generation or provenance.",
+        "filename_content_match": true,
+        "observations": [
+          "无球、菜盘或高桩道具。",
+          "狮头左右摇转，身体和毛饰伴随摆动。"
+        ]
+      },
+      "poster": {
+        "width": 1280,
+        "timestamp_seconds": 0.5,
+        "bytes": 236762,
+        "extract_exit": 0,
+        "source_video_sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a",
+        "derivation": "FFmpeg frame extraction at 0.5 seconds, Lanczos scale to 1280x720, JPEG q:v 2; no generative editing",
+        "path": "source/public/assets/action/videos/doumao-poster.jpg",
+        "height": 720,
+        "sha256": "9c606f8cf62c87d070a4cdb5cff6feed13056ca6f32763b60d961f205da60c44"
+      }
+    },
+    {
+      "id": "tuqiu",
+      "title": "狮子吐球",
+      "label": "用户提供 · 动作演示素材",
+      "source_path": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/狮子吐球.mp4",
+      "deployment_path": "source/public/assets/action/videos/tuqiu.mp4",
+      "bytes": 6519176,
+      "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650",
+      "original_bytes_preserved": true,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "profile": "High",
+            "codec_type": "video",
+            "width": 2560,
+            "height": 1440,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "24/1",
+            "duration": "8.000000"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "profile": "LC",
+            "codec_type": "audio",
+            "sample_rate": "32000",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "duration": "8.000000"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "8.000000",
+          "bit_rate": "6519176"
+        }
+      },
+      "full_video_audio_decode_exit": 0,
+      "content_review": {
+        "method": "Four sampled frames using FFmpeg fps=1/2 across the 8-second clip, followed by full video/audio decode",
+        "creative_method": "Unverified. Stylized appearance alone is not proof of AI generation or provenance.",
+        "filename_content_match": true,
+        "observations": [
+          "狮口中出现红金色球体。",
+          "球落至地面后，狮头低伏，朝球体方向互动。"
+        ]
+      },
+      "poster": {
+        "width": 1280,
+        "timestamp_seconds": 0.5,
+        "bytes": 193477,
+        "extract_exit": 0,
+        "source_video_sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650",
+        "derivation": "FFmpeg frame extraction at 0.5 seconds, Lanczos scale to 1280x720, JPEG q:v 2; no generative editing",
+        "path": "source/public/assets/action/videos/tuqiu-poster.jpg",
+        "height": 720,
+        "sha256": "f86322ea17d60f8d01ecd863438affa6636559c2b188ce89bdd4d7bd31c45baa"
+      }
+    },
+    {
+      "id": "meihuazhuang",
+      "title": "踩梅花桩",
+      "label": "用户提供 · 动作演示素材",
+      "source_path": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/踩梅花桩.mp4",
+      "deployment_path": "source/public/assets/action/videos/meihuazhuang.mp4",
+      "bytes": 7929073,
+      "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866",
+      "original_bytes_preserved": true,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "profile": "High",
+            "codec_type": "video",
+            "width": 2560,
+            "height": 1440,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "24/1",
+            "duration": "8.000000"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "profile": "LC",
+            "codec_type": "audio",
+            "sample_rate": "32000",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "duration": "8.000000"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "8.000000",
+          "bit_rate": "7929073"
+        }
+      },
+      "full_video_audio_decode_exit": 0,
+      "content_review": {
+        "method": "Four sampled frames using FFmpeg fps=1/2 across the 8-second clip, followed by full video/audio decode",
+        "creative_method": "Unverified. Stylized appearance alone is not proof of AI generation or provenance.",
+        "filename_content_match": true,
+        "observations": [
+          "狮身位于多根红金色高桩上。",
+          "片段中出现跨桩、落步与身体重心调整。"
+        ]
+      },
+      "poster": {
+        "width": 1280,
+        "timestamp_seconds": 0.5,
+        "bytes": 260139,
+        "extract_exit": 0,
+        "source_video_sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866",
+        "derivation": "FFmpeg frame extraction at 0.5 seconds, Lanczos scale to 1280x720, JPEG q:v 2; no generative editing",
+        "path": "source/public/assets/action/videos/meihuazhuang-poster.jpg",
+        "height": 720,
+        "sha256": "eac12867209074d3ad265e02fbbdacd5c848ecdaf9365e95a486938ce935755b"
+      }
+    }
+  ]
+}

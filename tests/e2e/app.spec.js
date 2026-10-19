@@ -312,33 +312,19 @@ for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 
   });
 }
 
-test('动作章节使用透明底层并保留待接入视频和定性时间轴', async ({ page }) => {
+test('动作章节接入四面巨幕与用户视频并保留全局导航及设置背景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  const mediaRequests = [];
-  page.on('request', (request) => mediaRequests.push(request.url()));
   await openPrepared(page, '/#/action');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
-  expect(await page.locator('#chapterStage').evaluate((element) => getComputedStyle(element).backgroundImage)).toBe('none');
   await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.actionBackground);
-  await expect(page.locator('#actionHero')).toBeVisible();
-  await expect(page.locator('.action-clip')).toHaveCount(4);
-  await expect(page.locator('#actionHero .action-player')).toHaveAttribute('data-media-state', 'pending');
-  await expect(page.locator('#actionHero .action-media-status')).toContainText('视频待接入');
-  expect(await page.locator('#introVideo').evaluate(video => video.paused)).toBe(true);
-  await expect(page.locator('.action-timeline')).toHaveCount(1);
-  await expect(page.locator('#actionHero .action-timeline, .action-explore-link')).toHaveCount(0);
-  await expect(page.locator('[data-placement="details"] button span')).toHaveText(['入场', '探步', '转身', '收势']);
-  const desktopNodes = await page.locator('[data-placement="details"] button').evaluateAll((nodes) => nodes.map((node) => {
-    const bounds = node.getBoundingClientRect();
-    return { x: bounds.x, width: bounds.width };
-  }));
-  expect(desktopNodes).toHaveLength(4);
-  expect(desktopNodes.every(({ width }) => width > 0)).toBe(true);
-  expect(desktopNodes[0].x).toBeLessThan(desktopNodes[1].x);
-  expect(desktopNodes[1].x).toBeLessThan(desktopNodes[2].x);
-  expect(desktopNodes[2].x).toBeLessThan(desktopNodes[3].x);
-  await expect(page.locator('#chapterEvidence')).toContainText('四段独立视频待接入');
+  const canvas = page.locator('#chapterStage canvas');
+  await expect(canvas).toHaveAttribute('data-scene-ready', 'true', { timeout: 45_000 });
+  await expect(page.locator('#chapterStage video')).toHaveCount(4);
+  await expect(page.locator('#chapterStage button[data-action-id]')).toHaveCount(4);
+  await expect(page.locator('#chapterStage .action-timeline, #chapterStage .action-clip')).toHaveCount(0);
+  await expect(page.locator('#chapterEvidence')).toContainText('用户提供');
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
+  await expect(page.locator('.site-header [data-route="action"]')).toHaveAttribute('aria-current', 'page');
   await expectPushedChapterBackdrop(page, assetPaths.actionBackground);
 });
 

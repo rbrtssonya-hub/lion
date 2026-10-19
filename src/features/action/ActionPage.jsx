@@ -1,125 +1,213 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
-import { actionClips } from './actionClips.js';
-import ActionTimeline from './ActionTimeline.jsx';
-import ActionVideo from './ActionVideo.jsx';
-import './action.css';
+import { theaterActions } from './actionClips.js';
+import { useTheaterPlayback } from './useTheaterPlayback.js';
+import './action-theater.css';
 
-function Cloud() {
-  return <svg className="action-cloud" viewBox="0 0 100 50" fill="none" aria-hidden="true"><path d="M7 34C-4 16 22 12 25 23 17 1 50-1 51 19 63 5 85 19 74 30 103 24 107 45 78 45H24C5 45 2 37 7 34Zm20 0c-11-10 6-19 11-9-3-18 22-20 21-5 9-6 24 8 11 14M39 36c-7-1-8-8-3-11" /></svg>;
+const clock = value => {
+  const seconds = Math.max(0, Number.isFinite(value) ? value : 0);
+  return `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+};
+
+function Icon({ kind }) {
+  const paths = {
+    play: 'm9 5 12 9-12 9Z', pause: 'M9 6v16M19 6v16',
+    sound: 'M5 11h5l6-5v16l-6-5H5ZM20 9q7 5 0 10',
+    muted: 'M5 11h5l6-5v16l-6-5H5ZM21 10l6 8M27 10l-6 8',
+    fullscreen: 'M4 11V4h7M17 4h7v7M24 17v7h-7M11 24H4v-7',
+  };
+  return <svg viewBox="0 0 28 28" aria-hidden="true"><path d={paths[kind]} /></svg>;
 }
-function Lines({ lines }) { return <div className="action-intro-lines">{lines.map(line => <p key={line}>{line}</p>)}</div>; }
 
-// Props are ordinary content inputs; the default page never supplies test media.
-export default function ActionPage({ clips = actionClips, assets = media }) {
-  const [selectedId, setSelectedId] = useState(clips[0].id);
-  const selected = clips.find(clip => clip.id === selectedId) || clips[0];
-  const selectedIndex = clips.indexOf(selected);
-  const players = useRef(new Map());
-  const rows = useRef(new Map());
-  const detailBar = useRef(null);
-  const jump = useRef(null);
-  const landed = useRef(null);
-  const jumpTimer = useRef(null);
-  const stopAll = useCallback((except) => players.current.forEach((player, id) => { if (id !== except) player?.pause(); }), []);
-  const onStart = useCallback((playerId, clipId) => { stopAll(playerId); setSelectedId(clipId); }, [stopAll]);
-  const goToClip = useCallback(id => {
-    const row = rows.current.get(id);
-    if (!row) return;
-    stopAll(); setSelectedId(id);
-    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height || 88;
-    const barHeight = detailBar.current?.getBoundingClientRect().height || 80;
-    const top = Math.max(0, Math.min(row.getBoundingClientRect().top + scrollY - headerHeight - barHeight - 24,
-      document.documentElement.scrollHeight - innerHeight));
-    jump.current = { id, top };
-    landed.current = null;
-    clearTimeout(jumpTimer.current);
-    jumpTimer.current = setTimeout(() => { jump.current = null; }, 1800);
-    window.scrollTo({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  }, [stopAll]);
+function ActionCaption({ clip, index, leaving = false }) {
+  return <div className={`theater-caption ${leaving ? 'is-leaving' : 'is-current'}`} aria-hidden={leaving || undefined}>
+    <p className="theater-caption-kicker">当前巨幕 <span>{String(index + 1).padStart(2, '0')} / 04</span></p>
+    <h2 id={leaving ? undefined : 'theaterActionName'}>{clip.name}</h2>
+    <p className="theater-description">{clip.description}</p>
+    <p className="theater-keywords">{clip.keywords?.join(' · ')}</p>
+  </div>;
+}
+
+export default function ActionPage({ clips = theaterActions, assets = media }) {
+  const stageRef = useRef(null);
+  const containerRef = useRef(null);
+  const sceneRef = useRef(null);
+  const requestedScreen = useRef(clips[0].id);
+  const activeRef = useRef(clips[0].id);
+  const visibleRef = useRef(true);
+  const flatRef = useRef(false);
+  const [activeId, setActiveId] = useState(clips[0].id);
+  const [sceneState, setSceneState] = useState('loading');
+  const [sceneError, setSceneError] = useState('');
+  const [sceneVersion, setSceneVersion] = useState(0);
+  const [flatMode, setFlatMode] = useState(false);
+  const [visible, setVisible] = useState(!document.hidden);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [notice, setNotice] = useState('');
+  const [caption, setCaption] = useState({ current: clips[0].id, previous: null });
+  const previousCaption = useRef(clips[0].id);
+  const active = clips.find(clip => clip.id === activeId) || clips[0];
+  const playback = useTheaterPlayback({ clips, activeId, enabled: visible, flatMode });
+  activeRef.current = activeId;
+  visibleRef.current = visible;
+  flatRef.current = flatMode;
+
+  useLayoutEffect(() => {
+    const previous = previousCaption.current;
+    if (previous === activeId) return;
+    previousCaption.current = activeId;
+    setCaption({ current: activeId, previous });
+    const timeout = setTimeout(() => setCaption(current => ({ ...current, previous: null })), 460);
+    return () => clearTimeout(timeout);
+  }, [activeId]);
+
   useEffect(() => {
-    let frame;
-    const update = () => {
-      frame = null;
-      if (jump.current) {
-        if (Math.abs(scrollY - jump.current.top) > 3) return;
-        // Keep the clicked row selected at its top anchor, even when the
-        // viewport midpoint falls in a following row on tall/narrow layouts.
-        landed.current = { top: scrollY };
-        jump.current = null; clearTimeout(jumpTimer.current);
-        return;
+    let intersecting = true;
+    const update = () => setVisible(intersecting && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { intersecting = entry.isIntersecting; update(); });
+    observer.observe(stageRef.current);
+    document.addEventListener('visibilitychange', update);
+    update();
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    let handle;
+    setSceneState('loading');
+    setSceneError('');
+    import('../../services/actionTheaterScene.js').then(({ createActionTheater }) => {
+      if (cancelled) return;
+      handle = createActionTheater({
+        container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
+        onActiveScreen: id => {
+          if (cancelled) return;
+          requestedScreen.current = id;
+          activeRef.current = id;
+          setActiveId(id);
+        },
+        onReady: () => {
+          if (cancelled) return;
+          setSceneState('ready');
+          handle.focusScreen(requestedScreen.current, { instant: true });
+        },
+        onError: () => {
+          if (cancelled) return;
+          setSceneState('error');
+          setSceneError('动作空间暂时无法载入，可继续观看视频。');
+          setFlatMode(true);
+        },
+      });
+      sceneRef.current = handle;
+      clips.forEach(clip => handle.setVideo(clip.id, playback.getVideo(clip.id)));
+      handle.setVisible(visibleRef.current && !flatRef.current);
+    }).catch(() => {
+      if (!cancelled) {
+        setSceneState('error');
+        setSceneError('动作空间暂时无法载入，可继续观看视频。');
+        setFlatMode(true);
       }
-      if (landed.current && Math.abs(scrollY - landed.current.top) <= 3) return;
-      landed.current = null;
-      const bar = detailBar.current?.getBoundingClientRect();
-      const visibleTop = Math.max(document.querySelector('.site-header')?.getBoundingClientRect().bottom || 88, bar?.bottom < innerHeight ? bar.bottom : 88);
-      const middle = visibleTop + (innerHeight - visibleTop) * .4;
-      const visible = clips.map(clip => ({ id: clip.id, rect: rows.current.get(clip.id)?.getBoundingClientRect() }))
-        .filter(({ rect }) => rect && rect.top <= middle && rect.bottom >= middle);
-      if (visible.length) setSelectedId(visible[0].id);
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const cancelJump = event => {
-      if (event.type === 'keydown' && !['PageDown','PageUp','ArrowDown','ArrowUp','Home','End',' '].includes(event.key)) return;
-      if (!jump.current) return;
-      // Cancel Chrome's native smooth scroll too, not just our selection lock.
-      window.scrollTo({ top: scrollY, behavior: 'instant' });
-      jump.current = null; clearTimeout(jumpTimer.current); schedule();
-    };
-    const observer = new IntersectionObserver(schedule, { rootMargin: '-30% 0px -30% 0px' });
-    rows.current.forEach(row => observer.observe(row));
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    window.addEventListener('wheel', cancelJump, { passive: true });
-    window.addEventListener('pointerdown', cancelJump);
-    window.addEventListener('keydown', cancelJump);
+    });
     return () => {
-      observer.disconnect(); cancelAnimationFrame(frame); clearTimeout(jumpTimer.current);
-      window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule);
-      window.removeEventListener('wheel', cancelJump); window.removeEventListener('pointerdown', cancelJump);
-      window.removeEventListener('keydown', cancelJump); stopAll();
+      cancelled = true;
+      if (sceneRef.current === handle) sceneRef.current = null;
+      handle?.dispose();
     };
-  }, [clips, stopAll]);
-  const register = id => player => { if (player) players.current.set(id, player); else players.current.delete(id); };
-  const watch = id => { landed.current = { top: scrollY }; setSelectedId(id); players.current.get(`clip-${id}`)?.play(); };
-  return <>
-    <section className="chapter-stage action-page" id="chapterStage" data-chapter="action" data-active-action={selected.id} aria-label="醒狮动作图鉴">
-      <h1 className="sr-only" id="chapterTitle">动作</h1>
-      <section className="action-hero" id="actionHero" aria-label="动作片段首屏">
-        <div className="action-hero-grid">
-          <ActionVideo key={selected.id} ref={register('hero')} clip={selected} playerId="hero" assets={assets} hero onStart={onStart} />
-          <div className="action-hero-copy" aria-live="polite">
-            <p className="action-counter" data-action-count><b>{String(selectedIndex + 1).padStart(2, '0')}</b> / 04</p>
-            <div className="action-heading-decoration"><img src={assets.navLion} alt="" /><Cloud /></div>
-            <h2 data-action-name>{selected.name}</h2>
-            <span className="action-copy-rule" />
-            <Lines lines={selected.lines} />
-            <p className="action-copy-note">{selected.sourceNote}</p>
-          </div>
+  }, [assets.actionTheaterScene, clips, playback.getVideo, sceneVersion]);
+
+  useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
+  useEffect(() => {
+    const update = () => setFullscreen(document.fullscreenElement === stageRef.current);
+    document.addEventListener('fullscreenchange', update);
+    return () => document.removeEventListener('fullscreenchange', update);
+  }, []);
+
+  const selectAction = useCallback(id => {
+    requestedScreen.current = id;
+    if (flatRef.current || !sceneRef.current || sceneState !== 'ready') {
+      setActiveId(id);
+      sceneRef.current?.focusScreen(id, { instant: true });
+    } else sceneRef.current.focusScreen(id);
+  }, [sceneState]);
+  const retryScene = () => { setFlatMode(false); setSceneVersion(value => value + 1); };
+  const toggleFullscreen = async () => {
+    try {
+      if (document.fullscreenElement === stageRef.current) await document.exitFullscreen();
+      else await stageRef.current.requestFullscreen();
+      setNotice('');
+    } catch { setNotice('当前环境未能进入全屏，可继续原位观看。'); }
+  };
+  const onKeyDown = event => {
+    if (event.target.closest('button, input, select, textarea') || event.altKey || event.ctrlKey || event.metaKey) return;
+    const delta = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+    if (!delta) return;
+    event.preventDefault();
+    selectAction(clips[(clips.findIndex(clip => clip.id === activeRef.current) + delta + clips.length) % clips.length].id);
+  };
+  const playing = playback.playingIntent && !['paused', 'blocked', 'error', 'idle'].includes(playback.view.status);
+  const currentCaption = clips.find(clip => clip.id === caption.current) || active;
+  const previous = clips.find(clip => clip.id === caption.previous);
+  const duration = Number.isFinite(playback.view.duration) && playback.view.duration > 0 ? playback.view.duration : 0;
+
+  return <section className="chapter-stage action-page action-theater-page" id="chapterStage" data-chapter="action" data-active-action={activeId} aria-label="醒狮动作巨幕厅">
+    <h1 className="sr-only" id="chapterTitle">动作</h1>
+    <div id="actionTheater" ref={stageRef} className="action-theater" tabIndex={0} onKeyDown={onKeyDown}
+      data-scene-state={sceneState} data-active-action={activeId} data-view={flatMode ? 'flat' : 'theater'} data-playing={playing}>
+      <div id="theaterSceneContainer" className="theater-scene" ref={containerRef} aria-label="拖拽环绕的四面巨幕与醒狮" />
+      <div className="theater-video-bank" aria-hidden={!flatMode}>
+        {clips.map(clip => <video key={clip.id} data-action-id={clip.id} data-current={clip.id === activeId}
+          {...playback.bindVideo(clip.id)} src={assets[clip.videoKey]} poster={assets[clip.posterKey]}
+          muted playsInline loop preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
+      </div>
+      <div className="theater-vignette" aria-hidden="true" />
+      <header className="theater-topline">
+        <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
+        <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
+      </header>
+      <div className="theater-view-tools">
+        <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
+          {flatMode ? '返回巨幕' : '平面观看'}
+        </button>
+        <button type="button" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
+          <Icon kind="fullscreen" />
+        </button>
+      </div>
+
+      {sceneState === 'loading' && !flatMode && <div className="theater-loading" role="status">
+        <span className="theater-loading-ring" aria-hidden="true" /><p>正在进入四面巨幕…</p>
+        <button type="button" onClick={() => setFlatMode(true)}>先看视频</button>
+      </div>}
+      {sceneError && <div className="theater-scene-error" role="status"><span>{sceneError}</span>
+        <button type="button" onClick={retryScene}>重新载入动作空间</button></div>}
+
+      <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
+        {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
+        <ActionCaption key={currentCaption.id} clip={currentCaption} index={clips.indexOf(currentCaption)} />
+      </aside>
+
+      <div className="theater-bottom">
+        <nav className="theater-action-nav" aria-label="四面动作巨幕">
+          {clips.map((clip, index) => <button type="button" key={clip.id} data-action-id={clip.id}
+            aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>
+            <span>{String(index + 1).padStart(2, '0')}</span><strong>{clip.name}</strong>
+          </button>)}
+        </nav>
+        <div id="theaterControls" className="theater-controls" aria-label="当前动作播放控制">
+          <button type="button" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
+          <span className="theater-time">{clock(playback.view.currentTime)} <i>/</i> {clock(duration)}</span>
+          <input type="range" min="0" max={duration || 1} step=".01" value={duration ? Math.min(playback.view.currentTime || 0, duration) : 0}
+            disabled={!duration} aria-label="当前动作播放进度" onChange={event => playback.seek(Number(event.target.value))} />
+          <button type="button" aria-label={playback.audioEnabled ? '关闭声音' : '开启声音'} aria-pressed={playback.audioEnabled} onClick={playback.toggleAudio}>
+            <Icon kind={playback.audioEnabled ? 'sound' : 'muted'} />
+          </button>
+          <span className="theater-audio-note">{playback.audioEnabled ? '仅当前巨幕发声' : '静音播放'}</span>
         </div>
-      </section>
-      <section className="action-details" id="actionDetails" aria-labelledby="actionGuideTitle">
-        <div ref={detailBar} className="action-sticky-index"><ActionTimeline items={clips} activeId={selected.id} onSelect={goToClip} placement="details" skin="game" /></div>
-        <header className="action-guide-heading">
-          <div><Cloud /><h2 id="actionGuideTitle"><em>动作</em>怎么读</h2><img src={assets.navLion} alt="" /><Cloud /></div>
-          <p>从狮头、步伐与身体配合看懂表演。</p>
-        </header>
-        <div className="action-clip-list">
-          {clips.map((clip, index) => <article className={`action-clip${selected.id === clip.id ? ' is-selected' : ''}`}
-            key={clip.id} id={`action-clip-${clip.id}`} ref={row => { if (row) rows.current.set(clip.id, row); else rows.current.delete(clip.id); }}
-            aria-labelledby={`action-name-${clip.id}`}>
-            <ActionVideo ref={register(`clip-${clip.id}`)} clip={clip} playerId={`clip-${clip.id}`} assets={assets} onStart={onStart} />
-            <div className="action-clip-copy">
-              <div className="action-clip-heading"><span>{String(index + 1).padStart(2, '0')}</span><h3 id={`action-name-${clip.id}`}>{clip.name}</h3><Cloud /></div>
-              <Lines lines={clip.lines} />
-              <button type="button" className="action-watch" data-watch-clip onClick={() => watch(clip.id)}>观看片段 →</button>
-              <p className="action-copy-note">{clip.sourceNote}</p>
-            </div>
-          </article>)}
-        </div>
-        <p className="action-evidence" id="chapterEvidence">动作参考示意 · 四段独立视频待接入 · 以实际视频为准</p>
-      </section>
-    </section>
-    <footer className="site-footer"><span>AI辅助参考提取 · 动作观察提示</span><span>广府醒狮 / 动作档案</span></footer>
-  </>;
+        <p className="theater-source-note" id="chapterEvidence">{active.sourceNote} <span>· 广府醒狮 / 动作空间</span></p>
+      </div>
+      {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
+        <span>{notice || playback.view.error}</span>
+        {playback.view.error && <button type="button" onClick={playback.retry}>重试当前动作视频</button>}
+      </div>}
+    </div>
+  </section>;
 }

@@ -35,7 +35,7 @@ npm run preview
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
 | `src/features/home/` | 首页入场/循环视频、岭南醒狮史册、文化图鉴、探索更多跳转与向下文化入口 |
 | `src/features/model/` | 结构页：左侧三维模型、右侧部件目录与工艺/文化资料 |
-| `src/features/action/` | 动作首屏、四段长页、共享阶段时间轴与独立媒体播放器 |
+| `src/features/action/` | 四面视频巨幕、当前动作解说、共享媒体控制与平面观看 |
 | `src/features/chapters/` | 动作/神态挂载入口与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
 | `src/features/navigation/` | 图标、原毛笔标题与品牌收拢，辅助文字连续平移/淡入淡出及动画清理 |
@@ -88,19 +88,17 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 短高桌面（窗口高度600px及以下）保留外部三栏，但右侧态字与解读标题并排，压缩字号/行距和目录行高；内部grid行显式minmax(0,1fr)，不让最小内容撑大高度，不隐藏或截掉文字。按住Space期间切态会取消该次尚未完成的原生按钮激活，松开不能重新打开详情；后续独立Space仍正常激活。
 
-### 动作四段图鉴
+### 动作沉浸式巨幕厅
 
-`ChapterPage` 对action挂载独立 `ActionPage`；不再使用旧三栏占位布局。`actionClips.js` 是入场、探步、转身、收势的唯一数据源。首屏左侧16:9媒体、右侧两句简介，以及下方四段左媒体/右简介长页共用选中状态。讲解区仅保留一条 `ActionTimeline`（`skin="heritage"`），首屏重复目录及向下提示已按2026-10-15整改删除；不把阶段选择当作真实加载百分比。
+`ChapterPage` 在 `#/action` 挂载 `ActionPage`，以全屏高的四面巨幕替换旧长页、角色目录及待接入播放器。导航继续共用 `SiteHeader`。默认四段用户视频静音循环，转向当前主面时同步解说、450ms主辅亮度与唯一音频；按钮与左右方向键同样转向实际摄像机。视频来自用户指定目录，原始MP4字节保持；来源、完整解码与海报抽帧见[视频记录](../source/references/2026-10-19-action-theater-videos.md)。
 
-唯一目录定位到对应段并为顶栏及吸顶目录留空间，同时更新首屏内容、不自动播放。程序定位期间锁定选中，到达后在同一滚动位置保留点击目标，真实滚动才恢复视口中部选择；pointer、wheel或滚动键中断时也停止浏览器原生平滑滚动。所有定位保持 `#/action`。减少动态偏好下直接定位、不做缩放过渡。
+`actionClips.js` 定义探青采青、抖毛、狮子吐球、踩梅花桩与四个屏幕名/方向/素材键。`useTheaterPlayback` 保留四个稳定视频实例，切屏不重置时间，暂停/续播、当前进度、声音与错误重试均由实际媒体状态驱动；静音后才能切音轨，隐藏与离页使旧播放请求失效并暂停。平面观看与三维空间复用同一视频，不另造播放器或用首页视频替代。
 
-`ActionVideo` 使用真实HTMLVideoElement，观看入口原位播放并轻放大1.04；播放/暂停、时间、拖动进度、静音、全屏和错误重试由媒体状态驱动。全页最多一个播放意图；离开视口、后台、换源或卸载取消意图和暂停。重复观看是幂等操作，旧play Promise不能暂停更新的播放。全屏豁免仅属于自身播放器，退出后重查可见性；离页断开观察器、文档/窗口事件和RAF/定位计时器。首页 `VideoStage` 不受此实现影响。
+`actionTheaterScene.js` 仅在动作页动态加载，负责GLB、VideoTexture、独立相机与36秒Y轴旋转。单RAF按可见性暂停，12°优势与180ms稳定停留后切主屏，距离/高度/俯仰联合约束；视频完整contain，主1/辅0.25渐变。退出取消fetch、视频帧回调和动画，释放控制器/图形资源；异常可重试并继续平面观看真实视频。原生Blender工程不改，部署副本为已核对的网页LOD，程序石地的导出白色缺省仅在运行材质恢复为源常量。
 
-当前四条videoKey均为null，不创建空地址请求。四幅海报是用户参考图经内置imagegen辅助提取/扩展的示意，不是正式视频首帧；页面保留“参考示意/视频待接入”。全身图与现有 `media.poster` 哈希一致，复用作错误回退，用户原件未修改。素材与后续视频接入步骤见 [动作来源说明](../source/references/lion-actions.md)。新增视频必须核对内容、画幅、解码、音轨及来源，再登记assetPaths/manifest、填videoKey并替换对应海报。
+`tests/e2e/action.spec.js`、`action-theater.spec.js` 和 `action-player.spec.js` 在真实产品路由加载正式四视频，覆盖画布像素、方向/镜头/旋转、播放时间、主音轨、进度、循环、失败重试、迟到Promise与离页释放。旧fixture仅作普通组件输入示例，不作为本轮正式视频证据；`guide-refresh.spec.js` 保留书册覆盖并迁移动作断言。测试输出使用独立 `tmp/` 目录，最终生产QA在 `source/reviews/action-theater/2026-10-19/`，实际命令与结果见[网页接入记录](../source/references/2026-10-19-action-theater-web.md)。
 
-2026-10-17动作唯一吸顶目录使用`ActionTimeline skin="game"`，四个按钮仍从原片段数据取值并保留键盘操作、实际吸顶高度定位与自然滚动高亮。`ActionGuideCharacter`用用户原ZIP的idle/mov透明图集显示角色，静态poster用于减少动态或图集加载失败；24fps、480ms连续接续移动、离屏/失焦/后台暂停，退出释放。角色是游戏式导览装饰，不是正式片段或动作示范。源ZIP、metadata及制作记录见`source/design/action/2026-10-17-game-guide/`，本地内部预渲染工具`node scripts/render-action-guide.mjs`，仅解码/哈希复验用`node scripts/render-action-guide.mjs --verify`；Spine运行库不分发到网页，不增加npm依赖。
-
-`tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。新增直线粒子、纸面迁移和角色导览的行为回归见`guide-refresh.spec.js`；并行开发/生产测试必须用不同`--output=tmp/...`目录，防止默认trace产物互相清理。
+### 共用导航、设置与结构场景
 
 Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以左侧交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比取设备 DPR、1.5、`sqrt(2600000 / (width × height))` 与硬件 `MAX_RENDERBUFFER_SIZE` 上限中的最小值；修改时需检查模型真实绘制、聚焦中心、面板与导航点击、离页暂停复用，以及组件卸载或重试后的观察器、收敛计时器、BVH和图形资源释放。中性 `RoomEnvironment` 经 PMREM 生成反射贴图，不显示额外背景；生成器与临时场景及时释放，保留的环境渲染目标随服务 `dispose` 释放。
 
@@ -126,9 +124,9 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 ## 资源更新
 
-### 独立巨幕厅 Blender 工程
+### 前阶段独立巨幕厅 Blender 工程
 
-`source/models/immersive-theater/` 是离线创作交付，不进入 `publicDir`，本轮未修改网站页面。先读[交接文档](../source/models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其中区分原生工程、网页LOD、真实渲染、缺失视频与后续交互。使用本机 Blender 5.0（用户 launcher 的同目录可执行文件）：
+`source/models/immersive-theater/` 保存前阶段离线创作交付，不进入 `publicDir`；后续网页接入使用上文运行副本。先读[交接文档](../source/models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其中保留原生工程、网页LOD、真实渲染及离线交付时的素材条件。重建源工程使用本机 Blender 5.0（用户 launcher 的同目录可执行文件）：
 
 ```powershell
 & 'F:/Blender/blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/build_immersive_theater.py
@@ -140,7 +138,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 构建脚本默认拒绝已有输出；明确重建本任务生成文件时可追加 `--overwrite`，不影响固定只读的 `model/醒狮_保留UV_三角转四边_优化.blend`。新环境需准备该用户输入；它未纳入Git。交付工程已打包图像和OFL字体，可以独立打开。构建与渲染使用 Blender 自带 Python；仅字体重建另需 Python/fontTools，见[字体说明](../source/fonts/immersive-theater/README.md)。
 
-2026-10-19实际完成原件/最终工程独立重开、160项原生与GLB检查、五图逐张查看及 Lux3D 插件文件检查；证据见 `source/references/2026-10-19-immersive-theater*.json`。资产清单保留原360条、追加8条至368；本轮 `npm test` 40/40、309模块构建通过。网站代码与运行资产未改，因此未重复网页布局回归，也不以离线验收证明网页交互已实现。
+前阶段于2026-10-19实际完成原件/最终工程独立重开、160项原生与GLB检查、五图逐张查看及 Lux3D 插件文件检查；证据见 `source/references/2026-10-19-immersive-theater*.json`。当时资产清单由360条增至368，`npm test` 40/40、309模块构建通过，网站代码与运行资产未改。后续网页接入另有47项资产/核心检查、生产41项浏览器回归和8张审查图，详见[网页验收记录](../source/references/2026-10-19-action-theater-web-validation.json)，不将离线结果代替网页交互证据。
 
 创作文件归入 `source/`，运行网页只引用 `source/public/assets/`。该目录通过 Vite 的 `publicDir` 映射为网页根目录，例如 `source/public/assets/models/lion-structure-optimized.glb` 对应 `assets/models/lion-structure-optimized.glb`。公共资产保持文件名，构建会复制到 `dist/assets/`；不要假定这些文件自动获得哈希版本号。
 

@@ -19,7 +19,7 @@ function Fixture() {
   const query = new URLSearchParams(location.search);
   const header = Number(query.get('header')) || 88;
   const width = Number(query.get('pageWidth')) || innerWidth;
-  const currentAssets = revision ? { ...assets, test_entry: '/__action-fixture__/entry-alt.mp4' } : assets;
+  const currentAssets = revision ? { ...assets, [`test_${clips[0].id}`]: `/__action-fixture__/${clips[0].id}-alt.mp4` } : assets;
   return <div className="site-shell" style={{ '--site-header-height': `${header}px`, '--header-height': `${header}px`, '--chapter-background-image': `url("${media.actionBackground}")` }}>
     <div className="site-page" style={{ width }}><header className="site-header" style={{ height: header, width }} aria-label="测试媒体夹具">TEST MEDIA ONLY
       <button id="fixtureUnmount" onClick={() => setMounted(false)}>结束测试媒体</button>

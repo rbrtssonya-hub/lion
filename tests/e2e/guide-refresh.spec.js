@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
 
 const key = 'nanfeng-lion:developer-settings:v1';
 async function open(page, route = '/', saved = {}) {
@@ -57,74 +58,40 @@ test('书册七节点同高，狮头行进时出现离散粒子，停下后自�
   await expect.poll(() => nav.locator('canvas').evaluate(el => el.getContext('2d').getImageData(0, 0, el.width, el.height).data.every((v, i) => i % 4 !== 3 || v === 0))).toBe(true);
 });
 
-test('动作唯一游戏导览使用包内角色，选择仍联动四段且减少动态时静态定位', async ({ page }) => {
-  await open(page, '/#/action');
-  const nav = page.locator('.action-timeline');
-  await nav.scrollIntoViewIfNeeded();
-  await expect(nav).toHaveCount(1);
-  await expect(nav).toHaveAttribute('data-skin', 'game');
-  await expect(nav.getByRole('button')).toHaveText(['入场', '探步', '转身', '收势']);
-  const character = nav.locator('.action-guide-character');
-  await expect(character).toHaveAttribute('data-ready', 'true');
-  expect(await character.locator('canvas').evaluate(el => el.getContext('2d').getImageData(0, 0, 256, 256).data.some((v, i) => i % 4 === 3 && v > 0))).toBe(true);
-  await nav.getByRole('button', { name: '转身', exact: true }).click();
-  await expect(page.locator('#actionHero [data-action-count]')).toHaveText('03 / 04');
-  await expect.poll(() => nav.evaluate(el => {
-    const a = el.querySelector('.action-guide-character').getBoundingClientRect();
-    const b = el.querySelector('[aria-pressed="true"]').getBoundingClientRect();
-    return Math.abs(a.x + a.width / 2 - b.x - b.width / 2);
-  })).toBeLessThan(2);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await nav.getByRole('button', { name: '收势', exact: true }).click();
-  await expect(page.locator('#actionHero [data-action-count]')).toHaveText('04 / 04');
-  await expect(character).toHaveAttribute('data-animation', 'poster');
+test('动作页新四站选择在减弱动态时保持标题和键盘联动', async ({ page }) => {
+  await openTheater(page, { reducedMotion: 'reduce' });
+  await expect(page.locator('#chapterStage .action-guide-character, #chapterStage .action-timeline')).toHaveCount(0);
+  await actionButton(page, 'tuqiu').focus();
+  await page.keyboard.press('Enter');
+  await expect(scene(page)).toHaveAttribute('data-active-screen', 'tuqiu');
+  await expect(page.locator('#theaterActionName')).toHaveText('狮子吐球');
+  await selectAction(page, 'meihuazhuang');
+  await expect(page.locator('#theaterActionName')).toHaveText('踩梅花桩');
   await expect(page).toHaveURL(/#\/action$/);
 });
 
-test('角色图集加载失败时显示静态角色且四站目录仍能使用', async ({ page }) => {
-  await page.route('**/assets/action-guide/adam-idle.png', route => route.abort());
-  await open(page, '/#/action');
-  const nav = page.locator('.action-timeline');
-  await nav.scrollIntoViewIfNeeded();
-  const character = nav.locator('.action-guide-character');
-  await expect(character).toHaveAttribute('data-ready', 'false');
-  await expect(character.locator('img')).toBeVisible();
-  expect(await character.locator('img').evaluate(img => img.complete && img.naturalWidth === 256)).toBe(true);
-  await nav.getByRole('button', { name: '探步', exact: true }).click();
-  await expect(page.locator('#actionHero [data-action-count]')).toHaveText('02 / 04');
-  await expect(page.locator('#action-clip-probe .action-media-status')).toContainText('视频待接入');
-  await expect(page).toHaveURL(/#\/action$/);
+test('旧游戏角色素材失败不影响巨幕厅与真实四站选择', async ({ page }) => {
+  await page.route('**/assets/action-guide/**', route => route.abort());
+  await openTheater(page);
+  await selectAction(page, 'doumao');
+  await expect(page.locator('#theaterActionName')).toHaveText('抖毛');
+  expect(await actionVideo(page, 'doumao').evaluate(video => video.videoWidth)).toBe(2560);
+  await expect(page.locator('#chapterStage .action-guide-character')).toHaveCount(0);
 });
 
-test('游戏角色真实离屏与受控失焦时暂停，恢复后续播，快速选择保持最终状态', async ({ page }) => {
-  const errors = [];
-  page.on('pageerror', e => errors.push(String(e)));
-  await open(page, '/#/action');
-  const nav = page.locator('.action-timeline'), character = nav.locator('.action-guide-character');
-  await nav.scrollIntoViewIfNeeded();
-  await expect(character).toHaveAttribute('data-playing', 'true');
-  // Headless Chrome can leave both tabs focused; inject the browser-state
-  // boundary explicitly, then assert the real Canvas stops changing.
-  await page.evaluate(() => {
-    Object.defineProperty(document, 'hasFocus', { configurable: true, value: () => false });
-    window.dispatchEvent(new Event('blur'));
-  });
-  await expect(character).toHaveAttribute('data-playing', 'false');
-  const paused = await character.locator('canvas').evaluate(el => el.toDataURL());
-  await page.waitForTimeout(160);
-  expect(await character.locator('canvas').evaluate(el => el.toDataURL())).toBe(paused);
-  await page.evaluate(() => { delete document.hasFocus; window.dispatchEvent(new Event('focus')); });
-  await expect(character).toHaveAttribute('data-playing', 'true');
-  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await expect(character).toHaveAttribute('data-playing', 'false');
-  await nav.scrollIntoViewIfNeeded();
-  await nav.getByRole('button', { name: '收势', exact: true }).click();
-  await nav.getByRole('button', { name: '转身', exact: true }).evaluate(el => el.click());
-  await expect(page.locator('#actionHero [data-action-count]')).toHaveText('03 / 04');
-  await expect(nav.getByRole('button', { name: '转身', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('.site-header [data-route="state"]').click();
-  await expect(character).toHaveCount(0);
-  expect(errors).toEqual([]);
+test('巨幕厅隐藏时停止绘制与视频，恢复后继续独立模型动画和先前播放', async ({ page }) => {
+  await openTheater(page);
+  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused)).toBe(true);
+  await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, value: true }); document.dispatchEvent(new Event('visibilitychange')); });
+  await expect(scene(page)).toHaveAttribute('data-render-state', 'inactive');
+  const stopped = await scene(page).getAttribute('data-rendered-frames');
+  await page.waitForTimeout(250);
+  expect(await scene(page).getAttribute('data-rendered-frames')).toBe(stopped);
+  await expect(actionVideo(page, 'tanqing')).toHaveJSProperty('paused', true);
+  await page.evaluate(() => { delete document.hidden; document.dispatchEvent(new Event('visibilitychange')); });
+  await expect(scene(page)).toHaveAttribute('data-render-state', 'active');
+  await expect.poll(async () => Number(await scene(page).getAttribute('data-rendered-frames'))).toBeGreaterThan(Number(stopped));
+  await expect(actionVideo(page, 'tanqing')).toHaveJSProperty('paused', false);
 });
 
 test('默认收窄不使装饰额外换行或增高，真正窄底板仍完整显示', async ({ page }) => {

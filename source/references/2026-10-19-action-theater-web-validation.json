@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "task": "动作页替换四面巨幕厅并播放四段用户视频",
+  "environment": {
+    "platform": "Windows",
+    "browser_channel": "chromium",
+    "headless": true,
+    "workers": 1,
+    "desktop_only": true,
+    "development_url": "http://127.0.0.1:5173",
+    "production_url": "http://127.0.0.1:4173"
+  },
+  "development": {
+    "result": "41个独立用例均有实际通过证据，分批执行并修复后针对受影响用例重跑",
+    "distinct_cases_passed": 41,
+    "single_clean_41_case_run": false,
+    "batches": [
+      {
+        "command": "npx playwright test tests/e2e/action.spec.js --grep '四面动作选择' --output tmp/e2e-action-theater-first-dev",
+        "passed": 1,
+        "failed": 0,
+        "reported_duration": "13.8s"
+      },
+      {
+        "command": "npx playwright test tests/e2e/action.spec.js tests/e2e/action-theater.spec.js tests/e2e/action-player.spec.js --grep-invert '四面动作选择' --output tmp/e2e-action-theater-dev",
+        "passed": 16,
+        "failed": 3,
+        "reported_duration": "3.6m"
+      },
+      {
+        "command": "npx playwright test tests/e2e/action-player.spec.js tests/e2e/action-theater.spec.js --grep '播放受浏览器|延迟播放期间离页|真实鼠标环绕' --output tmp/e2e-action-theater-recovery-dev",
+        "passed": 1,
+        "failed": 2,
+        "reported_duration": "53.3s"
+      },
+      {
+        "command": "npx playwright test tests/e2e/action-player.spec.js --grep '播放受浏览器|延迟播放期间离页' --output tmp/e2e-action-theater-lifecycle-dev",
+        "passed": 1,
+        "failed": 1,
+        "reported_duration": "22.5s"
+      },
+      {
+        "command": "npx playwright test tests/e2e/action-player.spec.js tests/e2e/action-theater.spec.js --grep '延迟播放期间离页|网络场景失败|播放受浏览器|真实鼠标环绕' --output tmp/e2e-action-theater-final-edges-dev",
+        "passed": 4,
+        "failed": 0,
+        "reported_duration": "36.8s"
+      },
+      {
+        "command": "npx playwright test tests/e2e/guide-refresh.spec.js tests/e2e/app.spec.js --grep '动作页新四站|旧游戏角色|巨幕厅隐藏|动作章节接入' --output tmp/e2e-action-theater-integration-dev",
+        "passed": 3,
+        "failed": 1,
+        "reported_duration": "38.1s"
+      },
+      {
+        "command": "npx playwright test tests/e2e/navigation-transitions.spec.js tests/e2e/startup-loading.spec.js tests/e2e/structure-interaction.spec.js --output tmp/e2e-action-theater-neighbors-dev",
+        "passed": 17,
+        "failed": 0,
+        "reported_duration": "4.1m"
+      },
+      {
+        "command": "npx playwright test tests/e2e/action.spec.js tests/e2e/action-player.spec.js tests/e2e/guide-refresh.spec.js --grep '电脑三种窗口|减弱动态时四动作|离开动作页释放|旧游戏角色素材' --output tmp/e2e-action-theater-final-contract-dev",
+        "passed": 4,
+        "failed": 0,
+        "reported_duration": "34.5s"
+      }
+    ],
+    "corrected_findings": [
+      {
+        "kind": "product_lifecycle",
+        "finding": "被延迟500ms调用的旧native play可在离页清src后留下detached/muted/src=null但paused=false的元素；没有src的play Promise可能悬挂，单独处理reject不足。",
+        "correction": "真实卸载给弃用node保留原生play取消guard，同时对弃用成功/失败结果mute+pause；保护同元素较新的播放意图。",
+        "verified_by": [
+          "离页迟到native play",
+          "清src/静音/暂停/断开",
+          "WebGL上下文释放",
+          "最终生产单批41项"
+        ]
+      },
+      {
+        "kind": "test_fault_injection",
+        "finding": "初稿一次性拒绝或依赖navigator.userActivation的注入未稳定保持自动播放受阻状态，错误提示预期不成立。",
+        "correction": "用测试闭包在首次真实pointerdown前持续拒绝当前主视频，随后实际点击产品播放按钮恢复；不改产品API。",
+        "verified_by": [
+          "开发最终边界4项",
+          "生产播放受阻恢复"
+        ]
+      },
+      {
+        "kind": "test_drag_condition",
+        "finding": "初稿连续多次快速拖拽最终回到初始屏幕方向，不能据此要求最终必然换主屏。",
+        "correction": "单次跨屏拖拽、等待180ms方向停留与OrbitControls阻尼，再验证当前屏/文案/视角保持及滚轮约束。",
+        "verified_by": [
+          "开发精确重跑",
+          "生产真实鼠标环绕"
+        ]
+      },
+      {
+        "kind": "test_scope",
+        "finding": "现有全局加载器预载media中的所有图片，旧action-guide图仍会请求；新页未依赖该角色。",
+        "correction": "保留旧图片失败注入，验证新巨幕/真实视频/选择正常且无旧角色DOM，撤掉未被用户要求的零历史图片请求断言。",
+        "verified_by": [
+          "开发最终contract4项",
+          "生产旧游戏角色素材失败回归"
+        ]
+      }
+    ],
+    "visual_iteration": "开发审查后修正暗背景标题对比与窄桌面FOV；最终构建的全部41项统一在生产批次验证。"
+  },
+  "production": {
+    "result": "passed",
+    "command": "npx playwright test --config playwright.preview.config.js tests/e2e/action.spec.js tests/e2e/action-theater.spec.js tests/e2e/action-player.spec.js tests/e2e/guide-refresh.spec.js tests/e2e/app.spec.js tests/e2e/navigation-transitions.spec.js tests/e2e/startup-loading.spec.js tests/e2e/structure-interaction.spec.js --grep 'action(?:-player|-theater)?\\.spec\\.js|navigation-transitions\\.spec\\.js|startup-loading\\.spec\\.js|structure-interaction\\.spec\\.js|动作页新四站|旧游戏角色素材|巨幕厅隐藏|动作章节接入' --output tmp/e2e-action-theater-final-preview",
+    "total": 41,
+    "passed": 41,
+    "failed": 0,
+    "skipped": 0,
+    "reported_duration": "7.6m",
+    "single_clean_run": true,
+    "build_binding": [
+      {
+        "path": "dist/index.html",
+        "bytes": 797,
+        "sha256": "a7ed24c9aca67d5cc1a6ebd2303226467b5a00a21fbc147362b687f89e5e0515"
+      },
+      {
+        "path": "dist/assets/index-BfpJxw0r.js",
+        "bytes": 293693,
+        "sha256": "ba31c53a3631775e71b199628bc630c6e23fe875fa668d02a7f79cfb96a18a3d"
+      },
+      {
+        "path": "dist/assets/index-CnBc1sxk.css",
+        "bytes": 90043,
+        "sha256": "07845dd8a752fb48ef8928f89e72e587be4da2286a5bbeea8314142a2c5ceeda"
+      },
+      {
+        "path": "dist/assets/actionTheaterScene-qVYNTgo-.js",
+        "bytes": 14463,
+        "sha256": "09f621361937b84ea1c4f1ee439c3c7db4e15ed0a9fc8184541ab6e235410f36"
+      }
+    ]
+  },
+  "verified_assertions": {
+    "actual_media": "实际部署GLB和4个独立用户MP4；浏览器每片解码为2560x1440、约8秒，四个独立VideoTexture绑定和可见彩色WebGL像素；四视频currentTime实际推进。",
+    "camera_and_model": "真实鼠标Orbit切主屏，标题/选择/主辅最终亮度1与0.25同步；静置摄像机保持，模型角速度符合36秒一周；切屏保留视频元素及进度；滚轮与高度保持室内约束。",
+    "playback_and_audio": "默认四屏静音循环，播放/暂停/seek/续播/结尾loop/真实全屏；打开声音后仅当前主屏可发声，快速切屏仍音轨互斥；视频失败重试和手势受阻恢复。",
+    "lifecycle": "受控document.hidden边界暂停视频与RAF，恢复先前播放意图且保留用户暂停；离页旧视频断开、清src、静音、暂停，旧WebGL context lost；迟到play不能恢复弃用元素；返回只有一套画布和四视频。",
+    "fallback": "真实GLB请求失败后进入平面观看，主视频仍实际推进且仅一个播放；恢复网络可重新载入单一有效WebGL画布。",
+    "desktop_and_regression": "1920x1080、1366x768、900x900，以及1675x1000窗口/760px设置面板后的实测900px页面余宽；键盘按钮/方向键、减弱动态；当前导航连续动画9项、启动准备6项、结构交互2项均在开发与生产实际通过。"
+  },
+  "console_observation": {
+    "assertion_scope": "action-theater.spec.js首个成功场景用例在导航前监听pageerror与HTTP>=400响应，开发和生产该用例均为零；其他故障注入用例允许预期媒体/网络失败。",
+    "page_errors_in_observed_success_case": 0,
+    "http_errors_in_observed_success_case": 0,
+    "all_suite_console_error_warn_listener": false,
+    "limitation": "没有对全部41项统一断言console.warn/error为零；不得据此声称全套浏览器控制台无任何消息。"
+  },
+  "asset_math_check": {
+    "command": "node --test tests/assets/action-theater.test.mjs",
+    "passed": 7,
+    "failed": 0,
+    "scope": "12度优势与180ms停留/边界抖动/四方向与接缝/最短角/210组联合环绕约束/目标偏移/视频完整contain"
+  },
+  "runtime_media_binding": [
+    {
+      "path": "source/public/assets/models/lion-action-theater.glb",
+      "bytes": 31826708,
+      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+    },
+    {
+      "path": "source/public/assets/action/videos/tanqing.mp4",
+      "bytes": 7593974,
+      "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143"
+    },
+    {
+      "path": "source/public/assets/action/videos/doumao.mp4",
+      "bytes": 6159115,
+      "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a"
+    },
+    {
+      "path": "source/public/assets/action/videos/tuqiu.mp4",
+      "bytes": 6519176,
+      "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650"
+    },
+    {
+      "path": "source/public/assets/action/videos/meihuazhuang.mp4",
+      "bytes": 7929073,
+      "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866"
+    }
+  ],
+  "runtime_source_binding": [
+    {
+      "path": "src/features/action/ActionPage.jsx",
+      "bytes": 11606,
+      "sha256": "bc8cb71c25834fa68e04a7462aad878241097d244ffa2b4cb7ac1593eb0f683a"
+    },
+    {
+      "path": "src/features/action/useTheaterPlayback.js",
+      "bytes": 11696,
+      "sha256": "a3b43b597bd5c707ab33f916fd9aed86fdf6997ddc9d9b8765e1c6da4b9e0965"
+    },
+    {
+      "path": "src/services/actionTheaterScene.js",
+      "bytes": 26563,
+      "sha256": "dec4b353da47b99e0d670779b696ffd6a79c8bf0a8edf6368581ed8c88ac9170"
+    },
+    {
+      "path": "src/services/actionTheaterMath.js",
+      "bytes": 2787,
+      "sha256": "9a63550e05ba5e9480a24bf91fd1a6fb35fade1a144e237bdb4598c2b0c01dba"
+    }
+  ],
+  "qa": {
+    "source": "最终生产单批41用例中的实际浏览器截图",
+    "visually_reviewed_count": 8,
+    "files_frozen": true,
+    "files": [
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-1366.png",
+        "bytes": 1083137,
+        "sha256": "5f1412e1910fedd34bf970db63f68bbb37affe829be2026bd6455340d6a8288f",
+        "width": 1366,
+        "height": 768
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-1920.png",
+        "bytes": 1917603,
+        "sha256": "703e2e9556bc7923cf43ac273488697f505d72c34e5991fe2665eb6701b459b7",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-900.png",
+        "bytes": 787131,
+        "sha256": "9f0e2400985149b34a9dda74c4ff2d24097227abf4076d51027f2ffa079e4d51",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-doumao-1920.png",
+        "bytes": 1935232,
+        "sha256": "5ee758a449bf38e50ac17a363edab2acd3a2adc928846754f77dcd0a06ded0d5",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-meihuazhuang-1920.png",
+        "bytes": 1888638,
+        "sha256": "237c0cafcba834c434a85b8db6319e7f8b0af8d4e0f9f47fb79df2ee8d397005",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-settings-push.png",
+        "bytes": 1065898,
+        "sha256": "bf297aeed8f254a1f1335a4cc74f61738560b966b033fdf41a5f75ca79fc5d3e",
+        "width": 1675,
+        "height": 1000
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-tanqing-1920.png",
+        "bytes": 1923994,
+        "sha256": "ca4f9fea45935ee9ebb7b09ecaa63c5966068bf7d6d05649732cb3a3271264f8",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19/action-theater-tuqiu-1920.png",
+        "bytes": 1964397,
+        "sha256": "3b845c9be00a13d0f8fe56928bbb14cbe048a42586093f67381c69d198cbd059",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "not_covered": [
+    "其他浏览器和其他电脑",
+    "实体操作系统Alt-Tab/最小化；visibility分支采用受控浏览器状态注入",
+    "实际音箱或耳机听音；音频验收依据真实媒体播放与muted互斥状态",
+    "GPU/FPS/显存性能基准和长时间稳定性",
+    "手机专项适配或回归"
+  ]
+}

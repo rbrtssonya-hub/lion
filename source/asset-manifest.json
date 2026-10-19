@@ -2209,6 +2209,108 @@
       "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
       "bytes": 1088742,
       "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76"
+    },
+    {
+      "from": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "path": "source/public/assets/models/lion-action-theater.glb",
+      "bytes": 31826708,
+      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+    },
+    {
+      "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/探青采青.mp4",
+      "path": "source/public/assets/action/videos/tanqing.mp4",
+      "bytes": 7593974,
+      "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143"
+    },
+    {
+      "from": "generated:ffmpeg-frame/tanqing/0.5s",
+      "path": "source/public/assets/action/videos/tanqing-poster.jpg",
+      "bytes": 239641,
+      "sha256": "97797623d1ce2730ae2d1b18a5e1f977dc0d34f4644982049a4b0307918feacc"
+    },
+    {
+      "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/抖毛.mp4",
+      "path": "source/public/assets/action/videos/doumao.mp4",
+      "bytes": 6159115,
+      "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a"
+    },
+    {
+      "from": "generated:ffmpeg-frame/doumao/0.5s",
+      "path": "source/public/assets/action/videos/doumao-poster.jpg",
+      "bytes": 236762,
+      "sha256": "9c606f8cf62c87d070a4cdb5cff6feed13056ca6f32763b60d961f205da60c44"
+    },
+    {
+      "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/狮子吐球.mp4",
+      "path": "source/public/assets/action/videos/tuqiu.mp4",
+      "bytes": 6519176,
+      "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650"
+    },
+    {
+      "from": "generated:ffmpeg-frame/tuqiu/0.5s",
+      "path": "source/public/assets/action/videos/tuqiu-poster.jpg",
+      "bytes": 193477,
+      "sha256": "f86322ea17d60f8d01ecd863438affa6636559c2b188ce89bdd4d7bd31c45baa"
+    },
+    {
+      "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/踩梅花桩.mp4",
+      "path": "source/public/assets/action/videos/meihuazhuang.mp4",
+      "bytes": 7929073,
+      "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866"
+    },
+    {
+      "from": "generated:ffmpeg-frame/meihuazhuang/0.5s",
+      "path": "source/public/assets/action/videos/meihuazhuang-poster.jpg",
+      "bytes": 260139,
+      "sha256": "eac12867209074d3ad265e02fbbdacd5c848ecdaf9365e95a486938ce935755b"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-1366.png",
+      "bytes": 1083137,
+      "sha256": "5f1412e1910fedd34bf970db63f68bbb37affe829be2026bd6455340d6a8288f"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-1920.png",
+      "bytes": 1917603,
+      "sha256": "703e2e9556bc7923cf43ac273488697f505d72c34e5991fe2665eb6701b459b7"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-desktop-900.png",
+      "bytes": 787131,
+      "sha256": "9f0e2400985149b34a9dda74c4ff2d24097227abf4076d51027f2ffa079e4d51"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-doumao-1920.png",
+      "bytes": 1935232,
+      "sha256": "5ee758a449bf38e50ac17a363edab2acd3a2adc928846754f77dcd0a06ded0d5"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-meihuazhuang-1920.png",
+      "bytes": 1888638,
+      "sha256": "237c0cafcba834c434a85b8db6319e7f8b0af8d4e0f9f47fb79df2ee8d397005"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-settings-push.png",
+      "bytes": 1065898,
+      "sha256": "bf297aeed8f254a1f1335a4cc74f61738560b966b033fdf41a5f75ca79fc5d3e"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-tanqing-1920.png",
+      "bytes": 1923994,
+      "sha256": "ca4f9fea45935ee9ebb7b09ecaa63c5966068bf7d6d05649732cb3a3271264f8"
+    },
+    {
+      "from": "generated:chrome-production-review/2026-10-19/action-theater",
+      "path": "source/reviews/action-theater/2026-10-19/action-theater-tuqiu-1920.png",
+      "bytes": 1964397,
+      "sha256": "3b845c9be00a13d0f8fe56928bbb14cbe048a42586093f67381c69d198cbd059"
     }
   ]
 }
