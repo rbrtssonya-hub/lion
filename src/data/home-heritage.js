@@ -1,0 +1,71 @@
+// Editorial summaries, not a complete census or a single master-disciple lineage.
+// Verification and artwork provenance: source/references/home-heritage-sources.md.
+export const heritageSources = [
+  { id: 'guangfu-types', group: 'types', publisher: '广州大学广府文化研究中心', title: '广府舞蹈资源调查报告', url: 'https://gzgfwh.gzhu.edu.cn/info/1062/1514.htm' },
+  { id: 'heshan-art', group: 'types', publisher: '鹤山市人民政府', title: '走进鹤山非遗：鹤山狮艺', url: 'https://www.heshan.gov.cn/zjhs/hsfy/content/post_2065932.html' },
+  { id: 'fut-hok-craft', group: 'types', publisher: '南海博物馆', title: '佛鹤狮头制作', url: 'https://www.nhmuseum.org/fei-yi/1575.html' },
+  { id: 'lion-form', group: 'types', publisher: '新加坡武术龙狮总会', title: '南狮分类形特征', url: 'https://wuzong.com/zh-hans/lion-dance/southern-lion-classification/' },
+  { id: 'performance-forms', group: 'types', publisher: '广东省人民政府侨务办公室', title: '广东醒狮的传承与发展', url: 'https://www.qb.gd.gov.cn/jrqx/content/post_1142957.html' },
+  { id: 'feng-record', group: 'people', publisher: '中国非物质文化遗产网', title: '冯昆杰与《南国醒狮》', url: 'https://www.ihchina.cn/Article/Index/detail?id=10768' },
+  { id: 'guangzhou-list', group: 'people', publisher: '广州市文化广电旅游局', title: '广州非遗项目与代表性传承人名录', url: 'https://wglj.gz.gov.cn/zlxz/content/post_10609532.html' },
+  { id: 'huang-record', group: 'people', publisher: '中国非物质文化遗产网', title: '黄钦添 · 国家级传承人档案', url: 'https://www.ihchina.cn/art/detail/id/1415.html' },
+  { id: 'sixth-batch', group: 'people', publisher: '文史广东（转载羊城晚报）', title: '第六批国家级非遗传承人', url: 'https://www.gdwsw.gov.cn/xwzx/yw/content/post_38430.html' },
+  { id: 'zhao-family', group: 'people', publisher: '广东省人民政府侨务办公室', title: '赵伟斌：海内外广传醒狮文化', url: 'https://www.qb.gd.gov.cn/whjy/content/post_53424.html' },
+  { id: 'li-wei-record', group: 'people', publisher: '中国非物质文化遗产网', title: '黎伟 · 彩扎（佛山狮头）', url: 'https://www.ihchina.cn/ccr_detail/2735.html' },
+  { id: 'li-wanzhen-record', group: 'people', publisher: '中国非物质文化遗产网', title: '黎婉珍 · 彩扎（佛山狮头）', url: 'https://www.ihchina.cn/ccr_detail/30414.html' },
+  { id: 'li-family-craft', group: 'people', publisher: '新华社', title: '扎狮头，传技艺', url: 'https://www.xinhuanet.com/politics/2017-02/10/c_1120444738.htm' },
+];
+
+export const lionTypes = [
+  { id: 'foshan', name: '佛山狮', kind: '传统流派', imageKey: 'lionTypeFoshan',
+    summary: '威武的形貌之下，是稳健的腰马与武术功架。佛山狮艺重视采青与破阵，舞者以步法、力量和临场配合，让狮子的神情随鼓点展开。',
+    sourceIds: ['guangfu-types', 'lion-form'],
+    points: [
+      { id: 'forehead', label: '饱满额形', x: 53, y: 29, text: '从额头、眉眼到狮口，整体造型强调醒狮的威武神采；图中为概括性的类型示意。' },
+      { id: 'mouth', label: '眉眼与狮口', x: 51, y: 64, text: '舞者借狮头的俯仰与口部开合表现情态。形制不能只凭一处细节或单一颜色判断。' },
+      { id: 'stance', label: '腰马与功架', x: 28, y: 82, text: '佛山狮艺以腰马、力量和武术根底支撑表演；采青也考验舞者的判断与协作。' },
+    ] },
+  { id: 'heshan', name: '鹤山狮', kind: '传统流派', imageKey: 'lionTypeHeshan',
+    summary: '以狮形猫步见长的鹤山狮艺，将猫的灵敏融入狮子的神态。狮头造型、舞步与鼓法相互配合，在刚柔之间呈现细腻的表演。',
+    sourceIds: ['heshan-art', 'lion-form'],
+    points: [
+      { id: 'forehead', label: '拳角与额形', x: 53, y: 11, text: '鹤山地方资料记载了拳角、鲤鱼额等造型语汇。示意图只帮助观察，不涵盖所有工坊和年代的变化。' },
+      { id: 'mouth', label: '狮口与神情', x: 55, y: 68, text: '蛤乸嘴、企眼等地方造型名称，体现鹤山狮头独特的面貌；表演仍须结合全身动作阅读。' },
+      { id: 'stance', label: '猫步与鼓点', x: 29, y: 81, text: '猫型步法与鼓、锣、钹配合，让停顿、低伏和腾跃具有表情；不以静态图片代替真实表演样本。' },
+    ] },
+  { id: 'fut-hok', name: '佛鹤狮', kind: '融合形制', imageKey: 'lionTypeFutHok',
+    summary: '在佛装与鹤装特点之间取长补短，佛鹤狮体现了制作技艺的持续发展。南海的工艺资料记载，其改进与现代高桩表演需求相联系。',
+    sourceIds: ['fut-hok-craft'],
+    points: [
+      { id: 'forehead', label: '融合的造型', x: 53, y: 25, text: '佛鹤狮兼具佛装、鹤装狮特点，属于融合形制，不在此称为第三个传统流派。' },
+      { id: 'mouth', label: '轻巧与耐用', x: 55, y: 65, text: '相关工坊改进材料与工艺，在保留鲜明彩绘、夸张神采的同时，兼顾轻便和耐用。' },
+      { id: 'stance', label: '制作与舞台', x: 28, y: 81, text: '狮头制作经过扎、扑、画、装。形制改进服务于舞者和表演，不代表所有高桩狮都采用同一种狮头。' },
+    ] },
+];
+
+export const inheritors = [
+  { id: 'feng-kunjie', name: '冯昆杰', group: 'performance', region: '广东 · 鹤山', project: '鹤山狮艺', level: '省级代表性传承人',
+    intro: '将狮艺写进手稿，也留在传习之中。冯昆杰长期整理鹤山狮艺资料，以《南国醒狮》记录技艺、见闻与传承记忆。',
+    contributions: ['整理鹤山狮艺文献与表演心得。', '以授艺和著述延续地方狮艺记忆。'],
+    relation: '资料将其记为冯庚长的四传弟子；这是该条来源记载的传承称谓，不等于非遗认定批次。', sourceIds: ['feng-record'] },
+  { id: 'zhao-jihong', name: '赵继红', group: 'performance', region: '广东 · 广州', project: '狮舞（广东醒狮）', level: '省级代表性传承人',
+    intro: '从工人狮队到授徒传艺，赵继红是广州醒狮传承中的前辈人物。他参与组织醒狮活动，让民间狮艺走进更多人的日常。',
+    contributions: ['参与广州工人醒狮团体的建设与传习。', '向后辈传授舞狮、锣鼓等狮艺。'],
+    relation: '赵伟斌之父；官方人物报道记载赵伟斌曾随父学习醒狮。这里仅展示有来源支持的父子传艺关系。', sourceIds: ['guangzhou-list', 'zhao-family'] },
+  { id: 'huang-qintian', name: '黄钦添', group: 'performance', region: '广东 · 佛山', project: '狮舞（广东醒狮）', level: '国家级代表性传承人', recognition: '第五批',
+    intro: '扎根南海狮艺，从村中狮队走向专业传习。黄钦添将武术功架与醒狮表演相结合，长期从事训练、教学和交流。',
+    contributions: ['组织狮队训练与狮艺表演。', '建立传习基地，开展海内外授艺交流。'],
+    relation: '官方档案记载其由村中狮队习艺成长；不将其与其他人物拼接为未经证实的同门世系。', sourceIds: ['huang-record'] },
+  { id: 'zhao-weibin', name: '赵伟斌', group: 'performance', region: '广东 · 广州', project: '狮舞（广东醒狮）', level: '国家级代表性传承人', recognition: '第六批 · 2025',
+    intro: '承接父辈狮艺，也寻找面向当代的表达。赵伟斌通过教学、展演与文化交流，推动醒狮与年轻观众相遇。',
+    contributions: ['开展醒狮传习与海外交流。', '探索校园教学、舞台与文创等传播方式。'],
+    relation: '随父赵继红学习狮艺。家族传艺关系与国家级代表性传承人的认定，是两个不同维度。', sourceIds: ['sixth-batch', 'zhao-family'] },
+  { id: 'li-wei', name: '黎伟', group: 'craft', region: '广东 · 佛山', project: '彩扎（佛山狮头）', level: '国家级代表性传承人', recognition: '第三批',
+    intro: '竹篾成骨，彩绘传神。黎伟长期从事佛山狮头制作，在继承传统彩扎的同时，探索造型、纹样和装配的变化。',
+    contributions: ['整理和传授黎家狮彩扎技艺。', '发展狮角、狮眉与狮腮等装饰造型。'],
+    relation: '官方档案记载其随父学艺、带徒传艺。与黎婉珍同属佛山狮头项目，不据此推定两人为师徒。', sourceIds: ['li-wei-record'] },
+  { id: 'li-wanzhen', name: '黎婉珍', group: 'craft', region: '广东 · 佛山', project: '彩扎（佛山狮头）', level: '国家级代表性传承人',
+    intro: '一双巧手，让狮头的眉眼有了神采。黎婉珍承续家传狮头扎作，将传统工序和脸谱彩绘传给后辈。',
+    contributions: ['传承佛山狮头的扎作与彩绘。', '通过家传和教学延续狮头制作技艺。'],
+    relation: '报道记载其自小随母学艺，女儿周嘉欣亦参与传承；不把相同姓氏或项目当作师承证明。', sourceIds: ['li-wanzhen-record', 'li-family-craft'] },
+];

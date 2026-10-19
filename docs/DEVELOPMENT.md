@@ -27,6 +27,10 @@ npm run preview
 
 ## 代码边界
 
+2026-10-19首页下方顺序为书册→文化照片图鉴→醒狮形制→传承人物→统一资料与摄影许可。`HomeHeritage.jsx`的两个栏目和提取出的`HomeCultureSources.jsx`作为`HomeCulture`的同级组件挂载，避免原照片区键盘事件作用到新控件；静态名单、观察点与来源ID统一在`src/data/home-heritage.js`。三形制明确区分传统流派与融合形制；六人物按表演/扎作筛选，未核实肖像许可时显示原创姓名档案牌，不伪造统一师承世系。来源与许可边界见[本轮资料说明](../source/references/home-heritage-sources.md)。
+
+新标题/正文沿用`cultureTitle`/`cultureBody`，末尾资料区保留原六参数；标题使用自身命名容器处理40%窄底板，不缩放文字或裁切装饰。三幅类型PNG仅作为AI辅助示意，通过assetPaths/media注册并懒加载，`useStartupLoading`明确排除`lionType`前缀，不把下方新图加入首屏等待。新增回归为`home-heritage.spec.js`和`tests/assets/home-heritage.test.mjs`；截图归档`source/reviews/home/2026-10-19-heritage/`，不发布设计原件、提示词与审查图。
+
 首页首屏之后的 `.home-archive-scene` 为书册及文化图鉴共用用户醒狮纹样背景，两区透明，不叠加旧米纸底和整页滤镜。资源集中配置为 `homeArchiveBackground`，按文档基址转绝对URL；书页本身和官方引擎不变。标题/正文使用完整系统字体回退，醒狮/云纹装饰复用现有透明狮头及原生SVG，来源见 [背景与文字排版](../source/references/home-archive-background.md)。电脑宽度、900px推开和原交互由 `tests/e2e/home-archive-visual.spec.js` 及既有史册/文化回归覆盖。
 
 | 目录或入口 | 维护内容 |
@@ -51,6 +55,8 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。2026-10-19追加修复：点击年代/宿主方向键立即更新狮头目标和节点选中，详情及书页仍跟随真实提交；实际焦点进入书纸时交回纸面控制，旧消息不回拉最后目标。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
+
+2026-10-19视频资源已在独立分支替换：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。HEVC已在本机Chrome实际解码，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`。
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
