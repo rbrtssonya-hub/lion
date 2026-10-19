@@ -1,0 +1,2420 @@
+{
+  "schemaVersion": 1,
+  "task": "动作页红金中式四面观狮剧场视觉重构",
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T15:13:04.672Z",
+  "acceptancePhase": "preIntegration",
+  "objective": {
+    "path": "C:/Users/Administrator/.codex/attachments/88c49d64-38ee-401f-84c2-d0c8f517bccc/goal-objective.md",
+    "references": [
+      "image-1.png",
+      "image-2.png"
+    ],
+    "referenceImageNotUsedAsBackdrop": true
+  },
+  "revision": {
+    "branch": "main",
+    "baselineHead": "c42af76d53bbf9bcb0a599c54f8d14d559c14d89",
+    "finalHeadAtRecording": "c42af76d53bbf9bcb0a599c54f8d14d559c14d89",
+    "scope": "c42af76 baseline plus this task source bindings before merging the subsequently fetched origin/main9cb0097. These45+3+3 results do not prove the future combined integration tree.",
+    "sourceCapturedBeforeAt": "2026-10-19T14:55:11.129Z",
+    "all25SourceBindingsUnchangedAcrossFinalRuns": true,
+    "integrationValidationRequiredAfterMerge": true
+  },
+  "environment": {
+    "os": "Windows / PowerShell",
+    "node": "v24.16.0",
+    "npm": "12.0.1",
+    "playwright": "1.64.0",
+    "baseUrl": "http://127.0.0.1:4173/#/action",
+    "mainChannel": "chromium",
+    "chromeExecutable": {
+      "path": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "productVersion": "155.0.8059.80"
+    },
+    "edgeExecutable": {
+      "path": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+      "productVersion": "155.0.4283.62"
+    },
+    "desktopOnly": true
+  },
+  "development": {
+    "preliminaryOrnateCases": {
+      "command": "npx playwright test tests/e2e/action-theater-ornate.spec.js --output tmp/e2e-action-theater-ornate-first-dev",
+      "passed": 4,
+      "failed": 0,
+      "durationMs": 34200,
+      "scope": "preliminary FOV54/earlier carving; superseded by the final production runs"
+    }
+  },
+  "preliminaryFindingsAndRecovery": {
+    "firstProductionBatch": {
+      "command": "npx playwright test --config playwright.preview.config.js tests/e2e/action.spec.js tests/e2e/action-theater.spec.js tests/e2e/action-player.spec.js tests/e2e/action-theater-ornate.spec.js tests/e2e/guide-refresh.spec.js tests/e2e/app.spec.js tests/e2e/navigation-transitions.spec.js tests/e2e/startup-loading.spec.js tests/e2e/structure-interaction.spec.js --grep 'action(?:-player|-theater(?:-ornate)?)?\\.spec\\.js|navigation-transitions\\.spec\\.js|startup-loading\\.spec\\.js|structure-interaction\\.spec\\.js|动作页新四站|旧游戏角色素材|巨幕厅隐藏|动作章节接入' --reporter=list,json --output tmp/e2e-action-theater-ornate-final-preview",
+      "report": {
+        "path": "tmp/e2e-action-theater-ornate-final-preview/report.json",
+        "bytes": 95135,
+        "sha256": "1d8079d2f6cefe737564a302477d92f95c9787421392945d9b951cc9417516ad"
+      },
+      "stats": {
+        "startTime": "2026-10-19T14:38:32.448Z",
+        "duration": 499920.84900000005,
+        "expected": 44,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "status": "44 passed / 1 failed; not final acceptance",
+      "navigationFailure": {
+        "file": "tests/e2e/navigation-transitions.spec.js",
+        "line": 212,
+        "assertionLine": 118,
+        "condition": "No sampled running symbol animation after650ms",
+        "traceAnalysis": {
+          "trace": "tmp/e2e-action-theater-ornate-final-preview/navigation-transitions-经典滚动条下三章图标、原毛笔标题与品牌移动，完整红底板逐帧不变-chromium/trace.zip",
+          "flights": [
+            {
+              "callId": "sxbf@65",
+              "from": "entry",
+              "to": "state",
+              "frames": 154,
+              "runningFrames": 138,
+              "maxRunningAnimationTimeMs": 993.201000002701,
+              "maxSampleGap": [
+                64.80000000447035,
+                44.899999998509884,
+                109.70000000298023
+              ]
+            },
+            {
+              "callId": "sxbf@215",
+              "from": "state",
+              "to": "entry",
+              "frames": 164,
+              "runningFrames": 144,
+              "maxRunningAnimationTimeMs": 999.8800000003314,
+              "maxSampleGap": [
+                12.700000002980232,
+                5.600000001490116,
+                18.30000000447035
+              ]
+            },
+            {
+              "callId": "sxbf@354",
+              "from": "entry",
+              "to": "model",
+              "frames": 161,
+              "runningFrames": 143,
+              "maxRunningAnimationTimeMs": 999.8779999987111,
+              "maxSampleGap": [
+                34.600000001490116,
+                23.600000001490116,
+                58.20000000298023
+              ]
+            },
+            {
+              "callId": "sxbf@504",
+              "from": "model",
+              "to": "entry",
+              "frames": 165,
+              "runningFrames": 145,
+              "maxRunningAnimationTimeMs": 999.9649999974754,
+              "maxSampleGap": [
+                7.799999997019768,
+                864.5,
+                872.2999999970198
+              ]
+            },
+            {
+              "callId": "sxbf@643",
+              "from": "entry",
+              "to": "action",
+              "frames": 43,
+              "runningFrames": 42,
+              "maxRunningAnimationTimeMs": 402.58500000044074,
+              "maxSampleGap": [
+                1173,
+                439.5,
+                1612.5
+              ]
+            }
+          ]
+        },
+        "rootCauseEvidence": "entry→action had a1173ms main-thread sampling gap from439.5ms to1612.5ms; other chapter transitions did not. Heavy scene initialization crossed the latter part of navigation flight."
+      },
+      "visualFindings": [
+        "tuqiu direction stage top had a broad silver highlight and dense periodic moire",
+        "900px and settings-pushed narrow frame cropped the far left/right stage rim"
+      ],
+      "preservedProblemScreenshot": {
+        "path": "tmp/ornate-preliminary-QA/action-theater-tuqiu-1920.png",
+        "bytes": 2393817,
+        "sha256": "04cf2d9629f470dbfe132d1ad7fb780d1ce74bc4b7521096db783dc73b39e019"
+      },
+      "sourceBeforeFix": {
+        "path": "tmp/ornate-source-preliminary-validation.json",
+        "bytes": 4296,
+        "sha256": "12ce8a7505cd714f0eff5a31b885f84ebd071731ebc155f77361955287f0e2fd"
+      }
+    },
+    "fixes": [
+      "Low-amplitude aperiodic stone roughness texture with mip filtering and anisotropy; restrained stage specular response and zero clearcoat prevent the opposite-view silver highlight.",
+      "Minimum narrow horizontal FOV74° and actual stage-bounds assertions preserve the complete stage.",
+      "waitForHeaderMotion observes actual global navigation state before heavy renderer/PMREM/parse/compile work, waits for paint and supports AbortController cleanup. Original navigation assertions remain unchanged."
+    ],
+    "targetedRecovery": {
+      "name": "production-targeted-navigation-and-composition-recovery",
+      "command": "npx playwright test --config playwright.preview.config.js tests/e2e/action-theater-ornate.spec.js tests/e2e/navigation-transitions.spec.js --grep 'action-theater-ornate\\.spec\\.js|经典滚动条下三章图标' --reporter=list,json --output tmp/e2e-action-theater-ornate-recovery-preview",
+      "report": {
+        "path": "tmp/e2e-action-theater-ornate-recovery-preview/report.json",
+        "bytes": 45623,
+        "sha256": "a54de46998e280e8a77d9730bb29c86db2d1f38ec5b3f9f161338c5995386e71"
+      },
+      "startedAt": "2026-10-19T14:53:17.653Z",
+      "durationMs": 54322.203,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "workers": 1,
+      "channel": "chromium",
+      "tests": [
+        {
+          "title": "红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例",
+          "file": "action-theater-ornate.spec.js",
+          "line": 11,
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "durationMs": 8688,
+              "retry": 0
+            }
+          ],
+          "attachments": [
+            {
+              "name": "actual-initial-composition",
+              "contentType": "application/json"
+            }
+          ]
+        },
+        {
+          "title": "初始三面真巨幕可见且后方第四屏保持16比9可供环绕观看",
+          "file": "action-theater-ornate.spec.js",
+          "line": 30,
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "durationMs": 7875,
+              "retry": 0
+            }
+          ],
+          "attachments": []
+        },
+        {
+          "title": "真实梁架红柱与重复金饰采用实例，石材反射实际更新并在平面模式暂停",
+          "file": "action-theater-ornate.spec.js",
+          "line": 47,
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "durationMs": 8862,
+              "retry": 0
+            }
+          ],
+          "attachments": []
+        },
+        {
+          "title": "三种桌面画幅信息面板避开主狮头部并保留完整操作区域",
+          "file": "action-theater-ornate.spec.js",
+          "line": 73,
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "durationMs": 8368,
+              "retry": 0
+            }
+          ],
+          "attachments": [
+            {
+              "name": "actual-composition-1920",
+              "contentType": "application/json"
+            },
+            {
+              "name": "actual-composition-1366",
+              "contentType": "application/json"
+            },
+            {
+              "name": "actual-composition-900",
+              "contentType": "application/json"
+            }
+          ]
+        },
+        {
+          "title": "经典滚动条下三章图标、原毛笔标题与品牌移动，完整红底板逐帧不变",
+          "file": "navigation-transitions.spec.js",
+          "line": 212,
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "durationMs": 18164,
+              "retry": 0
+            }
+          ],
+          "attachments": []
+        }
+      ]
+    }
+  },
+  "production": {
+    "runs": [
+      {
+        "name": "production-chromium-full-regression",
+        "command": "npx playwright test --config playwright.preview.config.js tests/e2e/action.spec.js tests/e2e/action-theater.spec.js tests/e2e/action-player.spec.js tests/e2e/action-theater-ornate.spec.js tests/e2e/guide-refresh.spec.js tests/e2e/app.spec.js tests/e2e/navigation-transitions.spec.js tests/e2e/startup-loading.spec.js tests/e2e/structure-interaction.spec.js --grep 'action(?:-player|-theater(?:-ornate)?)?\\.spec\\.js|navigation-transitions\\.spec\\.js|startup-loading\\.spec\\.js|structure-interaction\\.spec\\.js|动作页新四站|旧游戏角色素材|巨幕厅隐藏|动作章节接入' --reporter=list,json --output tmp/e2e-action-theater-ornate-final-v2-preview",
+        "report": {
+          "path": "tmp/e2e-action-theater-ornate-final-v2-preview/report.json",
+          "bytes": 90667,
+          "sha256": "d63f53f9826326396308cccfc39e738b49b01fd247046f624322432a04885181"
+        },
+        "startedAt": "2026-10-19T14:55:12.131Z",
+        "durationMs": 508647.72000000003,
+        "passed": 45,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "workers": 1,
+        "channel": "chromium",
+        "tests": [
+          {
+            "title": "用户四段真实视频推进，暂停、拖动进度和继续观看保留当前位置",
+            "file": "action-player.spec.js",
+            "line": 12,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8460,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "四屏保持独立播放实例，只有当前主屏可开启声音且切屏不重载视频",
+            "file": "action-player.spec.js",
+            "line": 25,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 10970,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "快速选择最终动作不会恢复旧主屏声音或重置已播放进度",
+            "file": "action-player.spec.js",
+            "line": 43,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9056,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "原生播放promise迟到时暂停保持生效，下一次手势可继续播放",
+            "file": "action-player.spec.js",
+            "line": 54,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9007,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "等待原生play时隐藏页面不会留下后台播放或迟到恢复",
+            "file": "action-player.spec.js",
+            "line": 72,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9911,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "播放受浏览器阻止时给出可恢复状态，下一次点击可播放真实媒体",
+            "file": "action-player.spec.js",
+            "line": 93,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8622,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "真实视频请求失败能在当前主屏重试，其他场景与按钮仍可使用",
+            "file": "action-player.spec.js",
+            "line": 109,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 10066,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "全屏使用当前巨幕场景，退出后四屏播放和页面控制仍有效",
+            "file": "action-player.spec.js",
+            "line": 121,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8198,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "循环播放到结尾连续进入下一轮，切屏不从零重建实例",
+            "file": "action-player.spec.js",
+            "line": 132,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9366,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "离开动作页释放四个媒体元素与画布，返回后只有一套场景",
+            "file": "action-player.spec.js",
+            "line": 142,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8680,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "延迟播放期间离页不会让已释放的旧媒体在后台启动",
+            "file": "action-player.spec.js",
+            "line": 159,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9159,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例",
+            "file": "action-theater-ornate.spec.js",
+            "line": 11,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8514,
+                "retry": 0
+              }
+            ],
+            "attachments": [
+              {
+                "name": "actual-initial-composition",
+                "contentType": "application/json",
+                "bytes": 6640,
+                "sha256": "278ae7f4476437508e1eb68bb459db3394d9971b0f606c8609d3c75aced51e2b"
+              }
+            ]
+          },
+          {
+            "title": "初始三面真巨幕可见且后方第四屏保持16比9可供环绕观看",
+            "file": "action-theater-ornate.spec.js",
+            "line": 30,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8180,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "真实梁架红柱与重复金饰采用实例，石材反射实际更新并在平面模式暂停",
+            "file": "action-theater-ornate.spec.js",
+            "line": 47,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8467,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "三种桌面画幅信息面板避开主狮头部并保留完整操作区域",
+            "file": "action-theater-ornate.spec.js",
+            "line": 73,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8580,
+                "retry": 0
+              }
+            ],
+            "attachments": [
+              {
+                "name": "actual-composition-1920",
+                "contentType": "application/json",
+                "bytes": 6639,
+                "sha256": "c39d896f7bd907e019a48da5bef3bc81b75ee92a68d6e7dd2986802ae2e19d39"
+              },
+              {
+                "name": "actual-composition-1366",
+                "contentType": "application/json",
+                "bytes": 6639,
+                "sha256": "64e663064ef51da599ff5eb5be54f72705a6a3c9bb95d90bd0f03ca4a9b11bd0"
+              },
+              {
+                "name": "actual-composition-900",
+                "contentType": "application/json",
+                "bytes": 6658,
+                "sha256": "0b8734bcf8d415ecb9fd60c442d8ede6458c0dde6675e18da84f2515bac92113"
+              }
+            ]
+          },
+          {
+            "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+            "file": "action-theater.spec.js",
+            "line": 6,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8471,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "中央模型按36秒均速自转，摄像机静置且不继承模型旋转",
+            "file": "action-theater.spec.js",
+            "line": 27,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8945,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+            "file": "action-theater.spec.js",
+            "line": 41,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 10215,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置",
+            "file": "action-theater.spec.js",
+            "line": 72,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 12907,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "网络场景失败可重载，恢复只生成一个有效WebGL画布",
+            "file": "action-theater.spec.js",
+            "line": 89,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8200,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "动作页替换为巨幕厅，四段用户视频保持原始画幅与内容来源",
+            "file": "action.spec.js",
+            "line": 8,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8462,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "四面动作选择同步当前标题、按键状态与真实场景视角",
+            "file": "action.spec.js",
+            "line": 24,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 12785,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "减弱动态时四动作仍支持键盘选择和手动播放",
+            "file": "action.spec.js",
+            "line": 39,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 4752,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "电脑三种窗口与设置推开保持画布、说明及固定导航完整可用",
+            "file": "action.spec.js",
+            "line": 53,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 11102,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "动作章节接入四面巨幕与用户视频并保留全局导航及设置背景",
+            "file": "app.spec.js",
+            "line": 315,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8354,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "动作页新四站选择在减弱动态时保持标题和键盘联动",
+            "file": "guide-refresh.spec.js",
+            "line": 61,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 5620,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "旧游戏角色素材失败不影响巨幕厅与真实四站选择",
+            "file": "guide-refresh.spec.js",
+            "line": 73,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9269,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "巨幕厅隐藏时停止绘制与视频，恢复后继续独立模型动画和先前播放",
+            "file": "guide-refresh.spec.js",
+            "line": 82,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8142,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "经典滚动条下三章图标、原毛笔标题与品牌移动，完整红底板逐帧不变",
+            "file": "navigation-transitions.spec.js",
+            "line": 212,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 19959,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "返回首页恢复原文字和布局，字体复测不打断标题飞行或触发底板动画",
+            "file": "navigation-transitions.spec.js",
+            "line": 236,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 12011,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "快速中断从品牌可见位置返回，零首页偏移仍让章节品牌移到首页左邻",
+            "file": "navigation-transitions.spec.js",
+            "line": 256,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 23916,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "直接打开章节仍为完整平直红栏，品牌只留狮头且原毛笔标题在图标下方",
+            "file": "navigation-transitions.spec.js",
+            "line": 288,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 10536,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "首页原版红底面积与样式跨章节不变，往返复用相同底板节点",
+            "file": "navigation-transitions.spec.js",
+            "line": 321,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 11489,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "窄顶栏与125%电脑缩放往返保持整条底板，图标组不越界",
+            "file": "navigation-transitions.spec.js",
+            "line": 340,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 14064,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "短顶栏飞行中resize清理旧位移，缩放后品牌仍在首页左邻且可继续往返",
+            "file": "navigation-transitions.spec.js",
+            "line": 361,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9821,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "设置推开至实测900px余宽，章节品牌靠首页且底板在切换中保持原面积",
+            "file": "navigation-transitions.spec.js",
+            "line": 396,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 11193,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "减少动态在飞行中清理品牌图案，键盘返回首页保留焦点和固定底板",
+            "file": "navigation-transitions.spec.js",
+            "line": 413,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8184,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "冷启动等待真实模型准备，书册不提前快翻，章节复用已编译画布",
+            "file": "startup-loading.spec.js",
+            "line": 8,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8523,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "模型网络失败展示预览状态并完成加载，无永久挡屏",
+            "file": "startup-loading.spec.js",
+            "line": 39,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8355,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "模型下载途中丢失WebGL上下文仍结束加载并保留重试",
+            "file": "startup-loading.spec.js",
+            "line": 50,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8436,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "加载后同一完整导航底板往返不变，只有图标和品牌移动",
+            "file": "startup-loading.spec.js",
+            "line": 69,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 11719,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "导航字体请求悬挂时总准备预算到期，保留字体回退并结束加载",
+            "file": "startup-loading.spec.js",
+            "line": 135,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 27381,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "当前首页视频首帧纳入准备，超时保留封面与重试且复用同一video",
+            "file": "startup-loading.spec.js",
+            "line": 153,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 27684,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和重入仍更新画面",
+            "file": "structure-interaction.spec.js",
+            "line": 45,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 25241,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "视口部件标注随模型转动并连接结构锚点，点击同步右侧目录与聚焦",
+            "file": "structure-interaction.spec.js",
+            "line": 99,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 14114,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          }
+        ]
+      },
+      {
+        "name": "production-google-chrome-key-cases",
+        "command": "$env:PLAYWRIGHT_CHANNEL='chrome'; npx playwright test --config playwright.preview.config.js tests/e2e/action-theater.spec.js tests/e2e/action-theater-ornate.spec.js tests/e2e/action-player.spec.js --grep '巨幕厅实际载入独立场景|红金剧场初始真实投影|用户四段真实视频推进' --reporter=list,json --output tmp/e2e-action-theater-ornate-chrome-preview",
+        "report": {
+          "path": "tmp/e2e-action-theater-ornate-chrome-preview/report.json",
+          "bytes": 16413,
+          "sha256": "28a655bb2fbe20926fd712b9713078508f8bf1bbeac46628e41b8caa2cd7241c"
+        },
+        "startedAt": "2026-10-19T15:04:41.558Z",
+        "durationMs": 29701.741,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "workers": 1,
+        "channel": "chrome",
+        "tests": [
+          {
+            "title": "用户四段真实视频推进，暂停、拖动进度和继续观看保留当前位置",
+            "file": "action-player.spec.js",
+            "line": 12,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9119,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例",
+            "file": "action-theater-ornate.spec.js",
+            "line": 11,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9141,
+                "retry": 0
+              }
+            ],
+            "attachments": [
+              {
+                "name": "actual-initial-composition",
+                "contentType": "application/json",
+                "bytes": 6638,
+                "sha256": "d1aea4c5a36b5259c77a15f353f985e91ba6547c71dcdb331b5e53f8f01e6726"
+              }
+            ]
+          },
+          {
+            "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+            "file": "action-theater.spec.js",
+            "line": 6,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9457,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          }
+        ]
+      },
+      {
+        "name": "production-microsoft-edge-key-cases",
+        "command": "$env:PLAYWRIGHT_CHANNEL='msedge'; npx playwright test --config playwright.preview.config.js tests/e2e/action-theater.spec.js tests/e2e/action-theater-ornate.spec.js tests/e2e/action-player.spec.js --grep '巨幕厅实际载入独立场景|红金剧场初始真实投影|用户四段真实视频推进' --reporter=list,json --output tmp/e2e-action-theater-ornate-msedge-preview",
+        "report": {
+          "path": "tmp/e2e-action-theater-ornate-msedge-preview/report.json",
+          "bytes": 16417,
+          "sha256": "e0e87b7885d55e979ec9b4e46bd0958151b98e59ff2d16083af059d8cdee5fc5"
+        },
+        "startedAt": "2026-10-19T15:09:16.716Z",
+        "durationMs": 29457.471,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "workers": 1,
+        "channel": "msedge",
+        "tests": [
+          {
+            "title": "用户四段真实视频推进，暂停、拖动进度和继续观看保留当前位置",
+            "file": "action-player.spec.js",
+            "line": 12,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9149,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          },
+          {
+            "title": "红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例",
+            "file": "action-theater-ornate.spec.js",
+            "line": 11,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 8884,
+                "retry": 0
+              }
+            ],
+            "attachments": [
+              {
+                "name": "actual-initial-composition",
+                "contentType": "application/json",
+                "bytes": 6640,
+                "sha256": "59e999618c61ec2cbed93f3b18bbb7f19b13c4bf9345109ef0689c4af38d3e29"
+              }
+            ]
+          },
+          {
+            "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+            "file": "action-theater.spec.js",
+            "line": 6,
+            "project": "chromium",
+            "status": "expected",
+            "results": [
+              {
+                "status": "passed",
+                "durationMs": 9374,
+                "retry": 0
+              }
+            ],
+            "attachments": []
+          }
+        ]
+      }
+    ],
+    "buildFiles": [
+      {
+        "path": "dist/index.html",
+        "bytes": 797,
+        "sha256": "ebc73fe73e9834eb245eef2b885e3ff6c4e9b5937a8fa931f15b37dd062c2ed9"
+      },
+      {
+        "path": "dist/assets/actionTheaterScene-DW_ECDcW.js",
+        "bytes": 35164,
+        "sha256": "38497a8f4da7a1cf3ef9114961d691e97bdcb8a96fbca984e4daa9597df63a5c"
+      },
+      {
+        "path": "dist/assets/index-DH4YI_w3.css",
+        "bytes": 91767,
+        "sha256": "582ed2df6e30e9a93393a80473852f2f5c75965ee3e4ae9526aafa0f97ed324e"
+      },
+      {
+        "path": "dist/assets/index-DNuI9gve.js",
+        "bytes": 293693,
+        "sha256": "34133a5848c8ed117880392bab4e16fd91488277d1f3f219a13665b371bca914"
+      }
+    ],
+    "actualCompositions": {
+      "actual-initial-composition": {
+        "bytes": 6640,
+        "sha256": "278ae7f4476437508e1eb68bb459db3394d9971b0f606c8609d3c75aced51e2b",
+        "value": {
+          "lion": {
+            "left": 0.372285405571789,
+            "top": 0.2835889302128675,
+            "right": 0.6378015200708607,
+            "bottom": 0.6459876538175431,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.26551611449907164,
+            "heightRatio": 0.36239872360467557,
+            "worldMinY": 0.3999999999999999,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145468552,
+            "right": 0.8169743485453145,
+            "top": 0.5694309627861958,
+            "bottom": 0.8667639310381577,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090629,
+            "heightRatio": 0.297332968251962,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836375,
+              "top": 0.10259267563937219,
+              "right": 0.6952608488616363,
+              "bottom": 0.5250276184405398,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772327255,
+              "heightRatio": 0.4224349428011676,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448654,
+              "top": -4.91192142769144,
+              "right": 4.1676507255278,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829343,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255278,
+              "top": -4.91192142769144,
+              "right": 0.20483502065513454,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829347,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 107,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#ffddba",
+                "intensity": 0.24,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffe3bd",
+                "intensity": 3.25,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.7,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffb365",
+                "intensity": 0.85,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      },
+      "actual-composition-1920": {
+        "bytes": 6639,
+        "sha256": "c39d896f7bd907e019a48da5bef3bc81b75ee92a68d6e7dd2986802ae2e19d39",
+        "value": {
+          "lion": {
+            "left": 0.3712449794494283,
+            "top": 0.2850039211567459,
+            "right": 0.6367164627538028,
+            "bottom": 0.6453003161159682,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2654714833043745,
+            "heightRatio": 0.3602963949592223,
+            "worldMinY": 0.3999999999999999,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145468552,
+            "right": 0.8169743485453145,
+            "top": 0.5694309627861958,
+            "bottom": 0.8667639310381577,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090629,
+            "heightRatio": 0.297332968251962,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836375,
+              "top": 0.10259267563937219,
+              "right": 0.6952608488616363,
+              "bottom": 0.5250276184405398,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772327255,
+              "heightRatio": 0.4224349428011676,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448654,
+              "top": -4.91192142769144,
+              "right": 4.1676507255278,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829343,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255278,
+              "top": -4.91192142769144,
+              "right": 0.20483502065513454,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829347,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 110,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#ffddba",
+                "intensity": 0.24,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffe3bd",
+                "intensity": 3.25,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.7,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffb365",
+                "intensity": 0.85,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      },
+      "actual-composition-1366": {
+        "bytes": 6639,
+        "sha256": "64e663064ef51da599ff5eb5be54f72705a6a3c9bb95d90bd0f03ca4a9b11bd0",
+        "value": {
+          "lion": {
+            "left": 0.3747246522424895,
+            "top": 0.2865028607760485,
+            "right": 0.6308269707134897,
+            "bottom": 0.644555577505292,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2561023184710002,
+            "heightRatio": 0.35805271672924355,
+            "worldMinY": 0.3999999999999999,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.193903581456577,
+            "right": 0.806096418543423,
+            "top": 0.5694309627861958,
+            "bottom": 0.8667639310381577,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6121928370868459,
+            "heightRatio": 0.297332968251962,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.3114401156037049,
+              "top": 0.10259267563937219,
+              "right": 0.6885598843962951,
+              "bottom": 0.5250276184405398,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.37711976879259024,
+              "heightRatio": 0.4224349428011676,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7850355035716416,
+              "top": -4.91192142769144,
+              "right": 4.041784238076137,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.2567487345044954,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.0417842380761373,
+              "top": -4.91192142769144,
+              "right": 0.2149644964283584,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.256748734504496,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 113,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#ffddba",
+                "intensity": 0.24,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffe3bd",
+                "intensity": 3.25,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.7,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffb365",
+                "intensity": 0.85,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1351,
+            "height": 678
+          }
+        }
+      },
+      "actual-composition-900": {
+        "bytes": 6658,
+        "sha256": "0b8734bcf8d415ecb9fd60c442d8ede6458c0dde6675e18da84f2515bac92113",
+        "value": {
+          "lion": {
+            "left": 0.32269473147927386,
+            "top": 0.3311675659953237,
+            "right": 0.6821023056343691,
+            "bottom": 0.6145201822233229,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.3594075741550953,
+            "heightRatio": 0.28335261622799923,
+            "worldMinY": 0.3999999999999999,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798531775,
+            "right": 0.9303718520146822,
+            "top": 0.5553019380389792,
+            "bottom": 0.7921284017285332,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293644,
+            "heightRatio": 0.23682646368955396,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833083,
+              "top": 0.1834640577330799,
+              "right": 0.7651153745916692,
+              "bottom": 0.5199345615950053,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833385,
+              "heightRatio": 0.3364705038619254,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800331,
+              "top": -3.810609149806007,
+              "right": 5.479751965836875,
+              "bottom": 0.910842215914938,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780056842,
+              "heightRatio": 4.721451365720945,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965836875,
+              "top": -3.810609149806007,
+              "right": 0.09923981421996692,
+              "bottom": 0.910842215914938,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780056842,
+              "heightRatio": 4.721451365720945,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 116,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#ffddba",
+                "intensity": 0.24,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffe3bd",
+                "intensity": 3.25,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.7,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffb365",
+                "intensity": 0.85,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 67.45059790817311,
+            "width": 885,
+            "height": 784
+          }
+        }
+      }
+    }
+  },
+  "evidence": {
+    "sources": [
+      {
+        "path": "src/features/action/ActionPage.jsx",
+        "bytes": 11606,
+        "sha256": "bc8cb71c25834fa68e04a7462aad878241097d244ffa2b4cb7ac1593eb0f683a"
+      },
+      {
+        "path": "src/features/action/actionClips.js",
+        "bytes": 1779,
+        "sha256": "5e13ac838993f9e77bacb1efd4c1d71dc675602c6e67e0d9150520a7d8408edc"
+      },
+      {
+        "path": "src/features/action/useTheaterPlayback.js",
+        "bytes": 11696,
+        "sha256": "a3b43b597bd5c707ab33f916fd9aed86fdf6997ddc9d9b8765e1c6da4b9e0965"
+      },
+      {
+        "path": "src/features/action/action-theater.css",
+        "bytes": 11243,
+        "sha256": "b37afea465e36bdaee657a1b318a8111685752103b1ebed6b99a823411aa21bc"
+      },
+      {
+        "path": "src/services/actionTheaterScene.js",
+        "bytes": 35371,
+        "sha256": "f77310a6333aba36cc8bed0d3ac07a93d30f590e7f049d5f84268e50574f876e"
+      },
+      {
+        "path": "src/services/actionTheaterMath.js",
+        "bytes": 2792,
+        "sha256": "d6539d508d91183e38b8c1169bd0f268e6c19931cc3425b5700fd64d53535549"
+      },
+      {
+        "path": "src/services/actionTheaterArchitecture.js",
+        "bytes": 19589,
+        "sha256": "3a517de2f935eacb15d6772ffb21ab1fb07f3d4043d59dbab67f61b99f4ae1a7"
+      },
+      {
+        "path": "src/services/actionTheaterReflection.js",
+        "bytes": 3876,
+        "sha256": "422b18a178172b20980b8f1df3a80e36fd7bfb4a7b4b1259bcae470ba7bb6338"
+      },
+      {
+        "path": "src/config/assetPaths.js",
+        "bytes": 3940,
+        "sha256": "ff6cb94f8110ef0cd7de5e2e00ca73869137e608be822a30d8cd429a92679cb9"
+      },
+      {
+        "path": "src/config/media.js",
+        "bytes": 317,
+        "sha256": "2f2fb417fcab88104b75971f9c41dcb0165336a48f07e6be0a1aadcbe2a04ce0"
+      },
+      {
+        "path": "package.json",
+        "bytes": 892,
+        "sha256": "20cade8320a21852a2aac714c7e841a4924d3688596850ac13d221363825027a"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 66109,
+        "sha256": "c6f6af90c25bf35b568bb42d6d871573c2c7902000b75a6111a10b218a374b7c"
+      },
+      {
+        "path": "tests/e2e/action.spec.js",
+        "bytes": 5527,
+        "sha256": "4cf97f2dc32e3e21e45deb5b41af04f0a93b4d5f2f80031cc7726f61b8fd92e4"
+      },
+      {
+        "path": "tests/e2e/action-player.spec.js",
+        "bytes": 10569,
+        "sha256": "1c38cb02b2a22e04a31412cedbd2e65d2db35c0d2fce6985c2056bb0af022b5a"
+      },
+      {
+        "path": "tests/e2e/action-theater.spec.js",
+        "bytes": 7322,
+        "sha256": "908f5d9e5cf8ec87e675da130b22b36537ab32b99cb87da26bf9234e539bd2a5"
+      },
+      {
+        "path": "tests/e2e/action-theater-ornate.spec.js",
+        "bytes": 5617,
+        "sha256": "86dec453b8cf7f40f7642e7339b74aab93f94c56a1c0f2cecdc38caf42d56907"
+      },
+      {
+        "path": "tests/e2e/action-theater.helpers.js",
+        "bytes": 3645,
+        "sha256": "7647e2e7d007a8fde8eddeef99e644d155d44530bac6f6680de809ce21911c07"
+      },
+      {
+        "path": "tests/assets/action-theater.test.mjs",
+        "bytes": 5267,
+        "sha256": "d653e41c335c7745b20bcffa9cec11051bd028f935dd4f47090e142e696b1166"
+      },
+      {
+        "path": "tests/e2e/guide-refresh.spec.js",
+        "bytes": 7241,
+        "sha256": "e021c586d4e00d935ebab7280249f9ebe57e94621ee1cd14adf308f471f4f63c"
+      },
+      {
+        "path": "tests/e2e/app.spec.js",
+        "bytes": 35507,
+        "sha256": "9304f67c31aeb97f6ae34108afbfe89487b7940b6903196cf9e7288d5ccff1c6"
+      },
+      {
+        "path": "tests/e2e/navigation-transitions.spec.js",
+        "bytes": 27130,
+        "sha256": "1cf0d8e6ca13eec9174240bea1484e364dad75740eae5d6e824026de715ae6dc"
+      },
+      {
+        "path": "tests/e2e/startup-loading.spec.js",
+        "bytes": 10637,
+        "sha256": "ebb4dfaba7aa73f2e5a1e109418a38c4c4e22069ce59723c32a65a0b275246e9"
+      },
+      {
+        "path": "tests/e2e/structure-interaction.spec.js",
+        "bytes": 7514,
+        "sha256": "2b324d08762df15c79890dce78730cadf2c7a6e4616ee38b7fec8ce9483cacb9"
+      },
+      {
+        "path": "playwright.config.js",
+        "bytes": 620,
+        "sha256": "0939f2535258b9ac22ec09bd74c3ad5cdcc0d9b5a4aa776331a688e49da2958d"
+      },
+      {
+        "path": "playwright.preview.config.js",
+        "bytes": 474,
+        "sha256": "b6ba71793c0e4af32fe7081a0bd1bc8e2f3408386536e690551612550c6da03b"
+      }
+    ],
+    "runtimeAssets": [
+      {
+        "path": "source/public/assets/models/lion-action-theater.glb",
+        "bytes": 31826708,
+        "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+        "distSha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/tanqing.mp4",
+        "bytes": 7593974,
+        "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143",
+        "distSha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/tanqing-poster.jpg",
+        "bytes": 239641,
+        "sha256": "97797623d1ce2730ae2d1b18a5e1f977dc0d34f4644982049a4b0307918feacc",
+        "distSha256": "97797623d1ce2730ae2d1b18a5e1f977dc0d34f4644982049a4b0307918feacc",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/doumao.mp4",
+        "bytes": 6159115,
+        "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a",
+        "distSha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/doumao-poster.jpg",
+        "bytes": 236762,
+        "sha256": "9c606f8cf62c87d070a4cdb5cff6feed13056ca6f32763b60d961f205da60c44",
+        "distSha256": "9c606f8cf62c87d070a4cdb5cff6feed13056ca6f32763b60d961f205da60c44",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/tuqiu.mp4",
+        "bytes": 6519176,
+        "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650",
+        "distSha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/tuqiu-poster.jpg",
+        "bytes": 193477,
+        "sha256": "f86322ea17d60f8d01ecd863438affa6636559c2b188ce89bdd4d7bd31c45baa",
+        "distSha256": "f86322ea17d60f8d01ecd863438affa6636559c2b188ce89bdd4d7bd31c45baa",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/meihuazhuang.mp4",
+        "bytes": 7929073,
+        "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866",
+        "distSha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866",
+        "identicalDeployedBytes": true
+      },
+      {
+        "path": "source/public/assets/action/videos/meihuazhuang-poster.jpg",
+        "bytes": 260139,
+        "sha256": "eac12867209074d3ad265e02fbbdacd5c848ecdaf9365e95a486938ce935755b",
+        "distSha256": "eac12867209074d3ad265e02fbbdacd5c848ecdaf9365e95a486938ce935755b",
+        "identicalDeployedBytes": true
+      }
+    ],
+    "protectedInputs": [
+      {
+        "path": "model/醒狮_保留UV_三角转四边_优化.blend",
+        "bytes": 139309821,
+        "sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+        "unchanged": true
+      },
+      {
+        "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend",
+        "bytes": 92962597,
+        "sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+        "unchanged": true
+      },
+      {
+        "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+        "bytes": 31826708,
+        "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+        "unchanged": true
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-1366.png",
+        "bytes": 1240299,
+        "sha256": "3f3b9903b8356256a6b45ca2b693084f0f1ce1b11b57c9e6efb707f1a6b515dc",
+        "width": 1366,
+        "height": 768,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-1920.png",
+        "bytes": 2288347,
+        "sha256": "d99059141c2df71b26522d9e337e408ce1cbd7b9464cb51115bf1b4bc037da4e",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-900.png",
+        "bytes": 905002,
+        "sha256": "d536d9a00c7a0ad806789501dec3cbe559e4d4e7d25dadc2652807ca821fb939",
+        "width": 900,
+        "height": 900,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-doumao-1920.png",
+        "bytes": 2282506,
+        "sha256": "e12e820084d3fe732b4c3af120d4d1e9de5a13398d7b5bf635fbe284db85f2d8",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-initial-three-screens-1920.png",
+        "bytes": 2287030,
+        "sha256": "d420ac24ef5e842b6e2ff0987bd13d47a03daf5638f3ec3c2ab069d32fae8841",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-meihuazhuang-1920.png",
+        "bytes": 2246828,
+        "sha256": "689a5136355408af4d605f1ea11c6851d56e21570963cc7d7bce6d2fe919b9f9",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-settings-push.png",
+        "bytes": 1143043,
+        "sha256": "ce099e6d2b114e1d970a0b78a934424c09f2d86c2998401fba759e74e610851c",
+        "width": 1675,
+        "height": 1000,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-tanqing-1920.png",
+        "bytes": 2290321,
+        "sha256": "6c98ab669fcb5940dcff75676fb289f779e18e11ce1764b60b0eae87b9dfd430",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      },
+      {
+        "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-tuqiu-1920.png",
+        "bytes": 2296022,
+        "sha256": "158d37bb11bdebdbcd7a838738929ba5cc676574b21a2363cef943761c02dcd7",
+        "width": 1920,
+        "height": 1080,
+        "browser": "chromium",
+        "inspected": true
+      }
+    ]
+  },
+  "coverage": {
+    "composition": "真实每mesh局部包围盒角投影证明主狮高度32%–42%；真实圆台圆周投影证明完整外轮廓宽60%–75%；世界坐标落台gap<.025。初始正面+左右屏可见，后方第四屏behind；4显示面实际16:9。",
+    "architecture": "真实模块化三维红柱、柱脚柱头雕花、三层连续梁枋与斗拱、4黑金厚屏框、低矮多层雕花金台，装饰由共享几何/InstancedMesh承载。测试从实际component数量与scene遍历计数断言；人工截图复核空间层次。",
+    "floorAndLighting": "旧网格可见节点数0；深色石材roughness变化与真实9tap柔化平面反射；RT pass实际推进且flat后停止。ACESToneMapping、PCFSoftShadowMap、暖主光/轮廓/建筑投光由当前源码和实际composition灯光参数核实。",
+    "interaction": "原20项动作/播放/场景回归保留：实际4视频解码/时间推进/VideoTexture与彩色画布、36秒独立模型旋转、真实鼠标/滚轮/键盘/按钮视角、相机半径/高度/俯仰联合限制、主辅1/.25柔切、独立进度、唯一主音轨、暂停/seek/loop/fullscreen。",
+    "recoveryAndLifecycle": "用户手势自动播放限制、快速切换、原生play迟到、可控document.hidden、离页停止释放/返回单画布、当前媒体重试、场景网络失败/重载、上下文丢失与平面回退。",
+    "desktopAndNeighbors": "1920×1080/1366×768/900×900各有实际完整stage bounds断言，1675×1000窗口中设置推开后900px余宽另有布局与截图；信息面板不碰主狮上部65%保守头部区域、操作控件可见、页面无横向溢出；导航连续动画9、startup6、结构交互2与动作迁移4项。",
+    "additionalBrowsers": "Chrome与Edge各仅3项核心：4真视频纹理/像素、初始构图+落台、真实播放暂停/seek/继续；不声称各45项全套。",
+    "errors": "首个成功场景用例在导航前监听pageerror与HTTP>=400并均断言为空；故障注入用例允许预期失败。没有声称全套console warning/error为零。"
+  },
+  "visualReview": {
+    "allNineOpenedAndInspected": true,
+    "findings": "顶部连续多层雕花梁、红漆金饰柱、巨幕框架融合、清晰原狮、完整宽薄多层金台与柔倒影成立；四向真视频不同，窄桌面和设置推开后控件仍在边缘。",
+    "differencesFromReference": [
+      "保留原有蹲伏醒狮资产与网页LOD，其姿态、绒毛拓扑与图一不同；没有替换另一只站立狮。",
+      "卷草、回纹、莲瓣、斗拱为程序化真实几何简化，目标图的纹理雕刻密度与摄影级光照更细腻。",
+      "保留用户给定四视频的原内容与主次亮度，不把图一中三屏完全同亮当作播放逻辑。",
+      "反射使用有采样柔化和更新频率上限的单个平面RT，不宣称光线追踪或参考图同等离线渲染。"
+    ],
+    "missingAssetsOrManualSteps": "无本轮功能/素材阻塞；无需用户手工操作。进一步接近图一的细雕纹理和站立姿态属于额外艺术资产需求，本轮保持原资产。"
+  },
+  "limitations": [
+    "未验证Firefox/Safari、其他电脑或真实GPU长期FPS/VRAM基准；没有移动端回归。",
+    "声音仅验证媒体muted/播放状态和唯一主音轨，没有实际扬声器听音。",
+    "页面隐藏使用可控document.hidden模拟，不等于实测OS Alt+Tab/最小化。",
+    "Box3/圆周投影是几何构图证据，真实遮挡与审美仍由逐张截图人工审查；上部65%为保守头部区域，并非头部分割掩码。",
+    "低性能自动降级的代码及真实quality状态有记录，单机结果不构成所有设备性能保证。"
+  ]
+}

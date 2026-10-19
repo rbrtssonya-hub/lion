@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "scope": "F盘首页续接与GitHub最新main组合树，电脑端",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "branch": "main",
+  "featureCommit": "a33ee23a56a0fe42764e49ccda38c3d29a070add",
+  "integratedRemote": "50d3525cc421b69684590392090c5b37ba2a79e7",
+  "commonBase": "9cb0097890f7e4e9aaf96bfeabda4943ef3f5bba",
+  "environment": { "os": "Windows", "node": "24.20.0", "npm": "11.19.0", "browserChannel": "chrome", "devPort": 5198, "previewPort": 4198 },
+  "core": { "command": "npm test", "passed": 51, "failed": 0, "skipped": 0 },
+  "build": { "command": "npm run build", "modules": 320, "passed": true, "warning": "既有Three.js chunk 534.77kB超500kB，未隐藏警告或新增依赖" },
+  "browser": {
+    "files": ["action-theater-integrated", "action-theater-ornate", "archive-panel-timeline", "book-wave-settings", "guide-refresh", "home-archive-refresh", "home-archive-visual", "home-heritage-reveal", "home-heritage", "home-navigation-refresh", "home-reading"],
+    "production": { "command": "PLAYWRIGHT_CHANNEL=chrome PLAYWRIGHT_PREVIEW_PORT=4198 npx playwright test --config playwright.preview.config.js [files].spec.js --grep-invert 手机 --output tmp/final-merged-preview", "passed": 79, "failed": 0, "skipped": 0, "durationApproxMinutes": 10.4 },
+    "productionCultureRecheck": { "file": "tests/e2e/home-culture.spec.js", "grep": "首页照片下方控制栏", "passed": 1, "failed": 0, "durationSeconds": 8.7, "output": "tmp/final-merged-preview-culture" },
+    "developmentFirstBatch": { "config": "tmp/playwright-home-refresh.config.mjs", "passed": 78, "failed": 1, "skipped": 0, "durationApproxMinutes": 11.4, "output": "tmp/final-merged-dev", "failure": "首次进入新动作厅时Vite依赖优化导致文档重载，首页ElementHandle上下文销毁；不是生产版失败" },
+    "developmentFailureEvidence": { "source": "tmp/final-merged-dev/action-theater-integrated--f6d04-巨幕往返保持独立播放实例，离页释放后仅重建一套动作画布-chromium/trace.zip", "observed": "同一页面两次[vite] connecting；react-dom_client依赖版本由598549a0变为349f1aa1；旧句柄在第37行失效" },
+    "developmentRecheck": { "command": "npx playwright test --config tmp/playwright-home-refresh.config.mjs tests/e2e/action-theater-integrated.spec.js tests/e2e/home-culture.spec.js --grep 合并后首页媒体|首页照片下方控制栏 --repeat-each 3 --output tmp/final-merged-dev-recheck", "passed": 6, "failed": 0, "skipped": 0, "durationApproxMinutes": 1.3, "note": "原失败项与修改过的资料许可入口各独立3次通过；不把首批78/79改记为79/79" },
+    "desktopViewports": [[1920,1080], [2560,1440], [1366,768], [1024,768], [900,768]],
+    "settingsPushedContentWidth": 900,
+    "covered": ["七页真实选择与反向/快速改向", "五栏目跳转及手动同步", "resize中重新计算平滑终点", "减少动态即时清理观察器", "后台/离屏/离页清理", "类型居中展开/键盘/Escape可见焦点", "六人物与筛选/来源/失败回退", "照片仅开发显式参数启用", "底板尺寸/材质/旧偏好/存储不可用", "首翻约12秒与运行中时长变化", "首页与红金四幕往返媒体和WebGL释放"]
+  },
+  "assetAudit": {
+    "manifestRecords": 440,
+    "remoteRecordsPreserved": 429,
+    "method": "逐条验证bytes/SHA256；远端每条记录仍存在，旧首页背景按同from/bytes/hash归档design",
+    "configuredRuntimeCopiesByteIdenticalToDist": 72,
+    "allPublicFilesByteIdenticalToDist": 89,
+    "remoteNonSharedFilesInitiallyByteIdentical": 38,
+    "intentionalDocumentationExtensions": ["docs/DEVELOPMENT.md", "source/README.md"],
+    "remoteOtherNonSharedFilesPreserved": 36,
+    "conflicts": ["source/asset-manifest.json"],
+    "resolution": "保留双方新增记录，不用整表ours/theirs覆盖；无产品代码冲突"
+  },
+  "art": { "approved": ["探头小狮", "狮爪绒球", "狮尾祥云"], "approval": "用户明确回复：这三个可以", "displayPixels": "40–48", "rejectedLargeIllustrationsDeployed": false, "sixProductionScreenshotsRefreshed": true, "approvalScreenshotPreserved": true, "reviewDirectory": "source/reviews/home/2026-10-20-refresh" },
+  "portraits": { "localOriginalCount": 6, "localDirectory": "tmp/home-inheritor-photos/", "publicPhotographCount": 0, "productionRequestsForResearchPhotos": 0, "developmentRequires": "import.meta.env.DEV && researchPhotos=1", "publicFallback": "姓名档案牌及原文链接", "publicReusePermission": "未确认，不推送照片二进制" },
+  "review": { "independentReadOnlyReview": true, "importantIssuesFixed": ["平滑侧轨跳转中resize终点", "长介绍末尾Escape后图片焦点不在视口"], "additionalRedGreenFixes": ["正文18px下限", "减少动态CSS先触发resize时观察器未同步清理"], "knownProductDefectsRemainingInTestedScope": [] },
+  "finalChecks": { "memoryIndexThenRequireReady": true, "memoryPages": 81, "memoryErrors": 0, "memoryHistoricalWarnings": 4, "memoryWarningScope": "旧EntryNavTools.jsx和旧lion-overall.glb路径的历史追溯提示，不改写封存日志", "gitDiffCheck": "passed", "gitCachedDiffCheck": "passed", "unmergedPaths": 0 },
+  "delivery": { "forcePush": false, "excluded": [".superpowers/", "tmp/", "dist/", "未授权人物照片", "被否定的大插画"], "otherWorktreesModified": false, "pushVerification": "在本记录所属正常合并提交后执行普通push，最终回复报告本地HEAD与GitHub refs/heads/main实时核对结果" },
+  "notVerified": ["其他浏览器与实际设备/GPU长时基准", "真实OS切应用与音响输出", "正式托管部署", "人物照片公开复用许可"]
+}

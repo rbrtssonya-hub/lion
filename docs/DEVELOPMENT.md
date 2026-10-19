@@ -27,11 +27,15 @@ npm run preview
 
 ## 代码边界
 
+2026-10-20首页续接采用用户新竖幅背景分层等比取景，阅读大框的边角淡纹理随原surface透明度一起减弱。三款获批小装饰使用独立透明PNG，显示40–48px；不再以品牌狮头重复点缀标题。七年代书下导航复用原游戏角色idle/mov/poster图集，不含加载百分比；`HomeArchiveNav`为固定五栏目侧轨，滚动同步、不改Hash，共用原粒子开关。三形制图片初始居中，点击/键盘展开，切换与Escape/收起复位；观察点仅为正文。详细边界见[首页续接说明](../source/references/home-refresh-2026-10-20.md)。
+
+六张传承人新闻照片尚无公开复用确认，只存Git忽略的`tmp/home-inheritor-photos/`。开发环境显式`?researchPhotos=1`可预览，生产构建始终显示姓名档案牌及来源链接，不部署或请求这些照片。不得以来源署名代替许可；AI示意、代表人物选编与工程许可统一在资料区折叠说明保留。新回归`home-archive-refresh`、`home-navigation-refresh`与`home-heritage-reveal`覆盖实际首页挂载、资源清理、尺寸和照片边界；真实结果及初次开发依赖重载记录见同日工程日志。
+
 2026-10-19首页下方顺序为书册→文化照片图鉴→醒狮形制→传承人物→统一资料与摄影许可。`HomeHeritage.jsx`的两个栏目和提取出的`HomeCultureSources.jsx`作为`HomeCulture`的同级组件挂载，避免原照片区键盘事件作用到新控件；静态名单、观察点与来源ID统一在`src/data/home-heritage.js`。三形制明确区分传统流派与融合形制；六人物按表演/扎作筛选，未核实肖像许可时显示原创姓名档案牌，不伪造统一师承世系。来源与许可边界见[本轮资料说明](../source/references/home-heritage-sources.md)。
 
 新标题/正文沿用`cultureTitle`/`cultureBody`，末尾资料区保留原六参数；标题使用自身命名容器处理40%窄底板，不缩放文字或裁切装饰。三幅类型PNG仅作为AI辅助示意，通过assetPaths/media注册并懒加载，`useStartupLoading`明确排除`lionType`前缀，不把下方新图加入首屏等待。新增回归为`home-heritage.spec.js`和`tests/assets/home-heritage.test.mjs`；截图归档`source/reviews/home/2026-10-19-heritage/`，不发布设计原件、提示词与审查图。
 
-首页首屏之后的 `.home-archive-scene` 为书册及文化图鉴共用用户醒狮纹样背景，两区透明，不叠加旧米纸底和整页滤镜。资源集中配置为 `homeArchiveBackground`，按文档基址转绝对URL；书页本身和官方引擎不变。标题/正文使用完整系统字体回退，醒狮/云纹装饰复用现有透明狮头及原生SVG，来源见 [背景与文字排版](../source/references/home-archive-background.md)。电脑宽度、900px推开和原交互由 `tests/e2e/home-archive-visual.spec.js` 及既有史册/文化回归覆盖。
+首页首屏之后的 `.home-archive-scene` 为五个阅读栏目共用用户醒狮纹样背景，当前使用三层同源取景与宣纸底色，不把竖图拉伸成整页。资源集中配置为 `homeArchiveBackground`，按文档基址转绝对URL；书页本身和官方引擎不变。标题/正文使用完整系统字体回退；当前小装饰采用用户批准的新透明PNG，原透明品牌狮头只继续用于品牌和侧轨。前阶段来源见 [背景与文字排版](../source/references/home-archive-background.md)，当前资源与交互以上方续接说明为准。电脑宽度、900px推开和原交互由 `tests/e2e/home-archive-visual.spec.js` 及既有史册/文化回归覆盖。
 
 | 目录或入口 | 维护内容 |
 | --- | --- |
@@ -56,7 +60,7 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
-2026-10-19视频资源已在独立分支替换：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。HEVC已在本机Chrome实际解码，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`。
+2026-10-19视频资源先在独立分支替换，现随远端9cb0097合入E盘红金组合树：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。2026-10-20组合树已在本机Chrome与Edge实际验证HEVC自然结束和循环回绕，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`，新结果保存于独立组合树验收。
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
@@ -100,9 +104,15 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 `actionClips.js` 定义探青采青、抖毛、狮子吐球、踩梅花桩与四个屏幕名/方向/素材键。`useTheaterPlayback` 保留四个稳定视频实例，切屏不重置时间，暂停/续播、当前进度、声音与错误重试均由实际媒体状态驱动；静音后才能切音轨，隐藏与离页使旧播放请求失效并暂停。平面观看与三维空间复用同一视频，不另造播放器或用首页视频替代。
 
-`actionTheaterScene.js` 仅在动作页动态加载，负责GLB、VideoTexture、独立相机与36秒Y轴旋转。单RAF按可见性暂停，12°优势与180ms稳定停留后切主屏，距离/高度/俯仰联合约束；视频完整contain，主1/辅0.25渐变。退出取消fetch、视频帧回调和动画，释放控制器/图形资源；异常可重试并继续平面观看真实视频。原生Blender工程不改，部署副本为已核对的网页LOD，程序石地的导出白色缺省仅在运行材质恢复为源常量。
+`actionTheaterScene.js` 仅在动作页动态加载，负责GLB、VideoTexture、独立相机与36秒Y轴旋转。单RAF按可见性暂停，12°优势与180ms稳定停留后切主屏，距离/高度/俯仰联合约束；视频完整contain，主1/辅0.25渐变。退出取消fetch、视频帧回调和动画，释放控制器/图形资源；异常可重试并继续平面观看真实视频。原生Blender工程和GLB字节不改。
 
-`tests/e2e/action.spec.js`、`action-theater.spec.js` 和 `action-player.spec.js` 在真实产品路由加载正式四视频，覆盖画布像素、方向/镜头/旋转、播放时间、主音轨、进度、循环、失败重试、迟到Promise与离页释放。旧fixture仅作普通组件输入示例，不作为本轮正式视频证据；`guide-refresh.spec.js` 保留书册覆盖并迁移动作断言。测试输出使用独立 `tmp/` 目录，最终生产QA在 `source/reviews/action-theater/2026-10-19/`，实际命令与结果见[网页接入记录](../source/references/2026-10-19-action-theater-web.md)。
+2026-10-19后续红金重构由 `actionTheaterArchitecture.js` 模块化构造红柱、斗拱、三层雕梁、四屏黑金厚框、深色石地和9.4m×0.4m三级圆台，旧无饰柱/网格地面/厚台运行时隐藏。重复几何实例共1445份、29个渲染网格、636412三角形；无新增依赖或参考图背景。原狮同比1.3落台，四屏同比0.9为14.4×8.1m。初始相机(0,1.6,8.6)看向(0,1.45,0)，FOV56°；环绕7.2–8.8m/高度1.55–3.75m/polar74–89.5°，窄桌面保持74°水平视野。实际网格与圆周投影验收主狮32–42%高、全台60–75%宽，避免用圆台AABB空角高估。
+
+`actionTheaterReflection.js` 复用r160 Reflector，768²/18Hz上限与9点模糊，窄桌面初始512²；细微空间变化避免完美镜子。静置累计180帧平均低于35FPS时DPR降1、反射512²/9Hz、阴影512²；默认DPR≤1.5，窄桌面≤1.25。石材粗糙度采用轻微非周期纹理与mipmap/各向异性过滤，避免对向光下银白台面/摩尔纹；不整体提曝光或环境亮度。重型renderer/PMREM/编译等待共享导航真实 `data-nav-animating=false` 后执行，防止冷载长任务吃掉标题与辅助文字后半段动画；等待支持中断、取消、卸载清理。
+
+动作服务在上述等待结束后使用 `renderer.compile(scene, camera)` 再首绘。锁定r160的 `compileAsync` 会额外建立不可取消的10ms私有轮询，快速离页释放材质后可访问已移除的currentProgram；组合树联合验收实际复现后改为同一同步编译入口，避免残留回调。header等待的settled标记与每次取消旧RAF同时保证只结束一次；卸载清MO、RAF和abort监听。结构模型预热机制保持，勿据动作修复批量替换其他服务。
+
+`tests/e2e/action.spec.js`、`action-theater.spec.js` 和 `action-player.spec.js` 在真实产品路由加载正式四视频，覆盖画布像素、方向/镜头/旋转、播放时间、主音轨、进度、循环、失败重试、迟到Promise与离页释放。新增 `action-theater-ornate.spec.js` 检查真实投影、落台、三屏/后屏、16:9、实例建筑、反射更新/暂停与桌面浮层；`action-theater-integrated.spec.js` 检查新首页真实视频与剧场的跨章节生命周期。旧fixture仅作普通组件输入示例；`guide-refresh.spec.js` 保留书册覆盖并迁移动作断言。输出使用独立 `tmp/`，`ACTION_THEATER_REVIEW_DIR` 指定当前图集。视觉阶段九张QA与[原验收](../source/references/2026-10-19-action-theater-ornate-validation.json)冻结在 `source/reviews/action-theater/2026-10-19-ornate/`，合并树另存 `2026-10-19-ornate-integrated/` 并记录于[独立组合树验收](../source/references/2026-10-19-action-theater-ornate-integrated-validation.json)。最终集成验收发生2026-10-20，文件沿任务开始日命名；首次接入八图与[原网页记录](../source/references/2026-10-19-action-theater-web.md)保留历史范围。
 
 ### 共用导航、设置与结构场景
 

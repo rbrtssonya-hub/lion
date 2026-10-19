@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-19
+updated: 2026-10-20
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,8 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-20 | ui | completed | [首页背景、双导览与人物研究预览](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E9%A6%96%E9%A1%B5%E8%83%8C%E6%99%AF%E5%8F%8C%E5%AF%BC%E8%A7%88%E4%B8%8E%E4%BA%BA%E7%89%A9%E7%A0%94%E7%A9%B6%E9%A2%84%E8%A7%88.md) |
+| 2026-10-20 | ui | completed | [红金中式巨幕厅重构](UI%E4%BF%AE%E6%94%B9/2026-10-19-%E7%BA%A2%E9%87%91%E4%B8%AD%E5%BC%8F%E5%B7%A8%E5%B9%95%E5%8E%85%E9%87%8D%E6%9E%84.md) |
 | 2026-10-19 | maintenance | completed | [首页支线合并主线并同步F盘](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-19-%E9%A6%96%E9%A1%B5%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF%E5%B9%B6%E5%90%8C%E6%AD%A5F%E7%9B%98.md) |
 | 2026-10-19 | maintenance | completed | [合并导航修复到主线并构建](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-19-%E5%90%88%E5%B9%B6%E5%AF%BC%E8%88%AA%E4%BF%AE%E5%A4%8D%E5%88%B0%E4%B8%BB%E7%BA%BF%E5%B9%B6%E6%9E%84%E5%BB%BA.md) |
 | 2026-10-19 | maintenance | completed | [切回GitHub主线并快进同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-19-%E5%88%87%E5%9B%9EGitHub%E4%B8%BB%E7%BA%BF%E5%B9%B6%E5%BF%AB%E8%BF%9B%E5%90%8C%E6%AD%A5.md) |

@@ -1,0 +1,53 @@
+{
+  "schema": "lion.lux3d-runtime-integration-inspection/v1",
+  "date": "2026-10-19",
+  "plugin": "aholo-lux3d:lux3d",
+  "installedSkillVersion": "0.1.1",
+  "route": "Existing verified GLB reuse and actual Three.js project integration; local procedural architecture; bundled Lux3D file inspection",
+  "execution": {
+    "hostTool": "exec_command",
+    "hostOutputChunkId": "e7d741",
+    "exitCode": 0,
+    "entrypoint": "core/runtime/artifact_delivery.py inspect source/public/assets/models/lion-action-theater.glb --format glb",
+    "runtimeSetup": "scripts/setup_runtime.py returned ready; private Python 3.14 interpreter",
+    "blenderAvailability": "F:/Blender/blender.exe --version returned Blender 5.0.0; no new Blender scene was requested or produced in this web reconstruction"
+  },
+  "artifact": {
+    "path": "source/public/assets/models/lion-action-theater.glb",
+    "bytes": 31826708,
+    "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+  },
+  "runtimeValidation": {
+    "valid": true,
+    "glbVersion": 2,
+    "assetVersion": "2.0",
+    "scenes": 1,
+    "nodes": 102,
+    "meshes": 90,
+    "materials": 27
+  },
+  "proceduralArchitecture": {
+    "inspector": "Node import of createTheaterArchitecture, traversing actual geometry indices and instance matrices",
+    "hostOutputChunkId": "3355f9",
+    "exitCode": 0,
+    "renderMeshes": 29,
+    "components": 1445,
+    "trianglesIncludingInstances": 636412,
+    "uniqueGeometries": 17,
+    "usedMaterials": 9,
+    "sharedTextures": 1,
+    "finiteTransforms": true,
+    "actualStageBoundaryPoints": 292
+  },
+  "cloudSubmissions": [],
+  "acceptanceBoundary": [
+    "The actual installed Lux3D inspector validates the preserved source GLB container. It does not inspect or certify the new runtime Three.js architecture, visual fidelity or playback.",
+    "The architecture is authored as reusable Three.js modules in the existing app, not a generated cloud model and not a reference-image background.",
+    "No cloud task ID, generation state, charged submission or new native Blender scene is fabricated. The original Blender and GLB sources remain unchanged.",
+    "The requested interactive preview is the existing website action route. Actual browser screenshots, geometry projections and interaction checks are recorded separately."
+  ],
+  "relatedRecords": [
+    "source/references/2026-10-19-action-theater-ornate.md",
+    "source/references/2026-10-19-action-theater-ornate-validation.json"
+  ]
+}

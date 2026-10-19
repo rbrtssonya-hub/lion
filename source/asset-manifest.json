@@ -2483,20 +2483,20 @@
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/book-guide-1920.png",
-      "bytes": 1524028,
-      "sha256": "66d2c8ef879f8cfa0778424177fac7f36dc4d0d42717faef6983a739cf06437e"
+      "bytes": 1515051,
+      "sha256": "59da17588a37ac260b4586a9d0785908065f272d86ab388758bb6b47162181b2"
     },
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/book-title-1920.png",
-      "bytes": 2373530,
-      "sha256": "bbc2c8f8a17dfb48356a0915a7f097876f8800f0b71717b735108bd9ca86d633"
+      "bytes": 2341598,
+      "sha256": "30a0939ac2c24b139d0fb23e97f0f9f5e2956328009cb5fa610a2582d5169bce"
     },
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/inheritors-public-1920.png",
-      "bytes": 889500,
-      "sha256": "993c0dd7372184fbde4dac264c108cc04af0d2672b23f253f0069618df6ecd1c"
+      "bytes": 882448,
+      "sha256": "c3471534036f18eb0b0586e985e935831cece3b182a20f24dd9e8034a8577c60"
     },
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
@@ -2507,20 +2507,140 @@
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/sources-1920.png",
-      "bytes": 905676,
-      "sha256": "ba27c8064d5c70aca6acacf7345e779b7258def43e1ce005701959797b964ffb"
+      "bytes": 897679,
+      "sha256": "846ac5ea9b3a78fc7d2013dff3e4bd4ebfb59044d95c5229b54612b8c59f3940"
     },
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/types-collapsed-1920.png",
-      "bytes": 1875515,
-      "sha256": "2c81675c7d49be24fcb7900228f00578c0d1f9e21b92ecce736dbfc3ab443c43"
+      "bytes": 1869994,
+      "sha256": "68cf566d863066e8d5329263d96f15c6efcf3633d91a91fb46458d4f9d8396f6"
     },
     {
       "from": "generated:chrome-review/2026-10-20-home-refresh",
       "path": "source/reviews/home/2026-10-20-refresh/types-expanded-1920.png",
-      "bytes": 1764951,
-      "sha256": "06bb9a28a0687920eeddfc73b2bc059f9a44844b9b261703a3fbd1b7ce6b8a72"
+      "bytes": 1758689,
+      "sha256": "1fc97e023249d73b68029910214eca6c2d49eaced32aa84a1b5475e8b9378b35"
+    },
+    {
+      "from": "user-attachment:88c49d64-38ee-401f-84c2-d0c8f517bccc/image-1.png",
+      "path": "source/design/action-theater/2026-10-19-target.png",
+      "bytes": 3187571,
+      "sha256": "bc3f58e387bcac901ee36b6cc8fea8d81fced9ccac9bb38183c0536db47a9a56"
+    },
+    {
+      "from": "user-attachment:88c49d64-38ee-401f-84c2-d0c8f517bccc/image-2.png",
+      "path": "source/design/action-theater/2026-10-19-before.png",
+      "bytes": 3465855,
+      "sha256": "d9c753a7b3046eb3e3b2570cdff8c65bbd30ab610cb73cda446a918320c3033d"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-desktop-1366.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-1366.png",
+      "bytes": 1240299,
+      "sha256": "3f3b9903b8356256a6b45ca2b693084f0f1ce1b11b57c9e6efb707f1a6b515dc"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-desktop-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-1920.png",
+      "bytes": 2288347,
+      "sha256": "d99059141c2df71b26522d9e337e408ce1cbd7b9464cb51115bf1b4bc037da4e"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-desktop-900.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-desktop-900.png",
+      "bytes": 905002,
+      "sha256": "d536d9a00c7a0ad806789501dec3cbe559e4d4e7d25dadc2652807ca821fb939"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-doumao-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-doumao-1920.png",
+      "bytes": 2282506,
+      "sha256": "e12e820084d3fe732b4c3af120d4d1e9de5a13398d7b5bf635fbe284db85f2d8"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-initial-three-screens-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-initial-three-screens-1920.png",
+      "bytes": 2287030,
+      "sha256": "d420ac24ef5e842b6e2ff0987bd13d47a03daf5638f3ec3c2ab069d32fae8841"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-meihuazhuang-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-meihuazhuang-1920.png",
+      "bytes": 2246828,
+      "sha256": "689a5136355408af4d605f1ea11c6851d56e21570963cc7d7bce6d2fe919b9f9"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-settings-push.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-settings-push.png",
+      "bytes": 1143043,
+      "sha256": "ce099e6d2b114e1d970a0b78a934424c09f2d86c2998401fba759e74e610851c"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-tanqing-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-tanqing-1920.png",
+      "bytes": 2290321,
+      "sha256": "6c98ab669fcb5940dcff75676fb289f779e18e11ce1764b60b0eae87b9dfd430"
+    },
+    {
+      "from": "generated:chromium-production-review/2026-10-19-ornate/action-theater-tuqiu-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-tuqiu-1920.png",
+      "bytes": 2296022,
+      "sha256": "158d37bb11bdebdbcd7a838738929ba5cc676574b21a2363cef943761c02dcd7"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-1366.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-1366.png",
+      "bytes": 1244543,
+      "sha256": "dfe2eb166094ee00e4c0144fd1df772564aca6bb6d16f79d3009cc7cbaebeaa0"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-1920.png",
+      "bytes": 2289183,
+      "sha256": "df5103f429214d5b44d4e997556ac2afed936751f677df0ee9e25c8308a9d65c"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-900.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-900.png",
+      "bytes": 903105,
+      "sha256": "a381a29511d8bdf1f32cf99fce9f4fd4417f8ade650672b6f3c3411107bac879"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-doumao-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-doumao-1920.png",
+      "bytes": 2268171,
+      "sha256": "8378896a89de579a3ade29365197ff5f2ca5241c16ae68875508a2d43f09575f"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-initial-three-screens-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-initial-three-screens-1920.png",
+      "bytes": 2290785,
+      "sha256": "6986afda7c9a07fd223947acebfc418a6f1a42a42eaa660b1deb7988ad07029a"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-meihuazhuang-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-meihuazhuang-1920.png",
+      "bytes": 2243676,
+      "sha256": "e90e667b85340610fae8a0db20d8a916db0a09515931ba55a8ef079bcdcaa5f5"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-settings-push.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-settings-push.png",
+      "bytes": 1142534,
+      "sha256": "89e7d15b6d755ad806deba12fbc5a56e049475c7f96f1f4868fd5abd58355649"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-tanqing-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-tanqing-1920.png",
+      "bytes": 2296204,
+      "sha256": "8667bd2b57e3d17e69bc3515e765188f15de92cf4978acb579af3b3ad1c95216"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-tuqiu-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-tuqiu-1920.png",
+      "bytes": 2323064,
+      "sha256": "7f92f34ff730a9f5ee299b9315c01d6dbc32e0b86ea879522fd3640242762718"
     }
   ]
 }
