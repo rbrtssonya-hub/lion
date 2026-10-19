@@ -2,13 +2,13 @@ const TAU = Math.PI * 2;
 const DEG = Math.PI / 180;
 
 export const THEATER_ORBIT = Object.freeze({
-  target: Object.freeze([0, 2.8, 0]),
-  radiusMin: 5.3,
-  radiusMax: 7.2,
-  heightMin: 2.6,
-  heightMax: 4.6,
-  polarMin: 72 * DEG,
-  polarMax: 92 * DEG,
+  target: Object.freeze([0, 1.45, 0]),
+  radiusMin: 7.2,
+  radiusMax: 8.8,
+  heightMin: 1.55,
+  heightMax: 3.75,
+  polarMin: 74 * DEG,
+  polarMax: 89.5 * DEG,
 });
 
 export function shortestAngle(from, to) {

@@ -18,6 +18,7 @@
 | `models/` | 旧运行狮头归档、保留的优化与面部绑定模型版本 | 不复制 |
 | `models/immersive-theater/` | 独立巨幕厅原生 Blender 工程、网页 LOD GLB 与交接文档 | 不复制 |
 | `reviews/immersive-theater/` | 最终巨幕厅工程重开后的五视角真实渲染与来源证据 | 不复制 |
+| `reviews/action-theater/` | 网页巨幕厅各阶段真实浏览器审查图；红金重构为 `2026-10-19-ornate/` | 不复制 |
 | `fonts/` | 字体来源、授权说明及子集生成脚本 | 不复制 |
 | `live2d/` | 分层图、PSD、Cubism 工程与原始导出 | 不复制 |
 | `video/intro/` | 入场视频制作版本、对照海报 | 不复制 |
@@ -41,7 +42,7 @@
 
 同日材质与性能修复已恢复源材质的绒面反射权重，并优化网页几何；贴图原字节和原始 Blender 文件保持。当前 GLB 为20,238,640B、513,600三角，统计及复现以导出记录为准。[同机性能对照](references/2026-10-19-structure-performance.json)记录实际测试方法与设备；最终验证及交付见[修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
 
-动作页现通过 `public/assets/models/lion-action-theater.glb` 加载巨幕厅，并分别播放用户提供的探青采青、抖毛、狮子吐球和踩梅花桩四段视频；视频与真实抽帧海报在 `public/assets/action/videos/`，原路径和哈希见[视频来源](references/2026-10-19-action-theater-videos.md)。网页环绕、主辅亮度、当前解说、单主音频、暂停续播及平面观看由React与Three服务管理，当前实现及实际验收见[网页接入记录](references/2026-10-19-action-theater-web.md)。`models/immersive-theater/` 仍保留原字节独立Blender工程、网页LOD与[交接文档](models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其原生毛发、程序材质与网页发带LOD的区别继续有效。前阶段160项原生检查及Lux3D记录用于离线工程，不替代本轮网页验收。占位文字的OFL字体位于 `fonts/immersive-theater/`，不替换网页字体。
+动作页现通过 `public/assets/models/lion-action-theater.glb` 加载原狮和四屏，并分别播放用户提供的探青采青、抖毛、狮子吐球和踩梅花桩四段视频；视频与真实抽帧海报在 `public/assets/action/videos/`，原路径和哈希见[视频来源](references/2026-10-19-action-theater-videos.md)。2026-10-19后续在原运行GLB外模块化重建红金梁柱、雕花屏框、低矮多层圆台和真实石地反射，参考图与完整要求归档 `design/action-theater/`，没有作为背景加载；模型/视频/海报/原路径均不改。当前组件、参数、九图及实际验证见[红金重构记录](references/2026-10-19-action-theater-ornate.md)。网页环绕、主辅亮度、当前解说、单主音频、暂停续播及平面观看继续由React与Three服务管理；首次接入[网页记录](references/2026-10-19-action-theater-web.md)保留历史证据。`models/immersive-theater/` 仍保留原字节独立Blender工程、网页LOD与[交接文档](models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其原生毛发、程序材质与网页发带LOD的区别继续有效。前阶段160项原生检查及Lux3D记录用于离线工程，不替代本轮网页验收。占位文字的OFL字体位于 `fonts/immersive-theater/`，不替换网页字体。
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。四段用户动作视频已接入巨幕厅，神态真实样本仍待补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 

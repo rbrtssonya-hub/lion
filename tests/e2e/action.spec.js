@@ -3,7 +3,7 @@ import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
 
-const reviewDir = resolve('source/reviews/action-theater/2026-10-19');
+const reviewDir = resolve('source/reviews/action-theater/2026-10-19-ornate');
 
 test('动作页替换为巨幕厅，四段用户视频保持原始画幅与内容来源', async ({ page }) => {
   await openTheater(page);

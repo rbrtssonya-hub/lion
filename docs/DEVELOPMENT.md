@@ -94,9 +94,13 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 `actionClips.js` 定义探青采青、抖毛、狮子吐球、踩梅花桩与四个屏幕名/方向/素材键。`useTheaterPlayback` 保留四个稳定视频实例，切屏不重置时间，暂停/续播、当前进度、声音与错误重试均由实际媒体状态驱动；静音后才能切音轨，隐藏与离页使旧播放请求失效并暂停。平面观看与三维空间复用同一视频，不另造播放器或用首页视频替代。
 
-`actionTheaterScene.js` 仅在动作页动态加载，负责GLB、VideoTexture、独立相机与36秒Y轴旋转。单RAF按可见性暂停，12°优势与180ms稳定停留后切主屏，距离/高度/俯仰联合约束；视频完整contain，主1/辅0.25渐变。退出取消fetch、视频帧回调和动画，释放控制器/图形资源；异常可重试并继续平面观看真实视频。原生Blender工程不改，部署副本为已核对的网页LOD，程序石地的导出白色缺省仅在运行材质恢复为源常量。
+`actionTheaterScene.js` 仅在动作页动态加载，负责GLB、VideoTexture、独立相机与36秒Y轴旋转。单RAF按可见性暂停，12°优势与180ms稳定停留后切主屏，距离/高度/俯仰联合约束；视频完整contain，主1/辅0.25渐变。退出取消fetch、视频帧回调和动画，释放控制器/图形资源；异常可重试并继续平面观看真实视频。原生Blender工程和GLB字节不改。
 
-`tests/e2e/action.spec.js`、`action-theater.spec.js` 和 `action-player.spec.js` 在真实产品路由加载正式四视频，覆盖画布像素、方向/镜头/旋转、播放时间、主音轨、进度、循环、失败重试、迟到Promise与离页释放。旧fixture仅作普通组件输入示例，不作为本轮正式视频证据；`guide-refresh.spec.js` 保留书册覆盖并迁移动作断言。测试输出使用独立 `tmp/` 目录，最终生产QA在 `source/reviews/action-theater/2026-10-19/`，实际命令与结果见[网页接入记录](../source/references/2026-10-19-action-theater-web.md)。
+2026-10-19后续红金重构由 `actionTheaterArchitecture.js` 模块化构造红柱、斗拱、三层雕梁、四屏黑金厚框、深色石地和9.4m×0.4m三级圆台，旧无饰柱/网格地面/厚台运行时隐藏。重复几何实例共1445份、29个渲染网格、636412三角形；无新增依赖或参考图背景。原狮同比1.3落台，四屏同比0.9为14.4×8.1m。初始相机(0,1.6,8.6)看向(0,1.45,0)，FOV56°；环绕7.2–8.8m/高度1.55–3.75m/polar74–89.5°，窄桌面保持74°水平视野。实际网格与圆周投影验收主狮32–42%高、全台60–75%宽，避免用圆台AABB空角高估。
+
+`actionTheaterReflection.js` 复用r160 Reflector，768²/18Hz上限与9点模糊，窄桌面初始512²；细微空间变化避免完美镜子。静置累计180帧平均低于35FPS时DPR降1、反射512²/9Hz、阴影512²；默认DPR≤1.5，窄桌面≤1.25。石材粗糙度采用轻微非周期纹理与mipmap/各向异性过滤，避免对向光下银白台面/摩尔纹；不整体提曝光或环境亮度。重型renderer/PMREM/编译等待共享导航真实 `data-nav-animating=false` 后执行，防止冷载长任务吃掉标题与辅助文字后半段动画；等待支持中断、取消、卸载清理。
+
+`tests/e2e/action.spec.js`、`action-theater.spec.js` 和 `action-player.spec.js` 在真实产品路由加载正式四视频，覆盖画布像素、方向/镜头/旋转、播放时间、主音轨、进度、循环、失败重试、迟到Promise与离页释放。新增 `action-theater-ornate.spec.js` 检查真实投影、落台、三屏/后屏、16:9、实例建筑、反射更新/暂停与桌面浮层。旧fixture仅作普通组件输入示例；`guide-refresh.spec.js` 保留书册覆盖并迁移动作断言。输出使用独立 `tmp/`；本轮九张生产QA在 `source/reviews/action-theater/2026-10-19-ornate/`，实际结果见[红金重构验收](../source/references/2026-10-19-action-theater-ornate-validation.json)。首次接入八图与[原网页记录](../source/references/2026-10-19-action-theater-web.md)保留历史范围。
 
 ### 共用导航、设置与结构场景
 

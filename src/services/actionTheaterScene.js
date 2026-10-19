@@ -1,5 +1,6 @@
 import {
   ACESFilmicToneMapping,
+  Box3,
   CanvasTexture,
   Color,
   DirectionalLight,
@@ -10,6 +11,7 @@ import {
   PerspectiveCamera,
   PMREMGenerator,
   Scene,
+  SpotLight,
   SRGBColorSpace,
   Vector2,
   Vector3,
@@ -20,10 +22,79 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
+import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
+import { createTheaterReflection } from './actionTheaterReflection.js';
 
 const mountedScenes = new WeakMap();
 const ROTATION_SPEED = Math.PI * 2 / 36;
 const TRANSITION_MS = 450;
+
+// Cold context/PMREM/shader preparation must not interrupt the shared header's
+// title/helper flight. Observe its actual lifecycle, including interruptions,
+// rather than assuming a fixed navigation duration. Unmount cancels the wait.
+function waitForHeaderMotion(signal) {
+  return new Promise(resolve => {
+    let frame = 0;
+    let observer;
+    const finish = value => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      signal.removeEventListener('abort', abort);
+      resolve(value);
+    };
+    const abort = () => finish(false);
+    const check = () => {
+      if (signal.aborted) { finish(false); return; }
+      const header = document.querySelector('.site-header');
+      if (header?.dataset.navAnimating === 'true') {
+        observer ??= new MutationObserver(check);
+        observer.observe(header, { attributes: true, attributeFilter: ['data-nav-animating'] });
+      } else {
+        frame = requestAnimationFrame(() => {
+          if (header?.dataset.navAnimating === 'true') check();
+          else finish(true);
+        });
+      }
+    };
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) { finish(false); return; }
+    // React's layout effects establish the current header flight before heavy
+    // scene preparation. A direct action URL proceeds after these paint frames.
+    frame = requestAnimationFrame(() => { frame = requestAnimationFrame(check); });
+  });
+}
+
+// Project each mesh's local bounds, rather than a single world AABB whose
+// empty corners would overstate a rotating lion's visible height.
+function projectedBounds(root, camera, { vertices = false } = {}) {
+  const point = new Vector3();
+  const bounds = { left: Infinity, top: Infinity, right: -Infinity, bottom: -Infinity };
+  let inFront = false;
+  const add = () => {
+    point.project(camera);
+    if (point.z <= -1 || point.z >= 1) return;
+    inFront = true;
+    bounds.left = Math.min(bounds.left, (point.x + 1) / 2);
+    bounds.right = Math.max(bounds.right, (point.x + 1) / 2);
+    bounds.top = Math.min(bounds.top, (1 - point.y) / 2);
+    bounds.bottom = Math.max(bounds.bottom, (1 - point.y) / 2);
+  };
+  root.traverseVisible(object => {
+    if (!object.geometry || object.isInstancedMesh) return;
+    const { geometry } = object;
+    if (vertices) {
+      const position = geometry.attributes.position;
+      for (let i = 0; i < position.count; i += 1) { point.fromBufferAttribute(position, i).applyMatrix4(object.matrixWorld); add(); }
+    } else {
+      if (!geometry.boundingBox) geometry.computeBoundingBox();
+      const { min, max } = geometry.boundingBox;
+      for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) {
+        point.set(x, y, z).applyMatrix4(object.matrixWorld); add();
+      }
+    }
+  });
+  return { ...bounds, inFront, visible: inFront && bounds.right > 0 && bounds.left < 1 && bounds.bottom > 0 && bounds.top < 1, widthRatio: bounds.right - bounds.left, heightRatio: bounds.bottom - bounds.top };
+}
 
 // Three r160's VideoTexture creates a recurring video-frame callback without
 // retaining its cancellation handle. Start it without a video, then own the
@@ -73,6 +144,7 @@ function releaseResources(roots, extraMaterials = [], extraTextures = []) {
   const textures = new Set(extraTextures);
   const images = new Set();
   roots.filter(Boolean).forEach((root) => root.traverse((object) => {
+    if (object.isInstancedMesh) object.dispose();
     if (object.geometry) geometries.add(object.geometry);
     if (object.skeleton?.boneTexture) textures.add(object.skeleton.boneTexture);
     (Array.isArray(object.material) ? object.material : [object.material]).filter(Boolean).forEach((material) => materials.add(material));
@@ -150,8 +222,8 @@ export function createActionTheater({
   const loadController = new AbortController();
   const scene = new Scene();
   scene.background = new Color('#080605');
-  const camera = new PerspectiveCamera(54, 1, 0.12, 45);
-  camera.position.set(0, 2.8, 7);
+  const camera = new PerspectiveCamera(56, 1, 0.12, 45);
+  camera.position.set(0, 1.6, 8.6);
   const orbitTarget = new Vector3(...THEATER_ORBIT.target);
   const screenRecords = new Map();
   const pendingVideos = new Map();
@@ -164,6 +236,8 @@ export function createActionTheater({
   let observer;
   let environmentTarget;
   let lionRoot;
+  let architecture;
+  let reflection;
   let animationFrame = 0;
   let loadTimeout = 0;
   let disposed = false;
@@ -183,6 +257,55 @@ export function createActionTheater({
   let queuedFocus = null;
   let brightnessTransition = null;
   let pausedAt = document.hidden ? performance.now() : null;
+  let qualityReduced = false;
+  let sampleFrames = 0;
+  let sampleTime = 0;
+  const composition = () => {
+    if (!architecture || !lionRoot) return null;
+    const lionBox = new Box3().setFromObject(lionRoot);
+    const stageBox = new Box3().setFromObject(architecture.stageTopMesh);
+    const nodes = [];
+    architecture.root.traverse(object => { if (object.isMesh) nodes.push(object); });
+    return {
+      lion: { ...projectedBounds(lionRoot, camera), worldMinY: lionBox.min.y, worldHeight: lionBox.max.y - lionBox.min.y },
+      stage: { ...projectStage(), worldTopY: stageBox.max.y, radius: architecture.stageRadius },
+      screens: Object.fromEntries([...screenRecords].map(([id, { object }]) => {
+        object.geometry.computeBoundingBox();
+        const size = object.geometry.boundingBox.getSize(new Vector3()).multiply(object.scale).toArray().sort((a,b) => b-a);
+        return [id, { ...projectedBounds(object, camera, { vertices: true }), worldWidth: size[0], worldHeight: size[1] }];
+      })),
+      architecture: {
+        meshBatches: nodes.length,
+        instancedDraws: nodes.filter(node => node.isInstancedMesh).length,
+        instances: nodes.reduce((sum, node) => sum + (node.count ?? 1), 0),
+        groups: Object.fromEntries(nodes.map(node => [node.name, node.count ?? 1])),
+        components: architecture.root.userData.componentCounts,
+        gridVisibleCount: activeScenes.reduce((sum, root) => { root.traverseVisible(node => { if (/Floor_Joint/.test(node.name)) sum += 1; }); return sum; }, 0),
+        stoneRoughness: architecture.materials.stone?.roughness,
+      },
+      reflection: reflection?.diagnostics(),
+      lighting: { exposure: renderer.toneMappingExposure, lights: scene.children.filter(node => node.isLight).map(node => ({ type: node.type, name: node.name, color: `#${node.color.getHexString()}`, intensity: node.intensity, shadow: node.castShadow })) },
+      quality: { pixelRatio: renderer.getPixelRatio(), reduced: qualityReduced, fov: camera.fov, width: frameWidth, height: frameHeight },
+    };
+  };
+  const projectStage = () => {
+    const point = new Vector3();
+    const result = { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity };
+    // Both the actual instanced base and actual cylinder top contribute to the
+    // silhouette. A box's nonexistent front corners cannot stand in for a disc.
+    const add = value => {
+      point.copy(value).applyMatrix4(architecture.root.matrixWorld).project(camera);
+      result.left = Math.min(result.left, (point.x + 1) / 2);
+      result.right = Math.max(result.right, (point.x + 1) / 2);
+      result.top = Math.min(result.top, (1 - point.y) / 2);
+      result.bottom = Math.max(result.bottom, (1 - point.y) / 2);
+    };
+    architecture.stageBoundsPoints.forEach(add);
+    const top = projectedBounds(architecture.stageTopMesh, camera, { vertices: true });
+    result.left = Math.min(result.left, top.left); result.right = Math.max(result.right, top.right);
+    result.top = Math.min(result.top, top.top); result.bottom = Math.max(result.bottom, top.bottom);
+    return { ...result, inFront: true, visible: true, widthRatio: result.right - result.left, heightRatio: result.bottom - result.top };
+  };
 
   const canRender = () => !disposed && !failed && ready && visible && !document.hidden;
   const requestFrame = () => {
@@ -238,6 +361,7 @@ export function createActionTheater({
     dataset.cameraState = state.cameraState;
     dataset.renderState = state.visible && !disposed ? 'active' : 'inactive';
     dataset.renderedFrames = String(renderedFrames);
+    dataset.composition = JSON.stringify(composition());
   };
   const resize = () => {
     if (disposed || !renderer) return;
@@ -246,12 +370,12 @@ export function createActionTheater({
     frameHeight = Math.max(1, bounds.height);
     camera.aspect = frameWidth / frameHeight;
     // A pushed desktop navigation panel can leave only ~460 px for the room.
-    // Preserve horizontal space for the 3.4 m lion profile even at the nearest
-    // allowed orbit, instead of letting a narrow aspect crop the rotating body.
-    const horizontalFitFov = 2 * Math.atan(Math.tan(29 * Math.PI / 180) / camera.aspect) * 180 / Math.PI;
-    camera.fov = Math.min(110, Math.max(camera.aspect < 1.45 ? 59 : 54, horizontalFitFov));
+    // Preserve the full round dais on narrow desktop/pushed layouts. The
+    // circular silhouette needs 74° horizontally at the initial orbit.
+    const horizontalFitFov = 2 * Math.atan(Math.tan(37 * Math.PI / 180) / camera.aspect) * 180 / Math.PI;
+    camera.fov = Math.min(110, Math.max(camera.aspect < 1.45 ? 59 : 56, horizontalFitFov));
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
     if (ready) { updateAnchor(); requestFrame(); }
   };
@@ -322,6 +446,22 @@ export function createActionTheater({
     try {
       const dt = lastFrameTime ? Math.min(0.08, Math.max(0, (now - lastFrameTime) / 1000)) : 0;
       lastFrameTime = now;
+      if (!qualityReduced && dt > 0 && !interacting && !focusTween) {
+        sampleTime += dt;
+        sampleFrames += 1;
+        if (sampleFrames >= 180) {
+          if (sampleTime / sampleFrames > 1 / 35) {
+            qualityReduced = true;
+            reflection.reduceQuality();
+            scene.children.filter(light => light.castShadow).forEach(light => {
+              light.shadow.mapSize.set(512, 512);
+              light.shadow.map?.dispose(); light.shadow.map = null;
+            });
+            resize();
+          }
+          sampleTime = 0; sampleFrames = 0;
+        }
+      }
       // The model alone rotates; changing the camera never resets its phase.
       lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
       if (focusTween) {
@@ -442,6 +582,7 @@ export function createActionTheater({
     });
     publishDiagnostics();
     const placeholders = [...screenRecords.values()].map((record) => record.placeholder);
+    reflection?.dispose();
     releaseResources(activeScenes, replacedMaterials, placeholders);
     screenRecords.clear();
     pendingVideos.clear();
@@ -485,6 +626,7 @@ export function createActionTheater({
   // Return the lifecycle handle immediately. Model loading is abortable and a
   // late GLTF parse is disposed independently of the unmounted room.
   Promise.resolve().then(async () => {
+    if (!await waitForHeaderMotion(loadController.signal)) return;
     if (disposed) return;
     try {
       if (!container.isConnected) throw new Error('巨幕厅容器尚未挂载');
@@ -531,10 +673,11 @@ export function createActionTheater({
       const pmrem = new PMREMGenerator(renderer);
       try { environmentTarget = pmrem.fromScene(environment, 0.03); scene.environment = environmentTarget.texture; }
       finally { environment.dispose(); pmrem.dispose(); }
-      scene.add(new HemisphereLight(0xffeee1, 0x261918, 0.48));
-      const key = new DirectionalLight(0xffeee3, 2.3);
-      key.position.set(3.5, 7.5, 5);
-      key.target.position.set(0, 1.2, 0);
+      scene.add(new HemisphereLight(0xffddba, 0x100907, 0.24));
+      const key = new DirectionalLight(0xffe3bd, 3.25);
+      key.name = 'Theater_Warm_Front_Key';
+      key.position.set(2.5, 7.5, 5.5);
+      key.target.position.set(0, 1.7, 0);
       key.castShadow = true;
       key.shadow.mapSize.set(1024, 1024);
       key.shadow.camera.left = -3.5;
@@ -547,12 +690,21 @@ export function createActionTheater({
       key.shadow.normalBias = 0.025;
       key.shadow.radius = 2;
       scene.add(key, key.target);
-      const rim = new DirectionalLight(0xd8e0ff, 1.35);
-      rim.position.set(-4, 5, -4);
+      const rim = new DirectionalLight(0xffe9cd, 1.7);
+      rim.name = 'Theater_Soft_Contour';
+      rim.position.set(-3, 5, -4);
       scene.add(rim);
-      const side = new DirectionalLight(0xffd7ac, 0.65);
-      side.position.set(5, 4, -1);
+      const side = new DirectionalLight(0xffb365, 0.85);
+      side.name = 'Theater_Gold_Bounce';
+      side.position.set(-6, 5, 2);
       scene.add(side);
+      for (const [x, z] of [[-7,-7],[7,-7],[7,7],[-7,7]]) {
+        const wash = new SpotLight(0xffb66d, 75, 19, Math.PI / 3.6, 0.7, 1.3);
+        wash.name = 'Theater_Architectural_Warm_Wash';
+        wash.position.set(x*.7, 6, z*.7);
+        wash.target.position.set(x*1.2, 8.8, z*1.2);
+        scene.add(wash, wash.target);
+      }
 
       loadTimeout = setTimeout(() => fail(new Error('巨幕厅载入超时，请检查网络后重新载入')), 60_000);
       const response = await fetch(modelUrl, { signal: loadController.signal });
@@ -567,24 +719,41 @@ export function createActionTheater({
       scene.add(room);
       lionRoot = room.getObjectByName('Lion_RotationRoot');
       if (!lionRoot) throw new Error('巨幕厅缺少醒狮整体旋转节点');
+      // Keep the verified source lion and screen UVs. The blockout shell stays
+      // loaded for provenance but the ornate reusable room replaces its meshes.
+      const screenNames = new Set(screenDefinitions.map(item => item.objectName));
       room.traverse((object) => {
         if (!object.isMesh) return;
         let parent = object;
         let isLion = false;
         while (parent) { if (parent === lionRoot) { isLion = true; break; } parent = parent.parent; }
+        if (!isLion && !screenNames.has(object.name) && !object.name.startsWith('Room_')) object.visible = false;
         object.castShadow = isLion;
         object.receiveShadow = !isLion;
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => {
-          if ('envMapIntensity' in material) material.envMapIntensity = isLion ? 0.5 : 0.18;
+          if ('envMapIntensity' in material) material.envMapIntensity = isLion ? 0.65 : 0.18;
+          if (isLion && material.roughness > .75) material.envMapIntensity = .4;
           // The source floor uses Blender procedural noise, which glTF cannot
           // carry. Its exporter falls back to white; restore the documented
           // authored stone base here rather than lighting a white showroom.
           if (material.name === 'Floor_Polished_BrownBlack_Stone') material.color.setRGB(0.034, 0.019, 0.014);
         });
       });
+      architecture = createTheaterArchitecture({ stageRadius: 4.7 });
+      scene.add(architecture.root);
+      activeScenes.push(architecture.root);
+      lionRoot.scale.multiplyScalar(1.3);
+      room.updateMatrixWorld(true);
+      const lionBox = new Box3().setFromObject(lionRoot);
+      lionRoot.position.y += architecture.stageTop - lionBox.min.y;
+      reflection = createTheaterReflection({ size: frameWidth < 1100 ? 512 : 768, floorY: .014 });
+      scene.add(reflection.object);
+      activeScenes.push(reflection.object);
       for (const definition of screenDefinitions) {
         const object = room.getObjectByName(definition.objectName);
         if (!object?.isMesh) throw new Error(`巨幕厅缺少显示面：${definition.objectName}`);
+        object.scale.multiplyScalar(.9);
+        object.position.y = 4.85;
         const anchor = room.getObjectByName(definition.anchorName ?? definition.objectName.replace('Screen_', 'UI_Anchor_'));
         if (!anchor) throw new Error(`巨幕厅缺少解说锚点：${definition.id}`);
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => replacedMaterials.add(material));
