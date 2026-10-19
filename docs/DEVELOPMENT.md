@@ -27,6 +27,10 @@ npm run preview
 
 ## 代码边界
 
+2026-10-19首页下方顺序为书册→文化照片图鉴→醒狮形制→传承人物→统一资料与摄影许可。`HomeHeritage.jsx`的两个栏目和提取出的`HomeCultureSources.jsx`作为`HomeCulture`的同级组件挂载，避免原照片区键盘事件作用到新控件；静态名单、观察点与来源ID统一在`src/data/home-heritage.js`。三形制明确区分传统流派与融合形制；六人物按表演/扎作筛选，未核实肖像许可时显示原创姓名档案牌，不伪造统一师承世系。来源与许可边界见[本轮资料说明](../source/references/home-heritage-sources.md)。
+
+新标题/正文沿用`cultureTitle`/`cultureBody`，末尾资料区保留原六参数；标题使用自身命名容器处理40%窄底板，不缩放文字或裁切装饰。三幅类型PNG仅作为AI辅助示意，通过assetPaths/media注册并懒加载，`useStartupLoading`明确排除`lionType`前缀，不把下方新图加入首屏等待。新增回归为`home-heritage.spec.js`和`tests/assets/home-heritage.test.mjs`；截图归档`source/reviews/home/2026-10-19-heritage/`，不发布设计原件、提示词与审查图。
+
 首页首屏之后的 `.home-archive-scene` 为书册及文化图鉴共用用户醒狮纹样背景，两区透明，不叠加旧米纸底和整页滤镜。资源集中配置为 `homeArchiveBackground`，按文档基址转绝对URL；书页本身和官方引擎不变。标题/正文使用完整系统字体回退，醒狮/云纹装饰复用现有透明狮头及原生SVG，来源见 [背景与文字排版](../source/references/home-archive-background.md)。电脑宽度、900px推开和原交互由 `tests/e2e/home-archive-visual.spec.js` 及既有史册/文化回归覆盖。
 
 | 目录或入口 | 维护内容 |

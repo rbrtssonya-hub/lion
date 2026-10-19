@@ -1040,7 +1040,8 @@ test('参考资料在900/1920px桌面余宽与两层40/100%宽度极值均无溢
         expect(geometry.headingFits).toBe(true);
         expect(geometry.cardsFit).toBe(true);
         expect(geometry.noOverlap).toBe(true);
-        await expect(sources.getByRole('link')).toHaveCount(3);
+        await expect(sources.locator('.home-culture-source-cards').getByRole('link')).toHaveCount(3);
+        await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
       }
     }
   }

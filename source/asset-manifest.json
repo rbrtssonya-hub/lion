@@ -3,6 +3,102 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-craft-1920.png",
+      "bytes": 695232,
+      "sha256": "bfebfaf4b8ded3d360608d2837cb8f225a649d84f6ab5d267f733df4fd9e8b29"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-performance-1920.png",
+      "bytes": 668075,
+      "sha256": "e9ea925a228275cec59b8cb48488750446e075e74dd2186a236fb67cba16cb99"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-push-900.png",
+      "bytes": 362733,
+      "sha256": "f75074ef751fbc82bc7ab864170c539a6bce1e347c32500b75ded0d0bb373879"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/sources-1920.png",
+      "bytes": 172422,
+      "sha256": "2398d00aec4ff1402faf4b00b4a17a9ad7d29a41dd1c0463b1a0f3eadad4f28f"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-1024.png",
+      "bytes": 733539,
+      "sha256": "255f04d84e096acf388a1a4e0b1bf79db7dbcf87ee3c5307acb868067ab7abfd"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-1366.png",
+      "bytes": 1041166,
+      "sha256": "9bce08a2da7f2fdda3b5a452f056c3a83bd6f6f2ac986b234abc4407462c57d1"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-2560.png",
+      "bytes": 1795942,
+      "sha256": "fafadcadf1119eab5ba69ecedc7eca97f2485a3d307e2f62aae8b6a1ca82ab42"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-foshan-1920.png",
+      "bytes": 1488496,
+      "sha256": "aa0435ba514b32588b8ba9be77c1ac0702389291eb4856d464b037cb02e51118"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-fut-hok-1920.png",
+      "bytes": 1481912,
+      "sha256": "fecdde2e4af2a7615e76250e95eb2b887d1d1a3512953aeb6cd423a0bb2155de"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-heshan-1920.png",
+      "bytes": 1496010,
+      "sha256": "2e69292bb7a509cb2cfa9739a4f5b90f46630cc1cd7dd524b1b0e6e921f7a5c2"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/foshan.png",
+      "bytes": 3106271,
+      "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/foshan.png",
+      "bytes": 3106271,
+      "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/heshan.png",
+      "bytes": 3157050,
+      "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/heshan.png",
+      "bytes": 3157050,
+      "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/fut-hok.png",
+      "bytes": 3104318,
+      "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/fut-hok.png",
+      "bytes": 3104318,
+      "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+    },
+    {
       "from": "2026-10-19 actual production entry and loop playback review",
       "path": "source/reviews/home/2026-10-19-video-replacement/entry-1920.png",
       "bytes": 2392345,

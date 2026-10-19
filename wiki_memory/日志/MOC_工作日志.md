@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-19 | feature | completed | [首页狮谱与传承人物](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-19-%E9%A6%96%E9%A1%B5%E7%8B%AE%E8%B0%B1%E4%B8%8E%E4%BC%A0%E6%89%BF%E4%BA%BA%E7%89%A9.md) |
 | 2026-10-19 | ui | completed | [首页入场与后续循环视频替换](UI%E4%BF%AE%E6%94%B9/2026-10-19-%E9%A6%96%E9%A1%B5%E5%85%A5%E5%9C%BA%E4%B8%8E%E5%BE%AA%E7%8E%AF%E8%A7%86%E9%A2%91%E6%9B%BF%E6%8D%A2.md) |
 | 2026-10-17 | ui | completed | [直线粒子与角色游戏导览](UI%E4%BF%AE%E6%94%B9/2026-10-17-%E7%9B%B4%E7%BA%BF%E7%B2%92%E5%AD%90%E4%B8%8E%E8%A7%92%E8%89%B2%E6%B8%B8%E6%88%8F%E5%AF%BC%E8%A7%88.md) |
 | 2026-10-16 | maintenance | completed | [同步最新八态分支到F盘主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-16-%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E5%85%AB%E6%80%81%E5%88%86%E6%94%AF%E5%88%B0F%E7%9B%98%E4%B8%BB%E7%BA%BF.md) |
