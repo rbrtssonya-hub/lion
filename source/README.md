@@ -15,6 +15,8 @@
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
 | `public/assets/live2d/` | 保留的 Live2D 运行包、本地库与许可说明 | 随 publicDir 复制，当前首页不加载 |
 | `models/` | 旧运行狮头归档、保留的优化与面部绑定模型版本 | 不复制 |
+| `models/immersive-theater/` | 独立巨幕厅原生 Blender 工程、网页 LOD GLB 与交接文档 | 不复制 |
+| `reviews/immersive-theater/` | 最终巨幕厅工程重开后的五视角真实渲染与来源证据 | 不复制 |
 | `fonts/` | 字体来源、授权说明及子集生成脚本 | 不复制 |
 | `live2d/` | 分层图、PSD、Cubism 工程与原始导出 | 不复制 |
 | `video/intro/` | 入场视频制作版本、对照海报 | 不复制 |
@@ -37,6 +39,8 @@
 结构页使用左模型、右部件与资料卡的电脑双栏；六组可见结构由真实网格名前缀和头壳表面区域共同映射，视口内的标签与连线随三维聚焦点投影更新。眼部表面语义不等于独立内部零件，须毛导出外观也不代表原 Blender 毛发系统在网页中运行。旧屏幕百分比热点和结构滑杆不再使用。
 
 同日材质与性能修复已恢复源材质的绒面反射权重，并优化网页几何；贴图原字节和原始 Blender 文件保持。当前 GLB 为20,238,640B、513,600三角，统计及复现以导出记录为准。[同机性能对照](references/2026-10-19-structure-performance.json)记录实际测试方法与设备；最终验证及交付见[修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
+
+独立巨幕厅位于 `models/immersive-theater/`，未接入现用网站。主 `.blend` 保留原生23网格、18毛发曲线及材质，四块16:9屏幕与中央圆台独立组织；另附的 GLB 使用既有41网格网页LOD，毛发和程序材质有明确转换边界。四段指定动作视频缺失，屏幕均标明占位。采用 Aholo Lux3D 的本地 Blender 装配与直接文件交付流程，并实际运行插件 GLB 检查器；未提交云生成。对象、文件、五图与160项独立验收见[交接说明](models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)及[场景记录](references/2026-10-19-immersive-theater.json)。占位文字的 OFL 字体及重建说明在 `fonts/immersive-theater/`，不替换网页字体。
 
 未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。动作和神态资料尚未完整补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 

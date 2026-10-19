@@ -126,6 +126,22 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 ## 资源更新
 
+### 独立巨幕厅 Blender 工程
+
+`source/models/immersive-theater/` 是离线创作交付，不进入 `publicDir`，本轮未修改网站页面。先读[交接文档](../source/models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其中区分原生工程、网页LOD、真实渲染、缺失视频与后续交互。使用本机 Blender 5.0（用户 launcher 的同目录可执行文件）：
+
+```powershell
+& 'F:/Blender/blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/build_immersive_theater.py
+& 'F:/Blender/blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/build_immersive_theater.py -- --render-only --render Front,Left,Right,Back,Overview --resolution 1600 --samples 64
+& 'F:/Blender/blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/build_immersive_theater.py -- --export-web
+& 'F:/Blender/blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/validate_immersive_theater.py -- --baseline-only
+& 'F:/Blender/blender.exe' --background --factory-startup source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend --python-exit-code 1 --python scripts/validate_immersive_theater.py -- --glb source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb
+```
+
+构建脚本默认拒绝已有输出；明确重建本任务生成文件时可追加 `--overwrite`，不影响固定只读的 `model/醒狮_保留UV_三角转四边_优化.blend`。新环境需准备该用户输入；它未纳入Git。交付工程已打包图像和OFL字体，可以独立打开。构建与渲染使用 Blender 自带 Python；仅字体重建另需 Python/fontTools，见[字体说明](../source/fonts/immersive-theater/README.md)。
+
+2026-10-19实际完成原件/最终工程独立重开、160项原生与GLB检查、五图逐张查看及 Lux3D 插件文件检查；证据见 `source/references/2026-10-19-immersive-theater*.json`。资产清单保留原360条、追加8条至368；本轮 `npm test` 40/40、309模块构建通过。网站代码与运行资产未改，因此未重复网页布局回归，也不以离线验收证明网页交互已实现。
+
 创作文件归入 `source/`，运行网页只引用 `source/public/assets/`。该目录通过 Vite 的 `publicDir` 映射为网页根目录，例如 `source/public/assets/models/lion-structure-optimized.glb` 对应 `assets/models/lion-structure-optimized.glb`。公共资产保持文件名，构建会复制到 `dist/assets/`；不要假定这些文件自动获得哈希版本号。
 
 更新步骤：

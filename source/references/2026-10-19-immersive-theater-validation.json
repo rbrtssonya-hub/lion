@@ -1,0 +1,3998 @@
+{
+  "schema_version": 1,
+  "validation_method": "Fresh Blender process reopened the final saved .blend; a separate process reopened the original native source .blend for geometry/UV/curve-attribute/modifier/material/image hashes and original transforms. No .blend is saved by this validator.",
+  "blender_version": "5.0.0",
+  "opened_blend": "source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend",
+  "checks": [
+    {
+      "name": "final_blend_exists_and_reopened",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "original_blend_unchanged",
+      "passed": true,
+      "details": {
+        "path": "model/醒狮_保留UV_三角转四边_优化.blend",
+        "sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+        "bytes": 139309821
+      }
+    },
+    {
+      "name": "validated_web_source_unchanged",
+      "passed": true,
+      "details": {
+        "path": "source/public/assets/models/lion-structure-optimized.glb",
+        "sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f"
+      }
+    },
+    {
+      "name": "nine_collections",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "all_scene_objects_organized",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "metric_units",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "room_20m_square_and_10_4m_clear_height",
+      "passed": true,
+      "details": {
+        "floor_bounds": {
+          "min": [
+            -10.0,
+            -10.0,
+            -0.30000001192092896
+          ],
+          "max": [
+            10.0,
+            10.0,
+            0.0
+          ]
+        },
+        "ceiling_bounds": {
+          "min": [
+            -10.199999809265137,
+            -10.199999809265137,
+            10.399999618530273
+          ],
+          "max": [
+            10.199999809265137,
+            10.199999809265137,
+            10.600000381469727
+          ]
+        }
+      }
+    },
+    {
+      "name": "Screen_Tanqing_exists",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_16_by_9",
+      "passed": true,
+      "details": {
+        "width": 16.0,
+        "height": 9.0
+      }
+    },
+    {
+      "name": "Screen_Tanqing_large_and_aligned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_correct_direction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_faces_inward",
+      "passed": true,
+      "details": {
+        "normal": [
+          0.0,
+          -1.0,
+          1e-07
+        ],
+        "dot": 1.0
+      }
+    },
+    {
+      "name": "Screen_Tanqing_action_mapping",
+      "passed": true,
+      "details": {
+        "title": "探青采青",
+        "key": "video_tanqing"
+      }
+    },
+    {
+      "name": "Screen_Tanqing_screen_collection",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_full_frame_unit_uvs",
+      "passed": true,
+      "details": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Screen_Tanqing_primary_secondary_brightness",
+      "passed": true,
+      "details": 1.0
+    },
+    {
+      "name": "Screen_Tanqing_brightness_controls_emission",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_primary_secondary_state",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tanqing_video_path_or_explicit_placeholder",
+      "passed": true,
+      "details": {
+        "video_path": "",
+        "is_placeholder": true
+      }
+    },
+    {
+      "name": "Screen_Tanqing_interaction_anchors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_exists",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_16_by_9",
+      "passed": true,
+      "details": {
+        "width": 16.0,
+        "height": 9.0
+      }
+    },
+    {
+      "name": "Screen_Doumao_large_and_aligned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_correct_direction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_faces_inward",
+      "passed": true,
+      "details": {
+        "normal": [
+          -1.0,
+          0.0,
+          -0.0
+        ],
+        "dot": 0.9999999403953552
+      }
+    },
+    {
+      "name": "Screen_Doumao_action_mapping",
+      "passed": true,
+      "details": {
+        "title": "抖毛",
+        "key": "video_doumao"
+      }
+    },
+    {
+      "name": "Screen_Doumao_screen_collection",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_full_frame_unit_uvs",
+      "passed": true,
+      "details": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Screen_Doumao_primary_secondary_brightness",
+      "passed": true,
+      "details": 0.25
+    },
+    {
+      "name": "Screen_Doumao_brightness_controls_emission",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_primary_secondary_state",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Doumao_video_path_or_explicit_placeholder",
+      "passed": true,
+      "details": {
+        "video_path": "",
+        "is_placeholder": true
+      }
+    },
+    {
+      "name": "Screen_Doumao_interaction_anchors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_exists",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_16_by_9",
+      "passed": true,
+      "details": {
+        "width": 16.0,
+        "height": 9.0
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_large_and_aligned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_correct_direction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_faces_inward",
+      "passed": true,
+      "details": {
+        "normal": [
+          -1e-07,
+          1.0,
+          1e-07
+        ],
+        "dot": 1.0
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_action_mapping",
+      "passed": true,
+      "details": {
+        "title": "狮子吐球",
+        "key": "video_tuqiu"
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_screen_collection",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_full_frame_unit_uvs",
+      "passed": true,
+      "details": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Screen_Tuqiu_primary_secondary_brightness",
+      "passed": true,
+      "details": 0.25
+    },
+    {
+      "name": "Screen_Tuqiu_brightness_controls_emission",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_primary_secondary_state",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Tuqiu_video_path_or_explicit_placeholder",
+      "passed": true,
+      "details": {
+        "video_path": "",
+        "is_placeholder": true
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_interaction_anchors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_exists",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_16_by_9",
+      "passed": true,
+      "details": {
+        "width": 16.0,
+        "height": 9.0
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_large_and_aligned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_correct_direction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_faces_inward",
+      "passed": true,
+      "details": {
+        "normal": [
+          1.0,
+          0.0,
+          -0.0
+        ],
+        "dot": 1.0
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_action_mapping",
+      "passed": true,
+      "details": {
+        "title": "踩梅花桩",
+        "key": "video_meihuazhuang"
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_screen_collection",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_full_frame_unit_uvs",
+      "passed": true,
+      "details": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Screen_Meihuazhuang_primary_secondary_brightness",
+      "passed": true,
+      "details": 0.25
+    },
+    {
+      "name": "Screen_Meihuazhuang_brightness_controls_emission",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_primary_secondary_state",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Screen_Meihuazhuang_video_path_or_explicit_placeholder",
+      "passed": true,
+      "details": {
+        "video_path": "",
+        "is_placeholder": true
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_interaction_anchors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "four_distinct_screen_materials",
+      "passed": true,
+      "details": [
+        "Video_Tanqing_Replaceable",
+        "Video_Doumao_Replaceable",
+        "Video_Tuqiu_Replaceable",
+        "Video_Meihuazhuang_Replaceable"
+      ]
+    },
+    {
+      "name": "exactly_four_screen_surfaces",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "lion_hierarchy_roots",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_native_unique_meshes_and_hair_curves_preserved",
+      "passed": true,
+      "details": {
+        "meshes": 23,
+        "hair_curve_objects": 18,
+        "baseline": 41
+      }
+    },
+    {
+      "name": "source_geometry_uv_material_slots_exact",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "source_modifiers_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "source_object_metadata_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "all_41_source_helpers_and_constraints_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "single_rigid_uniform_model_placement",
+      "passed": true,
+      "details": {
+        "mismatches": [],
+        "source_to_final_matrix": [
+          2.049999952316284,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.049999952316284,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.049999952316284,
+          0.2200000286102295,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "source_material_graphs_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "source_texture_content_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "Lion_Tail_DenseWhiteFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Tail_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 0.9999802112579346,
+        "source_authored_radius_max_m": 0.00014999963840511374,
+        "recovery_factor": 0.00015000261191744357,
+        "evaluated_radius_max": 0.000149999643326737,
+        "world_radius_max_with_display_scale": 0.00030749922590456863,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_R_DenseWhiteFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Hindpaw_R_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999802286603983,
+        "recovery_factor": 0.00014999802806414664,
+        "evaluated_radius_max": 0.00014999802806414664,
+        "world_radius_max_with_display_scale": 0.00030749595037903726,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Hindleg_R_DenseRedFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Hindleg_R_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00015999974490863008,
+        "recovery_factor": 0.00015999974857550114,
+        "evaluated_radius_max": 0.00015999974857550114,
+        "world_radius_max_with_display_scale": 0.0003279994769503948,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_L_DenseWhiteFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Hindpaw_L_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999710632145275,
+        "recovery_factor": 0.00014999711129348725,
+        "evaluated_radius_max": 0.00014999711129348725,
+        "world_radius_max_with_display_scale": 0.00030749407099922924,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Hindleg_L_DenseRedFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Hindleg_L_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001599948996876067,
+        "recovery_factor": 0.0001599949027877301,
+        "evaluated_radius_max": 0.0001599949027877301,
+        "world_radius_max_with_display_scale": 0.0003279895430856952,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Beard_HighDetailWhiteFiber_2_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Beard_HighDetailWhiteFiber_2",
+        "source_radius_attribute_max": 0.9999955892562866,
+        "source_authored_radius_max_m": 0.00013999971132402564,
+        "recovery_factor": 0.00014000032388139516,
+        "evaluated_radius_max": 0.00013999971270095557,
+        "world_radius_max_with_display_scale": 0.0002869993709827198,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Ear_R_HighDetailRedFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Ear_R_HighDetailRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499965774812069,
+        "recovery_factor": 0.0001499965728726238,
+        "evaluated_radius_max": 0.0001499965728726238,
+        "world_radius_max_with_display_scale": 0.00030749293147451506,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Ear_L_HighDetailRedFiber_2_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Ear_L_HighDetailRedFiber_2",
+        "source_radius_attribute_max": 0.9999621510505676,
+        "source_authored_radius_max_m": 0.00014999933694954286,
+        "recovery_factor": 0.00015000501298345625,
+        "evaluated_radius_max": 0.0001499993377365172,
+        "world_radius_max_with_display_scale": 0.0003074985994447055,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Brow_R_HighDetailRedFiber_2_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Brow_R_HighDetailRedFiber_2",
+        "source_radius_attribute_max": 0.9999992251396179,
+        "source_authored_radius_max_m": 0.00014999769361157325,
+        "recovery_factor": 0.0001499978097854182,
+        "evaluated_radius_max": 0.00014999769337009639,
+        "world_radius_max_with_display_scale": 0.0003074952284940133,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Brow_L_HighDetailRedFiber_3_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Brow_L_HighDetailRedFiber_3",
+        "source_radius_attribute_max": 0.9999706149101257,
+        "source_authored_radius_max_m": 0.000149999661719798,
+        "recovery_factor": 0.0001500040671089664,
+        "evaluated_radius_max": 0.00014999965787865222,
+        "world_radius_max_with_display_scale": 0.0003074992557359907,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Forepaw_R_DenseWhiteFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Forepaw_R_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499995622227176,
+        "recovery_factor": 0.00014999955601524562,
+        "evaluated_radius_max": 0.00014999955601524562,
+        "world_radius_max_with_display_scale": 0.0003074990826787173,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Foreleg_R_DenseRedFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Foreleg_R_DenseRedFiber_1",
+        "source_radius_attribute_max": 0.99997478723526,
+        "source_authored_radius_max_m": 0.0001599985922954702,
+        "recovery_factor": 0.00016000262985471636,
+        "evaluated_radius_max": 0.0001599985989741981,
+        "world_radius_max_with_display_scale": 0.0003279971202677784,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Forepaw_L_DenseWhiteFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Forepaw_L_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999607191615018,
+        "recovery_factor": 0.00014999607810750604,
+        "evaluated_radius_max": 0.00014999607810750604,
+        "world_radius_max_with_display_scale": 0.000307491952968017,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Foreleg_L_DenseRedFiber_1_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Foreleg_L_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00015999395364436246,
+        "recovery_factor": 0.00015999395691324025,
+        "evaluated_radius_max": 0.00015999395691324025,
+        "world_radius_max_with_display_scale": 0.00032798760404303615,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Body_Red_Trim_AuditedRedFiber_5_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Body_Red_Trim_AuditedRedFiber_5",
+        "source_radius_attribute_max": 0.9999886155128479,
+        "source_authored_radius_max_m": 0.00015999995814441193,
+        "recovery_factor": 0.00016000178584363312,
+        "evaluated_radius_max": 0.00015999996685422957,
+        "world_radius_max_with_display_scale": 0.00032799992442177767,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_PhotoGroom_red_muzzle_Lion_Nose_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_PhotoGroom_red_muzzle_Lion_Nose",
+        "source_radius_attribute_max": 0.00019999184587504715,
+        "source_authored_radius_max_m": 0.00019999184587504715,
+        "recovery_factor": 1.0,
+        "evaluated_radius_max": 0.00019999184587504715,
+        "world_radius_max_with_display_scale": 0.0004099832745074923,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": false
+      }
+    },
+    {
+      "name": "Lion_Head_CorrectedWhiteFiber_3_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Head_CorrectedWhiteFiber_3",
+        "source_radius_attribute_max": 0.9999633431434631,
+        "source_authored_radius_max_m": 0.0001499996782895886,
+        "recovery_factor": 0.00015000517305452377,
+        "evaluated_radius_max": 0.00014999967243056744,
+        "world_radius_max_with_display_scale": 0.0003074993213301215,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "Lion_Head_CorrectedRedFiber_2_native_radius_evaluation",
+      "passed": true,
+      "details": {
+        "object": "Lion_Head_CorrectedRedFiber_2",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499982976794664,
+        "recovery_factor": 0.00014999830455053598,
+        "evaluated_radius_max": 0.00014999830455053598,
+        "world_radius_max_with_display_scale": 0.0003074965171761222,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    },
+    {
+      "name": "exactly_17_radius_unit_recoveries",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "only_root_z_rotation_curve",
+      "passed": true,
+      "details": [
+        {
+          "path": "rotation_euler",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "name": "rotation_36_seconds_linear_cycles",
+      "passed": true,
+      "details": {
+        "fps": 24.0,
+        "points": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            865.0,
+            6.2831854820251465
+          ]
+        ],
+        "modifiers": [
+          "CYCLES"
+        ]
+      }
+    },
+    {
+      "name": "no_lion_part_actions_or_drivers",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "only_original_static_local_rotation_limits",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stage_diameter_5m",
+      "passed": true,
+      "details": {
+        "min": [
+          -2.5,
+          -2.5,
+          0.0
+        ],
+        "max": [
+          2.5,
+          2.5,
+          0.2199999988079071
+        ]
+      }
+    },
+    {
+      "name": "model_never_leaves_stage_or_changes_height",
+      "passed": true,
+      "details": [
+        {
+          "frame": 1,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounds": {
+            "min": [
+              -0.9266424179077148,
+              -1.643099308013916,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424179077148,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025094718347,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 109,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.7853982
+          ],
+          "bounds": {
+            "min": [
+              -1.6698909997940063,
+              -1.6864044666290283,
+              0.2200000286102295
+            ],
+            "max": [
+              1.685122013092041,
+              1.669134497642517,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 217,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            1.5707964
+          ],
+          "bounds": {
+            "min": [
+              -1.6430994272232056,
+              -0.9266424775123596,
+              0.2200000286102295
+            ],
+            "max": [
+              1.643099308013916,
+              0.9266423583030701,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802484945074,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 325,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            2.3561945
+          ],
+          "bounds": {
+            "min": [
+              -1.669134497642517,
+              -1.6698909997940063,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6864044666290283,
+              1.685122013092041,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 433,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.1415927
+          ],
+          "bounds": {
+            "min": [
+              -0.9266423583030701,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424775123596,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025690673246,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 541,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.926991
+          ],
+          "bounds": {
+            "min": [
+              -1.6851221323013306,
+              -1.6691343784332275,
+              0.2200000286102295
+            ],
+            "max": [
+              1.669891119003296,
+              1.6864044666290283,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028027231738648,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 649,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            4.712389
+          ],
+          "bounds": {
+            "min": [
+              -1.643099308013916,
+              -0.9266424179077148,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6430994272232056,
+              0.9266424179077148,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025094718347,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 757,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            5.4977875
+          ],
+          "bounds": {
+            "min": [
+              -1.6864043474197388,
+              -1.6851222515106201,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6691343784332275,
+              1.669891357421875,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028027380825409,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 865,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            6.2831855
+          ],
+          "bounds": {
+            "min": [
+              -0.926642656326294,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266422986984253,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802520013814,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 973,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.7853982
+          ],
+          "bounds": {
+            "min": [
+              -1.6698909997940063,
+              -1.6864044666290283,
+              0.2200000286102295
+            ],
+            "max": [
+              1.685122013092041,
+              1.669134497642517,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 1081,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            1.5707964
+          ],
+          "bounds": {
+            "min": [
+              -1.6430994272232056,
+              -0.9266424775123596,
+              0.2200000286102295
+            ],
+            "max": [
+              1.643099308013916,
+              0.9266423583030701,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802484945074,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 1297,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.1415927
+          ],
+          "bounds": {
+            "min": [
+              -0.9266423583030701,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424775123596,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025690673246,
+          "stage_top": 0.2199999988079071
+        }
+      ]
+    },
+    {
+      "name": "all_source_parts_remain_rigid_during_two_rotation_cycles",
+      "passed": true,
+      "details": [
+        {
+          "frame": 1,
+          "maximum_local_to_rotation_root_matrix_delta": 0.0
+        },
+        {
+          "frame": 109,
+          "maximum_local_to_rotation_root_matrix_delta": 4.76837158203125e-07
+        },
+        {
+          "frame": 217,
+          "maximum_local_to_rotation_root_matrix_delta": 1.192092947615848e-07
+        },
+        {
+          "frame": 325,
+          "maximum_local_to_rotation_root_matrix_delta": 4.76837158203125e-07
+        },
+        {
+          "frame": 433,
+          "maximum_local_to_rotation_root_matrix_delta": 1.1920928955078125e-07
+        },
+        {
+          "frame": 541,
+          "maximum_local_to_rotation_root_matrix_delta": 2.384185791015625e-07
+        },
+        {
+          "frame": 649,
+          "maximum_local_to_rotation_root_matrix_delta": 1.4553336834255415e-11
+        },
+        {
+          "frame": 757,
+          "maximum_local_to_rotation_root_matrix_delta": 2.384185791015625e-07
+        },
+        {
+          "frame": 865,
+          "maximum_local_to_rotation_root_matrix_delta": 1.7881393432617188e-07
+        },
+        {
+          "frame": 973,
+          "maximum_local_to_rotation_root_matrix_delta": 4.76837158203125e-07
+        },
+        {
+          "frame": 1081,
+          "maximum_local_to_rotation_root_matrix_delta": 1.192092947615848e-07
+        },
+        {
+          "frame": 1297,
+          "maximum_local_to_rotation_root_matrix_delta": 1.1920928955078125e-07
+        }
+      ]
+    },
+    {
+      "name": "root_does_not_tilt_or_translate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "four_paws_natural_contact_without_source_deformation",
+      "passed": true,
+      "details": {
+        "Lion_Forepaw_L": {
+          "minimum_z": 0.2200000286102295,
+          "stage_top": 0.2199999988079071,
+          "gap": 2.9802322387695312e-08
+        },
+        "Lion_Forepaw_R": {
+          "minimum_z": 0.2206038385629654,
+          "stage_top": 0.2199999988079071,
+          "gap": 0.0006038397550582886
+        },
+        "Lion_Hindpaw_L": {
+          "minimum_z": 0.23808744549751282,
+          "stage_top": 0.2199999988079071,
+          "gap": 0.018087446689605713
+        },
+        "Lion_Hindpaw_R": {
+          "minimum_z": 0.23883774876594543,
+          "stage_top": 0.2199999988079071,
+          "gap": 0.01883774995803833
+        }
+      }
+    },
+    {
+      "name": "Camera_Main_inside_and_independent",
+      "passed": true,
+      "details": {
+        "position": [
+          0.0,
+          -7.0,
+          2.8
+        ],
+        "parents": []
+      }
+    },
+    {
+      "name": "Camera_Main_not_driven_by_rotating_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Camera_Main_complete_lion_inside_frame",
+      "passed": true,
+      "details": {
+        "min_x": 0.4072117805480957,
+        "max_x": 0.5927412509918213,
+        "min_y": 0.02156149409711361,
+        "max_y": 0.4215063750743866,
+        "min_depth": 5.362891674041748
+      }
+    },
+    {
+      "name": "Camera_Right_inside_and_independent",
+      "passed": true,
+      "details": {
+        "position": [
+          -7.0,
+          0.0,
+          2.8
+        ],
+        "parents": []
+      }
+    },
+    {
+      "name": "Camera_Right_not_driven_by_rotating_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Camera_Right_complete_lion_inside_frame",
+      "passed": true,
+      "details": {
+        "min_x": 0.33148983120918274,
+        "max_x": 0.6639223694801331,
+        "min_y": 0.041578762233257294,
+        "max_y": 0.4361048638820648,
+        "min_depth": 6.063541412353516
+      }
+    },
+    {
+      "name": "Camera_Back_inside_and_independent",
+      "passed": true,
+      "details": {
+        "position": [
+          0.0,
+          7.0,
+          2.8
+        ],
+        "parents": []
+      }
+    },
+    {
+      "name": "Camera_Back_not_driven_by_rotating_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Camera_Back_complete_lion_inside_frame",
+      "passed": true,
+      "details": {
+        "min_x": 0.39494574069976807,
+        "max_x": 0.6047340631484985,
+        "min_y": 0.015074925497174263,
+        "max_y": 0.44399940967559814,
+        "min_depth": 5.228908538818359
+      }
+    },
+    {
+      "name": "Camera_Left_inside_and_independent",
+      "passed": true,
+      "details": {
+        "position": [
+          7.0,
+          0.0,
+          2.8
+        ],
+        "parents": []
+      }
+    },
+    {
+      "name": "Camera_Left_not_driven_by_rotating_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Camera_Left_complete_lion_inside_frame",
+      "passed": true,
+      "details": {
+        "min_x": 0.33612510561943054,
+        "max_x": 0.6683796644210815,
+        "min_y": 0.041060999035835266,
+        "max_y": 0.4364174008369446,
+        "min_depth": 6.060640335083008
+      }
+    },
+    {
+      "name": "Camera_Overview_inside_and_independent",
+      "passed": true,
+      "details": {
+        "position": [
+          0.0,
+          -5.8000002,
+          4.0
+        ],
+        "parents": []
+      }
+    },
+    {
+      "name": "Camera_Overview_not_driven_by_rotating_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "main_camera_and_orbit_references",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "main_camera_initially_active",
+      "passed": true,
+      "details": "Camera_Main"
+    },
+    {
+      "name": "web_interaction_bounds_prepared_and_not_claimed_implemented",
+      "passed": true,
+      "details": {
+        "target": [
+          0,
+          0,
+          2.8
+        ],
+        "radius_min": 5.3,
+        "radius_max": 7.2,
+        "camera_height_min": 2.6,
+        "camera_height_max": 4.6,
+        "polar_angle_degrees": [
+          72,
+          92
+        ],
+        "auto_orbit": false,
+        "screen_switch_hysteresis_degrees": 12,
+        "switch_dwell_ms": 180,
+        "brightness_transition_ms": 450,
+        "keep_video_time_on_switch": true,
+        "audio_single_primary_only": true
+      }
+    },
+    {
+      "name": "no_missing_external_image_resources",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "preview_fonts_are_packed_or_builtin",
+      "passed": true,
+      "details": [
+        {
+          "name": "Bfont Regular",
+          "filepath": "<builtin>",
+          "packed": false
+        },
+        {
+          "name": "Nanfeng Theater Labels Regular",
+          "filepath": "//..\\..\\fonts\\immersive-theater\\nanfeng-theater-labels.ttf",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "name": "no_volume_world_or_scene_fog",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "preview_Front_exists",
+      "passed": true,
+      "details": {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+        "width": 1600,
+        "height": 900,
+        "bytes": 1337554
+      }
+    },
+    {
+      "name": "preview_Left_exists",
+      "passed": true,
+      "details": {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+        "width": 1600,
+        "height": 900,
+        "bytes": 1373372
+      }
+    },
+    {
+      "name": "preview_Right_exists",
+      "passed": true,
+      "details": {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+        "width": 1600,
+        "height": 900,
+        "bytes": 1362668
+      }
+    },
+    {
+      "name": "preview_Back_exists",
+      "passed": true,
+      "details": {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+        "width": 1600,
+        "height": 900,
+        "bytes": 1329012
+      }
+    },
+    {
+      "name": "preview_Overview_exists",
+      "passed": true,
+      "details": {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+        "width": 1600,
+        "height": 800,
+        "bytes": 1088742
+      }
+    },
+    {
+      "name": "preview_Preview_Front_final_blend_provenance",
+      "passed": true,
+      "details": {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+        "bytes": 1337554,
+        "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919",
+        "camera": "Camera_Main",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    },
+    {
+      "name": "preview_Preview_Left_final_blend_provenance",
+      "passed": true,
+      "details": {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+        "bytes": 1373372,
+        "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1",
+        "camera": "Camera_Left",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    },
+    {
+      "name": "preview_Preview_Right_final_blend_provenance",
+      "passed": true,
+      "details": {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+        "bytes": 1362668,
+        "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454",
+        "camera": "Camera_Right",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    },
+    {
+      "name": "preview_Preview_Back_final_blend_provenance",
+      "passed": true,
+      "details": {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+        "bytes": 1329012,
+        "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839",
+        "camera": "Camera_Back",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    },
+    {
+      "name": "preview_Preview_Overview_final_blend_provenance",
+      "passed": true,
+      "details": {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+        "bytes": 1088742,
+        "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76",
+        "camera": "Camera_Overview",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          800
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    },
+    {
+      "name": "glb_stable_named_screens_and_lion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_no_external_uris",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "glb_embedded_textures",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_no_preview_cameras",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_lion_hierarchy",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_all_geometry_accessors_indices_finite",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "glb_independent_41_mesh_lion_web_lod",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_source_sheen_preserved_exactly",
+      "passed": true,
+      "details": {
+        "count": 10,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "glb_y_up_rotation_axis_metadata",
+      "passed": true,
+      "details": {
+        "rotation_axis": "Y",
+        "authoring_rotation_axis": "Z",
+        "rotation_period_seconds": 36.0,
+        "web_rotation_speed_rad_s": 0.17453292519943295,
+        "rotation_enabled": true,
+        "native_source_sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+        "export_representation": "Existing validated web LOD: source curves approximated as sampled thin ribbons"
+      }
+    },
+    {
+      "name": "glb_scene_declares_exported_y_up_front_minus_z",
+      "passed": true,
+      "details": "GLTF_METERS_Y_UP_FRONT_MINUS_Z"
+    },
+    {
+      "name": "glb_orbit_target_metadata_matches_both_actual_world_anchors",
+      "passed": true,
+      "details": {
+        "declared": [
+          0,
+          2.8,
+          0
+        ],
+        "actual": {
+          "Camera_Target": [
+            0.0,
+            2.8,
+            0.0
+          ],
+          "Camera_OrbitCenter": [
+            0.0,
+            2.8,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "glb_scene_rotation_and_video_interaction_boundary",
+      "passed": true,
+      "details": {
+        "target": [
+          0,
+          2.8,
+          0
+        ],
+        "radius_min": 5.3,
+        "radius_max": 7.2,
+        "camera_height_min": 2.6,
+        "camera_height_max": 4.6,
+        "polar_angle_degrees": [
+          72,
+          92
+        ],
+        "auto_orbit": false,
+        "screen_switch_hysteresis_degrees": 12,
+        "switch_dwell_ms": 180,
+        "brightness_transition_ms": 450,
+        "keep_video_time_on_switch": true,
+        "audio_single_primary_only": true
+      }
+    },
+    {
+      "name": "glb_authoring_metadata_separate_and_coordinate_conversion_exact",
+      "passed": true,
+      "details": {
+        "source": {
+          "target": [
+            0,
+            0,
+            2.8
+          ],
+          "radius_min": 5.3,
+          "radius_max": 7.2,
+          "camera_height_min": 2.6,
+          "camera_height_max": 4.6,
+          "polar_angle_degrees": [
+            72,
+            92
+          ],
+          "auto_orbit": false,
+          "screen_switch_hysteresis_degrees": 12,
+          "switch_dwell_ms": 180,
+          "brightness_transition_ms": 450,
+          "keep_video_time_on_switch": true,
+          "audio_single_primary_only": true
+        },
+        "export": {
+          "target": [
+            0,
+            2.8,
+            0
+          ],
+          "radius_min": 5.3,
+          "radius_max": 7.2,
+          "camera_height_min": 2.6,
+          "camera_height_max": 4.6,
+          "polar_angle_degrees": [
+            72,
+            92
+          ],
+          "auto_orbit": false,
+          "screen_switch_hysteresis_degrees": 12,
+          "switch_dwell_ms": 180,
+          "brightness_transition_ms": 450,
+          "keep_video_time_on_switch": true,
+          "audio_single_primary_only": true
+        }
+      }
+    },
+    {
+      "name": "glb_provenance_matches_actual_native_and_lod_sources",
+      "passed": true,
+      "details": {
+        "asset": {
+          "native_scene_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+          "web_lion_source_sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f",
+          "phase": "Offline handoff LOD; video playback, camera interaction and screen selection are not implemented",
+          "coordinate_system": "glTF +Y up; Blender front +Y maps to glTF -Z",
+          "shader_boundary": "Procedural stone/screen gradients approximated by constant PBR/emissive colors; source lion sheen extension restored exactly"
+        },
+        "model": {
+          "source_path": "source/public/assets/models/lion-structure-optimized.glb",
+          "source_sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f",
+          "web_lod": true,
+          "mesh_count": 41
+        }
+      }
+    },
+    {
+      "name": "Screen_Tanqing_glb_geometry_normal_uv_and_coordinates",
+      "passed": true,
+      "details": {
+        "center_y_up": [
+          0.0,
+          5.3000002,
+          -9.5500002
+        ],
+        "normal_y_up": [
+          0.0,
+          -1e-07,
+          1.0
+        ],
+        "normal_dot_inward": 1.0,
+        "width": 16.0,
+        "height": 9.000001430511475,
+        "bottom_y": 0.7999997138977051,
+        "unit_uv_corners": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "material": "Video_Tanqing_Replaceable",
+        "effective_emission": [
+          0.23000000417232513,
+          0.14499999582767487,
+          0.08500000089406967
+        ],
+        "extras": {
+          "action_title": "探青采青",
+          "video_resource_key": "video_tanqing",
+          "video_path": "",
+          "primary_state": "PRIMARY",
+          "display_brightness": 1.0,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[0, 0, 1]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+          "authoring_screen_front_normal": "[0, -1, 0]",
+          "front_normal_gltf": "[0, 0, 1]",
+          "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+        }
+      }
+    },
+    {
+      "name": "Screen_Tanqing_glb_declared_normal_matches_actual_exported_normal",
+      "passed": true,
+      "details": {
+        "declared": [
+          0,
+          0,
+          1
+        ],
+        "actual": [
+          0.0,
+          -1e-07,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Tanqing_glb_source_normal_is_clearly_labeled_and_consistent",
+      "passed": true,
+      "details": {
+        "note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up",
+        "source": [
+          0,
+          -1,
+          0
+        ],
+        "export": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "Screen_Tanqing_glb_action_resource_and_display_state_metadata",
+      "passed": true,
+      "details": {
+        "action_title": "探青采青",
+        "video_resource_key": "video_tanqing",
+        "video_path": "",
+        "primary_state": "PRIMARY",
+        "display_brightness": 1.0,
+        "primary_brightness": 1.0,
+        "secondary_brightness": 0.25,
+        "is_placeholder": true,
+        "screen_width_m": 16.0,
+        "screen_height_m": 9.0,
+        "screen_front_normal": "[0, 0, 1]",
+        "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+        "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+        "authoring_screen_front_normal": "[0, -1, 0]",
+        "front_normal_gltf": "[0, 0, 1]",
+        "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+      }
+    },
+    {
+      "name": "Screen_Doumao_glb_geometry_normal_uv_and_coordinates",
+      "passed": true,
+      "details": {
+        "center_y_up": [
+          9.5500002,
+          5.3000002,
+          0.0
+        ],
+        "normal_y_up": [
+          -1.0,
+          0.0,
+          -0.0
+        ],
+        "normal_dot_inward": 1.0,
+        "width": 16.0,
+        "height": 9.0,
+        "bottom_y": 0.8000001907348633,
+        "unit_uv_corners": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "material": "Video_Doumao_Replaceable",
+        "effective_emission": [
+          0.057500001043081284,
+          0.036249998956918716,
+          0.021250000223517418
+        ],
+        "extras": {
+          "action_title": "抖毛",
+          "video_resource_key": "video_doumao",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[-1, 0, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+          "authoring_screen_front_normal": "[-1, 0, 0]",
+          "front_normal_gltf": "[-1, 0, 0]",
+          "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+        }
+      }
+    },
+    {
+      "name": "Screen_Doumao_glb_declared_normal_matches_actual_exported_normal",
+      "passed": true,
+      "details": {
+        "declared": [
+          -1,
+          0,
+          0
+        ],
+        "actual": [
+          -1.0,
+          0.0,
+          -0.0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Doumao_glb_source_normal_is_clearly_labeled_and_consistent",
+      "passed": true,
+      "details": {
+        "note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up",
+        "source": [
+          -1,
+          0,
+          0
+        ],
+        "export": [
+          -1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Doumao_glb_action_resource_and_display_state_metadata",
+      "passed": true,
+      "details": {
+        "action_title": "抖毛",
+        "video_resource_key": "video_doumao",
+        "video_path": "",
+        "primary_state": "SECONDARY",
+        "display_brightness": 0.25,
+        "primary_brightness": 1.0,
+        "secondary_brightness": 0.25,
+        "is_placeholder": true,
+        "screen_width_m": 16.0,
+        "screen_height_m": 9.0,
+        "screen_front_normal": "[-1, 0, 0]",
+        "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+        "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+        "authoring_screen_front_normal": "[-1, 0, 0]",
+        "front_normal_gltf": "[-1, 0, 0]",
+        "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_glb_geometry_normal_uv_and_coordinates",
+      "passed": true,
+      "details": {
+        "center_y_up": [
+          0.0,
+          5.3000002,
+          9.5500002
+        ],
+        "normal_y_up": [
+          -0.0,
+          1e-07,
+          -1.0
+        ],
+        "normal_dot_inward": 1.0,
+        "width": 16.000003814697266,
+        "height": 9.000001788139343,
+        "bottom_y": 0.7999993562698364,
+        "unit_uv_corners": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "material": "Video_Tuqiu_Replaceable",
+        "effective_emission": [
+          0.057500001043081284,
+          0.036249998956918716,
+          0.021250000223517418
+        ],
+        "extras": {
+          "action_title": "狮子吐球",
+          "video_resource_key": "video_tuqiu",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[0, 0, -1]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+          "authoring_screen_front_normal": "[0, 1, 0]",
+          "front_normal_gltf": "[0, 0, -1]",
+          "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+        }
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_glb_declared_normal_matches_actual_exported_normal",
+      "passed": true,
+      "details": {
+        "declared": [
+          0,
+          0,
+          -1
+        ],
+        "actual": [
+          -0.0,
+          1e-07,
+          -1.0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_glb_source_normal_is_clearly_labeled_and_consistent",
+      "passed": true,
+      "details": {
+        "note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up",
+        "source": [
+          0,
+          1,
+          0
+        ],
+        "export": [
+          0,
+          0,
+          -1
+        ]
+      }
+    },
+    {
+      "name": "Screen_Tuqiu_glb_action_resource_and_display_state_metadata",
+      "passed": true,
+      "details": {
+        "action_title": "狮子吐球",
+        "video_resource_key": "video_tuqiu",
+        "video_path": "",
+        "primary_state": "SECONDARY",
+        "display_brightness": 0.25,
+        "primary_brightness": 1.0,
+        "secondary_brightness": 0.25,
+        "is_placeholder": true,
+        "screen_width_m": 16.0,
+        "screen_height_m": 9.0,
+        "screen_front_normal": "[0, 0, -1]",
+        "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+        "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+        "authoring_screen_front_normal": "[0, 1, 0]",
+        "front_normal_gltf": "[0, 0, -1]",
+        "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_glb_geometry_normal_uv_and_coordinates",
+      "passed": true,
+      "details": {
+        "center_y_up": [
+          -9.5500002,
+          5.3000002,
+          0.0
+        ],
+        "normal_y_up": [
+          1.0,
+          0.0,
+          -0.0
+        ],
+        "normal_dot_inward": 1.0,
+        "width": 16.0,
+        "height": 9.0,
+        "bottom_y": 0.8000001907348633,
+        "unit_uv_corners": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "material": "Video_Meihuazhuang_Replaceable",
+        "effective_emission": [
+          0.057500001043081284,
+          0.036249998956918716,
+          0.021250000223517418
+        ],
+        "extras": {
+          "action_title": "踩梅花桩",
+          "video_resource_key": "video_meihuazhuang",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[1, 0, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+          "authoring_screen_front_normal": "[1, 0, 0]",
+          "front_normal_gltf": "[1, 0, 0]",
+          "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+        }
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_glb_declared_normal_matches_actual_exported_normal",
+      "passed": true,
+      "details": {
+        "declared": [
+          1,
+          0,
+          0
+        ],
+        "actual": [
+          1.0,
+          0.0,
+          -0.0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_glb_source_normal_is_clearly_labeled_and_consistent",
+      "passed": true,
+      "details": {
+        "note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up",
+        "source": [
+          1,
+          0,
+          0
+        ],
+        "export": [
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Screen_Meihuazhuang_glb_action_resource_and_display_state_metadata",
+      "passed": true,
+      "details": {
+        "action_title": "踩梅花桩",
+        "video_resource_key": "video_meihuazhuang",
+        "video_path": "",
+        "primary_state": "SECONDARY",
+        "display_brightness": 0.25,
+        "primary_brightness": 1.0,
+        "secondary_brightness": 0.25,
+        "is_placeholder": true,
+        "screen_width_m": 16.0,
+        "screen_height_m": 9.0,
+        "screen_front_normal": "[1, 0, 0]",
+        "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+        "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+        "authoring_screen_front_normal": "[1, 0, 0]",
+        "front_normal_gltf": "[1, 0, 0]",
+        "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+      }
+    },
+    {
+      "name": "glb_one_primary_three_dim_nonblack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "glb_lion_floor_contact_and_bounded_size",
+      "passed": true,
+      "details": {
+        "min": [
+          -0.9610427618026733,
+          0.2200000286102295,
+          -1.6950201988220215
+        ],
+        "max": [
+          0.9610428810119629,
+          2.285843849182129,
+          1.6950204372406006
+        ]
+      }
+    }
+  ],
+  "observations": {
+    "independent_source_baseline": {
+      "sha256": "5cd2887a9f415e86dd1c817aa724ad523c7aa1bdf15069e2aecf20a43d585878",
+      "original_object_counts": {
+        "MESH": 38,
+        "CURVES": 18,
+        "EMPTY": 41,
+        "LIGHT": 3
+      },
+      "native_meshes": 23,
+      "native_curve_objects": 18,
+      "used_materials": 17,
+      "used_source_image_datablocks": 14,
+      "documented_coincident_mesh_exclusions": {
+        "Lion_Tail.001": "Lion_Tail",
+        "Lion_Hindpaw_R.001": "Lion_Hindpaw_R",
+        "Lion_Hindpaw_L.001": "Lion_Hindpaw_L",
+        "Lion_Hindleg_R.001": "Lion_Hindleg_R",
+        "Lion_Hindleg_L.001": "Lion_Hindleg_L",
+        "Lion_Forepaw_R.001": "Lion_Forepaw_R",
+        "Lion_Forepaw_L.001": "Lion_Forepaw_L",
+        "Lion_Foreleg_R.001": "Lion_Foreleg_R",
+        "Lion_Foreleg_L.001": "Lion_Foreleg_L",
+        "Lion_Ear_R.001": "Lion_Ear_R",
+        "Lion_Ear_L.001": "Lion_Ear_L",
+        "Lion_Brow_R.001": "Lion_Brow_R",
+        "Lion_Brow_L.001": "Lion_Brow_L",
+        "Lion_Body_Red_Trim.001": "Lion_Body_Red_Trim",
+        "Lion_Beard.001": "Lion_Beard"
+      }
+    },
+    "screens": {
+      "Screen_Tanqing": {
+        "bounds": {
+          "min": [
+            -8.0,
+            9.550000190734863,
+            0.8000001907348633
+          ],
+          "max": [
+            8.0,
+            9.550000190734863,
+            9.800000190734863
+          ]
+        },
+        "center": [
+          0.0,
+          9.5500002,
+          5.2999997
+        ],
+        "normal": [
+          0.0,
+          -1.0,
+          1e-07
+        ],
+        "material": "Video_Tanqing_Replaceable",
+        "brightness": 1.0,
+        "custom_properties": {
+          "action_title": "探青采青",
+          "video_resource_key": "video_tanqing",
+          "video_path": "",
+          "primary_state": "PRIMARY",
+          "display_brightness": 1.0,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[0, -1, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage"
+        }
+      },
+      "Screen_Doumao": {
+        "bounds": {
+          "min": [
+            9.549999237060547,
+            -8.0,
+            0.8000001907348633
+          ],
+          "max": [
+            9.55000114440918,
+            8.0,
+            9.800000190734863
+          ]
+        },
+        "center": [
+          9.5499992,
+          0.0,
+          5.2999997
+        ],
+        "normal": [
+          -1.0,
+          0.0,
+          -0.0
+        ],
+        "material": "Video_Doumao_Replaceable",
+        "brightness": 0.25,
+        "custom_properties": {
+          "action_title": "抖毛",
+          "video_resource_key": "video_doumao",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[-1, 0, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage"
+        }
+      },
+      "Screen_Tuqiu": {
+        "bounds": {
+          "min": [
+            -8.0,
+            -9.55000114440918,
+            0.8000001907348633
+          ],
+          "max": [
+            8.0,
+            -9.549999237060547,
+            9.800000190734863
+          ]
+        },
+        "center": [
+          0.0,
+          -9.5500002,
+          5.2999997
+        ],
+        "normal": [
+          -1e-07,
+          1.0,
+          1e-07
+        ],
+        "material": "Video_Tuqiu_Replaceable",
+        "brightness": 0.25,
+        "custom_properties": {
+          "action_title": "狮子吐球",
+          "video_resource_key": "video_tuqiu",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[0, 1, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage"
+        }
+      },
+      "Screen_Meihuazhuang": {
+        "bounds": {
+          "min": [
+            -9.55000114440918,
+            -8.0,
+            0.8000001907348633
+          ],
+          "max": [
+            -9.549999237060547,
+            8.0,
+            9.800000190734863
+          ]
+        },
+        "center": [
+          -9.5500011,
+          0.0,
+          5.2999997
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          -0.0
+        ],
+        "material": "Video_Meihuazhuang_Replaceable",
+        "brightness": 0.25,
+        "custom_properties": {
+          "action_title": "踩梅花桩",
+          "video_resource_key": "video_meihuazhuang",
+          "video_path": "",
+          "primary_state": "SECONDARY",
+          "display_brightness": 0.25,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "is_placeholder": true,
+          "screen_width_m": 16.0,
+          "screen_height_m": 9.0,
+          "screen_front_normal": "[1, 0, 0]",
+          "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+          "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage"
+        }
+      }
+    },
+    "native_hair_radius_evaluation": [
+      {
+        "object": "Lion_Tail_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 0.9999802112579346,
+        "source_authored_radius_max_m": 0.00014999963840511374,
+        "recovery_factor": 0.00015000261191744357,
+        "evaluated_radius_max": 0.000149999643326737,
+        "world_radius_max_with_display_scale": 0.00030749922590456863,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Hindpaw_R_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999802286603983,
+        "recovery_factor": 0.00014999802806414664,
+        "evaluated_radius_max": 0.00014999802806414664,
+        "world_radius_max_with_display_scale": 0.00030749595037903726,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Hindleg_R_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00015999974490863008,
+        "recovery_factor": 0.00015999974857550114,
+        "evaluated_radius_max": 0.00015999974857550114,
+        "world_radius_max_with_display_scale": 0.0003279994769503948,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Hindpaw_L_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999710632145275,
+        "recovery_factor": 0.00014999711129348725,
+        "evaluated_radius_max": 0.00014999711129348725,
+        "world_radius_max_with_display_scale": 0.00030749407099922924,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Hindleg_L_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001599948996876067,
+        "recovery_factor": 0.0001599949027877301,
+        "evaluated_radius_max": 0.0001599949027877301,
+        "world_radius_max_with_display_scale": 0.0003279895430856952,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Beard_HighDetailWhiteFiber_2",
+        "source_radius_attribute_max": 0.9999955892562866,
+        "source_authored_radius_max_m": 0.00013999971132402564,
+        "recovery_factor": 0.00014000032388139516,
+        "evaluated_radius_max": 0.00013999971270095557,
+        "world_radius_max_with_display_scale": 0.0002869993709827198,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Ear_R_HighDetailRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499965774812069,
+        "recovery_factor": 0.0001499965728726238,
+        "evaluated_radius_max": 0.0001499965728726238,
+        "world_radius_max_with_display_scale": 0.00030749293147451506,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Ear_L_HighDetailRedFiber_2",
+        "source_radius_attribute_max": 0.9999621510505676,
+        "source_authored_radius_max_m": 0.00014999933694954286,
+        "recovery_factor": 0.00015000501298345625,
+        "evaluated_radius_max": 0.0001499993377365172,
+        "world_radius_max_with_display_scale": 0.0003074985994447055,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Brow_R_HighDetailRedFiber_2",
+        "source_radius_attribute_max": 0.9999992251396179,
+        "source_authored_radius_max_m": 0.00014999769361157325,
+        "recovery_factor": 0.0001499978097854182,
+        "evaluated_radius_max": 0.00014999769337009639,
+        "world_radius_max_with_display_scale": 0.0003074952284940133,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Brow_L_HighDetailRedFiber_3",
+        "source_radius_attribute_max": 0.9999706149101257,
+        "source_authored_radius_max_m": 0.000149999661719798,
+        "recovery_factor": 0.0001500040671089664,
+        "evaluated_radius_max": 0.00014999965787865222,
+        "world_radius_max_with_display_scale": 0.0003074992557359907,
+        "world_scale": [
+          2.0499997,
+          2.0499997,
+          2.0499997
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Forepaw_R_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499995622227176,
+        "recovery_factor": 0.00014999955601524562,
+        "evaluated_radius_max": 0.00014999955601524562,
+        "world_radius_max_with_display_scale": 0.0003074990826787173,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Foreleg_R_DenseRedFiber_1",
+        "source_radius_attribute_max": 0.99997478723526,
+        "source_authored_radius_max_m": 0.0001599985922954702,
+        "recovery_factor": 0.00016000262985471636,
+        "evaluated_radius_max": 0.0001599985989741981,
+        "world_radius_max_with_display_scale": 0.0003279971202677784,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Forepaw_L_DenseWhiteFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00014999607191615018,
+        "recovery_factor": 0.00014999607810750604,
+        "evaluated_radius_max": 0.00014999607810750604,
+        "world_radius_max_with_display_scale": 0.000307491952968017,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Foreleg_L_DenseRedFiber_1",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.00015999395364436246,
+        "recovery_factor": 0.00015999395691324025,
+        "evaluated_radius_max": 0.00015999395691324025,
+        "world_radius_max_with_display_scale": 0.00032798760404303615,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Body_Red_Trim_AuditedRedFiber_5",
+        "source_radius_attribute_max": 0.9999886155128479,
+        "source_authored_radius_max_m": 0.00015999995814441193,
+        "recovery_factor": 0.00016000178584363312,
+        "evaluated_radius_max": 0.00015999996685422957,
+        "world_radius_max_with_display_scale": 0.00032799992442177767,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_PhotoGroom_red_muzzle_Lion_Nose",
+        "source_radius_attribute_max": 0.00019999184587504715,
+        "source_authored_radius_max_m": 0.00019999184587504715,
+        "recovery_factor": 1.0,
+        "evaluated_radius_max": 0.00019999184587504715,
+        "world_radius_max_with_display_scale": 0.0004099832745074923,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": false
+      },
+      {
+        "object": "Lion_Head_CorrectedWhiteFiber_3",
+        "source_radius_attribute_max": 0.9999633431434631,
+        "source_authored_radius_max_m": 0.0001499996782895886,
+        "recovery_factor": 0.00015000517305452377,
+        "evaluated_radius_max": 0.00014999967243056744,
+        "world_radius_max_with_display_scale": 0.0003074993213301215,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      },
+      {
+        "object": "Lion_Head_CorrectedRedFiber_2",
+        "source_radius_attribute_max": 1.0,
+        "source_authored_radius_max_m": 0.0001499982976794664,
+        "recovery_factor": 0.00014999830455053598,
+        "evaluated_radius_max": 0.00014999830455053598,
+        "world_radius_max_with_display_scale": 0.0003074965171761222,
+        "world_scale": [
+          2.05,
+          2.05,
+          2.05
+        ],
+        "modified": true
+      }
+    ],
+    "lion": {
+      "native_meshes": 23,
+      "native_curve_objects": 18,
+      "native_strands": 267872,
+      "native_curve_points": 865143,
+      "vertices": 298123,
+      "base_cage_triangles": 529480,
+      "stage_radius": 2.5,
+      "rotation_samples": [
+        {
+          "frame": 1,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounds": {
+            "min": [
+              -0.9266424179077148,
+              -1.643099308013916,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424179077148,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025094718347,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 109,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.7853982
+          ],
+          "bounds": {
+            "min": [
+              -1.6698909997940063,
+              -1.6864044666290283,
+              0.2200000286102295
+            ],
+            "max": [
+              1.685122013092041,
+              1.669134497642517,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 217,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            1.5707964
+          ],
+          "bounds": {
+            "min": [
+              -1.6430994272232056,
+              -0.9266424775123596,
+              0.2200000286102295
+            ],
+            "max": [
+              1.643099308013916,
+              0.9266423583030701,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802484945074,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 325,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            2.3561945
+          ],
+          "bounds": {
+            "min": [
+              -1.669134497642517,
+              -1.6698909997940063,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6864044666290283,
+              1.685122013092041,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 433,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.1415927
+          ],
+          "bounds": {
+            "min": [
+              -0.9266423583030701,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424775123596,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025690673246,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 541,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.926991
+          ],
+          "bounds": {
+            "min": [
+              -1.6851221323013306,
+              -1.6691343784332275,
+              0.2200000286102295
+            ],
+            "max": [
+              1.669891119003296,
+              1.6864044666290283,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028027231738648,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 649,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            4.712389
+          ],
+          "bounds": {
+            "min": [
+              -1.643099308013916,
+              -0.9266424179077148,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6430994272232056,
+              0.9266424179077148,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025094718347,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 757,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            5.4977875
+          ],
+          "bounds": {
+            "min": [
+              -1.6864043474197388,
+              -1.6851222515106201,
+              0.2200000286102295
+            ],
+            "max": [
+              1.6691343784332275,
+              1.669891357421875,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028027380825409,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 865,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            6.2831855
+          ],
+          "bounds": {
+            "min": [
+              -0.926642656326294,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266422986984253,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802520013814,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 973,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            0.7853982
+          ],
+          "bounds": {
+            "min": [
+              -1.6698909997940063,
+              -1.6864044666290283,
+              0.2200000286102295
+            ],
+            "max": [
+              1.685122013092041,
+              1.669134497642517,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028026388931062,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 1081,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            1.5707964
+          ],
+          "bounds": {
+            "min": [
+              -1.6430994272232056,
+              -0.9266424775123596,
+              0.2200000286102295
+            ],
+            "max": [
+              1.643099308013916,
+              0.9266423583030701,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.802802484945074,
+          "stage_top": 0.2199999988079071
+        },
+        {
+          "frame": 1297,
+          "rotation_euler": [
+            0.0,
+            0.0,
+            3.1415927
+          ],
+          "bounds": {
+            "min": [
+              -0.9266423583030701,
+              -1.6430994272232056,
+              0.2200000286102295
+            ],
+            "max": [
+              0.9266424775123596,
+              1.6430994272232056,
+              2.2699995040893555
+            ]
+          },
+          "conservative_bound_radius": 1.8028025690673246,
+          "stage_top": 0.2199999988079071
+        }
+      ]
+    },
+    "cameras": [
+      {
+        "name": "Camera_Main",
+        "location": [
+          0.0,
+          -7.0,
+          2.8
+        ],
+        "type": "PERSP",
+        "lens": 22.5,
+        "constraints": []
+      },
+      {
+        "name": "Camera_Right",
+        "location": [
+          -7.0,
+          0.0,
+          2.8
+        ],
+        "type": "PERSP",
+        "lens": 22.5,
+        "constraints": []
+      },
+      {
+        "name": "Camera_Back",
+        "location": [
+          0.0,
+          7.0,
+          2.8
+        ],
+        "type": "PERSP",
+        "lens": 22.5,
+        "constraints": []
+      },
+      {
+        "name": "Camera_Left",
+        "location": [
+          7.0,
+          0.0,
+          2.8
+        ],
+        "type": "PERSP",
+        "lens": 22.5,
+        "constraints": []
+      },
+      {
+        "name": "Camera_Overview",
+        "location": [
+          0.0,
+          -5.8000002,
+          4.0
+        ],
+        "type": "PANO",
+        "lens": 24.0,
+        "constraints": []
+      }
+    ],
+    "scene_custom_properties": {
+      "coordinate_system": "BLENDER_METERS_Z_UP_FRONT_PLUS_Y",
+      "room_width_m": 20.0,
+      "room_depth_m": 20.0,
+      "room_clear_height_m": 10.4,
+      "screen_dimensions_m": "16 x 9",
+      "screen_bottom_m": 0.8,
+      "design_note": "16 x 6.5 is not 16:9. The strict 16:9 requirement takes priority: 16 x 9 m screens, room height 10.4 m.",
+      "stage_reference_status": "Existing project design/action hero+detail references visually checked: stone floor, dark-red columns and a single drum/stand. No dedicated reference attachment found in current request.",
+      "delivery_phase": "BLENDER_BLOCKOUT_AND_WEB_HANDOFF_ONLY",
+      "main_screen": "Screen_Tanqing",
+      "screen_state_transition_s": 0.45,
+      "primary_brightness": 1.0,
+      "secondary_brightness": 0.25,
+      "web_orbit_limits": "{\"target\": [0, 0, 2.8], \"radius_min\": 5.3, \"radius_max\": 7.2, \"camera_height_min\": 2.6, \"camera_height_max\": 4.6, \"polar_angle_degrees\": [72, 92], \"auto_orbit\": false, \"screen_switch_hysteresis_degrees\": 12, \"switch_dwell_ms\": 180, \"brightness_transition_ms\": 450, \"keep_video_time_on_switch\": true, \"audio_single_primary_only\": true}",
+      "web_interactions_implemented": false
+    },
+    "lights": [
+      {
+        "name": "Light_ScreenBounce_Tanqing",
+        "type": "AREA",
+        "energy": 900.0,
+        "color": [
+          1.0,
+          0.73,
+          0.5
+        ]
+      },
+      {
+        "name": "Light_ScreenBounce_Doumao",
+        "type": "AREA",
+        "energy": 225.0,
+        "color": [
+          1.0,
+          0.73,
+          0.5
+        ]
+      },
+      {
+        "name": "Light_ScreenBounce_Tuqiu",
+        "type": "AREA",
+        "energy": 225.0,
+        "color": [
+          1.0,
+          0.73,
+          0.5
+        ]
+      },
+      {
+        "name": "Light_ScreenBounce_Meihuazhuang",
+        "type": "AREA",
+        "energy": 225.0,
+        "color": [
+          1.0,
+          0.73,
+          0.5
+        ]
+      },
+      {
+        "name": "Light_Lion_SoftWarm_Key",
+        "type": "AREA",
+        "energy": 520.0,
+        "color": [
+          1.0,
+          0.81,
+          0.66
+        ]
+      },
+      {
+        "name": "Light_Lion_Quiet_Fill",
+        "type": "AREA",
+        "energy": 350.0,
+        "color": [
+          0.76,
+          0.82,
+          1.0
+        ]
+      },
+      {
+        "name": "Light_Stage_Rim_Warm",
+        "type": "AREA",
+        "energy": 250.0,
+        "color": [
+          1.0,
+          0.64,
+          0.33
+        ]
+      }
+    ],
+    "previews": [
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+        "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919",
+        "bytes": 1337554,
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+        "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1",
+        "bytes": 1373372,
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+        "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454",
+        "bytes": 1362668,
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+        "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839",
+        "bytes": 1329012,
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+        "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76",
+        "bytes": 1088742,
+        "width": 1600,
+        "height": 800
+      }
+    ],
+    "render_provenance": [
+      {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+        "bytes": 1337554,
+        "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919",
+        "camera": "Camera_Main",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      },
+      {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+        "bytes": 1373372,
+        "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1",
+        "camera": "Camera_Left",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      },
+      {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+        "bytes": 1362668,
+        "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454",
+        "camera": "Camera_Right",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      },
+      {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+        "bytes": 1329012,
+        "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839",
+        "camera": "Camera_Back",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          900
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      },
+      {
+        "evidence_file": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+        "bytes": 1088742,
+        "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76",
+        "camera": "Camera_Overview",
+        "engine": "CYCLES",
+        "samples": 64,
+        "resolution": [
+          1600,
+          800
+        ],
+        "frame": 1,
+        "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender"
+      }
+    ],
+    "glb": {
+      "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+      "bytes": 31826708,
+      "node_names": [
+        "Lion_Stage_Floor",
+        "Room_Wall_Front",
+        "Room_Wall_Back",
+        "Room_Wall_Left",
+        "Room_Wall_Right",
+        "Room_Ceiling",
+        "Floor_Joint_X_-4",
+        "Floor_Joint_Y_-4",
+        "Floor_Joint_X_-3",
+        "Floor_Joint_Y_-3",
+        "Floor_Joint_X_-2",
+        "Floor_Joint_Y_-2",
+        "Floor_Joint_X_-1",
+        "Floor_Joint_Y_-1",
+        "Floor_Joint_X_+0",
+        "Floor_Joint_Y_+0",
+        "Floor_Joint_X_+1",
+        "Floor_Joint_Y_+1",
+        "Floor_Joint_X_+2",
+        "Floor_Joint_Y_+2",
+        "Floor_Joint_X_+3",
+        "Floor_Joint_Y_+3",
+        "Floor_Joint_X_+4",
+        "Floor_Joint_Y_+4",
+        "Pillar_DarkRed_-9.1_-9.1",
+        "Pillar_Base_Trim_-9.1_-9.1",
+        "Pillar_DarkRed_-9.1_+9.1",
+        "Pillar_Base_Trim_-9.1_+9.1",
+        "Pillar_DarkRed_+9.1_-9.1",
+        "Pillar_Base_Trim_+9.1_-9.1",
+        "Pillar_DarkRed_+9.1_+9.1",
+        "Pillar_Base_Trim_+9.1_+9.1",
+        "Traditional_Drum_Body",
+        "Traditional_Drum_Hide_-1",
+        "Traditional_Drum_Hide_+1",
+        "Traditional_Drum_Stand_-8.3",
+        "Traditional_Drum_Stand_-7.5",
+        "Traditional_Drum_Stand_Crossbar",
+        "Lion_Stage_Base",
+        "Lion_Stage_AntiqueGold_Lip",
+        "Lion_Stage_Stone_Top",
+        "Lion_Beard",
+        "Lion_Beard_HighDetailWhiteFiber_2_WebFibers",
+        "Lion_Body",
+        "Lion_Body_Red_Trim",
+        "Lion_Body_Red_Trim_AuditedRedFiber_5_WebFibers",
+        "Lion_Brow_L",
+        "Lion_Brow_L_HighDetailRedFiber_3_WebFibers",
+        "Lion_Brow_R",
+        "Lion_Brow_R_HighDetailRedFiber_2_WebFibers",
+        "Lion_Crown",
+        "Lion_Ear_L",
+        "Lion_Ear_L_HighDetailRedFiber_2_WebFibers",
+        "Lion_Ear_R",
+        "Lion_Ear_R_HighDetailRedFiber_1_WebFibers",
+        "Lion_Forehead_Bead_09",
+        "Lion_Foreleg_L",
+        "Lion_Foreleg_L_DenseRedFiber_1_WebFibers",
+        "Lion_Foreleg_R",
+        "Lion_Foreleg_R_DenseRedFiber_1_WebFibers",
+        "Lion_Forepaw_L",
+        "Lion_Forepaw_L_DenseWhiteFiber_1_WebFibers",
+        "Lion_Forepaw_R",
+        "Lion_Forepaw_R_DenseWhiteFiber_1_WebFibers",
+        "Lion_Head.001",
+        "Lion_Head_CorrectedRedFiber_2_WebFibers",
+        "Lion_Head_CorrectedWhiteFiber_3_WebFibers",
+        "Lion_Hindleg_L",
+        "Lion_Hindleg_L_DenseRedFiber_1_WebFibers",
+        "Lion_Hindleg_R",
+        "Lion_Hindleg_R_DenseRedFiber_1_WebFibers",
+        "Lion_Hindpaw_L",
+        "Lion_Hindpaw_L_DenseWhiteFiber_1_WebFibers",
+        "Lion_Hindpaw_R",
+        "Lion_Hindpaw_R_DenseWhiteFiber_1_WebFibers",
+        "Lion_Nose",
+        "Lion_PhotoGroom_red_muzzle_Lion_Nose_WebFibers",
+        "Lion_Tail",
+        "Lion_Tail_DenseWhiteFiber_1_WebFibers",
+        "上牙",
+        "牙下",
+        "立方体",
+        "Lion_Model",
+        "Lion_RotationRoot",
+        "Screen_Tanqing",
+        "Screen_Doumao",
+        "Screen_Tuqiu",
+        "Screen_Meihuazhuang",
+        "Screen_Tanqing_Frame",
+        "Screen_Doumao_Frame",
+        "Screen_Tuqiu_Frame",
+        "Screen_Meihuazhuang_Frame",
+        "Camera_Target",
+        "Camera_OrbitCenter",
+        "UI_Anchor_Tanqing",
+        "Screen_Tanqing_Direction",
+        "UI_Anchor_Doumao",
+        "Screen_Doumao_Direction",
+        "UI_Anchor_Tuqiu",
+        "Screen_Tuqiu_Direction",
+        "UI_Anchor_Meihuazhuang",
+        "Screen_Meihuazhuang_Direction"
+      ],
+      "node_count": 102,
+      "mesh_count": 90,
+      "scene_extras": [
+        {
+          "coordinate_system": "GLTF_METERS_Y_UP_FRONT_MINUS_Z",
+          "room_width_m": 20.0,
+          "room_depth_m": 20.0,
+          "room_clear_height_m": 10.4,
+          "screen_dimensions_m": "16 x 9",
+          "screen_bottom_m": 0.8,
+          "design_note": "16 x 6.5 is not 16:9. The strict 16:9 requirement takes priority: 16 x 9 m screens, room height 10.4 m.",
+          "stage_reference_status": "Existing project design/action hero+detail references visually checked: stone floor, dark-red columns and a single drum/stand. No dedicated reference attachment found in current request.",
+          "delivery_phase": "BLENDER_BLOCKOUT_AND_WEB_HANDOFF_ONLY",
+          "main_screen": "Screen_Tanqing",
+          "screen_state_transition_s": 0.45,
+          "primary_brightness": 1.0,
+          "secondary_brightness": 0.25,
+          "web_orbit_limits": "{\"target\": [0, 2.8, 0], \"radius_min\": 5.3, \"radius_max\": 7.2, \"camera_height_min\": 2.6, \"camera_height_max\": 4.6, \"polar_angle_degrees\": [72, 92], \"auto_orbit\": false, \"screen_switch_hysteresis_degrees\": 12, \"switch_dwell_ms\": 180, \"brightness_transition_ms\": 450, \"keep_video_time_on_switch\": true, \"audio_single_primary_only\": true}",
+          "web_interactions_implemented": false,
+          "authoring_coordinate_system": "BLENDER_METERS_Z_UP_FRONT_PLUS_Y",
+          "authoring_web_orbit_limits": "{\"target\": [0, 0, 2.8], \"radius_min\": 5.3, \"radius_max\": 7.2, \"camera_height_min\": 2.6, \"camera_height_max\": 4.6, \"polar_angle_degrees\": [72, 92], \"auto_orbit\": false, \"screen_switch_hysteresis_degrees\": 12, \"switch_dwell_ms\": 180, \"brightness_transition_ms\": 450, \"keep_video_time_on_switch\": true, \"audio_single_primary_only\": true}"
+        }
+      ],
+      "asset_extras": {
+        "native_scene_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+        "web_lion_source_sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f",
+        "phase": "Offline handoff LOD; video playback, camera interaction and screen selection are not implemented",
+        "coordinate_system": "glTF +Y up; Blender front +Y maps to glTF -Z",
+        "shader_boundary": "Procedural stone/screen gradients approximated by constant PBR/emissive colors; source lion sheen extension restored exactly"
+      },
+      "orbit_anchor_world_positions": {
+        "Camera_Target": [
+          0.0,
+          2.8,
+          0.0
+        ],
+        "Camera_OrbitCenter": [
+          0.0,
+          2.8,
+          0.0
+        ]
+      },
+      "image_count": 6,
+      "embedded_image_bytes": [
+        940719,
+        486322,
+        429601,
+        907986,
+        1341032,
+        706330
+      ],
+      "external_uris": [],
+      "camera_count": 0,
+      "animation_count": 0,
+      "triangle_count": 523589,
+      "geometry_errors": [],
+      "screens": {
+        "Screen_Tanqing": {
+          "center_y_up": [
+            0.0,
+            5.3000002,
+            -9.5500002
+          ],
+          "normal_y_up": [
+            0.0,
+            -1e-07,
+            1.0
+          ],
+          "normal_dot_inward": 1.0,
+          "width": 16.0,
+          "height": 9.000001430511475,
+          "bottom_y": 0.7999997138977051,
+          "unit_uv_corners": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "material": "Video_Tanqing_Replaceable",
+          "effective_emission": [
+            0.23000000417232513,
+            0.14499999582767487,
+            0.08500000089406967
+          ],
+          "extras": {
+            "action_title": "探青采青",
+            "video_resource_key": "video_tanqing",
+            "video_path": "",
+            "primary_state": "PRIMARY",
+            "display_brightness": 1.0,
+            "primary_brightness": 1.0,
+            "secondary_brightness": 0.25,
+            "is_placeholder": true,
+            "screen_width_m": 16.0,
+            "screen_height_m": 9.0,
+            "screen_front_normal": "[0, 0, 1]",
+            "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+            "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+            "authoring_screen_front_normal": "[0, -1, 0]",
+            "front_normal_gltf": "[0, 0, 1]",
+            "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+          }
+        },
+        "Screen_Doumao": {
+          "center_y_up": [
+            9.5500002,
+            5.3000002,
+            0.0
+          ],
+          "normal_y_up": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "normal_dot_inward": 1.0,
+          "width": 16.0,
+          "height": 9.0,
+          "bottom_y": 0.8000001907348633,
+          "unit_uv_corners": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "material": "Video_Doumao_Replaceable",
+          "effective_emission": [
+            0.057500001043081284,
+            0.036249998956918716,
+            0.021250000223517418
+          ],
+          "extras": {
+            "action_title": "抖毛",
+            "video_resource_key": "video_doumao",
+            "video_path": "",
+            "primary_state": "SECONDARY",
+            "display_brightness": 0.25,
+            "primary_brightness": 1.0,
+            "secondary_brightness": 0.25,
+            "is_placeholder": true,
+            "screen_width_m": 16.0,
+            "screen_height_m": 9.0,
+            "screen_front_normal": "[-1, 0, 0]",
+            "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+            "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+            "authoring_screen_front_normal": "[-1, 0, 0]",
+            "front_normal_gltf": "[-1, 0, 0]",
+            "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+          }
+        },
+        "Screen_Tuqiu": {
+          "center_y_up": [
+            0.0,
+            5.3000002,
+            9.5500002
+          ],
+          "normal_y_up": [
+            -0.0,
+            1e-07,
+            -1.0
+          ],
+          "normal_dot_inward": 1.0,
+          "width": 16.000003814697266,
+          "height": 9.000001788139343,
+          "bottom_y": 0.7999993562698364,
+          "unit_uv_corners": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "material": "Video_Tuqiu_Replaceable",
+          "effective_emission": [
+            0.057500001043081284,
+            0.036249998956918716,
+            0.021250000223517418
+          ],
+          "extras": {
+            "action_title": "狮子吐球",
+            "video_resource_key": "video_tuqiu",
+            "video_path": "",
+            "primary_state": "SECONDARY",
+            "display_brightness": 0.25,
+            "primary_brightness": 1.0,
+            "secondary_brightness": 0.25,
+            "is_placeholder": true,
+            "screen_width_m": 16.0,
+            "screen_height_m": 9.0,
+            "screen_front_normal": "[0, 0, -1]",
+            "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+            "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+            "authoring_screen_front_normal": "[0, 1, 0]",
+            "front_normal_gltf": "[0, 0, -1]",
+            "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+          }
+        },
+        "Screen_Meihuazhuang": {
+          "center_y_up": [
+            -9.5500002,
+            5.3000002,
+            0.0
+          ],
+          "normal_y_up": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "normal_dot_inward": 1.0,
+          "width": 16.0,
+          "height": 9.0,
+          "bottom_y": 0.8000001907348633,
+          "unit_uv_corners": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "material": "Video_Meihuazhuang_Replaceable",
+          "effective_emission": [
+            0.057500001043081284,
+            0.036249998956918716,
+            0.021250000223517418
+          ],
+          "extras": {
+            "action_title": "踩梅花桩",
+            "video_resource_key": "video_meihuazhuang",
+            "video_path": "",
+            "primary_state": "SECONDARY",
+            "display_brightness": 0.25,
+            "primary_brightness": 1.0,
+            "secondary_brightness": 0.25,
+            "is_placeholder": true,
+            "screen_width_m": 16.0,
+            "screen_height_m": 9.0,
+            "screen_front_normal": "[1, 0, 0]",
+            "resource_status": "MISSING_VERIFIED_ACTION_VIDEO",
+            "video_uv_policy": "16:9 full frame; never stretch/crop unverified footage",
+            "authoring_screen_front_normal": "[1, 0, 0]",
+            "front_normal_gltf": "[1, 0, 0]",
+            "coordinate_note": "screen_front_normal and front_normal_gltf use exported glTF +Y up; authoring_screen_front_normal retains Blender +Z up"
+          }
+        }
+      },
+      "lion_descendant_mesh_count": 41,
+      "lion_bounds_y_up": {
+        "min": [
+          -0.9610427618026733,
+          0.2200000286102295,
+          -1.6950201988220215
+        ],
+        "max": [
+          0.9610428810119629,
+          2.285843849182129,
+          1.6950204372406006
+        ]
+      },
+      "root_extras": {
+        "rotation_axis": "Y",
+        "authoring_rotation_axis": "Z",
+        "rotation_period_seconds": 36.0,
+        "web_rotation_speed_rad_s": 0.17453292519943295,
+        "rotation_enabled": true,
+        "native_source_sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+        "export_representation": "Existing validated web LOD: source curves approximated as sampled thin ribbons"
+      },
+      "model_extras": {
+        "source_path": "source/public/assets/models/lion-structure-optimized.glb",
+        "source_sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f",
+        "web_lod": true,
+        "mesh_count": 41
+      },
+      "source_sheen_material_count": 10,
+      "source_sheen_mismatches": [],
+      "parent_names": {
+        "Lion_Beard": "Lion_Model",
+        "Lion_Beard_HighDetailWhiteFiber_2_WebFibers": "Lion_Model",
+        "Lion_Body": "Lion_Model",
+        "Lion_Body_Red_Trim": "Lion_Model",
+        "Lion_Body_Red_Trim_AuditedRedFiber_5_WebFibers": "Lion_Model",
+        "Lion_Brow_L": "Lion_Model",
+        "Lion_Brow_L_HighDetailRedFiber_3_WebFibers": "Lion_Model",
+        "Lion_Brow_R": "Lion_Model",
+        "Lion_Brow_R_HighDetailRedFiber_2_WebFibers": "Lion_Model",
+        "Lion_Crown": "Lion_Model",
+        "Lion_Ear_L": "Lion_Model",
+        "Lion_Ear_L_HighDetailRedFiber_2_WebFibers": "Lion_Model",
+        "Lion_Ear_R": "Lion_Model",
+        "Lion_Ear_R_HighDetailRedFiber_1_WebFibers": "Lion_Model",
+        "Lion_Forehead_Bead_09": "Lion_Model",
+        "Lion_Foreleg_L": "Lion_Model",
+        "Lion_Foreleg_L_DenseRedFiber_1_WebFibers": "Lion_Model",
+        "Lion_Foreleg_R": "Lion_Model",
+        "Lion_Foreleg_R_DenseRedFiber_1_WebFibers": "Lion_Model",
+        "Lion_Forepaw_L": "Lion_Model",
+        "Lion_Forepaw_L_DenseWhiteFiber_1_WebFibers": "Lion_Model",
+        "Lion_Forepaw_R": "Lion_Model",
+        "Lion_Forepaw_R_DenseWhiteFiber_1_WebFibers": "Lion_Model",
+        "Lion_Head.001": "Lion_Model",
+        "Lion_Head_CorrectedRedFiber_2_WebFibers": "Lion_Model",
+        "Lion_Head_CorrectedWhiteFiber_3_WebFibers": "Lion_Model",
+        "Lion_Hindleg_L": "Lion_Model",
+        "Lion_Hindleg_L_DenseRedFiber_1_WebFibers": "Lion_Model",
+        "Lion_Hindleg_R": "Lion_Model",
+        "Lion_Hindleg_R_DenseRedFiber_1_WebFibers": "Lion_Model",
+        "Lion_Hindpaw_L": "Lion_Model",
+        "Lion_Hindpaw_L_DenseWhiteFiber_1_WebFibers": "Lion_Model",
+        "Lion_Hindpaw_R": "Lion_Model",
+        "Lion_Hindpaw_R_DenseWhiteFiber_1_WebFibers": "Lion_Model",
+        "Lion_Nose": "Lion_Model",
+        "Lion_PhotoGroom_red_muzzle_Lion_Nose_WebFibers": "Lion_Model",
+        "Lion_Tail": "Lion_Model",
+        "Lion_Tail_DenseWhiteFiber_1_WebFibers": "Lion_Model",
+        "上牙": "Lion_Model",
+        "牙下": "Lion_Model",
+        "立方体": "Lion_Model",
+        "Lion_Model": "Lion_RotationRoot"
+      },
+      "extensions_used": [
+        "KHR_materials_clearcoat",
+        "KHR_materials_ior",
+        "KHR_materials_sheen",
+        "KHR_materials_specular"
+      ],
+      "binary_bytes": 31718288
+    },
+    "glb_reimport": {
+      "method": "Fresh Blender process with --factory-startup imported the final GLB via bpy.ops.import_scene.gltf; assertions checked hierarchy and decoded all six embedded images. No .blend was saved.",
+      "blender_version": "5.0.0",
+      "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+      "bytes": 31826708,
+      "source_unchanged_after_import": true,
+      "import_operator_result": [
+        "FINISHED"
+      ],
+      "object_count": 102,
+      "mesh_object_count": 90,
+      "empty_object_count": 12,
+      "material_count": 27,
+      "lion_descendant_mesh_count": 41,
+      "lion_mesh_names": [
+        "Lion_Beard",
+        "Lion_Beard_HighDetailWhiteFiber_2_WebFibers",
+        "Lion_Body",
+        "Lion_Body_Red_Trim",
+        "Lion_Body_Red_Trim_AuditedRedFiber_5_WebFibers",
+        "Lion_Brow_L",
+        "Lion_Brow_L_HighDetailRedFiber_3_WebFibers",
+        "Lion_Brow_R",
+        "Lion_Brow_R_HighDetailRedFiber_2_WebFibers",
+        "Lion_Crown",
+        "Lion_Ear_L",
+        "Lion_Ear_L_HighDetailRedFiber_2_WebFibers",
+        "Lion_Ear_R",
+        "Lion_Ear_R_HighDetailRedFiber_1_WebFibers",
+        "Lion_Forehead_Bead_09",
+        "Lion_Foreleg_L",
+        "Lion_Foreleg_L_DenseRedFiber_1_WebFibers",
+        "Lion_Foreleg_R",
+        "Lion_Foreleg_R_DenseRedFiber_1_WebFibers",
+        "Lion_Forepaw_L",
+        "Lion_Forepaw_L_DenseWhiteFiber_1_WebFibers",
+        "Lion_Forepaw_R",
+        "Lion_Forepaw_R_DenseWhiteFiber_1_WebFibers",
+        "Lion_Head.001",
+        "Lion_Head_CorrectedRedFiber_2_WebFibers",
+        "Lion_Head_CorrectedWhiteFiber_3_WebFibers",
+        "Lion_Hindleg_L",
+        "Lion_Hindleg_L_DenseRedFiber_1_WebFibers",
+        "Lion_Hindleg_R",
+        "Lion_Hindleg_R_DenseRedFiber_1_WebFibers",
+        "Lion_Hindpaw_L",
+        "Lion_Hindpaw_L_DenseWhiteFiber_1_WebFibers",
+        "Lion_Hindpaw_R",
+        "Lion_Hindpaw_R_DenseWhiteFiber_1_WebFibers",
+        "Lion_Nose",
+        "Lion_PhotoGroom_red_muzzle_Lion_Nose_WebFibers",
+        "Lion_Tail",
+        "Lion_Tail_DenseWhiteFiber_1_WebFibers",
+        "上牙",
+        "牙下",
+        "立方体"
+      ],
+      "root_parent": null,
+      "model_parent": "Lion_RotationRoot",
+      "screen_objects": {
+        "Screen_Tanqing": {
+          "type": "MESH",
+          "material": "Video_Tanqing_Replaceable",
+          "vertices": 4,
+          "uv_layers": 1
+        },
+        "Screen_Doumao": {
+          "type": "MESH",
+          "material": "Video_Doumao_Replaceable",
+          "vertices": 4,
+          "uv_layers": 1
+        },
+        "Screen_Tuqiu": {
+          "type": "MESH",
+          "material": "Video_Tuqiu_Replaceable",
+          "vertices": 4,
+          "uv_layers": 1
+        },
+        "Screen_Meihuazhuang": {
+          "type": "MESH",
+          "material": "Video_Meihuazhuang_Replaceable",
+          "vertices": 4,
+          "uv_layers": 1
+        }
+      },
+      "embedded_images_decoded": [
+        {
+          "name": "body_micro_weave_normal_2048",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            0.5098039507865906,
+            0.4901961088180542,
+            0.9921569228172302,
+            1.0
+          ]
+        },
+        {
+          "name": "brocade_reference_synthesis",
+          "size": [
+            1254,
+            1254
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            0.46666669845581055,
+            0.30588236451148987,
+            0.18039216101169586,
+            1.0
+          ]
+        },
+        {
+          "name": "lion_basecolor_refined",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            0.803921639919281,
+            0.7215686440467834,
+            0.7019608020782471,
+            1.0
+          ]
+        },
+        {
+          "name": "lion_basecolor_scarlet",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            0.8235294818878174,
+            0.8313726186752319,
+            0.8274510502815247,
+            1.0
+          ]
+        },
+        {
+          "name": "Lion_Color_Derived_Metallic-Lion_Color_Derived_Roughness",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            0.9921569228172302,
+            0.8392157554626465,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "lion_metallic_color_inferred-lion_roughness_color_inferred",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true,
+          "decoded_pixel_rgba": [
+            1.0,
+            0.8588235974311829,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "camera_count": 0,
+      "light_count": 0,
+      "unsaved_blender_filepath": "",
+      "passed": true,
+      "execution": {
+        "executable": "F:/Blender/blender.exe",
+        "arguments": [
+          "--background",
+          "--factory-startup",
+          "--python-exit-code",
+          "1",
+          "--python",
+          "tmp/reimport_final_theater.py"
+        ],
+        "host_output_chunk_id": "b306db",
+        "exit_code": 0
+      },
+      "test_setup_note": "The first temporary helper run retained factory startup content and failed its all-images-packed assertion. The helper was corrected to explicitly clear the factory scene with read_factory_settings(use_empty=True), then the same unchanged final artifact imported successfully; this was a test setup correction."
+    }
+  },
+  "limitations": [
+    "This Blockout prepares later web interaction; it does not implement browser camera dragging, video direction switching, brightness/audio crossfades, or DOM explanations.",
+    "The main .blend uses the native source lion: 23 unique mesh objects and all 18 native hair-curve objects. Fifteen independently documented coincident mesh copies and three source lights are omitted; the user's original source is unchanged.",
+    "Render composition, model visibility, dark-room balance and reference fidelity require the separate visual review of the actual five preview images."
+  ],
+  "blend_file": {
+    "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend",
+    "sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+    "bytes": 92962597
+  },
+  "passed": true,
+  "check_count": 160,
+  "failed_checks": [],
+  "visual_review": {
+    "reviewer": "Independent theater-validation agent",
+    "method": "Viewed all five final PNG files returned by the local image viewer after numerical verification. This manual review is separate from automated Blender API checks.",
+    "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+    "reviewed_previews": [
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+        "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919"
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+        "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1"
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+        "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454"
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+        "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839"
+      },
+      {
+        "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+        "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76"
+      }
+    ],
+    "accepted": true,
+    "observations": [
+      "Front: full lion including paws is visible; central stage, large primary screen, dim side screens, dark red pillars and one drum establish the intended hierarchy.",
+      "Left and Right: full profile, body, legs and native tail hair remain visible; four original source paw heights are preserved without deforming the model.",
+      "Back: rear view and full native tail are readable without clipping.",
+      "Overview: the 360-degree equirectangular diagnostic view shows four physical screen walls surrounding one stage; the Tuqiu rear screen is split across the left/right panorama seam, not duplicated as a fifth screen.",
+      "The room remains dark; brown-black stone has restrained soft highlights rather than water-like mirror reflections; no extra screens, lantern clusters, luminous floor patterns or visible debug geometry appear.",
+      "All four screens are explicitly labeled Blockout placeholders; these renders do not demonstrate real video playback or automatic view-direction switching."
+    ]
+  }
+}

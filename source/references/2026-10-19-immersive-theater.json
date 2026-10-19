@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "phase": "Independent Blender blockout; no website route/code changes",
+  "blend": {
+    "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend",
+    "bytes": 92962597,
+    "sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+    "blender_version": "5.0.0"
+  },
+  "collections": [
+    "00_Environment",
+    "01_Stage",
+    "02_Lion",
+    "03_Screens",
+    "04_Screen_Frames",
+    "05_Lighting",
+    "06_Cameras",
+    "07_Interaction_Anchors",
+    "08_Proxies"
+  ],
+  "coordinates": "Blender meters, +Z up, +Y front; glTF export maps (x,y,z) to (x,z,-y)",
+  "room": {
+    "footprint_m": [
+      20,
+      20
+    ],
+    "clear_height_m": 10.4
+  },
+  "screen_dimensions_m": [
+    16,
+    9
+  ],
+  "screen_bottom_m": 0.8,
+  "aspect_decision": "16 x 6.5 is not 16:9; use the explicitly required 16:9 at 16 x 9 m, raise room height accordingly.",
+  "lion": {
+    "source_path": "model/醒狮_保留UV_三角转四边_优化.blend",
+    "source_sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+    "source_bytes": 139309821,
+    "mesh_count": 23,
+    "native_hair_curves": 18,
+    "source_empties": 41,
+    "source_bounds_blender": {
+      "min": [
+        -0.45202070474624634,
+        -0.8015120029449463,
+        -1.4901161193847656e-08
+      ],
+      "max": [
+        0.45202070474624634,
+        0.8015120029449463,
+        1.0
+      ]
+    },
+    "uniform_scale": 2.05,
+    "display_dimensions_m": [
+      1.85328488945961,
+      3.2861992120742793,
+      2.0500000305473804
+    ],
+    "stage_contact_z_m": 0.22,
+    "rotation_seconds": 36,
+    "frames": [
+      1,
+      865
+    ],
+    "fps": 24,
+    "excluded_source_objects": {
+      "exact_duplicate_meshes": [
+        {
+          "excluded": "Lion_Tail.001",
+          "identical_to": "Lion_Tail"
+        },
+        {
+          "excluded": "Lion_Hindpaw_R.001",
+          "identical_to": "Lion_Hindpaw_R"
+        },
+        {
+          "excluded": "Lion_Hindpaw_L.001",
+          "identical_to": "Lion_Hindpaw_L"
+        },
+        {
+          "excluded": "Lion_Hindleg_R.001",
+          "identical_to": "Lion_Hindleg_R"
+        },
+        {
+          "excluded": "Lion_Hindleg_L.001",
+          "identical_to": "Lion_Hindleg_L"
+        },
+        {
+          "excluded": "Lion_Forepaw_R.001",
+          "identical_to": "Lion_Forepaw_R"
+        },
+        {
+          "excluded": "Lion_Forepaw_L.001",
+          "identical_to": "Lion_Forepaw_L"
+        },
+        {
+          "excluded": "Lion_Foreleg_R.001",
+          "identical_to": "Lion_Foreleg_R"
+        },
+        {
+          "excluded": "Lion_Foreleg_L.001",
+          "identical_to": "Lion_Foreleg_L"
+        },
+        {
+          "excluded": "Lion_Ear_R.001",
+          "identical_to": "Lion_Ear_R"
+        },
+        {
+          "excluded": "Lion_Ear_L.001",
+          "identical_to": "Lion_Ear_L"
+        },
+        {
+          "excluded": "Lion_Brow_R.001",
+          "identical_to": "Lion_Brow_R"
+        },
+        {
+          "excluded": "Lion_Brow_L.001",
+          "identical_to": "Lion_Brow_L"
+        },
+        {
+          "excluded": "Lion_Body_Red_Trim.001",
+          "identical_to": "Lion_Body_Red_Trim"
+        },
+        {
+          "excluded": "Lion_Beard.001",
+          "identical_to": "Lion_Beard"
+        }
+      ],
+      "lights": 3
+    },
+    "native_curve_radius_recoveries": [
+      {
+        "object": "Lion_Tail_DenseWhiteFiber_1",
+        "source_radius_max": 0.9999802112579346,
+        "authored_world_radius_max_m": 0.00014999963840511374,
+        "factor": 0.00015000260676800822
+      },
+      {
+        "object": "Lion_Hindpaw_R_DenseWhiteFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.00014999802286603983,
+        "factor": 0.00014999802286603983
+      },
+      {
+        "object": "Lion_Hindpaw_L_DenseWhiteFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.00014999710632145275,
+        "factor": 0.00014999710632145275
+      },
+      {
+        "object": "Lion_Hindleg_R_DenseRedFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.00015999974490863008,
+        "factor": 0.00015999974490863008
+      },
+      {
+        "object": "Lion_Hindleg_L_DenseRedFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.0001599948996876067,
+        "factor": 0.0001599948996876067
+      },
+      {
+        "object": "Lion_Head_CorrectedWhiteFiber_3",
+        "source_radius_max": 0.9999633431434631,
+        "authored_world_radius_max_m": 0.0001499996782895886,
+        "factor": 0.00015000517700784196
+      },
+      {
+        "object": "Lion_Head_CorrectedRedFiber_2",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.0001499982976794664,
+        "factor": 0.0001499982976794664
+      },
+      {
+        "object": "Lion_Forepaw_R_DenseWhiteFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.0001499995622227176,
+        "factor": 0.0001499995622227176
+      },
+      {
+        "object": "Lion_Forepaw_L_DenseWhiteFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.00014999607191615018,
+        "factor": 0.00014999607191615018
+      },
+      {
+        "object": "Lion_Foreleg_R_DenseRedFiber_1",
+        "source_radius_max": 0.99997478723526,
+        "authored_world_radius_max_m": 0.0001599985922954702,
+        "factor": 0.0001600026264040475
+      },
+      {
+        "object": "Lion_Foreleg_L_DenseRedFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.00015999395364436246,
+        "factor": 0.00015999395364436246
+      },
+      {
+        "object": "Lion_Ear_R_HighDetailRedFiber_1",
+        "source_radius_max": 1.0,
+        "authored_world_radius_max_m": 0.0001499965774812069,
+        "factor": 0.0001499965774812069
+      },
+      {
+        "object": "Lion_Ear_L_HighDetailRedFiber_2",
+        "source_radius_max": 0.9999621510505676,
+        "authored_world_radius_max_m": 0.00014999933694954286,
+        "factor": 0.00015000501448175058
+      },
+      {
+        "object": "Lion_Brow_R_HighDetailRedFiber_2",
+        "source_radius_max": 0.9999992251396179,
+        "authored_world_radius_max_m": 0.00014999769361157325,
+        "factor": 0.0001499978098389335
+      },
+      {
+        "object": "Lion_Brow_L_HighDetailRedFiber_3",
+        "source_radius_max": 0.9999706149101257,
+        "authored_world_radius_max_m": 0.000149999661719798,
+        "factor": 0.00015000406960286478
+      },
+      {
+        "object": "Lion_Body_Red_Trim_AuditedRedFiber_5",
+        "source_radius_max": 0.9999886155128479,
+        "authored_world_radius_max_m": 0.00015999995814441193,
+        "factor": 0.00016000177968261703
+      },
+      {
+        "object": "Lion_Beard_HighDetailWhiteFiber_2",
+        "source_radius_max": 0.9999955892562866,
+        "authored_world_radius_max_m": 0.00013999971132402564,
+        "factor": 0.0001400003288295959
+      }
+    ],
+    "fidelity_boundary": "Full native mesh/UV/material and curve-point/radius data appended. Fifteen verified exact coincident mesh duplicates and three source lights excluded. Curve geometry is not sampled or replaced; 17 normalized radius fields evaluate in physical source units through explicit non-destructive modifiers.",
+    "packed_image_deduplication": [
+      {
+        "removed_datablock": "body_micro_weave_normal_2048.png.001",
+        "identical_to": "body_micro_weave_normal_2048.png",
+        "sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+      },
+      {
+        "removed_datablock": "body_micro_weave_normal_2048.png.002",
+        "identical_to": "body_micro_weave_normal_2048.png",
+        "sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+      },
+      {
+        "removed_datablock": "brocade_reference_synthesis.png.001",
+        "identical_to": "brocade_reference_synthesis.png",
+        "sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+      },
+      {
+        "removed_datablock": "brocade_reference_synthesis.png.002",
+        "identical_to": "brocade_reference_synthesis.png",
+        "sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+      }
+    ]
+  },
+  "screens": [
+    {
+      "object": "Screen_Tanqing",
+      "action": "探青采青",
+      "center_m": [
+        0,
+        9.55,
+        5.3
+      ],
+      "front_normal": [
+        0,
+        -1,
+        0
+      ],
+      "material": "Video_Tanqing_Replaceable",
+      "brightness": 1.0,
+      "video_path": null,
+      "status": "MISSING_VERIFIED_ACTION_VIDEO",
+      "ui_anchor": "UI_Anchor_Tanqing"
+    },
+    {
+      "object": "Screen_Doumao",
+      "action": "抖毛",
+      "center_m": [
+        9.55,
+        0,
+        5.3
+      ],
+      "front_normal": [
+        -1,
+        0,
+        0
+      ],
+      "material": "Video_Doumao_Replaceable",
+      "brightness": 0.25,
+      "video_path": null,
+      "status": "MISSING_VERIFIED_ACTION_VIDEO",
+      "ui_anchor": "UI_Anchor_Doumao"
+    },
+    {
+      "object": "Screen_Tuqiu",
+      "action": "狮子吐球",
+      "center_m": [
+        0,
+        -9.55,
+        5.3
+      ],
+      "front_normal": [
+        0,
+        1,
+        0
+      ],
+      "material": "Video_Tuqiu_Replaceable",
+      "brightness": 0.25,
+      "video_path": null,
+      "status": "MISSING_VERIFIED_ACTION_VIDEO",
+      "ui_anchor": "UI_Anchor_Tuqiu"
+    },
+    {
+      "object": "Screen_Meihuazhuang",
+      "action": "踩梅花桩",
+      "center_m": [
+        -9.55,
+        0,
+        5.3
+      ],
+      "front_normal": [
+        1,
+        0,
+        0
+      ],
+      "material": "Video_Meihuazhuang_Replaceable",
+      "brightness": 0.25,
+      "video_path": null,
+      "status": "MISSING_VERIFIED_ACTION_VIDEO",
+      "ui_anchor": "UI_Anchor_Meihuazhuang"
+    }
+  ],
+  "cameras": {
+    "Front": "Camera_Main",
+    "Left": "Camera_Left",
+    "Right": "Camera_Right",
+    "Back": "Camera_Back",
+    "Overview": "Camera_Overview"
+  },
+  "stage_references": [
+    "source/design/action/action-hero-reference.png",
+    "source/design/action/action-detail-reference.png"
+  ],
+  "missing_resources": [
+    "No dedicated stage image attached to this request; reused the existing project design references",
+    "Four verified named real action video clips"
+  ],
+  "web_pending": [
+    "Mouse orbit and collision/clamp logic",
+    "View direction hysteresis",
+    "HTML video textures and primary/secondary fades",
+    "Exactly one active audio source and user audio gesture",
+    "Action DOM text synchronized to selected screen",
+    "Web-controlled independent lion spin; camera must not auto-orbit"
+  ],
+  "packed_resources": [
+    {
+      "name": "body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ],
+  "native_source_untouched": true,
+  "screenshots": [
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+      "bytes": 1337554,
+      "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919",
+      "camera": "Camera_Main",
+      "engine": "CYCLES",
+      "samples": 64,
+      "resolution": [
+        1600,
+        900
+      ],
+      "frame": 1,
+      "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "render_evidence": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json"
+    },
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+      "bytes": 1373372,
+      "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1",
+      "camera": "Camera_Left",
+      "engine": "CYCLES",
+      "samples": 64,
+      "resolution": [
+        1600,
+        900
+      ],
+      "frame": 1,
+      "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "render_evidence": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json"
+    },
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+      "bytes": 1362668,
+      "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454",
+      "camera": "Camera_Right",
+      "engine": "CYCLES",
+      "samples": 64,
+      "resolution": [
+        1600,
+        900
+      ],
+      "frame": 1,
+      "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "render_evidence": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json"
+    },
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+      "bytes": 1329012,
+      "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839",
+      "camera": "Camera_Back",
+      "engine": "CYCLES",
+      "samples": 64,
+      "resolution": [
+        1600,
+        900
+      ],
+      "frame": 1,
+      "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "render_evidence": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json"
+    },
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+      "bytes": 1088742,
+      "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76",
+      "camera": "Camera_Overview",
+      "engine": "CYCLES",
+      "samples": 64,
+      "resolution": [
+        1600,
+        800
+      ],
+      "frame": 1,
+      "screen_state": "Saved default: Tanqing PRIMARY, three SECONDARY; no view-direction web logic runs in Blender",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "render_evidence": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json"
+    }
+  ],
+  "web_export": {
+    "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+    "bytes": 31826708,
+    "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88",
+    "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+    "source_lion_lod": "source/public/assets/models/lion-structure-optimized.glb",
+    "source_lion_lod_sha256": "d4158473799871c9676f022e0a526c240a3c2bfb0f77abf4fc2f8b36160d257f",
+    "selected_objects": [
+      "Camera_OrbitCenter",
+      "Camera_Target",
+      "Floor_Joint_X_+0",
+      "Floor_Joint_X_+1",
+      "Floor_Joint_X_+2",
+      "Floor_Joint_X_+3",
+      "Floor_Joint_X_+4",
+      "Floor_Joint_X_-1",
+      "Floor_Joint_X_-2",
+      "Floor_Joint_X_-3",
+      "Floor_Joint_X_-4",
+      "Floor_Joint_Y_+0",
+      "Floor_Joint_Y_+1",
+      "Floor_Joint_Y_+2",
+      "Floor_Joint_Y_+3",
+      "Floor_Joint_Y_+4",
+      "Floor_Joint_Y_-1",
+      "Floor_Joint_Y_-2",
+      "Floor_Joint_Y_-3",
+      "Floor_Joint_Y_-4",
+      "Lion_Beard",
+      "Lion_Beard_HighDetailWhiteFiber_2_WebFibers",
+      "Lion_Body",
+      "Lion_Body_Red_Trim",
+      "Lion_Body_Red_Trim_AuditedRedFiber_5_WebFibers",
+      "Lion_Brow_L",
+      "Lion_Brow_L_HighDetailRedFiber_3_WebFibers",
+      "Lion_Brow_R",
+      "Lion_Brow_R_HighDetailRedFiber_2_WebFibers",
+      "Lion_Crown",
+      "Lion_Ear_L",
+      "Lion_Ear_L_HighDetailRedFiber_2_WebFibers",
+      "Lion_Ear_R",
+      "Lion_Ear_R_HighDetailRedFiber_1_WebFibers",
+      "Lion_Forehead_Bead_09",
+      "Lion_Foreleg_L",
+      "Lion_Foreleg_L_DenseRedFiber_1_WebFibers",
+      "Lion_Foreleg_R",
+      "Lion_Foreleg_R_DenseRedFiber_1_WebFibers",
+      "Lion_Forepaw_L",
+      "Lion_Forepaw_L_DenseWhiteFiber_1_WebFibers",
+      "Lion_Forepaw_R",
+      "Lion_Forepaw_R_DenseWhiteFiber_1_WebFibers",
+      "Lion_Head.001",
+      "Lion_Head_CorrectedRedFiber_2_WebFibers",
+      "Lion_Head_CorrectedWhiteFiber_3_WebFibers",
+      "Lion_Hindleg_L",
+      "Lion_Hindleg_L_DenseRedFiber_1_WebFibers",
+      "Lion_Hindleg_R",
+      "Lion_Hindleg_R_DenseRedFiber_1_WebFibers",
+      "Lion_Hindpaw_L",
+      "Lion_Hindpaw_L_DenseWhiteFiber_1_WebFibers",
+      "Lion_Hindpaw_R",
+      "Lion_Hindpaw_R_DenseWhiteFiber_1_WebFibers",
+      "Lion_Model",
+      "Lion_Nose",
+      "Lion_PhotoGroom_red_muzzle_Lion_Nose_WebFibers",
+      "Lion_RotationRoot",
+      "Lion_Stage_AntiqueGold_Lip",
+      "Lion_Stage_Base",
+      "Lion_Stage_Floor",
+      "Lion_Stage_Stone_Top",
+      "Lion_Tail",
+      "Lion_Tail_DenseWhiteFiber_1_WebFibers",
+      "Pillar_Base_Trim_+9.1_+9.1",
+      "Pillar_Base_Trim_+9.1_-9.1",
+      "Pillar_Base_Trim_-9.1_+9.1",
+      "Pillar_Base_Trim_-9.1_-9.1",
+      "Pillar_DarkRed_+9.1_+9.1",
+      "Pillar_DarkRed_+9.1_-9.1",
+      "Pillar_DarkRed_-9.1_+9.1",
+      "Pillar_DarkRed_-9.1_-9.1",
+      "Room_Ceiling",
+      "Room_Wall_Back",
+      "Room_Wall_Front",
+      "Room_Wall_Left",
+      "Room_Wall_Right",
+      "Screen_Doumao",
+      "Screen_Doumao_Direction",
+      "Screen_Doumao_Frame",
+      "Screen_Meihuazhuang",
+      "Screen_Meihuazhuang_Direction",
+      "Screen_Meihuazhuang_Frame",
+      "Screen_Tanqing",
+      "Screen_Tanqing_Direction",
+      "Screen_Tanqing_Frame",
+      "Screen_Tuqiu",
+      "Screen_Tuqiu_Direction",
+      "Screen_Tuqiu_Frame",
+      "Traditional_Drum_Body",
+      "Traditional_Drum_Hide_+1",
+      "Traditional_Drum_Hide_-1",
+      "Traditional_Drum_Stand_-7.5",
+      "Traditional_Drum_Stand_-8.3",
+      "Traditional_Drum_Stand_Crossbar",
+      "UI_Anchor_Doumao",
+      "UI_Anchor_Meihuazhuang",
+      "UI_Anchor_Tanqing",
+      "UI_Anchor_Tuqiu",
+      "上牙",
+      "牙下",
+      "立方体"
+    ],
+    "lion_mesh_count": 41,
+    "animations_exported": false,
+    "restored_sheen_materials": [
+      "Velvet_Scarlet_Uniform_Base",
+      "Head_Ivory_Fringe_Base",
+      "Fiber_Warm_Ivory.001",
+      "Lion_Atlas_PBR_Refined",
+      "Brocade_Clear_Tile_Cloth_Study",
+      "Fiber_Red_Scarlet",
+      "HighDetail_Head_Atlas_PBR",
+      "Fiber_Red_Scarlet.001",
+      "Fiber_Warm_Ivory",
+      "Forehead_ReferenceInspired_Brocade_Study"
+    ],
+    "shader_boundary": "Procedural stone/screen gradients approximated by constant PBR/emissive colors; source lion sheen extension restored exactly"
+  },
+  "render_evidence": [
+    {
+      "path": "source/reviews/immersive-theater/2026-10-19/render-evidence-front-left-right-back-overview.json",
+      "sha256": "3794f216f6b45160197be4c312229c4d5a565d5271eaf87644614ce02e8da272",
+      "source_blend_sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee",
+      "reopened_from_disk": true
+    }
+  ]
+}

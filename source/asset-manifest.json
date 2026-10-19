@@ -2161,6 +2161,54 @@
       "path": "source/reviews/navigation/2026-10-19-shared-text-motion/settings-push-900.png",
       "bytes": 1102299,
       "sha256": "dbc4f5a81a6b9d3e88647f8115e5dc0f49a9a1d91d1789e6316c572122b93c2e"
+    },
+    {
+      "from": "generated:blender-native-scene/2026-10-19",
+      "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater_Blockout.blend",
+      "bytes": 92962597,
+      "sha256": "0a6c6572f548c918fc91deb5de18b24289a7f5f0aaa00f8c0b20037d92b8bcee"
+    },
+    {
+      "from": "generated:blender-web-lod-scene/2026-10-19",
+      "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "bytes": 31826708,
+      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+    },
+    {
+      "from": "derived:SlideFont/Slideqiuhong-Regular.ttf/theater-labels",
+      "path": "source/fonts/immersive-theater/nanfeng-theater-labels.ttf",
+      "bytes": 68240,
+      "sha256": "efbf2bbc8ee535e8d8918c2a4aa5e1e5af68288e733fbe9154e1e42d0169b119"
+    },
+    {
+      "from": "generated:blender-render/2026-10-19/immersive-theater/Front",
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Front.png",
+      "bytes": 1337554,
+      "sha256": "92f5355d44951fbf52d13e71ac3da2e0e6d3632bc4b00ac8e88c0ecc0cf7b919"
+    },
+    {
+      "from": "generated:blender-render/2026-10-19/immersive-theater/Left",
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Left.png",
+      "bytes": 1373372,
+      "sha256": "1b069958685e7b668b3d8692b35cf213e529d7c99c5d195c87062f2e9f544cd1"
+    },
+    {
+      "from": "generated:blender-render/2026-10-19/immersive-theater/Right",
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Right.png",
+      "bytes": 1362668,
+      "sha256": "fb6c73f7b8eefae0eb457bb95c0ebf8437d993d227c841b3e873bb5dc699d454"
+    },
+    {
+      "from": "generated:blender-render/2026-10-19/immersive-theater/Back",
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Back.png",
+      "bytes": 1329012,
+      "sha256": "d3fb1855e87d9d87bcd4e070dbdb6c899f9cc97cdce0802d9648760b77169839"
+    },
+    {
+      "from": "generated:blender-render/2026-10-19/immersive-theater/Overview",
+      "path": "source/reviews/immersive-theater/2026-10-19/Preview_Overview.png",
+      "bytes": 1088742,
+      "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76"
     }
   ]
 }

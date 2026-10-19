@@ -1,0 +1,40 @@
+{
+  "schema": "lion.lux3d-local-inspection/v1",
+  "date": "2026-10-19",
+  "plugin": "aholo-lux3d:lux3d",
+  "installed_skill_version": "0.1.1",
+  "workflow_route": "Local Blender modeling/assembly/rendering, direct-file delivery per Lux3D references/results.md",
+  "cloud_submissions": [],
+  "runtime_entrypoint": "core/runtime/artifact_delivery.py inspect <final-scene.glb> --format glb",
+  "execution": {
+    "host_tool": "exec_command",
+    "host_output_chunk_id": "18fe93",
+    "exit_code": 0,
+    "observed_at_utc": "2026-10-19 09:50:52 UTC"
+  },
+  "artifact": {
+    "path": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+    "format": "glb",
+    "bytes": 31826708,
+    "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+  },
+  "runtime_validation": {
+    "valid": true,
+    "glbVersion": 2,
+    "assetVersion": "2.0",
+    "scenes": 1,
+    "nodes": 102,
+    "meshes": 90,
+    "materials": 27
+  },
+  "acceptance_boundary": [
+    "The actual bundled Lux3D artifact inspector checked the final GLB container and embedded asset structure.",
+    "These structural checks alone do not certify composition, native Blender fidelity or web interactions; see the independent Blender validation and five actual renders.",
+    "This is a purely local Blender scene. No cloud task IDs, generation state or Lux3D bundle manifest were fabricated. Verified Blender files, GLB and static renders are delivered directly.",
+    "The GLB uses the existing verified web lion LOD and approximates procedural environment materials. The .blend retains native curve data and materials."
+  ],
+  "related_records": [
+    "source/references/2026-10-19-immersive-theater.json",
+    "source/references/2026-10-19-immersive-theater-validation.json"
+  ]
+}
