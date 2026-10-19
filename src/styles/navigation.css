@@ -41,13 +41,13 @@
 .site-header[data-nav-mode='compact'] { border-bottom-color: transparent; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
 .site-header[data-nav-mode='compact']::after { display: none; }
 .site-header[data-nav-mode='compact'] .site-header-inner { padding-right: var(--navigation-compact-inset, 48px); }
-.site-header[data-nav-mode='compact'] .site-brand-capsule { margin-left: 0; }
+.site-header[data-nav-mode='compact'] .site-brand-capsule { margin-left: auto; }
 .site-header[data-nav-mode='compact'] .navigation-surface { opacity: 1; }
-.site-header[data-nav-mode='compact'] .site-navigation { display: flex; flex: 0 0 auto; width: max-content; height: min(calc(100% - 12px), 96px); margin-left: auto; padding-inline: 14px; align-self: center; gap: var(--navigation-compact-gap, 14px); }
+.site-header[data-nav-mode='compact'] .site-navigation { display: flex; flex: 0 0 auto; width: max-content; height: min(calc(100% - 12px), 96px); margin-left: 0; padding-inline: 14px; align-self: center; gap: var(--navigation-compact-gap, 14px); }
 .site-header[data-nav-mode='compact'] .site-nav-item { flex: 0 0 auto; width: calc(var(--navigation-icon-size, 40px) + 24px); height: 100%; gap: 0; padding: 6px 12px; color: #fff; background: transparent; }
 .site-header[data-nav-mode='compact'] .site-nav-symbol { gap: 12px; }
 .site-header[data-nav-mode='compact'] .site-nav-short-label { display: block; }
-.site-header[data-nav-mode='compact'] .site-nav-copy { position: absolute; top: 50%; left: calc(50% + var(--navigation-icon-size, 40px) / 2 + 8px); width: max-content; opacity: 0; pointer-events: none; transform: translate(var(--navigation-copy-shift, 32px), -50%) scaleX(.025); }
+.site-header[data-nav-mode='compact'] .site-nav-copy { position: absolute; width: max-content; visibility: hidden; opacity: 0; pointer-events: none; transform: none; }
 .site-header[data-nav-mode='compact'] .site-nav-item::before,
 .site-header[data-nav-mode='compact'] .site-nav-item::after { display: none; }
 .site-header[data-nav-mode='compact'] .site-nav-item.is-current { color: #ffe0a4; }

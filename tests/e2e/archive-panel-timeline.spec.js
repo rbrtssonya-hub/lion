@@ -104,14 +104,118 @@ async function traceMove(page, id) {
         count, red, min, max });
       if (now - started < 1750) requestAnimationFrame(sample); else resolve(frames);
     }
-    const observer = new MutationObserver(() => {
-      observer.disconnect();
-      requestAnimationFrame(sample);
-    });
-    observer.observe(book, { attributes: true, attributeFilter: ['data-book-index'] });
+    // Start at the user's click. Waiting for data-book-index would hide the
+    // adjacent-page spring delay that the traveling marker must avoid.
     book.querySelector(`[data-book-page="${id}"]`).click();
+    requestAnimationFrame(sample);
   }), id);
 }
+
+async function placeTimelineWithPaperVisible(page) {
+  await page.locator('.lion-book-timeline').evaluate(nav => {
+    window.scrollTo({ top: scrollY + nav.getBoundingClientRect().bottom - innerHeight + 24, behavior: 'instant' });
+  });
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const exposure = await page.locator('.lion-book-stage').evaluate(stage => {
+    const r = stage.getBoundingClientRect();
+    return { visible: Math.max(0, Math.min(innerHeight, r.bottom) - Math.max(0, r.top)), required: Math.min(r.height * .6, innerHeight * .48) };
+  });
+  expect(exposure.visible).toBeGreaterThan(exposure.required + 10);
+}
+
+async function traceChoice(page, input) {
+  return page.locator('.lion-book-experience').evaluate((book, input) => new Promise(resolve => {
+    const nav = book.querySelector('.lion-book-timeline');
+    const marker = nav.querySelector('.lion-book-traveling-lion');
+    const read = () => ({ time: performance.now() - start, x: marker.getBoundingClientRect().x,
+      index: Number(book.dataset.bookIndex), turning: book.dataset.bookTurning,
+      selected: nav.querySelector('[aria-current="step"]')?.dataset.bookPage,
+      title: book.querySelector('.lion-book-reading h3').textContent });
+    const start = performance.now();
+    const frames = [read()];
+    const perform = value => {
+      if (value.id) nav.querySelector(`[data-book-page="${value.id}"]`).click();
+      else book.dispatchEvent(new KeyboardEvent('keydown', { key: value.key, bubbles: true }));
+    };
+    perform(input);
+    for (const next of input.sequence || []) setTimeout(() => perform(next), next.after);
+    const sample = () => {
+      frames.push(read());
+      if (performance.now() - start < 1150 + (input.sequence?.at(-1)?.after || 0)) requestAnimationFrame(sample);
+      else resolve(frames);
+    };
+    requestAnimationFrame(sample);
+  }), input);
+}
+
+test('相邻、跨页与反向点击都立即启动狮头，纸面未提交时详情保持真实页', async ({ page }) => {
+  await openArchive(page);
+  await placeTimelineWithPaperVisible(page);
+  const book = page.locator('.lion-book-experience');
+  const metrics = [];
+  for (const [id, index, adjacent] of [['origin', 1, true], ['spread', 4, false], ['martial', 3, true]]) {
+    const frames = await traceChoice(page, { id });
+    const first = frames.find(frame => Math.abs(frame.x - frames[0].x) > 1);
+    expect(first, `${id} must start moving`).toBeTruthy();
+    expect(first.time, `${id} click-to-motion`).toBeLessThan(150);
+    expect(frames.slice(1).every(frame => frame.selected === id)).toBe(true);
+    if (adjacent) {
+      const duringTurn = frames.find(frame => frame.turning === 'true' && Math.abs(frame.x - frames[0].x) > 1);
+      expect(duringTurn, `${id} marker starts before paper commits`).toBeTruthy();
+      expect(duringTurn.index).toBe(frames[0].index);
+      expect(duringTurn.title).toBe(frames[0].title);
+    }
+    await expect(book).toHaveAttribute('data-book-index', String(index));
+    await expect(book).toHaveAttribute('data-book-turning', 'false');
+    metrics.push({ id, firstMotionMs: Math.round(first.time) });
+  }
+  console.log(`timeline click latency: ${JSON.stringify(metrics)}`);
+});
+
+test('快速相邻往返不被旧提交抢回，外层键盘即时反馈且当前页重复点击不锁定狮头', async ({ page }) => {
+  await openArchive(page);
+  await placeTimelineWithPaperVisible(page);
+  const book = page.locator('.lion-book-experience');
+  const nav = book.locator('.lion-book-timeline');
+  // Selecting the already committed page cannot leave an unresolved request.
+  await nav.locator('[data-book-page="cover"]').click();
+  const reverse = await traceChoice(page, { id: 'origin', sequence: [{ id: 'cover', after: 80 }] });
+  expect(reverse.filter(frame => frame.time >= 100).every(frame => frame.selected === 'cover')).toBe(true);
+  await expect(book).toHaveAttribute('data-book-index', '0');
+  await expect(book).toHaveAttribute('data-book-turning', 'false');
+  const forward = await traceChoice(page, { id: 'origin', sequence: [{ id: 'formation', after: 60 }, { id: 'martial', after: 120 }] });
+  expect(forward.filter(frame => frame.time >= 140).every(frame => frame.selected === 'martial')).toBe(true);
+  await expect(book).toHaveAttribute('data-book-index', '3');
+  await expect(book).toHaveAttribute('data-book-turning', 'false');
+  const keyboard = await traceChoice(page, { key: 'ArrowRight' });
+  expect(keyboard.find(frame => Math.abs(frame.x - keyboard[0].x) > 1)?.time).toBeLessThan(150);
+  expect(keyboard.slice(1).every(frame => frame.selected === 'spread')).toBe(true);
+  await expect(book).toHaveAttribute('data-book-index', '4');
+  await expect(book).toHaveAttribute('data-book-turning', 'false');
+  await nav.locator('[data-book-page="spread"]').focus();
+  await page.keyboard.press('Enter');
+  await expect(book).toHaveAttribute('data-book-index', '4');
+  await page.keyboard.press('Space');
+  await expect(book).toHaveAttribute('data-book-index', '4');
+});
+
+test('时间线尚在翻页时可移焦真实纸面并继续按键，狮头跟随接管后的提交页', async ({ page }) => {
+  await openArchive(page);
+  await placeTimelineWithPaperVisible(page);
+  const book = page.locator('.lion-book-experience');
+  await book.locator('[data-book-page="origin"]').click();
+  await expect(book).toHaveAttribute('data-book-turning', 'true');
+  await page.frameLocator('#homeLionBook iframe').locator('.sb-next').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(book).toHaveAttribute('data-book-index', '2');
+  await expect(book).toHaveAttribute('data-book-turning', 'false');
+  await expect(book.locator('[aria-current="step"]')).toHaveAttribute('data-book-page', 'formation');
+  await expect.poll(() => book.locator('.lion-book-timeline').evaluate(nav => {
+    const marker = nav.querySelector('.lion-book-traveling-lion').getBoundingClientRect();
+    const node = nav.querySelector('[aria-current="step"] .lion-book-node').getBoundingClientRect();
+    return Math.abs(marker.x + marker.width / 2 - node.x - node.width / 2);
+  })).toBeLessThan(2);
+});
 
 test('狮头水平行进，离散红金粒子只出现在身后并消散，支持倒向', async ({ page }) => {
   await openArchive(page);
@@ -156,12 +260,11 @@ test('快速反向选择从可见位置接续，离屏暂停且回到视口后�
   const nav = page.locator('.lion-book-timeline');
   await nav.scrollIntoViewIfNeeded();
   await page.locator('.lion-book-experience').evaluate(book => new Promise(resolve => {
-    const observer = new MutationObserver(() => { observer.disconnect(); setTimeout(resolve, 150); });
-    observer.observe(book, { attributes: true, attributeFilter: ['data-book-index'] });
     book.querySelector('[data-book-page="ending"]').click();
+    setTimeout(resolve, 150);
   }));
   const before = await nav.locator('.lion-book-traveling-lion').boundingBox();
-  // Retarget before the 650ms marker movement completes; the original paper is already committed.
+  // Retarget 150ms after input, independently of the paper's commit timing.
   await nav.locator('[data-book-page="origin"]').evaluate(button => button.click());
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '1');
   const after = await nav.locator('.lion-book-traveling-lion').boundingBox();

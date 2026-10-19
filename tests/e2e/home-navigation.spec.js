@@ -28,14 +28,13 @@ async function armNativeNavigationSampling(page, duration) {
     window.nativeNavigationSamples = new Promise(resolve => {
       window.addEventListener('hashchange', () => {
         const icon = document.querySelector('[data-route="model"] .site-nav-icon');
-        const symbol = icon.closest('.site-nav-symbol');
         const read = () => {
           const box = icon.getBoundingClientRect();
           return {
             x: box.left + box.width / 2, y: box.top + box.height / 2,
             source: icon.querySelector('image').getAttribute('href'),
             filter: getComputedStyle(icon.querySelector('svg')).filter,
-            running: symbol.getAnimations().some(animation => animation.playState === 'running'),
+            running: icon.getAnimations().some(animation => animation.playState === 'running'),
           };
         };
         const initial = read();
@@ -202,15 +201,18 @@ async function expectCompactDesktopNavigation(page, route) {
     const violations = [];
     const page = element.closest('.site-page').getBoundingClientRect();
     const header = element.closest('.site-header').getBoundingClientRect();
-    const brand = element.closest('.site-header').querySelector('.site-brand').getBoundingClientRect();
+    const brand = element.closest('.site-header').querySelector('.site-brand-capsule').getBoundingClientRect();
     const nav = element.getBoundingClientRect();
     const buttons = [...element.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden');
     if (buttons.length !== 5) violations.push('Compact navigation must retain all five home/chapter/settings buttons');
     const firstIcon = buttons[0].querySelector('.site-nav-icon').getBoundingClientRect();
     const sharesBrandRow = nav.top < brand.bottom - 1 && nav.bottom > brand.top + 1;
-    const overlapsBrand = sharesBrandRow ? nav.left < brand.right - 1 : nav.top < brand.bottom - 1;
-    if (overlapsBrand || nav.right > page.right - 15 || nav.width > page.width * .6) {
-      violations.push('The icon group is not compact and aligned to the right of the brand');
+    const brandGap = nav.left - brand.right;
+    const expectedGap = parseFloat(getComputedStyle(element.closest('.site-header-inner')).columnGap);
+    if (!sharesBrandRow || brandGap < -1 || brandGap > expectedGap + 1
+      || brand.left < header.left - 1 || brand.top < header.top - 1 || brand.bottom > header.bottom + 1
+      || nav.right > page.right - 15 || nav.width > page.width * .6) {
+      violations.push('The brand must sit immediately left of Home in the compact group at the right');
     }
     let previousRight = nav.left;
     for (const button of buttons) {
@@ -451,7 +453,7 @@ test('顶部导航随文化内容滚动保持可见，当前首页入口返回�
   await expect(page.locator('.entry-gate')).toBeInViewport();
 });
 
-test('进入章节时四项图案变速收拢并平滑调整高度，品牌返回首页重新展开', async ({ page }) => {
+test('进入章节时仅图案和品牌变速收拢，完整底板保持原位置与面积并可返回展开', async ({ page }) => {
   const duration = 1400;
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -476,10 +478,25 @@ test('进入章节时四项图案变速收拢并平滑调整高度，品牌返�
       return {
         x: box.left + box.width / 2, y: box.top + box.height / 2,
         source: icon.querySelector('image').getAttribute('href'), filter: getComputedStyle(icon.querySelector('svg')).filter,
-        running: icon.closest('.site-nav-symbol').getAnimations().some(animation => animation.playState === 'running'),
+        running: icon.getAnimations().some(animation => animation.playState === 'running'),
       };
     });
+    const backdrop = () => {
+      const header = document.querySelector('.site-header');
+      const surfaces = header.querySelectorAll(':scope > .navigation-surface');
+      const surface = surfaces[0];
+      const bounds = surface.getBoundingClientRect();
+      const headerBounds = header.getBoundingClientRect();
+      const style = getComputedStyle(surface);
+      return { count: surfaces.length, bounds: { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height },
+        header: { x: headerBounds.x, y: headerBounds.y, width: headerBounds.width, height: headerBounds.height },
+        background: style.backgroundImage, opacity: style.opacity, blur: style.backdropFilter, radius: style.borderRadius,
+        running: surface.getAnimations().some(animation => animation.playState === 'running'),
+        contentRunning: [...header.querySelectorAll('.site-nav-symbol, .site-nav-copy')]
+          .some(element => element.getAnimations().some(animation => animation.playState === 'running')) };
+    };
     const initial = positions();
+    const initialBackdrop = backdrop();
     const initialX = initial[1].x;
     const initialY = initial[1].y;
     const samples = [];
@@ -488,18 +505,21 @@ test('进入章节时四项图案变速收拢并平滑调整高度，品牌返�
     await new Promise(resolve => {
       const sample = now => {
         const current = positions();
-        samples.push({ time: now - started, x: current[1].x, y: current[1].y, running: current[1].running, positions: current });
+        samples.push({ time: now - started, x: current[1].x, y: current[1].y, running: current[1].running, positions: current, backdrop: backdrop() });
         if (now - started < duration + 180) requestAnimationFrame(sample);
         else resolve();
       };
       requestAnimationFrame(sample);
     });
-    return { initialX, initialY, initial, samples };
+    return { initialX, initialY, initial, initialBackdrop, samples };
   }, duration);
   expect(motion.samples.length).toBeGreaterThan(15);
+  expect(motion.initialBackdrop.count).toBe(1);
+  expect(motion.initialBackdrop.bounds).toEqual(motion.initialBackdrop.header);
   for (const sample of motion.samples) {
     expect(sample.positions.map(position => position.source)).toEqual(sources);
     expect(sample.positions.map(position => position.filter)).toEqual(Array(5).fill('none'));
+    expect(sample.backdrop).toEqual(motion.initialBackdrop);
   }
   const finalX = motion.samples.at(-1).x;
   const distance = finalX - motion.initialX;
@@ -605,7 +625,7 @@ test('浏览器返回与原生Hash跳转继续使用真实的水平变速动画'
     element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
 });
 
-test('1366px电脑紧凑模式修改字号后返回首页，图案和文字平滑归位', async ({ page }) => {
+test('1366px电脑紧凑模式修改字号后返回首页，图案平滑归位且底板高度保持一致', async ({ page }) => {
   const duration = 1000;
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1366, height: 1080 });
@@ -630,23 +650,25 @@ test('1366px电脑紧凑模式修改字号后返回首页，图案和文字平�
     const icons = [...document.querySelectorAll('.site-nav-item:not([data-route="entry"]) .site-nav-icon')];
     const positions = () => icons.map(icon => {
       const box = icon.getBoundingClientRect();
-      return { x: box.left + box.width / 2, y: box.top + box.height / 2, running: icon.closest('.site-nav-symbol').getAnimations().some(animation => animation.playState === 'running') };
+      return { x: box.left + box.width / 2, y: box.top + box.height / 2, running: icon.getAnimations().some(animation => animation.playState === 'running') };
     });
     const initial = positions();
+    const initialHeaderHeight = document.querySelector('.site-header').getBoundingClientRect().height;
     const samples = [];
     const started = performance.now();
     document.querySelector('.site-brand-capsule').click();
     await new Promise(resolve => {
       const sample = now => {
-        samples.push({ time: now - started, positions: positions() });
+        samples.push({ time: now - started, positions: positions(), headerHeight: document.querySelector('.site-header').getBoundingClientRect().height });
         if (now - started < duration + 180) requestAnimationFrame(sample);
         else resolve();
       };
       requestAnimationFrame(sample);
     });
-    return { initial, samples };
+    return { initial, samples, initialHeaderHeight };
   }, duration);
   expect(motion.samples.length).toBeGreaterThan(15);
+  for (const sample of motion.samples) expect(sample.headerHeight).toBe(motion.initialHeaderHeight);
   for (let index = 0; index < 4; index += 1) {
     expectSmoothVerticalMotion(motion.initial[index].y, motion.samples.map(sample => ({ time: sample.time, ...sample.positions[index] })), duration);
     expect(motion.samples.some(sample => sample.time > duration * .6 && sample.positions[index].running)).toBe(true);

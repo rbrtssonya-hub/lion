@@ -4,7 +4,7 @@ import { lionExpressions } from '../../data/lion-expressions.js';
 import ExpressionMotif from './ExpressionMotif.jsx';
 
 function Cloud({ className = '' }) {
-  return <svg className={`expression-cloud ${className}`} viewBox="0 0 100 56" aria-hidden="true" focusable="false">
+  return <svg className={`expression-cloud ${className}`} viewBox="0 -4 100 60" aria-hidden="true" focusable="false">
     <path d="M2 47c21 2 28-8 32-14-13 6-22-1-17-11 4-8 14-6 17-1-7-19 14-29 25-17 5 6 5 13 0 18 15-8 28 5 22 15 12-2 16 5 14 10-19 9-43-4-55-1-15 6-27 7-38 1Z" fill="currentColor" opacity=".3" />
     <path d="M2 47c21 2 28-8 32-14M34 21c-7-19 14-29 25-17 5 6 5 13 0 18M59 22c15-8 28 5 22 15M81 37c12-2 16 5 14 10-19 9-43-4-55-1-15 6-27 7-38 1M47 16c-7-5-14 3-9 9 5 5 13 0 9-4M67 34c-9-5-16 7-8 12" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
   </svg>;

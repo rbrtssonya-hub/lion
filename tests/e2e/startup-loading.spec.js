@@ -66,7 +66,7 @@ test('模型下载途中丢失WebGL上下文仍结束加载并保留重试', asy
   await expect(page.getByRole('button', { name: '重新载入', exact: true })).toBeVisible();
 });
 
-test('同一导航底板随往返变宽缩窄，五项图案始终被底板覆盖', async ({ page }) => {
+test('加载后同一完整导航底板往返不变，只有图标和品牌移动', async ({ page }) => {
   await page.addInitScript(() => {
     if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
@@ -74,27 +74,62 @@ test('同一导航底板随往返变宽缩窄，五项图案始终被底板覆�
   });
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
-  const surface = await page.locator('.site-navigation > .navigation-surface').elementHandle();
+  const surface = await page.locator('.site-header > .navigation-surface').elementHandle();
   const full = await surface.boundingBox();
-  await page.locator('.site-nav-item[data-route="state"]').click();
-  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'true');
-  await expect.poll(() => surface.evaluate(node => node.getAnimations().some(animation => animation.playState === 'running'))).toBe(true);
-  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
-  const compact = await surface.boundingBox();
-  expect(compact.width).toBeLessThan(full.width * .65);
-  const enclosed = await page.locator('.site-navigation').evaluate(nav => {
-    const b = nav.querySelector('.navigation-surface').getBoundingClientRect();
-    return [...nav.querySelectorAll('.site-nav-symbol')].every(node => {
-      const r = node.getBoundingClientRect();
-      return r.left >= b.left && r.right <= b.right && r.top >= b.top && r.bottom <= b.bottom;
-    });
-  });
-  expect(enclosed).toBe(true);
-  await page.locator('.site-nav-item[data-route="entry"]').click();
+  const originalStyle = await surface.evaluate(node => ({
+    background: getComputedStyle(node).backgroundImage, opacity: getComputedStyle(node).opacity,
+    clip: getComputedStyle(node).clipPath, backdrop: getComputedStyle(node).backdropFilter,
+  }));
+  for (const selector of ['.site-nav-item[data-route="state"]', '.site-nav-item[data-route="entry"]']) {
+    const frames = await page.evaluate(async selector => {
+      const surface = document.querySelector('.site-header > .navigation-surface');
+      const read = () => {
+        const r = surface.getBoundingClientRect();
+        const style = getComputedStyle(surface);
+        const brand = document.querySelector('.site-brand-capsule');
+        const home = document.querySelector('.site-nav-item[data-route="entry"]').getBoundingClientRect();
+        return { x: r.x, y: r.y, width: r.width, height: r.height,
+          animating: document.querySelector('.site-header').dataset.navAnimating,
+          backgroundAnimations: surface.getAnimations().length,
+          style: { background: style.backgroundImage, opacity: style.opacity, clip: style.clipPath, backdrop: style.backdropFilter },
+          moving: [...document.querySelectorAll('.site-nav-icon')].some(icon => icon.getAnimations().some(animation => animation.playState === 'running')),
+          brandRight: brand.getBoundingClientRect().right, homeLeft: home.left,
+          enclosed: [...document.querySelectorAll('.site-nav-icon, .site-brand-capsule')].every(node => {
+            const b = node.getBoundingClientRect();
+            return b.left >= r.left - 1 && b.right <= r.right + 1 && b.top >= r.top - 1 && b.bottom <= r.bottom + 1;
+          }) };
+      };
+      const frames = [read()];
+      const start = performance.now();
+      document.querySelector(selector).click();
+      await new Promise(resolve => {
+        const collect = () => {
+          const frame = read();
+          frames.push(frame);
+          const elapsed = performance.now() - start;
+          if (elapsed < 1580 || (frame.animating === 'true' && elapsed < 4380)) requestAnimationFrame(collect);
+          else resolve();
+        };
+        requestAnimationFrame(collect);
+      });
+      return frames;
+    }, selector);
+    expect(frames.some(frame => frame.moving)).toBe(true);
+    for (const frame of frames) {
+      for (const key of ['x', 'y', 'width', 'height']) expect(frame[key]).toBeCloseTo(full[key], 0);
+      expect(frame.style).toEqual(originalStyle);
+      expect(frame.backgroundAnimations).toBe(0);
+      expect(frame.enclosed).toBe(true);
+    }
+    if (selector.includes('state')) {
+      expect(frames.at(-1).brandRight).toBeLessThanOrEqual(frames.at(-1).homeLeft + 1);
+      expect(frames.at(-1).homeLeft - frames.at(-1).brandRight).toBeLessThanOrEqual(48);
+    }
+    await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
+  }
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
-  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
-  expect(await surface.evaluate(node => node === document.querySelector('.site-navigation > .navigation-surface'))).toBe(true);
-  expect((await surface.boundingBox()).width).toBeCloseTo(full.width, 0);
+  expect(await surface.evaluate(node => node === document.querySelector('.site-header > .navigation-surface'))).toBe(true);
+  expect(await surface.boundingBox()).toEqual(full);
 });
 
 test('导航字体请求悬挂时总准备预算到期，保留字体回退并结束加载', async ({ page }) => {

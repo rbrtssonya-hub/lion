@@ -6,7 +6,7 @@
 
 2026-10-15新增最前置水墨加载屏、模型/书册/图鉴预热及跨章节实例复用。设置左侧纵排分类，外观页分别调节所有透明模糊底板；动画页调书册尺寸和水墨时间线，布局页调页面选中命中。运行机制、参数范围和原加载HTML来源见 [本轮实现说明](../source/references/2026-10-15-desktop-iteration.md)。该日工作按当时要求在支线交付；后续分支同步及本轮交付按当前根 `AGENTS.md` 执行。
 
-同日追加整改：首页导航恢复原版连续红栏并删除新增框饰，同底板仍参与章节收缩/展开且保留右侧“首页”；外观新增参考资料外区和卡片两组完整材质参数；动作只保留讲解区一条阶段目录。当前行为及参数默认值见 [三项整改说明](../source/references/2026-10-15-desktop-rectification.md)。
+同日追加整改：首页导航恢复原版连续红栏并删除新增框饰（2026-10-19改为整栏底板固定、仅图标与Logo移动），保留右侧“首页”；外观新增参考资料外区和卡片两组完整材质参数；动作只保留讲解区一条阶段目录。当前行为及参数默认值见 [三项整改说明](../source/references/2026-10-15-desktop-rectification.md)。
 
 2026-10-15神态追加改版：逐态独立的八张参考形态PNG，右侧简介/狮艺解读采用明显不同的字体与结构；外观新增神态文字底板六参数，导航新增简介/解读独立字号。素材与真实性边界见 [八态说明](../source/references/lion-expressions.md)，当前单屏/键盘/滚轮交互保持。
 
@@ -48,13 +48,15 @@ npm run preview
 
 React 负责页面生命周期、部件选择与信息面板状态，场景服务通过容器接入 Three.js。`App` 在启动时预热模型模块、GLB、纹理和着色器，并常驻同一 `ModelPage`；切到其他章节或页面进入后台时通过 `setActive(false)` 暂停绘制，返回时复用原画布。组件卸载、重试或场景故障时才释放资源。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、环境贴图、几何与材质的清理。
 
-书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
+书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。2026-10-19追加修复：点击年代/宿主方向键立即更新狮头目标和节点选中，详情及书页仍跟随真实提交；实际焦点进入书纸时交回纸面控制，旧消息不回拉最后目标。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
 书本容器至少60%可见、七图与引擎就绪并处于前台后，桥接延迟220ms启动官方七页快翻，最终回序卷。快翻资格由宿主通过 `intro-policy` 提供，只有实际开始或用户主动接管才写入独立sessionStorage键 `nanfeng-lion:book-intro-seen:v1`；返回首页、同会话刷新与新iframe不重播，未看见/加载失败不提前消费。存储不可用时模块内存保证当前页面跨路由不重复，不能跨整页刷新保存。滚出视野仍暂停保留进度，减少动态跳过开场；StrictMode重复握手不打断已开始的同一序列。桥接收敛时间线/键盘交接，取消失焦、尺寸变化或指针中断中的未提交拖拽。真实纸面之外不接收翻页；书下投影及照片氛围在自身边界前淡出，保持原曲面/物理引擎。
+
+2026-10-19传播页用内置imagegen去除图片自带的外轮廓黑边，原v2归档`source/design/lion-book/spread-v2.png`，新图原生1493×1053，其他六页不变；保持原几何和18层卷曲，详见[整改与完整提示词](../source/references/2026-10-19-navigation-feedback-fixes.md)。
 
 七幅PNG位于 `source/public/assets/lion-book/`，保持原画布归一化书页位置、中央书脊和透明留白；不要把插画满铺或随意裁掉留白，否则会破坏曲面纹理对齐。实际生成尺寸为1494/1495×1052，与原1760/1240比例一致；资源就绪检查验证全部七页解码及比例，不能仅凭iframe加载事件显示成功。古代渊源与南狮形成纪年分开表述，AI插画明确为历史主题示意。新增史册回归在 `tests/e2e/lion-book.spec.js`，修改时覆盖真实拖拽的卷曲/取消/提交、时间线同步、首次加载、错误重试、滚轮、章节退出重入和电脑侧栏推开。
 
@@ -73,6 +75,8 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 `focusOn({ id, target, distance, point })` 中，目录 `target`、数据中的 `surfaceRegions` 与 `pickPoints` 使用源 glTF 场景坐标，服务通过模型变换换算；点击回传的 `point` 使用当前世界坐标。`distance` 是模型最长边缩放到1.78后的世界距离。聚焦/复原共用单一渲染循环内的相机补间，目标对齐左侧展示中心；减少动态偏好下直接定位。只读 canvas `dataset` 发布实际相机距离、目标投影、部件可命中投影及补间状态，供浏览器回归核对。
 
 结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；结构页采用右侧单一资料卡与全页透明canvas。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
+
+2026-10-19共享云纹SVG仅将viewBox扩为`0 -4 100 60`，修复3px描边顶部越界，中央与左牌签同步完整。
 
 神态页由 `ExpressionPage.jsx` 与 `src/data/lion-expressions.js` 提供喜、怒、哀、乐、动、静、惊、疑八态。当前为左目录/中央完整狮头/右文字的自适应单屏，高度为视口减实际顶栏，不锁16:9、不整页缩放。旧下半区、眼嘴局部图及独立页脚已删除；原文案未改。页面内部overview/details模式在右侧替换内容：点击中央独立狮头按钮显示meaning/emotion/motion解读，重复点击不切回；返回/Escape恢复简介并聚焦狮头。任一切态入口（含重复点击当前目录项）回到简介，不叠加旧文案或改Hash。
 
@@ -98,9 +102,9 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
-首页为原版连续红色五项文字横栏，无新增双框或云纹装饰；同两个 `NavigationSurface` 拼满顶栏并在章节页收缩为左品牌块及右首页/结构/动作/神态/设置五入口，保持节点实例。图案和高亮红线下保留普通sans标题，原标题/辅助文字仍在DOM用于过渡，但紧凑时opacity0、aria-hidden且不可交互。`NavigationIcon`继续载入用户1254×1254金白透明PNG与原viewBox，不改变字节、颜色或节点实例。当前恢复标准见[三项整改](../source/references/2026-10-15-desktop-rectification.md)，原图案及分块设计背景见[原图案说明](../source/references/navigation-user-icons.md)、[分块导航参考](../source/references/navigation-two-panels.md)。
+首页保留连续红色五项完整文案横栏。2026-10-19按用户新要求，唯一 `NavigationSurface` 直接放在 `SiteHeader` 下，始终覆盖完整顶栏，切换章节时宽高、渐变、透明度、模糊与圆角保持；不再把底板拆成两块移动。章节品牌Logo向右收拢到“首页”左侧，与首页/结构/动作/神态/设置组成同一组。图案和高亮红线下保留普通sans短标题，原标题/辅助文字保留DOM，紧凑时隐藏、aria-hidden且不可交互。`NavigationIcon`继续使用原透明PNG，原字节、颜色和节点实例保持；此前[分块导航参考](../source/references/navigation-two-panels.md)仅作历史来源。
 
-`useNavigationMotion` 捕获实际合成后的symbol/品牌/copy及两块底板位置；布局更新后先统一测量再用WAAPI补间到最终位置，品牌内底板扣除父级位移，快速导航从正在显示的位置接续。布局字宽与动画平移统一换算CSS像素，125%缩放时不重复放大；图案与普通标题在symbol内同步移动；原标题/辅助文案整组右移、水平压缩并淡出，返回反向展开/渐显。品牌章节固定落位，首页额外右移默认24px，在动画页可调0–160px；既有品牌留白仍决定基准位置。默认720ms、200–1600/10ms步长与三条曲线保留，紧凑间距14px/4–36与右留白48px/16–160保留，实际受电脑余宽限制。原生hash/history仍先捕获后更新route；真实宽度/参数变化、减弱动态及卸载取消并清理will-change/监听/观察器。html采用 `scrollbar-gutter: stable`，避免首页长页到神态单屏的滚动条消失改变宽度、误取消刚开始的动画。新回归显示经典滚动条并测中间坐标、缩放/透明度及自然完成。
+`useNavigationMotion` 仅捕获 `.site-nav-icon` 与品牌胶囊的实际合成位置，布局后统一测量再用WAAPI平移；底板、短标题和完整文案均不参与位移或压缩动画。快速导航从当前可见位置接续，CSS像素换算兼容125%缩放。首页品牌额外右移默认24px、动画页可调0–160px；章节使用右侧紧凑组位置。默认720ms、200–1600/10ms步长与三条曲线、紧凑间距14px/4–36和右留白48px/16–160保留，实际按电脑余宽限制。原生hash/history先捕获再更新route；真实宽度/参数变化、减弱动态及卸载取消并清理will-change/监听/观察器。html保留 `scrollbar-gutter: stable`，避免滚动条变化中断动画。回归逐帧检查完整底板覆盖、几何和材质恒定及图标真实动画完成。
 
 `DeveloperSettingsPanel` 贴右完整视口，仍为外观/导航/动画/轮播/布局五页，保留页签键盘、独立滚动、关闭与恢复默认。面板默认关闭，推开偏好默认开启，顶栏透明度默认20%；已有明确保存的18%/覆盖/零品牌偏移等参数保留，缺少新字段时补默认值，恢复默认采用新值。`homeBrandOffset` 独立于brandPadding，动画页“首页品牌右移距离”可保存/刷新/校验/复原。存储key与字体版本2保持，旧20→26的一次性迁移规则不变；读写失败仍可现场调整，打开状态不持久化。
 
@@ -112,7 +116,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 导航字体的WOFF和OFL许可位于 `source/public/assets/fonts/`，来源及生成脚本在 `source/fonts/navigation-brush/`；`SiteHeader` 用集中媒体URL定义font-face，兼容Vite相对基址。导航标题和辅助文字均为真实字体，设置“导航”页可分别调节首页标题字号（14–28px，默认26px）和辅助字号（10–28px，默认18px），辅助透明度独立调整；导航按两类文字的实际字宽计算栏宽，空间不足时共同缩小并保留设定比例。旧保存参数自动补齐辅助字号，标题偏好保留，刷新和恢复默认沿用现有机制。顶部章节数字已移除；修改导航或品牌文字时检查本地字体子集是否覆盖新字。本轮简称“结构”使用既有字符，未更换运行字体或其他资产。运行检查包含字体和全部审查图的大小及SHA256。
 
-导航适配用未动画的离屏copy克隆及DOM Range测真实字宽，避免返回途中字体完成通知把正在压缩的宽度当作排版宽度。首页五项按内容共同缩放，完整单行及字号比例保持；不足时品牌独立第一行、顶栏至少116px。章节五项保持单行紧凑组，独立算间距/右留白/图案与普通标题的高度预算，64px顶栏也不越界。实际高度写 `--site-header-height`、请求 `--header-height` 不变；观察器、字体通知和resize合并单RAF，卸载清理。章节/设置背景先在App解析为完整URL，避免生产stylesheet从assets目录消费相对CSS变量时形成assets/assets；验收直接解码计算后的背景地址，不能只核对文件名。
+导航适配用离屏copy克隆及DOM Range测真实字宽，使紧凑页隐藏文案也能计算与首页相同的高度预算。首页五项按内容共同缩放，完整单行及字号比例保持；不足时首页品牌独立第一行、顶栏至少116px，同宽章节保持相同顶栏高度。章节五项保持单行紧凑组，独立算间距/右留白/图案与普通标题的高度预算，64px顶栏也不越界。实际高度写 `--site-header-height`、请求 `--header-height` 不变；观察器、字体通知和resize合并单RAF，卸载清理。章节/设置背景先在App解析为完整URL，避免生产stylesheet从assets目录消费相对CSS变量时形成assets/assets；验收直接解码计算后的背景地址，不能只核对文件名。
 
 首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label并按顶栏实际高度滚到首页书册区，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
 

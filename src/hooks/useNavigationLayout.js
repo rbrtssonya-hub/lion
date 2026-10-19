@@ -28,9 +28,8 @@ export function useNavigationLayout(headerRef, current, settings) {
       return size > 0 ? range.getBoundingClientRect().width / coordinateScale / size : 0;
     };
     const measureCopy = (item, font, helperFont) => {
-      // Visible copy can be in the middle of a compressed return flight.
-      // Measure an untransformed clone so font/resize notifications cannot
-      // change the grid based on the current animation scale.
+      // Compact copy is hidden. Measure a detached-layout clone so all routes
+      // use the same expanded layout budget and background height.
       const copy = item.querySelector('.site-nav-copy').cloneNode(true);
       copy.style.cssText = 'display:flex;position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;width:max-content;transform:none;opacity:1';
       header.append(copy);
@@ -46,7 +45,6 @@ export function useNavigationLayout(headerRef, current, settings) {
       const bounds = header.getBoundingClientRect();
       const width = parseFloat(getComputedStyle(header).width);
       coordinateScale = bounds.width / width;
-      write(header, '--navigation-surface-full-width', `${width}px`);
       const requested = getComputedStyle(shell);
       const requestedHeight = readPixels(requested, '--header-height', 90);
       const font = readPixels(requested, '--nav-font-size', 26);
@@ -65,23 +63,8 @@ export function useNavigationLayout(headerRef, current, settings) {
       const icon = Math.min(requestedIcon, Math.max(20, requestedIcon * density * density), requestedHeight - 44);
       const homeOffset = Math.min(readPixels(requested, '--home-brand-offset', 24), Math.max(0, width * .12));
       write(header, '--navigation-home-brand-offset', `${homeOffset}px`);
-      if (current !== 'entry') {
-        const sidePadding = Math.min(requestedPadding, Math.max(8, width * .02));
-        const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
-        const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
-        const brandWidth = parseFloat(getComputedStyle(header.querySelector('.site-brand-capsule')).width);
-        const available = width - sidePadding - inset - brandWidth - Math.min(28, width * .011) - 28 - 4 * gap;
-        const compactIcon = Math.max(18, Math.min(icon, available / 5 - 24));
-        header.dataset.navLayout = 'compact';
-        write(header, '--navigation-icon-size', `${compactIcon}px`);
-        write(header, '--navigation-compact-gap', `${gap}px`);
-        write(header, '--navigation-compact-inset', `${inset}px`);
-        write(header, '--navigation-copy-shift', `${Math.min(36, Math.max(8, inset - 16))}px`);
-        write(header, '--navigation-side-padding', `${sidePadding}px`);
-        write(shell, '--site-header-height', `${requestedHeight}px`);
-        return;
-      }
-      // Expose the complete text before measuring when leaving the compact layout.
+      // First measure the expanded layout in every route. A stacked homepage
+      // must not make the background taller only when returning to the homepage.
       header.dataset.navLayout = 'inline';
       const headingGap = 6 * density;
       const copyGap = 8 * density;
@@ -118,10 +101,16 @@ export function useNavigationLayout(headerRef, current, settings) {
       write(header, '--navigation-header-gap', `${headerGap}px`);
       write(header, '--navigation-columns', columns);
       write(shell, '--site-header-height', `${Math.max(stacked ? 116 : 0, requestedHeight)}px`);
-      const navigation = header.querySelector('.site-navigation');
-      const navigationBounds = navigation.getBoundingClientRect();
-      write(navigation, '--navigation-surface-offset', `${stacked ? 0 : (bounds.left - navigationBounds.left) / coordinateScale}px`);
-      write(navigation, '--navigation-surface-offset-y', `${(bounds.top - navigationBounds.top) / coordinateScale}px`);
+      if (current !== 'entry') {
+        const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
+        const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
+        const compactAvailable = width - sidePadding - inset - brandWidth - headerGap - 28 - 4 * gap;
+        const compactIcon = Math.max(18, Math.min(icon, compactAvailable / items.length - 24));
+        header.dataset.navLayout = 'compact';
+        write(header, '--navigation-icon-size', `${compactIcon}px`);
+        write(header, '--navigation-compact-gap', `${gap}px`);
+        write(header, '--navigation-compact-inset', `${inset}px`);
+      }
     };
     const schedule = () => {
       if (active && !frame) frame = requestAnimationFrame(update);

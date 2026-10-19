@@ -4,12 +4,12 @@ import { lionBookPages } from '../../data/lion-book.js';
 
 const points = lionBookPages.map((_, index) => ({ x: 60 + index * 880 / 6, y: 64 }));
 
-export default function BookTimeline({ book, send, inkEnabled, playbackEnabled }) {
+export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled, playbackEnabled }) {
   const navRef = useRef(null);
   const markerRef = useRef(null);
   const canvasRef = useRef(null);
   const motionRef = useRef(null);
-  const initial = useRef({ index: book.index, inkEnabled, playbackEnabled });
+  const initial = useRef({ index: timelineIndex, inkEnabled, playbackEnabled });
 
   useLayoutEffect(() => {
     const nav = navRef.current, marker = markerRef.current, canvas = canvasRef.current;
@@ -88,7 +88,7 @@ export default function BookTimeline({ book, send, inkEnabled, playbackEnabled }
       reduced.removeEventListener('change', schedule); motionRef.current = null;
     };
   }, []);
-  useLayoutEffect(() => { motionRef.current?.({ index: book.index, inkEnabled, playbackEnabled }); }, [book.index, inkEnabled, playbackEnabled]);
+  useLayoutEffect(() => { motionRef.current?.({ index: timelineIndex, inkEnabled, playbackEnabled }); }, [timelineIndex, inkEnabled, playbackEnabled]);
 
   return <nav ref={navRef} className="lion-book-timeline" aria-label="醒狮历史时间线" aria-describedby="lion-book-instructions" data-particles-enabled={inkEnabled}>
     <svg className="lion-book-track" viewBox="0 0 1000 142" preserveAspectRatio="none" fill="none" aria-hidden="true">
@@ -98,7 +98,7 @@ export default function BookTimeline({ book, send, inkEnabled, playbackEnabled }
     <span ref={markerRef} className="lion-book-traveling-lion" aria-hidden="true"><img src={media.navLion} alt="" draggable="false" /></span>
     {lionBookPages.map((page, index) => <button type="button" key={page.id} data-book-page={page.id} className={index === 0 || index === 6 ? 'lion-book-endpoint' : ''}
       style={{ left: `${points[index].x / 10}%`, top: '46px' }}
-      aria-label={`翻阅${page.stage}：${page.title}`} aria-current={book.index === index ? 'step' : undefined} disabled={!book.ready || !playbackEnabled}
+      aria-label={`翻阅${page.stage}：${page.title}`} aria-current={timelineIndex === index ? 'step' : undefined} disabled={!book.ready || !playbackEnabled}
       onClick={() => send('goTo', index)}>
       <span className="lion-book-node" aria-hidden="true">{index === 0 ? '序' : index === 6 ? '终' : String(index).padStart(2, '0')}</span>
       <span className="lion-book-wave-label">{page.stage}</span><small>{index > 0 && index < 6 ? page.era : index === 0 ? '开启史册' : '南风有狮'}</small>
