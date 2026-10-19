@@ -41,8 +41,23 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     return url.href;
   }, [channelId]);
   const [book, setBook] = useState({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
+  const bookRef = useRef(book);
+  bookRef.current = book;
+  const [timelineTarget, setTimelineTarget] = useState(null);
+  const pendingTimelineRef = useRef(null);
   const current = lionBookPages[book.index];
   const send = useCallback((action, value) => {
+    if (bookRef.current.ready && playbackEnabledRef.current && ['goTo', 'next', 'previous'].includes(action)) {
+      const from = pendingTimelineRef.current ?? bookRef.current.index;
+      const target = action === 'goTo' ? value : (from + (action === 'next' ? 1 : -1) + lionBookPages.length) % lionBookPages.length;
+      if (Number.isInteger(target) && target >= 0 && target < lionBookPages.length) {
+        // A timeline choice has immediate visual feedback. The real spread,
+        // description and provenance keep following the engine's committed index.
+        const settled = pendingTimelineRef.current === null && !bookRef.current.turning && target === bookRef.current.index;
+        pendingTimelineRef.current = settled ? null : target;
+        setTimelineTarget(settled ? null : target);
+      }
+    }
     const command = { type: 'lion-book:command', channelId: channelRef.current, action };
     if (action === 'visibility') command.visible = value;
     else if (action === 'intro-policy') command.enabled = value;
@@ -68,7 +83,15 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     // transfer completes, then test the whole document (including its iframe).
     const onWindowBlur = () => {
       clearTimeout(focusTimer);
-      focusTimer = setTimeout(publishVisibility, 0);
+      focusTimer = setTimeout(() => {
+        // Actual paper focus hands control back to the engine. Losing focus
+        // to another application or a host settings control keeps the request.
+        if (document.hasFocus() && document.activeElement === frame && pendingTimelineRef.current !== null) {
+          pendingTimelineRef.current = null;
+          setTimelineTarget(null);
+        }
+        publishVisibility();
+      }, 0);
     };
     const observer = new IntersectionObserver(([entry]) => {
       // A deliberately tall stage must still play in a short desktop window.
@@ -93,7 +116,16 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
         // visit. Lazy mounting, loading and visibility alone do not.
         if (data.introConsumed) consumeIntro();
         if (data.ready || data.error) clearTimeout(loadTimeout);
-        setBook({ index: data.index, turning: data.turning, ready: data.ready, intro: data.intro, error: data.error ? '书页加载失败' : null });
+        const nextBook = { index: data.index, turning: data.turning, ready: data.ready, intro: data.intro, error: data.error ? '书页加载失败' : null };
+        bookRef.current = nextBook;
+        // Old messages from an interrupted turn must not pull the marker away
+        // from the latest requested node. Paper gestures and the intro remain
+        // authoritative whenever there is no outstanding host selection.
+        if (data.error || (!data.turning && data.index === pendingTimelineRef.current)) {
+          pendingTimelineRef.current = null;
+          setTimelineTarget(null);
+        }
+        setBook(nextBook);
       } else if (data.type === 'lion-book:wheel' && Number.isFinite(data.deltaY)) {
         scrollDelta += Math.max(-1600, Math.min(1600, data.deltaY));
         if (scrollFrame === null) scrollFrame = requestAnimationFrame(() => {
@@ -104,7 +136,11 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     };
     window.addEventListener('message', receive);
     const loadTimeout = setTimeout(() => {
-      if (active) setBook((previous) => ({ ...previous, error: '史册加载时间较长，请重试' }));
+      if (active) {
+        pendingTimelineRef.current = null;
+        setTimelineTarget(null);
+        setBook((previous) => ({ ...previous, error: '史册加载时间较长，请重试' }));
+      }
     }, 25_000);
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
@@ -147,6 +183,8 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
   }, [book.ready, book.error]);
 
   const retry = () => {
+    pendingTimelineRef.current = null;
+    setTimelineTarget(null);
     setBook({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
     setAttempt((value) => value + 1);
   };
@@ -165,7 +203,7 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
       {book.error && <div className="lion-book-error" role="alert"><p>{book.error}</p><button type="button" onClick={retry}>重新展开</button></div>}
     </div>
     <p className="lion-book-instructions" id="lion-book-instructions"><span aria-hidden="true">↔</span> 拖动左右书页，翻阅醒狮往事 <span className="lion-book-key-hint">也可点选年代 · 左右方向键翻页</span></p>
-    <BookTimeline book={book} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
+    <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
     <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
       <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>

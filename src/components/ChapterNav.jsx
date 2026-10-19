@@ -1,10 +1,8 @@
 import { chapters } from '../config/chapters.js';
 import NavigationIcon from './NavigationIcon.jsx';
-import NavigationSurface from './NavigationSurface.jsx';
 
 export default function ChapterNav({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef }) {
   return <nav className="site-navigation" aria-label="作品章节导航">
-    <NavigationSurface />
     {chapters.map(({ route, label, description }) => (
       <button key={route} data-route={route} type="button"
         className={`site-nav-item${current === route ? ' is-current' : ''}`}

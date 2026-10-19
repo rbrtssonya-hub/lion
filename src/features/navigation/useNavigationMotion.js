@@ -29,11 +29,10 @@ export function useNavigationMotion(headerRef, current, settings) {
     const header = headerRef.current;
     if (!header) return;
     // Read the composited positions before cancellation, including an interrupted flight.
-    pending.current = new Map([...header.querySelectorAll('.site-nav-symbol, .site-nav-copy, .site-brand-capsule, .navigation-surface')]
+    pending.current = new Map([...header.querySelectorAll('.site-nav-icon, .site-brand-capsule')]
       .map(element => {
         const rect = element.getBoundingClientRect();
-        return [element, { left: rect.left, top: rect.top, width: rect.width, height: rect.height,
-          opacity: Number(getComputedStyle(element).opacity) }];
+        return [element, { left: rect.left, top: rect.top, width: rect.width }];
       }));
     stop();
   }, [headerRef, stop]);
@@ -57,7 +56,7 @@ export function useNavigationMotion(headerRef, current, settings) {
     layoutWidth.current = header.closest('.site-page').getBoundingClientRect().width;
     header.dataset.navFrom = oldRoute === 'entry' ? 'expanded' : 'compact';
     const start = (element, keyframes) => {
-      element.style.willChange = 'transform, opacity';
+      element.style.willChange = 'transform';
       const animation = element.animate(keyframes, {
         duration: settings.navigationDuration,
         easing: navigationEasings[settings.navigationEasing] || navigationEasings.smooth,
@@ -77,47 +76,23 @@ export function useNavigationMotion(headerRef, current, settings) {
         }
       };
     };
-    // Measure every destination before starting the parent brand's animation.
+    // The background and labels stay outside the animation. Measure every
+    // destination first, including when a route change interrupts a flight.
     const targets = new Map();
     for (const [element] of positions) {
-      const style = getComputedStyle(element);
-      const transform = style.transform === 'none' ? 'translate(0px, 0px)' : style.transform;
-      const opacity = Number(style.opacity);
-      element.style.transform = 'none';
-      const rect = element.getBoundingClientRect();
-      element.style.removeProperty('transform');
-      targets.set(element, { rect, transform, opacity });
+      targets.set(element, element.getBoundingClientRect());
     }
-    const brand = header.querySelector('.site-brand-capsule');
-    const brandFrom = positions.get(brand);
-    const brandTarget = targets.get(brand)?.rect;
     const coordinateScale = header.getBoundingClientRect().width / parseFloat(getComputedStyle(header).width);
     for (const [element, from] of positions) {
       if (!element.isConnected || typeof element.animate !== 'function' || !from.width) continue;
-      const copy = element.classList.contains('site-nav-copy');
-      const surface = element.classList.contains('navigation-surface');
-      const { rect: target, transform: targetTransform, opacity: targetOpacity } = targets.get(element);
-      if (copy && from.opacity === 0 && targetOpacity === 0) continue;
-      // The nested brand surface also shrinks. Subtract its parent's flight
-      // so its global position stays continuous, including interrupted returns.
-      const nestedSurface = surface && element.parentElement === brand;
-      const dx = (from.left - target.left - (nestedSurface ? brandFrom.left - brandTarget.left : 0)) / coordinateScale;
-      const dy = (from.top - target.top - (nestedSurface ? brandFrom.top - brandTarget.top : 0)) / coordinateScale;
-      const fromScale = copy || surface ? ` scale(${from.width / Math.max(1, target.width)}, ${from.height / Math.max(1, target.height)})` : '';
-      if (!copy && !surface && Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
-      const fromTransform = `translate(${dx}px, ${dy}px)${fromScale}`;
-      if (copy || surface) {
-        // Both title and helper text move and compress as one readable group.
-        start(element, [
-          { transform: fromTransform, opacity: from.opacity },
-          { transform: targetTransform, opacity: targetOpacity },
-        ]);
-      } else {
-        start(element, [
-          { transform: fromTransform, opacity: from.opacity },
-          { transform: 'translate(0px, 0px)', opacity: targetOpacity },
-        ]);
-      }
+      const target = targets.get(element);
+      const dx = (from.left - target.left) / coordinateScale;
+      const dy = (from.top - target.top) / coordinateScale;
+      if (Math.abs(dx) < .5 && Math.abs(dy) < .5) continue;
+      start(element, [
+        { transform: `translate(${dx}px, ${dy}px)` },
+        { transform: 'translate(0px, 0px)' },
+      ]);
     }
     header.dataset.navAnimating = String(running.current.size > 0);
   }, [headerRef, current, settings.navigationDuration, settings.navigationEasing,

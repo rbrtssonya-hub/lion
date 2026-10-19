@@ -21,9 +21,9 @@ export default function SiteHeader({ current, onNavigate, settingsOpen, onToggle
 
   return <header className="site-header" ref={headerRef} data-nav-mode={current === 'entry' ? 'expanded' : 'compact'}>
     <style>{navigationFontFace}</style>
+    <NavigationSurface />
     <div className="site-header-inner">
       <button type="button" className="site-brand-capsule" onClick={() => navigate('entry')} aria-label="南风有狮，返回首页">
-        <NavigationSurface />
         <BrandLockup />
       </button>
       <ChapterNav current={current} onNavigate={navigate} settingsOpen={settingsOpen}

@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Classic scrollbars expose the homepage → single-screen expression transition
-// that headless Chromium's default --hide-scrollbars otherwise conceals.
+// Keep real desktop scrollbars: changing chapters must not shift the red bar.
 test.use({ launchOptions: {
   ignoreDefaultArgs: ['--hide-scrollbars'],
   args: ['--disable-features=OverlayScrollbar,FluentOverlayScrollbar'],
@@ -13,6 +12,7 @@ const brand = page => page.getByRole('button', { name: '南风有狮，返回首
 const doubleFrame = page => page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 
 async function open(page, settings = {}, route = 'entry') {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(value => {
     if (window !== window.top) return;
@@ -32,33 +32,43 @@ async function sampleFlight(page, selector, interrupt = null, remeasure = false)
   return page.evaluate(async ({ selector, interrupt, duration, remeasure }) => {
     const read = () => {
       const box = element => {
-        const rect = element.getBoundingClientRect();
-        return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+        const r = element.getBoundingClientRect();
+        return { x: r.x, y: r.y, width: r.width, height: r.height, right: r.right, bottom: r.bottom };
       };
       const state = element => ({ ...box(element), opacity: Number(getComputedStyle(element).opacity),
+        transform: getComputedStyle(element).transform,
         running: element.getAnimations().some(animation => animation.playState === 'running'),
         currentTime: element.getAnimations().find(animation => animation.playState === 'running')?.currentTime ?? null,
         willChange: element.style.willChange });
+      const background = element => {
+        const style = getComputedStyle(element);
+        return { ...box(element), animations: element.getAnimations().length,
+          style: Object.fromEntries(['backgroundColor', 'backgroundImage', 'backdropFilter', 'borderRadius', 'borderBottom', 'boxShadow', 'clipPath', 'opacity', 'transform'].map(key => [key, style[key]])) };
+      };
       const h = document.querySelector('.site-header');
+      const backgrounds = [background(h), ...[...h.querySelectorAll('.navigation-surface')].map(background)];
+      const bounds = box(h);
+      const painted = backgrounds.filter(layer => Number(layer.style.opacity) > 0 &&
+        (layer.style.backgroundImage !== 'none' || !['rgba(0, 0, 0, 0)', 'transparent'].includes(layer.style.backgroundColor)));
+      const covered = [.1, .5, .9].every(y => Array.from({ length: 41 }, (_, index) => {
+        const x = bounds.x + bounds.width * (index + .5) / 41;
+        const top = bounds.y + bounds.height * y;
+        return painted.some(layer => x >= layer.x - .5 && x <= layer.right + .5 && top >= layer.y - .5 && top <= layer.bottom + .5);
+      }).every(Boolean));
       return { time: performance.now(), route: document.querySelector('#react-app').dataset.route,
         animating: h.dataset.navAnimating, columns: h.style.getPropertyValue('--navigation-columns'),
         pageWidth: document.querySelector('.site-page').getBoundingClientRect().width,
-        brand: state(document.querySelector('.site-brand-capsule')),
-        surfaces: [...h.querySelectorAll('.navigation-surface')].map(state),
-        items: [...document.querySelectorAll('.site-nav-item')].map(item => ({
-          key: item.dataset.route || 'settings', symbol: state(item.querySelector('.site-nav-symbol')),
-          copy: state(item.querySelector('.site-nav-copy')),
+        brand: state(h.querySelector('.site-brand-capsule')), backgrounds, covered,
+        items: [...h.querySelectorAll('.site-nav-item')].map(element => ({
+          key: element.dataset.route || 'settings', button: box(element),
+          symbol: state(element.querySelector('.site-nav-icon')), copy: state(element.querySelector('.site-nav-copy')),
         })) };
     };
     const initial = read();
     const frames = [];
     let preInterrupt, postInterrupt;
     const start = performance.now();
-    if (remeasure) setTimeout(() => {
-      // A font completion can arrive while the visible text is still scaled.
-      // Its layout pass must use the glyph widths before animation transforms.
-      document.fonts.dispatchEvent(new Event('loadingdone'));
-    }, duration * .4);
+    if (remeasure) setTimeout(() => document.fonts.dispatchEvent(new Event('loadingdone')), duration * .4);
     if (interrupt) setTimeout(() => {
       preInterrupt = read();
       document.querySelector(interrupt.selector).click();
@@ -67,8 +77,13 @@ async function sampleFlight(page, selector, interrupt = null, remeasure = false)
     document.querySelector(selector).click();
     await new Promise(resolve => {
       const collect = () => {
-        frames.push(read());
-        if (performance.now() - start < duration + (interrupt?.after || 0) + 140) requestAnimationFrame(collect);
+        const frame = read();
+        frames.push(frame);
+        const elapsed = performance.now() - start;
+        const minimum = duration + (interrupt?.after || 0) + 140;
+        // A cold model route can delay the first animation frame. Keep sampling
+        // its real flight instead of treating time before it starts as motion.
+        if (elapsed < minimum || (frame.animating === 'true' && elapsed < minimum + duration * 2)) requestAnimationFrame(collect);
         else resolve();
       };
       requestAnimationFrame(collect);
@@ -78,76 +93,109 @@ async function sampleFlight(page, selector, interrupt = null, remeasure = false)
 }
 
 function item(frame, key) { return frame.items.find(entry => entry.key === key); }
-function expectNaturalFlight(flight, key, kind = 'symbol') {
-  const initial = item(flight.initial, key)[kind];
-  const final = item(flight.final, key)[kind];
+
+function expectNaturalFlight(flight, key = 'model') {
+  const initial = item(flight.initial, key).symbol;
+  const final = item(flight.final, key).symbol;
   const distance = final.x - initial.x;
   expect(Math.abs(distance)).toBeGreaterThan(30);
-  const running = flight.frames.filter(frame => item(frame, key)[kind].running);
+  const running = flight.frames.filter(frame => item(frame, key).symbol.running);
   expect(running.length).toBeGreaterThan(8);
-  expect(running.some(frame => item(frame, key)[kind].currentTime > duration * .65)).toBe(true);
+  expect(running.some(frame => item(frame, key).symbol.currentTime > duration * .65)).toBe(true);
   const middle = running.filter(frame => {
-    const progress = (item(frame, key)[kind].x - initial.x) / distance;
+    const progress = (item(frame, key).symbol.x - initial.x) / distance;
     return progress > .08 && progress < .92;
   });
   expect(middle.length).toBeGreaterThan(3);
-  expect(Math.max(...middle.map(frame => Math.abs((item(frame, key)[kind].x - initial.x) / distance - item(frame, key)[kind].currentTime / duration)))).toBeGreaterThan(.1);
+  expect(Math.max(...middle.map(frame => Math.abs((item(frame, key).symbol.x - initial.x) / distance - item(frame, key).symbol.currentTime / duration)))).toBeGreaterThan(.1);
   expect(flight.final.animating).toBe('false');
   expect(final.running).toBe(false);
   expect(final.willChange).toBe('');
 }
 
-test('经典滚动条下首页到三章保留图案文字和品牌的中间动画并自然完成', async ({ page }) => {
+function expectStationaryBackground(flight) {
+  expect(flight.initial.backgrounds.length).toBeGreaterThan(1);
+  const violations = [];
+  for (const [frameIndex, frame] of [flight.initial, ...flight.frames, flight.final].entries()) {
+    if (!frame.covered) violations.push({ frame: frameIndex, problem: 'red background has an uncovered area' });
+    if (frame.backgrounds.length !== flight.initial.backgrounds.length) violations.push({ frame: frameIndex, problem: 'background count changed' });
+    for (const [index, layer] of frame.backgrounds.entries()) {
+      const original = flight.initial.backgrounds[index];
+      for (const key of ['x', 'y', 'width', 'height']) {
+        if (Math.abs(layer[key] - original[key]) >= .75) violations.push({ frame: frameIndex, background: index, key, value: layer[key], original: original[key] });
+      }
+      if (JSON.stringify(layer.style) !== JSON.stringify(original.style)) violations.push({ frame: frameIndex, background: index, style: layer.style, original: original.style });
+      if (layer.animations !== 0) violations.push({ frame: frameIndex, background: index, animations: layer.animations });
+    }
+    for (const entry of frame.items) {
+      if (entry.copy.running || entry.copy.transform !== 'none' || entry.copy.willChange !== '') violations.push({ frame: frameIndex, label: entry.key, copy: entry.copy });
+    }
+  }
+  // One assertion still checks every captured frame without producing tens of
+  // thousands of individual trace events during a three-chapter round trip.
+  expect(violations).toEqual([]);
+}
+
+function expectBrandBeforeHome(frame) {
+  const home = item(frame, 'entry').button;
+  const gap = home.x - frame.brand.right;
+  expect(gap).toBeGreaterThanOrEqual(-.75);
+  expect(gap).toBeLessThanOrEqual(48);
+  expect(Math.abs(frame.brand.y + frame.brand.height / 2 - home.y - home.height / 2)).toBeLessThan(18);
+  const bounds = frame.backgrounds[0];
+  expect(frame.brand.x).toBeGreaterThanOrEqual(bounds.x - .75);
+  expect(item(frame, 'settings').button.right).toBeLessThanOrEqual(bounds.right + .75);
+}
+
+test('经典滚动条下三章只有图标和品牌移动，完整红底板逐帧不变', async ({ page }) => {
   await open(page);
   const homepageWidth = await page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
   expect(homepageWidth).toBeLessThan(1920);
   for (const route of ['state', 'model', 'action']) {
-    const flight = await sampleFlight(page, `.site-nav-item[data-route="${route}"]`);
-    expectNaturalFlight(flight, 'model');
-    expect(flight.final.pageWidth).toBeCloseTo(homepageWidth, 1);
-    expect(flight.frames.some(frame => frame.brand.running && item(frame, 'model').copy.running)).toBe(true);
-    expect(flight.frames.some(frame => item(frame, 'model').copy.opacity > .1 && item(frame, 'model').copy.opacity < .9)).toBe(true);
-    expect(flight.frames.some(frame => item(frame, 'model').copy.width < item(flight.initial, 'model').copy.width * .8)).toBe(true);
-    expect(flight.final.brand.x).toBeCloseTo(flight.initial.brand.x - 64, 1);
-    expect(item(flight.final, 'model').copy.opacity).toBe(0);
+    const leaving = await sampleFlight(page, `.site-nav-item[data-route="${route}"]`);
+    expectNaturalFlight(leaving);
+    expectStationaryBackground(leaving);
+    expect(leaving.final.pageWidth).toBeCloseTo(homepageWidth, 1);
+    expect(leaving.frames.some(frame => frame.brand.running)).toBe(true);
+    expect(leaving.final.brand.x - leaving.initial.brand.x).toBeGreaterThan(150);
+    expectBrandBeforeHome(leaving.final);
+    expect(item(leaving.final, 'model').copy.opacity).toBe(0);
     await expect(header(page)).toHaveAttribute('data-nav-layout', 'compact');
     const returning = await sampleFlight(page, '.site-brand-capsule');
-    expectNaturalFlight(returning, 'model');
+    expectNaturalFlight(returning);
+    expectStationaryBackground(returning);
     expect(returning.final.route).toBe('entry');
+    expect(returning.final.brand.x).toBeCloseTo(leaving.initial.brand.x, 1);
   }
 });
 
-test('返回首页时主标题辅助字渐显放宽且中途复测不改变最终导航布局', async ({ page }) => {
+test('返回首页恢复原文字和布局，字体复测不触发文字压缩飞行或底板动画', async ({ page }) => {
   await open(page);
   const originalColumns = await header(page).evaluate(element => element.style.getPropertyValue('--navigation-columns'));
-  const initial = await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => {
-    const rect = element.getBoundingClientRect();
-    return { width: rect.width, x: rect.x, font: getComputedStyle(element).fontSize };
-  }));
+  const original = await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => ({
+    width: element.getBoundingClientRect().width, x: element.getBoundingClientRect().x, font: getComputedStyle(element).fontSize,
+  })));
   await sampleFlight(page, '.site-nav-item[data-route="state"]');
   const returning = await sampleFlight(page, '.site-brand-capsule', null, true);
-  expectNaturalFlight(returning, 'model');
+  expectNaturalFlight(returning);
+  expectStationaryBackground(returning);
   expect(returning.frames.every(frame => frame.columns === originalColumns)).toBe(true);
-  for (const key of ['entry', 'model', 'action', 'state', 'settings']) {
-    const frames = returning.frames.map(frame => item(frame, key).copy);
-    expect(frames.some(copy => copy.running && copy.opacity > .15 && copy.opacity < .85)).toBe(true);
-    const final = item(returning.final, key).copy;
-    const original = initial[['entry', 'model', 'action', 'state', 'settings'].indexOf(key)];
-    expect(final.opacity).toBe(1);
-    expect(final.width).toBeCloseTo(original.width, 0);
-    expect(final.x).toBeCloseTo(original.x, 0);
+  for (const [index, key] of ['entry', 'model', 'action', 'state', 'settings'].entries()) {
+    const restored = item(returning.final, key).copy;
+    expect(restored.opacity).toBe(1);
+    expect(restored.width).toBeCloseTo(original[index].width, 0);
+    expect(restored.x).toBeCloseTo(original[index].x, 0);
   }
-  const layout = await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => ({ font: getComputedStyle(element).fontSize, transform: getComputedStyle(element).transform })));
-  expect(layout.map(value => value.font)).toEqual(initial.map(value => value.font));
-  expect(layout.every(value => value.transform === 'none')).toBe(true);
+  expect(await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => getComputedStyle(element).fontSize))).toEqual(original.map(value => value.font));
 });
 
-test('品牌右移距离控制往返落点，0归位且快速回首页从可见中途位置接续', async ({ page }) => {
+test('快速中断从品牌可见位置返回，零首页偏移仍让章节品牌移到首页左邻', async ({ page }) => {
   await open(page);
   const flight = await sampleFlight(page, '.site-nav-item[data-route="state"]', { selector: '.site-brand-capsule', after: 370 });
   expect(flight.preInterrupt.brand.running).toBe(true);
-  expect(Math.abs(flight.postInterrupt.brand.x - flight.preInterrupt.brand.x)).toBeLessThan(4);
+  expect(Math.abs(flight.postInterrupt.brand.x - flight.preInterrupt.brand.x)).toBeLessThan(25);
   expect(Math.abs(item(flight.postInterrupt, 'model').symbol.x - item(flight.preInterrupt, 'model').symbol.x)).toBeLessThan(25);
+  expectStationaryBackground(flight);
   expect(flight.final.route).toBe('entry');
   expect(flight.final.brand.x).toBeCloseTo(flight.initial.brand.x, 1);
   expect(flight.final.animating).toBe('false');
@@ -161,133 +209,82 @@ test('品牌右移距离控制往返落点，0归位且快速回首页从可见�
   await page.evaluate(() => document.fonts.ready);
   await doubleFrame(page);
   const zero = await sampleFlight(page, '.site-nav-item[data-route="action"]');
-  expect(zero.initial.brand.x).toBeCloseTo(zero.final.brand.x, 1);
-  expect(zero.frames.some(frame => frame.brand.running)).toBe(false);
+  expect(zero.final.brand.x - zero.initial.brand.x).toBeGreaterThan(150);
+  expect(zero.frames.some(frame => frame.brand.running)).toBe(true);
+  expectBrandBeforeHome(zero.final);
+  expectStationaryBackground(zero);
   await sampleFlight(page, '.site-brand-capsule');
   await expect(brand(page)).toBeVisible();
 });
 
-test('章节导航保留平直原底板和首页入口，中间透明且五项短标位于高亮下方', async ({ page }) => {
+test('直接打开章节仍为完整平直红栏，右侧品牌紧邻首页且短标在图标下方', async ({ page }) => {
   await open(page, {}, 'state');
-  await expect(page.locator('.navigation-surface')).toHaveCount(2);
-  await expect(page.locator('.site-nav-item[data-route="entry"]')).toBeVisible();
   const geometry = await header(page).evaluate(element => {
-    const rect = node => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
-    const style = getComputedStyle(element);
-    const surfaces = [...element.querySelectorAll('.navigation-surface')].map(surface => ({ ...rect(surface),
-      opacity: getComputedStyle(surface).opacity, clip: getComputedStyle(surface).clipPath,
-      background: getComputedStyle(surface).backgroundImage, svg: surface.querySelectorAll('svg path').length }));
-    const buttons = [...element.querySelectorAll('.site-nav-item')].filter(button => getComputedStyle(button).visibility !== 'hidden').map(button => {
-      const icon = button.querySelector('.site-nav-icon'); const label = button.querySelector('.site-nav-short-label');
-      return { label: label.textContent, icon: rect(icon), labelRect: rect(label),
+    const rect = node => { const r = node.getBoundingClientRect(); return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height }; };
+    const buttons = [...element.querySelectorAll('.site-nav-item')].map(button => {
+      const icon = button.querySelector('.site-nav-icon');
+      const label = button.querySelector('.site-nav-short-label');
+      return { label: label.textContent, button: rect(button), icon: rect(icon), labelRect: rect(label),
         underlineBottom: rect(icon).bottom - parseFloat(getComputedStyle(icon, '::after').bottom),
         font: getComputedStyle(label).fontFamily, current: button.getAttribute('aria-current') };
     });
-    const middle = (surfaces[0].right + surfaces[1].left) / 2;
-    const hit = document.elementFromPoint(middle, element.getBoundingClientRect().top + element.getBoundingClientRect().height / 2);
-    return { color: style.backgroundColor, background: style.backgroundImage, backdrop: style.backdropFilter,
-      surfaces, buttons, middleHasSurface: !!hit?.closest('.navigation-surface, .site-brand-capsule, .site-navigation') };
+    return { header: rect(element), brand: rect(element.querySelector('.site-brand-capsule')), buttons };
   });
-  expect(geometry.color).toBe('rgba(0, 0, 0, 0)');
-  expect(geometry.background).toBe('none');
-  expect(geometry.backdrop).toBe('none');
-  expect(geometry.middleHasSurface).toBe(false);
-  expect(geometry.surfaces[1].left - geometry.surfaces[0].right).toBeGreaterThan(100);
-  for (const surface of geometry.surfaces) {
-    expect(surface.opacity).toBe('1');
-    expect(surface.clip).toBe('none');
-    expect(surface.background).toMatch(/linear-gradient/);
-    expect(surface.svg).toBe(0);
-  }
   expect(geometry.buttons.map(button => button.label)).toEqual(['首页', '结构', '动作', '神态', '设置']);
+  expect(geometry.brand.right).toBeLessThanOrEqual(geometry.buttons[0].button.left + .75);
+  expect(geometry.buttons[0].button.left - geometry.brand.right).toBeLessThanOrEqual(48);
+  expect(geometry.brand.left).toBeGreaterThan(geometry.header.left + geometry.header.width * .4);
   for (const button of geometry.buttons) {
     expect(button.labelRect.top).toBeGreaterThanOrEqual(button.underlineBottom + 1);
-    expect(button.labelRect.bottom).toBeLessThanOrEqual(geometry.surfaces[1].bottom);
+    expect(button.labelRect.bottom).toBeLessThanOrEqual(geometry.header.bottom);
     expect(button.font).not.toMatch(/Nanfeng Navigation Brush/);
   }
   expect(geometry.buttons.find(button => button.label === '神态').current).toBe('page');
+  const returning = await sampleFlight(page, '.site-brand-capsule');
+  expectStationaryBackground(returning);
 });
 
-test('首页恢复连续原版红栏，无框饰且原底板随内容缩放往返', async ({ page }) => {
+test('首页原版红底面积与样式跨章节不变，往返复用相同底板节点', async ({ page }) => {
   await open(page);
-  const read = () => header(page).evaluate(element => {
-    const box = node => { const r = node.getBoundingClientRect(); return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width }; };
-    return { header: box(element), surfaces: [...element.querySelectorAll('.navigation-surface')].map(node => ({
-      ...box(node), radius: getComputedStyle(node).borderRadius, shadow: getComputedStyle(node).boxShadow,
-      gradient: getComputedStyle(node).backgroundImage, decorations: node.childElementCount,
-    })) };
-  });
-  const original = await read();
-  expect(original.surfaces[0].left).toBeCloseTo(original.header.left, 0);
-  expect(original.surfaces[0].right).toBeCloseTo(original.surfaces[1].left, 0);
-  expect(original.surfaces[1].right).toBeCloseTo(original.header.right, 0);
-  for (const surface of original.surfaces) {
-    expect(surface.top).toBeCloseTo(original.header.top, 0);
-    expect(surface.bottom).toBeCloseTo(original.header.bottom, 0);
-    expect(surface.radius).toBe('0px');
-    expect(surface.shadow).toBe('none');
-    expect(surface.decorations).toBe(0);
-    expect(surface.gradient).toContain('rgba(104, 23, 15, 0.8)');
-    expect(surface.gradient).toContain('rgba(139, 32, 20, 0.8)');
-  }
   await header(page).evaluate(element => { window.originalNavigationSurfaces = [...element.querySelectorAll('.navigation-surface')]; });
   const leaving = await sampleFlight(page, '.site-nav-item[data-route="state"]');
-  for (const index of [0, 1]) {
-    expect(leaving.frames.filter(frame => frame.surfaces[index].running).length).toBeGreaterThan(8);
-    const first = leaving.frames[0].surfaces[index];
-    expect(first.x).toBeCloseTo(leaving.initial.surfaces[index].x, -1);
-    expect(leaving.final.surfaces[index].width).toBeLessThan(leaving.initial.surfaces[index].width);
-    expect(leaving.final.surfaces[index].running).toBe(false);
+  expectStationaryBackground(leaving);
+  const visibleLayers = leaving.initial.backgrounds.filter(layer => layer.style.opacity === '1' && layer.style.backgroundImage !== 'none');
+  expect(visibleLayers.length).toBeGreaterThan(0);
+  for (const layer of visibleLayers) {
+    expect(layer.style.borderRadius).toBe('0px');
+    expect(layer.style.clipPath).toBe('none');
+    expect(layer.style.backgroundImage).toContain('rgba(104, 23, 15, 0.8)');
+    expect(layer.style.backgroundImage).toContain('rgba(139, 32, 20, 0.8)');
   }
   const returning = await sampleFlight(page, '.site-brand-capsule');
-  expect(returning.frames.some(frame => frame.surfaces.every(surface => surface.running))).toBe(true);
-  for (const index of [0, 1]) expect(returning.final.surfaces[index].width).toBeCloseTo(original.surfaces[index].width, 0);
+  expectStationaryBackground(returning);
+  expect(returning.final.backgrounds).toEqual(leaving.initial.backgrounds);
   expect(await header(page).evaluate(element => [...element.querySelectorAll('.navigation-surface')].every((node, index) => node === window.originalNavigationSurfaces[index]))).toBe(true);
-  const restored = await read();
-  expect(restored).toEqual(original);
 });
 
-test('首页窄顶栏与125%缩放的底板无越界重叠，切章首帧保持连续', async ({ page }) => {
+test('窄顶栏与125%电脑缩放往返保持整条底板，图标组不越界', async ({ page }) => {
   await open(page, { headerWidth: 60 });
   await page.setViewportSize({ width: 1366, height: 1080 });
-  const checkBounds = async () => {
+  for (const scale of [1, 1.25]) {
+    await page.evaluate(value => { document.documentElement.style.zoom = String(value); }, scale);
     await doubleFrame(page);
-    const geometry = await header(page).evaluate(element => {
-      const box = node => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
-      return { layout: element.dataset.navLayout, header: box(element),
-        surfaces: [...element.querySelectorAll('.navigation-surface')].map(box),
-        items: [...element.querySelectorAll('.site-nav-item')].map(box) };
-    });
-    for (const rect of [...geometry.surfaces, ...geometry.items]) {
-      expect(rect.left).toBeGreaterThanOrEqual(geometry.header.left - 1);
-      expect(rect.right).toBeLessThanOrEqual(geometry.header.right + 1);
-      expect(rect.top).toBeGreaterThanOrEqual(geometry.header.top - 1);
-      expect(rect.bottom).toBeLessThanOrEqual(geometry.header.bottom + 1);
-    }
-    if (geometry.layout === 'stacked') expect(geometry.surfaces[0].bottom).toBeCloseTo(geometry.surfaces[1].top, 0);
-    else expect(geometry.surfaces[0].right).toBeCloseTo(geometry.surfaces[1].left, 0);
-  };
-  await checkBounds();
-  await page.evaluate(() => { document.documentElement.style.zoom = '1.25'; });
-  await checkBounds();
-  // Use a full-width single-row bar to exercise long horizontal travel at zoom.
-  await page.locator('.site-shell').evaluate(element => { element.style.setProperty('--header-width', '100%'); });
-  await checkBounds();
-  for (const selector of ['.site-nav-item[data-route="state"]', '.site-brand-capsule']) {
-    const flight = await sampleFlight(page, selector);
-    for (const index of [0, 1]) {
-      const start = flight.initial.surfaces[index];
-      const first = flight.frames[0].surfaces[index];
-      expect(Math.abs(first.x - start.x)).toBeLessThan(12);
-      expect(Math.abs(first.y - start.y)).toBeLessThan(4);
-      expect(Math.abs(first.width - start.width)).toBeLessThan(12);
-      expect(flight.frames.some(frame => frame.surfaces[index].running)).toBe(true);
+    for (const selector of ['.site-nav-item[data-route="state"]', '.site-brand-capsule']) {
+      const flight = await sampleFlight(page, selector);
+      expectStationaryBackground(flight);
+      const bounds = flight.final.backgrounds[0];
+      for (const rect of [flight.final.brand, ...flight.final.items.map(entry => entry.button)]) {
+        expect(rect.x).toBeGreaterThanOrEqual(bounds.x - .75);
+        expect(rect.right).toBeLessThanOrEqual(bounds.right + .75);
+        expect(rect.y).toBeGreaterThanOrEqual(bounds.y - .75);
+        expect(rect.bottom).toBeLessThanOrEqual(bounds.bottom + .75);
+      }
+      if (flight.final.route !== 'entry') expectBrandBeforeHome(flight.final);
     }
   }
-  await checkBounds();
 });
 
-test('电脑缩放和短顶栏保留两块边界，运行中resize清理旧位移且可重新导航', async ({ page }) => {
+test('短顶栏飞行中resize清理旧位移，缩放后品牌仍在首页左邻且可继续往返', async ({ page }) => {
   await open(page, { headerHeight: 64 });
   await page.evaluate(() => document.querySelector('.site-nav-item[data-route="state"]').click());
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'true');
@@ -298,7 +295,7 @@ test('电脑缩放和短顶栏保留两块边界，运行中resize清理旧位�
     await doubleFrame(page);
     const geometry = await header(page).evaluate(element => {
       const bounds = element.getBoundingClientRect();
-      return [...element.querySelectorAll('.site-brand-capsule, .site-navigation, .site-nav-item:not([data-route="entry"]) .site-nav-symbol')].map(node => {
+      return [...element.querySelectorAll('.site-brand-capsule, .site-nav-icon, .navigation-surface')].map(node => {
         const r = node.getBoundingClientRect();
         return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, header: { left: bounds.left, right: bounds.right, top: bounds.top, bottom: bounds.bottom },
           running: node.getAnimations().some(animation => animation.playState === 'running'), willChange: node.style.willChange };
@@ -317,16 +314,38 @@ test('电脑缩放和短顶栏保留两块边界，运行中resize清理旧位�
   await page.setViewportSize({ width: 1920, height: 1080 });
   await doubleFrame(page);
   const returning = await sampleFlight(page, '.site-brand-capsule');
-  expectNaturalFlight(returning, 'model');
+  expectBrandBeforeHome(returning.initial);
+  expectNaturalFlight(returning);
+  expectStationaryBackground(returning);
 });
 
-test('减少动态在飞行中清理品牌图案与文字，品牌键盘返回首页保留焦点', async ({ page }) => {
+test('设置推开至实测900px余宽，章节品牌靠首页且底板在切换中保持原面积', async ({ page }) => {
+  await open(page, { panelWidth: 760, pushPage: true });
+  const gutter = await page.evaluate(() => innerWidth - document.documentElement.clientWidth);
+  await page.setViewportSize({ width: 1660 + gutter, height: 1080 });
+  await page.locator('.site-nav-item[data-action="settings"]').click();
+  await expect(page.getByRole('region', { name: '开发者参数设置' })).toBeVisible();
+  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBeCloseTo(900, 0);
+  await doubleFrame(page);
+  const leaving = await sampleFlight(page, '.site-nav-item[data-route="state"]');
+  expectStationaryBackground(leaving);
+  expectBrandBeforeHome(leaving.final);
+  const returning = await sampleFlight(page, '.site-brand-capsule');
+  expectStationaryBackground(returning);
+  expect(returning.final.route).toBe('entry');
+  expect(returning.final.brand.x).toBeCloseTo(leaving.initial.brand.x, 1);
+});
+
+test('减少动态在飞行中清理品牌图案，键盘返回首页保留焦点和固定底板', async ({ page }) => {
   await open(page);
+  const original = await page.locator('.navigation-surface').evaluateAll(elements => elements.map(element => ({
+    x: element.getBoundingClientRect().x, width: element.getBoundingClientRect().width, background: getComputedStyle(element).backgroundImage,
+  })));
   await page.evaluate(() => document.querySelector('.site-nav-item[data-route="state"]').click());
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'true');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'false');
-  const active = await page.locator('.site-nav-symbol, .site-nav-copy, .site-brand-capsule').evaluateAll(elements => elements.map(element => ({
+  const active = await page.locator('.site-nav-icon, .site-nav-copy, .site-brand-capsule, .navigation-surface').evaluateAll(elements => elements.map(element => ({
     running: element.getAnimations().some(animation => animation.playState === 'running'), willChange: element.style.willChange,
   })));
   expect(active.every(value => !value.running && value.willChange === '')).toBe(true);
@@ -336,6 +355,9 @@ test('减少动态在飞行中清理品牌图案与文字，品牌键盘返回�
   await expect(header(page)).toHaveAttribute('data-nav-mode', 'expanded');
   await expect(brand(page)).toBeFocused();
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'false');
+  expect(await page.locator('.navigation-surface').evaluateAll(elements => elements.map(element => ({
+    x: element.getBoundingClientRect().x, width: element.getBoundingClientRect().width, background: getComputedStyle(element).backgroundImage,
+  })))).toEqual(original);
   const restored = await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => ({ opacity: getComputedStyle(element).opacity, transform: getComputedStyle(element).transform })));
   expect(restored.every(value => value.opacity === '1' && value.transform === 'none')).toBe(true);
 });

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
-const headerSurfaces = page => page.locator('.site-header .navigation-surface');
+const headerSurfaces = page => page.locator('.site-header > .navigation-surface');
 const panel = page => page.getByRole('region', { name: '开发者参数设置' });
 const trigger = page => page.locator('.site-navigation [data-action="settings"]');
 const topEdge = page => page.getByRole('separator', { name: '调整顶栏高度' });
@@ -367,6 +367,7 @@ test('280px侧栏完整显示五个分类，轮播滑块及数值校验范围与
 test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控件不随容器淡出', async ({ page }) => {
   await loadPage(page);
   await openSettings(page);
+  await expect(headerSurfaces(page)).toHaveCount(1);
   await editNumber(page, '顶栏透明度', 100);
   await editNumber(page, '顶栏模糊强度', 0);
   await expect(panel(page).getByRole('slider', { name: '顶栏透明度', exact: true })).toHaveValue('100');
@@ -381,7 +382,8 @@ test('顶栏和侧栏材质分别调节透明及模糊，文字、图标和控�
   expect(await page.locator('.site-header').evaluate(element => {
     const style = getComputedStyle(element);
     return style.backgroundImage === 'none' && style.backgroundColor === 'rgba(0, 0, 0, 0)' &&
-      Array.from(element.querySelectorAll('.navigation-surface')).every(surface => getComputedStyle(surface).backgroundImage.includes('rgba(104, 23, 15, 0)'));
+      element.querySelectorAll(':scope > .navigation-surface').length === 1 &&
+      getComputedStyle(element.querySelector(':scope > .navigation-surface')).backgroundImage.includes('rgba(104, 23, 15, 0)');
   })).toBe(true);
   await expect(panel(page).getByRole('spinbutton', { name: '侧栏透明度数值' })).toHaveValue('14');
   await expect(panel(page)).toHaveCSS('backdrop-filter', 'blur(18px)');
@@ -880,7 +882,7 @@ test('顶栏与设置背板宽高圆角和颜色同步到实际材质并持久�
     }, value);
   }
   await expectSaved(page, { headerWidth: 84, headerRadius: 33, headerColor: '#6d3125', sidebarHeight: 70, sidebarRadius: 26, sidebarColor: '#f6eddc' });
-  await expect(headerSurfaces(page)).toHaveCount(2);
+  await expect(headerSurfaces(page)).toHaveCount(1);
   for (const surface of await headerSurfaces(page).all()) {
     await expect(surface).toHaveCSS('border-radius', '33px');
     expect(await surface.evaluate(element => getComputedStyle(element).backgroundImage)).toContain('rgba(89, 39, 24, 0.8)');

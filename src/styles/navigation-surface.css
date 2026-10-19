@@ -1,6 +1,7 @@
-/* Two persistent pieces form the original full-width bar, then travel apart. */
+/* One stationary surface covers the complete header in every navigation mode. */
 .site-header,
 .site-header[data-nav-mode='compact'] {
+  isolation: isolate;
   width: var(--header-width, 100%);
   max-width: 100%;
   margin-inline: auto;
@@ -11,9 +12,11 @@
   -webkit-backdrop-filter: none;
 }
 .site-header::after { display: none; }
+.site-header-inner { position: relative; }
 .site-brand-capsule { height: calc(100% - 10px); }
 .site-navigation { height: 100%; align-self: stretch; }
-.navigation-surface {
+.site-header > .navigation-surface {
+  inset: 0;
   opacity: 1;
   clip-path: none;
   border-radius: var(--header-radius, 0px);
@@ -22,29 +25,8 @@
     rgb(var(--header-middle-rgb, 139 32 20) / var(--header-fill-opacity, .8)) 48%,
     rgb(var(--header-end-rgb, 115 24 15) / var(--header-fill-opacity, .8)));
   box-shadow: none;
-  transform-origin: left top;
+  transform: none;
   transition: none;
-}
-.site-header[data-nav-mode='expanded'] .navigation-surface {
-  background-size: var(--navigation-surface-full-width, 100vw) var(--site-header-height);
-  background-position: var(--navigation-surface-offset, 0px) var(--navigation-surface-offset-y, 0px);
-}
-.site-header[data-nav-mode='expanded'] .site-brand-capsule > .navigation-surface {
-  top: -5px;
-  bottom: -5px;
-  left: calc(-1 * (var(--navigation-side-padding, 24px) + var(--navigation-home-brand-offset, 24px)));
-  right: calc(-1 * var(--navigation-header-gap, 21px));
-}
-.site-header[data-nav-mode='expanded'] .site-navigation > .navigation-surface {
-  right: calc(-1 * var(--navigation-side-padding, 24px));
-}
-.site-header[data-nav-layout='stacked'] .site-brand-capsule > .navigation-surface {
-  top: 0;
-  bottom: 0;
-  width: var(--navigation-surface-full-width);
-}
-.site-header[data-nav-layout='stacked'] .site-navigation > .navigation-surface {
-  left: calc(-1 * var(--navigation-side-padding, 24px));
 }
 .site-nav-item:first-of-type,
 .site-nav-item:last-of-type { border-radius: 0; }

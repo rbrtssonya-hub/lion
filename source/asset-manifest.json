@@ -1108,7 +1108,7 @@
     },
     {
       "from": "generated:imagegen/2026-10-15/exec-80915f92-aeaf-401f-aec2-5ad8e50af07e.png",
-      "path": "source/public/assets/lion-book/spread.png",
+      "path": "source/design/lion-book/spread-v2.png",
       "bytes": 1901476,
       "sha256": "2b9b6b37d53dfe072c46c8f235ed0f95851ab91e644cf95327687ccbfc1e76a8"
     },
@@ -2047,6 +2047,78 @@
       "path": "source/reviews/model/2026-10-19-material-performance/settings-push-900.png",
       "bytes": 1183847,
       "sha256": "cfee77d1610d6b709da3fa1d4eb29bf07a05794faa2f3c67d5f6c3760ca4c9ff"
+    },
+    {
+      "from": "imagegen:2026-10-19-remove-spread-perimeter-outline",
+      "path": "source/public/assets/lion-book/spread.png",
+      "bytes": 1762761,
+      "sha256": "331c4fcd89b0beb765543ce890fd8c3baaed432a857b4de07a783d07702b2839"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/cloud-badge.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/cloud-badge.png",
+      "bytes": 11395,
+      "sha256": "0c2661c3ed6d2ebe22287c7d6d3dd3ceeaf2bdf519fed7938253a285755e30a8"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/cloud-heading.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/cloud-heading.png",
+      "bytes": 17482,
+      "sha256": "ee2ae557f290cf9b377058819b908ac89bddb7a7f55cbd9c2ada02e73df07a44"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/navigation-compact.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/navigation-compact.png",
+      "bytes": 77480,
+      "sha256": "cf8390c4c9952dd4e471927dcf2019e9968586832a32fe1243aab6c91ecac6dd"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/navigation-home.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/navigation-home.png",
+      "bytes": 117979,
+      "sha256": "3f31697af95370eacb9815540cb1af9ac1f589d2de81a671ed333da297540e85"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/navigation-mid-flight.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/navigation-mid-flight.png",
+      "bytes": 76361,
+      "sha256": "f9a94e17ea3c64dea1c7af8bac1c2031f01f13639a3d34d3213d8bb4e8ba5b0d"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/spread-static.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/spread-static.png",
+      "bytes": 1457675,
+      "sha256": "88ef0ac126c2e6ff6eaf0b177688857e5adc650a0c5006727079b3cd851fb556"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/spread-turn-backward.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/spread-turn-backward.png",
+      "bytes": 1409902,
+      "sha256": "fa655e73bb754d671900ed94345962ee1a06782a715bb555bb4d3656acec1b97"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/spread-turn-forward.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/spread-turn-forward.png",
+      "bytes": 1443660,
+      "sha256": "820905833aa81fec23d0f88d6fe04db0276bf2e2c7902dfe46b01a105ea9d1b0"
+    },
+    {
+      "from": "playwright:2026-10-19-navigation-book-expression-desktop-review/state-1920.png",
+      "path": "source/reviews/navigation/2026-10-19-feedback-fixes/state-1920.png",
+      "bytes": 2093089,
+      "sha256": "32e4646dfb43da55a73c3e548bf4fe54e1fd5401140be291e6906ec941682c8c"
+    },
+    {
+      "from": "playwright:2026-10-19-main-merge-production/structure-focus-1920.png",
+      "path": "source/reviews/integration/2026-10-19-main-merge/structure-focus-1920.png",
+      "bytes": 2580416,
+      "sha256": "ccecef41f031ea9131afff2f7a1ee3405dcc0c68f37451a9309123435c17e0b6"
+    },
+    {
+      "from": "playwright:2026-10-19-main-merge-production/expression-overview-1920.png",
+      "path": "source/reviews/integration/2026-10-19-main-merge/expression-overview-1920.png",
+      "bytes": 2092904,
+      "sha256": "7ab02822b6ab37926a9e31431f9fa015b44bbd824da2fdc7989db8aa2de14195"
     }
   ]
 }
