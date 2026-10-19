@@ -1,0 +1,82 @@
+{
+  "schema": "lion.ornate-upstream-content-audit/v1",
+  "taskStartedOn": "2026-10-19",
+  "date": "2026-10-20",
+  "localTaskCommit": "9bef951",
+  "remoteMain": "9cb0097",
+  "commonBase": "c42af76",
+  "initialFetch": {
+    "direct": "github.com:443 connection failed",
+    "recovered": "Used existing system HTTP proxy 127.0.0.1:7897 for git command only; no persistent Git config change"
+  },
+  "remoteCommits": [
+    "9cb0097",
+    "2aefef9",
+    "b9eac7d"
+  ],
+  "remoteChangedFiles": 59,
+  "remoteFilesPreservedExactly": 51,
+  "sharedFilesReviewed": [
+    "docs/DEVELOPMENT.md",
+    "source/asset-manifest.json",
+    "wiki_memory/日志/MOC_工作日志.md",
+    "wiki_memory/当前状态/项目概览.md",
+    "wiki_memory/当前状态/系统架构.md",
+    "wiki_memory/当前状态/当前约束.md",
+    "wiki_memory/当前状态/当前待办.md",
+    "wiki_memory/当前状态/已知问题.md"
+  ],
+  "conflictFiles": [
+    "wiki_memory/日志/MOC_工作日志.md",
+    "wiki_memory/当前状态/项目概览.md",
+    "wiki_memory/当前状态/系统架构.md",
+    "wiki_memory/当前状态/当前约束.md",
+    "wiki_memory/当前状态/当前待办.md",
+    "wiki_memory/当前状态/已知问题.md"
+  ],
+  "conflictHunksResolved": 7,
+  "productSourceDirectConflicts": 0,
+  "unmergedIndexEntries": 0,
+  "manifest": {
+    "remoteRecords": 409,
+    "localRecords": 396,
+    "mergedRecordsBeforeIntegratedQA": 420,
+    "combinedRecords": 429,
+    "integratedQAAdded": 9,
+    "remoteEntriesPreserved": 409,
+    "localOriginalVideoHashesRecoveredAt": {
+      "source/public/assets/entry/home-lion-loop.mp4": "source/video/entry/home-lion-loop-before-2026-10-19.mp4",
+      "source/public/assets/intro/entry-intro.mp4": "source/video/intro/entry-intro-before-2026-10-19.mp4"
+    },
+    "uniquePaths": true
+  },
+  "contentChecks": "All remote non-shared files exactly match origin blobs; all local records preserved except two explicit upstream video archival moves; local ornate architecture/reflection/orbit/CSS unchanged.",
+  "integratedValidationRecord": "source/references/2026-10-19-action-theater-ornate-integrated-validation.json",
+  "integrationBrowserEvidence": [
+    {
+      "channel": "chrome",
+      "path": "tmp/e2e-action-theater-integrated-final-chrome/report.json",
+      "stats": {
+        "startTime": "2026-10-19T15:54:48.585Z",
+        "duration": 723421.863,
+        "expected": 62,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "channel": "msedge",
+      "path": "tmp/e2e-action-theater-integrated-final-msedge-unique/report.json",
+      "stats": {
+        "startTime": "2026-10-19T16:11:20.551Z",
+        "duration": 75552.46,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "deliveryBoundary": "This content audit verifies the combined files and conflict resolution. Final commit ancestry and live origin/main equality are checked separately after ordinary push; this file cannot self-reference the commit that contains it."
+}

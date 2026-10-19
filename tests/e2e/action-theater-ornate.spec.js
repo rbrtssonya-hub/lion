@@ -3,7 +3,7 @@ import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { scene, openTheater, jsonAttribute } from './action-theater.helpers.js';
 
-const reviewDir = resolve('source/reviews/action-theater/2026-10-19-ornate');
+const reviewDir = resolve(process.env.ACTION_THEATER_REVIEW_DIR || 'source/reviews/action-theater/2026-10-19-ornate');
 const composition = page => jsonAttribute(scene(page), 'data-composition');
 
 // These values are projected from current world geometry, rather than design

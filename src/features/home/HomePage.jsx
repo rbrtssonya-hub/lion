@@ -3,6 +3,8 @@ import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
 import HomeLionBook from './HomeLionBook.jsx';
+import { HomeLionTypes, HomeInheritors } from './HomeHeritage.jsx';
+import HomeCultureSources from './HomeCultureSources.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 import '../../styles/home-archive.css';
 
@@ -61,6 +63,9 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
         <img src={media.homeArchivePeek} alt="" draggable="false" loading="lazy" width="1536" height="1024" />
       </div>
       <HomeCulture settings={settings} preload={true} playbackEnabled={playbackEnabled} onReady={onGalleryReady} />
+      <HomeLionTypes />
+      <HomeInheritors />
+      <HomeCultureSources />
     </div>
   </div>
   </div>;

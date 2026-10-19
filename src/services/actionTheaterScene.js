@@ -36,14 +36,21 @@ function waitForHeaderMotion(signal) {
   return new Promise(resolve => {
     let frame = 0;
     let observer;
+    let settled = false;
     const finish = value => {
+      if (settled) return;
+      settled = true;
       cancelAnimationFrame(frame);
+      frame = 0;
       observer?.disconnect();
       signal.removeEventListener('abort', abort);
       resolve(value);
     };
     const abort = () => finish(false);
     const check = () => {
+      if (settled) return;
+      cancelAnimationFrame(frame);
+      frame = 0;
       if (signal.aborted) { finish(false); return; }
       const header = document.querySelector('.site-header');
       if (header?.dataset.navAnimating === 'true') {
@@ -770,8 +777,10 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
-      if (renderer.compileAsync) await renderer.compileAsync(scene, camera);
-      else renderer.compile(scene, camera);
+      // r160 compileAsync owns uncancellable timers that read material programs
+      // after disposal. Submit compilation synchronously after header motion;
+      // the first render can finish GPU work without leaving callbacks behind.
+      renderer.compile(scene, camera);
       if (disposed) return;
       clearTimeout(loadTimeout);
       ready = true;

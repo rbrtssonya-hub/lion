@@ -3,6 +3,150 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "2026-10-19 actual Chrome production merged main and homepage branch review",
+      "path": "source/reviews/integration/2026-10-19-home-heritage-main/action-1920.png",
+      "bytes": 1904323,
+      "sha256": "1964dce33f71478fb2b661cea8b0adfa7e7050263545ba256c604089fd690371"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production merged main and homepage branch review",
+      "path": "source/reviews/integration/2026-10-19-home-heritage-main/inheritors-1920.png",
+      "bytes": 664643,
+      "sha256": "40697a40bb0dd39f9b020cdb3b0738e7011f33de731629eb58eea233436c5411"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production merged main and homepage branch review",
+      "path": "source/reviews/integration/2026-10-19-home-heritage-main/structure-1920.png",
+      "bytes": 2533846,
+      "sha256": "7a9568c4064b82167409e703ca33896014938d4957800d1bab6d445d600a9ac3"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production merged main and homepage branch review",
+      "path": "source/reviews/integration/2026-10-19-home-heritage-main/types-1920.png",
+      "bytes": 1488496,
+      "sha256": "aa0435ba514b32588b8ba9be77c1ac0702389291eb4856d464b037cb02e51118"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-craft-1920.png",
+      "bytes": 695232,
+      "sha256": "bfebfaf4b8ded3d360608d2837cb8f225a649d84f6ab5d267f733df4fd9e8b29"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-performance-1920.png",
+      "bytes": 668075,
+      "sha256": "e9ea925a228275cec59b8cb48488750446e075e74dd2186a236fb67cba16cb99"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/inheritors-push-900.png",
+      "bytes": 362733,
+      "sha256": "f75074ef751fbc82bc7ab864170c539a6bce1e347c32500b75ded0d0bb373879"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/sources-1920.png",
+      "bytes": 172422,
+      "sha256": "2398d00aec4ff1402faf4b00b4a17a9ad7d29a41dd1c0463b1a0f3eadad4f28f"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-1024.png",
+      "bytes": 733539,
+      "sha256": "255f04d84e096acf388a1a4e0b1bf79db7dbcf87ee3c5307acb868067ab7abfd"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-1366.png",
+      "bytes": 1041166,
+      "sha256": "9bce08a2da7f2fdda3b5a452f056c3a83bd6f6f2ac986b234abc4407462c57d1"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-2560.png",
+      "bytes": 1795942,
+      "sha256": "fafadcadf1119eab5ba69ecedc7eca97f2485a3d307e2f62aae8b6a1ca82ab42"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-foshan-1920.png",
+      "bytes": 1488496,
+      "sha256": "aa0435ba514b32588b8ba9be77c1ac0702389291eb4856d464b037cb02e51118"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-fut-hok-1920.png",
+      "bytes": 1481912,
+      "sha256": "fecdde2e4af2a7615e76250e95eb2b887d1d1a3512953aeb6cd423a0bb2155de"
+    },
+    {
+      "from": "2026-10-19 actual Chrome production desktop heritage review",
+      "path": "source/reviews/home/2026-10-19-heritage/types-heshan-1920.png",
+      "bytes": 1496010,
+      "sha256": "2e69292bb7a509cb2cfa9739a4f5b90f46630cc1cd7dd524b1b0e6e921f7a5c2"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/foshan.png",
+      "bytes": 3106271,
+      "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/foshan.png",
+      "bytes": 3106271,
+      "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/heshan.png",
+      "bytes": 3157050,
+      "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/heshan.png",
+      "bytes": 3157050,
+      "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/public/assets/lion-types/fut-hok.png",
+      "bytes": 3104318,
+      "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+    },
+    {
+      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
+      "path": "source/design/home-heritage/2026-10-19/fut-hok.png",
+      "bytes": 3104318,
+      "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+    },
+    {
+      "from": "2026-10-19 actual production entry and loop playback review",
+      "path": "source/reviews/home/2026-10-19-video-replacement/entry-1920.png",
+      "bytes": 2392345,
+      "sha256": "c57e4a49ae33aa0cb9c29c56e9af95a6e3e570504c84e55c1ae10505ff9ea662"
+    },
+    {
+      "from": "2026-10-19 actual production entry and loop playback review",
+      "path": "source/reviews/home/2026-10-19-video-replacement/loop-1920.png",
+      "bytes": 2712620,
+      "sha256": "80e7d3202887a7b6d2817164de2ba2d2872ab1cb3468253af3b861c24d654166"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/入场视频.mp4",
+      "path": "source/public/assets/intro/entry-intro.mp4",
+      "bytes": 17701673,
+      "sha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/循环视频.mp4",
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "bytes": 33463217,
+      "sha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9"
+    },
+    {
       "from": "site/assets/entry/final-home.png",
       "path": "source/design/final-home.png",
       "bytes": 3534016,
@@ -208,7 +352,7 @@
     },
     {
       "from": "site/assets/intro/entry-intro.mp4",
-      "path": "source/public/assets/intro/entry-intro.mp4",
+      "path": "source/video/intro/entry-intro-before-2026-10-19.mp4",
       "bytes": 4925718,
       "sha256": "ccce0a6ac43996d2521ceb795494351903e758a283b004bd490c0c593fb468cb"
     },
@@ -453,7 +597,7 @@
       "sha256": "b90fbe95aedd016c81b5ef374d2a337a11cae525e52f6ceca1576c70df3bc153"
     },
     {
-      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "path": "source/video/entry/home-lion-loop-before-2026-10-19.mp4",
       "from": "E:/数字媒体竞赛/张钧儒/首页/首页.mp4",
       "bytes": 8059565,
       "sha256": "b525b4f755fd464997f3792a5b06630c6b7fc09c9f77a5c68e4a0fa86d33ba1c"
@@ -2377,6 +2521,60 @@
       "path": "source/reviews/action-theater/2026-10-19-ornate/action-theater-tuqiu-1920.png",
       "bytes": 2296022,
       "sha256": "158d37bb11bdebdbcd7a838738929ba5cc676574b21a2363cef943761c02dcd7"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-1366.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-1366.png",
+      "bytes": 1244543,
+      "sha256": "dfe2eb166094ee00e4c0144fd1df772564aca6bb6d16f79d3009cc7cbaebeaa0"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-1920.png",
+      "bytes": 2289183,
+      "sha256": "df5103f429214d5b44d4e997556ac2afed936751f677df0ee9e25c8308a9d65c"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-desktop-900.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-desktop-900.png",
+      "bytes": 903105,
+      "sha256": "a381a29511d8bdf1f32cf99fce9f4fd4417f8ade650672b6f3c3411107bac879"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-doumao-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-doumao-1920.png",
+      "bytes": 2268171,
+      "sha256": "8378896a89de579a3ade29365197ff5f2ca5241c16ae68875508a2d43f09575f"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-initial-three-screens-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-initial-three-screens-1920.png",
+      "bytes": 2290785,
+      "sha256": "6986afda7c9a07fd223947acebfc418a6f1a42a42eaa660b1deb7988ad07029a"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-meihuazhuang-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-meihuazhuang-1920.png",
+      "bytes": 2243676,
+      "sha256": "e90e667b85340610fae8a0db20d8a916db0a09515931ba55a8ef079bcdcaa5f5"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-settings-push.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-settings-push.png",
+      "bytes": 1142534,
+      "sha256": "89e7d15b6d755ad806deba12fbc5a56e049475c7f96f1f4868fd5abd58355649"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-tanqing-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-tanqing-1920.png",
+      "bytes": 2296204,
+      "sha256": "8667bd2b57e3d17e69bc3515e765188f15de92cf4978acb579af3b3ad1c95216"
+    },
+    {
+      "from": "generated:chrome-production-integrated-review/2026-10-19-ornate/action-theater-tuqiu-1920.png",
+      "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-tuqiu-1920.png",
+      "bytes": 2323064,
+      "sha256": "7f92f34ff730a9f5ee299b9315c01d6dbc32e0b86ea879522fd3640242762718"
     }
   ]
 }

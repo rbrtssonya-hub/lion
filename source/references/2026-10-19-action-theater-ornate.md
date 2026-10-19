@@ -2,6 +2,8 @@
 
 2026-10-19，在 `main@c42af76` 上改造现有 React/Vite 动作页。目标依据为用户提供的[完整要求](../design/action-theater/2026-10-19-reconstruction-brief.md)、[图一目标](../design/action-theater/2026-10-19-target.png)与[图二旧画面](../design/action-theater/2026-10-19-before.png)。建筑是运行时真实三维几何；两张参考图只用于设计归档，不会被应用载入或铺作背景。
 
+视觉阶段保存为 `9bef951`。用户补充要求检查GitHub冲突后，实际fetch发现远端main新增三提交至 `9cb0097`，包含首页视频、三形制与六传承人；本轮将其与红金剧场组合，保留双方功能与资产。下列视觉阶段和最终集成的验证记录分开，不以合并前结果证明合并后的工程。
+
 ## 实际修改文件
 
 | 文件 | 作用 |
@@ -14,9 +16,11 @@
 | `tests/assets/action-theater.test.mjs` | 沿用方向/接缝/比例测试，按当前约束检查镜头 |
 | `tests/e2e/action-theater.spec.js` | 旧交互测试改用实际配置，保留严格相机限制 |
 | `tests/e2e/action-theater-ornate.spec.js`（新增） | 初始构图、圆台真实轮廓与落台、四面显示、实例建筑、反射及桌面浮层位置 |
+| `tests/e2e/action-theater-integrated.spec.js`（新增） | 合入远端首页后，实际首页视频与动作媒体/画布的跨章节生命周期 |
 | `tests/e2e/action.spec.js` | 本轮截图写入新的 ornate 目录，保留上轮证据 |
 | `source/design/action-theater/`（新增三文件） | 两张原始参考图与完整重构要求 |
 | `source/reviews/action-theater/2026-10-19-ornate/`（新增九图） | 本轮生产初始三屏、四动作与三桌面/推开布局截图 |
+| `source/reviews/action-theater/2026-10-19-ornate-integrated/`（新增九图） | 合并树生产截图，独立保留合并前九图 |
 | `source/references/2026-10-19-action-theater-ornate*.json`（新增） | 实际浏览器/构建/插件检查与文件哈希 |
 | `source/asset-manifest.json`、`source/README.md`、`docs/DEVELOPMENT.md` | 新素材登记与现行开发入口 |
 | `wiki_memory/当前状态/`、两篇生命周期/资源知识、工作日志及 MOC | 当前实现、实际结果、限制与恢复位置 |
@@ -50,16 +54,26 @@
 
 离页、后台或平面观看停止3D RAF；恢复修正旋转、聚焦及亮度动画时钟。统一释放实例缓存、几何体/材质/贴图、反射RT、灯光阴影、环境贴图、控件、监听器、观察器与加载请求。自有 `OwnedVideoTexture` 取消rVFC，四个真实视频元素/各自进度/单主音轨机制沿用原控制器。
 
+场景重准备仍等待共享header真实导航动效结束，等待以settled与取消旧RAF防止重复结束或遗留帧，卸载同时清MO和abort监听。最终集成首轮Chrome61/62（749203.643ms）实际发现快速action→state时，Three r160 `compileAsync` 的私有10ms定时器在材质释放后读取不存在的currentProgram.isReady；动作服务改用其原有同步前半段 `renderer.compile(scene, camera)`，随后首绘完成GPU工作，不留下不可取消的材质轮询。原失败定向1/1（11902.368ms）恢复通过；header等待五路径mock通过，最终联合结果独立记录。此修复不改四视频控制器或结构模型预热。
+
 ## 交互与实际验收
 
-浏览器命令、实际结果、构建产物及受测源码/截图哈希以[本轮验收JSON](2026-10-19-action-theater-ornate-validation.json)为准。范围包括四真实MP4解码/VideoTexture、视角与按钮切主、450ms主辅渐变、36秒独立旋转、滚轮/俯仰边界、当前进度、暂停/续播、循环、静音与唯一主音轨、用户手势限制、全屏、平面回退/恢复、重试、隐藏/重入和上下文丢失；另回归共享导航、启动和结构页。
+浏览器命令、实际结果、构建产物及受测源码/截图哈希分为[视觉阶段JSON](2026-10-19-action-theater-ornate-validation.json)与[最终组合树JSON](2026-10-19-action-theater-ornate-integrated-validation.json)。范围包括四真实MP4解码/VideoTexture、视角与按钮切主、450ms主辅渐变、36秒独立旋转、滚轮/俯仰边界、当前进度、暂停/续播、循环、静音与唯一主音轨、用户手势限制、全屏、平面回退/恢复、重试、隐藏/重入和上下文丢失；另回归共享导航、启动、结构页和新首页。
+
+2026-10-20组合树最终 `npm test` 51/51（1368.2663ms）、317模块生产构建（3.29秒）、Chrome生产联合62/62（723421.863ms）及Edge首页视频/红金专项5/5（75552.46ms）通过；两浏览器均0unexpected、0skip、0flaky、exit0。Chrome包括新首页自然结束/真实循环、四动作媒体、导航/设置/启动/结构及跨章节生命周期；Edge追加相同HEVC自然播放/循环与红金专项，仍不推论全部设备或浏览器支持。86个public/dist逐字节及3份保护模型SHA再次核对通过。Edge首次并发共用输出目录曾触发trace ENOENT，独立目录完整5项重跑通过，未为此改产品或放宽断言。完整命令、运行环境和指纹见独立integrated报告。文件和图集沿任务开始日期2026-10-19命名，不改变实际验收日期。
 
 Aholo Lux3D使用安装版0.1.1的真实 `artifact_delivery.py inspect` 检查原GLB，结果有效，102节点/90mesh/27材质；[插件记录](2026-10-19-action-theater-ornate-lux3d.json)保存真实调用、文件指纹与能力边界。本次是现有网页集成与程序建筑，未调用云生成、未产生云任务ID或虚构生成资产。源模型/既有离线Blender工程保留原字节，运行效果以网页截图与交互验证为准。
 
 ## 截图对照与素材边界
 
-最终图集在 `source/reviews/action-theater/2026-10-19-ornate/`。初始三屏图为 `action-theater-initial-three-screens-1920.png`；四动作分别为 `action-theater-{tanqing,doumao,tuqiu,meihuazhuang}-1920.png`；其余是1920/1366/900与设置推开截图。图集独立于上次原始黑盒展厅截图，未覆盖历史证据。
+最终组合树图集在 `source/reviews/action-theater/2026-10-19-ornate-integrated/`；视觉阶段九图保留在 `2026-10-19-ornate/`。初始三屏图为 `action-theater-initial-three-screens-1920.png`；四动作分别为 `action-theater-{tanqing,doumao,tuqiu,meihuazhuang}-1920.png`；其余是1920/1366/900与设置推开截图。图集独立于上次原始黑盒展厅截图，未覆盖历史证据。测试以 `ACTION_THEATER_REVIEW_DIR` 指定本轮输出目录。
 
 与图一相同的方向：对称红金梁柱、与建筑连接的三面可见巨幕、低矮多层圆台、真实柔反射石地、暖主光与低强度补光、边缘辅助UI。保留原狮蹲伏姿态、原网页绒毛LOD及用户四段视频；图一的站立狮、密集手雕纹样、光线路径与离线电影渲染细节不声称逐像素一致。本页使用可交互实时光栅渲染和受控平面反射，没有离线光追/体积光与新制作的狮毛资产。
 
 没有阻止本次网页使用的缺失素材或必需手工步骤。若后续要求图一相同站姿/近景毛发，需要另行提供或授权制作相应模型；这不改变本次“保留原模型”的约束。实体GPU长时基准、实际扬声器听音、OS切应用及未安装/未测试浏览器不由自动脚本结果代替。
+
+## GitHub远程冲突审查
+
+直接HTTPS连接GitHub失败后，使用系统已有代理完成命令级fetch，没有改持久Git配置。实际取得远端三新提交；产品直接冲突0，六份工程记忆共7处文本冲突逐块整合，不使用整页ours覆盖。远端59个变动文件中51个非共享文件与远端Git blob完全一致；共享文档/清单/五状态/MOC保留双方事实。远端409条素材与本地396条合并为420条，追加独立组合树九图至429条；远端新首页视频保留，两个旧视频按远端明确归档路径恢复同SHA，原狮及四动作媒体保持。原视觉九图与JSON已与9bef951核对不变，最终远端内容审查再次通过、unmerged为0。
+
+[内容审查JSON](2026-10-19-action-theater-ornate-merge-audit.json)保存输入提交、保全范围与已执行检查；最终组合验证另有独立记录。最终普通推送后核对HEAD、origin/main与GitHub实时main引用；实际最终commit与push结果以交付回复和Git记录为准。

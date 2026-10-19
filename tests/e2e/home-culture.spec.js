@@ -181,7 +181,7 @@ test('首页照片下方控制栏已删除，照片与摄影许可保留且页�
   }
   expect(shown.size).toBe(8);
   await expect(carousel).toHaveAttribute('data-culture-index', '0');
-  const references = carousel.locator('.home-culture-sources');
+  const references = page.locator('#homeCultureSources');
   await references.scrollIntoViewIfNeeded();
   await expect(references.getByRole('heading', { name: '参考资料', exact: true })).toBeVisible();
   await expect(references.locator('.home-culture-source-card')).toHaveCount(3);
