@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { assetPaths } from '../../src/config/assetPaths.js';
+import { readFileSync } from 'node:fs';
+
+const structureParts = JSON.parse(readFileSync(new URL('../../src/data/lion-structure.json', import.meta.url), 'utf8')).hotspots;
+const modelRequestPattern = `**/${assetPaths.model}`;
 
 const routeButton = (page, route) => page.locator(`.site-header .site-navigation .site-nav-item[data-route="${route}"]`);
 
@@ -42,36 +46,25 @@ async function sampleModelPixels(page) {
       const width = gl.drawingBufferWidth;
       const height = gl.drawingBufferHeight;
       const bounds = canvas.getBoundingClientRect();
-      const frame = document.querySelector('#sceneFrame').getBoundingClientRect();
-      const legacyHeight = frame.width * 9 / 16;
-      const legacyTop = frame.top + (frame.height - legacyHeight) / 2;
-      const legacyBottom = legacyTop + legacyHeight;
       const buffer = new Uint8Array(width * height * 4);
       gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
       let modelPixels = 0;
       let cornerPixels = 0;
-      let abovePixels = 0;
-      let belowPixels = 0;
-      let aboveFramePixels = 0;
-      let belowFramePixels = 0;
+      let minX = width;
+      let maxX = -1;
       let minY = height;
       let maxY = -1;
       const margin = Math.max(2, Math.floor(Math.min(width, height) * 0.02));
       for (let y = 0; y < height; y += 1) {
-        const cssY = bounds.bottom - (y + 0.5) * bounds.height / height;
         for (let x = 0; x < width; x += 1) {
           if (buffer[(y * width + x) * 4 + 3] === 0) continue;
           modelPixels += 1;
+          minX = Math.min(minX, x);
+          maxX = Math.max(maxX, x);
           minY = Math.min(minY, y);
           maxY = Math.max(maxY, y);
           const corner = (x < margin || x >= width - margin) && (y < margin || y >= height - margin);
           if (corner) cornerPixels += 1;
-          const cssX = bounds.left + (x + 0.5) * bounds.width / width;
-          if (cssX < frame.left || cssX > frame.right) continue;
-          if (cssY < legacyTop - 4) abovePixels += 1;
-          if (cssY > legacyBottom + 4) belowPixels += 1;
-          if (cssY < frame.top - 4) aboveFramePixels += 1;
-          if (cssY > frame.bottom + 4) belowFramePixels += 1;
         }
       }
       if (modelPixels === 0 && ++attempts < 10) return requestAnimationFrame(sample);
@@ -79,12 +72,9 @@ async function sampleModelPixels(page) {
         alpha: attributes.alpha,
         modelPixels,
         cornerPixels,
-        abovePixels,
-        belowPixels,
-        aboveFramePixels,
-        belowFramePixels,
+        modelCenterX: maxX >= minX ? bounds.left + (minX + maxX + 1) * bounds.width / (width * 2) : null,
+        modelWidth: maxX >= minX ? (maxX - minX + 1) * bounds.width / width : 0,
         modelHeight: maxY >= minY ? (maxY - minY + 1) * bounds.height / height : 0,
-        legacyHeight,
       });
     };
     // A nonempty model is required so a cleared WebGL buffer cannot pass.
@@ -109,7 +99,7 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   expect(await homeLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
   await expect.poll(() => page.locator('#introVideo').evaluate((video) => video.readyState)).toBeGreaterThanOrEqual(2);
   expect(await page.locator('#introVideo').evaluate((video) => video.loop)).toBe(false);
-  expect(requests.some((url) => /lion-overall/.test(url))).toBe(true);
+  expect(requests.some((url) => new URL(url).pathname.endsWith(assetPaths.model))).toBe(true);
   await page.locator('#introVideo').evaluate((video) => video.dispatchEvent(new Event('ended')));
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
   await expect(page.locator('#entryLionVideo')).toHaveJSProperty('src', new URL(assetPaths.home, page.url()).href);
@@ -126,22 +116,17 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   await page.screenshot({ path: test.info().outputPath('model.png'), fullPage: true });
 
-  await page.getByRole('button', { name: '暂停自动旋转', exact: true }).click();
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
-  await page.getByRole('button', { name: '继续自动旋转', exact: true }).click();
+  await page.locator('#toggleRotate').click();
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'true');
-  for (const [id, label] of [['eyes', '鼓眼与狮眉'], ['mirror', '额头铜镜'], ['mouth', '狮嘴'], ['fur_and_bells', '须毛与铜铃'], ['lion_cloth', '狮被与狮尾'], ['outer_shell', '彩绘狮头']]) {
+  await page.locator('#toggleRotate').click();
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+  for (const { id, name } of structureParts) {
     await page.locator(`#hotspotList [data-id="${id}"]`).click();
-    await expect(page.locator('#panelTitle')).toHaveText(label);
-    await expect(page.locator(`#hotspots [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#panelTitle')).toHaveText(name);
+    await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', id);
+    await expect(page.locator(`#hotspotList [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
   }
-
-  await page.locator('#viewStructure').click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-  await expect(page.locator('#structureLayer')).toBeVisible();
-  await page.locator('#structureDepth').fill('90');
-  await expect(page.locator('#structureDepthValue')).toHaveText('90%');
-  await expect(page.locator('.structure-callout.is-revealed')).toHaveCount(4);
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   for (const [route, label] of [['action', '动作'], ['state', '神态']]) {
     await routeButton(page, route).click();
@@ -193,11 +178,6 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await page.screenshot({ path: test.info().outputPath('home-mobile.png'), fullPage: true });
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-  await page.locator('#viewStructure').click();
-  await expect(page.locator('#structureLayer')).toBeVisible();
-  await expect(page.locator('#modelStatus')).toContainText('结构示意', { timeout: 45_000 });
-  await page.locator('#structureDepth').fill('65');
-  await expect(page.locator('#structureDepthValue')).toHaveText('65%');
   await page.locator('#hotspotList [data-id="mouth"]').click();
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
@@ -214,7 +194,7 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
 
 test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ page }) => {
   let fail = true;
-  await page.route('**/assets/models/lion-overall.glb', async (route) => {
+  await page.route(modelRequestPattern, async (route) => {
     if (fail) await route.fulfill({ status: 503, body: 'temporarily unavailable' });
     else await route.continue();
   });
@@ -228,89 +208,100 @@ test('模型下载失败保留参考图，重试能够恢复3D场景', async ({ 
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
 });
 
-test('整体及同页结构示意透明融入指定背景，展示区没有内框或地面', async ({ page }) => {
+test('结构模型以透明全页画布融入指定背景，模型展示与右侧说明保持分离', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
   await openPrepared(page, '/#/model');
-  for (const showGuide of [false, true]) {
-    if (showGuide) await page.locator('#viewStructure').click();
-    await expect(page.locator('#modelStage')).toBeVisible();
-    await expect(page.locator('#modelStatus')).toContainText(showGuide ? '结构示意' : '模型已载入', { timeout: 45_000 });
-    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-    await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
-    await expect(page.locator('.scene-glow, .scene-pattern, .scene-grid')).toHaveCount(0);
-    const presentation = await page.evaluate(() => {
-      const frame = getComputedStyle(document.querySelector('#sceneFrame'));
-      const layer = getComputedStyle(document.querySelector('#structureLayer'));
-      const control = getComputedStyle(document.querySelector('.structure-control'));
-      const stageBounds = document.querySelector('#modelStage').getBoundingClientRect();
-      const canvasBounds = document.querySelector('#sceneContainer canvas').getBoundingClientRect();
-      return {
-        stage: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
-        pageBackground: getComputedStyle(document.querySelector('.site-shell')).backgroundImage,
-        frameColor: frame.backgroundColor,
-        frameImage: frame.backgroundImage,
-        frameBorders: [frame.borderTopWidth, frame.borderRightWidth, frame.borderBottomWidth, frame.borderLeftWidth],
-        frameShadow: frame.boxShadow,
-        frameOverflow: frame.overflow,
-        stageBounds: { x: stageBounds.x, y: stageBounds.y, width: stageBounds.width, height: stageBounds.height },
-        canvasBounds: { x: canvasBounds.x, y: canvasBounds.y, width: canvasBounds.width, height: canvasBounds.height },
-        layerColor: layer.backgroundColor,
-        layerImage: layer.backgroundImage,
-        controlColor: control.backgroundColor,
-        controlImage: control.backgroundImage,
-      };
-    });
-    expect(presentation.stage).toBe('none');
-    expect(presentation.pageBackground).toContain(assetPaths.modelBackground);
-    await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.modelBackground);
-    expect(presentation.frameColor).toBe('rgba(0, 0, 0, 0)');
-    expect(presentation.frameImage).toBe('none');
-    expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
-    expect(presentation.frameShadow).toBe('none');
-    expect(presentation.frameOverflow).toBe('visible');
-    for (const dimension of ['x', 'y', 'width', 'height']) {
-      expect(presentation.canvasBounds[dimension]).toBeCloseTo(presentation.stageBounds[dimension], 0);
-    }
-    expect(presentation.layerColor).toBe('rgba(0, 0, 0, 0)');
-    expect(presentation.layerImage).toBe('none');
-    expect(presentation.controlColor).toBe('rgba(0, 0, 0, 0)');
-    expect(presentation.controlImage).toBe('none');
-
-    const pixels = await sampleModelPixels(page);
-    expect(pixels.alpha).toBe(true);
-    expect(pixels.modelPixels).toBeGreaterThan(100);
-    expect(pixels.cornerPixels).toBe(0);
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
+  await expect(page.locator('.scene-glow, .scene-pattern, .scene-grid, #hotspots, #structureLayer, #viewStructure')).toHaveCount(0);
+  const presentation = await page.evaluate(() => {
+    const frame = getComputedStyle(document.querySelector('#sceneFrame'));
+    const stage = document.querySelector('#modelStage').getBoundingClientRect();
+    const canvas = document.querySelector('#sceneContainer canvas').getBoundingClientRect();
+    return {
+      stageBackground: getComputedStyle(document.querySelector('#modelStage')).backgroundImage,
+      pageBackground: getComputedStyle(document.querySelector('.site-shell')).backgroundImage,
+      frameColor: frame.backgroundColor,
+      frameImage: frame.backgroundImage,
+      frameBorders: [frame.borderTopWidth, frame.borderRightWidth, frame.borderBottomWidth, frame.borderLeftWidth],
+      frameShadow: frame.boxShadow,
+      frameOverflow: frame.overflow,
+      stageBounds: { x: stage.x, y: stage.y, width: stage.width, height: stage.height },
+      canvasBounds: { x: canvas.x, y: canvas.y, width: canvas.width, height: canvas.height },
+    };
+  });
+  expect(presentation.stageBackground).toBe('none');
+  expect(presentation.pageBackground).toContain(assetPaths.modelBackground);
+  await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.modelBackground);
+  expect(presentation.frameColor).toBe('rgba(0, 0, 0, 0)');
+  expect(presentation.frameImage).toBe('none');
+  expect(presentation.frameBorders).toEqual(['0px', '0px', '0px', '0px']);
+  expect(presentation.frameShadow).toBe('none');
+  expect(presentation.frameOverflow).toBe('visible');
+  for (const dimension of ['x', 'y', 'width', 'height']) {
+    expect(presentation.canvasBounds[dimension]).toBeCloseTo(presentation.stageBounds[dimension], 0);
   }
+  const pixels = await sampleModelPixels(page);
+  expect(pixels.alpha).toBe(true);
+  expect(pixels.modelPixels).toBeGreaterThan(100);
+  expect(pixels.cornerPixels).toBe(0);
+  const frame = await page.locator('#sceneFrame').boundingBox();
+  const panel = await page.locator('#structurePanel').boundingBox();
+  expect(pixels.modelCenterX).toBeLessThan(panel.x);
+  expect(Math.abs(pixels.modelCenterX - (frame.x + frame.width / 2))).toBeLessThan(frame.width * .22);
   await expectPushedChapterBackdrop(page, assetPaths.modelBackground);
 });
 
-test('整体及结构示意滚轮放大后越过旧16:9及交互区上下边缘而不被裁切', async ({ page }) => {
+test('结构模型真实滚轮放大改变绘制尺寸，透明画布保留全页绘制范围', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  for (const showGuide of [false, true]) {
-    await openPrepared(page, '/');
+  await openPrepared(page, '/#/model');
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+  const initial = await sampleModelPixels(page);
+  expect(initial.modelPixels).toBeGreaterThan(100);
+  const frame = await page.locator('.scene-interaction').boundingBox();
+  await page.mouse.move(frame.x + frame.width / 2, frame.y + frame.height / 2);
+  let zoomed = initial;
+  for (let attempt = 0; attempt < 16; attempt += 1) {
+    await page.mouse.wheel(0, -200);
+    zoomed = await sampleModelPixels(page);
+    if (zoomed.modelHeight > initial.modelHeight * 1.15) break;
+  }
+  expect(zoomed.modelHeight).toBeGreaterThan(initial.modelHeight * 1.15);
+  expect(zoomed.modelPixels).toBeGreaterThan(initial.modelPixels * 1.15);
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
+  const canvas = await page.locator('#sceneContainer canvas').boundingBox();
+  const stage = await page.locator('#modelStage').boundingBox();
+  expect(canvas.height).toBeCloseTo(stage.height, 0);
+  expect(canvas.width).toBeCloseTo(stage.width, 0);
+  await page.screenshot({ path: test.info().outputPath('structure-model-wheel-zoom.png'), fullPage: true });
+});
+
+for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {
+  test(`结构页在${viewport.width}电脑窗口保持左模型右资料，导航与部件目录可操作`, async ({ page }) => {
+    await page.setViewportSize(viewport);
     await openPrepared(page, '/#/model');
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-    if (showGuide) await page.locator('#viewStructure').click();
-    await page.getByRole('button', { name: '暂停自动旋转', exact: true }).click();
-    const initial = await sampleModelPixels(page);
-    expect(initial.modelPixels).toBeGreaterThan(100);
-    const frame = await page.locator('.scene-interaction').boundingBox();
-    await page.locator('.scene-interaction').hover({ position: { x: frame.width / 2, y: 100 } });
-    let zoomed = initial;
-    for (let attempt = 0; attempt < 24; attempt += 1) {
-      await page.mouse.wheel(0, -400);
-      zoomed = await sampleModelPixels(page);
-      if (zoomed.modelHeight > initial.modelHeight * 1.15 && zoomed.aboveFramePixels > 100 && zoomed.belowFramePixels > 100) break;
-    }
-    expect(zoomed.modelHeight).toBeGreaterThan(initial.modelHeight * 1.15);
-    expect(zoomed.modelHeight).toBeGreaterThan(zoomed.legacyHeight);
-    expect(zoomed.abovePixels).toBeGreaterThan(100);
-    expect(zoomed.belowPixels).toBeGreaterThan(100);
-    expect(zoomed.aboveFramePixels).toBeGreaterThan(100);
-    expect(zoomed.belowFramePixels).toBeGreaterThan(100);
-    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-    await page.screenshot({ path: test.info().outputPath(`${showGuide ? 'structure-guide' : 'model'}-zoom-beyond-legacy-frame.png`), fullPage: true });
-  }
-});
+    const columns = await page.locator('.model-layout').evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(columns).toBe(2);
+    const scene = await page.locator('.scene-column').boundingBox();
+    const panel = await page.locator('#structurePanel').boundingBox();
+    const header = await page.locator('.site-header').boundingBox();
+    expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
+    expect(scene.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
+    expect(panel.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
+    expect(scene.width).toBeGreaterThan(300);
+    expect(panel.width).toBeGreaterThan(260);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    await page.locator('#hotspotList [data-id="mouth"]').click();
+    await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mouth');
+    await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
+    await page.locator('#resetView').click();
+    await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
+    await routeButton(page, 'state').click();
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
+  });
+}
 
 test('动作章节使用透明底层并保留待接入视频和定性时间轴', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -383,67 +374,123 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   await expect(settings).toHaveAttribute('aria-controls', 'developerSettingsPanel');
 });
 
-test('模型页数字图鉴联动热点与同页结构开关，离页暂停并复用预热场景', async ({ page }) => {
+test('结构页右侧部件目录驱动局部聚焦，离页暂停并复用预热场景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-  await expect(page.locator('#culturePanel')).toBeVisible();
   await expect(page.locator('#structurePanel')).toBeVisible();
-  await expect(page.locator('.panel-detail-list')).toBeVisible();
-  await expect(page.locator('.structure-diagram')).toBeVisible();
-  await expect(page.locator('#viewStructure')).toBeVisible();
+  await expect(page.locator('#culturePanel, .structure-diagram, #hotspots, #viewStructure, #structureLayer')).toHaveCount(0);
   await expect(page.locator('#resetView')).toBeVisible();
   const canvas = await page.locator('#sceneContainer canvas').elementHandle();
-  const columns = await page.locator('.model-layout').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-  expect(columns).toBe(3);
-
-  await page.locator('#hotspots [data-id="eyes"]').click();
+  await page.locator('#hotspotList [data-id="eyes"]').click();
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'eyes');
   await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'eyes');
-  await expect(page.locator('#cultureTitle')).toHaveText('鼓眼与狮眉');
-  await expect(page.locator('#structureTitle')).toHaveText('鼓眼与狮眉');
-  await expect(page.locator('#hotspots [data-id="eyes"]')).toHaveAttribute('aria-pressed', 'true');
-
+  await expect(page.locator('#panelTitle')).toHaveText('鼓眼与狮眉');
+  await expect(page.locator('#hotspotList [data-id="eyes"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+  expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('#resetView').click();
   await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
-  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
-
-  await page.locator('#hotspots [data-id="mirror"]').click();
-  const modelHash = await page.evaluate(() => location.hash);
-  await page.locator('#viewStructure').click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-  expect(await page.evaluate(() => location.hash)).toBe(modelHash);
-  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('#modelStage')).toHaveAttribute('data-guide-open', 'true');
-  await expect(page.locator('#structureLayer')).toBeVisible();
-  await expect(page.locator('#structureBoundary')).toContainText('合并网格');
-  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
-  await page.locator('#viewStructure').click();
-  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.locator('#structureLayer')).not.toBeVisible();
-  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mirror');
-  await page.locator('#viewStructure').click();
-  await page.locator('#restoreStructure').click();
-  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
-  await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.locator('#structureLayer')).not.toBeVisible();
-  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
-  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');
-  await expect(page.locator('#structureDepthValue')).toHaveText('18%');
-  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', structureParts[0].id);
   await page.locator('.site-brand-capsule').click();
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   await expect(page.locator('#modelStage')).toBeHidden();
-  expect(await canvas.evaluate((element) => element.isConnected)).toBe(true);
-  expect(await canvas.evaluate((element) => {
+  expect(await canvas.evaluate(element => element.isConnected)).toBe(true);
+  expect(await canvas.evaluate(element => {
     const gl = element.getContext('webgl2') ?? element.getContext('webgl');
     return gl?.isContextLost();
   })).toBe(false);
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
-  expect(await canvas.evaluate((element) => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await canvas.dispose();
+});
+
+test('点击醒狮真实表面同步右侧部件，镜头在左侧放大聚焦实际目标', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await openPrepared(page, '/#/model');
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  const canvas = page.locator('#sceneContainer canvas');
+  for (const id of ['eyes', 'mouth', 'mirror']) {
+    await page.locator('#resetView').click();
+    await expect(canvas).toHaveAttribute('data-focused-part', 'overall');
+    await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+    const initialDistance = Number(await canvas.getAttribute('data-camera-distance'));
+    expect(initialDistance).toBeGreaterThan(0);
+    await expect.poll(async () => {
+      const projections = JSON.parse(await canvas.getAttribute('data-part-projections') || '{}');
+      return projections[id]?.visible === true;
+    }).toBe(true);
+    const projection = JSON.parse(await canvas.getAttribute('data-part-projections'))[id];
+    // These client coordinates come from the actual rendered 3D surface,
+    // so a fixed HTML hotspot cannot satisfy this interaction.
+    await page.mouse.click(projection.x, projection.y);
+    await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', id);
+    await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', id);
+    await expect(page.locator(`#hotspotList [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#panelTitle')).toHaveText(structureParts.find(part => part.id === id).name);
+    await expect(canvas).toHaveAttribute('data-focused-part', id);
+    await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+    await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+    expect(Number(await canvas.getAttribute('data-camera-distance'))).toBeLessThan(initialDistance * .9);
+    const frame = await page.locator('.scene-interaction').boundingBox();
+    const target = JSON.parse(await canvas.getAttribute('data-target-screen'));
+    expect(Number.isFinite(target.x) && Number.isFinite(target.y)).toBe(true);
+    expect(Math.abs(target.x - (frame.x + frame.width / 2))).toBeLessThan(5);
+    expect(Math.abs(target.y - (frame.y + frame.height / 2))).toBeLessThan(5);
+    const panel = await page.locator('#structurePanel').boundingBox();
+    expect(target.x).toBeLessThan(panel.x);
+    const pixels = await sampleModelPixels(page);
+    expect(pixels.modelPixels).toBeGreaterThan(100);
+  }
+  await page.screenshot({ path: test.info().outputPath('structure-surface-focus.png'), fullPage: true });
+});
+
+test('聚焦后缩窄电脑窗口再复原，完整醒狮按当前左侧展示区重新取景', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await openPrepared(page, '/#/model');
+  const canvas = page.locator('#sceneContainer canvas');
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入');
+  await page.locator('#hotspotList [data-id="eyes"]').click();
+  await expect(canvas).toHaveAttribute('data-focused-part', 'eyes');
+  await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+  await page.locator('#resetView').click();
+  // Resize while the reset is still interpolating, as opening the settings
+  // panel can also change the left viewport during this animation.
+  await page.setViewportSize({ width: 900, height: 900 });
+  await expect(canvas).toHaveAttribute('data-focused-part', 'overall');
+  await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+  const frame = await page.locator('.scene-interaction').boundingBox();
+  const pixels = await sampleModelPixels(page);
+  expect(pixels.modelPixels).toBeGreaterThan(100);
+  expect(pixels.modelWidth).toBeLessThan(frame.width);
+  expect(pixels.modelHeight).toBeLessThan(frame.height);
+  const target = JSON.parse(await canvas.getAttribute('data-target-screen'));
+  expect(Math.abs(target.x - (frame.x + frame.width / 2))).toBeLessThan(5);
+});
+
+test('拖动模型旋转与点击空白不误选部件', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await openPrepared(page, '/#/model');
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
+  const canvas = page.locator('#sceneContainer canvas');
+  await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+  const projections = JSON.parse(await canvas.getAttribute('data-part-projections'));
+  const start = projections.eyes;
+  expect(start.visible).toBe(true);
+  await page.mouse.move(start.x, start.y);
+  await page.mouse.down();
+  await page.mouse.move(start.x + 90, start.y + 30, { steps: 12 });
+  await page.mouse.up();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', structureParts[0].id);
+  await page.locator('#resetView').click();
+  await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
+  const frame = await page.locator('.scene-interaction').boundingBox();
+  await page.mouse.click(frame.x + 5, frame.y + 5);
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', structureParts[0].id);
 });
 
 test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async ({ page }) => {
@@ -457,11 +504,11 @@ test('模型页数字图鉴在手机宽度保持单列且不横向溢出', async
 test('模型预热失败后切换页面可重试，恢复时只有一个canvas', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.route('**/assets/models/lion-overall.glb', (route) => route.abort('aborted'));
+  await page.route(modelRequestPattern, (route) => route.abort('aborted'));
   await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStage')).toBeVisible();
   await page.locator('.site-brand-capsule').click();
-  await page.unroute('**/assets/models/lion-overall.glb');
+  await page.unroute(modelRequestPattern);
   await routeButton(page, 'model').click();
   await page.getByRole('button', { name: '重新载入', exact: true }).click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -496,8 +543,8 @@ test('旧入场与结构链接兼容到首页与整体，不再保留独立页�
       await expect(page.locator('#introVideo, #entryLionVideo')).toBeVisible();
     } else {
       await expect(page.locator('#modelStage')).toBeVisible();
-      await expect(page.locator('#viewStructure')).toHaveAttribute('aria-expanded', 'false');
-      await expect(page.locator('#structureLayer')).not.toBeVisible();
+      await expect(page.locator('#structurePanel')).toBeVisible();
+      await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'overall');
     }
     await page.reload();
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });

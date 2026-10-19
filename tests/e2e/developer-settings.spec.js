@@ -747,11 +747,11 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await editNumber(page, '侧栏模糊强度', 22);
   expect(await canvas.evaluate(element => element.isConnected && element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('#toggleRotate').click();
-  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#hotspotList [data-id="mouth"]').click();
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
-  await page.locator('#viewStructure').click();
-  await expect(page.locator('#structureLayer')).toBeVisible();
+  await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mouth');
+  await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
   await page.locator('.site-navigation [data-route="action"]').click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
   await page.locator('.site-navigation [data-route="state"]').click();

@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { assetPaths } from '../../src/config/assetPaths.js';
+
+const modelRequestPattern = `**/${assetPaths.model}`;
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 
@@ -6,7 +9,7 @@ test('冷启动等待真实模型准备，书册不提前快翻，章节复用�
   let release;
   const gate = new Promise(resolve => { release = resolve; });
   let modelRequests = 0;
-  await page.route('**/lion-overall.glb', async route => {
+  await page.route(modelRequestPattern, async route => {
     modelRequests++;
     await gate;
     await route.continue();
@@ -34,7 +37,7 @@ test('冷启动等待真实模型准备，书册不提前快翻，章节复用�
 });
 
 test('模型网络失败展示预览状态并完成加载，无永久挡屏', async ({ page }) => {
-  await page.route('**/lion-overall.glb', route => route.abort());
+  await page.route(modelRequestPattern, route => route.abort());
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', /醒狮模型/, { timeout: 60_000 });
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
@@ -47,7 +50,7 @@ test('模型网络失败展示预览状态并完成加载，无永久挡屏', as
 test('模型下载途中丢失WebGL上下文仍结束加载并保留重试', async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
-  await page.route('**/lion-overall.glb', async route => { await gate; await route.continue().catch(() => {}); });
+  await page.route(modelRequestPattern, async route => { await gate; await route.continue().catch(() => {}); });
   await page.goto('/');
   const canvas = page.locator('#sceneContainer canvas');
   await expect(canvas).toHaveCount(1);

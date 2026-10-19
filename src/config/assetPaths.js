@@ -35,7 +35,7 @@ export const assetPaths = {
   expressionStillness: 'assets/expression/lion-stillness-v2.png',
   expressionSurprise: 'assets/expression/lion-surprise-v2.png',
   expressionDoubt: 'assets/expression/lion-doubt-v2.png',
-  model: 'assets/models/lion-overall.glb',
+  model: 'assets/models/lion-structure-optimized.glb',
   poster: 'assets/poster/lion-full.png',
   cultureFoshan: 'assets/culture/foshan-lion-dance.jpg',
   cultureLionHead: 'assets/culture/guangzhou-lion-head.jpg',

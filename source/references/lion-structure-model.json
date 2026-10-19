@@ -1,0 +1,1099 @@
+{
+  "blender_version": "5.0.0",
+  "source": "model/醒狮_保留UV_三角转四边_优化.blend",
+  "source_bytes": 139309821,
+  "source_sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2",
+  "scene_object_counts": {
+    "CURVES": 18,
+    "EMPTY": 41,
+    "LIGHT": 3,
+    "MESH": 38
+  },
+  "mesh_objects": [
+    {
+      "name": "立方体",
+      "vertices": 40,
+      "triangles": 76,
+      "uv_layers": ["UV贴图"],
+      "materials": ["Fiber_Red_Scarlet"],
+      "gltf_bounds": {
+        "min": [-0.06342087686061859, 0.3859308958053589, 0.5737497210502625],
+        "max": [0.0625876933336258, 0.47025245428085327, 0.6944949626922607],
+        "center": [-0.0004165917634963989, 0.4280916750431061, 0.6341223418712616]
+      }
+    },
+    {
+      "name": "牙下",
+      "vertices": 374,
+      "triangles": 740,
+      "uv_layers": ["UV贴图"],
+      "materials": ["牙", "材质"],
+      "gltf_bounds": {
+        "min": [-0.12742124497890472, 0.3853868842124939, 0.6110579967498779],
+        "max": [0.1274206042289734, 0.45367375016212463, 0.7021462321281433],
+        "center": [-3.203749656677246e-07, 0.41953031718730927, 0.6566021144390106]
+      }
+    },
+    {
+      "name": "上牙",
+      "vertices": 432,
+      "triangles": 860,
+      "uv_layers": ["UV贴图"],
+      "materials": ["牙", "材质"],
+      "gltf_bounds": {
+        "min": [-0.1393488496541977, 0.4579291343688965, 0.6103299856185913],
+        "max": [0.1393488347530365, 0.4927358627319336, 0.732315182685852],
+        "center": [-7.450580596923828e-09, 0.47533249855041504, 0.6713225841522217]
+      }
+    },
+    {
+      "name": "Lion_Tail",
+      "vertices": 20022,
+      "triangles": 33837,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [-0.22168269753456116, 0.25305458903312683, -0.8015120029449463],
+        "max": [0.2191823422908783, 0.7782517671585083, -0.5223888754844666],
+        "center": [-0.0012501776218414307, 0.5156531780958176, -0.6619504392147064]
+      }
+    },
+    {
+      "name": "Lion_Nose",
+      "vertices": 102255,
+      "triangles": 219830,
+      "uv_layers": ["UVMap", "ForeheadPlane_XZ_0p2m"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base", "Forehead_ReferenceInspired_Brocade_Study", "金属"],
+      "gltf_bounds": {
+        "min": [-0.361871600151062, 0.29092878103256226, 0.10993647575378418],
+        "max": [0.3609868288040161, 0.9814152717590332, 0.8015120029449463],
+        "center": [-0.0004423856735229492, 0.6361720263957977, 0.45572423934936523]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_R",
+      "vertices": 1516,
+      "triangles": 2807,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [-0.45202070474624634, 0.009189162403345108, -0.6451449990272522],
+        "max": [-0.1285078078508377, 0.0916023999452591, -0.35346972942352295],
+        "center": [-0.290264256298542, 0.0503957811743021, -0.4993073642253876]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_L",
+      "vertices": 1529,
+      "triangles": 2778,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [0.15838560461997986, 0.00882316380739212, -0.6460768580436707],
+        "max": [0.45202070474624634, 0.09283250570297241, -0.3545041084289551],
+        "center": [0.3052031546831131, 0.050827834755182266, -0.5002904832363129]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_R",
+      "vertices": 7651,
+      "triangles": 12592,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [-0.4361523389816284, 0.07388609647750854, -0.6369115114212036],
+        "max": [-0.1298263967037201, 0.44047024846076965, -0.2769937515258789],
+        "center": [-0.28298936784267426, 0.2571781724691391, -0.45695263147354126]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_L",
+      "vertices": 8003,
+      "triangles": 13581,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [0.1307544857263565, 0.07249626517295837, -0.640867292881012],
+        "max": [0.4369558095932007, 0.4400576949119568, -0.26919132471084595],
+        "center": [0.2838551476597786, 0.2562769800424576, -0.45502930879592896]
+      }
+    },
+    {
+      "name": "Lion_Head.001",
+      "vertices": 53,
+      "triangles": 91,
+      "uv_layers": ["UVMap", "ForeheadPlane_XZ_0p2m"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base", "Forehead_ReferenceInspired_Brocade_Study", "金属"],
+      "gltf_bounds": {
+        "min": [-0.03655138239264488, 0.7175571322441101, 0.7073591947555542],
+        "max": [0.03980058431625366, 0.787416398525238, 0.7462396621704102],
+        "center": [0.00162460096180439, 0.7524867653846741, 0.7267994284629822]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_R",
+      "vertices": 1579,
+      "triangles": 2908,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [-0.40871328115463257, 0.00029452890157699585, 0.2254377156496048],
+        "max": [-0.15378862619400024, 0.09502314031124115, 0.5528643727302551],
+        "center": [-0.2812509536743164, 0.04765883460640907, 0.38915104418992996]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_L",
+      "vertices": 1506,
+      "triangles": 2753,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [0.1528892070055008, -1.4901161193847656e-08, 0.22956950962543488],
+        "max": [0.40868502855300903, 0.09338141232728958, 0.552494466304779],
+        "center": [0.2807871177792549, 0.046690698713064194, 0.39103198796510696]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_R",
+      "vertices": 6909,
+      "triangles": 11472,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [-0.4075545072555542, 0.0713668167591095, 0.18492069840431213],
+        "max": [-0.14277537167072296, 0.43001896142959595, 0.5846503376960754],
+        "center": [-0.2751649394631386, 0.2506928890943527, 0.3847855180501938]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_L",
+      "vertices": 7153,
+      "triangles": 11871,
+      "uv_layers": ["UVMap"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base"],
+      "gltf_bounds": {
+        "min": [0.14131221175193787, 0.07481580972671509, 0.189297616481781],
+        "max": [0.40715688467025757, 0.43826940655708313, 0.5862594842910767],
+        "center": [0.2742345482110977, 0.2565426081418991, 0.38777855038642883]
+      }
+    },
+    {
+      "name": "Lion_Forehead_Bead_09",
+      "vertices": 1984,
+      "triangles": 3840,
+      "uv_layers": ["UVMap"],
+      "materials": ["New_Head_Brass"],
+      "gltf_bounds": {
+        "min": [-0.04329231008887291, 0.7077485918998718, 0.7034082412719727],
+        "max": [0.04622289538383484, 0.7981621623039246, 0.7478492259979248],
+        "center": [0.0014652926474809647, 0.7529553771018982, 0.7256287336349487]
+      }
+    },
+    {
+      "name": "Lion_Ear_R",
+      "vertices": 9717,
+      "triangles": 16017,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [-0.3666578531265259, 0.7278459072113037, 0.2255842387676239],
+        "max": [-0.16141155362129211, 0.980983555316925, 0.5622406601905823],
+        "center": [-0.264034703373909, 0.8544147312641144, 0.3939124494791031]
+      }
+    },
+    {
+      "name": "Lion_Ear_L",
+      "vertices": 11061,
+      "triangles": 17299,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [0.16051308810710907, 0.7262190580368042, 0.2268749177455902],
+        "max": [0.3655269742012024, 0.9828596711158752, 0.5614340901374817],
+        "center": [0.26302003115415573, 0.8545393645763397, 0.39415450394153595]
+      }
+    },
+    {
+      "name": "Lion_Crown",
+      "vertices": 3784,
+      "triangles": 5521,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [-0.09730876237154007, 0.8902612924575806, 0.35955268144607544],
+        "max": [0.09811349213123322, 1.0, 0.6930205225944519],
+        "center": [0.0004023648798465729, 0.9451306462287903, 0.5262866020202637]
+      }
+    },
+    {
+      "name": "Lion_Brow_R",
+      "vertices": 4888,
+      "triangles": 6488,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [-0.26024848222732544, 0.6300641298294067, 0.5450076460838318],
+        "max": [-0.030442245304584503, 0.8970057964324951, 0.7781645059585571],
+        "center": [-0.14534536376595497, 0.7635349631309509, 0.6615860760211945]
+      }
+    },
+    {
+      "name": "Lion_Brow_L",
+      "vertices": 5013,
+      "triangles": 7063,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [0.031743839383125305, 0.6318113803863525, 0.5479552149772644],
+        "max": [0.2591078281402588, 0.8979776501655579, 0.779985785484314],
+        "center": [0.14542583376169205, 0.7648945152759552, 0.6639705002307892]
+      }
+    },
+    {
+      "name": "Lion_Body_Red_Trim",
+      "vertices": 15497,
+      "triangles": 24753,
+      "uv_layers": ["UVMap", "BrocadeCylinder_0p2m"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base", "Brocade_Clear_Tile_Cloth_Study.001"],
+      "gltf_bounds": {
+        "min": [-0.3081314265727997, 0.3057231307029724, -0.5489936470985413],
+        "max": [0.308478981256485, 0.7878578901290894, 0.2724246680736542],
+        "center": [0.00017377734184265137, 0.5467905104160309, -0.13828448951244354]
+      }
+    },
+    {
+      "name": "Lion_Body",
+      "vertices": 81262,
+      "triangles": 123440,
+      "uv_layers": ["UVMap", "BrocadeCylinder_0p2m"],
+      "materials": ["Lion_Atlas_PBR_Refined", "Velvet_Scarlet_Uniform_Base", "Brocade_Clear_Tile_Cloth_Study"],
+      "gltf_bounds": {
+        "min": [-0.3513529300689697, 0.08132842183113098, -0.8006386160850525],
+        "max": [0.3508310317993164, 0.7688655257225037, 0.6040153503417969],
+        "center": [-0.00026094913482666016, 0.4250969737768173, -0.09831163287162781]
+      }
+    },
+    {
+      "name": "Lion_Beard",
+      "vertices": 5895,
+      "triangles": 8863,
+      "uv_layers": ["UVMap"],
+      "materials": ["HighDetail_Head_Atlas_PBR", "Head_Scarlet_Velvet_Base", "Head_Ivory_Fringe_Base"],
+      "gltf_bounds": {
+        "min": [-0.21887950599193573, 0.22316089272499084, 0.5377401113510132],
+        "max": [0.21764075756072998, 0.38695240020751953, 0.7430418729782104],
+        "center": [-0.0006193742156028748, 0.3050566464662552, 0.6403909921646118]
+      }
+    }
+  ],
+  "materials": ["Brocade_Clear_Tile_Cloth_Study", "Brocade_Clear_Tile_Cloth_Study.001", "Brocade_Clear_Tile_Cloth_Study.002", "Fiber_Red_Scarlet", "Fiber_Red_Scarlet.001", "Fiber_Warm_Ivory", "Fiber_Warm_Ivory.001", "Forehead_ReferenceInspired_Brocade_Study", "Head_Ivory_Fringe_Base", "Head_Ivory_Fringe_Base.001", "Head_Scarlet_Velvet_Base", "Head_Scarlet_Velvet_Base.001", "HighDetail_Head_Atlas_PBR", "HighDetail_Head_Atlas_PBR.001", "Lion_Atlas_PBR_Refined", "Lion_Atlas_PBR_Refined.001", "Lion_PhotoGroom_Crimson", "Lion_PhotoGroom_Warm_Ivory", "New_Head_Brass", "Velvet_Scarlet_Uniform_Base", "Velvet_Scarlet_Uniform_Base.001", "材质", "牙", "金属"],
+  "images": [
+    {
+      "name": "body_micro_weave_normal_2048.png",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "body_micro_weave_normal_2048.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "body_micro_weave_normal_2048.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.002",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "body_micro_weave_normal_2048.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.003",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "body_micro_weave_normal_2048.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "brocade_reference_synthesis.png",
+      "size": [1254, 1254],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "brocade_reference_synthesis.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.001",
+      "size": [1254, 1254],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "brocade_reference_synthesis.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.002",
+      "size": [1254, 1254],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "brocade_reference_synthesis.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.003",
+      "size": [1254, 1254],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "brocade_reference_synthesis.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_basecolor_refined.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_basecolor_refined.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_basecolor_scarlet.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_basecolor_scarlet.png",
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_metallic_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_metallic_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_roughness_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_roughness_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_metallic_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_metallic_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_roughness_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_roughness_color_inferred.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_weave_appearance_mask.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_weave_appearance_mask.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_weave_appearance_mask.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png.001",
+      "size": [2048, 2048],
+      "channels": 4,
+      "source": "FILE",
+      "original_filename": "lion_weave_appearance_mask.png",
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Render Result",
+      "size": [0, 0],
+      "channels": 0,
+      "source": "VIEWER",
+      "original_filename": "",
+      "packed": false,
+      "colorspace": ""
+    },
+    {
+      "name": "Viewer Node",
+      "size": [256, 256],
+      "channels": 4,
+      "source": "VIEWER",
+      "original_filename": "",
+      "packed": false,
+      "colorspace": ""
+    }
+  ],
+  "geometry_status": "Full lion with real named body/head submeshes; eyes are painted into the main head mesh and are not independent geometry.",
+  "compatibility": "Source header is Blender 5.1; Blender 5.0.0 reads it with a newer-version warning. Source is never saved by this script.",
+  "source_provenance": {
+    "source_assets_in_custom_properties": ["g1_full_lion_4054240", "head_highdetail_4055287"],
+    "part_partition_status": "Custom properties describe spatial/UV color selection of existing source triangles, uncapped cuts, and unreconstructed topology; named parts are appearance partitions, not complete craft internals or rigged joints.",
+    "ai_provenance_status": "No explicit Lux3D/AI provider attribution was found in the inspected scene/object/mesh/material custom properties. Do not infer the new model generation method from generic asset IDs.",
+    "material_inference": ["Color-derived PBR only; not measured textile or recovered embroidery"]
+  },
+  "export": {
+    "path": "source/public/assets/models/lion-structure-optimized.glb",
+    "bytes": 24428652,
+    "sha256": "f4f7f6a25f84d8457afd6fd42e44702607213b037613d019b936d10c4422b0e0",
+    "settings": {
+      "export_format": "GLB",
+      "use_selection": true,
+      "export_yup": true,
+      "export_apply": true,
+      "export_texcoords": true,
+      "export_normals": true,
+      "export_materials": "EXPORT",
+      "export_image_format": "JPEG",
+      "export_image_quality": 90,
+      "export_animations": false,
+      "export_extras": true
+    },
+    "coincident_meshes_excluded": [
+      {
+        "excluded": "Lion_Tail.001",
+        "identical_to": "Lion_Tail"
+      },
+      {
+        "excluded": "Lion_Hindpaw_R.001",
+        "identical_to": "Lion_Hindpaw_R"
+      },
+      {
+        "excluded": "Lion_Hindpaw_L.001",
+        "identical_to": "Lion_Hindpaw_L"
+      },
+      {
+        "excluded": "Lion_Hindleg_R.001",
+        "identical_to": "Lion_Hindleg_R"
+      },
+      {
+        "excluded": "Lion_Hindleg_L.001",
+        "identical_to": "Lion_Hindleg_L"
+      },
+      {
+        "excluded": "Lion_Forepaw_R.001",
+        "identical_to": "Lion_Forepaw_R"
+      },
+      {
+        "excluded": "Lion_Forepaw_L.001",
+        "identical_to": "Lion_Forepaw_L"
+      },
+      {
+        "excluded": "Lion_Foreleg_R.001",
+        "identical_to": "Lion_Foreleg_R"
+      },
+      {
+        "excluded": "Lion_Foreleg_L.001",
+        "identical_to": "Lion_Foreleg_L"
+      },
+      {
+        "excluded": "Lion_Ear_R.001",
+        "identical_to": "Lion_Ear_R"
+      },
+      {
+        "excluded": "Lion_Ear_L.001",
+        "identical_to": "Lion_Ear_L"
+      },
+      {
+        "excluded": "Lion_Brow_R.001",
+        "identical_to": "Lion_Brow_R"
+      },
+      {
+        "excluded": "Lion_Brow_L.001",
+        "identical_to": "Lion_Brow_L"
+      },
+      {
+        "excluded": "Lion_Body_Red_Trim.001",
+        "identical_to": "Lion_Body_Red_Trim"
+      },
+      {
+        "excluded": "Lion_Beard.001",
+        "identical_to": "Lion_Beard"
+      }
+    ],
+    "mesh_object_names": ["立方体", "牙下", "上牙", "Lion_Tail", "Lion_Nose", "Lion_Hindpaw_R", "Lion_Hindpaw_L", "Lion_Hindleg_R", "Lion_Hindleg_L", "Lion_Head.001", "Lion_Forepaw_R", "Lion_Forepaw_L", "Lion_Foreleg_R", "Lion_Foreleg_L", "Lion_Forehead_Bead_09", "Lion_Ear_R", "Lion_Ear_L", "Lion_Crown", "Lion_Brow_R", "Lion_Brow_L", "Lion_Body_Red_Trim", "Lion_Body", "Lion_Beard"],
+    "mesh_repairs_in_memory": [
+      {
+        "object": "Lion_Tail",
+        "before": {
+          "vertices": 20022,
+          "polygons": 31301
+        },
+        "after": {
+          "vertices": 20022,
+          "polygons": 31299
+        }
+      },
+      {
+        "object": "Lion_Nose",
+        "before": {
+          "vertices": 102255,
+          "polygons": 212156
+        },
+        "after": {
+          "vertices": 102255,
+          "polygons": 212113
+        }
+      },
+      {
+        "object": "Lion_Hindpaw_L",
+        "before": {
+          "vertices": 1529,
+          "polygons": 2514
+        },
+        "after": {
+          "vertices": 1529,
+          "polygons": 2513
+        }
+      },
+      {
+        "object": "Lion_Hindleg_L",
+        "before": {
+          "vertices": 8003,
+          "polygons": 12423
+        },
+        "after": {
+          "vertices": 8003,
+          "polygons": 12422
+        }
+      },
+      {
+        "object": "Lion_Foreleg_R",
+        "before": {
+          "vertices": 6909,
+          "polygons": 10498
+        },
+        "after": {
+          "vertices": 6909,
+          "polygons": 10497
+        }
+      },
+      {
+        "object": "Lion_Foreleg_L",
+        "before": {
+          "vertices": 7153,
+          "polygons": 10921
+        },
+        "after": {
+          "vertices": 7153,
+          "polygons": 10919
+        }
+      },
+      {
+        "object": "Lion_Ear_R",
+        "before": {
+          "vertices": 9717,
+          "polygons": 14545
+        },
+        "after": {
+          "vertices": 9717,
+          "polygons": 14541
+        }
+      },
+      {
+        "object": "Lion_Ear_L",
+        "before": {
+          "vertices": 11061,
+          "polygons": 15787
+        },
+        "after": {
+          "vertices": 11061,
+          "polygons": 15785
+        }
+      },
+      {
+        "object": "Lion_Brow_R",
+        "before": {
+          "vertices": 4888,
+          "polygons": 5922
+        },
+        "after": {
+          "vertices": 4888,
+          "polygons": 5921
+        }
+      },
+      {
+        "object": "Lion_Brow_L",
+        "before": {
+          "vertices": 5013,
+          "polygons": 6348
+        },
+        "after": {
+          "vertices": 5013,
+          "polygons": 6345
+        }
+      },
+      {
+        "object": "Lion_Body",
+        "before": {
+          "vertices": 81262,
+          "polygons": 119263
+        },
+        "after": {
+          "vertices": 81262,
+          "polygons": 119250
+        }
+      },
+      {
+        "object": "Lion_Beard",
+        "before": {
+          "vertices": 5895,
+          "polygons": 8258
+        },
+        "after": {
+          "vertices": 5895,
+          "polygons": 8255
+        }
+      }
+    ],
+    "material_adaptations_in_memory": [
+      {
+        "material": "Lion_Atlas_PBR_Refined",
+        "adaptation": "Omit unsupported procedural Bump output from the web export; preserve color, roughness, metallic, UV and actual Normal Map nodes."
+      },
+      {
+        "material": "Lion_Atlas_PBR_Refined.001",
+        "adaptation": "Omit unsupported procedural Bump output from the web export; preserve color, roughness, metallic, UV and actual Normal Map nodes."
+      }
+    ],
+    "gltf_meshes": 41,
+    "gltf_nodes": 41,
+    "gltf_materials": 16,
+    "gltf_triangles": 720271,
+    "gltf_vertices": 885411,
+    "gltf_images": [
+      {
+        "name": "lion_basecolor_scarlet",
+        "mime_type": "image/jpeg",
+        "bytes": 940719
+      },
+      {
+        "name": "lion_metallic_color_inferred-lion_roughness_color_inferred",
+        "mime_type": "image/jpeg",
+        "bytes": 486322
+      },
+      {
+        "name": "body_micro_weave_normal_2048",
+        "mime_type": "image/jpeg",
+        "bytes": 429601
+      },
+      {
+        "name": "brocade_reference_synthesis",
+        "mime_type": "image/jpeg",
+        "bytes": 907986
+      },
+      {
+        "name": "lion_basecolor_refined",
+        "mime_type": "image/jpeg",
+        "bytes": 1341032
+      },
+      {
+        "name": "Lion_Color_Derived_Metallic-Lion_Color_Derived_Roughness",
+        "mime_type": "image/jpeg",
+        "bytes": 706330
+      }
+    ],
+    "quantization": {
+      "tool": "@gltf-transform/cli@4.2.1",
+      "steps": ["quantize", "prune unused attributes", "weld bitwise identical vertices"],
+      "position_bits": 16,
+      "normal_bits": 8,
+      "texcoord_bits": 16,
+      "tiling_uvs_outside_unit_square": "Preserved as Float32",
+      "runtime_extension": "KHR_mesh_quantization",
+      "external_decoder": false
+    },
+    "hair_approximation": {
+      "method": "Deterministic sampled centerlines become double-sided ribbon meshes; normalized radii use each source object fiber_world_radius_max (about 0.14–0.16 mm), and muzzle radii keep source world units. Groom BSDF uses the existing scarlet Principled material for web compatibility.",
+      "objects": [
+        {
+          "source_object": "Lion_PhotoGroom_red_muzzle_Lion_Nose",
+          "export_object": "Lion_PhotoGroom_red_muzzle_Lion_Nose_WebFibers",
+          "source_curves": 1958,
+          "retained_curves": 1915,
+          "stride": 1,
+          "radius_scale": 1.0,
+          "triangles": 25406
+        },
+        {
+          "source_object": "Lion_Beard_HighDetailWhiteFiber_2",
+          "export_object": "Lion_Beard_HighDetailWhiteFiber_2_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00013999971132402564,
+          "triangles": 8284
+        },
+        {
+          "source_object": "Lion_Body_Red_Trim_AuditedRedFiber_5",
+          "export_object": "Lion_Body_Red_Trim_AuditedRedFiber_5_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00015999995814441193,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Brow_L_HighDetailRedFiber_3",
+          "export_object": "Lion_Brow_L_HighDetailRedFiber_3_WebFibers",
+          "source_curves": 8000,
+          "retained_curves": 667,
+          "stride": 12,
+          "radius_scale": 0.000149999661719798,
+          "triangles": 2668
+        },
+        {
+          "source_object": "Lion_Brow_R_HighDetailRedFiber_2",
+          "export_object": "Lion_Brow_R_HighDetailRedFiber_2_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00014999769361157325,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Ear_L_HighDetailRedFiber_2",
+          "export_object": "Lion_Ear_L_HighDetailRedFiber_2_WebFibers",
+          "source_curves": 12000,
+          "retained_curves": 1000,
+          "stride": 12,
+          "radius_scale": 0.00014999933694954286,
+          "triangles": 4000
+        },
+        {
+          "source_object": "Lion_Ear_R_HighDetailRedFiber_1",
+          "export_object": "Lion_Ear_R_HighDetailRedFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.0001499965774812069,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Foreleg_L_DenseRedFiber_1",
+          "export_object": "Lion_Foreleg_L_DenseRedFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00015999395364436246,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Foreleg_R_DenseRedFiber_1",
+          "export_object": "Lion_Foreleg_R_DenseRedFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.0001599985922954702,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Forepaw_L_DenseWhiteFiber_1",
+          "export_object": "Lion_Forepaw_L_DenseWhiteFiber_1_WebFibers",
+          "source_curves": 7000,
+          "retained_curves": 584,
+          "stride": 12,
+          "radius_scale": 0.00014999607191615018,
+          "triangles": 2904
+        },
+        {
+          "source_object": "Lion_Forepaw_R_DenseWhiteFiber_1",
+          "export_object": "Lion_Forepaw_R_DenseWhiteFiber_1_WebFibers",
+          "source_curves": 7000,
+          "retained_curves": 584,
+          "stride": 12,
+          "radius_scale": 0.0001499995622227176,
+          "triangles": 2872
+        },
+        {
+          "source_object": "Lion_Head_CorrectedRedFiber_2",
+          "export_object": "Lion_Head_CorrectedRedFiber_2_WebFibers",
+          "source_curves": 18449,
+          "retained_curves": 1538,
+          "stride": 12,
+          "radius_scale": 0.0001499982976794664,
+          "triangles": 7636
+        },
+        {
+          "source_object": "Lion_Head_CorrectedWhiteFiber_3",
+          "export_object": "Lion_Head_CorrectedWhiteFiber_3_WebFibers",
+          "source_curves": 19465,
+          "retained_curves": 1622,
+          "stride": 12,
+          "radius_scale": 0.0001499996782895886,
+          "triangles": 8120
+        },
+        {
+          "source_object": "Lion_Hindleg_L_DenseRedFiber_1",
+          "export_object": "Lion_Hindleg_L_DenseRedFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.0001599948996876067,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Hindleg_R_DenseRedFiber_1",
+          "export_object": "Lion_Hindleg_R_DenseRedFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00015999974490863008,
+          "triangles": 6668
+        },
+        {
+          "source_object": "Lion_Hindpaw_L_DenseWhiteFiber_1",
+          "export_object": "Lion_Hindpaw_L_DenseWhiteFiber_1_WebFibers",
+          "source_curves": 7000,
+          "retained_curves": 584,
+          "stride": 12,
+          "radius_scale": 0.00014999710632145275,
+          "triangles": 2914
+        },
+        {
+          "source_object": "Lion_Hindpaw_R_DenseWhiteFiber_1",
+          "export_object": "Lion_Hindpaw_R_DenseWhiteFiber_1_WebFibers",
+          "source_curves": 7000,
+          "retained_curves": 584,
+          "stride": 12,
+          "radius_scale": 0.00014999802286603983,
+          "triangles": 2956
+        },
+        {
+          "source_object": "Lion_Tail_DenseWhiteFiber_1",
+          "export_object": "Lion_Tail_DenseWhiteFiber_1_WebFibers",
+          "source_curves": 20000,
+          "retained_curves": 1667,
+          "stride": 12,
+          "radius_scale": 0.00014999963840511374,
+          "triangles": 8318
+        }
+      ]
+    }
+  },
+  "source_unchanged": true,
+  "duplicate_verification": {
+    "criteria": "Exact positions, indices, polygon lengths, smooth flags, per-face material indices, every UV layer, numeric world transform, shader node input values/links/settings, and packed texture bytes (material names ignored).",
+    "duplicates": [
+      {
+        "excluded": "Lion_Tail.001",
+        "identical_to": "Lion_Tail"
+      },
+      {
+        "excluded": "Lion_Hindpaw_R.001",
+        "identical_to": "Lion_Hindpaw_R"
+      },
+      {
+        "excluded": "Lion_Hindpaw_L.001",
+        "identical_to": "Lion_Hindpaw_L"
+      },
+      {
+        "excluded": "Lion_Hindleg_R.001",
+        "identical_to": "Lion_Hindleg_R"
+      },
+      {
+        "excluded": "Lion_Hindleg_L.001",
+        "identical_to": "Lion_Hindleg_L"
+      },
+      {
+        "excluded": "Lion_Forepaw_R.001",
+        "identical_to": "Lion_Forepaw_R"
+      },
+      {
+        "excluded": "Lion_Forepaw_L.001",
+        "identical_to": "Lion_Forepaw_L"
+      },
+      {
+        "excluded": "Lion_Foreleg_R.001",
+        "identical_to": "Lion_Foreleg_R"
+      },
+      {
+        "excluded": "Lion_Foreleg_L.001",
+        "identical_to": "Lion_Foreleg_L"
+      },
+      {
+        "excluded": "Lion_Ear_R.001",
+        "identical_to": "Lion_Ear_R"
+      },
+      {
+        "excluded": "Lion_Ear_L.001",
+        "identical_to": "Lion_Ear_L"
+      },
+      {
+        "excluded": "Lion_Brow_R.001",
+        "identical_to": "Lion_Brow_R"
+      },
+      {
+        "excluded": "Lion_Brow_L.001",
+        "identical_to": "Lion_Brow_L"
+      },
+      {
+        "excluded": "Lion_Body_Red_Trim.001",
+        "identical_to": "Lion_Body_Red_Trim"
+      },
+      {
+        "excluded": "Lion_Beard.001",
+        "identical_to": "Lion_Beard"
+      }
+    ]
+  },
+  "structure_groups": {
+    "outer_shell": {
+      "names": ["Lion_Nose", "Lion_Ear_L", "Lion_Ear_R"],
+      "gltf_bounds": {
+        "min": [-0.3666578531265259, 0.29092878103256226, 0.10993647575378418],
+        "max": [0.3655269742012024, 0.9828596711158752, 0.8015120029449463],
+        "center": [-0.0005654394626617432, 0.6368942260742188, 0.45572423934936523]
+      }
+    },
+    "eyes": {
+      "names": ["Lion_Brow_L", "Lion_Brow_R"],
+      "gltf_bounds": {
+        "min": [-0.26024848222732544, 0.6300641298294067, 0.5450076460838318],
+        "max": [0.2591078281402588, 0.8979776501655579, 0.779985785484314],
+        "center": [-0.0005703270435333252, 0.7640208899974823, 0.6624967157840729]
+      }
+    },
+    "mirror": {
+      "names": ["Lion_Crown", "Lion_Forehead_Bead_09", "Lion_Head.001"],
+      "gltf_bounds": {
+        "min": [-0.09730876237154007, 0.7077485918998718, 0.35955268144607544],
+        "max": [0.09811349213123322, 1.0, 0.7478492259979248],
+        "center": [0.0004023648798465729, 0.8538742959499359, 0.5537009537220001]
+      }
+    },
+    "mouth": {
+      "names": ["上牙", "牙下", "立方体"],
+      "gltf_bounds": {
+        "min": [-0.1393488496541977, 0.3853868842124939, 0.5737497210502625],
+        "max": [0.1393488347530365, 0.4927358627319336, 0.732315182685852],
+        "center": [-7.450580596923828e-09, 0.43906137347221375, 0.6530324518680573]
+      }
+    },
+    "fur_and_bells": {
+      "names": ["Lion_Beard"],
+      "gltf_bounds": {
+        "min": [-0.21887950599193573, 0.22316089272499084, 0.5377401113510132],
+        "max": [0.21764075756072998, 0.38695240020751953, 0.7430418729782104],
+        "center": [-0.0006193742156028748, 0.3050566464662552, 0.6403909921646118]
+      }
+    },
+    "lion_cloth": {
+      "names": ["Lion_Body", "Lion_Body_Red_Trim", "Lion_Tail", "Lion_Foreleg_L", "Lion_Foreleg_R", "Lion_Forepaw_L", "Lion_Forepaw_R", "Lion_Hindleg_L", "Lion_Hindleg_R", "Lion_Hindpaw_L", "Lion_Hindpaw_R"],
+      "gltf_bounds": {
+        "min": [-0.45202070474624634, -1.4901161193847656e-08, -0.8015120029449463],
+        "max": [0.45202070474624634, 0.7878578901290894, 0.6040153503417969],
+        "center": [0.0, 0.3939289376139641, -0.09874832630157471]
+      }
+    }
+  },
+  "validation": {
+    "tool": "@gltf-transform/cli@4.2.1 validate",
+    "date": "2026-10-19",
+    "errors": 0,
+    "warnings": 3,
+    "info": 5,
+    "warning_details": "3 primitives require tangent space generated at runtime; cross-renderer appearance may differ.",
+    "info_details": "One 1254x1254 NPOT source texture; 374 quantized hair-ribbon triangles degenerate across 4 mesh primitives."
+  }
+}

@@ -226,7 +226,7 @@
     },
     {
       "from": "site/assets/models/lion-overall.glb",
-      "path": "source/public/assets/models/lion-overall.glb",
+      "path": "source/models/lion-head-overall-v1.glb",
       "bytes": 22573396,
       "sha256": "18ae2f59ac345b35fa6fe9e6e3bcbc1a1c2ff643ef0e92c4d81109640ebc33ed"
     },
@@ -1957,6 +1957,54 @@
     "path": "source/reviews/home/2026-10-17-guide-refresh/title-2560.png",
     "bytes": 3322550,
     "sha256": "fcdca01fe86735ea562893433dbaab9c840a5584723b616a080c97edb8485023"
-  }
+  },
+    {
+      "from": "derived:Blender/source model/醒狮_保留UV_三角转四边_优化.blend; scripts/export_lion_structure.py",
+      "path": "source/public/assets/models/lion-structure-optimized.glb",
+      "bytes": 24428652,
+      "sha256": "f4f7f6a25f84d8457afd6fd42e44702607213b037613d019b936d10c4422b0e0"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/focus-eyes-1920.png",
+      "bytes": 2509884,
+      "sha256": "714a5a1de74baafa14ab2170fee2092c4e611b53f3abe3bf701c87a0e07cefb7"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/focus-lion_cloth-1920.png",
+      "bytes": 2678586,
+      "sha256": "d9e93b2bdf5d248cc04ca15aec74e7ef84ee0f5076c363796f3ff7e6a7804d47"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/focus-mouth-1920.png",
+      "bytes": 2502355,
+      "sha256": "6afd4c2af572846c34cf26ddeef549bcf832930b1129a55a00a46d41f97e1b8d"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/overview-1366.png",
+      "bytes": 1420883,
+      "sha256": "e29a05c0d143d72e78d56c7bf8034a8bc529eb6da8ee9fc250a28e2570fac38d"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/overview-1920.png",
+      "bytes": 2647823,
+      "sha256": "2fe694c794b6ad417d90add2db6a8b3f3a293c86cc3c252d45a723c82929aff4"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/overview-900.png",
+      "bytes": 952262,
+      "sha256": "334024d2f5520d6b7d1626eba51e16bc899f9e68cba3d3d2aa2e9dcbce815b54"
+    },
+    {
+      "from": "generated:production-chrome-review/2026-10-19-structure-focus",
+      "path": "source/reviews/model/2026-10-19-structure-focus/settings-push-900.png",
+      "bytes": 1186467,
+      "sha256": "73d926506e9413c6ffba85996b5c4af75b10def317d2f5e785d3462281d423c4"
+    }
   ]
 }

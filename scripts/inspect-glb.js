@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const file = resolve(root, process.argv[2] ?? 'source/public/assets/models/lion-overall.glb');
+// This legacy topology inspector expects the archived single merged mesh.
+// The replacement multi-mesh model is checked across all primitives by npm test.
+const file = resolve(root, process.argv[2] ?? 'source/models/lion-head-overall-v1.glb');
 
 const bytes = fs.readFileSync(file);
 if (bytes.toString('ascii', 0, 4) !== 'glTF') throw new Error('Not a GLB file');

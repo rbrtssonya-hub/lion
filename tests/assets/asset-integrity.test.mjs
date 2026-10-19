@@ -100,23 +100,91 @@ test('navigation brush font is a WOFF with its redistributable license', () => {
   assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
 });
 
-test('all six structure hotspots have unique IDs and valid percentage positions', () => {
+test('all six structure regions describe real model meshes or finite surface volumes', () => {
   const structure = readJson(resolve(root, 'src/data/lion-structure.json'));
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));
+  assert.equal(bytes.readUInt32LE(0), 0x46546c67, 'The configured model must be GLB');
+  assert.equal(bytes.readUInt32LE(4), 2);
+  assert.equal(bytes.readUInt32LE(8), bytes.length);
+  assert.equal(bytes.readUInt32LE(16), 0x4e4f534a, 'GLB must begin with its JSON chunk');
+  const model = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString('utf8'));
+  const meshNames = (model.nodes ?? []).filter(node => Number.isInteger(node.mesh)).map(node => node.name ?? '');
+  assert.ok(meshNames.length > 1, 'The replacement model must retain its authored mesh structure');
   assert.equal(structure.hotspots.length, 6);
   const ids = new Set();
+  const point = (value, label) => {
+    assert.ok(Array.isArray(value) && value.length === 3 && value.every(Number.isFinite), `${label}: expected three finite coordinates`);
+  };
   for (const hotspot of structure.hotspots) {
     assert.equal(typeof hotspot.id, 'string');
     assert.ok(hotspot.id.length > 0);
-    assert.equal(ids.has(hotspot.id), false, `Duplicate hotspot ID: ${hotspot.id}`);
+    assert.equal(ids.has(hotspot.id), false, `Duplicate structure ID: ${hotspot.id}`);
     ids.add(hotspot.id);
-    for (const coordinate of ['left', 'top']) {
-      const value = hotspot.position?.[coordinate];
-      assert.equal(typeof value, 'string', `${hotspot.id}: ${coordinate} must be a percentage`);
-      assert.match(value, /^\d+(?:\.\d+)?%$/, `${hotspot.id}: invalid ${coordinate} percentage`);
-      const percentage = Number.parseFloat(value);
-      assert.ok(percentage >= 0 && percentage <= 100, `${hotspot.id}: ${coordinate} is outside the viewport`);
+    assert.equal(hotspot.position, undefined, `${hotspot.id}: screen-fixed hotspots must not replace surface picking`);
+    assert.ok(Array.isArray(hotspot.objectNames), `${hotspot.id}: mesh prefixes must be explicit`);
+    assert.ok(Array.isArray(hotspot.surfaceRegions), `${hotspot.id}: surface regions must be explicit`);
+    assert.ok(hotspot.objectNames.length + hotspot.surfaceRegions.length > 0, `${hotspot.id}: missing mesh or surface mapping`);
+    for (const prefix of hotspot.objectNames) {
+      assert.equal(typeof prefix, 'string');
+      assert.ok(prefix.length > 0);
+      assert.ok(meshNames.some(name => name.startsWith(prefix)), `${hotspot.id}: mesh prefix does not exist in the delivered GLB: ${prefix}`);
+    }
+    for (const region of hotspot.surfaceRegions) {
+      point(region.center, `${hotspot.id}: region center`);
+      point(region.radii, `${hotspot.id}: region radii`);
+      assert.ok(region.radii.every(value => value > 0), `${hotspot.id}: region radii must be positive`);
+    }
+    assert.ok(Array.isArray(hotspot.pickPoints) && hotspot.pickPoints.length > 0, `${hotspot.id}: missing real surface anchors`);
+    hotspot.pickPoints.forEach(value => point(value, `${hotspot.id}: surface anchor`));
+  }
+});
+
+test('replacement GLB preserves UVs, embedded textures and valid indices across all meshes', () => {
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));
+  const jsonLength = bytes.readUInt32LE(12);
+  const model = JSON.parse(bytes.subarray(20, 20 + jsonLength).toString('utf8'));
+  const binaryHeader = 20 + jsonLength;
+  assert.equal(bytes.readUInt32LE(binaryHeader + 4), 0x004e4942, 'Model textures and geometry must be embedded');
+  const binary = bytes.subarray(binaryHeader + 8);
+  assert.ok(model.meshes.length > 1);
+  assert.ok(model.images.length > 0, 'The authored model must retain its texture images');
+  for (const image of model.images) {
+    assert.equal(image.uri, undefined, 'Textures must not depend on local Blender paths');
+    assert.ok(Number.isInteger(image.bufferView));
+    assert.match(image.mimeType, /^image\/(?:png|jpeg|webp)$/);
+    assert.ok(model.bufferViews[image.bufferView].byteLength > 0);
+  }
+  let uvMeshes = 0;
+  let triangleCount = 0;
+  for (const mesh of model.meshes) {
+    for (const primitive of mesh.primitives) {
+      assert.equal(primitive.mode ?? 4, 4, `${mesh.name}: expected renderable triangles`);
+      const positions = model.accessors[primitive.attributes.POSITION];
+      assert.equal(positions.type, 'VEC3');
+      assert.ok(positions.count > 0);
+      if (primitive.attributes.TEXCOORD_0 !== undefined) {
+        uvMeshes++;
+        const uv = model.accessors[primitive.attributes.TEXCOORD_0];
+        assert.equal(uv.type, 'VEC2');
+        assert.equal(uv.count, positions.count, `${mesh.name}: UVs must cover every vertex`);
+      }
+      const indices = model.accessors[primitive.indices];
+      assert.equal(indices.type, 'SCALAR');
+      assert.equal(indices.count % 3, 0);
+      triangleCount += indices.count / 3;
+      const view = model.bufferViews[indices.bufferView];
+      const componentBytes = { 5121: 1, 5123: 2, 5125: 4 }[indices.componentType];
+      assert.ok(componentBytes, `${mesh.name}: invalid index component type`);
+      const stride = view.byteStride ?? componentBytes;
+      const offset = (view.byteOffset ?? 0) + (indices.byteOffset ?? 0);
+      for (let index = 0; index < indices.count; index++) {
+        const value = binary.readUIntLE(offset + index * stride, componentBytes);
+        assert.ok(value < positions.count, `${mesh.name}: index ${value} exceeds ${positions.count} vertices`);
+      }
     }
   }
+  assert.ok(uvMeshes > 0, 'At least the authored mesh must retain its original UV coordinates');
+  assert.ok(triangleCount > 0, 'The delivered model must contain nonempty geometry');
 });
 
 test('structure hotspots provide cultural, technical and camera focus metadata', () => {

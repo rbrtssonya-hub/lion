@@ -82,7 +82,7 @@ test('加载遮罩期间书册已预热且不消费首翻资格，短桌面大�
   await configure(page, { seen: false, height: 650, settings: { bookStageHeight: 960 } });
   let releaseModel;
   const modelGate = new Promise(resolve => { releaseModel = resolve; });
-  await page.route('**/assets/models/lion-overall.glb', async route => { await modelGate; await route.continue(); });
+  await page.route('**/assets/models/lion-structure-optimized.glb', async route => { await modelGate; await route.continue(); });
   try {
     await page.goto('/');
     const book = page.locator('.lion-book-experience');

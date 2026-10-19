@@ -4,7 +4,7 @@
 
 自2026-10-14起，后续开发与验收仅以电脑端为目标，不考虑手机端适配或专项手机回归；既有手机相关代码与历史验证不作为本轮验收范围。
 
-2026-10-15新增最前置水墨加载屏、模型/书册/图鉴预热及跨章节实例复用。设置左侧纵排分类，外观页分别调节所有透明模糊底板；动画页调书册尺寸和水墨时间线，布局页调页面选中命中。运行机制、参数范围和原加载HTML来源见 [本轮实现说明](../source/references/2026-10-15-desktop-iteration.md)。本轮用户要求仅提交推送支线。
+2026-10-15新增最前置水墨加载屏、模型/书册/图鉴预热及跨章节实例复用。设置左侧纵排分类，外观页分别调节所有透明模糊底板；动画页调书册尺寸和水墨时间线，布局页调页面选中命中。运行机制、参数范围和原加载HTML来源见 [本轮实现说明](../source/references/2026-10-15-desktop-iteration.md)。该日工作按当时要求在支线交付；后续分支同步及本轮交付按当前根 `AGENTS.md` 执行。
 
 同日追加整改：首页导航恢复原版连续红栏并删除新增框饰，同底板仍参与章节收缩/展开且保留右侧“首页”；外观新增参考资料外区和卡片两组完整材质参数；动作只保留讲解区一条阶段目录。当前行为及参数默认值见 [三项整改说明](../source/references/2026-10-15-desktop-rectification.md)。
 
@@ -34,7 +34,7 @@ npm run preview
 | `src/main.jsx` | 挂载 React 与加载全局样式 |
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
 | `src/features/home/` | 首页入场/循环视频、岭南醒狮史册、文化图鉴、探索更多跳转与向下文化入口 |
-| `src/features/model/` | 整体模型页、同页结构示意与信息面板 |
+| `src/features/model/` | 结构页：左侧三维模型、右侧部件目录与工艺/文化资料 |
 | `src/features/action/` | 动作首屏、四段长页、共享阶段时间轴与独立媒体播放器 |
 | `src/features/chapters/` | 动作/神态挂载入口与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
@@ -46,7 +46,7 @@ npm run preview
 | `src/data/` | 经来源说明约束的应用数据 |
 | `src/styles/` | 全局、首页、模型、章节样式 |
 
-React 负责页面生命周期、热点与信息面板状态，场景服务通过容器接入 Three.js。进入模型页面时才加载相关模块；退出时调用服务释放逻辑。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、几何与材质的清理，避免来回切换章节后累积资源。
+React 负责页面生命周期、部件选择与信息面板状态，场景服务通过容器接入 Three.js。`App` 在启动时预热模型模块、GLB、纹理和着色器，并常驻同一 `ModelPage`；切到其他章节或页面进入后台时通过 `setActive(false)` 暂停绘制，返回时复用原画布。组件卸载、重试或场景故障时才释放资源。修改场景时检查 resize、指针事件、`requestAnimationFrame`、renderer、环境贴图、几何与材质的清理。
 
 书册标题纸面在“设置→外观→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
 
@@ -60,11 +60,19 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 `scripts/lion-book-vite-plugin.mjs` 只包裹锁定版本的官方文档工厂返回值，校验其完整源SHA256；`lionSketchbookFactory` 从 `assetBaseUrl` 的 `#lion-book=通道` 取出通信通道，清除hash后生成本地醒狮文档。普通未标记的Sketchbook实例保持官方原样。Vite明确排除该包的预构建以保证转换生效，不改 `node_modules`；升级包后必须重审工厂及原核心保留测试。React从第一次渲染就声明适配文档，不在加载后争抢srcdoc。官方sandbox维持 `allow-scripts`，父页面严格校验消息来源/通道/类型和索引；宿主监听/计时/滚动RAF在退出时清理，iframe销毁与其pagehide释放引擎。React StrictMode重放effect时不提前dispose仍挂载的书籍。共享样式内嵌字体的OFL声明与MIT许可一并部署。
 
-文化区由 `HomeCulture.jsx`、`home-culture.js` 与 `home-culture.css` 维护，四组图文位于史册之后。“探索更多”跳转至结构 `#/model`，底部“向下了解醒狮文化”先滚动到 `#homeLionBook`，随后可继续浏览 `#homeCulture` 照片图鉴。滚动入场动效使用 `IntersectionObserver`，减少动态偏好和缺少观察器时直接显示，离页清理观察器与媒体查询监听。图片路径仍集中在媒体配置，署名及许可在每张图注公开展示；依据见 [文化来源说明](../source/references/home-culture-sources.md)。
+文化区由 `HomeCulture.jsx`、`home-culture.js` 与 `home-culture.css` 维护，四组图文位于史册之后。“探索更多”和底部“向下了解醒狮文化”先滚动到 `#homeLionBook`，随后可继续浏览 `#homeCulture` 照片图鉴。滚动入场动效使用 `IntersectionObserver`，减少动态偏好和缺少观察器时直接显示，离页清理观察器与媒体查询监听。图片路径仍集中在媒体配置，署名及许可在每张图注公开展示；依据见 [文化来源说明](../source/references/home-culture-sources.md)。
 
-整体页的 `sceneContainer` 位于 `modelStage` 直属层，透明画布覆盖整个模型页；中央 `sceneFrame` 只负责布局、热点与加载回退，独立 `scene-interaction` 承接 OrbitControls 的拖动和缩放。中央列不再限定16:9或裁切溢出模型，标题、说明与控件为绝对定位浮层，列高按视口确定，不随两侧档案卡内容拉长。结构工艺在右卡常驻，`showGuide` 控制同页结构示意；开关和复原不更换路由或重建canvas。
+### 结构模型与部件聚焦
 
-结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；两侧模型档案卡与全页透明canvas保留。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
+2026-10-19 结构页改用用户提供的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出模型。当前部署路径为 `source/public/assets/models/lion-structure-optimized.glb`，由 `assetPaths.model` 和 `media.model` 引用。此前单狮头 `lion-overall.glb` 原字节归档至 `source/models/lion-head-overall-v1.glb`，不再部署。用户原始 Blender 输入保留在 `model/`，不改写、不复制到 public，也不纳入本次提交；导出检查数据见 [模型记录](../source/references/lion-structure-model.json)。
+
+电脑端使用单屏双栏：左侧 `scene-column` 展示完整醒狮，右侧唯一 `structurePanel` 集中标题、加载状态、旋转/复原、六组部件目录、工艺/文化资料及来源说明，详情在卡内滚动。`sceneContainer` 仍位于 `modelStage` 直属层，透明画布覆盖整页；左侧 `sceneFrame` 与独立 `scene-interaction` 负责构图及 OrbitControls 拖动、缩放、表面点击，不恢复16:9内框、地面或中央裁切。旧固定百分比热点、`showGuide`、结构滑杆、假拆解进度和示意图层已删除。
+
+六组数据来自 `lion-structure.json`：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。`objectNames` 用实际网格名前缀匹配眉、口、额饰、须、身体与尾等分件；共用头壳中的眼部等区域使用 `surfaceRegions` 椭球标记可见表面语义，不宣称内部结构已经拆分。Raycaster 命中真实模型后同步右侧选择，并聚焦实际命中点；拖动、取消手势或点击空白不触发选择。右侧目录提供同一选择入口，默认关闭自动旋转。
+
+`focusOn({ id, target, distance, point })` 中，目录 `target`、数据中的 `surfaceRegions` 与 `pickPoints` 使用源 glTF 场景坐标，服务通过模型变换换算；点击回传的 `point` 使用当前世界坐标。`distance` 是模型最长边缩放到1.78后的世界距离。聚焦/复原共用单一渲染循环内的相机补间，目标对齐左侧展示中心；减少动态偏好下直接定位。只读 canvas `dataset` 发布实际相机距离、目标投影、部件可命中投影及补间状态，供浏览器回归核对。
+
+结构、动作、神态背景按用户附件顺序接入三张原字节PNG，集中路径key为 `modelBackground/actionBackground/stateBackground`，出处及哈希见 [背景说明](../source/references/chapter-backgrounds.md)。App将路由背景提供给site-shell，使用固定cover背景，模型/章节stage透明；页脚及设置推开后的背景保持同图。旧模型装饰祥云/暗角和动作神态黑底移除，局部文字用深褐以适配宣纸；结构页采用右侧单一资料卡与全页透明canvas。四页继续使用唯一全局SiteHeader，不在页面内添加导航。
 
 神态页由 `ExpressionPage.jsx` 与 `src/data/lion-expressions.js` 提供喜、怒、哀、乐、动、静、惊、疑八态。当前为左目录/中央完整狮头/右文字的自适应单屏，高度为视口减实际顶栏，不锁16:9、不整页缩放。旧下半区、眼嘴局部图及独立页脚已删除；原文案未改。页面内部overview/details模式在右侧替换内容：点击中央独立狮头按钮显示meaning/emotion/motion解读，重复点击不切回；返回/Escape恢复简介并聚焦狮头。任一切态入口（含重复点击当前目录项）回到简介，不叠加旧文案或改Hash。
 
@@ -86,7 +94,7 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 `tests/fixtures/action-player.jsx` 只在Playwright拦截地址下内存编译，以明确标为TEST MEDIA ONLY的现有短视频测试真实播放器；不进入dist，不代表四段正式视频接入。桌面UI和媒体回归分别在 `tests/e2e/action.spec.js`、`action-player.spec.js`，其余首页/模型/设置/神态回归保留。新增直线粒子、纸面迁移和角色导览的行为回归见`guide-refresh.spec.js`；并行开发/生产测试必须用不同`--output=tmp/...`目录，防止默认trace产物互相清理。
 
-Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以中央交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型越过中央边界的实际像素、面板与导航点击，以及退出后的观察器和图形资源释放。
+Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地面；`camera.setViewOffset` 以左侧交互区域的构图和负偏移延展全页可见范围。尺寸变化同时观察画布容器、交互区域与页头，绘制像素比上限为2，并按 `MAX_RENDERBUFFER_SIZE` 限制画布缓冲区；修改时需检查模型真实绘制、聚焦中心、面板与导航点击、离页暂停复用，以及组件卸载或重试后的观察器和图形资源释放。中性 `RoomEnvironment` 经 PMREM 生成反射贴图，不显示额外背景；生成器与临时场景及时释放，保留的环境渲染目标随服务 `dispose` 释放。
 
 章节地址与映射以 `src/hooks/useChapterRoute.js`、`src/config/chapters.js` 为准。当前四章为首页 `entry`、结构 `model`、动作 `action`、神态 `state`；“结构”替代原导航名“狮头与结构”，路由不变。旧 `intro` 映射 `entry`、旧 `structure` 映射 `model`，通过 `replaceState` 规范Hash且不新增历史记录。已移除的评分地址与其他未知Hash均回首页。`App` 在页面外保持唯一 `SiteHeader` 及稳定header/trigger/panel refs，旧页内导航、搜索/菜单和底部入口已删除；四页品牌共用居中的 `BrandLockup` 与 `EntryLionEmblem`，不显示品牌辅助文字。媒体原路径定义在 `src/config/assetPaths.js`，浏览器引用经 `src/config/media.js` 补 `import.meta.env.BASE_URL`。页面数据集中在配置和数据文件，避免把同一媒体路径或章节文案复制到多个组件。
 
@@ -110,7 +118,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 ## 资源更新
 
-创作文件归入 `source/`，运行网页只引用 `source/public/assets/`。该目录通过 Vite 的 `publicDir` 映射为网页根目录，例如 `source/public/assets/models/lion-overall.glb` 对应 `assets/models/lion-overall.glb`。公共资产保持文件名，构建会复制到 `dist/assets/`；不要假定这些文件自动获得哈希版本号。
+创作文件归入 `source/`，运行网页只引用 `source/public/assets/`。该目录通过 Vite 的 `publicDir` 映射为网页根目录，例如 `source/public/assets/models/lion-structure-optimized.glb` 对应 `assets/models/lion-structure-optimized.glb`。公共资产保持文件名，构建会复制到 `dist/assets/`；不要假定这些文件自动获得哈希版本号。
 
 更新步骤：
 
@@ -140,7 +148,7 @@ npm run test:e2e -- --grep-invert 手机
 
 轮播悬停以真实指针输入进入前景照片为起点。滚动捕获、容器/窗口尺寸变化会复核已有命中并释放无效暂停；高度单独变化也需要窗口resize监听。窗口blur、pointercancel和离开文档清旧指针，自动切图完成只解除失效悬停，不用旧坐标获取新暂停。加载中的静态按钮记录真实指针输入，向就绪画布交接时先清旧暂停，在同一次DOM提交的layout effects中先setActive，再消费一次坐标交给服务syncPointer重新命中验证；仍在主图内保持暂停，移开后恢复，失焦清交接坐标，防止延后的旧坐标覆盖新离开事件。新增监听随组件/服务卸载移除，不用常驻RAF或定时轮询兜底。首页回归包含加载中悬停及交接后继续悬停、精确注入较新离开事件的交接竞态、静止指针下滚动/切图/高度变化、失焦/取消事件及连续三圈图文和画布变化；合成生命周期事件不等于真实操作系统Alt+Tab验收。
 
-模型全页绘制的浏览器断言使用真实滚轮及WebGL读像素，检查整体与结构示意状态的模型在旧16:9和当前中央交互区域上下边界外均有实际像素，同时验证默认角落透明、同页共享单canvas、离页释放及重入。2026-10-11历史裁切修正验证见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)。2026-10-12融合首页任务实际完成资产8项（330.6ms）、生产构建（56模块）、开发19项（29.9秒）与生产预览19项（28.7秒）回归；构建仍有既有 `lionScene` 超500kB提示。预览首次18/19源于测试将 `/assets` 与 `./assets` 作字面比较，改用 `new URL` 解析后全量通过，产品未因此修改。实际播放脚本观察入场自然ended一次、首页循环回绕一次、返回/刷新不自动入场及手机四图载入，错误数组为空；结果见 [本轮日志](../wiki_memory/日志/功能添加/2026-10-12-入场首页融合与醒狮文化长页.md)。
+当前结构回归见 `tests/e2e/app.spec.js`：真实滚轮配合 WebGL 读像素检查模型放大，核对全页画布、默认角落透明、900/1366/1920电脑双栏、右侧目录和真实表面命中、实际相机距离与左侧目标投影、拖动/空白不误选及单canvas离页暂停重入。`startup-loading.spec.js` 覆盖新模型冷启动预热、失败和下载中上下文丢失；资产测试检查全部网格索引、UV、嵌入纹理及语义映射。最终模型统计与本轮实际验证见 [结构替换任务日志](../wiki_memory/日志/功能添加/2026-10-19-结构新模型与部件聚焦.md)，初版结果不代替最终模型验收。2026-10-11曾以旧单狮头验证越过16:9及中央交互区上下边界，这一形状阈值已由本轮完整醒狮构图检查替代；历史裁切修正验证见 [全页画布修正日志](../wiki_memory/日志/UI修改/2026-10-11-模型全页画布与裁切修正.md)。2026-10-12融合首页任务实际完成资产8项（330.6ms）、生产构建（56模块）、开发19项（29.9秒）与生产预览19项（28.7秒）回归；构建仍有既有 `lionScene` 超500kB提示。预览首次18/19源于测试将 `/assets` 与 `./assets` 作字面比较，改用 `new URL` 解析后全量通过，产品未因此修改。实际播放脚本观察入场自然ended一次、首页循环回绕一次、返回/刷新不自动入场及手机四图载入，错误数组为空；结果见 [本轮日志](../wiki_memory/日志/功能添加/2026-10-12-入场首页融合与醒狮文化长页.md)。
 
 当前 Playwright 配置使用完整Chromium通道，可由 `PLAYWRIGHT_CHANNEL` 指定已安装的浏览器通道。全局导航与设置侧栏任务实际完成资产9项、63模块构建、Chrome开发/生产预览各30项（43.6秒/40.5秒）；输出为 `tmp/e2e-unified-navigation-dev`、`tmp/e2e-unified-navigation-preview`。回归同时保留原视频/文化/模型行为，并覆盖新材质、推开回退、存储/迁移、拖动与取消清理。最终通过的导航审查图在 `source/reviews/navigation/2026-10-12-larger-typography/`，各版UI均在source归档、登记清单。详情见 [导航与侧栏日志](../wiki_memory/日志/UI修改/2026-10-12-全局顶栏与玻璃设置侧栏.md)。此前实际播放脚本为临时 `tmp/verify-unified-entry.mjs`，三张首页融合审查图仍在 `source/reviews/homepage/2026-10-12-unified-entry/`；临时输出不纳入源码。
 
@@ -150,7 +158,7 @@ npm run test:e2e -- --grep-invert 手机
 
 ## 内容与工程记忆
 
-结构数据属于“资料整理 / 结构示意”，不能将合并网格热点称作已分离的模型部件。视频和 AI 模型素材需保持“AI辅助创作”说明；动作和神态的数据扩展须先补来源与样本。
+结构工艺文字属于资料整理与工艺示意，当前醒狮是用户提供的造型模型；真实网格分组与头壳表面语义须分别说明，不把眼部可点选区域或毛发采样当作内部机构已分离、真实结构测量或动作模拟。视频和 AI 模型素材需保持“AI辅助创作”说明；动作和神态的数据扩展须先补来源与样本。
 
 `source/design/` 中的方案及旧计划保存设计背景，可能含历史路径、旧技术方案或过时进度。恢复当前开发应先读 `AGENTS.md` 和 `wiki_memory/`；从日志追溯历史时核对当时 revision。
 
