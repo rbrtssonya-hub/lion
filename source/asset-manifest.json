@@ -3,6 +3,30 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "2026-10-19 actual production entry and loop playback review",
+      "path": "source/reviews/home/2026-10-19-video-replacement/entry-1920.png",
+      "bytes": 2392345,
+      "sha256": "c57e4a49ae33aa0cb9c29c56e9af95a6e3e570504c84e55c1ae10505ff9ea662"
+    },
+    {
+      "from": "2026-10-19 actual production entry and loop playback review",
+      "path": "source/reviews/home/2026-10-19-video-replacement/loop-1920.png",
+      "bytes": 2712620,
+      "sha256": "80e7d3202887a7b6d2817164de2ba2d2872ab1cb3468253af3b861c24d654166"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/入场视频.mp4",
+      "path": "source/public/assets/intro/entry-intro.mp4",
+      "bytes": 17701673,
+      "sha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/循环视频.mp4",
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "bytes": 33463217,
+      "sha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9"
+    },
+    {
       "from": "site/assets/entry/final-home.png",
       "path": "source/design/final-home.png",
       "bytes": 3534016,
@@ -208,7 +232,7 @@
     },
     {
       "from": "site/assets/intro/entry-intro.mp4",
-      "path": "source/public/assets/intro/entry-intro.mp4",
+      "path": "source/video/intro/entry-intro-before-2026-10-19.mp4",
       "bytes": 4925718,
       "sha256": "ccce0a6ac43996d2521ceb795494351903e758a283b004bd490c0c593fb468cb"
     },
@@ -453,7 +477,7 @@
       "sha256": "b90fbe95aedd016c81b5ef374d2a337a11cae525e52f6ceca1576c70df3bc153"
     },
     {
-      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "path": "source/video/entry/home-lion-loop-before-2026-10-19.mp4",
       "from": "E:/数字媒体竞赛/张钧儒/首页/首页.mp4",
       "bytes": 8059565,
       "sha256": "b525b4f755fd464997f3792a5b06630c6b7fc09c9f77a5c68e4a0fa86d33ba1c"

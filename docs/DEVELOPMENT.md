@@ -52,6 +52,8 @@ React 负责页面生命周期、热点与信息面板状态，场景服务通�
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
+2026-10-19视频资源已在独立分支替换：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。HEVC已在本机Chrome实际解码，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`。
+
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
 
 书本容器至少60%可见、七图与引擎就绪并处于前台后，桥接延迟220ms启动官方七页快翻，最终回序卷。快翻资格由宿主通过 `intro-policy` 提供，只有实际开始或用户主动接管才写入独立sessionStorage键 `nanfeng-lion:book-intro-seen:v1`；返回首页、同会话刷新与新iframe不重播，未看见/加载失败不提前消费。存储不可用时模块内存保证当前页面跨路由不重复，不能跨整页刷新保存。滚出视野仍暂停保留进度，减少动态跳过开场；StrictMode重复握手不打断已开始的同一序列。桥接收敛时间线/键盘交接，取消失焦、尺寸变化或指针中断中的未提交拖拽。真实纸面之外不接收翻页；书下投影及照片氛围在自身边界前淡出，保持原曲面/物理引擎。
