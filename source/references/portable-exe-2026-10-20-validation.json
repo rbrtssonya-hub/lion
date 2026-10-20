@@ -1,0 +1,50 @@
+{
+  "verifiedAt": "2026-10-20",
+  "sourceRevision": "60ab71cff0d2e1e8d7fdcf44d04481c08b8aca30",
+  "authoritativeCheckout": "F:/数媒竞赛/信息可视化codex",
+  "originalEvidenceArchive": "tmp/portable-delivery-attempts/819c1e8d4d7641cebf06750a23009aa5",
+  "artifact": {
+    "path": "F:/数媒竞赛/南风有狮临时展示包/南风有狮.exe",
+    "bytes": 209005568,
+    "sha256": "f16f7e68d9a86405427901f107b9a42c14c9a7f69c047beda1ed149bfe4d2a2c",
+    "buildId": "21a899c9f2ed49244e2d",
+    "siteFiles": 100,
+    "publicFiles": 89,
+    "siteBytes": 230975546,
+    "embedded": "all isolated Vite production output, no filtering"
+  },
+  "development": {
+    "protectedFiles": 270,
+    "allSha256Unchanged": true,
+    "newNpmDependencies": 0,
+    "normalDistOverwritten": false,
+    "devCommand": "npm run dev -- --host 127.0.0.1 --port 5197 --strictPort",
+    "rootAndSourceHttpStatus": [200, 200]
+  },
+  "verification": {
+    "coreAssets": { "command": "npm test", "passed": 51, "failed": 0, "durationMs": 1136.5877 },
+    "build": { "modules": 320, "seconds": 1.98, "output": "tmp/portable-exe/14d9286ee03a44c29f9ca006ea54ad2d/site" },
+    "smoke": { "command": "node scripts/portable/smoke-portable.mjs <exe>", "passed": true },
+    "fullPortable": {
+      "command": "node scripts/portable/verify-portable.mjs <exe> <isolated-site> <review-dir>",
+      "runName": "便携验收 FQU2rt",
+      "report": "F:/数媒竞赛/南风有狮临时展示包/verification/report.json",
+      "verdict": "GREEN", "passed": 153, "failed": 0, "unverified": [],
+      "startedAt": "2026-10-20T03:55:43.599Z", "finishedAt": "2026-10-20T03:57:47.533Z",
+      "allDistManifestExtractedHttpFilesVerified": 100,
+      "isolatedChildPath": "C:/Windows/System32",
+      "loopbackOnly": true,
+      "externalPageRequestsBlocked": true,
+      "screenshots": 26,
+      "browsers": ["Chrome 155.0.8059.80", "Edge 155.0.4283.62"]
+    },
+    "visibleGuiLifecycle": {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-launcher-lifecycle.ps1 -Executable <exe> -ReviewDirectory <review-dir>",
+      "runName": "launcher-e6a5a77a3c224fd0b70faf9e6095baa4",
+      "passed": 4, "failed": 0,
+      "checks": ["verified cache reuse", "recoverable corruption quarantine and repair", "independent shared-cache instances", "visible Edge guest app and owned process/server shutdown"],
+      "report": "F:/数媒竞赛/南风有狮临时展示包/verification/lifecycle-report.json"
+    }
+  },
+  "limits": ["Windows 10/11 with .NET Framework and installed Edge or Chrome", "WebGL and compatible browser video decoding required", "external citation links require network", "unsigned executable", "no other hardware or full historical E2E claim"]
+}
