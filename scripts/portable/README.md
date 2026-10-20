@@ -1,5 +1,36 @@
 # 临时 Windows 展示 EXE
 
+## 推荐：内置 Chromium 版（2026-10-20 后续升级）
+
+用户追加要求不依赖目标电脑的浏览器。新的 `build-bundled.mjs` 采用 Electron 44.9.1 自带 Chromium/Node 和 electron-builder 26.15.3 原生 portable 封装；运行不再需要已安装的 Edge、Chrome、Node、npm 或 .NET。旧 C# 方案保留为历史替代，不应再用它代表内置内核版。
+
+```powershell
+node scripts/portable/build-bundled.mjs
+node --test scripts/portable/bundled-server.test.mjs
+node scripts/portable/verify-bundled.mjs '<exe>' '<build-info中的expectedSiteDir>' '<reviewDir>'
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-bundled-gui.ps1 -Executable '<exe>' -ReviewDirectory '<guiReviewDir>'
+```
+
+默认交付目录：`F:/数媒竞赛/南风有狮内置浏览器展示包`。构建依赖只安装到 ignored `tmp/portable-toolchain`；只复制网页生产输出与打包壳，不把工具链/FFmpeg编码工具放进最终程序，也不修改应用的 package.json/lock/入口/dist。
+
+- 网页完整100文件全量保留。仅发布副本的两段 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），四段原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；六段发布视频逐帧解码，随后在内置浏览器再次验收。
+- 完整 Electron 官方 ZIP 内核、所有语言包、软件图形库和两份 Electron/Chromium 许可由打包器全量携带。`runtime-manifest.json` 在内核组装后生成，启动逐SHA核对整个运行目录（清单自身除外），不依赖旧版本 DLL 名单。
+- 保留 loopback 白名单/Host/Range/令牌停服；渲染器沙盒、context isolation 开启，Node 集成关闭。正常运行无 CDP；仅明确 `--inspect-ui` 验收才开放本地调试端口。HTTP 公共状态不暴露私有路径或停服令牌。
+- 按锁定的 builder 26.15.3 实际源码，`portable.unpackDirName: true` 才省略 `UNPACK_DIR_NAME` 并使用每次启动唯一 `$PLUGINSDIR`；不能照其他版本文档把 false 当唯一目录。此选择必须用同 TEMP 多实例验收。
+- 每次启动使用专用根目录下的 `instance-PID-random` profile，展示设置仅会话内保留，彼此不会共用 Chromium 数据库；这些自有缓存不自动删除，可在关闭后由用户清理，不读取日常浏览器 profile。
+- 窗口可用 F11 全屏；`Ctrl+Shift+S` 或 Alt 显示的“展示→兼容模式”经原始外层 EXE 重新解包启动软件渲染，不指向即将被旧便携壳清理的内部进程。此路径需要真实快捷键重启验证，不能仅用启动参数冒充。
+- 引用链接仅允许无凭证 HTTPS；先弹原生确认，用户明确选择“用系统浏览器打开”才调用系统外链。也可只复制链接；`--offline` 拒绝该出口，网页内部网络始终限本地资源。
+
+支持范围为 **Windows 10/11 x64**。内核内置不等于任意 OS/硬件都能运行：Windows 7/8、32位 Windows、macOS/Linux、未经验证的 ARM 和特定安全策略不作保证。提供 `--software-rendering` 兼容模式降低 GPU 依赖，但不承诺任意旧 CPU/驱动、极低内存或实体扬声器已验收。源站外链需要网络；本地展示无组件下载/登录需求。单EXE未签名，可能有来源提示，不应关闭系统安全保护。
+
+新版独立验证只用 CDP 连接 EXE 自己的内置窗口，不启动系统浏览器；精确核对包装器/Electron PID、内核全部文件、100份网页、6视频、WebGL/交互、离线阻断、共TEMP实例及兼容模式重启，保存最终成品SHA及截图。适用结果见本轮交付记录，不继承旧 C# 的153项或缓存quarantine结果。
+
+GUI脚本另外以无inspect/serve-only的普通模式打开实际窗口，检查默认独立profile、正常关闭后的main/包装器退出码、子进程和HTTP回收；高DPI截图使用物理窗口坐标。验证脚本使用开发机工具，不能据此把开发工具写成成品运行依赖。复现与最终结果见[本轮记录](../../source/references/bundled-browser-exe-2026-10-20.md)。
+
+---
+
+## 历史：依赖已安装浏览器的 C# 版
+
 这是现有 React/Vite 网页的**发布封装**，不引入 Electron、后端服务或 npm 依赖，不修改产品页面、`package.json`、锁文件和 Vite 配置。开发仍使用原来的 `npm run dev` / `npm run build`。
 
 ## 构建

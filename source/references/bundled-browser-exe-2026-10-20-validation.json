@@ -1,0 +1,93 @@
+{
+  "verifiedAt": "2026-10-20",
+  "sourceRevision": "3207edab6c7011f8e5506c6cd51026ba046874e3",
+  "authoritativeCheckout": "F:/数媒竞赛/信息可视化codex",
+  "artifact": {
+    "path": "F:/数媒竞赛/南风有狮内置浏览器展示包/南风有狮-内置内核-x64.exe",
+    "bytes": 275730795,
+    "sha256": "9b55e8366c3ae5980955f1d8fed8a00c481d225db99e1c059ba1966bd7c89e7e",
+    "electron": "44.9.1",
+    "chromium": "152.0.7977.167",
+    "bundledNode": "24.22.0",
+    "arch": "x64",
+    "buildId": "522a3e281ec234a53b39",
+    "siteFiles": 100,
+    "runtimeFiles": 176,
+    "shaManifestEntries": 175,
+    "authenticode": "NotSigned"
+  },
+  "development": {
+    "protectedFiles": 270,
+    "allSha256Unchanged": true,
+    "applicationDependenciesChanged": false,
+    "normalDistOverwritten": false,
+    "buildToolsRoot": "tmp/portable-toolchain",
+    "finalBuildWork": "tmp/bundled-exe/79cacaa4-80b0-45b6-8b6a-5cb29765325c",
+    "hevcPublishCopiesConvertedToH264": 2,
+    "originalSourceVideosUnchanged": true,
+    "publishedVideosFullyDecodedByFFmpeg": 6
+  },
+  "verification": {
+    "coreAssets": { "command": "npm test", "passed": 51, "failed": 0, "durationMs": 1819.9567 },
+    "localServer": { "command": "node --test scripts/portable/bundled-server.test.mjs", "passed": 1, "failed": 0, "durationMs": 214.605, "redBeforeImplementationObserved": true },
+    "isolatedViteBuild": { "passed": true, "modules": 320, "normalDistUnchanged": true },
+    "independentPackagedExe": {
+      "command": "node scripts/portable/verify-bundled.mjs <exe> <expectedSiteDir> <reviewDir>",
+      "runName": "内置浏览器验收 ACFi4B",
+      "report": "F:/数媒竞赛/南风有狮内置浏览器展示包/verification/report.json",
+      "originalReport": "C:/Users/ALLEN/.codex/visualizations/2026/10/20/01a1574f-9d50-7be1-bede-27e5f37cc046/bundled-review/内置浏览器验收 ACFi4B/report.json",
+      "verifierSha256": "179d51e3adcb66324fbb165a4aa985ddfeb928fd4cdfc596deba3eef9926ecae",
+      "startedAt": "2026-10-20T06:54:38.099Z",
+      "finishedAt": "2026-10-20T06:58:40.726Z",
+      "verdict": "GREEN", "passed": 178, "failed": 0, "unverified": [],
+      "allCoverageFieldsTrue": true,
+      "isolatedChildPATH": "C:/Windows/System32",
+      "onlyExeInLaunchDirectory": true,
+      "threeWayRuntimeFilesVerified": 176,
+      "siteManifestExtractedHttpFilesVerified": 100,
+      "screenshots": 20,
+      "usesActualBundledWindowWithoutLaunchingInstalledBrowser": true,
+      "nativeMenuShortcutRelaunch": true,
+      "sameTempIndependentInstancesAndProfiles": true,
+      "portFallback": true,
+      "offlinePolicy": true,
+      "forbiddenExternalRuntimeProcesses": 0,
+      "unexpectedProcesses": 0,
+      "browserPageErrors": 0,
+      "unexpectedLocalHttpFailures": 0,
+      "ownedProcessAndServerShutdown": true
+    },
+    "ordinaryVisibleGui": {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-bundled-gui.ps1 -Executable <exe> -ReviewDirectory <reviewDir>",
+      "runName": "visible-default-67e1c444018148ac8c939b785546d71e",
+      "report": "F:/数媒竞赛/南风有狮内置浏览器展示包/verification/gui-report.json",
+      "verdict": "GREEN",
+      "debugPort": false,
+      "serveOnly": false,
+      "defaultUniqueProfile": true,
+      "mainAndWrapperExitCodes": [0, 0],
+      "ownedSubprocessesAndHttpStopped": true,
+      "physicalDpiScreenshotReviewed": true
+    },
+    "review": { "verdict": "Approve", "remainingFindings": 0, "sourceScopeOnly": true },
+    "memoryReadyCheck": { "errors": 0, "historicalWarnings": 4 },
+    "gitDiffCheck": "passed"
+  },
+  "historicalFailuresPreserved": [
+    { "run": "PuHuQ2", "passed": 153, "failed": 7 },
+    { "run": "iDsZNq", "passed": 146, "failed": 12 },
+    { "run": "bp4JyH", "passed": 163, "failed": 3 },
+    { "run": "cif3xk", "passed": 177, "failed": 1 },
+    { "run": "CDP生命周期 复现 i7vWTd", "scope": "disconnect closes Playwright Page but native target remains and reconnect succeeds; bp4JyH native-target loss trigger was not reproduced; final run preserves original session/page/target" },
+    { "run": "PID生命周期 根因回归 Ezb4VE", "verdict": "GREEN", "scope": "lifetime identity rejects real forbidden children while excluding proven recycled PID" }
+  ],
+  "limits": [
+    "Windows 10/11 x64 target; not all operating systems or hardware verified",
+    "no installed browser, Node/npm or .NET runtime required",
+    "native software rendering tested; not a guarantee for any old CPU, memory capacity or security policy",
+    "unsigned executable; do not disable system security protection",
+    "external citation links require network and native user confirmation",
+    "no physical speaker, long-duration performance or clean-machine fleet testing claim",
+    "EXE is a snapshot; future web development continues in the unchanged React/Vite checkout"
+  ]
+}
