@@ -1,11 +1,10 @@
 // Editorial summaries, not a complete census or a single master-disciple lineage.
 // Verification and artwork provenance: source/references/home-heritage-sources.md.
 export const heritageSources = [
-  { id: 'guangfu-types', group: 'types', publisher: '广州大学广府文化研究中心', title: '广府舞蹈资源调查报告', url: 'https://gzgfwh.gzhu.edu.cn/info/1062/1514.htm' },
-  { id: 'heshan-art', group: 'types', publisher: '鹤山市人民政府', title: '走进鹤山非遗：鹤山狮艺', url: 'https://www.heshan.gov.cn/zjhs/hsfy/content/post_2065932.html' },
+  { id: 'heshan-art', group: 'types', publisher: '鹤山市人民政府', title: '鹤山龙狮文化与两大流派', url: 'https://www.heshan.gov.cn/zwgk/xxgk/hssfzhggj/gzdt/gzdt/content/post_241842.html' },
   { id: 'fut-hok-craft', group: 'types', publisher: '南海博物馆', title: '佛鹤狮头制作', url: 'https://www.nhmuseum.org/fei-yi/1575.html' },
   { id: 'lion-form', group: 'types', publisher: '新加坡武术龙狮总会', title: '南狮分类形特征', url: 'https://wuzong.com/zh-hans/lion-dance/southern-lion-classification/' },
-  { id: 'performance-forms', group: 'types', publisher: '广东省人民政府侨务办公室', title: '广东醒狮的传承与发展', url: 'https://www.qb.gd.gov.cn/jrqx/content/post_1142957.html' },
+  { id: 'performance-forms', group: 'types', publisher: '南海博物馆', title: '狮舞（广东醒狮）', url: 'https://www.nhmuseum.org/fei-yi/589.html' },
   { id: 'feng-record', group: 'people', publisher: '中国非物质文化遗产网', title: '冯昆杰与《南国醒狮》', url: 'https://www.ihchina.cn/Article/Index/detail?id=10768' },
   { id: 'guangzhou-list', group: 'people', publisher: '广州市文化广电旅游局', title: '广州非遗项目与代表性传承人名录', url: 'https://wglj.gz.gov.cn/zlxz/content/post_10609532.html' },
   { id: 'huang-record', group: 'people', publisher: '中国非物质文化遗产网', title: '黄钦添 · 国家级传承人档案', url: 'https://www.ihchina.cn/art/detail/id/1415.html' },
@@ -18,22 +17,25 @@ export const heritageSources = [
 
 export const lionTypes = [
   { id: 'foshan', name: '佛山狮', kind: '传统流派', imageKey: 'lionTypeFoshan',
+    comparison: { '造型观察': '整体强调威武神采，观察额形、眉眼与狮口的组合；不凭颜色或一处细节判定流派。', '表演特点': '重视腰马功架、采青与破阵，结合完整表演观察步法、力量与双人配合。', '分类说明': '传统流派。图中为概括性的形制示意，不代表所有年代和工坊的作品。' },
     summary: '威武的形貌之下，是稳健的腰马与武术功架。佛山狮艺重视采青与破阵，舞者以步法、力量和临场配合，让狮子的神情随鼓点展开。',
-    sourceIds: ['guangfu-types', 'lion-form'],
+    sourceIds: ['heshan-art', 'lion-form'],
     points: [
       { id: 'forehead', label: '饱满额形', x: 53, y: 29, text: '从额头、眉眼到狮口，整体造型强调醒狮的威武神采；图中为概括性的类型示意。' },
       { id: 'mouth', label: '眉眼与狮口', x: 51, y: 64, text: '舞者借狮头的俯仰与口部开合表现情态。形制不能只凭一处细节或单一颜色判断。' },
       { id: 'stance', label: '腰马与功架', x: 28, y: 82, text: '佛山狮艺以腰马、力量和武术根底支撑表演；采青也考验舞者的判断与协作。' },
     ] },
   { id: 'heshan', name: '鹤山狮', kind: '传统流派', imageKey: 'lionTypeHeshan',
+    comparison: { '造型观察': '总会资料从额部、眼形与椭圆形狮口描述鹤山造型；具体样式仍随工坊和时期变化。', '表演特点': '以狮形猫步见长，注重情节和神态，并与鼓法配合；静态图片不能展示真实步法。', '分类说明': '传统流派。狮头造型、舞步与鼓法须结合阅读，不把表演场地当成流派分类。' },
     summary: '以狮形猫步见长的鹤山狮艺，将猫的灵敏融入狮子的神态。狮头造型、舞步与鼓法相互配合，在刚柔之间呈现细腻的表演。',
     sourceIds: ['heshan-art', 'lion-form'],
     points: [
-      { id: 'forehead', label: '拳角与额形', x: 53, y: 11, text: '鹤山地方资料记载了拳角、鲤鱼额等造型语汇。示意图只帮助观察，不涵盖所有工坊和年代的变化。' },
-      { id: 'mouth', label: '狮口与神情', x: 55, y: 68, text: '蛤乸嘴、企眼等地方造型名称，体现鹤山狮头独特的面貌；表演仍须结合全身动作阅读。' },
+      { id: 'forehead', label: '额形与眼形', x: 53, y: 11, text: '总会资料描述鹤山狮的额部、眼形等变化。示意图只帮助观察，不涵盖所有工坊和年代的变化。' },
+      { id: 'mouth', label: '狮口与神情', x: 55, y: 68, text: '椭圆形狮口等造型线索帮助阅读面貌，表演仍须结合全身动作；不把一处特征当成通用鉴定标准。' },
       { id: 'stance', label: '猫步与鼓点', x: 29, y: 81, text: '猫型步法与鼓、锣、钹配合，让停顿、低伏和腾跃具有表情；不以静态图片代替真实表演样本。' },
     ] },
   { id: 'fut-hok', name: '佛鹤狮', kind: '融合形制', imageKey: 'lionTypeFutHok',
+    comparison: { '造型观察': '兼取佛装与鹤装特点，在彩绘与夸张神采之外，兼顾轻便、耐用等制作需求。', '表演特点': '形制改进与现代高桩表演需求相联系；这并不意味着所有高桩狮都采用佛鹤狮头。', '分类说明': '融合形制，不称第三个传统流派。南海博物馆记载了相关材料、工艺与外观改进。' },
     summary: '在佛装与鹤装特点之间取长补短，佛鹤狮体现了制作技艺的持续发展。南海的工艺资料记载，其改进与现代高桩表演需求相联系。',
     sourceIds: ['fut-hok-craft'],
     points: [

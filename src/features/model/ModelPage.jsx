@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
 
@@ -18,7 +18,7 @@ function DetailList({ entries, className = 'panel-detail-list' }) {
   );
 }
 
-export default function ModelPage({ active = true, onReady }) {
+export default function ModelPage({ active = true, onReady, onObserve, onPartChange }) {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -30,6 +30,7 @@ export default function ModelPage({ active = true, onReady }) {
   const interactionRef = useRef(null);
   const headerRef = useRef(null);
   const detailScrollRef = useRef(null);
+  const scrollToTab = useRef(false);
   const hotspotOverlayRef = useRef(null);
   const projectedHotspotRefs = useRef(new Map());
   const sceneRef = useRef(null);
@@ -41,6 +42,7 @@ export default function ModelPage({ active = true, onReady }) {
   const focusPointRef = useRef(null);
   const selectedIndex = hotspots.findIndex((item) => item.id === selectedId);
   const selected = hotspots[selectedIndex] ?? hotspots[0];
+  const expressionLink = { eyes: { expressionId: 'surprise', name: '惊', partLabel: '眉眼' }, mouth: { expressionId: 'delight', name: '乐', partLabel: '狮嘴' } }[selected.id];
   activeRef.current = active;
   onReadyRef.current = onReady;
   selectedRef.current = selected;
@@ -49,6 +51,7 @@ export default function ModelPage({ active = true, onReady }) {
   const selectHotspot = (id, point) => {
     const next = hotspots.find((item) => item.id === id);
     if (!next) return;
+    onPartChange?.(id);
     selectedRef.current = next;
     focusStateRef.current = id;
     focusPointRef.current = point ?? null;
@@ -60,6 +63,7 @@ export default function ModelPage({ active = true, onReady }) {
   };
 
   const resetView = () => {
+    onPartChange?.(hotspots[0]?.id);
     selectedRef.current = hotspots[0];
     focusStateRef.current = 'overall';
     focusPointRef.current = null;
@@ -147,7 +151,17 @@ export default function ModelPage({ active = true, onReady }) {
 
   useEffect(() => {
     if (detailScrollRef.current) detailScrollRef.current.scrollTop = 0;
-  }, [selectedId, detailTab]);
+  }, [selectedId]);
+  useLayoutEffect(() => {
+    if (!scrollToTab.current) return;
+    scrollToTab.current = false;
+    const pane = detailScrollRef.current;
+    const tabs = pane?.querySelector('.model-detail-tabs');
+    if (pane && tabs && getComputedStyle(pane).overflowY === 'auto') {
+      pane.scrollTop += tabs.getBoundingClientRect().top - pane.getBoundingClientRect().top - 8;
+    }
+  }, [detailTab]);
+  const selectDetailTab = value => { scrollToTab.current = value !== detailTab; setDetailTab(value); };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -315,13 +329,6 @@ export default function ModelPage({ active = true, onReady }) {
             </nav>
           </div>
 
-          <div className="model-detail-tabs" aria-label="部件解读内容">
-            <button type="button" id="structureDetailTab" className={detailTab === 'structure' ? 'active' : ''}
-              aria-pressed={detailTab === 'structure'} aria-controls="modelDetailContent" onClick={() => setDetailTab('structure')}>结构与工艺</button>
-            <button type="button" id="cultureDetailTab" className={detailTab === 'culture' ? 'active' : ''}
-              aria-pressed={detailTab === 'culture'} aria-controls="modelDetailContent" onClick={() => setDetailTab('culture')}>文化与造型</button>
-          </div>
-
           <div className="model-detail-scroll" id="modelDetailContent" ref={detailScrollRef} tabIndex={0}
             aria-labelledby={detailTab === 'structure' ? 'structureDetailTab' : 'cultureDetailTab'}>
             <div className="part-detail-heading">
@@ -330,21 +337,25 @@ export default function ModelPage({ active = true, onReady }) {
             </div>
             <p className="panel-kicker">{selected.kicker}</p>
             <h2 id="structureTitle" aria-live="polite"><span id="panelTitle">{selected.name}</span></h2>
+            <div className="function-block model-part-purpose"><span className="label">部位作用</span><p id="panelFunction">{selected.function}</p></div>
+            <p className="panel-description model-observation" id="panelDescription">{selected.description}</p>
+            {expressionLink && <div className="model-expression-recommendation"><button type="button" id="modelExpressionLink" onClick={() => onObserve?.({ ...expressionLink, returnPartId: selected.id })}>去神态页观察{expressionLink.name}态</button><p>观察推荐，并非部位与情绪的固定对应。</p></div>}
+            <div className="model-detail-tabs" aria-label="部件解读内容">
+              <button type="button" id="structureDetailTab" className={detailTab === 'structure' ? 'active' : ''}
+                aria-pressed={detailTab === 'structure'} aria-controls="modelDetailContent" onClick={() => selectDetailTab('structure')}>结构与工艺</button>
+              <button type="button" id="cultureDetailTab" className={detailTab === 'culture' ? 'active' : ''}
+                aria-pressed={detailTab === 'culture'} aria-controls="modelDetailContent" onClick={() => selectDetailTab('culture')}>文化与造型</button>
+            </div>
             <p className="panel-material" id="panelMaterial">{selected.material}</p>
 
             {detailTab === 'structure' ? (
               <section className="part-structure-detail" aria-label="当前部件结构与工艺">
-                <p className="panel-description" id="panelDescription">{selected.description}</p>
                 <DetailList entries={[
                   ['组成', selected.structure.parts.join(' · ')],
                   ['材料', selected.structure.material],
                   ['工艺', selected.structure.craft],
                   ['连接', selected.structure.connection],
                 ]} />
-                <div className="function-block">
-                  <span className="label">动作观察</span>
-                  <p id="panelFunction">{selected.function}</p>
-                </div>
               </section>
             ) : (
               <section className="culture-panel" id="culturePanel" aria-label="当前部件文化与造型">

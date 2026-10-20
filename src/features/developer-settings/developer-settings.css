@@ -410,6 +410,13 @@
 .developer-settings-apply { width: 100%; min-height: 40px; border: 1px solid #a63221; border-radius: 6px; color: #fff9ed; background: #a63221; font: 600 14px/1.5 var(--sans); cursor: pointer; }
 .developer-settings-apply:hover { background: #86291c; }
 .developer-settings-feedback { padding: 10px; border-radius: 6px; background: #ebdbbd77; color: #775038; }
+.developer-settings-panel :is(.developer-settings-group-heading h4, .developer-color-control, .developer-settings-toggle) { font-size: 14px; }
+.developer-settings-panel .developer-settings-note { font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.developer-range-heading { flex-wrap: wrap; row-gap: 8px; }
+.developer-range-heading label { flex: 1 1 110px; font-size: 13px; line-height: 1.6; }
+.developer-range-value { margin-left: auto; }
+.developer-settings-group-content { min-width: 0; }
+.developer-settings-panel :is(select, input[type='number']) { max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .developer-settings-tabs > button,

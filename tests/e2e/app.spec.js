@@ -287,16 +287,18 @@ test('结构模型真实滚轮放大改变绘制尺寸，透明画布保留全�
 });
 
 for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {
-  test(`结构页在${viewport.width}电脑窗口保持左模型右资料，导航与部件目录可操作`, async ({ page }) => {
+  test(`结构页在${viewport.width}电脑窗口按余宽排列模型资料，导航与部件目录可操作`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await openPrepared(page, '/#/model');
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
     const columns = await page.locator('.model-layout').evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-    expect(columns).toBe(2);
+    const available = await page.locator('.site-page').evaluate(node => node.clientWidth);
+    expect(columns).toBe(available >= 1000 ? 2 : 1);
     const scene = await page.locator('.scene-column').boundingBox();
     const panel = await page.locator('#structurePanel').boundingBox();
     const header = await page.locator('.site-header').boundingBox();
-    expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
+    if (available >= 1000) expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
+    else expect(scene.y + scene.height).toBeLessThanOrEqual(panel.y + 2);
     expect(scene.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
     expect(panel.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
     expect(scene.width).toBeGreaterThan(300);

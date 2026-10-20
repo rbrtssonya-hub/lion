@@ -19,7 +19,7 @@ export default function SiteHeader({ current, onNavigate, settingsOpen, onToggle
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  return <header className="site-header" ref={headerRef} data-nav-mode={current === 'entry' ? 'expanded' : 'compact'}>
+  return <header className="site-header" ref={headerRef} data-current-route={current} data-nav-mode={current === 'entry' ? 'expanded' : 'compact'}>
     <style>{navigationFontFace}</style>
     <NavigationSurface />
     <div className="site-header-inner">

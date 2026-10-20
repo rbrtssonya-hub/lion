@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
-import { lionExpressions } from '../../data/lion-expressions.js';
+import { lionExpressions, expressionComparisons } from '../../data/lion-expressions.js';
 import ExpressionMotif from './ExpressionMotif.jsx';
+import ExpressionComparison from './ExpressionComparison.jsx';
 
 function Cloud({ className = '' }) {
   return <svg className={`expression-cloud ${className}`} viewBox="0 -4 100 60" aria-hidden="true" focusable="false">
@@ -10,14 +11,25 @@ function Cloud({ className = '' }) {
   </svg>;
 }
 
-export default function ExpressionPage() {
-  const [selection, setSelection] = useState({ index: 0, previous: null, direction: 'next', revision: 0 });
-  const [viewMode, setViewMode] = useState('overview');
+export default function ExpressionPage({ observation, onReturnToModel }) {
+  const initialIndex = Math.max(0, lionExpressions.findIndex(item => item.id === observation?.expressionId));
+  const [selection, setSelection] = useState({ index: initialIndex, previous: null, direction: 'next', revision: 0 });
+  const [viewMode, setViewMode] = useState(observation ? 'details' : 'overview');
+  const [comparing, setComparing] = useState(false);
+  const [pairId, setPairId] = useState(expressionComparisons[0].id);
+  const compareButton = useRef(null);
   const stageRef = useRef(null);
   const triggerRef = useRef(null);
   const responseRef = useRef(null);
   const spaceActivation = useRef(null);
   const current = lionExpressions[selection.index];
+  const showComparison = () => {
+    responseRef.current?.cancel();
+    spaceActivation.current = null;
+    setPairId((expressionComparisons.find(pair => pair.ids.includes(current.id)) ?? expressionComparisons[0]).id);
+    setComparing(true);
+  };
+  const exitComparison = () => { setComparing(false); compareButton.current?.focus({ preventScroll: true }); };
   const select = useCallback((value) => {
     setViewMode('overview');
     if (spaceActivation.current !== null) spaceActivation.current = false;
@@ -53,6 +65,7 @@ export default function ExpressionPage() {
   }, []);
 
   useEffect(() => {
+    if (comparing) return;
     const stage = stageRef.current;
     let lastWheel = -Infinity;
     let delta = 0;
@@ -71,7 +84,7 @@ export default function ExpressionPage() {
     };
     stage.addEventListener('wheel', onWheel, { passive: false });
     return () => stage.removeEventListener('wheel', onWheel);
-  }, [step]);
+  }, [step, comparing]);
 
   const handleKey = event => {
     if (event.target !== event.currentTarget && event.target !== triggerRef.current) return;
@@ -85,13 +98,19 @@ export default function ExpressionPage() {
   };
 
   return <>
-    <section className="chapter-stage chapter-stage--state expression-page" id="chapterStage" data-chapter="state" data-expression={current.name} aria-label="醒狮八态图鉴" onKeyDown={event => {
+    <section className="chapter-stage chapter-stage--state expression-page" id="chapterStage" data-chapter="state" data-expression={current.name} data-comparing={comparing} aria-label="醒狮八态图鉴" onKeyDown={event => {
+      if (event.key === 'Escape' && comparing && !event.isComposing) { event.preventDefault(); event.stopPropagation(); exitComparison(); return; }
       if (event.key === 'Escape' && viewMode === 'details' && !event.isComposing) {
         event.preventDefault(); event.stopPropagation(); returnToOverview();
       }
     }}>
       <h1 className="sr-only" id="chapterTitle">神态</h1>
-      <div className="expression-hero">
+      <div className="expression-toolbar">
+        {observation && <button type="button" className="expression-model-return" onClick={onReturnToModel}>返回{observation.partLabel}部位</button>}
+        <div className="expression-reading-modes" role="group" aria-label="神态阅读方式"><button type="button" aria-pressed={!comparing} onClick={exitComparison}>八态浏览</button><button type="button" ref={compareButton} aria-pressed={comparing} onClick={showComparison}>神态对照</button></div>
+      </div>
+      {comparing && <ExpressionComparison pairId={pairId} onSelect={setPairId} />}
+      <div className="expression-hero" hidden={comparing}>
         <nav className="expression-state-nav" aria-label="醒狮八态" style={{ '--active-state': selection.index }}>
           <div className="expression-active-badge" aria-hidden="true"><img className="expression-badge-lion" src={media[current.imageKey]} alt="" /><Cloud /></div>
           {lionExpressions.map((expression, index) => <button type="button" key={expression.name} className={`expression-state-button${index === selection.index ? ' is-active' : ''}`} aria-pressed={index === selection.index} aria-controls="expressionStateCopy" onClick={() => select(index)}>

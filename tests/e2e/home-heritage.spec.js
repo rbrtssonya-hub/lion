@@ -139,9 +139,11 @@ test('unified sources preserve references, the approved paw and book emblem, and
   const sources = page.locator('#homeCultureSources');
   await sources.scrollIntoViewIfNeeded();
   await expect(sources.locator('.home-culture-source-cards').getByRole('link')).toHaveCount(3);
-  await expect(sources.locator('.heritage-source-group')).toHaveCount(1);
+  await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
+  await expect(sources.getByRole('heading', { name: '历史与文化', exact: true })).toBeVisible();
+  await expect(sources.getByRole('heading', { name: '形制与工艺', exact: true })).toBeVisible();
   const formSource = page.locator('.heritage-form-note').getByRole('link');
-  await expect(sources.locator('.heritage-source-group').getByRole('link', { name: /广东醒狮的传承与发展/ })).toHaveAttribute('href', await formSource.getAttribute('href'));
+  await expect(sources.locator('.home-culture-source-cards').getByRole('link', { name: /狮舞 · 广东醒狮/ })).toHaveAttribute('href', await formSource.getAttribute('href'));
   const emblem = sources.locator('.home-culture-sources-emblem');
   await expect(emblem).toHaveAttribute('aria-hidden', 'true');
   await expect(emblem.locator('img')).toHaveAttribute('src', /archive-ornament-paw\.png$/);
@@ -211,6 +213,10 @@ test('heritage desktop geometry remains readable at target widths and 900px push
   for (const id of ['homeLionTypes']) {
     const section=page.locator(`#${id}`); await section.scrollIntoViewIfNeeded();
     expect(await section.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
-    expect(await section.locator('.heritage-layout').evaluate(n=>getComputedStyle(n).gridTemplateColumns.split(' ').length)).toBe(2);
+    const columns = await section.locator('.heritage-layout').evaluate(node => ({
+      actual: getComputedStyle(node).gridTemplateColumns.split(' ').length,
+      expected: node.closest('.heritage-inner').clientWidth >= 760 ? 2 : 1,
+    }));
+    expect(columns.actual).toBe(columns.expected);
   }
 });

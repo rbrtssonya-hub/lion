@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { media } from '../../config/media.js';
-import { homeCultureStories } from '../../data/home-culture.js';
+import { homeCultureStories, homeCultureSources } from '../../data/home-culture.js';
 import { useCultureCarousel } from './useCultureCarousel.js';
 import CultureDepthGallery from './CultureDepthGallery.jsx';
 import LionArchiveOrnament from './LionArchiveOrnament.jsx';
@@ -47,6 +47,10 @@ function CultureSlide({ story, active }) {
         <h3 id={`culture-${story.id}`} className="home-culture-title">{story.title}</h3>
         <p className="home-culture-text">{story.text}</p>
         <p className="home-culture-note">{story.note}</p>
+        <div className="heritage-links">{story.sources.map(id => {
+          const source = homeCultureSources.find(item => item.id === id);
+          return <a key={id} href={source.url} target="_blank" rel="noreferrer">资料 · {source.label} ↗</a>;
+        })}</div>
       </div>
     </article>
   );

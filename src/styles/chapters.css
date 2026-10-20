@@ -16,11 +16,32 @@
   --expression-red: #ad231e;
   --expression-serif: 'STKaiti', 'KaiTi', '楷体', 'Noto Serif SC', serif;
   --expression-available-height: calc(100svh - var(--site-header-height));
-  width: min(100%, 2320px); height: var(--expression-available-height); min-height: 0;
+  width: min(100%, 2320px); height: auto; min-height: var(--expression-available-height);
   margin: 0 auto; padding: 20px clamp(22px, 4cqw, 96px) 10px;
-  display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px;
+  display: grid; grid-template-rows: auto minmax(480px, 1fr) auto; gap: 12px;
 }
-.expression-hero { display: grid; grid-template-columns: clamp(90px, 8cqw, 154px) minmax(0, 1.35fr) minmax(0, .95fr); grid-template-rows: minmax(0, 1fr); height: 100%; min-height: 0; gap: clamp(18px, 3cqw, 58px); align-items: center; }
+.expression-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px 24px; }
+.expression-reading-modes { display: flex; gap: 8px; }
+.expression-toolbar button, .expression-comparison-tabs button { padding: 8px 18px; border: 1px solid #ac795b66; border-radius: 5px; background: #fff9ef99; color: #803c2b; font: 17px/1.5 var(--expression-serif); cursor: pointer; }
+.expression-toolbar [aria-pressed='true'], .expression-comparison-tabs [aria-selected='true'] { color: #fff4de; background: #943023; border-color: #943023; }
+.expression-toolbar .expression-model-return { margin-right: auto; }
+.expression-hero[hidden] { display: none; }
+.expression-page[data-comparing='true'] { height: auto; min-height: var(--expression-available-height); grid-template-rows: auto auto auto; }
+.expression-comparison { min-width: 0; container: expression-compare / inline-size; }
+.expression-comparison-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 4px 0 24px; }
+.expression-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: clamp(20px, 3cqw, 48px); }
+.expression-page .expression-comparison-card { padding: clamp(20px, 2.5cqw, 40px); max-height: none; overflow: visible; animation: expression-copy-arrive 200ms ease-out; }
+.expression-comparison-card figure { display: grid; place-items: center; margin: 0 0 20px; height: clamp(180px, 26cqw, 360px); }
+.expression-comparison-card figure img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.expression-comparison-card h2 { font: 500 64px/1.2 var(--brush); color: var(--expression-red); }
+.expression-comparison-summary { margin-top: 10px; font: 22px/1.6 var(--expression-serif); }
+.expression-comparison-card dl { margin: 0; }
+.expression-comparison-card dl > div { padding-block: 16px; border-top: 1px solid #b68b5844; }
+.expression-comparison-card dt { margin-bottom: 8px; color: #963c2c; font: 22px/1.5 var(--expression-serif); }
+.expression-comparison-card dd { margin: 0; font: 20px/1.8 var(--expression-serif); overflow-wrap: anywhere; }
+.expression-image-fallback { font: 18px/1.8 var(--expression-serif); }
+@container expression-compare (max-width: 639px) { .expression-comparison-grid { grid-template-columns: minmax(0, 1fr); } }
+.expression-hero { display: grid; grid-template-columns: clamp(90px, 8cqw, 154px) minmax(0, 1.35fr) minmax(0, .95fr); grid-template-rows: auto; height: auto; min-height: 480px; gap: clamp(18px, 3cqw, 58px); align-items: center; }
 .expression-state-nav { --state-row: clamp(38px, min(4.5cqw, calc(var(--expression-available-height) * .085)), 68px); position: relative; width: 100%; padding: 0 0 26px; }
 .expression-active-badge { position: absolute; z-index: 1; top: 0; left: -10px; display: flex; width: calc(100% + 10px); height: var(--state-row); align-items: center; justify-content: flex-end; border-radius: 0 28px 28px 0; background: var(--expression-red); transform: translateY(calc(var(--active-state, 0) * var(--state-row))); transition: transform 360ms cubic-bezier(.22, .7, .25, 1); pointer-events: none; }
 .expression-badge-lion { position: absolute; left: -11px; width: clamp(42px, 4cqw, 71px); height: min(68px, var(--state-row)); object-fit: contain; filter: drop-shadow(0 2px 1px rgba(83, 24, 13, .16)); }
@@ -34,7 +55,7 @@
 .expression-state-button:hover:not(.is-active) { color: var(--expression-red); }
 .expression-state-button:focus-visible { outline: 2px solid var(--expression-red); outline-offset: 2px; border-radius: 3px; }
 .expression-nav-caption { position: absolute; right: 0; bottom: 0; left: 18px; margin: 0; color: var(--chapter-muted); font: 9px/1.6 var(--display); letter-spacing: .11em; }
-.expression-lion-stage { position: relative; width: 100%; min-width: 0; height: 100%; min-height: 0; isolation: isolate; touch-action: pan-y; }
+.expression-lion-stage { position: relative; width: 100%; min-width: 0; height: auto; min-height: 440px; align-self: stretch; isolation: isolate; touch-action: pan-y; }
 .expression-lion-stage:focus-visible { outline: 2px solid rgba(196, 65, 42, .6); outline-offset: 4px; border-radius: 50%; }
 .expression-brush-ring { position: absolute; z-index: -1; top: 48%; left: 50%; width: min(97%, calc(var(--expression-available-height) - 80px), 790px); height: auto; aspect-ratio: 1; fill: none; stroke: #8e6650; opacity: .14; transform: translate(-50%, -50%); pointer-events: none; }
 .expression-brush-ring circle { stroke-width: 3; }
@@ -60,7 +81,7 @@
 .expression-interaction-hint { position: absolute; right: 0; bottom: 0; left: 0; margin: 0; color: var(--chapter-muted); font-size: 10px; line-height: 1.5; letter-spacing: .05em; text-align: center; }
 .expression-copy {
   position: relative; justify-self: center; min-width: 0; width: var(--surface-width, 100%);
-  min-height: min(var(--surface-height, 0px), 100%); max-height: 100%; overflow: auto;
+  min-height: var(--surface-height, 0px); max-height: none; overflow: auto;
   padding: clamp(14px, 1.7cqw, 32px); color: #49372b;
   border: 1px solid rgb(185 144 91 / calc(var(--surface-opacity, .78) * .55));
   border-radius: var(--surface-radius, 24px);
@@ -136,4 +157,34 @@
   .expression-cues p { font-size: clamp(12px, min(var(--expression-detail-font-size, 18px), calc(var(--expression-available-height) * .04)), 32px); line-height: 1.5; }
   .expression-return { width: max-content; margin-top: 4px; padding: 2px 0; font-size: 13px; }
   .expression-state-count { margin-top: 2px; font-size: 9px; }
+}
+
+/* Zoomed and compact desktop windows read vertically, never by page scaling. */
+@container lion-page (max-width: 899px) {
+  .expression-page { height: auto; min-height: var(--expression-available-height); grid-template-rows: auto auto auto; padding-inline: 24px; }
+  .expression-hero { height: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 24px; }
+  .expression-state-nav { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0; }
+  .expression-active-badge { display: none; }
+  .expression-state-button { justify-content: center; flex: 1 1 52px; width: auto; height: 44px; padding: 8px; border-radius: 5px; }
+  .expression-state-button.is-active { background: var(--expression-red); }
+  .expression-state-button strong { font-size: 26px; }
+  .expression-state-dot { display: none; }
+  .expression-nav-caption { position: static; flex-basis: 100%; text-align: center; margin-top: 6px; font-size: 12px; }
+  .expression-lion-stage { height: clamp(340px, 65svh, 600px); }
+  .expression-page .expression-copy { max-height: none; padding: 24px; }
+  .expression-description p { font-size: var(--expression-overview-font-size, 22px); }
+  .expression-cues p { font-size: var(--expression-detail-font-size, 18px); line-height: 1.8; }
+  .expression-copy-kicker, .expression-detail-subtitle { font-size: 14px; }
+  .expression-evidence { font-size: 12px; }
+}
+@media (max-height: 650px) {
+  .expression-page { height: auto; min-height: var(--expression-available-height); grid-template-rows: auto auto auto; }
+  .expression-hero { height: auto; min-height: 480px; align-items: start; }
+  .expression-lion-stage { height: 440px; }
+  .expression-page .expression-copy { max-height: none; }
+  .expression-description p { font-size: var(--expression-overview-font-size, 22px); }
+  .expression-cues p { font-size: var(--expression-detail-font-size, 18px); }
+  .expression-copy-kicker, .expression-detail-subtitle, .expression-copy[data-view='details'] .expression-detail-subtitle { font-size: 14px; }
+  .expression-cues h3 { font-size: 14px; }
+  .expression-evidence { font-size: 12px; }
 }

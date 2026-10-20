@@ -3,6 +3,60 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/01-home-1920.png",
+      "bytes": 2349934,
+      "sha256": "075b60e16d0749bfb81dc30eedc4b2c81d653e535f8c664f0bca1665afa87ccf"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/02-type-comparison-1920.png",
+      "bytes": 1667403,
+      "sha256": "30293f195b316f4ff51ec1e8fddfdbc81908fa496a93a1f48762ff5d9c8a5f94"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/03-type-expanded-1024.png",
+      "bytes": 949218,
+      "sha256": "399a62158373cdf9e99ca7b842301c035ac076c654fca95bd5d9d598eefb5b8d"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/04-model-1920.png",
+      "bytes": 2535699,
+      "sha256": "eaffc553e04c89e5d5e2414381c83bf63871ab8baa7971f7a54a015f925ff349"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/05-model-compact-900.png",
+      "bytes": 1041724,
+      "sha256": "8ca9b2173cd85ef9a83b399f7256e8caba623031c45099e736411a71ec4471a4"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/06-state-comparison-1920.png",
+      "bytes": 1172499,
+      "sha256": "7e77e0448bda22a6e446a0ed3a323c202bbdb55f05fddf4523f93f99c592993a"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/07-state-compact-853.png",
+      "bytes": 559270,
+      "sha256": "2e6c072846229b5c2fc985b465e9075f1aa38179cdb59f28645213c4560cf051"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/08-settings.png",
+      "bytes": 1103891,
+      "sha256": "e77c8302223d8728c8d4d04dcd98dfa9e33970ef71cedc1e5163b4245d5d0189"
+    },
+    {
+      "from": "actual Chrome production review, content-responsive 2026-10-20",
+      "path": "source/reviews/content-responsive/2026-10-20/09-loading-683.png",
+      "bytes": 439651,
+      "sha256": "64843b1df1aafe64e3c76d5d6741ba0b9b7fb9c00e56585f08c1254bcaa43785"
+    },
+    {
       "from": "2026-10-19 actual Chrome production merged main and homepage branch review",
       "path": "source/reviews/integration/2026-10-19-home-heritage-main/action-1920.png",
       "bytes": 1904323,

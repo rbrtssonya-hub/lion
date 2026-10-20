@@ -10,6 +10,10 @@
   color: var(--stage-paper);
   background: transparent;
 }
+.model-part-purpose { margin-top: 14px; }
+.model-expression-recommendation { margin: 14px 0; }
+.model-expression-recommendation button { max-width: 100%; padding: 9px 12px; border: 1px solid #d9b17799; border-radius: 4px; background: #ffdfa014; color: #ffe5b3; font: 14px/1.6 var(--sans); cursor: pointer; }
+.model-expression-recommendation p { margin: 8px 0 0; color: #efd5ad; font: 12px/1.7 var(--sans); }
 
 .model-layout {
   position: relative;
@@ -56,7 +60,7 @@
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
   padding: clamp(22px, 2cqw, 34px) clamp(20px, 2cqw, 32px) 0;
@@ -108,6 +112,7 @@
 .model-detail-tabs button { position: relative; padding: 11px 4px 13px; border: 0; color: rgba(255, 235, 201, .5); background: transparent; font-size: 13px; cursor: pointer; transition: color 160ms ease; }
 .model-detail-tabs button:hover, .model-detail-tabs button.active { color: #f9dfb2; }
 .model-detail-tabs button.active::after { position: absolute; right: 25%; bottom: -1px; left: 25%; height: 2px; background: #e3b776; content: ''; }
+.model-detail-scroll .model-detail-tabs { margin: 20px 0 18px; }
 .model-detail-scroll { min-width: 0; min-height: 0; margin-right: -12px; padding: 20px 12px 24px 0; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(221, 177, 110, .35) transparent; }
 .model-detail-scroll:focus-visible { outline: 1px solid rgba(230, 185, 117, .65); outline-offset: -2px; }
 .part-detail-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
@@ -150,4 +155,20 @@
   .model-part-picker { padding-block: 12px; }
   .hotspot-list button { min-height: 34px; padding-block: 6px; }
   .model-detail-scroll { padding-top: 15px; }
+}
+
+/* Compact desktop/zoom: let the document grow instead of squeezing the model. */
+@container lion-page (max-width: 999px) {
+  .model-layout { grid-template-columns: minmax(0, 1fr); height: auto; min-height: 0; padding: 20px clamp(20px, 4cqw, 48px) 36px; gap: 24px; }
+  .model-layout .scene-column { height: clamp(360px, 54svh, 640px); }
+  .site-shell .model-stage .info-panel { justify-self: center; min-height: var(--modelOverlay-surface-height, 620px); max-height: none; height: auto; }
+  .model-detail-scroll { overflow: visible; }
+  .model-header h1 { font-size: 36px; }
+  .model-stage :is(.panel-description, .panel-lede, .function-block p, .panel-detail-row dd) { font-size: 16px; }
+}
+@media (max-height: 650px) {
+  .model-layout { height: auto; align-items: start; }
+  .model-layout .scene-column { height: 420px; }
+  .site-shell .model-stage .info-panel { min-height: var(--modelOverlay-surface-height, 620px); height: auto; }
+  .model-detail-scroll { overflow: visible; }
 }

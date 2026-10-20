@@ -1,9 +1,9 @@
 // Concise editorial summaries; evidence and image licenses are recorded in
 // source/references/home-culture-sources.md. These photographs are not AI assets.
 export const homeCultureSources = [
-  { label: '中国非物质文化遗产网', title: '依武而传：广东醒狮', description: '武术传统、城乡传承与文化传播', url: 'https://www.ihchina.cn/project_details/24139/' },
-  { label: '南海博物馆', title: '狮舞 · 广东醒狮', description: '节庆习俗、采青表演与狮队配合', url: 'https://www.nhmuseum.org/fei-yi/589.html' },
-  { label: '南海博物馆', title: '佛鹤狮头制作', description: '扎、扑、画、装与狮头工艺', url: 'https://www.nhmuseum.org/fei-yi/1575.html' },
+  { id: 'martial-tradition', label: '中国非物质文化遗产网', title: '依武而传：广东醒狮', description: '武术传统、城乡传承与文化传播', url: 'https://www.ihchina.cn/Article/Index/detail?id=24139' },
+  { id: 'lion-dance', label: '南海博物馆', title: '狮舞 · 广东醒狮', description: '节庆习俗、采青表演与狮队配合', url: 'https://www.nhmuseum.org/fei-yi/589.html' },
+  { id: 'fut-hok-craft', label: '南海博物馆', title: '佛鹤狮头制作', description: '扎、扑、画、装与狮头工艺', url: 'https://www.nhmuseum.org/fei-yi/1575.html' },
 ];
 
 export const homeCultureStories = [
@@ -12,9 +12,9 @@ export const homeCultureStories = [
     index: '01',
     eyebrow: '岭南风土 / A LIVING TRADITION',
     title: '一声锣鼓，唤醒岭南',
-    text: '醒狮把武术、舞蹈与锣鼓融在一起，常见于年节与喜庆场合。从广东的街巷、村落，到港澳与海外华人社区，这份热闹始终与人们的生活相连。2006年，广东醒狮入选第一批国家级非物质文化遗产名录。',
+    text: '佛山的这张实景将目光引向高处：黄色醒狮由两位表演者共同托起，狮头与后身保持连贯。观察脚下支点、前后位置与狮头朝向，能看到高桩表演对配合与平衡的要求；单幅照片不用于判断动作难度或得分。',
     note: '有形的是狮，无形的是一方风土。',
-    sources: [0, 1],
+    sources: ['martial-tradition', 'lion-dance'],
     photo: {
       mediaKey: 'cultureFoshan',
       width: 1280,
@@ -32,9 +32,9 @@ export const homeCultureStories = [
     index: '02',
     eyebrow: '狮头工艺 / THE MAKING OF A LION',
     title: '一扎一画，狮有了神采',
-    text: '一头醒狮的神采，先从匠人的手里生长。狮头制作经过扎、扑、画、装等工序；夸张的眉眼、鲜明的彩绘与蓬松的毛饰，共同塑造威武而灵动的面貌。舞动之前，它已经是一件有表情的手工艺品。',
+    text: '广州这头黄色狮头尚未舞动，彩绘、眉眼与额饰已形成鲜明轮廓。沿着额面向口沿观察，硬质造型与绒毛边缘层层相接。扎、扑、画、装是理解狮头制作的线索，但照片看不见内部竹架，不能据此外推具体工艺结构。',
     note: '看眉眼、看纹样，也看一双手留下的耐心。',
-    sources: [2],
+    sources: ['fut-hok-craft'],
     photo: {
       mediaKey: 'cultureLionHead',
       width: 1280,
@@ -52,9 +52,9 @@ export const homeCultureStories = [
     index: '03',
     eyebrow: '采青狮艺 / A STORY IN MOTION',
     title: '采青，让狮子讲一个故事',
-    text: '采青是醒狮表演的重要套路。舞狮人通过起、承、转、合展开情节，让狮子的动作充满戏剧性。抬头、俯身与腾跃之间，观众看到的不只是力量，也是一头狮子生动的神情。',
+    text: '埃德蒙顿文化节现场，橙色醒狮向观众撒出青菜，狮口前的叶片成为画面的焦点。采青具有起、承、转、合的叙事过程；这张照片记录其中一个瞬间，完整套路仍需结合连续表演理解。',
     note: '一动一静，都是狮与人之间的默契。',
-    sources: [1],
+    sources: ['lion-dance'],
     photo: {
       mediaKey: 'cultureCaiQing',
       width: 1280,
@@ -72,9 +72,9 @@ export const homeCultureStories = [
     index: '04',
     eyebrow: '声与身段 / MOVING TOGETHER',
     title: '两个人，一头狮，一份默契',
-    text: '狮头与狮尾由两位表演者合作，鼓、锣、钹伴随身段变化。南拳步法托住力量，睁眼、洗须、抖毛等动作带来神态。醒狮的生命感，就藏在这样的配合里，也在一场场表演中延续。',
+    text: '香港九龙公园的两头白狮与身后狮队共同构成表演现场。先辨认每头狮的头尾，再看前后身段如何连成整体。两位表演者合作完成一头狮子，场外锣鼓与队员也是演出的组成部分。',
     note: '传统不只留在器物里，也活在共同的节奏里。',
-    sources: [0, 1],
+    sources: ['martial-tradition', 'lion-dance'],
     photo: {
       mediaKey: 'culturePerformance',
       width: 1280,
@@ -94,7 +94,7 @@ export const homeCultureStories = [
     title: '鼓点一落，身段有了呼吸',
     text: '鼓、锣、钹与醒狮共同完成一场表演。先听节奏的疏密，再看狮头的起伏，便能找到声音与动作之间的呼应。照片里，鼓手、持钹者与狮子分处街巷两端，构成一幅可以用眼睛“听见”的现场。',
     note: '听见锣鼓，也看见节奏里的人。',
-    sources: [1],
+    sources: ['lion-dance'],
     photo: {
       mediaKey: 'cultureDrum',
       width: 1280,
@@ -112,9 +112,9 @@ export const homeCultureStories = [
     index: '06',
     eyebrow: '眉眼传神 / A FACE FULL OF LIFE',
     title: '在眉眼之间，读懂一头狮',
-    text: '醒狮不只有腾跃的力量，也有细腻的神情。睁眼、洗须、抖毛等动作，让观众把器物读成鲜活的生命。走近这张狮头照片，看看圆眼、眉饰、鼻部与毛须：这些造型，是舞狮人传递神态的起点。',
+    text: '这张近景放大了圆眼、红白鼻饰、彩绘和蓬松眉毛。比较硬质轮廓与柔软毛须，能理解面部为何在远处仍有辨识度。眉眼是观察入口，不是情绪答案；照片不能证明这头狮正在表现某种固定神态。',
     note: '这是神态观察的线索，照片本身不作情绪定论。',
-    sources: [1, 2],
+    sources: ['lion-dance', 'fut-hok-craft'],
     photo: {
       mediaKey: 'cultureExpression',
       width: 1280,
@@ -134,7 +134,7 @@ export const homeCultureStories = [
     title: '离地的一瞬，落在共同的步点',
     text: '把目光从狮头移向脚下：高处的表演台、桩柱与地面的保护垫，一同构成现场。旧金山唐人街的这幅实景里，两头醒狮在不同高度展开身段。看跃起，也看站稳，才能读到热闹背后的配合与控制。',
     note: '按实景观察动作，不以照片判定竞赛得分。',
-    sources: [0, 1],
+    sources: ['martial-tradition', 'lion-dance'],
     photo: {
       mediaKey: 'culturePole',
       width: 1236,
@@ -152,9 +152,9 @@ export const homeCultureStories = [
     index: '08',
     eyebrow: '狮行远方 / A SHARED CELEBRATION',
     title: '走进人群，传统就在此刻',
-    text: '从岭南出发，醒狮也成为海外华人社区相聚的声音。新加坡熟食中心里，大人与孩子围看表演，鼓手在一旁相和。文化的延续不只发生在舞台中央，也在这样的日常相遇里：有人舞，有人看，有人第一次记住这头狮。',
+    text: '新加坡ABC砖厂熟食中心里，大人与孩子围看醒狮，鼓手在旁配合。照片把表演者、乐手与居民放在同一个日常空间中，呈现社区参与狮舞的方式：不只看舞台上的狮，也看它与人群的距离和交流。',
     note: '一方烟火，一场相聚，让狮舞继续走向生活。',
-    sources: [0, 1],
+    sources: ['martial-tradition', 'lion-dance'],
     photo: {
       mediaKey: 'cultureCommunity',
       width: 1280,

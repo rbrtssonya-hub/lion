@@ -1,0 +1,416 @@
+{
+  "date": "2026-10-20",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "branch": "codex/content-responsive-2026-10-20",
+  "base": "70ac3b68d56d37e21092b8ba1ca0d2c8b2659741",
+  "scope": {
+    "desktopOnly": true,
+    "actionProductFrozen": true,
+    "exeRebuilt": false,
+    "newDependencies": false,
+    "newSettingsFields": false,
+    "newRuntimeImages": false,
+    "inheritorsRestored": false,
+    "pushAuthorized": false,
+    "mergeMainAuthorized": false
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 2070.3991
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "modules": 321,
+    "buildSeconds": 3.71,
+    "warnings": [
+      "Existing Three.js chunk 534.77 kB exceeds 500 kB; no dependency or renderer refactor in this task."
+    ]
+  },
+  "browser": {
+    "engine": "installed Chrome via Playwright",
+    "workersPerSuite": 1,
+    "retries": 0,
+    "developmentBase": "http://127.0.0.1:5206",
+    "productionBase": "http://127.0.0.1:4206",
+    "testsNotRun": "Not a run of all 272 project E2E tests; mobile, other browsers/hardware and EXE are excluded.",
+    "suites": [
+      {
+        "name": "final-development-a",
+        "passed": 42,
+        "failed": 0,
+        "minutes": 8.3,
+        "specs": [
+          "content-comparison",
+          "desktop-responsive-content",
+          "expression",
+          "home-heritage-reveal",
+          "settings-modules"
+        ],
+        "localLog": "tmp/content-responsive-final-dev-a.log"
+      },
+      {
+        "name": "final-development-b",
+        "passed": 83,
+        "failed": 2,
+        "minutes": 19.1,
+        "specs": [
+          "app",
+          "structure-interaction",
+          "home-culture",
+          "home-heritage",
+          "home-archive-simplified",
+          "loading-typography",
+          "navigation-transitions",
+          "startup-loading",
+          "action-theater-integrated",
+          "action-theater-ornate"
+        ],
+        "failures": [
+          {
+            "test": "home-heritage: title paper at 40 percent",
+            "cause": "browserContext.close ENOSPC when writing trace; no content assertion failure"
+          },
+          {
+            "test": "home-heritage: desktop geometry",
+            "cause": "Legacy expectation of 2 columns at 900px page width conflicts with approved actual-content 760px stacking threshold"
+          }
+        ],
+        "localLog": "tmp/content-responsive-final-dev-b.log"
+      },
+      {
+        "name": "final-production-combined",
+        "passed": 125,
+        "failed": 2,
+        "minutes": 26.3,
+        "specs": "union of development A and B",
+        "failures": [
+          {
+            "test": "home-heritage: sources and licences",
+            "cause": "browserContext.close ENOSPC when writing trace; no content assertion failure"
+          },
+          {
+            "test": "home-heritage: desktop geometry",
+            "cause": "Same legacy fixed 2-column expectation"
+          }
+        ],
+        "localLog": "tmp/content-responsive-final-production.log"
+      },
+      {
+        "name": "final-development-heritage-recovery",
+        "passed": 8,
+        "failed": 0,
+        "minutes": 1.4,
+        "trace": "off",
+        "specs": [
+          "home-heritage"
+        ],
+        "localLog": "tmp/content-responsive-final-heritage-dev.log"
+      },
+      {
+        "name": "final-production-heritage-recovery",
+        "passed": 8,
+        "failed": 0,
+        "minutes": 1.4,
+        "trace": "off",
+        "specs": [
+          "home-heritage"
+        ],
+        "localLog": "tmp/content-responsive-final-heritage-production.log"
+      },
+      {
+        "name": "stationary-pointer-photo-fixture-repeat",
+        "passed": 3,
+        "failed": 0,
+        "seconds": 56.1,
+        "localLog": "tmp/content-responsive-photo-final.log"
+      }
+    ],
+    "finalInterpretation": "Every case in the relevant 127-case desktop subset has a passing latest result across these batches. Neither comprehensive run was 127/127 in one run. Final recovery changed only the stale test assertion and disabled transient trace recording; product files were unchanged.",
+    "earlierRuns": [
+      {
+        "name": "legacy-A",
+        "passed": 33,
+        "failed": 6,
+        "disposition": "Fixed narrow text column and updated superseded single-screen/source-group assertions."
+      },
+      {
+        "name": "legacy-B",
+        "passed": 75,
+        "failed": 5,
+        "disposition": "Updated source groups; removed stacked-layout transition overflow; adjusted photo boundary fixture after measured geometry investigation."
+      }
+    ],
+    "matrix": [
+      [
+        1024,
+        768
+      ],
+      [
+        1366,
+        768
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ],
+      [
+        1280,
+        600
+      ],
+      [
+        900,
+        600
+      ]
+    ],
+    "extraNarrow": [
+      [
+        853,
+        600
+      ],
+      [
+        683,
+        512
+      ]
+    ],
+    "loading": [
+      [
+        1280,
+        500
+      ],
+      [
+        683,
+        512
+      ],
+      [
+        700,
+        520
+      ],
+      [
+        701,
+        520
+      ]
+    ],
+    "settingsPanelWidths": [
+      280,
+      460,
+      760
+    ]
+  },
+  "review": {
+    "independentWholeDiffReview": true,
+    "initialCritical": 0,
+    "initialImportant": 4,
+    "initialMinor": 1,
+    "mainRegradedFocusAsImportant": true,
+    "findingsReproducedRed": 5,
+    "findingsFixed": 5,
+    "regressionGreen": 13,
+    "followup": "Expanded assertions to 14 cases, included in 42-case and combined suites.",
+    "unresolvedFindings": 0,
+    "changes": [
+      "Stable type slot keys preserve native select focus; artwork-only key resets failure.",
+      "Selected model detail tabs and content remain visible.",
+      "Back/change model part invalidates stale expression return context.",
+      "683px short loading retains all required text.",
+      "Visibility-aware bounded pending focus restores keyboard continuation after model return."
+    ]
+  },
+  "visual": {
+    "base": "http://127.0.0.1:4206",
+    "browser": "Chrome",
+    "screenshots": [
+      "source/reviews/content-responsive/2026-10-20/01-home-1920.png",
+      "source/reviews/content-responsive/2026-10-20/02-type-comparison-1920.png",
+      "source/reviews/content-responsive/2026-10-20/03-type-expanded-1024.png",
+      "source/reviews/content-responsive/2026-10-20/04-model-1920.png",
+      "source/reviews/content-responsive/2026-10-20/05-model-compact-900.png",
+      "source/reviews/content-responsive/2026-10-20/06-state-comparison-1920.png",
+      "source/reviews/content-responsive/2026-10-20/07-state-compact-853.png",
+      "source/reviews/content-responsive/2026-10-20/08-settings.png",
+      "source/reviews/content-responsive/2026-10-20/09-loading-683.png"
+    ],
+    "zoom": [
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.25,
+        "route": "entry",
+        "width": 1522,
+        "height": 787,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.25,
+        "route": "#/model",
+        "width": 1522,
+        "height": 787,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.25,
+        "route": "#/state",
+        "width": 1522,
+        "height": 787,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.5,
+        "route": "entry",
+        "width": 1268,
+        "height": 656,
+        "dpr": 1.5,
+        "overflow": -10
+      },
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.5,
+        "route": "#/model",
+        "width": 1268,
+        "height": 656,
+        "dpr": 1.5,
+        "overflow": -10
+      },
+      {
+        "outerWidth": 1920,
+        "outerHeight": 1080,
+        "zoom": 1.5,
+        "route": "#/state",
+        "width": 1268,
+        "height": 656,
+        "dpr": 1.5,
+        "overflow": -10
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.25,
+        "route": "entry",
+        "width": 1078,
+        "height": 538,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.25,
+        "route": "#/model",
+        "width": 1078,
+        "height": 538,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.25,
+        "route": "#/state",
+        "width": 1078,
+        "height": 538,
+        "dpr": 1.25,
+        "overflow": -12
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.5,
+        "route": "entry",
+        "width": 899,
+        "height": 448,
+        "dpr": 1.5,
+        "overflow": -10
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.5,
+        "route": "#/model",
+        "width": 899,
+        "height": 448,
+        "dpr": 1.5,
+        "overflow": -10
+      },
+      {
+        "outerWidth": 1366,
+        "outerHeight": 768,
+        "zoom": 1.5,
+        "route": "#/state",
+        "width": 899,
+        "height": 448,
+        "dpr": 1.5,
+        "overflow": -10
+      }
+    ],
+    "errors": [],
+    "screenshotNotes": "Nine real production captures viewed; fixed-header element-capture artifacts replaced with viewport screenshots. Images decoded and route transitions settled before captures; no CSS overrides hide UI. Actual Chrome zoom uses isolated profiles and chrome://settings/appearance; inner sizes and DPR recorded."
+  },
+  "audit": {
+    "manifestBefore": 445,
+    "manifestAfter": 454,
+    "oldManifestRecordsUnchanged": 445,
+    "newReviewRecords": 9,
+    "publicFilesEqualDist": 89,
+    "oldBinaryFilesChanged": 0,
+    "actionComponentsAndServicesUnchanged": true,
+    "mediaAndBookEngineUnchanged": true,
+    "packageFilesUnchanged": true,
+    "dependencyConfigurationUnchanged": true,
+    "mainUnchanged": true,
+    "originMainAtLastFetch": "70ac3b68d56d37e21092b8ba1ca0d2c8b2659741",
+    "remoteBaseDivergence": "0/0",
+    "unmergedPaths": 0,
+    "gitDiffCheck": true,
+    "memoryIndex": true,
+    "memoryReadyCheck": {
+      "exitCode": 0,
+      "pages": 85,
+      "errors": 0,
+      "historicalSourceWarnings": 4
+    }
+  },
+  "delivery": {
+    "localCommit": "See containing Git commit; do not create self-referential hash.",
+    "pushPerformed": false,
+    "mergePerformed": false,
+    "worktreePreserved": true,
+    "excluded": [
+      ".superpowers/",
+      "tmp/",
+      "dist/",
+      "node_modules/",
+      "unlicensed photographs"
+    ],
+    "limitations": [
+      "No mobile acceptance.",
+      "No EXE rebuild.",
+      "No real GPU long-duration benchmark or all-hardware guarantee.",
+      "No full 272-test project E2E run."
+    ]
+  }
+}
