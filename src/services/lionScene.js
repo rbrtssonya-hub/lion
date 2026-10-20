@@ -1,5 +1,5 @@
 import {
-  ACESFilmicToneMapping,
+  AgXToneMapping,
   Box3,
   DirectionalLight,
   Group,
@@ -363,11 +363,15 @@ export async function createLionScene({
     const context = renderer.getContext();
     maxRenderSize = context.getParameter(context.MAX_RENDERBUFFER_SIZE);
     renderer.outputColorSpace = SRGBColorSpace;
-    renderer.toneMapping = ACESFilmicToneMapping;
+    // Use the source's AgX tone-mapping family without changing materials;
+    // Three.js and Blender's OCIO transforms are not pixel-identical.
+    renderer.toneMapping = AgXToneMapping;
     renderer.toneMappingExposure = 1;
     // The authored PBR model includes metallic trim. A neutral environment
     // gives those surfaces reflections without adding any visible backdrop.
-    const environment = new RoomEnvironment();
+    // r160 needs the renderer to choose physical-light intensity (900 vs 5).
+    // Omitting it leaves the room dark between its bright reflection panels.
+    const environment = new RoomEnvironment(renderer);
     const pmrem = new PMREMGenerator(renderer);
     try {
       environmentTarget = pmrem.fromScene(environment, 0.04);
@@ -400,12 +404,17 @@ export async function createLionScene({
     initialCameraPosition.copy(camera.position);
     initialTarget.copy(controls.target);
 
-    scene.add(new HemisphereLight(0xffffff, 0x6d645c, 0.4));
-    const key = new DirectionalLight(0xfff2df, 2);
-    key.position.set(-3, 5, 4);
+    scene.add(new HemisphereLight(0xffffff, 0xb0a496, 0.35));
+    const key = new DirectionalLight(0xfff4e8, 1.6);
+    key.position.set(-2.2, 3.1, 3.2);
     scene.add(key);
-    const rim = new DirectionalLight(0xdde7ff, 0.6);
-    rim.position.set(4, 3, -4);
+    // The source studio includes a lower opposite-side fill. Keep the same
+    // warm key / neutral fill balance while allowing inspection from below.
+    const fill = new DirectionalLight(0xeaf2ff, 0.9);
+    fill.position.set(2.8, 1.8, 1.5);
+    scene.add(fill);
+    const rim = new DirectionalLight(0xfff0df, 0.65);
+    rim.position.set(0.5, 2.8, -2.1);
     scene.add(rim);
 
     signal?.addEventListener('abort', dispose, { once: true });
@@ -489,6 +498,9 @@ export async function createLionScene({
     modelRoot = model;
     model.name = 'Lion_Structure';
     model.traverse((object) => {
+      for (const material of (Array.isArray(object.material) ? object.material : [object.material])) {
+        if (material && 'envMapIntensity' in material) material.envMapIntensity = 0.65;
+      }
       if (!object.isMesh || object.userData.fullHair) return;
       object.castShadow = true;
       object.receiveShadow = true;

@@ -2978,6 +2978,72 @@
       "path": "source/reviews/model/2026-10-20-full-source/structure-1920.png",
       "bytes": 2456048,
       "sha256": "aa3422180aba43eddc0dcd86e423775118ae3440035dff41045bbe0700b4d8bb"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/baseline-structure-back.png",
+      "bytes": 2353698,
+      "sha256": "ce627727778b6f3b08b1753febef4f5ce773f171e748203e04de4c4e1510f95f"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/baseline-structure-front.png",
+      "bytes": 2458768,
+      "sha256": "073480d87bd7c168a5b9339acc7ad8ad24a9075f9b8745f95bd51b6ce7715b36"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/baseline-structure-underside.png",
+      "bytes": 2329327,
+      "sha256": "13f80efd0d80e668f6c5cb825c514e7102d1303c5074590464445b90667e6b7c"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/baseline-theater-front.png",
+      "bytes": 2222217,
+      "sha256": "3eaf754fa8c5ad33149dd84fa59a2140f07a8593d8a885f4b8150ebabda6ed8a"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/current-structure-back.png",
+      "bytes": 2314487,
+      "sha256": "551737e105eb25edbafd11ee8228f5c39b1603bb31e2c053d3aed4347763c5bc"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/current-structure-front.png",
+      "bytes": 2407119,
+      "sha256": "5ff7df6413a8d01c5decada90a570faa3056f896fb730ecbdd841dff768dbc79"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/current-structure-underside.png",
+      "bytes": 2392614,
+      "sha256": "1bbd13da7d101417d9b92049aa8f6c9a3bebafa0e30d5a7c1d77950376aa5412"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/current-theater-front.png",
+      "bytes": 2267160,
+      "sha256": "868466526014ae336f31f84a4fb900301f4b624a0c24b9bb6f646a02b6687659"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/production-focus-mouth-1920.png",
+      "bytes": 2238678,
+      "sha256": "816c0ff99b6064fb2a0e3ee45f65a91336dad3744b3a404241beab108f7aa761"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/production-structure-1366.png",
+      "bytes": 1263293,
+      "sha256": "9d9207c81927356c853328f1850fb5cef454b56bbb3677c317d4931a99986d56"
+    },
+    {
+      "from": "actual Chrome complete lion lighting review, 2026-10-20",
+      "path": "source/reviews/model/2026-10-20-lighting/production-structure-1920.png",
+      "bytes": 2403062,
+      "sha256": "9ed1f648d15ab2f7562d55a6b5deb9ac2e99d6dcfb399e41c76709a494d29dc0"
     }
   ]
 }

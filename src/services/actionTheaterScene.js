@@ -1,5 +1,5 @@
 import {
-  ACESFilmicToneMapping,
+  AgXToneMapping,
   Box3,
   CanvasTexture,
   Color,
@@ -661,7 +661,7 @@ export function createActionTheater({
       if (screenDefinitions.length !== 4) throw new Error('巨幕厅需要四个独立屏幕定义');
       renderer = new WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
       renderer.outputColorSpace = SRGBColorSpace;
-      renderer.toneMapping = ACESFilmicToneMapping;
+      renderer.toneMapping = AgXToneMapping;
       renderer.toneMappingExposure = 1;
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = PCFSoftShadowMap;
@@ -697,12 +697,14 @@ export function createActionTheater({
       } else window.addEventListener('resize', resize);
       resize();
 
-      const environment = new RoomEnvironment();
+      // Supply the physical-light renderer; otherwise r160 underlights the
+      // environment walls and produces near-black bands in the dense fur.
+      const environment = new RoomEnvironment(renderer);
       const pmrem = new PMREMGenerator(renderer);
       try { environmentTarget = pmrem.fromScene(environment, 0.03); scene.environment = environmentTarget.texture; }
       finally { environment.dispose(); pmrem.dispose(); }
-      scene.add(new HemisphereLight(0xffddba, 0x100907, 0.24));
-      const key = new DirectionalLight(0xffe3bd, 3.25);
+      scene.add(new HemisphereLight(0xfff4e8, 0x665a50, 0.35));
+      const key = new DirectionalLight(0xffedda, 2.2);
       key.name = 'Theater_Warm_Front_Key';
       key.position.set(2.5, 7.5, 5.5);
       key.target.position.set(0, 1.7, 0);
@@ -718,11 +720,16 @@ export function createActionTheater({
       key.shadow.normalBias = 0.025;
       key.shadow.radius = 2;
       scene.add(key, key.target);
-      const rim = new DirectionalLight(0xffe9cd, 1.7);
+      const fill = new DirectionalLight(0xeaf2ff, 1);
+      fill.name = 'Theater_Neutral_Front_Fill';
+      fill.position.set(-4, 3, 5);
+      fill.target.position.set(0, 1.7, 0);
+      scene.add(fill, fill.target);
+      const rim = new DirectionalLight(0xffe9cd, 1.1);
       rim.name = 'Theater_Soft_Contour';
       rim.position.set(-3, 5, -4);
       scene.add(rim);
-      const side = new DirectionalLight(0xffb365, 0.85);
+      const side = new DirectionalLight(0xffdfbb, 0.4);
       side.name = 'Theater_Gold_Bounce';
       side.position.set(-6, 5, 2);
       scene.add(side);
@@ -786,7 +793,6 @@ export function createActionTheater({
         object.receiveShadow = !isLion;
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => {
           if ('envMapIntensity' in material) material.envMapIntensity = isLion ? 0.65 : 0.18;
-          if (isLion && material.roughness > .75) material.envMapIntensity = .4;
           // The source floor uses Blender procedural noise, which glTF cannot
           // carry. Its exporter falls back to white; restore the documented
           // authored stone base here rather than lighting a white showroom.

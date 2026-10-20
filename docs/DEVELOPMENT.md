@@ -14,6 +14,8 @@
 
 ## 环境与运行
 
+2026-10-20照明审核修复了两章 `RoomEnvironment` 未传 renderer 的问题：Three r160 物理灯光下必须使用 `new RoomEnvironment(renderer)`，否则环境墙面的主灯为5而非900，会造成红毛黑斑。当前两章采用AgX类别色调映射、曝光1；结构主/辅/轮廓光为1.6/0.9/0.65，补足暗侧；动作降低暖光峰值并增加中性正侧补光。只调整运行时照明，模型、毛发与源材质参数不重写。对照工具在Vite开发服务运行时执行 `node scripts/audit_lion_lighting.mjs --base-url 5198 --output tmp/lion-lighting-audit --baseline-ref 62bcd8e`，固定9个渲染案例比较前后实际绘制，并用保留深度遮挡的诊断遮罩统计红毛和白毛。视觉验收及范围见[本轮照明记录](../source/references/lion-lighting-2026-10-20.md)。
+
 在根目录运行 `npm ci` 安装锁定版本，再运行 `npm run dev`。Vite 使用根 `index.html`，生产构建输出到独立 `dist/`，不会覆盖源码或创作资源。
 
 Windows 用户安装 Node.js 并完成 `npm ci` 后，可双击根 [runStart.cmd](../runStart.cmd)。它使用 `%~dp0` 定位脚本所在目录，再执行 `npm run dev -- --open`；无需从特定终端目录启动。
