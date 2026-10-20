@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-21",
+  "goal": "First supplied video is entry; second is loop; published original video branch merged to main; latest GitHub lion synchronized to F project",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "videoBranch": "codex/replace-home-videos-2026-10-19",
+  "videoCommit": "b9eac7dca5a2707b8c2c71a434658e45824f46b4",
+  "videoBranchAlreadyMerged": true,
+  "main": "1bd37fcb06937551c3b4f45c5e0f18f8c578cefb",
+  "videos": [
+    {
+      "role": "first-entry",
+      "original": "F:/数媒竞赛/醒狮素材/入场视频.mp4",
+      "runtime": "assets/intro/entry-intro.mp4",
+      "bytes": 17701673,
+      "sha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e",
+      "originalPublicDistAndRemoteMatch": true
+    },
+    {
+      "role": "second-loop",
+      "original": "F:/数媒竞赛/醒狮素材/循环视频.mp4",
+      "runtime": "assets/entry/home-lion-loop.mp4",
+      "bytes": 33463217,
+      "sha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9",
+      "originalPublicDistAndRemoteMatch": true
+    }
+  ],
+  "publicFiles": 124,
+  "allPublicDistExact": true,
+  "productMatchesLatestMain": true,
+  "materialBranchPreserved": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+  "originalVideoMerge": "9cb0097 Merge homepage heritage branch into latest main",
+  "sourceCodeChanged": false,
+  "mediaReencoded": false,
+  "newDependencies": false,
+  "newRuntimeAssets": false,
+  "core": {
+    "command": "npm test",
+    "passed": 54,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 8006.5338
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 328,
+    "seconds": 3.66,
+    "exitCode": 0,
+    "warning": "Existing Three.js chunk538.04kB >500kB"
+  },
+  "browser": {
+    "engine": "installed Chrome via Playwright",
+    "developmentPort": 5231,
+    "productionPort": 4231,
+    "trace": "off",
+    "testFiles": [
+      "home-video-replacement.spec.js",
+      "app.spec.js"
+    ],
+    "grep": "new entry|replacement keeps|入场仅首次|首页入场视频失败|旧入场与结构链接|已删除的评分",
+    "runs": [
+      {
+        "name": "development initial 60-second test budget",
+        "passed": 4,
+        "failed": 2,
+        "minutes": 4.7
+      },
+      {
+        "name": "production initial 60-second test budget",
+        "passed": 5,
+        "failed": 1,
+        "minutes": 4.4
+      },
+      {
+        "name": "development two repeated-navigation cases, --timeout=180000",
+        "passed": 2,
+        "failed": 0,
+        "minutes": 2.7
+      },
+      {
+        "name": "production two repeated-navigation cases, --timeout=180000",
+        "passed": 2,
+        "failed": 0,
+        "minutes": 2.6
+      }
+    ],
+    "outcome": "All six selected cases have passing last results in both environments; not a single six-case green batch or entire project E2E run.",
+    "failureDiagnosis": "The two legacy cases perform repeated full navigations/reloads including the new large model. The original whole-test60s limit expired; with the same assertions and unchanged per-navigation startup60s expectation, legacy routes took about96s, scoring redirects55-60s. Only CLI overall timeout changed; no test or product source edited.",
+    "videoEvidence": "Natural intro ended event occurs after7s; the actual14s home clip wraps from its end to beginning. Real playback, not synthetic ended events, is asserted by home-video-replacement.spec.js.",
+    "dimensions": {
+      "width": 2560,
+      "height": 1440
+    },
+    "entryDuration": 7.407007,
+    "loopDuration": 14.000998,
+    "firstLoop": false,
+    "secondLoop": true,
+    "muted": true,
+    "covered": [
+      "skip",
+      "replay",
+      "route pause/resume",
+      "refresh/session keeps loop",
+      "failed entry retry/skip",
+      "legacy route redirects",
+      "retired score redirects"
+    ]
+  },
+  "git": {
+    "startingCheckout": "codex/reading-paper-material-2026-10-20@516b10c",
+    "mainBefore": "668c96d",
+    "syncedMain": "1bd37fcb06937551c3b4f45c5e0f18f8c578cefb",
+    "method": "switch main; merge --ff-only origin/main",
+    "videoBranchMergeAlreadyPresent": "9cb0097",
+    "mergeConflicts": 0,
+    "unmergedIndexEntries": 0,
+    "materialBranchMerged": false,
+    "forcePush": false,
+    "prCreated": false,
+    "otherWorktreesChanged": false,
+    "excluded": [
+      ".superpowers/",
+      "tmp/",
+      "dist/",
+      "node_modules/"
+    ],
+    "delivery": "Publish only the closeout verification and memory docs on main; verify local/remote main HEAD afterward."
+  },
+  "scopeLimits": [
+    "desktop Chrome only",
+    "original HEVC encoding unchanged; not a cross-browser codec guarantee",
+    "no EXE rebuilt",
+    "no new model/HDRI or lighting implementation; latest remote product files preserved"
+  ]
+}

@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-21 | maintenance | completed | [首页视频目标核实与F盘主线同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E9%A6%96%E9%A1%B5%E8%A7%86%E9%A2%91%E7%9B%AE%E6%A0%87%E6%A0%B8%E5%AE%9E%E4%B8%8EF%E7%9B%98%E4%B8%BB%E7%BA%BF%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-21 | feature | completed | [结构动作HDRI与参数设置](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-21-%E7%BB%93%E6%9E%84%E5%8A%A8%E4%BD%9CHDRI%E4%B8%8E%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.md) |
 | 2026-10-20 | maintenance | completed | [独立单文件EXE临时展示](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E7%8B%AC%E7%AB%8B%E5%8D%95%E6%96%87%E4%BB%B6EXE%E4%B8%B4%E6%97%B6%E5%B1%95%E7%A4%BA.md) |
 | 2026-10-20 | maintenance | completed | [同步GitHub最新主线并推送](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E5%B9%B6%E6%8E%A8%E9%80%81.md) |
