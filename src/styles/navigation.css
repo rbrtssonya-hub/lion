@@ -56,6 +56,11 @@
 .site-header[data-nav-layout='compact-stacked'] .site-brand-name { font-size: 24px; }
 .site-header[data-nav-layout='compact-stacked'] .entry-lion-emblem { width: 34px; height: 34px; }
 .site-header[data-nav-layout='compact-stacked'] .site-navigation { flex: 1; align-self: flex-end; }
+/* Invisible compact lettering must not create scrollable space outside the
+   page in zoomed desktop windows. Keep the frozen action layout unchanged. */
+@container lion-page (max-width: 899px) {
+  .site-header:is([data-current-route='state'], [data-current-route='model']) .site-brand-copy { left: auto; right: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .site-brand-capsule, .navigation-surface, .site-navigation, .site-navigation *, .site-navigation *::before, .site-navigation *::after { transition: none !important; }
 }

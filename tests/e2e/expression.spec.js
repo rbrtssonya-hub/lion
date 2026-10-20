@@ -274,7 +274,8 @@ test('主视觉滚轮切态并限制连续手势，视觉外不误触切态', as
   await page.evaluate(() => scrollTo(0, 0));
   await page.mouse.move(12, 12);
   await page.mouse.wheel(0, 450);
-  expect(await page.evaluate(() => scrollY)).toBe(0);
+  // Outside the observation region, short desktop pages now scroll normally.
+  expect(await page.evaluate(() => scrollY)).toBeGreaterThan(0);
   await expectState(page, '疑');
 });
 
@@ -343,7 +344,7 @@ test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', 
   await expectCopyTextFits(page);
 });
 
-test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留第二屏', async ({ page }) => {
+test('神态简介与解读按电脑宽高自适应，常规三栏、短窗口纵向可读', async ({ page }) => {
   test.setTimeout(180_000);
   for (const [width, height] of [[1920,1080],[2560,1440],[1366,768],[1024,768],[1440,620]]) {
     await page.setViewportSize({ width, height });
@@ -359,14 +360,20 @@ test('神态简介与解读按电脑宽高自适应，完整三栏且无遗留�
         const rects = ['.expression-state-nav', '#expressionObservation', '#expressionStateCopy', '#chapterEvidence', '#expressionLion'].map(selector => el.querySelector(selector).getBoundingClientRect());
         return { oneScreen: document.documentElement.scrollHeight <= innerHeight + 2, noHorizontal: document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width, inView: rects.every(r => r.top >= header.bottom - 1 && r.bottom <= innerHeight + 1 && r.left >= page.left && r.right <= page.right), threeColumns: rects[0].right < rects[1].left && rects[1].right < rects[2].left };
       });
-      expect(fits).toEqual({ oneScreen: true, noHorizontal: true, inView: true, threeColumns: true });
+      expect(fits.noHorizontal).toBe(true);
+      expect(fits.threeColumns).toBe(true);
+      if (height > 650) { expect(fits.oneScreen).toBe(true); expect(fits.inView).toBe(true); }
+      else {
+        await page.locator('#chapterEvidence').scrollIntoViewIfNeeded();
+        await expect(page.locator('#chapterEvidence')).toBeInViewport();
+      }
       await expectCopyTextFits(page);
       await page.screenshot({ path: `tmp/expression-single/${mode}-${width}.png` });
     }
   }
 });
 
-test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换无旧内容', async ({ page }) => {
+test('900px推开与64或180px顶栏下八态解读可完整阅读，快速切换无旧内容', async ({ page }) => {
   test.setTimeout(150_000);
   await page.addInitScript(() => {
     if (window !== window.top) return;
@@ -390,8 +397,8 @@ test('900px推开与64或180px顶栏下八态解读仍在单屏，快速切换�
         const header = document.querySelector('.site-header').getBoundingClientRect();
         return ['.expression-state-nav', '#expressionLion', '#expressionStateCopy', '#expressionPrevious', '#expressionNext', '#chapterEvidence'].every(selector => {
           const r = el.querySelector(selector).getBoundingClientRect();
-          return r.left >= page.left - 1 && r.right <= page.right + 1 && r.top >= header.bottom - 1 && r.bottom <= innerHeight + 1;
-        }) && document.documentElement.scrollHeight <= innerHeight + 2;
+          return r.left >= page.left - 1 && r.right <= page.right + 1 && r.top + scrollY >= header.height - 1 && r.height > 0;
+        });
       });
       expect(inside).toBe(true);
       await expectCopyTextFits(page);
@@ -428,12 +435,16 @@ test('短高桌面与180px顶栏仍完整显示解读文字、返回及上下箭
       const fits = await page.locator('#chapterStage').evaluate(el => {
         const header = document.querySelector('.site-header').getBoundingClientRect();
         const page = el.closest('.site-page').getBoundingClientRect();
-        return { oneScreen: document.documentElement.scrollHeight <= innerHeight + 2, visible: ['.expression-state-nav','#expressionLion','#expressionEmotionCue','#expressionMotionCue','.expression-return','#expressionPrevious','#expressionNext','#chapterEvidence'].every(selector => {
+        return { oneScreen: document.documentElement.scrollHeight <= innerHeight + 2, withinPage: ['.expression-state-nav','#expressionLion','#expressionEmotionCue','#expressionMotionCue','.expression-return','#expressionPrevious','#expressionNext','#chapterEvidence'].every(selector => {
           const r = el.querySelector(selector).getBoundingClientRect();
-          return r.top >= header.bottom - 1 && r.bottom <= innerHeight + 1 && r.left >= page.left - 1 && r.right <= page.right + 1;
+          return r.top + scrollY >= header.height - 1 && r.left >= page.left - 1 && r.right <= page.right + 1 && r.height > 0;
         }) };
       });
-      expect(fits).toEqual({ oneScreen: true, visible: true });
+      expect(fits).toEqual({ oneScreen: false, withinPage: true });
+      for (const selector of ['#expressionMotionCue', '.expression-return', '#expressionPrevious', '#expressionNext']) {
+        await page.locator(selector).scrollIntoViewIfNeeded();
+        await expect(page.locator(selector)).toBeInViewport();
+      }
       await expectCopyTextFits(page);
     }
     await page.screenshot({ path: `tmp/expression-single/short-${width}-${height}.png` });

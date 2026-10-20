@@ -309,7 +309,7 @@ test('悬停后滚动使照片移离静止指针时自动解除暂停', async ({
 
 test('自动切图经过静止指针时不会自行获取悬停并停播', async ({ page }) => {
   const { carousel, gallery, action } = await openCulture(page, {
-    carouselInterval: 2, carouselResumeDelay: 1, carouselTransitionDuration: 300,
+    carouselInterval: 2, carouselResumeDelay: 1, carouselTransitionDuration: 300, carouselFocusScale: 101,
   });
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   const center = await photoPoint(gallery);
@@ -320,12 +320,15 @@ test('自动切图经过静止指针时不会自行获取悬停并停播', async
   const narrowPhoto = await action.boundingBox();
   // The third photograph is narrower. The next, wider photo will slide under
   // this stationary pointer without any new user input.
-  await page.mouse.move(narrowPhoto.x - 20, center.y);
+  // Reading copy can change the fitted photo height. Use a point just outside
+  // the real narrow boundary, then prove that the wider photo covers it.
+  const stationaryX = narrowPhoto.x - 10;
+  await page.mouse.move(stationaryX, center.y);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
   await expect(carousel).toHaveAttribute('data-culture-index', '3', { timeout: 4000 });
   await page.waitForTimeout(500);
   const widePhoto = await action.boundingBox();
-  expect(narrowPhoto.x - 20).toBeGreaterThan(widePhoto.x);
+  expect(stationaryX).toBeGreaterThan(widePhoto.x);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
   await expect(carousel).toHaveAttribute('data-culture-index', '4', { timeout: 3000 });
 });

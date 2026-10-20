@@ -161,8 +161,9 @@ for (const url of ['/', '/?researchPhotos=1']) {
     const sources = page.locator('#homeCultureSources');
     await sources.scrollIntoViewIfNeeded();
     await expect(sources.locator('.home-culture-source-cards a')).toHaveCount(3);
-    await expect(sources.locator('.heritage-source-group')).toHaveCount(1);
-    await expect(sources.getByRole('region', { name: '种类资料', exact: true })).toBeVisible();
+    await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
+    await expect(sources.getByRole('region', { name: '历史与文化', exact: true })).toBeVisible();
+    await expect(sources.getByRole('region', { name: '形制与工艺', exact: true })).toBeVisible();
     await expect(sources.getByRole('region', { name: '人物资料', exact: true })).toHaveCount(0);
     await sources.locator('.archive-provenance summary').click();
     await expect(sources.locator('.archive-portrait-sources')).toHaveCount(0);

@@ -111,7 +111,7 @@ test('changing type collapses the panel and keeps tabs, artwork, classifications
   expect(new URL(page.url()).hash).toBe(hash);
 });
 
-test('reduced motion disables reveal animation and desktop widths keep expanded copy beside the image', async ({ page }) => {
+test('reduced motion disables reveal animation and desktop copy reflows beside or below the image', async ({ page }) => {
   const types = await openHeritage(page, 'reduce');
   for (const [width, height] of [[1920, 1080], [1366, 768], [1024, 768]]) {
     await page.setViewportSize({ width, height });
@@ -121,7 +121,9 @@ test('reduced motion disables reveal animation and desktop widths keep expanded 
     await expect(copy).toBeVisible();
     const image = await types.locator('.heritage-figure').boundingBox();
     const text = await copy.boundingBox();
-    expect(image.x + image.width).toBeLessThanOrEqual(text.x + 1);
+    const available = await types.locator('.heritage-inner').evaluate(node => node.clientWidth);
+    if (available >= 760) expect(image.x + image.width).toBeLessThanOrEqual(text.x + 1);
+    else expect(image.y + image.height).toBeLessThanOrEqual(text.y + 1);
     expect(await types.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
     for (const locator of [types.locator('[data-type-id]'), types.locator('.heritage-figure'), copy]) {
       const style = await locator.evaluate(node => ({ animation: getComputedStyle(node).animationName, transition: getComputedStyle(node).transitionDuration }));
@@ -164,7 +166,7 @@ test('the mounted sidebar leaves readable type descriptions at narrow desktop wi
         return {
           lineCharacters: summaryBox.width / fontSize,
           imageOutsideRail: image.left >= rail.right,
-          columnsSeparate: image.right <= copyBox.left + 1,
+          columnsSeparate: section.querySelector('.heritage-inner').clientWidth >= 760 ? image.right <= copyBox.left + 1 : image.bottom <= copyBox.top + 1,
           withinPage: copyBox.right <= page.right + 1,
           fits: section.scrollWidth <= section.clientWidth + 1 && [...copy.querySelectorAll('h3, h4, p, li, a')].every(node => node.scrollWidth <= node.clientWidth + 1),
         };
@@ -221,8 +223,9 @@ test('default homepage exposes four archive entries and retained source licences
   await expect(page.locator('#homeInheritors, [data-person-id], .archive-portrait-sources')).toHaveCount(0);
   const sources = page.locator('#homeCultureSources');
   await sources.scrollIntoViewIfNeeded();
-  await expect(sources.locator('.heritage-source-group')).toHaveCount(1);
-  await expect(sources.getByRole('heading', { name: '种类资料', exact: true })).toBeVisible();
+  await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
+  await expect(sources.getByRole('heading', { name: '历史与文化', exact: true })).toBeVisible();
+  await expect(sources.getByRole('heading', { name: '形制与工艺', exact: true })).toBeVisible();
   await expect(sources.getByRole('heading', { name: '人物资料', exact: true })).toHaveCount(0);
   await expect(sources.getByRole('link', { name: /照片来源/ })).toHaveCount(0);
   await sources.getByText('图像说明与工程许可', { exact: true }).click();

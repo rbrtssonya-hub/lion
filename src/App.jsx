@@ -33,13 +33,33 @@ export default function App() {
   const wasSettingsOpen = useRef(false);
   const headerRef = useRef(null);
   const captureNavigation = useNavigationMotion(headerRef, route, settings);
+  const [observation, setObservation] = useState(null);
+  const modelReturn = useRef(null);
   useLayoutEffect(() => { navigationCaptureRef.current = captureNavigation; }, [captureNavigation]);
-  const navigateTo = useCallback(target => {
+  const navigateTo = useCallback((target, context) => {
+    if (target === 'state' && route === 'model' && context?.expressionId) {
+      modelReturn.current = { scrollY: window.scrollY, partId: context.returnPartId };
+      setObservation(context);
+    } else {
+      modelReturn.current = null;
+      setObservation(null);
+    }
     if (target !== route) captureNavigation();
     navigate(target);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route, navigate, captureNavigation]);
-  const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth);
+  const returnToModel = useCallback(() => {
+    captureNavigation();
+    navigate('model');
+  }, [captureNavigation, navigate]);
+  const modelPartChanged = useCallback(id => {
+    if (modelReturn.current && modelReturn.current.partId !== id) {
+      modelReturn.current = null;
+      setObservation(null);
+    }
+  }, []);
+  // The action exhibition's existing layout contract is frozen for this task.
+  const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth, route !== 'action');
   const pushing = settingsOpen && settings.pushPage && canPush;
   // CSS variables are consumed by the built stylesheet in dist/assets.
   // Resolve media at the document first so './assets' cannot become assets/assets.
@@ -69,6 +89,26 @@ export default function App() {
   }, [settingsOpen, handleSettingsKey]);
   useEffect(() => {
     document.body.dataset.state = route;
+    if (route === 'model' && modelReturn.current) {
+      const top = modelReturn.current.scrollY;
+      const deadline = performance.now() + 1000;
+      let frame;
+      const restore = () => {
+        const button = document.getElementById('modelExpressionLink');
+        if (!button) return;
+        // A reduced-motion Hash update can expose the DOM one paint before
+        // inherited visibility settles. Only retry while this return is pending.
+        if (!button.checkVisibility({ visibilityProperty: true }) || button.closest('[inert]')) {
+          if (performance.now() < deadline) frame = requestAnimationFrame(restore);
+          return;
+        }
+        window.scrollTo({ top, behavior: 'instant' });
+        button.focus({ preventScroll: true });
+      };
+      frame = requestAnimationFrame(restore);
+      return () => cancelAnimationFrame(frame);
+    }
+    if (route !== 'state') { modelReturn.current = null; setObservation(null); }
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route]);
 
@@ -114,11 +154,11 @@ export default function App() {
         <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
           <ModelPreparationBoundary onReady={success => reportStartupTask('model', success)}>
           <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
-            <ModelPage active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} />
+            <ModelPage active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {route !== 'entry' && route !== 'model' && <ChapterPage route={route} />}
+        {route !== 'entry' && route !== 'model' && <ChapterPage route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}

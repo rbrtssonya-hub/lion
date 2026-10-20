@@ -1,9 +1,21 @@
 import { media } from '../../config/media.js';
 import { homeCultureSources, homeCultureStories } from '../../data/home-culture.js';
 import { heritageSources } from '../../data/home-heritage.js';
+import { lionBookPages } from '../../data/lion-book.js';
 import { HeritageMotif } from './HeritageElements.jsx';
 import { PhotoCredit } from './HomeCulture.jsx';
 import LionArchiveOrnament from './LionArchiveOrnament.jsx';
+
+// The three featured cards stay; the grouped index only adds unique URLs.
+const indexedUrls = new Set(homeCultureSources.map(source => source.url));
+const additionalSources = [
+  ...lionBookPages.flatMap(page => [{ id: `book-${page.id}`, group: 'history', title: page.source, publisher: '史册资料', url: page.sourceUrl }, ...(page.additionalSource ? [{ id: `book-${page.id}-additional`, group: 'history', title: page.additionalSource.label, publisher: '史册补充', url: page.additionalSource.url }] : [])]),
+  ...heritageSources.filter(source => source.group === 'types'),
+].filter(source => {
+  if (indexedUrls.has(source.url)) return false;
+  indexedUrls.add(source.url);
+  return true;
+});
 
 export default function HomeCultureSources() {
   return <div className="heritage-sources-wrap"><div className="heritage-inner">
@@ -17,14 +29,14 @@ export default function HomeCultureSources() {
         <span className="home-culture-source-number"><span>0{index + 1}</span><HeritageMotif kind={['horn','drum','pompom'][index]} /><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></span>
         <span className="home-culture-source-publisher">{source.label}</span><strong>{source.title}</strong><span className="home-culture-source-description">{source.description}</span>
       </a>)}</div>
-      <div className="heritage-source-groups"><section className="heritage-source-group" aria-label="种类资料"><h3><HeritageMotif kind="horn" />种类资料</h3><ul>{heritageSources.filter(source => source.group === 'types').map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer"><span>{source.title}</span><small>{source.publisher} ↗</small></a></li>)}</ul></section></div>
+      <div className="heritage-source-groups">{[['history', '历史与文化', 'drum'], ['types', '形制与工艺', 'horn']].map(([group, title, motif]) => <section key={group} className="heritage-source-group" aria-label={title}><h3><HeritageMotif kind={motif} />{title}</h3><ul>{additionalSources.filter(source => source.group === group).map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer"><span>{source.title}</span><small>{source.publisher} ↗</small></a></li>)}</ul></section>)}</div>
       <details className="home-culture-photo-licenses">
         <summary><span className="heritage-license-label"><HeritageMotif /><span>摄影署名与许可</span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
         <div className="home-culture-photo-license-grid">{homeCultureStories.map(story => <div key={story.id} className="home-culture-photo-license"><span>{story.index}</span><div><p>{story.photo.caption}</p><PhotoCredit photo={story.photo} /></div></div>)}</div>
       </details>
       <details className="archive-provenance">
         <summary>图像说明与工程许可</summary>
-        <p>书册水彩与三幅类型图为AI辅助示意，不作为历史或实物鉴定证据。年代为叙事分期，文化传承延续交叠。</p>
+        <p>书册水彩与三幅类型图为AI辅助示意，不作为历史或实物鉴定证据。年代为叙事分期，文化传承延续交叠。神态页是本项目的八态定性观察框架，不宣称所有流派采用同一分类，也不提供情绪评分。</p>
         <p>实景摄影按各自Creative Commons许可使用，保留作者、原始来源与许可链接。<br /><a href={media.lionBookLicense} target="_blank" rel="noreferrer">Sketchbook · ThreeUI / MIT</a>{' · '}<a href={media.lionBookFontLicense} target="_blank" rel="noreferrer">字体许可</a></p>
       </details>
       <div className="heritage-source-cloud" aria-hidden="true"><svg viewBox="0 0 220 28" fill="none"><path d="M1 23h218M78 18c-10-9 1-18 10-13 3-8 17-5 18 3 12-5 24 5 18 12M79 18h62c10 0 10-12 1-12-4-6-11-5-14 0M96 17c-7-8 9-12 9-3" /></svg></div>
