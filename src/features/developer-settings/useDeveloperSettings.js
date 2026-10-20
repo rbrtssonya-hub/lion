@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { surfaceDefaults, surfaceRanges, surfaceScopes } from './surfaceSettings.js';
+import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion } from './surfaceSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
@@ -15,7 +15,7 @@ export const defaultDeveloperSettings = Object.freeze({
   sidebarHeight: 100,
   sidebarRadius: 0,
   sidebarColor: '#fff6e4',
-  archivePanelTransparency: 40,
+  archivePanelTransparency: surfaceDefaults.bookTitleTransparency,
   bookTitleSpacing: 100,
   bookIntroDuration: 12,
   bookScale: 116,
@@ -86,6 +86,7 @@ export function normalizeDeveloperSetting(name, value) {
 
 function resolveSettings(settings) {
   const resolved = { ...defaultDeveloperSettings, ...settings };
+  resolved.readingPaperVersion ??= readingPaperVersion;
   // Upgrade the previous default once, preserving the other saved controls.
   if (resolved.navigationTypographyVersion !== navigationTypographyVersion && resolved.navFontSize === 20) {
     resolved.navFontSize = defaultDeveloperSettings.navFontSize;
@@ -105,11 +106,11 @@ function readSettings() {
     const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalizeDeveloperSetting(name, saved[name])]));
     // Preserve the previously shared reading-paper preference when splitting it into four surfaces.
     for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) {
-      if (!Object.hasOwn(saved, `${prefix}Transparency`) && Object.hasOwn(saved, 'archivePanelTransparency')) {
+      if (!Object.hasOwn(saved, `${prefix}Transparency`) && typeof saved.archivePanelTransparency === 'number' && Number.isFinite(saved.archivePanelTransparency)) {
         normalized[`${prefix}Transparency`] = normalized.archivePanelTransparency;
       }
     }
-    return resolveSettings({ ...normalized, navigationTypographyVersion: saved.navigationTypographyVersion, bookTitleLayoutVersion: saved.bookTitleLayoutVersion });
+    return resolveSettings(migrateReadingPaper({ ...normalized, readingPaperVersion: saved.readingPaperVersion, navigationTypographyVersion: saved.navigationTypographyVersion, bookTitleLayoutVersion: saved.bookTitleLayoutVersion }));
   } catch {
     return resolveSettings();
   }

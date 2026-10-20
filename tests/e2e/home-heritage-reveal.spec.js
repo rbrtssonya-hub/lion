@@ -255,7 +255,7 @@ test('retained type descriptions share paper controls and texture without shrink
     await input.fill(value);
     await input.press('Tab');
   }
-  await expect(copy).toHaveCSS('background-color', 'rgba(255, 249, 238, 0)');
+  await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
   await expect(copy).toHaveCSS('border-radius', '22px');
   await expect(copy).toHaveCSS('--surface-width', '80%');
   await expect(copy).toHaveCSS('opacity', '1');
@@ -264,7 +264,7 @@ test('retained type descriptions share paper controls and texture without shrink
   const transparency = settings.getByRole('spinbutton', { name: '文化正文底板透明度数值', exact: true });
   await transparency.fill('0');
   await transparency.press('Tab');
-  await expect(copy).toHaveCSS('background-color', 'rgb(255, 249, 238)');
+  await expect(copy).toHaveCSS('background-color', 'rgb(247, 245, 240)');
   expect((await texture()).opacity).toBeGreaterThan(0);
   await settings.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
   await expect.poll(fonts).toEqual(initialFonts);

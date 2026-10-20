@@ -22,9 +22,11 @@ async function openReading(page, saved) {
 
 async function fills(page) {
   return page.evaluate(selectors => selectors.map(selector => {
-    const css = getComputedStyle(document.querySelector(selector));
-    const channels = css.backgroundColor.match(/[\d.]+/g).map(Number);
-    return { rgb: channels.slice(0, 3), alpha: channels[3] ?? 1, opacity: Number(css.opacity), blur: css.backdropFilter,
+    const node = document.querySelector(selector), css = getComputedStyle(node);
+    const title = ['bookTitle', 'cultureTitle'].includes(node.dataset.surface);
+    const paper = title ? getComputedStyle(node, '::before') : css;
+    const channels = paper.backgroundColor.match(/[\d.]+/g).map(Number);
+    return { title, rgb: channels.slice(0, 3), alpha: channels[3] ?? 1, opacity: Number(css.opacity), blur: paper.backdropFilter,
       border: css.borderColor, shadow: css.boxShadow, radius: parseFloat(css.borderRadius) };
   }), panels);
 }
@@ -62,31 +64,36 @@ test('两处主标题按整区居中，简介在下方且正文适度放大，�
   }
 });
 
-test('四类阅读底板共享透明度，数值与滑杆即时生效且文字不变淡', async ({ page }) => {
+test('题签与正文默认分层，仍能共享调节透明度且文字不变淡', async ({ page }) => {
   await openReading(page);
   for (const fill of await fills(page)) {
-    expect(fill.rgb).toEqual([255, 249, 238]);
-    expect(fill.alpha).toBeCloseTo(.6, 2);
+    expect(fill.rgb).toEqual([247, 245, 240]);
+    expect(fill.alpha).toBeCloseTo(fill.title ? .65 : .9, 2);
     expect(fill.opacity).toBe(1);
-    expect(fill.radius).toBe(14);
+    expect(fill.radius).toBe(fill.title ? 0 : 10);
   }
   await page.locator('.site-header [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   await selectSettingsFor(page, 'archivePanelTransparency');
   const control = panel.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
-  await expect(control).toHaveValue('40');
+  await expect(control).toHaveValue('35');
   await control.fill('75'); await control.press('Tab');
+  await expect.poll(async () => (await fills(page)).map(fill => fill.alpha)).toEqual([.25, .25, .25, .25]);
   for (const fill of await fills(page)) expect(fill.alpha).toBeCloseTo(.25, 2);
   const slider = panel.getByRole('slider', { name: '首页阅读底板透明度', exact: true });
   await slider.focus(); await slider.press('End');
+  await expect(control).toHaveValue('100');
+  await expect.poll(async () => (await fills(page)).map(fill => fill.alpha)).toEqual([0, 0, 0, 0]);
   for (const fill of await fills(page)) {
     expect(fill.alpha).toBe(0);
     expect(['none', 'blur(0px)']).toContain(fill.blur);
     expect(fill.border).toMatch(/rgba\([^)]*, 0\)$/);
-    expect(fill.shadow).toMatch(/^rgba\([^)]*, 0\)/);
+    expect(fill.shadow === 'none' || /^rgba\([^)]*, 0\)/.test(fill.shadow)).toBe(true);
     expect(fill.opacity).toBe(1);
   }
   await slider.press('Home');
+  await expect(control).toHaveValue('0');
+  await expect.poll(async () => (await fills(page)).map(fill => fill.alpha)).toEqual([1, 1, 1, 1]);
   for (const fill of await fills(page)) expect(fill.alpha).toBe(1);
   await expect(page.locator('#entryLionVideo')).toHaveAttribute('src', /home-lion-loop\.mp4$/);
 });
@@ -96,8 +103,8 @@ test('旧设置补默认而不覆盖偏好，底板透明度刷新保存并可�
   await page.locator('.site-header [data-action="settings"]').click();
   await selectSettingsFor(page, 'archivePanelTransparency');
   const control = page.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
-  await expect(control).toHaveValue('40');
-  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ navFontSize: 22, helperFontSize: 16, archivePanelTransparency: 40 });
+  await expect(control).toHaveValue('35');
+  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ navFontSize: 22, helperFontSize: 16, archivePanelTransparency: 35 });
   await control.fill('68'); await control.press('Tab');
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).archivePanelTransparency, settingsKey)).toBe(68);
   // The initializer only seeds empty storage; reload must retain the saved value.
@@ -105,7 +112,7 @@ test('旧设置补默认而不覆盖偏好，底板透明度刷新保存并可�
   await page.locator('.site-header [data-action="settings"]').click();
   await expect(control).toHaveValue('68');
   await page.getByRole('button', { name: '恢复默认参数' }).click();
-  await expect(control).toHaveValue('40');
+  await expect(control).toHaveValue('35');
 });
 
 test('存储被禁用时阅读底板仍可调节', async ({ page }) => {
@@ -119,7 +126,7 @@ test('存储被禁用时阅读底板仍可调节', async ({ page }) => {
   await page.locator('.site-header [data-action="settings"]').click();
   await selectSettingsFor(page, 'archivePanelTransparency');
   const control = page.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
-  await expect(control).toHaveValue('40');
+  await expect(control).toHaveValue('35');
   await control.fill('80'); await control.press('Tab');
   for (const fill of await fills(page)) expect(fill.alpha).toBeCloseTo(.2, 2);
 });

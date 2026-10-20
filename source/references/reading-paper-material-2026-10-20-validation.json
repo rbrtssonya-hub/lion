@@ -1,0 +1,541 @@
+{
+  "date": "2026-10-20",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "branch": "codex/reading-paper-material-2026-10-20",
+  "base": "668c96d2c6c64ae7798b28239667dc09c06205e2",
+  "remoteIntegration": {
+    "commit": "54110c476d9b06b0df3582c6cade4b5bc5052d50",
+    "method": "fast-forward on feature branch after preserving task diff",
+    "changed": "4 wiki documentation files only; no product change",
+    "conflicts": 0
+  },
+  "scope": {
+    "desktopOnly": true,
+    "newRuntimeImages": 0,
+    "newDependencies": 0,
+    "productFiles": 6,
+    "actionModelLoadingNavigationMediaBookEngineAndExeUnchanged": true,
+    "visibleSettingNamesAndNinePagesUnchanged": true,
+    "internalMaterialVersion": 1
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 56,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 321,
+    "seconds": 3.52,
+    "exitCode": 0,
+    "warning": "Existing Three.js 534.77 kB chunk exceeds 500 kB"
+  },
+  "browser": {
+    "engine": "installed Chrome / Playwright",
+    "developmentPort": 5210,
+    "productionPort": 4210,
+    "retries": 0,
+    "trace": "off to avoid historical ENOSPC",
+    "developmentFiles": ["reading-paper.spec.js", "settings-modules.spec.js", "home-reading.spec.js", "home-heritage.spec.js", "home-heritage-reveal.spec.js", "content-comparison.spec.js", "desktop-responsive-content.spec.js", "expression.spec.js", "developer-settings.spec.js"],
+    "productionFiles": ["reading-paper.spec.js", "settings-modules.spec.js", "content-comparison.spec.js", "desktop-responsive-content.spec.js", "home-heritage-reveal.spec.js", "home-reading.spec.js"],
+    "suites": [
+      {
+        "name": "initial related development",
+        "passed": 83,
+        "failed": 6,
+        "minutes": 10.4,
+        "reason": "Old paper-layer/color/group-count assertions, hover alpha interpolation assertion and wheel-event immediate read; no product interaction fix."
+      },
+      {
+        "name": "corrected six-case development",
+        "passed": 6,
+        "failed": 0,
+        "minutes": 1.4
+      },
+      {
+        "name": "expanded final related development",
+        "passed": 89,
+        "failed": 1,
+        "minutes": 9.7,
+        "uniqueCases": 90,
+        "remainingFailure": "Shared slider End event was read before React commit; followed by complete home-reading file verification, not counted as a single green 90-case run."
+      },
+      {
+        "name": "final development home-reading file",
+        "passed": 7,
+        "failed": 0,
+        "minutes": 1.4
+      },
+      {
+        "name": "final production material / common settings / comparisons / reveal / desktop layouts",
+        "passed": 37,
+        "failed": 0,
+        "minutes": 3.8
+      },
+      {
+        "name": "final production home-reading file",
+        "passed": 7,
+        "failed": 0,
+        "minutes": 1.2
+      },
+      {
+        "name": "final new material development",
+        "passed": 6,
+        "failed": 0,
+        "minutes": 1
+      }
+    ],
+    "coverage": "All 90 selected development cases have passing last results across batches; not a single 90/90 run or the entire project E2E suite. Production44 selected cases passed across two batches."
+  },
+  "tdd": {
+    "initialUnitRed": "missing migrateReadingPaper export",
+    "materialBrowserRed": "heading host still had rectangular background",
+    "reviewFixRed": "invalid archivePanelTransparency:null propagated 35 to body instead of10",
+    "reviewFixGreen": "6 material cases pass"
+  },
+  "review": {
+    "verdict": "Approve with nits; no Critical or Important",
+    "minorFindings": [
+      "invalid legacy shared opacity (fixed after RED browser reproduction)",
+      "transparent title pseudo background assertion missing (added)"
+    ],
+    "declinedByReviewerButCheckedHere": [
+      "browser rendering",
+      "desktop matrix",
+      "browser storage and interactive controls",
+      "selected interactions and source licences"
+    ],
+    "notCovered": [
+      "other browsers and hardware",
+      "mobile",
+      "EXE rebuild",
+      "public hosting"
+    ]
+  },
+  "assets": {
+    "originalManifestEntries": 454,
+    "manifestEntries": 466,
+    "oldRecordsUnchanged": true,
+    "publicFiles": 89,
+    "publicDistExact": true,
+    "newReviewScreenshots": 12,
+    "historicalReviewImagesUnchanged": true
+  },
+  "layout": {
+    "command": "isolated real Chrome layout and browser zoom review",
+    "checks": 33,
+    "results": [
+      {
+        "label": "1920x1080",
+        "selector": ".lion-book-heading",
+        "width": 872.84375,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "1920x1080",
+        "selector": ".heritage-type-copy",
+        "width": 515.5625,
+        "centerDelta": 374.703125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1920x1080",
+        "selector": "#homeCultureSources",
+        "width": 1265,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(104, 71, 47)",
+        "background": "rgba(247, 245, 240, 0.95)",
+        "blur": "none"
+      },
+      {
+        "label": "1920x1080",
+        "selector": "#expressionStateCopy",
+        "width": 613.765625,
+        "centerDelta": 569.4296875,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1920x1080-details",
+        "selector": "#expressionStateCopy",
+        "width": 613.765625,
+        "centerDelta": 569.4296875,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "2560x1440",
+        "selector": ".lion-book-heading",
+        "width": 1062.59375,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "2560x1440",
+        "selector": ".heritage-type-copy",
+        "width": 566.515625,
+        "centerDelta": 411.7265625,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "2560x1440",
+        "selector": "#homeCultureSources",
+        "width": 1390,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(104, 71, 47)",
+        "background": "rgba(247, 245, 240, 0.95)",
+        "blur": "none"
+      },
+      {
+        "label": "2560x1440",
+        "selector": "#expressionStateCopy",
+        "width": 767.4375,
+        "centerDelta": 680.28125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "2560x1440-details",
+        "selector": "#expressionStateCopy",
+        "width": 767.4375,
+        "centerDelta": 680.28125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1366x768",
+        "selector": ".lion-book-heading",
+        "width": 532.046875,
+        "centerDelta": 0.0078125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "1366x768",
+        "selector": ".heritage-type-copy",
+        "width": 407.515625,
+        "centerDelta": 181.7890625,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1366x768",
+        "selector": "#homeCultureSources",
+        "width": 771.09375,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(104, 71, 47)",
+        "background": "rgba(247, 245, 240, 0.95)",
+        "blur": "none"
+      },
+      {
+        "label": "1366x768",
+        "selector": "#expressionStateCopy",
+        "width": 435.28125,
+        "centerDelta": 403.828125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1366x768-details",
+        "selector": "#expressionStateCopy",
+        "width": 435.28125,
+        "centerDelta": 403.828125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1024x768",
+        "selector": ".lion-book-heading",
+        "width": 475.40625,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "1024x768",
+        "selector": ".heritage-type-copy",
+        "width": 689,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1024x768",
+        "selector": "#homeCultureSources",
+        "width": 689,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(104, 71, 47)",
+        "background": "rgba(247, 245, 240, 0.95)",
+        "blur": "none"
+      },
+      {
+        "label": "1024x768",
+        "selector": "#expressionStateCopy",
+        "width": 354.78125,
+        "centerDelta": 286.734375,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1024x768-details",
+        "selector": "#expressionStateCopy",
+        "width": 354.78125,
+        "centerDelta": 286.734375,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1255x900-push900",
+        "selector": ".lion-book-heading",
+        "width": 400.1875,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "1255x900-push900",
+        "selector": ".heritage-type-copy",
+        "width": 580,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1255x900-push900",
+        "selector": "#homeCultureSources",
+        "width": 580,
+        "centerDelta": 0,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(104, 71, 47)",
+        "background": "rgba(247, 245, 240, 0.95)",
+        "blur": "none"
+      },
+      {
+        "label": "1255x900-push900",
+        "selector": "#expressionStateCopy",
+        "width": 310.234375,
+        "centerDelta": 258.8828125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "1255x900-push900-details",
+        "selector": "#expressionStateCopy",
+        "width": 310.234375,
+        "centerDelta": 258.8828125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -15,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "chrome-1.25-home",
+        "selector": ".lion-book-heading",
+        "width": 628.6000366210938,
+        "centerDelta": 0.000030517578125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -12,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "real-chrome-zoom",
+        "zoom": 1.25,
+        "route": "",
+        "dpr": 1.25,
+        "width": 1522,
+        "height": 787
+      },
+      {
+        "label": "chrome-1.25-state",
+        "selector": "#expressionStateCopy",
+        "width": 486.375,
+        "centerDelta": 451.237548828125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -12,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "real-chrome-zoom",
+        "zoom": 1.25,
+        "route": "/#/state",
+        "dpr": 1.25,
+        "width": 1522,
+        "height": 787
+      },
+      {
+        "label": "chrome-1.5-home",
+        "selector": ".lion-book-heading",
+        "width": 475.9895935058594,
+        "centerDelta": 0.0052032470703125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -10,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(0, 0, 0, 0)",
+        "blur": "none"
+      },
+      {
+        "label": "real-chrome-zoom",
+        "zoom": 1.5,
+        "route": "",
+        "dpr": 1.5,
+        "width": 1268,
+        "height": 656
+      },
+      {
+        "label": "chrome-1.5-state",
+        "selector": "#expressionStateCopy",
+        "width": 405.3125,
+        "centerDelta": 376.03125,
+        "overflow": 0,
+        "outsidePage": 0,
+        "pageOverflow": -10,
+        "color": "rgb(60, 53, 45)",
+        "background": "rgba(247, 245, 240, 0.9)",
+        "blur": "none"
+      },
+      {
+        "label": "real-chrome-zoom",
+        "zoom": 1.5,
+        "route": "/#/state",
+        "dpr": 1.5,
+        "width": 1268,
+        "height": 656
+      }
+    ],
+    "screenshots": [
+      "source/reviews/reading-paper/2026-10-20/home-1920x1080.png",
+      "source/reviews/reading-paper/2026-10-20/type-expanded-1920.png",
+      "source/reviews/reading-paper/2026-10-20/sources-1920.png",
+      "source/reviews/reading-paper/2026-10-20/state-overview-1920.png",
+      "source/reviews/reading-paper/2026-10-20/state-details-1920.png",
+      "source/reviews/reading-paper/2026-10-20/state-comparison-1366.png",
+      "source/reviews/reading-paper/2026-10-20/home-1024x768.png",
+      "source/reviews/reading-paper/2026-10-20/home-1255x900-push900.png",
+      "source/reviews/reading-paper/2026-10-20/chrome-125-home.png",
+      "source/reviews/reading-paper/2026-10-20/chrome-125-state.png",
+      "source/reviews/reading-paper/2026-10-20/chrome-150-home.png",
+      "source/reviews/reading-paper/2026-10-20/chrome-150-state.png"
+    ]
+  },
+  "zoomCapture": "Browser zoom set through chrome://settings/appearance in an isolated profile; DPR checked at1.25/1.5. Direct CDP compositor screenshot after two animation frames avoids Playwright viewport-null/zoom cropping; no CSS zoom or image rescale.",
+  "git": {
+    "pushPolicy": "ordinary push feature branch only; no main merge, no force, no PR; verify remote HEAD at delivery",
+    "excluded": [
+      ".superpowers/",
+      "tmp/",
+      "dist/",
+      "node_modules/"
+    ]
+  },
+  "finalChecks": {
+    "memoryIndexApplied": true,
+    "memoryRequireReady": { "pages": 89, "errors": 0, "historicalSourceWarnings": 4 },
+    "diffCheck": "passed",
+    "finalCore": { "passed": 56, "failed": 0, "durationMs": 1364.8291 }
+  }
+}

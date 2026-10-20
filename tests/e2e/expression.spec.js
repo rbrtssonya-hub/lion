@@ -275,7 +275,7 @@ test('主视觉滚轮切态并限制连续手势，视觉外不误触切态', as
   await page.mouse.move(12, 12);
   await page.mouse.wheel(0, 450);
   // Outside the observation region, short desktop pages now scroll normally.
-  expect(await page.evaluate(() => scrollY)).toBeGreaterThan(0);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
   await expectState(page, '疑');
 });
 
