@@ -13,6 +13,7 @@ sources: []
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
 | 2026-10-20 | maintenance | completed | [独立单文件EXE临时展示](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E7%8B%AC%E7%AB%8B%E5%8D%95%E6%96%87%E4%BB%B6EXE%E4%B8%B4%E6%97%B6%E5%B1%95%E7%A4%BA.md) |
+| 2026-10-20 | maintenance | completed | [同步GitHub最新主线并推送](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E5%B9%B6%E6%8E%A8%E9%80%81.md) |
 | 2026-10-20 | maintenance | completed | [内置Chromium单文件展示包](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%86%85%E7%BD%AEChromium%E5%8D%95%E6%96%87%E4%BB%B6%E5%B1%95%E7%A4%BA%E5%8C%85.md) |
 | 2026-10-20 | ui | completed | [首页背景、双导览与人物研究预览](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E9%A6%96%E9%A1%B5%E8%83%8C%E6%99%AF%E5%8F%8C%E5%AF%BC%E8%A7%88%E4%B8%8E%E4%BA%BA%E7%89%A9%E7%A0%94%E7%A9%B6%E9%A2%84%E8%A7%88.md) |
 | 2026-10-20 | ui | completed | [自适应侧轨与公共设置分页](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E8%87%AA%E9%80%82%E5%BA%94%E4%BE%A7%E8%BD%A8%E4%B8%8E%E5%85%AC%E5%85%B1%E8%AE%BE%E7%BD%AE%E5%88%86%E9%A1%B5.md) |
