@@ -12,6 +12,14 @@ export const surfaceDefinitions = Object.freeze([
   { prefix: 'videoOverlay', label: '视频提示底板', color: '#080b0a', transparency: 12, blur: 0, radius: 8, width: 80 },
 ]);
 
+// The same scope registry drives the UI and the atomic application action.
+export const surfaceScopes = Object.freeze({
+  home: { label: '首页阅读 · 4处', prefixes: ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody'] },
+  chapters: { label: '章节与视频 · 4处', prefixes: ['modelOverlay', 'actionOverlay', 'expressionOverlay', 'videoOverlay'] },
+  sources: { label: '参考资料 · 2处', prefixes: ['cultureSources', 'cultureSourceCard'] },
+  all: { label: '全部内容底板 · 10处', prefixes: surfaceDefinitions.map(surface => surface.prefix) },
+});
+
 export const surfaceDefaults = Object.freeze(Object.fromEntries(surfaceDefinitions.flatMap(surface => [
   [`${surface.prefix}Width`, surface.width ?? 100],
   [`${surface.prefix}Height`, surface.height ?? 0],

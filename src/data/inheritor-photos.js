@@ -1,4 +1,5 @@
-// Local research preview only; source citations are not reuse licences.
+// Archived research metadata: the homepage inheritor feature was removed on 2026-10-20.
+// There is no runtime photo-preview consumer. Source citations are not reuse licences.
 // Files stay in ignored tmp/, outside public/ and all production builds.
 // Original files, identity evidence, dimensions and SHA-256:
 // source/design/home-heritage/2026-10-19-refresh/portrait-sources.md

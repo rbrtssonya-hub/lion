@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
 const introKey = 'nanfeng-lion:book-intro-seen:v1';
@@ -27,7 +28,7 @@ test('书册默认放大，尺寸设置即时生效而不重建纸张文档', as
   await expect(stage).toHaveCSS('height', '680px');
   await page.locator('#homeLionBook iframe').evaluate(frame => { frame.dataset.testInstance = 'same-book'; });
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '动画', exact: true }).click();
+  await selectSettingsFor(page, 'bookScale');
   const scale = page.getByRole('spinbutton', { name: '书册放大比例数值', exact: true });
   await expect(scale).toHaveValue('116');
   await scale.fill('90'); await scale.press('Tab');
@@ -94,7 +95,7 @@ test('七个年代台阶水平排列，角色与书页同步且粒子拖尾可�
   await expect(sprite).toHaveAttribute('data-animation', 'idle');
   await expect(timeline).toHaveAttribute('data-particles-playing', 'false');
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '动画', exact: true }).click();
+  await selectSettingsFor(page, 'bookInkEnabled');
   await page.getByRole('checkbox', { name: '书册导航粒子拖尾' }).uncheck();
   await expect(timeline).toHaveAttribute('data-particles-enabled', 'false');
   await expect(particles).toHaveCSS('display', 'none');

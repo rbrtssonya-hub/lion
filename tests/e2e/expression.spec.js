@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { lionExpressions } from '../../src/data/lion-expressions.js';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
@@ -319,7 +320,7 @@ test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', 
   await page.locator('.site-navigation [data-action="settings"]').click();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
   const settings = page.getByRole('region', { name: '开发者参数设置', exact: true });
-  await settings.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'panelWidth');
   const width = settings.getByRole('spinbutton', { name: '设置面板宽度数值', exact: true });
   await width.fill('480');
   await width.press('Tab');

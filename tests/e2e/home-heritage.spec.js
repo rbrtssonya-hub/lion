@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { lionTypes, inheritors } from '../../src/data/home-heritage.js';
-import { inheritorPhotos } from '../../src/data/inheritor-photos.js';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
+import { lionTypes } from '../../src/data/home-heritage.js';
 
 async function open(page) {
   await page.addInitScript(() => {
@@ -40,36 +40,29 @@ test('heritage sections appear in order; type selection synchronizes artwork, th
     await expect(article.getByRole('link', { name: /查阅资料/ }).first()).toHaveAttribute('href', /^https:\/\//);
   }
   const order = await page.locator('#homeLionBook, #homeCulture, #homeLionTypes, #homeInheritors, #homeCultureSources').evaluateAll(nodes => nodes.map(n => n.id));
-  expect(order).toEqual(['homeLionBook', 'homeCulture', 'homeLionTypes', 'homeInheritors', 'homeCultureSources']);
+  expect(order).toEqual(['homeLionBook', 'homeCulture', 'homeLionTypes', 'homeCultureSources']);
+  await expect(page.locator('#homeInheritors')).toHaveCount(0);
   await expect(types).toContainText(/AI辅助/);
   await expect(types.getByRole('heading', { name: '传统地狮' })).toBeVisible();
   await expect(types.getByRole('heading', { name: '高桩表演' })).toBeVisible();
 });
 
-test('six inheritors and group filters never mismatch a person, project or recognition level', async ({ page }) => {
+test('the mounted homepage removes people and photo entries while retaining all four archive destinations', async ({ page }) => {
+  const requests = [];
+  page.on('request', request => {
+    if (/\/(?:tmp\/home-inheritor-photos|assets\/home-heritage\/inheritors)\//.test(new URL(request.url()).pathname)) requests.push(request.url());
+  });
   await open(page);
-  const section = page.locator('#homeInheritors');
-  await section.scrollIntoViewIfNeeded();
-  await expect(section.locator('[data-person-id]')).toHaveAttribute('data-person-id', 'feng-kunjie');
-  for (const name of ['冯昆杰', '赵继红', '黄钦添', '赵伟斌', '黎伟', '黎婉珍']) {
-    await section.getByRole('button', { name: `查看${name}档案`, exact: true }).click();
-    await expect(section.locator('.heritage-person-detail h3')).toHaveText(name);
-    await expect(section.locator('.heritage-person-plaque strong')).toHaveText(name);
-    await expect(section.locator('figure img')).toHaveCount(0);
-    const id = await section.locator('[data-person-id]').getAttribute('data-person-id');
-    await expect(section.getByRole('link', { name: /照片来源/ })).toHaveAttribute('href', inheritorPhotos[id].sourceUrl);
-    await expect(section.locator('.heritage-person-detail')).toContainText(['黎伟', '黎婉珍'].includes(name) ? '彩扎（佛山狮头）' : name === '冯昆杰' ? '鹤山狮艺' : '狮舞（广东醒狮）');
-    if (['黄钦添', '赵伟斌', '黎伟', '黎婉珍'].includes(name)) await expect(section.locator('.heritage-person-level')).toContainText('国家级');
-  }
-  await section.getByRole('button', { name: '舞狮表演', exact: true }).click();
-  await expect(section.locator('.heritage-person-choice')).toHaveCount(4);
-  await expect(section.locator('.heritage-person-detail h3')).toHaveText('冯昆杰');
-  await section.getByRole('button', { name: '狮头扎作', exact: true }).click();
-  await expect(section.locator('.heritage-person-choice')).toHaveCount(2);
-  await expect(section.locator('.heritage-person-detail h3')).toHaveText('黎伟');
-  await section.getByRole('button', { name: '全部', exact: true }).click();
-  await expect(section.locator('.heritage-person-detail h3')).toHaveText('黎伟');
-  await expect(section.getByText('姓名档案牌 · 非人物肖像', { exact: true })).toBeVisible();
+  await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
+  const nav = page.getByRole('navigation', { name: '首页章节导航' });
+  await expect(nav.getByRole('button')).toHaveText(['岭南醒狮志', '醒狮文化', '醒狮种类', '参考资料']);
+  await expect(page.locator('#homeInheritors, .heritage-person-choice, .archive-portrait-sources')).toHaveCount(0);
+  await nav.getByRole('button', { name: '参考资料', exact: true }).click();
+  await expect(nav.getByRole('button', { name: '参考资料', exact: true })).toHaveAttribute('aria-current', 'location');
+  const sources = page.locator('#homeCultureSources');
+  await expect(sources.getByRole('heading', { name: '人物资料', exact: true })).toHaveCount(0);
+  await expect(sources.getByRole('link', { name: /照片来源/ })).toHaveCount(0);
+  expect(requests).toEqual([]);
 });
 
 test('local keyboard, rapid selection and reduced motion do not change the culture carousel or hash', async ({ page }) => {
@@ -124,11 +117,12 @@ test('new sections share existing reading surfaces and persist previews without 
   await open(page);
   await page.locator('.site-header [data-action="settings"]').click();
   const panel=page.getByRole('region',{name:'开发者参数设置'});
-  await panel.getByRole('tab',{name:'外观',exact:true}).click();
+  await selectSettingsFor(page, 'cultureTitle');
   for(const [name,value] of [['文化标题底板透明度数值','100'],['文化正文底板透明度数值','100']]) {
     const input=panel.getByRole('spinbutton',{name,exact:true});await input.fill(value);await input.press('Tab');
   }
-  for(const selector of ['#homeLionTypes .heritage-heading','#homeInheritors .heritage-copy']) {
+  await page.locator('#homeLionTypes .heritage-type-image').click();
+  for(const selector of ['#homeLionTypes .heritage-heading','#homeLionTypes .heritage-copy']) {
     await expect(page.locator(selector)).toHaveCSS('background-color','rgba(255, 249, 238, 0)');
     await expect(page.locator(selector)).toHaveCSS('backdrop-filter','none');
     await expect(page.locator(selector)).toHaveCSS('opacity','1');
@@ -137,15 +131,15 @@ test('new sections share existing reading surfaces and persist previews without 
   await expect(page.locator('#homeLionTypes .heritage-heading')).toHaveCSS('background-color','rgba(255, 249, 238, 0)');
   await page.locator('.site-header [data-action="settings"]').click();
   await panel.getByRole('button',{name:'恢复默认参数',exact:true}).click();
-  await expect(page.locator('#homeInheritors .heritage-copy')).toHaveCSS('background-color','rgba(255, 249, 238, 0.6)');
+  await expect(page.locator('#homeLionTypes .heritage-copy')).toHaveCSS('background-color','rgba(255, 249, 238, 0.6)');
 });
 
-test('unified sources preserve references, the approved paw and book emblem, and scoped collapsed portrait sources', async ({ page }) => {
+test('unified sources preserve references, the approved paw and book emblem, and collapsed image and engineering licences without person entries', async ({ page }) => {
   await open(page);
   const sources = page.locator('#homeCultureSources');
   await sources.scrollIntoViewIfNeeded();
   await expect(sources.locator('.home-culture-source-cards').getByRole('link')).toHaveCount(3);
-  await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
+  await expect(sources.locator('.heritage-source-group')).toHaveCount(1);
   const formSource = page.locator('.heritage-form-note').getByRole('link');
   await expect(sources.locator('.heritage-source-group').getByRole('link', { name: /广东醒狮的传承与发展/ })).toHaveAttribute('href', await formSource.getAttribute('href'));
   const emblem = sources.locator('.home-culture-sources-emblem');
@@ -159,13 +153,11 @@ test('unified sources preserve references, the approved paw and book emblem, and
   const provenance = sources.locator('details.archive-provenance');
   await expect(provenance).toHaveJSProperty('open', false);
   await provenance.locator('summary').click();
-  const portraitSources = provenance.locator('.archive-portrait-sources');
-  await expect(portraitSources.getByRole('listitem')).toHaveCount(6);
-  for (const person of inheritors) {
-    const row = portraitSources.getByRole('listitem').filter({ has: page.getByText(person.name, { exact: true }) });
-    await expect(row.getByRole('link', { name: /照片来源/ })).toHaveAttribute('href', inheritorPhotos[person.id].sourceUrl);
-    await expect(row).toContainText(inheritorPhotos[person.id].credit);
-  }
+  await expect(provenance.locator('.archive-portrait-sources')).toHaveCount(0);
+  await expect(sources.getByRole('heading', { name: '人物资料', exact: true })).toHaveCount(0);
+  await expect(sources.getByRole('link', { name: /照片来源/ })).toHaveCount(0);
+  await expect(provenance.getByRole('link', { name: /ThreeUI/ })).toHaveAttribute('href', /threeui-LICENSE/);
+  await expect(provenance.getByRole('link', { name: '字体许可', exact: true })).toHaveAttribute('href', /LICENSE/);
   await expect(provenance).toContainText('AI辅助');
   await expect(sources.locator('.home-culture-source-cards img, .heritage-source-groups img, .archive-portrait-sources img')).toHaveCount(0);
   await sources.getByText('摄影署名与许可', { exact: false }).click();
@@ -177,7 +169,7 @@ test('heritage title paper contains its text and lion ornament at 40 percent wid
   await open(page);
   await page.locator('.site-header [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
-  await panel.getByRole('tab', { name: '外观', exact: true }).click();
+  await selectSettingsFor(page, 'cultureTitle');
   const width = panel.getByRole('spinbutton', { name: '文化标题底板宽度数值', exact: true });
   await width.fill('40'); await width.press('Tab');
   await page.locator('.site-header [data-action="settings"]').click();
@@ -200,7 +192,7 @@ test('heritage desktop geometry remains readable at target widths and 900px push
   await open(page);
   for (const [width, height] of [[1920,1080],[2560,1440],[1366,768],[1024,768]]) {
     await page.setViewportSize({width,height});
-    for (const id of ['homeLionTypes','homeInheritors','homeCultureSources']) {
+    for (const id of ['homeLionTypes','homeCultureSources']) {
       const section=page.locator(`#${id}`);
       await section.scrollIntoViewIfNeeded();
       const geometry=await section.evaluate(n=>({fits:n.scrollWidth<=n.clientWidth+1, right:n.getBoundingClientRect().right, width:document.documentElement.clientWidth}));
@@ -211,12 +203,12 @@ test('heritage desktop geometry remains readable at target widths and 900px push
   await page.setViewportSize({width:1500,height:1080});
   await page.locator('.site-header [data-action="settings"]').click();
   const panel=page.getByRole('region', { name: '开发者参数设置' });
-  await panel.getByRole('tab', {name:'布局',exact:true}).click();
+  await selectSettingsFor(page, 'panelWidth');
   const shellWidth=await page.locator('.site-shell').evaluate(n=>n.getBoundingClientRect().width);
   const widthInput=panel.getByRole('spinbutton',{name:'设置面板宽度数值',exact:true});
   await widthInput.fill(String(shellWidth-900)); await widthInput.press('Tab');
   await expect.poll(()=>page.locator('.site-page').evaluate(n=>n.getBoundingClientRect().width)).toBe(900);
-  for (const id of ['homeLionTypes','homeInheritors']) {
+  for (const id of ['homeLionTypes']) {
     const section=page.locator(`#${id}`); await section.scrollIntoViewIfNeeded();
     expect(await section.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
     expect(await section.locator('.heritage-layout').evaluate(n=>getComputedStyle(n).gridTemplateColumns.split(' ').length)).toBe(2);

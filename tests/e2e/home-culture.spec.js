@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 test('探索更多保留透明金色书法与电脑端居中对齐，滚到史册并让导航遮住视频边缘', async ({ page }) => {
   await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
@@ -486,7 +487,7 @@ test('轮播自动开关即时生效，关闭时点击再离开也不会自动�
   await expect(carousel).toHaveAttribute('data-culture-index', '1');
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
-  await panel.getByRole('tab', { name: '轮播', exact: true }).click();
+  await selectSettingsFor(page, 'carousel');
   await panel.getByRole('checkbox', { name: '照片自动播放', exact: true }).check();
   await panel.getByRole('button', { name: '关闭开发者参数' }).click();
   await expect(carousel).toHaveAttribute('data-culture-playing', 'true');
@@ -525,7 +526,7 @@ test('电脑窗口和参数变化保持同一画布，减少动态释放引擎�
   }
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
-  await panel.getByRole('tab', { name: '轮播', exact: true }).click();
+  await selectSettingsFor(page, 'carousel');
   const zoom = panel.getByRole('spinbutton', { name: '照片聚焦比例数值', exact: true });
   await zoom.fill('110');
   await zoom.press('Tab');

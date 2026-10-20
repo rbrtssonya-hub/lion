@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
@@ -69,7 +70,7 @@ test('电脑三种窗口与设置推开保持画布、说明及固定导航完�
   }
   await page.setViewportSize({ width: 1675, height: 1000 });
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
-  await page.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'panelWidth');
   await page.getByRole('checkbox', { name: '设置面板推开页面', exact: true }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBeCloseTo(900, 0);

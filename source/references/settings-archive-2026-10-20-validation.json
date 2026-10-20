@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-20",
+  "checkout": "F:/数媒竞赛/信息可视化codex",
+  "branch": "main",
+  "baseHead": "f99174c47514c295840990eec6e95acc45f83b5d",
+  "scope": [
+    "viewport-adaptive transparent 4-stop archive rail with 22/18px labels",
+    "page-centered symmetric archive margins including 900px settings-pushed content",
+    "18-20px loading copy and 521-700px short-window whitespace",
+    "remove inheritor section and all photograph UI entrances",
+    "9 main settings pages, nested home/chapter pages and shared explicit material application"
+  ],
+  "tests": {
+    "assets": {
+      "command": "npm test",
+      "passed": 51,
+      "failed": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "modules": 320,
+      "warning": "existing Three.js chunk 534.77 kB"
+    },
+    "browser": {
+      "channel": "installed Google Chrome",
+      "desktopOnly": true,
+      "devPort": 5199,
+      "previewPort": 4198,
+      "batches": [
+        {
+          "phase": "initial related regression before latest symmetry request",
+          "perEnvironment": {
+            "tests": 123,
+            "passed": 121,
+            "failed": 2
+          },
+          "failures": [
+            "default title ornament wrapped early at 900px",
+            "type copy under 16-character line width with enlarged rail"
+          ],
+          "resolution": "fixed title breakpoint and consistent content gutters; following 60-test dev and preview runs passed"
+        },
+        {
+          "phase": "pre-symmetry layout fixes",
+          "devPassed": 60,
+          "previewPassed": 60
+        },
+        {
+          "phase": "settings, loading and cross-chapter acceptance",
+          "devPassed": 25,
+          "previewPassed": 25,
+          "output": "tmp/settings-refresh-acceptance-{dev,preview}"
+        },
+        {
+          "phase": "latest symmetry initial combined regression",
+          "perEnvironment": {
+            "tests": 79,
+            "passed": 58,
+            "failed": 2,
+            "notRun": 19
+          },
+          "failures": [
+            "fixed 40px spacing reduction assumed previous responsive padding",
+            "fixture compared rail with section padding box rather than usable content"
+          ],
+          "resolution": "assert exact 50% computed padding/gap and actual content bounds"
+        },
+        {
+          "phase": "symmetry navigation and reading recheck",
+          "perEnvironment": {
+            "tests": 26,
+            "passed": 25,
+            "failed": 1
+          },
+          "failure": "wide title font fell to 68.31px after symmetric gutters",
+          "resolution": "preserve original 74/68px book/culture heading at >=1800px page width"
+        },
+        {
+          "phase": "final current symmetry layout acceptance",
+          "devPassed": 14,
+          "previewPassed": 14,
+          "devMinutes": 2.3,
+          "previewMinutes": 2.2,
+          "output": "tmp/settings-symmetry-final-green-{dev,preview}"
+        },
+        {
+          "phase": "final source 40/100 percent width matrix",
+          "devPassed": 1,
+          "previewPassed": 1,
+          "output": "tmp/symmetric-sources-{dev,preview}"
+        }
+      ],
+      "note": "Results are deliberately reported by actual batch, not as one green full 123/79 run. Retained failures are documented; affected layout was rerun after each fix. No tests skipped or marked fixme."
+    }
+  },
+  "assets": {
+    "manifestBefore": 440,
+    "manifestAfter": 445,
+    "allOriginalRecordsPreserved": true,
+    "publicDistFilesEqual": 89,
+    "runtimeAssetsAdded": 0,
+    "loadingHtmlSha256": "7db20f7312d770b8c2c6117889a525a5ad17ba5e9bf0538bc0595bec09ce48e1",
+    "screenshots": [
+      {
+        "from": "2026-10-20 desktop Chrome production QA",
+        "path": "source/reviews/home/2026-10-20-settings-refresh/adaptive-rail-1920.png",
+        "bytes": 2342573,
+        "sha256": "aace537a40095a66da272aaa475a8af3f3a41b63c55eb7867f3feccfeb0a8d0f"
+      },
+      {
+        "from": "2026-10-20 desktop Chrome production QA",
+        "path": "source/reviews/home/2026-10-20-settings-refresh/adaptive-rail-900x600.png",
+        "bytes": 621343,
+        "sha256": "3710cf510ce445c09cc107598262e22a3beaf3ad5fe0e220f8b12925f6fd416e"
+      },
+      {
+        "from": "2026-10-20 desktop Chrome production QA",
+        "path": "source/reviews/home/2026-10-20-settings-refresh/loading-1920.png",
+        "bytes": 2884208,
+        "sha256": "e1d6ae092bedc70c20cdffd9a58a81bf8a77c1525dc568162e52b53e0329a5a2"
+      },
+      {
+        "from": "2026-10-20 desktop Chrome production QA",
+        "path": "source/reviews/home/2026-10-20-settings-refresh/settings-chapter-1920.png",
+        "bytes": 1626306,
+        "sha256": "185dad9d379fc4b939d1442cf2c6266517e1d5d367fa23424097f2866ddafac5"
+      },
+      {
+        "from": "2026-10-20 desktop Chrome production QA",
+        "path": "source/reviews/home/2026-10-20-settings-refresh/settings-common-1920.png",
+        "bytes": 1611241,
+        "sha256": "a8c4b335bf503232be04c3103c63d551b1b665de8a7debf494e9dcbe382b991a"
+      }
+    ]
+  },
+  "review": {
+    "scope": "one independent read-only settings/loading review; main-agent homepage, code diff, assets and actual browser review",
+    "critical": 0,
+    "important": 1,
+    "minor": 2,
+    "allFindingsResolved": true,
+    "unresolvedProductFindings": [],
+    "limitations": [
+      "desktop Chrome UI acceptance, not a new mobile or cross-device certification",
+      "existing HEVC/device and GPU long-run/hosting boundaries unchanged"
+    ]
+  },
+  "git": {
+    "beforeCommitFetchHead": "f99174c47514c295840990eec6e95acc45f83b5d",
+    "beforeCommitDivergence": [
+      0,
+      0
+    ],
+    "unmergedEntries": 0,
+    "delivery": "Normal current-main commit/push, then compare actual local and remote refs. Final hash is the enclosing commit, not guessed inside this file."
+  }
+}

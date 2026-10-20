@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
 
@@ -18,32 +19,38 @@ async function openArchive(page, { reduced = false, saved = {} } = {}) {
   await page.evaluate(() => document.fonts.ready);
 }
 
-async function appearance(page) {
+async function bookSettings(page) {
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '外观', exact: true }).click();
+  await selectSettingsFor(page, 'bookTitle');
 }
 
 test('标题底板留白能缩小实际高度，不改变文字大小且能保存与复原', async ({ page }) => {
   await openArchive(page, { reduced: true, saved: { navFontSize: 22, navigationTypographyVersion: 2 } });
-  await appearance(page);
+  await bookSettings(page);
   const spacing = page.getByRole('spinbutton', { name: '标题底板留白数值', exact: true });
   await expect(spacing).toHaveValue('100');
   const measure = () => page.locator('[data-surface="bookTitle"]').evaluate(el => ({
     height: el.getBoundingClientRect().height,
     font: getComputedStyle(el.querySelector('h2')).fontSize,
+    padding: parseFloat(getComputedStyle(el).paddingTop) + parseFloat(getComputedStyle(el).paddingBottom),
+    gap: parseFloat(getComputedStyle(el).rowGap),
     otherHeight: document.querySelector('[data-surface="cultureTitle"]').getBoundingClientRect().height,
   }));
   const normal = await measure();
   expect(normal.height).toBeLessThan(500);
   await spacing.fill('50'); await spacing.press('Tab');
   const compact = await measure();
-  expect(compact.height).toBeLessThan(normal.height - 40);
+  expect(compact.padding).toBeCloseTo(normal.padding / 2, 1);
+  expect(compact.gap).toBeCloseTo(normal.gap / 2, 1);
+  // Responsive paper padding can be 22px rather than the previous 24px.
+  // Verify the actual 50% spacing contract, not a fixed 40px total reduction.
+  expect(compact.height).toBeLessThanOrEqual(normal.height - (normal.padding + normal.gap) / 2 + 1);
   expect(compact.font).toBe(normal.font);
   expect(compact.otherHeight).toBe(normal.otherHeight);
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ bookTitleSpacing: 50, navFontSize: 22 });
   await page.reload();
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
-  await appearance(page);
+  await bookSettings(page);
   await expect(spacing).toHaveValue('50');
   await page.getByRole('button', { name: '恢复默认参数' }).click();
   await expect(spacing).toHaveValue('100');
@@ -297,7 +304,7 @@ test('存储不可用时底板留白仍即时生效，最大留白与最小高�
     Storage.prototype.setItem = function (name, value) { if (name === key) throw new DOMException('disabled', 'SecurityError'); return write.call(this, name, value); };
   }, settingsKey);
   await openArchive(page, { reduced: true });
-  await appearance(page);
+  await bookSettings(page);
   const panel = page.locator('[data-surface="bookTitle"]');
   const normal = (await panel.boundingBox()).height;
   const spacing = page.getByRole('slider', { name: '标题底板留白', exact: true });

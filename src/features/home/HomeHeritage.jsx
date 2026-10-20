@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
-import { lionTypes, inheritors } from '../../data/home-heritage.js';
-import { inheritorPhotos } from '../../data/inheritor-photos.js';
+import { lionTypes } from '../../data/home-heritage.js';
 import { HeritageLinks, HeritageMotif, handleHeritageTabs } from './HeritageElements.jsx';
 import LionArchiveOrnament from './LionArchiveOrnament.jsx';
 import '../../styles/home-heritage.css';
@@ -63,49 +62,6 @@ export function HomeLionTypes() {
         <article><HeritageMotif kind="drum" /><h3>传统地狮</h3><p>在地面与道具构成的场景中，以步法、神态和采青讲述狮子的行动。</p></article>
         <article><HeritageMotif kind="horn" /><h3>高桩表演</h3><p>以高桩为表演空间，突出腾跃、平衡与双人配合；不是另一种狮头流派。</p></article>
       </div><HeritageLinks ids={['performance-forms']} /></div>
-    </div>
-  </section>;
-}
-
-const groups = [{ id: 'all', label: '全部' }, { id: 'performance', label: '舞狮表演' }, { id: 'craft', label: '狮头扎作' }];
-
-function InheritorFigure({ person }) {
-  const [failed, setFailed] = useState(false);
-  const photo = inheritorPhotos[person.id];
-  const hasPhoto = photo?.src && photo.sourceUrl && photo.credit && photo.alt && photo.rights;
-  const showPhoto = import.meta.env.DEV && new URLSearchParams(window.location.search).get('researchPhotos') === '1' && hasPhoto && !failed;
-  return <figure className={showPhoto ? 'heritage-person-photo' : `heritage-person-plaque archive-reading-panel is-${person.group}`} data-surface={showPhoto ? undefined : 'cultureBody'} aria-label={showPhoto ? `${person.name}照片` : `${person.name}姓名档案牌`}>
-    {showPhoto ? <img src={`${import.meta.env.BASE_URL}${photo.src.replace(/^\.\//, '')}`} alt={photo.alt} loading="lazy" decoding="async" onError={() => setFailed(true)} /> :
-      <div className="heritage-plaque-paper"><HeritageMotif kind={person.group === 'craft' ? 'horn' : 'drum'} /><strong>{person.name}</strong><span>{person.project}</span><small>{person.region}</small></div>}
-    <figcaption>{!showPhoto && <span>姓名档案牌 · 非人物肖像</span>}{hasPhoto && <>{showPhoto && <span>{photo.credit} · {photo.rights}</span>}<a href={photo.sourceUrl} target="_blank" rel="noreferrer">照片来源 <span aria-hidden="true">↗</span></a></>}</figcaption>
-  </figure>;
-}
-
-export function HomeInheritors() {
-  const [group, setGroup] = useState('all');
-  const [personId, setPersonId] = useState(inheritors[0].id);
-  const visible = inheritors.filter(person => group === 'all' || person.group === group);
-  const person = visible.find(item => item.id === personId) || visible[0];
-  const selectGroup = id => {
-    setGroup(id);
-    const items = inheritors.filter(item => id === 'all' || item.group === id);
-    if (!items.some(item => item.id === personId)) setPersonId(items[0].id);
-  };
-  return <section id="homeInheritors" className="home-heritage-section" aria-labelledby="inheritors-title">
-    <div className="heritage-inner">
-      <HeritageTitle id="inheritors-title" title="薪火相传 · 广府狮艺人物">一代人的坚守，成为下一代的起点。循着舞狮与扎作两条线索，认识让狮艺延续的人。</HeritageTitle>
-      <div className="heritage-filters" role="group" aria-label="传承领域">{groups.map(item => <button key={item.id} type="button" aria-pressed={group === item.id} onClick={() => selectGroup(item.id)}>{item.label}</button>)}</div>
-      <div className="heritage-person-choices" role="group" aria-label="选择传承人物">{visible.map(item => <button key={item.id} type="button" className="heritage-person-choice" aria-label={`查看${item.name}档案`} aria-pressed={person.id === item.id} aria-controls="heritage-person-panel" onClick={() => setPersonId(item.id)}><strong>{item.name}</strong><small>{item.region}</small></button>)}</div>
-      <article id="heritage-person-panel" key={person.id} data-person-id={person.id} className="heritage-layout heritage-detail">
-        <InheritorFigure key={person.id} person={person} />
-        <div className="heritage-copy heritage-person-detail archive-reading-panel" data-surface="cultureBody">
-          <p className="heritage-kind">{person.group === 'craft' ? '狮头扎作' : '舞狮表演'} · {person.region}</p><h3>{person.name}</h3>
-          <p className="heritage-person-level">{person.level}{person.recognition && <span> · {person.recognition}</span>}</p><p className="heritage-project">{person.project}</p>
-          <p className="heritage-summary">{person.intro}</p><ul className="heritage-contributions">{person.contributions.map(text => <li key={text}>{text}</li>)}</ul>
-          <div className="heritage-relation"><h4>有据可查的传承关系</h4><p>{person.relation}</p></div><HeritageLinks ids={person.sourceIds} />
-        </div>
-      </article>
-      <p className="heritage-editorial-note">代表人物选编，非完整名录。认定批次不等于师承代数；舞狮与扎作分属不同项目。</p>
     </div>
   </section>;
 }

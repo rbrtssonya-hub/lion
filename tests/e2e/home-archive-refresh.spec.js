@@ -12,14 +12,14 @@ async function open(page, width = 1920, height = 1080) {
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
 }
 
-test('archive uses the supplied proportionate background and mounted five-section rail', async ({ page }) => {
+test('archive uses the supplied proportionate background and mounted four-section rail', async ({ page }) => {
   await open(page);
   const scene = page.locator('.home-archive-scene');
   await expect(scene).toHaveAttribute('style', /home-archive-ink-2026-10-20\.png/);
   await expect(scene.locator('.archive-background-layer')).toHaveCount(3);
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   await expect(page.getByRole('navigation', { name: '首页章节导航' })).toBeVisible();
-  await expect(page.getByRole('navigation', { name: '首页章节导航' }).getByRole('button')).toHaveCount(5);
+  await expect(page.getByRole('navigation', { name: '首页章节导航' }).getByRole('button')).toHaveCount(4);
 });
 
 test('paper texture follows opacity and only approved small ornaments replace repeated brand mascots', async ({ page }) => {
@@ -31,7 +31,7 @@ test('paper texture follows opacity and only approved small ornaments replace re
   await panel.evaluate(el => el.style.setProperty('--surface-opacity', '0'));
   expect(Number((await texture()).opacity)).toBe(0);
   const ornaments = page.locator('.home-archive-scene .lion-archive-ornament img, .home-culture-sources-emblem img');
-  await expect(ornaments).toHaveCount(6);
+  await expect(ornaments).toHaveCount(5);
   for (const image of await ornaments.all()) {
     await expect(image).toHaveAttribute('src', /archive-ornament-(peeking|paw|tail)\.png$/);
     const box = await image.boundingBox();
@@ -47,7 +47,8 @@ test('decorative microcopy is removed while sources and centralized provenance r
   await sources.getByText('图像说明与工程许可', { exact: true }).click();
   await expect(sources.getByRole('link', { name: /ThreeUI/ })).toHaveAttribute('href', /threeui-LICENSE/);
   await expect(sources).toContainText('AI辅助');
-  await expect(sources.getByRole('link', { name: /照片来源/ })).toHaveCount(6);
+  await expect(sources.getByRole('link', { name: /照片来源/ })).toHaveCount(0);
+  await expect(sources.getByRole('heading', { name: '人物资料', exact: true })).toHaveCount(0);
   await sources.getByText('摄影署名与许可', { exact: true }).click();
   await expect(sources.locator('.home-culture-photo-license')).toHaveCount(8);
 });
@@ -71,11 +72,11 @@ test('resizing during a smooth sidebar jump still lands below the fixed header',
   await page.locator('#homeLionBook').evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().top - 90, behavior: 'instant' }));
   const nav = page.getByRole('navigation', { name: '首页章节导航' });
   await expect(nav).toBeVisible();
-  await nav.getByRole('button', { name: '传承人物', exact: true }).click();
+  await nav.getByRole('button', { name: '醒狮种类', exact: true }).click();
   await page.waitForTimeout(120);
   await page.setViewportSize({ width: 1024, height: 900 });
-  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#inheritors-title').getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom - 24))).toBeLessThan(3);
-  await expect(nav.getByRole('button', { name: '传承人物', exact: true })).toHaveAttribute('aria-current', 'location');
+  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#lion-types-title').getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom - 24))).toBeLessThan(3);
+  await expect(nav.getByRole('button', { name: '醒狮种类', exact: true })).toHaveAttribute('aria-current', 'location');
 });
 
 test('Escape from the end of a long type description restores a visible image focus', async ({ page }) => {
@@ -94,11 +95,17 @@ test('Escape from the end of a long type description restores a visible image fo
   })).toBe(true);
 });
 
-test('all main heritage observations and contributions meet the readable 18px minimum', async ({ page }) => {
+test('all retained type observations and performance descriptions meet the readable 18px minimum', async ({ page }) => {
   await open(page, 900, 768);
-  const sizes = await page.locator('.heritage-observations p, .heritage-relation p, .heritage-contributions, .heritage-form-note article p').evaluateAll(nodes => nodes.map(el => parseFloat(getComputedStyle(el).fontSize)));
-  expect(sizes.length).toBeGreaterThan(5);
-  for (const size of sizes) expect(size).toBeGreaterThanOrEqual(18);
+  const types = page.locator('#homeLionTypes');
+  for (const name of ['佛山狮', '鹤山狮', '佛鹤狮']) {
+    await types.getByRole('tab', { name: new RegExp(name) }).click();
+    await types.getByRole('button', { name: `展开${name}介绍`, exact: true }).click();
+    const paragraphs = types.locator('.heritage-observations p, .heritage-form-note article p');
+    await expect(paragraphs).toHaveCount(5);
+    const sizes = await paragraphs.evaluateAll(nodes => nodes.map(el => parseFloat(getComputedStyle(el).fontSize)));
+    for (const size of sizes) expect(size).toBeGreaterThanOrEqual(18);
+  }
 });
 
 test('switching to reduced motion immediately disconnects the visible book observer without scrolling', async ({ page }) => {

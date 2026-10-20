@@ -7,7 +7,6 @@ const sections = [
   { id: 'homeLionBook', label: '岭南醒狮志' },
   { id: 'homeCulture', label: '醒狮文化' },
   { id: 'homeLionTypes', label: '醒狮种类' },
-  { id: 'homeInheritors', label: '传承人物' },
   { id: 'homeCultureSources', label: '参考资料' },
 ];
 
@@ -35,7 +34,9 @@ export default function HomeArchiveNav({ playbackEnabled = true, particlesEnable
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     let layoutObserver = null, shown = false, focused = document.hasFocus();
     const observeLayout = () => {
-      const allowed = shown && playbackEnabled && focused && !document.hidden && !reduced.matches;
+      // Reduced motion still follows real header/container resizing; this
+      // observer only measures layout and never starts marker animation.
+      const allowed = shown && playbackEnabled && focused && !document.hidden;
       if (!allowed && layoutObserver) { layoutObserver.disconnect(); layoutObserver = null; }
       if (allowed && !layoutObserver) {
         layoutObserver = new ResizeObserver(onLayout);

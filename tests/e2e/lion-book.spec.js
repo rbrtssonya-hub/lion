@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { createServer } from 'node:http';
 import { lionBookPages } from '../../src/data/lion-book.js';
 
@@ -228,7 +229,7 @@ test('电脑宽度变化与设置推开保持同一本书，照片图鉴和章�
   await page.locator('.site-header [data-action="settings"]').click();
   await expect(page.locator('#developerSettingsPanel')).toBeVisible();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'overlay');
-  await page.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'pushPage');
   await page.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await view(page, book.locator('.lion-book-timeline'));

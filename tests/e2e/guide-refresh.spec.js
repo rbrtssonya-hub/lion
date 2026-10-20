@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
 
 const key = 'nanfeng-lion:developer-settings:v1';
@@ -21,7 +22,7 @@ test('书册标题纸面按红框收窄，旧默认只迁移一次，之后自�
   await expect.poll(ratio).toBeCloseTo(.69, 2);
   expect(await panel.evaluate(el => Math.abs(el.getBoundingClientRect().left + el.getBoundingClientRect().width / 2 - (el.parentElement.getBoundingClientRect().left + el.parentElement.getBoundingClientRect().width / 2)))).toBeLessThan(1);
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '外观', exact: true }).click();
+  await selectSettingsFor(page, 'bookTitle');
   const input = page.getByRole('spinbutton', { name: '书册标题底板宽度数值', exact: true });
   await expect(input).toHaveValue('69');
   await input.fill('100'); await input.press('Tab');
@@ -30,7 +31,7 @@ test('书册标题纸面按红框收窄，旧默认只迁移一次，之后自�
   await expect.poll(ratio).toBeCloseTo(1, 2);
   expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).headerTransparency, key)).toBe(37);
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '外观', exact: true }).click();
+  await selectSettingsFor(page, 'bookTitle');
   await page.getByRole('button', { name: '恢复默认参数' }).click();
   await expect(input).toHaveValue('69');
 });

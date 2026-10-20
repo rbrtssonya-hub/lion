@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
 const routes = [['entry', '首页'], ['model', '结构'], ['action', '动作'], ['state', '神态']];
@@ -171,8 +172,7 @@ async function expectCompleteDesktopNavigation(page) {
 
 async function editNavigationParameter(page, label, value) {
   const panel = page.getByRole('region', { name: '开发者参数设置' });
-  const tabName = label === '设置面板宽度' ? '布局' : label.includes('动画') || label.startsWith('紧凑') ? '动画' : '导航';
-  await panel.getByRole('tab', { name: tabName, exact: true }).click();
+  await selectSettingsFor(page, label);
   const input = panel
     .getByRole('spinbutton', { name: `${label}数值`, exact: true });
   await input.fill(String(value));
@@ -388,10 +388,10 @@ test('最小顶栏高度与最大导航参数、推开至900px仍保留完整单
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
-  await panel.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'panelWidth');
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
-  await panel.getByRole('tab', { name: '导航', exact: true }).click();
+  await selectSettingsFor(page, 'navFontSize');
   await editNavigationParameter(page, '顶栏高度', 64);
   await editNavigationParameter(page, '导航标题字号', 28);
   await editNavigationParameter(page, '导航辅助文字字号', 28);
@@ -425,10 +425,10 @@ test('独立字号的正反比例在电脑窄宽推开布局和刷新后保持�
   await page.locator('.site-navigation [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   const gutter = await page.evaluate(() => innerWidth - document.querySelector('.site-shell').getBoundingClientRect().width);
-  await panel.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'panelWidth');
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 760);
-  await panel.getByRole('tab', { name: '导航', exact: true }).click();
+  await selectSettingsFor(page, 'navFontSize');
   for (const [title, helper] of [[28, 10], [14, 28], [20, 20]]) {
     await editNavigationParameter(page, '导航标题字号', title);
     await editNavigationParameter(page, '导航辅助文字字号', helper);
@@ -719,7 +719,7 @@ test('紧凑图标间距与右侧留白影响实际电脑布局，推开设置�
   await editNavigationParameter(page, '紧凑导航图标间距', 28);
   await editNavigationParameter(page, '紧凑导航右侧留白', 96);
   const panel = page.getByRole('region', { name: '开发者参数设置' });
-  await panel.getByRole('tab', { name: '布局', exact: true }).click();
+  await selectSettingsFor(page, 'panelWidth');
   await panel.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await editNavigationParameter(page, '设置面板宽度', 480);
   await expectPageReserve(page, 480);

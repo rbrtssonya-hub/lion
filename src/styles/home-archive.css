@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   box-sizing: border-box;
-  padding-left: 184px;
+  padding-inline: 208px;
   background-color: #faf7f1;
   background-position: center top;
   background-size: 100% auto;
@@ -18,9 +18,9 @@
 .archive-background-layer.is-side { top: 30%; height: 2400px; background-position: left center; mask-image: linear-gradient(transparent, #000 25%, #000 65%, transparent); }
 .archive-background-layer.is-bottom { bottom: 0; height: min(177.78vw, 2400px); background-position: center bottom; mask-image: linear-gradient(transparent, #000 65%); }
 @container lion-page (max-width: 1250px) {
-  .home-archive-scene { padding-left: 96px; }
-  .home-archive-scene .lion-book-section, .home-archive-scene .home-culture { padding-inline: 28px; }
-  .home-archive-scene .heritage-inner { width: calc(100% - 56px); }
+  .home-archive-scene { padding-inline: 132px; }
+  .home-archive-scene :is(.lion-book-section, .home-culture, .home-heritage-section, .heritage-sources-wrap) { padding-inline: 28px; }
+  .home-archive-scene .heritage-inner { width: 100%; }
 }
 .home-archive-scene .lion-book-divider-space { height: max(130px, calc(var(--archive-peek-width) * .57)); border-bottom: 1px solid #a6754925; }
 .home-archive-next { position: relative; }
@@ -131,7 +131,11 @@
 .home-archive-scene .lion-book-heading .lion-book-preface>.lion-book-preface-label { font-size: 14px; }
 /* Query em follows the title's actual type size: compact desktops need less
    room than 74px wide-screen lettering, even at the same paper percentage. */
-@container book-title (max-width: 10em) {
+@container lion-page (min-width: 1800px) {
+  .home-archive-scene .lion-book-heading[data-surface='bookTitle'] { font-size: 74px; }
+  .home-archive-scene .home-culture-intro h2 { font-size: 68px; }
+}
+@container book-title (max-width: 8em) {
   .home-archive-scene .lion-book-heading .lion-archive-title-line { grid-template-columns: minmax(0, 1fr); gap: calc(12px * var(--book-title-spacing, 1)); }
   .home-archive-scene .lion-book-heading .lion-archive-title-line h2 { grid-column: 1; justify-self: center; white-space: normal; overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
   .home-archive-scene .lion-book-heading .lion-archive-title-line .lion-archive-ornament { grid-column: 1; justify-self: center; margin-left: 0; }

@@ -2641,6 +2641,36 @@
       "path": "source/reviews/action-theater/2026-10-19-ornate-integrated/action-theater-tuqiu-1920.png",
       "bytes": 2323064,
       "sha256": "7f92f34ff730a9f5ee299b9315c01d6dbc32e0b86ea879522fd3640242762718"
+    },
+    {
+      "from": "2026-10-20 desktop Chrome production QA",
+      "path": "source/reviews/home/2026-10-20-settings-refresh/adaptive-rail-1920.png",
+      "bytes": 2342573,
+      "sha256": "aace537a40095a66da272aaa475a8af3f3a41b63c55eb7867f3feccfeb0a8d0f"
+    },
+    {
+      "from": "2026-10-20 desktop Chrome production QA",
+      "path": "source/reviews/home/2026-10-20-settings-refresh/adaptive-rail-900x600.png",
+      "bytes": 621343,
+      "sha256": "3710cf510ce445c09cc107598262e22a3beaf3ad5fe0e220f8b12925f6fd416e"
+    },
+    {
+      "from": "2026-10-20 desktop Chrome production QA",
+      "path": "source/reviews/home/2026-10-20-settings-refresh/loading-1920.png",
+      "bytes": 2884208,
+      "sha256": "e1d6ae092bedc70c20cdffd9a58a81bf8a77c1525dc568162e52b53e0329a5a2"
+    },
+    {
+      "from": "2026-10-20 desktop Chrome production QA",
+      "path": "source/reviews/home/2026-10-20-settings-refresh/settings-chapter-1920.png",
+      "bytes": 1626306,
+      "sha256": "185dad9d379fc4b939d1442cf2c6266517e1d5d367fa23424097f2866ddafac5"
+    },
+    {
+      "from": "2026-10-20 desktop Chrome production QA",
+      "path": "source/reviews/home/2026-10-20-settings-refresh/settings-common-1920.png",
+      "bytes": 1611241,
+      "sha256": "a8c4b335bf503232be04c3103c63d551b1b665de8a7debf494e9dcbe382b991a"
     }
   ]
 }

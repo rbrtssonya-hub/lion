@@ -50,6 +50,7 @@
 }
 .home-archive-scene a.home-culture-source-card[data-surface='cultureSourceCard'] {
   width: var(--surface-width, 100%);
+  padding-inline: min(25px, 4%);
   min-height: var(--surface-height, 186px);
   justify-self: center;
   border-color: rgb(216 189 150 / var(--surface-opacity, 1));

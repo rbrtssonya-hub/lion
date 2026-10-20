@@ -26,7 +26,7 @@ export default function App() {
   const navigationCaptureRef = useRef(null);
   const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
   const [route, navigate] = useChapterRoute(beforeRouteChange);
-  const { settings, changeSettings, previewSettings, commitSettings, resetSettings } = useDeveloperSettings();
+  const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
@@ -124,7 +124,7 @@ export default function App() {
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
-    <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings}
+    <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings} onApplyMaterial={applySurfaceSettings}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
       onKeyDown={handleSettingsKey} resizeHandle={<ResizeHandle label="调整侧栏宽度" axis="x"
         value={settings.panelWidth} min={280} max={760} direction={-1}

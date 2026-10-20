@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
 const panels = ['.lion-book-heading', '.lion-book-reading', '.home-culture-intro', '.home-culture-slide.is-active .home-culture-copy'];
@@ -71,6 +72,7 @@ test('四类阅读底板共享透明度，数值与滑杆即时生效且文字�
   }
   await page.locator('.site-header [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
+  await selectSettingsFor(page, 'archivePanelTransparency');
   const control = panel.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
   await expect(control).toHaveValue('40');
   await control.fill('75'); await control.press('Tab');
@@ -92,6 +94,7 @@ test('四类阅读底板共享透明度，数值与滑杆即时生效且文字�
 test('旧设置补默认而不覆盖偏好，底板透明度刷新保存并可恢复默认', async ({ page }) => {
   await openReading(page, { navigationTypographyVersion: 2, navFontSize: 22, helperFontSize: 16 });
   await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'archivePanelTransparency');
   const control = page.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
   await expect(control).toHaveValue('40');
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ navFontSize: 22, helperFontSize: 16, archivePanelTransparency: 40 });
@@ -114,23 +117,24 @@ test('存储被禁用时阅读底板仍可调节', async ({ page }) => {
   }, settingsKey);
   await openReading(page);
   await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'archivePanelTransparency');
   const control = page.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
   await expect(control).toHaveValue('40');
   await control.fill('80'); await control.press('Tab');
   for (const fill of await fills(page)) expect(fill.alpha).toBeCloseTo(.2, 2);
 });
 
-test('首次翻阅时长可在动画设置调节并保存，旧设置补12秒且可恢复默认', async ({ page }) => {
+test('首次翻阅时长可在首页书册设置调节并保存，旧设置补12秒且可恢复默认', async ({ page }) => {
   await openReading(page, { navFontSize: 22, navigationTypographyVersion: 2 });
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '动画', exact: true }).click();
+  await selectSettingsFor(page, 'bookIntroDuration');
   const duration = page.getByRole('spinbutton', { name: '画册首次翻阅时长数值', exact: true });
   await expect(duration).toHaveValue('12');
   await duration.fill('24'); await duration.press('Tab');
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).bookIntroDuration, settingsKey)).toBe(24);
   await page.reload();
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '动画', exact: true }).click();
+  await selectSettingsFor(page, 'bookIntroDuration');
   await expect(duration).toHaveValue('24');
   const slider = page.getByRole('slider', { name: '画册首次翻阅时长', exact: true });
   await slider.focus(); await slider.press('Home'); await expect(duration).toHaveValue('3');
@@ -185,7 +189,7 @@ test('进行中调整时长不重建画册，结束后调整不重播且手动�
   await expect(book).toHaveAttribute('data-book-intro', 'playing');
   await frame.locator('body').evaluate(() => { window.sameBookInstance = true; });
   await page.locator('.site-header [data-action="settings"]').click();
-  await page.getByRole('tab', { name: '动画', exact: true }).click();
+  await selectSettingsFor(page, 'bookIntroDuration');
   const duration = page.getByRole('spinbutton', { name: '画册首次翻阅时长数值', exact: true });
   await duration.fill('3'); await duration.press('Tab');
   await expect.poll(() => frame.locator('body').evaluate(() => spring?.dur)).toBeCloseTo(3 / 7, 6);

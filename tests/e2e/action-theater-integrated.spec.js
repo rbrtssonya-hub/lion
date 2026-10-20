@@ -51,7 +51,8 @@ test('合并后首页媒体与四面巨幕往返保持独立播放实例，离�
   await expect.poll(() => runningMedia(page)).toEqual(['entryLionVideo']);
   await expect.poll(() => home.evaluate(video => video.currentTime)).toBeGreaterThan(pausedHomeTime + .1);
   await expect(page.locator('#introVideo')).toHaveCount(0);
-  await expect(page.locator('#homeLionTypes, #homeInheritors, #homeCultureSources')).toHaveCount(3);
+  await expect(page.locator('#homeLionTypes, #homeCultureSources')).toHaveCount(2);
+  await expect(page.locator('#homeInheritors')).toHaveCount(0);
 
   await page.locator('.site-header [data-route="action"]').click();
   await waitForTheater(page);

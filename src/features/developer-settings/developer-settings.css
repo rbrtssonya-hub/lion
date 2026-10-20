@@ -103,7 +103,7 @@
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   min-height: 0;
   margin: 0;
   padding: 10px 6px;
@@ -117,11 +117,11 @@
   flex-direction: column;
   min-width: 0;
   flex: 0 0 auto;
-  min-height: 64px;
+  min-height: 52px;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 9px 2px;
+  gap: 3px;
+  padding: 7px 2px;
   border: 1px solid transparent;
   border-radius: 5px;
   color: #805742;
@@ -401,6 +401,15 @@
 .developer-color-control > span { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .developer-color-control input { width: 42px; height: 30px; padding: 2px; border: 1px solid rgba(157, 104, 60, .3); border-radius: 5px; background: #fffaf0; cursor: pointer; }
 .developer-color-control output { color: #98734f; font: 11px/1.5 var(--sans); font-variant-numeric: tabular-nums; }
+
+.developer-settings-subtabs { position: sticky; top: -10px; z-index: 2; display: flex; gap: 6px; padding: 8px 0; background: rgb(var(--sidebar-rgb,255 246 228) / .96); }
+.developer-settings-subtabs button { flex: 1; min-width: 0; min-height: 36px; padding: 6px 8px; border: 1px solid #b98a5d77; border-radius: 6px; color: #805742; background: #fffaf0; font: 500 13px/1.5 var(--sans); cursor: pointer; }
+.developer-settings-subtabs button[aria-selected='true'] { color: #fff9ed; background: #a63221; border-color: #a63221; }
+.developer-settings-subpage { display: grid; gap: 14px; min-width: 0; }
+.developer-settings-subpage[hidden] { display: none; }
+.developer-settings-apply { width: 100%; min-height: 40px; border: 1px solid #a63221; border-radius: 6px; color: #fff9ed; background: #a63221; font: 600 14px/1.5 var(--sans); cursor: pointer; }
+.developer-settings-apply:hover { background: #86291c; }
+.developer-settings-feedback { padding: 10px; border-radius: 6px; background: #ebdbbd77; color: #775038; }
 
 @media (prefers-reduced-motion: reduce) {
   .developer-settings-tabs > button,

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { surfaceDefaults, surfaceRanges } from './surfaceSettings.js';
+import { surfaceDefaults, surfaceRanges, surfaceScopes } from './surfaceSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
@@ -142,6 +142,23 @@ export function useDeveloperSettings() {
     shouldPersist.current = false;
     setSettings(current => ({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }));
   }, []);
+  const applySurfaceSettings = useCallback((scope, material) => {
+    const prefixes = surfaceScopes[scope]?.prefixes;
+    if (!prefixes || !material || typeof material !== 'object') return;
+    const patch = {};
+    for (const prefix of prefixes) {
+      for (const suffix of ['Transparency', 'Blur', 'Radius', 'Color']) {
+        if (!Object.hasOwn(material, suffix)) continue;
+        const name = `${prefix}${suffix}`;
+        patch[name] = normalizeDeveloperSetting(name, material[suffix]);
+      }
+    }
+    if ((scope === 'home' || scope === 'all') && Object.hasOwn(material, 'Transparency')) {
+      patch.archivePanelTransparency = patch.bookTitleTransparency;
+    }
+    shouldPersist.current = true;
+    setSettings(current => ({ ...resolveSettings(current), ...patch }));
+  }, []);
   const commitSettings = useCallback(() => {
     shouldPersist.current = true;
     setSettings(current => resolveSettings(current));
@@ -150,5 +167,5 @@ export function useDeveloperSettings() {
     shouldPersist.current = true;
     setSettings(resolveSettings());
   }, []);
-  return { settings: resolvedSettings, changeSettings, previewSettings, commitSettings, resetSettings };
+  return { settings: resolvedSettings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings };
 }

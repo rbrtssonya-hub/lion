@@ -32,6 +32,19 @@ h1{font-size:clamp(34px,3.6vw,56px);letter-spacing:.16em;color:#353d32}
 .bottom{z-index:1;bottom:3%;color:#687056;left:5%;font-size:9px}
 @media(max-width:700px){.painting{height:auto;object-fit:contain;inset:0 0 auto}.center{left:50%;top:58%;width:92vw}h1{font-size:36px}.ribbon{margin:32px 0 28px}.eyebrow{font-size:8px;letter-spacing:.2em}.bottom{bottom:3%}.note{font-size:9px}}
 @media(max-height:520px) and (min-width:701px){.center{left:34%;top:49%;width:55vw}.ribbon{margin:0}.readout{width:70%}.bottom{display:none}}
+/* 电脑端辅助文字保持可读；极低窗口仍沿用原边界处理。 */
+@media(min-width:701px) and (min-height:521px){
+  .eyebrow{font-size:18px;letter-spacing:.25em}
+  .subtitle{font-size:20px}
+  .status,.note,.bottom{font-size:18px}
+  .number{font-size:36px;flex-shrink:0}
+  .number small{font-size:18px}
+  .readout,.hairline{width:min(420px,90%)}
+  .readout{gap:20px}
+}
+@media(min-width:701px) and (min-height:521px) and (max-height:700px){
+  .ribbon{max-height:16vh;margin:12px 0 6px}
+}
 </style>
 <style>
 /* Independent transparent lettering; the real heading remains a readable fallback. */

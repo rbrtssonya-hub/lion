@@ -1,404 +1,172 @@
-import { useEffect, useId, useRef, useState } from 'react';
-import { surfaceDefinitions } from './surfaceSettings.js';
+import { useLayoutEffect, useId, useRef, useState } from 'react';
+import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSettings.js';
+import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
 
-function normalizeValue(value, min, max, step) {
-  const clamped = Math.min(max, Math.max(min, value));
-  return min + Math.round((clamped - min) / step) * step;
-}
-
-function RangeControl({ name, label, value, min, max, step = 1, unit = 'px', onChange }) {
-  const id = useId();
-  const [draft, setDraft] = useState(String(value));
-
-  useEffect(() => {
-    setDraft(String(value));
-  }, [value]);
-
-  function apply(rawValue) {
-    const parsed = Number(rawValue);
-    const next = rawValue.trim() === '' || !Number.isFinite(parsed)
-      ? value
-      : normalizeValue(parsed, min, max, step);
-    setDraft(String(next));
-    if (next !== value) onChange(name, next);
-  }
-
-  return (
-    <div className="developer-range-control">
-      <div className="developer-range-heading">
-        <label htmlFor={id}>{label}</label>
-        <span className="developer-range-value">
-          <input
-            id={`${id}-number`}
-            type="number"
-            aria-label={`${label}数值`}
-            min={min}
-            max={max}
-            step={step}
-            value={draft}
-            onChange={event => {
-              const rawValue = event.target.value;
-              setDraft(rawValue);
-              if (rawValue.trim() === '') return;
-              const parsed = Number(rawValue);
-              if (Number.isFinite(parsed) && parsed >= min && parsed <= max) {
-                const next = normalizeValue(parsed, min, max, step);
-                if (next !== value) onChange(name, next);
-              }
-            }}
-            onBlur={() => apply(draft)}
-            onKeyDown={event => {
-              if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
-              event.preventDefault();
-              apply(draft);
-            }}
-          />
-          <span aria-hidden="true">{unit}</span>
-        </span>
-      </div>
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        aria-valuetext={`${value}${unit}`}
-        onChange={event => {
-          const next = Number(event.target.value);
-          setDraft(String(next));
-          onChange(name, next);
-        }}
-      />
-    </div>
-  );
-}
-
-function SettingsGroup({ title, note, children }) {
-  return (
-    <section className="developer-settings-group">
-      <div className="developer-settings-group-heading">
-        <h4>{title}</h4>
-        <small>{note}</small>
-      </div>
-      <div className="developer-settings-group-content">{children}</div>
-    </section>
-  );
-}
-
-function ColorControl({ name, label, value, onChange }) {
-  const id = useId();
-  return <div className="developer-color-control">
-    <label htmlFor={id}>{label}</label>
-    <span><input id={id} type="color" value={value} onChange={event => onChange(name, event.target.value)} /><output htmlFor={id}>{value.toUpperCase()}</output></span>
-  </div>;
-}
-
-function ToggleControl({ name, label, value, onChange }) {
-  const id = useId();
-  return <label className="developer-settings-toggle" htmlFor={id}>
-    <span>{label}</span>
-    <span className="developer-settings-switch">
-      <input id={id} type="checkbox" checked={value} onChange={event => onChange(name, event.target.checked)} />
-      <span aria-hidden="true" />
-    </span>
-  </label>;
-}
-
 const pages = [
-  { id: 'appearance', label: '外观', title: '透明底板与材质', note: '逐一调整各区域的宽高、透明度、模糊、圆角和颜色；文字保持清晰。', icon: 'M4 5h12v10H4zM4 9h12M8 9v6' },
-  { id: 'navigation', label: '导航', title: '导航文字与尺寸', note: '首页导航的文字层级、图标和顶栏留白。', icon: 'M4 6h12M4 10h8M4 14h12' },
-  { id: 'animation', label: '动画', title: '导航过渡与书册', note: '调整导航移动、书册尺寸、首次翻阅和水墨动效。', icon: 'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
-  { id: 'carousel', label: '轮播', title: '首页照片轮播', note: '调整醒狮文化图鉴的播放节奏与照片动效。', icon: 'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
-  { id: 'layout', label: '布局', title: '布局与页面交互', note: '调整面板布局，并控制页面文字是否接受选中命中。', icon: 'M3 4h14v12H3zM12 4v12' },
+  { id:'common', label:'公共模块', title:'公共材质模板', note:'同一套材质应用到所选范围，各区域尺寸与文字不受影响。', icon:'M3 3h6v6H3zM11 3h6v6h-6zM3 11h6v6H3zM11 11h6v6h-6z' },
+  { id:'appearance', label:'外观', title:'顶栏与设置面板', note:'全局界面材质；内容底板在首页、章节和资料中分别管理。', icon:'M4 5h12v10H4zM4 9h12M8 9v6' },
+  { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
+  { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
+  { id:'chapters', label:'章节', title:'章节专属设置', note:'结构、动作与神态各有独立子页，不混入全局导航。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
+  { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
+  { id:'animation', label:'动画', title:'全局过渡与粒子', note:'导航变速与两套首页导航的粒子开关；书册时长在首页。', icon:'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
+  { id:'carousel', label:'轮播', title:'文化照片轮播', note:'只影响首页文化图鉴的照片与文字切换。', icon:'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
+  { id:'layout', label:'布局', title:'面板布局与页面交互', note:'调整设置面板宽度、推开方式与文字选择。', icon:'M3 4h14v12H3zM12 4v12' },
 ];
-
+const homePages = [{id:'book',label:'书册'},{id:'culture',label:'图鉴'}];
+const chapterPages = [{id:'model',label:'结构'},{id:'action',label:'动作'},{id:'expression',label:'神态'}];
 const easingOptions = [
-  { value: 'smooth', label: '平滑进出', note: '缓慢起步，加速移动，再平稳停下。' },
-  { value: 'swift', label: '快速收拢', note: '快速响应，接近终点时逐渐减速。' },
-  { value: 'soft', label: '柔和缓出', note: '柔和启动，以更长的减速过程落位。' },
+  {value:'smooth',label:'平滑进出',note:'缓慢起步，加速移动，再平稳停下。'},
+  {value:'swift',label:'快速收拢',note:'快速响应，接近终点时逐渐减速。'},
+  {value:'soft',label:'柔和缓出',note:'柔和启动，以更长的减速过程落位。'},
 ];
+const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`bookTitle${suffix}`]]));
 
-export default function DeveloperSettingsPanel({
-  open,
-  settings,
-  onChange,
-  onClose,
-  onReset,
-  panelRef,
-  canPush,
-  onKeyDown,
-  resizeHandle,
-}) {
-  const pushId = useId();
-  const carouselAutoplayId = useId();
-  const panelId = useId();
-  const easingId = useId();
-  const [activePage, setActivePage] = useState('appearance');
-  const tabRefs = useRef([]);
-  const scrollRef = useRef(null);
-  const scrollPositions = useRef({});
-
-  useEffect(() => {
-    if (open && scrollRef.current) {
-      scrollRef.current.scrollTop = scrollPositions.current[activePage] ?? 0;
-    }
-  }, [activePage, open]);
-
+export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle }) {
+  const panelId = useId(), scopeId = useId(), easingId = useId();
+  const [activePage, setActivePage] = useState('common');
+  const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
+  const [scope, setScope] = useState('home');
+  const [material, setMaterial] = useState(defaultMaterial);
+  const [message, setMessage] = useState('尚未应用。编辑模板后，点击下方按钮生效。');
+  const scrollRef = useRef(null), scrollPositions = useRef({});
+  useLayoutEffect(() => {
+    if (open && scrollRef.current) scrollRef.current.scrollTop = scrollPositions.current[activePage] ?? 0;
+  }, [activePage, open, subpages]);
   if (!open) return null;
-
-  function selectPage(pageId) {
+  const selectPage = id => {
     if (scrollRef.current) scrollPositions.current[activePage] = scrollRef.current.scrollTop;
-    setActivePage(pageId);
-  }
-
-  function navigateTabs(event, index) {
-    if (event.nativeEvent.isComposing) return;
-    let nextIndex;
-    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % pages.length;
-    else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index + pages.length - 1) % pages.length;
-    else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = pages.length - 1;
-    else return;
-    event.preventDefault();
-    selectPage(pages[nextIndex].id);
-    tabRefs.current[nextIndex]?.focus();
-  }
-
-  const range = (name, label, min, max, step = 1, unit = 'px') => (
-    <RangeControl
-      name={name}
-      label={label}
-      value={settings[name]}
-      min={min}
-      max={max}
-      step={step}
-      unit={unit}
-      onChange={onChange}
-    />
-  );
-
-  return (
-    <aside
-      className="developer-settings-panel"
-      id="developerSettingsPanel"
-      role="region"
-      aria-label="开发者参数设置"
-      tabIndex={-1}
-      ref={panelRef}
-      onKeyDown={onKeyDown}
-    >
-      {resizeHandle}
-      <div className="developer-settings-header">
-        <div className="developer-settings-heading">
-          <div>
-            <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span>
-            <h2>开发者参数设置</h2>
+    setActivePage(id);
+  };
+  const selectSubpage = (group,id) => {
+    scrollPositions.current[activePage] = 0;
+    setSubpages(current => ({...current,[group]:id}));
+  };
+  const range = (name,label,min,max,step=1,unit='px') => <RangeControl name={name} label={label} value={settings[name]} min={min} max={max} step={step} unit={unit} onChange={onChange} />;
+  const surfaces = prefixes => surfaceDefinitions.filter(surface => prefixes.includes(surface.prefix)).map(surface => {
+    const {prefix,label,heightStep=10} = surface;
+    return <SettingsGroup key={prefix} title={label} note="独立设置">
+      {range(`${prefix}Width`,`${label}宽度`,40,100,1,'%')}
+      {range(`${prefix}Height`,`${label}${prefix === 'bookTitle' ? '最小高度' : '高度'}`,0,900,heightStep)}
+      {prefix === 'bookTitle' && range('bookTitleSpacing','标题底板留白',50,150,1,'%')}
+      <MaterialControls prefix={prefix} label={label} values={settings} onChange={onChange} />
+      <p className="developer-settings-note">宽度相对所属区域；最小高度 0 为自动，内容不会被裁掉。透明度 100 时底色、模糊与淡纹理一并移除。</p>
+    </SettingsGroup>;
+  });
+  const content = id => {
+    switch (id) {
+      case 'common': return <>
+        <SettingsGroup title="公共材质" note="应用后统一保存">
+          <div className="developer-settings-select-control"><label htmlFor={scopeId}>应用范围</label>
+            <select id={scopeId} value={scope} onChange={event => {setScope(event.target.value);setMessage('范围已更改，点击应用后生效。');}}>
+              {Object.entries(surfaceScopes).map(([value,item]) => <option key={value} value={value}>{item.label}</option>)}
+            </select>
           </div>
-          <button
-            className="developer-settings-close"
-            type="button"
-            aria-label="关闭开发者参数"
-            onClick={onClose}
-          >
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="m5 5 10 10M15 5 5 15" />
-            </svg>
-          </button>
-        </div>
-        <p className="developer-settings-intro">按用途分组，调整后立即预览。</p>
-      </div>
-
-      <div className="developer-settings-tabs" role="tablist" aria-label="设置分类" aria-orientation="vertical">
-        {pages.map((page, index) => (
-          <button
-            key={page.id}
-            id={`${panelId}-tab-${page.id}`}
-            type="button"
-            role="tab"
-            aria-selected={activePage === page.id}
-            aria-controls={`${panelId}-page-${page.id}`}
-            tabIndex={activePage === page.id ? 0 : -1}
-            ref={element => { tabRefs.current[index] = element; }}
-            onClick={() => selectPage(page.id)}
-            onKeyDown={event => navigateTabs(event, index)}
-          >
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d={page.icon} /></svg>
-            <span>{page.label}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="developer-settings-scroll" ref={scrollRef}>
-        {pages.map(page => (
-          <div
-            key={page.id}
-            className="developer-settings-page"
-            id={`${panelId}-page-${page.id}`}
-            role="tabpanel"
-            aria-labelledby={`${panelId}-tab-${page.id}`}
-            tabIndex={0}
-            hidden={activePage !== page.id}
-          >
-            <div className="developer-settings-page-heading">
-              <h3>{page.title}</h3>
-              <p className="developer-settings-note">{page.note}</p>
-            </div>
-
-            {page.id === 'appearance' && <>
-              <SettingsGroup title="顶栏外观" note="导航底板">
-                {range('headerWidth', '顶栏宽度', 60, 100, 1, '%')}
-                {range('headerHeight', '顶栏高度', 64, 180)}
-                {range('headerTransparency', '顶栏透明度', 0, 100, 1, '%')}
-                {range('headerBlur', '顶栏模糊强度', 0, 30)}
-                {range('headerRadius', '顶栏圆角', 0, 100)}
-                <ColorControl name="headerColor" label="顶栏底色" value={settings.headerColor} onChange={onChange} />
-                <p className="developer-settings-note">透明度越高，越能透出页面；模糊让背景更柔和。</p>
-              </SettingsGroup>
-
-              <SettingsGroup title="侧栏外观" note="设置背板">
-                {range('panelWidth', '设置背板宽度', 280, 760)}
-                {range('sidebarHeight', '侧栏高度', 50, 100, 1, '%')}
-                {range('sidebarTransparency', '侧栏透明度', 0, 100, 1, '%')}
-                {range('sidebarBlur', '侧栏模糊强度', 0, 30)}
-                {range('sidebarRadius', '侧栏圆角', 0, 100)}
-                <ColorControl name="sidebarColor" label="侧栏底色" value={settings.sidebarColor} onChange={onChange} />
-                <p className="developer-settings-note">调整侧栏背景，文字和控件保持清楚。</p>
-              </SettingsGroup>
-              <SettingsGroup title="阅读底板快速调整" note="同步四处">
-                {range('archivePanelTransparency', '首页阅读底板透明度', 0, 100, 1, '%')}
-                <p className="developer-settings-note">一起调整四处阅读底板的透明度，下方可继续分别细调。</p>
-              </SettingsGroup>
-              {surfaceDefinitions.map(({ prefix, label, heightStep = 10 }) => <SettingsGroup key={prefix} title={label} note="独立材质">
-                {range(`${prefix}Width`, `${label}宽度`, 40, 100, 1, '%')}
-                {range(`${prefix}Height`, `${label}${prefix === 'bookTitle' ? '最小高度' : '高度'}`, 0, 900, heightStep)}
-                {prefix === 'bookTitle' && <>
-                  {range('bookTitleSpacing', '标题底板留白', 50, 150, 1, '%')}
-                  <p className="developer-settings-note">缩小留白可压紧标题与简介；最小高度 0 为自动，文字完整显示所需的高度不会被裁掉。</p>
-                </>}
-                {range(`${prefix}Transparency`, `${label}透明度`, 0, 100, 1, '%')}
-                {range(`${prefix}Blur`, `${label}模糊强度`, 0, 40)}
-                {range(`${prefix}Radius`, `${label}圆角`, 0, 100)}
-                <ColorControl name={`${prefix}Color`} label={`${label}底色`} value={settings[`${prefix}Color`]} onChange={onChange} />
-                <p className="developer-settings-note">宽度相对所属区域；高度 0 为自动，内容较多时自动撑高。透明度 100 时移除底色与模糊。</p>
-                {prefix === 'cultureSources' && <p className="developer-settings-note">此处调整参考资料外区，内部三张卡片在“参考资料卡片”中独立调整。</p>}
-              </SettingsGroup>)}
-            </>}
-
-            {page.id === 'navigation' && <>
-              <SettingsGroup title="导航尺寸" note="字号与间距">
-                {range('headerHeight', '顶栏高度', 64, 180)}
-                {range('navFontSize', '导航标题字号', 14, 28)}
-                {range('helperFontSize', '导航辅助文字字号', 10, 28)}
-                {range('navIconSize', '导航图标尺寸', 24, 56)}
-                {range('brandPadding', '品牌左侧留白', 8, 80)}
-                {range('helperTransparency', '辅助文字透明度', 0, 100, 1, '%')}
-                <p className="developer-settings-note">标题与辅助文字独立调节。切换章节时，图标与文字一起过渡；窗口空间不足时，导航按可用宽度调整。</p>
-              </SettingsGroup>
-              <SettingsGroup title="神态文字" note="简介与解读">
-                {range('expressionOverviewFontSize', '神态简介字号', 16, 32)}
-                {range('expressionDetailFontSize', '神态解读字号', 16, 32)}
-                <p className="developer-settings-note">简介与点击狮头后的解读分别调整，两组字号独立保存。文字底板的尺寸和材质在外观页调整。</p>
-              </SettingsGroup>
-            </>}
-
-            {page.id === 'animation' && <>
-              <SettingsGroup title="运动节奏" note="曲线变速">
-                {range('navigationDuration', '导航动画时长', 200, 1600, 10, 'ms')}
-                <div className="developer-settings-select-control">
-                  <label htmlFor={easingId}>动画变速曲线</label>
-                  <select
-                    id={easingId}
-                    value={settings.navigationEasing}
-                    onChange={event => onChange('navigationEasing', event.target.value)}
-                  >
-                    {easingOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                  </select>
-                  <p className="developer-settings-note">{easingOptions.find(option => option.value === settings.navigationEasing)?.note}</p>
-                </div>
-              </SettingsGroup>
-              <SettingsGroup title="导航与品牌位置" note="位置与间距">
-                {range('compactNavGap', '紧凑导航图标间距', 4, 36)}
-                {range('compactNavInset', '紧凑导航右侧留白', 16, 160)}
-                {range('homeBrandOffset', '首页品牌右移距离', 0, 160)}
-                <p className="developer-settings-note">首页的狮头与“南风有狮”一起右移，进入章节后向左归位；品牌左侧留白另在导航页调整。</p>
-                <p className="developer-settings-note">下方横线标记当前章节。系统开启减少动态效果时，导航与品牌直接切换到目标位置。</p>
-              </SettingsGroup>
-              <SettingsGroup title="画册首次翻阅" note="自动开卷节奏">
-                {range('bookScale', '书册放大比例', 90, 145, 1, '%')}
-                {range('bookStageHeight', '书册展示区高度', 480, 960, 10)}
-                {range('bookIntroDuration', '画册首次翻阅时长', 3, 30, 1, '秒')}
-                <ToggleControl name="bookInkEnabled" label="书册导航粒子拖尾" value={settings.bookInkEnabled} onChange={onChange} />
-                <p className="developer-settings-note">默认12秒完成七次翻页。进行中调整会平滑改变剩余速度，不影响手动翻页，也不会重播已经结束的首次翻阅。</p>
-              </SettingsGroup>
-            </>}
-
-            {page.id === 'carousel' && <>
-              <SettingsGroup title="播放节奏" note="自动与恢复">
-                <label className="developer-settings-toggle" htmlFor={carouselAutoplayId}>
-                  <span>照片自动播放</span>
-                  <span className="developer-settings-switch">
-                    <input
-                      id={carouselAutoplayId}
-                      type="checkbox"
-                      checked={settings.carouselAutoplay}
-                      onChange={event => onChange('carouselAutoplay', event.target.checked)}
-                    />
-                    <span aria-hidden="true" />
-                  </span>
-                </label>
-                {range('carouselInterval', '自动播放间隔', 2, 30, 1, '秒')}
-                {range('carouselResumeDelay', '离开后恢复等待', 1, 15, 1, '秒')}
-                <p className="developer-settings-note">仅悬停前景照片时暂停，点击照片可查看下一张。离开照片后先等待，再重新计算播放间隔。</p>
-              </SettingsGroup>
-              <SettingsGroup title="照片动效" note="过渡与聚焦">
-                {range('carouselTransitionDuration', '照片过渡时长', 300, 1600, 50, 'ms')}
-                {range('carouselFocusScale', '照片聚焦比例', 101, 110, 1, '%')}
-                <p className="developer-settings-note">悬停前景照片时轻微放大，104% 表示原尺寸的 1.04 倍。系统开启减少动态效果时，保留静态图片与手动切换。</p>
-              </SettingsGroup>
-            </>}
-
-            {page.id === 'layout' && <>
-              <SettingsGroup title="页面命中" note="文字选择">
-                <ToggleControl name="pageHitEnabled" label="网页页面是否能被命中" value={settings.pageHitEnabled} onChange={onChange} />
-                <p className="developer-settings-note">默认关闭正文选中与首页视频命中，减少取词、画中画等浮窗；导航、模型与书册按钮仍可操作。浏览器扩展自身的浮窗由扩展管理。</p>
-              </SettingsGroup>
-              <SettingsGroup title="面板布局" note="覆盖或推开">
-                <label className="developer-settings-toggle" htmlFor={pushId}>
-                  <span>设置面板推开页面</span>
-                  <span className="developer-settings-switch">
-                    <input
-                      id={pushId}
-                      type="checkbox"
-                      checked={settings.pushPage}
-                      onChange={event => onChange('pushPage', event.target.checked)}
-                    />
-                    <span aria-hidden="true" />
-                  </span>
-                </label>
-                <p className="developer-settings-note" aria-live="polite">
-                  {settings.pushPage && !canPush
-                    ? '窗口空间不足，暂时覆盖显示；加宽窗口后自动推开页面。'
-                    : settings.pushPage
-                      ? '页面为侧栏留出空间，关闭面板后恢复。'
-                      : '面板覆盖在页面右侧，页面保持原有宽度。'}
-                </p>
-                {range('panelWidth', '设置面板宽度', 280, 760)}
-                <p className="developer-settings-note">悬停顶栏底边或侧栏左边，也可拖动调节尺寸。</p>
-              </SettingsGroup>
-            </>}
+          <MaterialControls label="公共" values={material} onChange={(name,value) => { setMaterial(current => ({...current,[name]:value})); setMessage('模板已修改，点击应用后生效。'); }} />
+          <button type="button" className="developer-settings-apply" onClick={() => {
+            onApplyMaterial(scope,material);
+            setMessage(`已应用到${surfaceScopes[scope].prefixes.length}处底板；宽高、字号与播放偏好保持不变。`);
+          }}>应用公共材质</button>
+          <p className="developer-settings-note developer-settings-feedback" role="status">{message}</p>
+        </SettingsGroup>
+        <SettingsGroup title="首页阅读快速调整" note="即时预览">
+          {range('archivePanelTransparency','首页阅读底板透明度',0,100,1,'%')}
+          <p className="developer-settings-note">仅同步书册与图鉴的四处透明度。独立微调请前往“首页”；此项不改公共模板。</p>
+        </SettingsGroup>
+      </>;
+      case 'appearance': return <>
+        <SettingsGroup title="顶栏外观" note="导航底板">
+          {range('headerWidth','顶栏宽度',60,100,1,'%')}{range('headerHeight','顶栏高度',64,180)}
+          {range('headerTransparency','顶栏透明度',0,100,1,'%')}{range('headerBlur','顶栏模糊强度',0,30)}
+          {range('headerRadius','顶栏圆角',0,100)}<ColorControl name="headerColor" label="顶栏底色" value={settings.headerColor} onChange={onChange}/>
+        </SettingsGroup>
+        <SettingsGroup title="侧栏外观" note="设置背板">
+          {range('sidebarHeight','侧栏高度',50,100,1,'%')}{range('sidebarTransparency','侧栏透明度',0,100,1,'%')}
+          {range('sidebarBlur','侧栏模糊强度',0,30)}{range('sidebarRadius','侧栏圆角',0,100)}
+          <ColorControl name="sidebarColor" label="侧栏底色" value={settings.sidebarColor} onChange={onChange}/>
+        </SettingsGroup>
+      </>;
+      case 'navigation': return <>
+        <SettingsGroup title="导航文字与图案" note="全站通用">
+          {range('navFontSize','导航标题字号',14,28)}{range('helperFontSize','导航辅助文字字号',10,28)}
+          {range('navIconSize','导航图标尺寸',24,56)}{range('helperTransparency','辅助文字透明度',0,100,1,'%')}
+        </SettingsGroup>
+        <SettingsGroup title="导航与品牌位置" note="位置与间距">
+          {range('brandPadding','品牌左侧留白',8,80)}{range('compactNavGap','紧凑导航图标间距',4,36)}
+          {range('compactNavInset','紧凑导航右侧留白',16,160)}{range('homeBrandOffset','首页品牌右移距离',0,160)}
+        </SettingsGroup>
+      </>;
+      case 'home': return <SettingsSubpages label="首页设置分区" items={homePages} value={subpages.home} onChange={id => selectSubpage('home',id)}>{value => value === 'book' ? <>
+        {surfaces(['bookTitle','bookDetails'])}
+        <SettingsGroup title="画册首次翻阅" note="自动开卷节奏">
+          {range('bookScale','书册放大比例',90,145,1,'%')}{range('bookStageHeight','书册展示区高度',480,960,10)}
+          {range('bookIntroDuration','画册首次翻阅时长',3,30,1,'秒')}
+          <p className="developer-settings-note">默认12秒完成七次翻页；调整不会重播已完成的首次翻阅，也不改变手动翻页物理。</p>
+        </SettingsGroup>
+      </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
+      case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
+        {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
+        {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
+          {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
+        </SettingsGroup>}
+      </>}</SettingsSubpages>;
+      case 'sources': return surfaces(['cultureSources','cultureSourceCard']);
+      case 'animation': return <>
+        <SettingsGroup title="运动节奏" note="全局导航">
+          {range('navigationDuration','导航动画时长',200,1600,10,'ms')}
+          <div className="developer-settings-select-control"><label htmlFor={easingId}>动画变速曲线</label>
+            <select id={easingId} value={settings.navigationEasing} onChange={event => onChange('navigationEasing',event.target.value)}>
+              {easingOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+            </select><p className="developer-settings-note">{easingOptions.find(option => option.value === settings.navigationEasing)?.note}</p>
           </div>
-        ))}
-      </div>
-
-      <div className="developer-settings-footer">
-        <p className="developer-settings-note">参数在此浏览器自动保存</p>
-        <button className="developer-settings-reset" type="button" onClick={onReset}>
-          恢复默认参数
-        </button>
-      </div>
-    </aside>
-  );
+        </SettingsGroup>
+        <SettingsGroup title="首页导航粒子" note="两套导航共用">
+          <ToggleControl name="bookInkEnabled" label="书册导航粒子拖尾" value={settings.bookInkEnabled} onChange={onChange}/>
+          <p className="developer-settings-note">同步控制七年代角色与左侧栏目导航的粒子。减少动态时自动停止；书册尺寸与时长在“首页→书册”。</p>
+        </SettingsGroup>
+      </>;
+      case 'carousel': return <>
+        <SettingsGroup title="播放节奏" note="自动与恢复">
+          <ToggleControl name="carouselAutoplay" label="照片自动播放" value={settings.carouselAutoplay} onChange={onChange}/>
+          {range('carouselInterval','自动播放间隔',2,30,1,'秒')}{range('carouselResumeDelay','离开后恢复等待',1,15,1,'秒')}
+          <p className="developer-settings-note">悬停前景照片暂停；点击查看下一张，移开后等待再恢复。</p>
+        </SettingsGroup>
+        <SettingsGroup title="照片动效" note="过渡与聚焦">
+          {range('carouselTransitionDuration','照片过渡时长',300,1600,50,'ms')}{range('carouselFocusScale','照片聚焦比例',101,110,1,'%')}
+          <p className="developer-settings-note">减少动态时保留静态图片与手动切换，不自动播放。</p>
+        </SettingsGroup>
+      </>;
+      case 'layout': return <>
+        <SettingsGroup title="页面命中" note="文字选择">
+          <ToggleControl name="pageHitEnabled" label="网页页面是否能被命中" value={settings.pageHitEnabled} onChange={onChange}/>
+          <p className="developer-settings-note">默认关闭正文选中与视频命中；导航、模型、书册按钮仍可操作。</p>
+        </SettingsGroup>
+        <SettingsGroup title="面板布局" note="覆盖或推开">
+          <ToggleControl name="pushPage" label="设置面板推开页面" value={settings.pushPage} onChange={onChange}/>
+          <p className="developer-settings-note" aria-live="polite">{settings.pushPage && !canPush ? '窗口空间不足，暂时覆盖显示；加宽窗口后自动推开页面。' : settings.pushPage ? '页面为侧栏留出空间，关闭面板后恢复。' : '面板覆盖在页面右侧，页面保持原有宽度。'}</p>
+          {range('panelWidth','设置面板宽度',280,760)}
+          <p className="developer-settings-note">顶栏底边与面板左边仍可拖动，参数会自动保存。</p>
+        </SettingsGroup>
+      </>;
+    }
+  };
+  return <aside className="developer-settings-panel" id="developerSettingsPanel" role="region" aria-label="开发者参数设置" tabIndex={-1} ref={panelRef} onKeyDown={onKeyDown}>
+    {resizeHandle}
+    <div className="developer-settings-header"><div className="developer-settings-heading"><div>
+      <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
+    </div><button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
+    <p className="developer-settings-intro">公共模板统一应用，页面参数独立微调。</p></div>
+    <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
+    <div className="developer-settings-scroll" ref={scrollRef} onScroll={() => { scrollPositions.current[activePage] = scrollRef.current.scrollTop; }}>
+      {pages.map(page => <div key={page.id} className="developer-settings-page" id={`${panelId}-page-${page.id}`} role="tabpanel" aria-labelledby={`${panelId}-tab-${page.id}`} tabIndex={0} hidden={activePage !== page.id}>
+        <div className="developer-settings-page-heading"><h3>{page.title}</h3><p className="developer-settings-note">{page.note}</p></div>
+        {content(page.id)}
+      </div>)}
+    </div>
+    <div className="developer-settings-footer"><p className="developer-settings-note">独立参数与应用结果自动保存 · 模板草稿仅本次会话</p>
+      <button className="developer-settings-reset" type="button" onClick={() => {onReset();setMaterial(defaultMaterial);setScope('home');setMessage('已恢复默认参数与公共模板。');}}>恢复默认参数</button>
+    </div>
+  </aside>;
 }
