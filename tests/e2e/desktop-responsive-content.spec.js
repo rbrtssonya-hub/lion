@@ -123,7 +123,7 @@ test('桌面缩放后的窄余宽将神态目录移到上方，保留全部八�
   }
 });
 
-test('设置面板按900px余宽回退且不覆盖保存偏好，窄面板可操作九页', async ({ page }) => {
+test('设置面板按900px余宽回退且不覆盖保存偏好，窄面板可操作十页', async ({ page }) => {
   await open(page);
   await page.locator('.site-header [data-action="settings"]').click();
   const panel = page.getByRole('region', { name: '开发者参数设置' });
@@ -142,7 +142,7 @@ test('设置面板按900px余宽回退且不覆盖保存偏好，窄面板可操
   }
   await field.fill('280'); await field.press('Tab');
   const tabs = panel.getByRole('tablist', { name: '设置分类', exact: true }).getByRole('tab');
-  await expect(tabs).toHaveCount(9);
+  await expect(tabs).toHaveCount(10);
   for (const tab of await tabs.all()) {
     await tab.click(); await expect(tab).toHaveAttribute('aria-selected', 'true');
     const lastControl = panel.locator('.developer-settings-page:visible').locator('input:visible,select:visible,button:visible').last();

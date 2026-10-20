@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', '资料', '动画', '轮播', '布局'];
+export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', 'HDRI', '资料', '动画', '轮播', '布局'];
 export const settingsPanel = page => page.getByRole('region', { name: '开发者参数设置', exact: true });
 
 // Route by the unchanged accessible label or storage/surface prefix. Keep main
@@ -14,6 +14,7 @@ const routes = [
   [['modelOverlay', '结构资料'], ['章节', '结构']],
   [['actionOverlay', 'videoOverlay', '动作目录', '视频提示'], ['章节', '动作']],
   [['expressionOverlay', 'expressionOverviewFontSize', 'expressionDetailFontSize', '神态文字', '神态简介', '神态解读'], ['章节', '神态']],
+  [['hdri', 'HDRI', '辅助灯光'], ['HDRI']],
   [['cultureSources', 'cultureSourceCard', '参考资料'], ['资料']],
   [['navigationDuration', 'navigationEasing', 'bookInkEnabled', '导航动画', '动画变速', '书册导航粒子'], ['动画']],
   [['carousel', '照片', '自动播放间隔', '离开后恢复等待'], ['轮播']],

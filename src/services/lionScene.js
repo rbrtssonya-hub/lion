@@ -5,7 +5,6 @@ import {
   Group,
   HemisphereLight,
   PerspectiveCamera,
-  PMREMGenerator,
   Raycaster,
   Scene,
   SRGBColorSpace,
@@ -14,10 +13,10 @@ import {
   WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from 'three-mesh-bvh';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
+import { createLionLightingControls } from './lionLightingSettings.js';
 
 const activeScenes = new WeakMap();
 
@@ -110,6 +109,8 @@ export async function createLionScene({
   autoRotate = false,
   active = true,
   hotspots = [],
+  lightingSettings,
+  onLightingStatus = () => {},
   onStatus = () => {},
   onAutoRotateChange = () => {},
   onSelectPart = () => {},
@@ -123,7 +124,7 @@ export async function createLionScene({
   const camera = new PerspectiveCamera(34, 1, 0.025, 30);
   camera.position.set(2.7, 1.05, 4);
   let renderer;
-  let environmentTarget;
+  let lighting;
   let maxRenderSize;
   let controls;
   let observer;
@@ -334,11 +335,11 @@ export async function createLionScene({
     window.removeEventListener('blur', clearPointer);
     interactionElement.style.cursor = '';
     controls?.dispose();
+    lighting?.dispose();
     fullLion?.release();
     fullLion = null;
     disposeResources(scene, ...modelScenes);
     scene.environment = null;
-    environmentTarget?.dispose();
     modelScenes = [];
     scene.clear();
     if (renderer) {
@@ -367,19 +368,6 @@ export async function createLionScene({
     // Three.js and Blender's OCIO transforms are not pixel-identical.
     renderer.toneMapping = AgXToneMapping;
     renderer.toneMappingExposure = 1;
-    // The authored PBR model includes metallic trim. A neutral environment
-    // gives those surfaces reflections without adding any visible backdrop.
-    // r160 needs the renderer to choose physical-light intensity (900 vs 5).
-    // Omitting it leaves the room dark between its bright reflection panels.
-    const environment = new RoomEnvironment(renderer);
-    const pmrem = new PMREMGenerator(renderer);
-    try {
-      environmentTarget = pmrem.fromScene(environment, 0.04);
-      scene.environment = environmentTarget.texture;
-    } finally {
-      environment.dispose();
-      pmrem.dispose();
-    }
     renderer.domElement.addEventListener('webglcontextlost', onContextLost);
     container.appendChild(renderer.domElement);
 
@@ -416,6 +404,10 @@ export async function createLionScene({
     const rim = new DirectionalLight(0xfff0df, 0.65);
     rim.position.set(0.5, 2.8, -2.1);
     scene.add(rim);
+    lighting = createLionLightingControls({
+      renderer, scene, signal: loadController.signal, settings: lightingSettings,
+      onStatus: onLightingStatus, requestDraw,
+    });
 
     signal?.addEventListener('abort', dispose, { once: true });
     if (typeof ResizeObserver !== 'undefined') {
@@ -528,6 +520,11 @@ export async function createLionScene({
     modelGroup.position.y = -0.066;
     scene.add(modelGroup);
     modelGroup.updateMatrixWorld(true);
+    lighting.refresh();
+    // A missing environment is reported separately and can be retried without
+    // discarding the complete model or its camera/selection state.
+    await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });
+    if (disposed || signal?.aborted) throw aborted();
     // Fit the complete new lion into the left interaction area, including its
     // tail and paws. The transparent canvas still extends across the page.
     const fittedBox = new Box3().setFromObject(modelGroup);
@@ -582,6 +579,8 @@ export async function createLionScene({
     report({ phase: 'ready', message: '模型已载入 · 可交互' });
 
     return {
+      setLightingSettings: value => lighting?.update(value),
+      retryHdri: () => lighting?.retry(),
       setActive(value) {
         if (disposed || isActive === Boolean(value)) return;
         isActive = Boolean(value);

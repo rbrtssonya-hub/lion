@@ -154,11 +154,11 @@ export default function App() {
         <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
           <ModelPreparationBoundary onReady={success => reportStartupTask('model', success)}>
           <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
-            <ModelPage active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
+            <ModelPage lightingSettings={settings} active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {route !== 'entry' && route !== 'model' && <ChapterPage route={route} observation={observation} onReturnToModel={returnToModel} />}
+        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}

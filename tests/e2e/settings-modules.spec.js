@@ -26,7 +26,7 @@ const stored = page => page.evaluate(key => JSON.parse(localStorage.getItem(key)
 
 test('settings separate common, home, chapter and source controls into focused pages', async ({page}) => {
   await open(page);
-  await expect(panel(page).getByRole('tablist', {name:'设置分类'}).getByRole('tab')).toHaveText(['公共模块','外观','导航','首页','章节','资料','动画','轮播','布局']);
+  await expect(panel(page).getByRole('tablist', {name:'设置分类'}).getByRole('tab')).toHaveText(['公共模块','外观','导航','首页','章节','HDRI','资料','动画','轮播','布局']);
   await expect(panel(page).getByRole('tabpanel')).toHaveCount(1);
   await expect(panel(page).getByRole('button', {name:'应用公共材质',exact:true})).toBeVisible();
   await tab(page, '首页');

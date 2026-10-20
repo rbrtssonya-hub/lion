@@ -1,5 +1,6 @@
 import { useLayoutEffect, useId, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSettings.js';
+import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
@@ -10,6 +11,7 @@ const pages = [
   { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
   { id:'chapters', label:'章节', title:'章节专属设置', note:'结构、动作与神态各有独立子页，不混入全局导航。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
+  { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时生效并自动保存。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
   { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
   { id:'animation', label:'动画', title:'全局过渡与粒子', note:'导航变速与两套首页导航的粒子开关；书册时长在首页。', icon:'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
   { id:'carousel', label:'轮播', title:'文化照片轮播', note:'只影响首页文化图鉴的照片与文字切换。', icon:'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
@@ -45,6 +47,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     setSubpages(current => ({...current,[group]:id}));
   };
   const range = (name,label,min,max,step=1,unit='px') => <RangeControl name={name} label={label} value={settings[name]} min={min} max={max} step={step} unit={unit} onChange={onChange} />;
+  const hdriRange = (name,label,unit) => range(name,label,...hdriRanges[name],unit);
   const surfaces = prefixes => surfaceDefinitions.filter(surface => prefixes.includes(surface.prefix)).map(surface => {
     const {prefix,label,heightStep=10} = surface;
     return <SettingsGroup key={prefix} title={label} note="独立设置">
@@ -113,6 +116,26 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup>}
       </>}</SettingsSubpages>;
       case 'sources': return surfaces(['cultureSources','cultureSourceCard']);
+      case 'hdri': return <>
+        <SettingsGroup title="环境贴图" note="结构 · 动作">
+          <p className="developer-settings-note">citrus_orchard_road_puresky_4k.exr</p>
+          <ToggleControl name="hdriEnabled" label="HDRI环境照明" value={settings.hdriEnabled} onChange={onChange}/>
+          <p className="developer-settings-note">贴图只用于照明与反射，保留结构页背景与动作剧场场景。</p>
+        </SettingsGroup>
+        <SettingsGroup title="HDRI参数" note="两章同步">
+          {hdriRange('hdriIntensity','HDRI强度','倍')}
+          {hdriRange('hdriRotation','HDRI水平旋转','°')}
+          {hdriRange('hdriExposure','HDRI曝光补偿','EV')}
+          <p className="developer-settings-note">旋转改变光线方向；曝光作用于整个3D画面，每增加1 EV，曝光倍率翻倍。</p>
+        </SettingsGroup>
+        <SettingsGroup title="辅助灯光" note="配合环境光">
+          {hdriRange('hdriLightIntensity','辅助灯光强度','倍')}
+          <p className="developer-settings-note">调节场景原有主光、补光、轮廓光与建筑灯。设为0可关闭辅助灯光；视频与发光装饰不受影响。</p>
+          <button type="button" className="developer-settings-reset" onClick={() => {
+            for (const [name,value] of Object.entries(hdriDefaults)) onChange(name,value);
+          }}>恢复HDRI默认参数</button>
+        </SettingsGroup>
+      </>;
       case 'animation': return <>
         <SettingsGroup title="运动节奏" note="全局导航">
           {range('navigationDuration','导航动画时长',200,1600,10,'ms')}

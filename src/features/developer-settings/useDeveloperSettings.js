@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes } from './surfaceSettings.js';
+import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
+import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
 const navigationTypographyVersion = 2;
@@ -43,6 +45,7 @@ export const defaultDeveloperSettings = Object.freeze({
   panelWidth: 340,
   pushPage: true,
   ...surfaceDefaults,
+  ...hdriDefaults,
 });
 
 const ranges = {
@@ -65,6 +68,7 @@ const ranges = {
   carouselInterval: [2, 30, 1], carouselResumeDelay: [1, 15, 1],
   carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
   ...surfaceRanges,
+  ...hdriRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {
@@ -81,7 +85,7 @@ export function normalizeDeveloperSetting(name, value) {
   }
   const [min, max, step] = ranges[name];
   if (typeof value !== 'number' || !Number.isFinite(value)) return defaultDeveloperSettings[name];
-  return min + Math.round((Math.min(max, Math.max(min, value)) - min) / step) * step;
+  return snapSettingsRange(value, min, max, step);
 }
 
 function resolveSettings(settings) {

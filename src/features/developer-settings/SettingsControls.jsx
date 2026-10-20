@@ -1,10 +1,11 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { snapSettingsRange } from './rangeSettings.js';
 
 export function RangeControl({ name, label, value, min, max, step = 1, unit = 'px', onChange }) {
   const id = useId();
   const [draft, setDraft] = useState(String(value));
   useEffect(() => { setDraft(String(value)); }, [value]);
-  const normalize = value => min + Math.round((Math.min(max, Math.max(min, value)) - min) / step) * step;
+  const normalize = value => snapSettingsRange(value, min, max, step);
   const apply = raw => {
     const next = raw.trim() === '' || !Number.isFinite(Number(raw)) ? value : normalize(Number(raw));
     setDraft(String(next));

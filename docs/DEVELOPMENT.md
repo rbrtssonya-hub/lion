@@ -14,7 +14,9 @@
 
 ## 环境与运行
 
-2026-10-20照明审核修复了两章 `RoomEnvironment` 未传 renderer 的问题：Three r160 物理灯光下必须使用 `new RoomEnvironment(renderer)`，否则环境墙面的主灯为5而非900，会造成红毛黑斑。当前两章采用AgX类别色调映射、曝光1；结构主/辅/轮廓光为1.6/0.9/0.65，补足暗侧；动作降低暖光峰值并增加中性正侧补光。只调整运行时照明，模型、毛发与源材质参数不重写。对照工具在Vite开发服务运行时执行 `node scripts/audit_lion_lighting.mjs --base-url 5198 --output tmp/lion-lighting-audit --baseline-ref 62bcd8e`，固定9个渲染案例比较前后实际绘制，并用保留深度遮挡的诊断遮罩统计红毛和白毛。视觉验收及范围见[本轮照明记录](../source/references/lion-lighting-2026-10-20.md)。
+2026-10-21结构与动作环境改用用户指定的 `citrus_orchard_road_puresky_4k.exr`（4096×2048原字节），由 `lionHdriEnvironment.js` 以线性半浮点EXR和PMREM生成照明与反射，不显示为网页背景。设置→HDRI为两章共用参数：开关、强度、水平旋转、曝光补偿和辅助灯倍率，保存到原有偏好；HDRI专用复原不重置其他字段。r160没有`scene.environmentRotation`或`environmentIntensity`，因此保留完整分辨率GPU旋转后重新预过滤，140ms合并拖动；强度作用于实例材质原环境倍率，EV作用于renderer的`2 ** EV`曝光，辅助灯按各灯初始强度缩放。只共享解码CPU数据，各renderer独立持有并回收纹理和PMREM；失败保留完整模型并提供“重新载入 HDRI”，不重建模型。修改后运行 `tests/e2e/hdri-settings.spec.js`，真实像素验证参数，不能仅以dataset值变化宣称生效。来源、默认值和验收见[HDRI说明](../source/references/lion-hdri-2026-10-21.md)。
+
+2026-10-20曾修复 `RoomEnvironment` 未传renderer导致的暗面欠照；本轮已由指定EXR替换该环境，原主/辅/轮廓灯作为可调辅助光保留。旧固定相机照明对照工具 `scripts/audit_lion_lighting.mjs` 和[当日证据](../source/references/lion-lighting-2026-10-20.md)只追溯该阶段，不代替当前HDRI回归。模型、全部毛发数据与着色器均未改。
 
 在根目录运行 `npm ci` 安装锁定版本，再运行 `npm run dev`。Vite 使用根 `index.html`，生产构建输出到独立 `dist/`，不会覆盖源码或创作资源。
 

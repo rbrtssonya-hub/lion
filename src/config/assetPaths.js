@@ -52,6 +52,7 @@ export const assetPaths = {
   expressionDoubt: 'assets/expression/lion-doubt-v2.png',
   model: 'assets/models/lion-user-full.glb',
   modelHair: 'assets/models/lion-user-hair.json',
+  lionHdri: 'assets/environments/citrus_orchard_road_puresky_4k.exr',
   lionHair01: 'assets/models/lion-user-hair-01.bin.gz',
   lionHair02: 'assets/models/lion-user-hair-02.bin.gz',
   lionHair03: 'assets/models/lion-user-hair-03.bin.gz',

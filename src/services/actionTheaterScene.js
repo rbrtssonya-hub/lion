@@ -10,7 +10,6 @@ import {
   MeshBasicMaterial,
   PCFSoftShadowMap,
   PerspectiveCamera,
-  PMREMGenerator,
   Scene,
   SpotLight,
   SRGBColorSpace,
@@ -21,12 +20,12 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
+import { createLionLightingControls } from './lionLightingSettings.js';
 
 const mountedScenes = new WeakMap();
 const ROTATION_SPEED = Math.PI * 2 / 36;
@@ -228,6 +227,8 @@ export function createActionTheater({
   onReady = () => {},
   onError = () => {},
   onAnchorUpdate = () => {},
+  lightingSettings,
+  onLightingStatus = () => {},
 }) {
   mountedScenes.get(container)?.();
   const loadController = new AbortController();
@@ -245,7 +246,8 @@ export function createActionTheater({
   let renderer;
   let controls;
   let observer;
-  let environmentTarget;
+  let lighting;
+  let currentLightingSettings = lightingSettings;
   let lionRoot;
   let fullLion;
   let architecture;
@@ -602,6 +604,7 @@ export function createActionTheater({
     controls?.removeEventListener('start', onControlStart);
     controls?.removeEventListener('end', onControlEnd);
     controls?.dispose();
+    lighting?.dispose();
     screenRecords.forEach((record) => {
       record.removeVideoListeners?.();
       record.videoTexture?.dispose();
@@ -615,7 +618,6 @@ export function createActionTheater({
     screenRecords.clear();
     pendingVideos.clear();
     scene.environment = null;
-    environmentTarget?.dispose();
     scene.traverse((object) => { if (object.isLight) object.dispose?.(); });
     if (renderer) {
       renderer.domElement.removeEventListener('webglcontextlost', onContextLost);
@@ -631,6 +633,8 @@ export function createActionTheater({
   }
 
   const api = {
+    setLightingSettings(value) { currentLightingSettings = value; lighting?.update(value); },
+    retryHdri: () => lighting?.retry(),
     setVideo,
     setVisible(value) {
       if (disposed || visible === Boolean(value)) return;
@@ -697,12 +701,6 @@ export function createActionTheater({
       } else window.addEventListener('resize', resize);
       resize();
 
-      // Supply the physical-light renderer; otherwise r160 underlights the
-      // environment walls and produces near-black bands in the dense fur.
-      const environment = new RoomEnvironment(renderer);
-      const pmrem = new PMREMGenerator(renderer);
-      try { environmentTarget = pmrem.fromScene(environment, 0.03); scene.environment = environmentTarget.texture; }
-      finally { environment.dispose(); pmrem.dispose(); }
       scene.add(new HemisphereLight(0xfff4e8, 0x665a50, 0.35));
       const key = new DirectionalLight(0xffedda, 2.2);
       key.name = 'Theater_Warm_Front_Key';
@@ -741,6 +739,10 @@ export function createActionTheater({
         scene.add(wash, wash.target);
       }
 
+      lighting = createLionLightingControls({
+        renderer, scene, signal: loadController.signal, settings: currentLightingSettings,
+        onStatus: onLightingStatus, requestDraw: requestFrame,
+      });
       loadTimeout = setTimeout(() => fail(new Error('巨幕厅载入超时，请检查网络后重新载入')), 60_000);
       const response = await fetch(modelUrl, { signal: loadController.signal });
       if (!response.ok) throw new Error(`巨幕厅请求失败：HTTP ${response.status}`);
@@ -830,6 +832,9 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
+      lighting.refresh();
+      await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });
+      if (disposed) return;
       // r160 compileAsync owns uncancellable timers that read material programs
       // after disposal. Submit compilation synchronously after header motion;
       // the first render can finish GPU work without leaving callbacks behind.

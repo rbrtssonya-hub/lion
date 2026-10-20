@@ -1,0 +1,1162 @@
+{
+  "date": "2026-10-21",
+  "workspace": "E:/数字媒体竞赛/张钧儒/lion",
+  "baseline": "main@7a597a8",
+  "scope": "provided 4K EXR lights both complete-lion scenes; dedicated persisted HDRI settings page; preserve all model/hair data",
+  "implementation": {
+    "three": "0.160.0",
+    "environmentSource": {
+      "from": "D:/04_EdgeDownload/citrus_orchard_road_puresky_4k.exr",
+      "path": "source/public/assets/environments/citrus_orchard_road_puresky_4k.exr",
+      "bytes": 70720809,
+      "sha256": "8aa6cc5bb4a5a8f5fa12870cefdd6a6b600072454add837dca45e340c1549d30"
+    },
+    "dimensions": [
+      4096,
+      2048
+    ],
+    "compression": "PIZ",
+    "linearDecodedType": "HalfFloatType",
+    "pmremCubeSize": 1024,
+    "pmremTargetSize": [
+      3072,
+      4096
+    ],
+    "yawDebounceMs": 140,
+    "requestTimeoutMs": 30000,
+    "backgroundsUnchanged": true,
+    "sourceResolutionRetained": true,
+    "sharing": "reference-counted CPU decode; per-renderer GPU textures and PMREM",
+    "retry": "same canvas, model, hair and camera retained"
+  },
+  "preservation": {
+    "originalAndArchivedBlendSha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+    "runtimeGlbSha256": "0a0a855cde7981e9eef2f622863bbae64bda3e156791f3410d89cf8051f02e00",
+    "protectedGitPathsUnchanged": true,
+    "meshCount": 53,
+    "nodeCount": 102,
+    "hairGroups": 33,
+    "hairStrands": 2295421,
+    "hairSourcePoints": 19957105,
+    "renderLines": 25380208,
+    "sourceHairShaderUnchanged": true,
+    "originalManifestEntriesUnchanged": 507,
+    "manifestEntries": 516,
+    "publicAndDistByteEqual": 124,
+    "exrOriginalRuntimeDistShaEqual": true
+  },
+  "settings": {
+    "page": "设置 → HDRI",
+    "totalTopLevelPages": 10,
+    "commonTo": [
+      "结构",
+      "动作"
+    ],
+    "hdriEnabled": {
+      "default": true
+    },
+    "hdriIntensity": {
+      "default": 1,
+      "range": [
+        0,
+        3
+      ],
+      "step": 0.05
+    },
+    "hdriRotation": {
+      "default": 0,
+      "range": [
+        -180,
+        180
+      ],
+      "step": 1
+    },
+    "hdriExposure": {
+      "default": 0,
+      "range": [
+        -2,
+        2
+      ],
+      "step": 0.1,
+      "unit": "EV",
+      "rendererExposure": "2 ** EV"
+    },
+    "hdriLightIntensity": {
+      "default": 1,
+      "range": [
+        0,
+        2
+      ],
+      "step": 0.05,
+      "scope": "all direct/hemisphere/architectural lights, excluding emissive surfaces and video"
+    },
+    "legacyPreferences": "missing fields gain defaults; existing controls preserved",
+    "hdriOnlyReset": "only the five HDRI fields"
+  },
+  "verification": {
+    "environment": "Windows / Node24.16.0 / installed Chrome channel, desktop only",
+    "npmTest": {
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 4187.2594
+    },
+    "build": {
+      "modules": 328,
+      "durationSeconds": 1.74,
+      "passed": true,
+      "existingChunkWarning": "three.module 538.04 kB exceeds 500 kB advisory"
+    },
+    "initialBrowserBatch": {
+      "rawReport": "tmp/hdri-e2e.json",
+      "rawSha256": "60d28df9bc61013a6e9201b3b0e469a21d6d99aa88bc66d91a2e690f27e3cde8",
+      "stats": {
+        "startTime": "2026-10-20T16:37:55.977Z",
+        "duration": 178161.243,
+        "expected": 13,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "设置面板按900px余宽回退且不覆盖保存偏好，窄面板可操作十页",
+          "file": "desktop-responsive-content.spec.js",
+          "status": "expected",
+          "durationMs": 10830
+        },
+        {
+          "title": "十个主分类纵向排列，主子页面键盘切换并保留已调参数与当前类别",
+          "file": "developer-settings.spec.js",
+          "status": "expected",
+          "durationMs": 12843
+        },
+        {
+          "title": "280px侧栏完整显示十个主分类，轮播滑块及数值校验范围与步长",
+          "file": "developer-settings.spec.js",
+          "status": "expected",
+          "durationMs": 11203
+        },
+        {
+          "title": "HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 20439
+        },
+        {
+          "title": "结构页真实EXR强度、旋转和曝光改变像素，同一画布保留完整毛发",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 20362
+        },
+        {
+          "title": "动作共享HDRI并实时改变实际模型照明，跨章请求复用且退出释放场景",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 16019
+        },
+        {
+          "title": "结构HDRI下载失败保留模型，原画布重试恢复环境光",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 10943
+        },
+        {
+          "title": "动作HDRI下载失败保留模型，原画布重试恢复环境光",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 12745
+        },
+        {
+          "title": "settings separate common, home, chapter and source controls into focused pages",
+          "file": "settings-modules.spec.js",
+          "status": "expected",
+          "durationMs": 9895
+        },
+        {
+          "title": "common material applies only on command to selected surfaces, preserving dimensions and old preferences",
+          "file": "settings-modules.spec.js",
+          "status": "expected",
+          "durationMs": 18832
+        },
+        {
+          "title": "shared material and independent panels reset correctly, with scoped keyboard navigation",
+          "file": "settings-modules.spec.js",
+          "status": "expected",
+          "durationMs": 10011
+        },
+        {
+          "title": "settings navigation and active controls remain usable at 280-760px panel widths",
+          "file": "settings-modules.spec.js",
+          "status": "expected",
+          "durationMs": 11674
+        },
+        {
+          "title": "changing a subpage starts at its heading and reopening retains that subpage",
+          "file": "settings-modules.spec.js",
+          "status": "expected",
+          "durationMs": 10156
+        }
+      ],
+      "pixelMetrics": {
+        "structure-pixel-metrics": {
+          "intensity": {
+            "meanAbsolute": 42.10086187039312,
+            "changedFraction": 0.28992628992628994,
+            "lightIncrease": 42.10086187039312
+          },
+          "exposure": {
+            "meanAbsolute": 30.838522471334972,
+            "changedFraction": 0.28989749692874694,
+            "lightIncrease": 30.838522471334972
+          },
+          "rotation": {
+            "meanAbsolute": 7.602915770884521,
+            "changedFraction": 0.2760864557739558,
+            "lightIncrease": -7.591744087837838
+          },
+          "enabled": {
+            "meanAbsolute": 21.1254222972973,
+            "changedFraction": 0.28964795761670764,
+            "lightIncrease": 21.1254222972973
+          },
+          "auxiliary": {
+            "meanAbsolute": 29.808168253480755,
+            "changedFraction": 0.28990709459459457,
+            "lightIncrease": 29.808168253480755
+          }
+        },
+        "theater-pixel-metrics": {
+          "intensity": {
+            "meanAbsolute": 108.13388619412716,
+            "changedFraction": 0.9904553278047254,
+            "lightIncrease": 107.38731549574923
+          },
+          "exposure": {
+            "meanAbsolute": 107.42346007406249,
+            "changedFraction": 0.9949929588483806,
+            "lightIncrease": 105.04261200646742
+          },
+          "rotationDelta": 0.06510000000000016
+        }
+      }
+    },
+    "finalBrowserBatch": {
+      "rawReport": "tmp/hdri-final-e2e.json",
+      "rawSha256": "e6bb735230e625662d9fa82a0e0f04c1dac1488936914c280b6b9019dadfdaab",
+      "stats": {
+        "startTime": "2026-10-20T16:43:25.336Z",
+        "duration": 400470.02300000004,
+        "expected": 30,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+          "file": "action-theater.spec.js",
+          "status": "expected",
+          "durationMs": 13663
+        },
+        {
+          "title": "中央模型按36秒均速自转，摄像机静置且不继承模型旋转",
+          "file": "action-theater.spec.js",
+          "status": "expected",
+          "durationMs": 11331
+        },
+        {
+          "title": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+          "file": "action-theater.spec.js",
+          "status": "expected",
+          "durationMs": 12934
+        },
+        {
+          "title": "四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置",
+          "file": "action-theater.spec.js",
+          "status": "expected",
+          "durationMs": 15109
+        },
+        {
+          "title": "网络场景失败可重载，恢复只生成一个有效WebGL画布",
+          "file": "action-theater.spec.js",
+          "status": "expected",
+          "durationMs": 10280
+        },
+        {
+          "title": "模型下载失败保留参考图，重试能够恢复3D场景",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 13418
+        },
+        {
+          "title": "结构模型以透明全页画布融入指定背景，模型展示与右侧说明保持分离",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9842
+        },
+        {
+          "title": "结构模型真实滚轮放大改变绘制尺寸，透明画布保留全页绘制范围",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 10075
+        },
+        {
+          "title": "结构页在900电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 8888
+        },
+        {
+          "title": "结构页在1366电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9114
+        },
+        {
+          "title": "结构页在1920电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9349
+        },
+        {
+          "title": "动作章节接入四面巨幕与用户视频并保留全局导航及设置背景",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 10504
+        },
+        {
+          "title": "模型页复用全局品牌与章节导航并高亮当前章节",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9081
+        },
+        {
+          "title": "结构页右侧部件目录驱动局部聚焦，离页暂停并复用预热场景",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9321
+        },
+        {
+          "title": "点击醒狮真实表面同步右侧部件，镜头在左侧放大聚焦实际目标",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 15233
+        },
+        {
+          "title": "聚焦后缩窄电脑窗口再复原，完整醒狮按当前左侧展示区重新取景",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 10784
+        },
+        {
+          "title": "拖动模型旋转与点击空白不误选部件",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 9659
+        },
+        {
+          "title": "模型预热失败后切换页面可重试，恢复时只有一个canvas",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 13806
+        },
+        {
+          "title": "旧入场与结构链接兼容到首页与整体，不再保留独立页面",
+          "file": "app.spec.js",
+          "status": "expected",
+          "durationMs": 43748
+        },
+        {
+          "title": "结构与巨幕都实际绘制完整新狮，跨章复用全部模型与毛发请求",
+          "file": "full-lion-model.spec.js",
+          "status": "expected",
+          "durationMs": 10251
+        },
+        {
+          "title": "HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 20268
+        },
+        {
+          "title": "结构页真实EXR强度、旋转和曝光改变像素，同一画布保留完整毛发",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 19908
+        },
+        {
+          "title": "动作共享HDRI并实时改变实际模型照明，跨章请求复用且退出释放场景",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 12626
+        },
+        {
+          "title": "结构HDRI下载失败保留模型，原画布重试恢复环境光",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 10865
+        },
+        {
+          "title": "动作HDRI下载失败保留模型，原画布重试恢复环境光",
+          "file": "hdri-settings.spec.js",
+          "status": "expected",
+          "durationMs": 12291
+        },
+        {
+          "title": "冷启动等待真实模型准备，书册不提前快翻，章节复用已编译画布",
+          "file": "startup-loading.spec.js",
+          "status": "expected",
+          "durationMs": 10975
+        },
+        {
+          "title": "模型网络失败展示预览状态并完成加载，无永久挡屏",
+          "file": "startup-loading.spec.js",
+          "status": "expected",
+          "durationMs": 8032
+        },
+        {
+          "title": "模型下载途中丢失WebGL上下文仍结束加载并保留重试",
+          "file": "startup-loading.spec.js",
+          "status": "expected",
+          "durationMs": 8183
+        },
+        {
+          "title": "结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和重入仍更新画面",
+          "file": "structure-interaction.spec.js",
+          "status": "expected",
+          "durationMs": 25257
+        },
+        {
+          "title": "视口部件标注随模型转动并连接结构锚点，点击同步右侧目录与聚焦",
+          "file": "structure-interaction.spec.js",
+          "status": "expected",
+          "durationMs": 14502
+        }
+      ],
+      "pixelMetrics": {
+        "structure-pixel-metrics": {
+          "intensity": {
+            "meanAbsolute": 42.10086187039312,
+            "changedFraction": 0.28992628992628994,
+            "lightIncrease": 42.10086187039312
+          },
+          "exposure": {
+            "meanAbsolute": 30.838522471334972,
+            "changedFraction": 0.28989749692874694,
+            "lightIncrease": 30.838522471334972
+          },
+          "rotation": {
+            "meanAbsolute": 7.602915770884521,
+            "changedFraction": 0.2760864557739558,
+            "lightIncrease": -7.591744087837838
+          },
+          "enabled": {
+            "meanAbsolute": 21.1254222972973,
+            "changedFraction": 0.28964795761670764,
+            "lightIncrease": 21.1254222972973
+          },
+          "auxiliary": {
+            "meanAbsolute": 29.808168253480755,
+            "changedFraction": 0.28990709459459457,
+            "lightIncrease": 29.808168253480755
+          }
+        },
+        "theater-pixel-metrics": {
+          "intensity": {
+            "meanAbsolute": 107.98117143900276,
+            "changedFraction": 0.9895165075887967,
+            "lightIncrease": 107.23574818755542
+          },
+          "exposure": {
+            "meanAbsolute": 107.58738851509936,
+            "changedFraction": 0.997183539352214,
+            "lightIncrease": 105.27893391748813
+          },
+          "rotationDelta": 0.06684999999999963
+        }
+      }
+    },
+    "finalBrowserCommand": {
+      "env": {
+        "PLAYWRIGHT_CHANNEL": "chrome",
+        "PLAYWRIGHT_PREVIEW_PORT": "4190"
+      },
+      "argv": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "playwright.preview.config.js",
+        "tests/e2e/app.spec.js",
+        "tests/e2e/structure-interaction.spec.js",
+        "tests/e2e/startup-loading.spec.js",
+        "tests/e2e/full-lion-model.spec.js",
+        "tests/e2e/action-theater.spec.js",
+        "tests/e2e/hdri-settings.spec.js",
+        "--grep",
+        "HDRI|结构|模型|醒狮|巨幕|中央模型|四动作|真实鼠标|网络场景",
+        "--grep-invert",
+        "手机|导航字体|首页视频",
+        "--output",
+        "tmp/hdri-final-playwright-results",
+        "--reporter",
+        "json"
+      ]
+    },
+    "pixelInterpretation": {
+      "metric": "mean differences in rendered 8-bit RGB channels; not physical illuminance/luminance",
+      "structureRoi": "canvas-relative left.18 right.82 top.16 bottom.87, sample every3px; static full geometry, auxiliary0 for HDRI direction proof",
+      "theaterRoi": "canvas-relative left.44 right.56 top.40 bottom.65; videos paused, controlled few real frames with original36s rotation, bounded drift",
+      "directRotationPixelProof": "structure plus independent sphere GPU audit; theater checks applied rotation and other lighting pixel changes"
+    }
+  },
+  "independentServiceGpuAudit": {
+    "report": {
+      "rawReport": "tmp/hdri-service-audit/report.json",
+      "rawSha256": "5eb0b4d5aa588b22e525dfb437e6de2ac1d41f57051426550176ebbf4f36a903",
+      "data": {
+        "ready": [
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          }
+        ],
+        "fetches": 1,
+        "yawChangedPixels": 53092,
+        "yawMeanRgbDelta": 3.9090625,
+        "status": {
+          "phase": "ready",
+          "enabled": true,
+          "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+          "width": 4096,
+          "height": 2048,
+          "requestedRotation": 40,
+          "appliedRotation": 40,
+          "error": null
+        },
+        "glErrors": [
+          0,
+          0
+        ],
+        "abortName": "AbortError",
+        "errorCallbacks": [],
+        "events": [
+          {
+            "phase": "disabled",
+            "enabled": false,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          },
+          {
+            "phase": "updating",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 90,
+            "appliedRotation": 0,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 90,
+            "appliedRotation": 90,
+            "error": null
+          },
+          {
+            "phase": "updating",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": -30,
+            "appliedRotation": 90,
+            "error": null
+          },
+          {
+            "phase": "updating",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 40,
+            "appliedRotation": 90,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 40,
+            "appliedRotation": 40,
+            "error": null
+          },
+          {
+            "phase": "disabled",
+            "enabled": false,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          },
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          }
+        ],
+        "consoleErrors": []
+      }
+    },
+    "state-and-seam": {
+      "rawReport": "tmp/hdri-service-audit/state-and-seam.json",
+      "rawSha256": "06de0c80146e44e4d3969bd609b2042521c753a6401a5202ad19410a509b8f6c",
+      "data": {
+        "before": {
+          "viewport": [
+            11,
+            17,
+            270,
+            180
+          ],
+          "scissor": [
+            23,
+            19,
+            250,
+            160
+          ],
+          "scissorTest": true,
+          "xr": true,
+          "autoClear": false,
+          "toneMapping": 6,
+          "outputColorSpace": "srgb"
+        },
+        "after": {
+          "viewport": [
+            11,
+            17,
+            270,
+            180
+          ],
+          "scissor": [
+            23,
+            19,
+            250,
+            160
+          ],
+          "scissorTest": true,
+          "xr": true,
+          "autoClear": false,
+          "toneMapping": 6,
+          "outputColorSpace": "srgb"
+        },
+        "glViewport": [
+          2,
+          3,
+          90,
+          80
+        ],
+        "glScissor": [
+          4,
+          5,
+          70,
+          60
+        ],
+        "seamDelta": 0,
+        "applied": {
+          "phase": "ready",
+          "enabled": true,
+          "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+          "width": 4096,
+          "height": 2048,
+          "requestedRotation": -180,
+          "appliedRotation": -180,
+          "error": null
+        },
+        "glError": 0,
+        "events": 6,
+        "failures": [],
+        "pageErrors": []
+      }
+    },
+    "retry-timeout-and-linear": {
+      "rawReport": "tmp/hdri-service-audit/retry-timeout-and-linear.json",
+      "rawSha256": "c41fc57f9cd5803d1ae3a510767439f56238e20b7455976afeb8a6b7b2e2c5bc",
+      "data": {
+        "httpError": "HDRI 请求失败：HTTP 503",
+        "timeoutError": "HDRI 请求超时，请重试",
+        "timeoutMs": 30011.60000000149,
+        "recovered": {
+          "phase": "ready",
+          "enabled": true,
+          "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+          "width": 4096,
+          "height": 2048,
+          "requestedRotation": 0,
+          "appliedRotation": 0,
+          "error": null
+        },
+        "linearPmremProbe": {
+          "minimum": 0,
+          "maximum": 15.703125,
+          "overOne": 42008,
+          "samplePixels": 65536
+        },
+        "glError": 0,
+        "errorCallbacks": [
+          "HDRI 请求失败：HTTP 503",
+          "HDRI 请求超时，请重试"
+        ],
+        "states": [
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "error",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": "HDRI 请求失败：HTTP 503"
+          },
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "error",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": "HDRI 请求超时，请重试"
+          },
+          {
+            "phase": "loading",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": null,
+            "height": null,
+            "requestedRotation": 0,
+            "appliedRotation": null,
+            "error": null
+          },
+          {
+            "phase": "ready",
+            "enabled": true,
+            "source": "/assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "width": 4096,
+            "height": 2048,
+            "requestedRotation": 0,
+            "appliedRotation": 0,
+            "error": null
+          }
+        ],
+        "pageErrors": []
+      }
+    }
+  },
+  "productionVisualReview": {
+    "rawReport": "tmp/hdri-production-review/review.json",
+    "rawSha256": "7387345a129efe5a72d1cb461d64ec44991582d69149bfdb8a52fa459270b299",
+    "data": {
+      "baseUrl": "http://127.0.0.1:4190",
+      "screenshots": [
+        "tmp/hdri-production-review/structure-1920.png",
+        "tmp/hdri-production-review/hdri-settings-1920.png",
+        "tmp/hdri-production-review/hdri-settings-1366.png",
+        "tmp/hdri-production-review/structure-1366.png",
+        "tmp/hdri-production-review/action-1920.png",
+        "tmp/hdri-production-review/action-hdri-settings-1920.png"
+      ],
+      "states": {
+        "structure-1920": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "cameraDistance": "3.2318",
+            "focusState": "idle",
+            "focusedPart": "overall",
+            "targetScreen": "{\"x\":685.8359374999999,\"y\":581.9999999999999}",
+            "partProjections": "{\"outer_shell\":{\"x\":663.2858546481854,\"y\":605.0522657627953,\"visible\":true},\"eyes\":{\"x\":551.5184943285218,\"y\":521.0094800074658,\"visible\":true},\"mirror\":{\"x\":469.13920001540293,\"y\":495.9128493055587,\"visible\":true},\"mouth\":{\"x\":483.01574553806415,\"y\":675.9737577068363,\"visible\":true},\"fur_and_bells\":{\"x\":485.7771513176659,\"y\":784.9426270756292,\"visible\":true},\"lion_cloth\":{\"x\":878.1048949777181,\"y\":516.2777780587737,\"visible\":false}}"
+          },
+          "width": 1905,
+          "height": 1080,
+          "glError": 0
+        },
+        "hdri-settings-1920": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "cameraDistance": "3.4307",
+            "focusState": "idle",
+            "focusedPart": "overall",
+            "targetScreen": "{\"x\":520.59375,\"y\":581.9999999999999}",
+            "partProjections": "{\"outer_shell\":{\"x\":499.74835766662784,\"y\":603.3096123484959,\"visible\":true},\"eyes\":{\"x\":396.75140132450446,\"y\":525.7659840414599,\"visible\":true},\"mirror\":{\"x\":320.24110172421695,\"y\":502.4058684761061,\"visible\":true},\"mouth\":{\"x\":332.6177095915725,\"y\":669.0959380580179,\"visible\":true},\"fur_and_bells\":{\"x\":334.99206551330326,\"y\":770.2771267294553,\"visible\":true},\"lion_cloth\":{\"x\":703.2184389507784,\"y\":519.5744244072191,\"visible\":false}}"
+          },
+          "width": 1565,
+          "height": 1080,
+          "glError": 0
+        },
+        "hdri-settings-1366": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "cameraDistance": "3.5590",
+            "focusState": "idle",
+            "focusedPart": "overall",
+            "targetScreen": "{\"x\":326.49999999999994,\"y\":426.99999999999994}",
+            "partProjections": "{\"outer_shell\":{\"x\":312.83992016424634,\"y\":440.9642853103511,\"visible\":true},\"eyes\":{\"x\":245.46467247009824,\"y\":390.2036863782148,\"visible\":true},\"mirror\":{\"x\":195.19412627356184,\"y\":374.8360926437269,\"visible\":true},\"mouth\":{\"x\":203.1359520937881,\"y\":484.15892010322443,\"visible\":true},\"fur_and_bells\":{\"x\":204.62483510276869,\"y\":550.6319914336445,\"visible\":true},\"lion_cloth\":{\"x\":448.0753165937816,\"y\":385.44258977335255,\"visible\":false}}"
+          },
+          "width": 1011,
+          "height": 768,
+          "glError": 0
+        },
+        "structure-1366": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "cameraDistance": "3.2318",
+            "focusState": "idle",
+            "focusedPart": "overall",
+            "targetScreen": "{\"x\":447.19531249999994,\"y\":426.99999999999994}",
+            "partProjections": "{\"outer_shell\":{\"x\":431.6981279018381,\"y\":442.84230179017635,\"visible\":true},\"eyes\":{\"x\":354.8877930438565,\"y\":385.0852383881094,\"visible\":true},\"mirror\":{\"x\":298.27393759037267,\"y\":367.8379794163734,\"visible\":true},\"mouth\":{\"x\":307.8103720665846,\"y\":491.5819654027833,\"visible\":true},\"fur_and_bells\":{\"x\":309.70810412363005,\"y\":566.4690820115495,\"visible\":true},\"lion_cloth\":{\"x\":579.3290854049,\"y\":381.83345172975305,\"visible\":false}}"
+          },
+          "width": 1351,
+          "height": 768,
+          "glError": 0
+        },
+        "action-1920": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "sceneReady": "true",
+            "cameraPosition": "[0,1.6000000000000008,8.6]",
+            "cameraTarget": "[0,1.45,0]",
+            "cameraRadius": "8.6013",
+            "cameraAzimuth": "0.0000",
+            "lionRotation": "0.23890",
+            "activeScreen": "tanqing",
+            "screenBrightness": "{\"tanqing\":1,\"doumao\":0.25,\"tuqiu\":0.25,\"meihuazhuang\":0.25}",
+            "videoBindings": "{\"tanqing\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":4.477411,\"readyState\":4},\"doumao\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.982998,\"readyState\":4},\"tuqiu\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.886994,\"readyState\":4},\"meihuazhuang\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":4.490993,\"readyState\":4}}",
+            "cameraState": "idle",
+            "renderState": "active",
+            "renderedFrames": "185",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "composition": "{\"lion\":{\"left\":0.42162114062017425,\"top\":0.2629582838590567,\"right\":0.6056971555671328,\"bottom\":0.6480180471750558,\"inFront\":true,\"visible\":true,\"widthRatio\":0.18407601494695852,\"heightRatio\":0.38505976331599917,\"worldMinY\":0.4,\"worldHeight\":2.685597053944247},\"stage\":{\"left\":0.18302565145468552,\"right\":0.8169743485453145,\"top\":0.5694309627861958,\"bottom\":0.8667639310381577,\"inFront\":true,\"visible\":true,\"widthRatio\":0.633948697090629,\"heightRatio\":0.297332968251962,\"worldTopY\":0.39999999880790715,\"radius\":4.7},\"screens\":{\"tanqing\":{\"left\":0.30473915113836375,\"top\":0.10259267563937219,\"right\":0.6952608488616363,\"bottom\":0.5250276184405398,\"inFront\":true,\"visible\":true,\"widthRatio\":0.39052169772327255,\"heightRatio\":0.4224349428011676,\"worldWidth\":14.4,\"worldHeight\":8.1},\"doumao\":{\"left\":0.7951649793448654,\"top\":-4.91192142769144,\"right\":4.1676507255278,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":3.3724857461829343,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1},\"tuqiu\":{\"left\":null,\"top\":null,\"right\":null,\"bottom\":null,\"inFront\":false,\"visible\":false,\"widthRatio\":null,\"heightRatio\":null,\"worldWidth\":14.4,\"worldHeight\":8.1},\"meihuazhuang\":{\"left\":-3.1676507255278,\"top\":-4.91192142769144,\"right\":0.20483502065513454,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":3.3724857461829347,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1}},\"architecture\":{\"meshBatches\":29,\"instancedDraws\":19,\"instances\":1445,\"groups\":{\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Column_Stone_Foot\":20,\"Theater_Column_Lotus_Foot\":12,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Cuff_Carving\":80,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":60,\"Theater_Dougong_Brass_Edge\":80,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":108,\"Theater_Screen_Brass_Upright_Fillet\":16,\"Theater_Screen_Raised_Vertical_Keys\":296,\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Stage_Low_Base\":2,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Continuous_Raised_Clouds\":72},\"components\":{\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Stage_Low_Base\":1,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Carved_Fascia\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":3,\"Theater_Stage_Continuous_Raised_Clouds\":72,\"Theater_Column_Stone_Foot\":4,\"Theater_Column_Lotus_Foot\":4,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Embossed_Cuff\":8,\"Theater_Column_Cuff_Carving\":64,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":48,\"Theater_Dougong_Brass_Edge\":48,\"Theater_Capital_Raised_Scroll\":16,\"Theater_Continuous_RedGold_Beam\":12,\"Theater_Beam_Raised_Brass_Fillet\":24,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":4,\"Theater_Ceiling_Inner_Purlin_Inlay\":4,\"Theater_Screen_Thick_Black_Upright\":8,\"Theater_Screen_Brass_Upright_Fillet\":8,\"Theater_Screen_Raised_Vertical_Keys\":128,\"Theater_Screen_Thick_Black_Crossbar\":8,\"Theater_Screen_Brass_Crossbar_Fillet\":8,\"Theater_Screen_Continuous_Raised_Keys\":168,\"Theater_Low_Wall_Red_Pilasters\":104,\"Theater_Low_Wall_Bronze_Rail\":4},\"gridVisibleCount\":0,\"stoneRoughness\":0.54},\"reflection\":{\"enabled\":true,\"size\":768,\"passes\":23,\"maxHz\":18,\"blurTaps\":9},\"lighting\":{\"exposure\":1,\"lights\":[{\"type\":\"HemisphereLight\",\"name\":\"\",\"color\":\"#fff4e8\",\"intensity\":0.35,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Warm_Front_Key\",\"color\":\"#ffedda\",\"intensity\":2.2,\"shadow\":true},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Neutral_Front_Fill\",\"color\":\"#eaf2ff\",\"intensity\":1,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Soft_Contour\",\"color\":\"#ffe9cd\",\"intensity\":1.1,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Gold_Bounce\",\"color\":\"#ffdfbb\",\"intensity\":0.4,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false}]},\"quality\":{\"pixelRatio\":1,\"reduced\":false,\"fov\":56,\"width\":1905,\"height\":990}}"
+          },
+          "width": 1905,
+          "height": 990,
+          "glError": 0
+        },
+        "action-hdri-settings-1920": {
+          "data": {
+            "engine": "three.js r160",
+            "hdriState": "ready",
+            "hdriSettings": "{\"hdriEnabled\":true,\"hdriIntensity\":1,\"hdriRotation\":0,\"hdriExposure\":0,\"hdriLightIntensity\":1}",
+            "hdriSource": "./assets/environments/citrus_orchard_road_puresky_4k.exr",
+            "hdriRotation": "0",
+            "hdriResolution": "4096x2048",
+            "sceneReady": "true",
+            "cameraPosition": "[0,1.6000000000000008,8.6]",
+            "cameraTarget": "[0,1.45,0]",
+            "cameraRadius": "8.6013",
+            "cameraAzimuth": "0.0000",
+            "lionRotation": "0.43186",
+            "activeScreen": "tanqing",
+            "screenBrightness": "{\"tanqing\":1,\"doumao\":0.25,\"tuqiu\":0.25,\"meihuazhuang\":0.25}",
+            "videoBindings": "{\"tanqing\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":5.587568,\"readyState\":4},\"doumao\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":5.092989,\"readyState\":4},\"tuqiu\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":4.996984,\"readyState\":4},\"meihuazhuang\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":5.600275,\"readyState\":4}}",
+            "cameraState": "idle",
+            "renderState": "active",
+            "renderedFrames": "338",
+            "fullHairStrands": "2295421",
+            "fullHairGroups": "33",
+            "fullHairPoints": "19957105",
+            "sourceModel": "./assets/models/lion-user-full.glb",
+            "fullHairDrawnGroups": "33",
+            "fullHairDrawnStrands": "2295421",
+            "fullHairDrawnPoints": "19957105",
+            "renderLines": "25380208",
+            "composition": "{\"lion\":{\"left\":0.3887200360410795,\"top\":0.26216396273650233,\"right\":0.651169394608035,\"bottom\":0.6504656575111873,\"inFront\":true,\"visible\":true,\"widthRatio\":0.2624493585669555,\"heightRatio\":0.388301694774685,\"worldMinY\":0.4,\"worldHeight\":2.685597053944247},\"stage\":{\"left\":0.11416221471001653,\"right\":0.8858377852899835,\"top\":0.5694309627861958,\"bottom\":0.8667639310381577,\"inFront\":true,\"visible\":true,\"widthRatio\":0.7716755705799669,\"heightRatio\":0.297332968251962,\"worldTopY\":0.39999999880790715,\"radius\":4.7},\"screens\":{\"tanqing\":{\"left\":0.2623182638457399,\"top\":0.10259267563937219,\"right\":0.73768173615426,\"bottom\":0.5250276184405398,\"inFront\":true,\"visible\":true,\"widthRatio\":0.4753634723085201,\"heightRatio\":0.4224349428011676,\"worldWidth\":14.4,\"worldHeight\":8.1},\"doumao\":{\"left\":0.859290278371865,\"top\":-4.91192142769144,\"right\":4.964456633949175,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":4.10516635557731,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1},\"tuqiu\":{\"left\":null,\"top\":null,\"right\":null,\"bottom\":null,\"inFront\":false,\"visible\":false,\"widthRatio\":null,\"heightRatio\":null,\"worldWidth\":14.4,\"worldHeight\":8.1},\"meihuazhuang\":{\"left\":-3.964456633949175,\"top\":-4.91192142769144,\"right\":0.14070972162813505,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":4.10516635557731,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1}},\"architecture\":{\"meshBatches\":29,\"instancedDraws\":19,\"instances\":1445,\"groups\":{\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Column_Stone_Foot\":20,\"Theater_Column_Lotus_Foot\":12,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Cuff_Carving\":80,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":60,\"Theater_Dougong_Brass_Edge\":80,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":108,\"Theater_Screen_Brass_Upright_Fillet\":16,\"Theater_Screen_Raised_Vertical_Keys\":296,\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Stage_Low_Base\":2,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Continuous_Raised_Clouds\":72},\"components\":{\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Stage_Low_Base\":1,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Carved_Fascia\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":3,\"Theater_Stage_Continuous_Raised_Clouds\":72,\"Theater_Column_Stone_Foot\":4,\"Theater_Column_Lotus_Foot\":4,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Embossed_Cuff\":8,\"Theater_Column_Cuff_Carving\":64,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":48,\"Theater_Dougong_Brass_Edge\":48,\"Theater_Capital_Raised_Scroll\":16,\"Theater_Continuous_RedGold_Beam\":12,\"Theater_Beam_Raised_Brass_Fillet\":24,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":4,\"Theater_Ceiling_Inner_Purlin_Inlay\":4,\"Theater_Screen_Thick_Black_Upright\":8,\"Theater_Screen_Brass_Upright_Fillet\":8,\"Theater_Screen_Raised_Vertical_Keys\":128,\"Theater_Screen_Thick_Black_Crossbar\":8,\"Theater_Screen_Brass_Crossbar_Fillet\":8,\"Theater_Screen_Continuous_Raised_Keys\":168,\"Theater_Low_Wall_Red_Pilasters\":104,\"Theater_Low_Wall_Bronze_Rail\":4},\"gridVisibleCount\":0,\"stoneRoughness\":0.54},\"reflection\":{\"enabled\":true,\"size\":768,\"passes\":42,\"maxHz\":18,\"blurTaps\":9},\"lighting\":{\"exposure\":1,\"lights\":[{\"type\":\"HemisphereLight\",\"name\":\"\",\"color\":\"#fff4e8\",\"intensity\":0.35,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Warm_Front_Key\",\"color\":\"#ffedda\",\"intensity\":2.2,\"shadow\":true},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Neutral_Front_Fill\",\"color\":\"#eaf2ff\",\"intensity\":1,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Soft_Contour\",\"color\":\"#ffe9cd\",\"intensity\":1.1,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Gold_Bounce\",\"color\":\"#ffdfbb\",\"intensity\":0.4,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false}]},\"quality\":{\"pixelRatio\":1,\"reduced\":false,\"fov\":56,\"width\":1565,\"height\":990}}"
+          },
+          "width": 1565,
+          "height": 990,
+          "glError": 0
+        }
+      },
+      "errors": [],
+      "failures": [],
+      "requestCounts": {
+        "/assets/environments/citrus_orchard_road_puresky_4k.exr": 1,
+        "/assets/models/lion-user-full.glb": 1,
+        "/assets/models/lion-user-hair.json": 1,
+        "/assets/models/lion-user-hair-01.bin.gz": 1,
+        "/assets/models/lion-user-hair-02.bin.gz": 1,
+        "/assets/models/lion-user-hair-03.bin.gz": 1,
+        "/assets/models/lion-user-hair-04.bin.gz": 1,
+        "/assets/models/lion-user-hair-05.bin.gz": 1,
+        "/assets/models/lion-user-hair-06.bin.gz": 1,
+        "/assets/models/lion-user-hair-07.bin.gz": 1,
+        "/assets/models/lion-user-hair-08.bin.gz": 1,
+        "/assets/models/lion-user-hair-09.bin.gz": 1,
+        "/assets/models/lion-user-hair-10.bin.gz": 1,
+        "/assets/models/lion-user-hair-11.bin.gz": 1,
+        "/assets/models/lion-user-hair-12.bin.gz": 1,
+        "/assets/models/lion-user-hair-13.bin.gz": 1,
+        "/assets/models/lion-user-hair-14.bin.gz": 1,
+        "/assets/models/lion-user-hair-15.bin.gz": 1,
+        "/assets/models/lion-user-hair-16.bin.gz": 1,
+        "/assets/models/lion-user-hair-17.bin.gz": 1,
+        "/assets/models/lion-user-hair-18.bin.gz": 1,
+        "/assets/models/lion-user-hair-19.bin.gz": 1,
+        "/assets/models/lion-user-hair-20.bin.gz": 1,
+        "/assets/models/lion-user-hair-21.bin.gz": 1,
+        "/assets/models/lion-user-hair-22.bin.gz": 1,
+        "/assets/models/lion-user-hair-23.bin.gz": 1,
+        "/assets/models/lion-user-hair-24.bin.gz": 1,
+        "/assets/models/lion-user-hair-25.bin.gz": 1,
+        "/assets/models/lion-user-hair-26.bin.gz": 1,
+        "/assets/models/lion-user-hair-27.bin.gz": 1,
+        "/assets/models/lion-user-hair-28.bin.gz": 1,
+        "/assets/models/lion-user-hair-29.bin.gz": 1,
+        "/assets/models/lion-user-hair-30.bin.gz": 1,
+        "/assets/models/lion-user-hair-31.bin.gz": 1,
+        "/assets/models/lion-user-hair-32.bin.gz": 1,
+        "/assets/models/lion-user-hair-33.bin.gz": 1
+      }
+    },
+    "reviewedBy": "parent and independent read-only agent",
+    "result": "default 1920/1366 model visible, HDRI settings usable, four video screens/architecture retained"
+  },
+  "archivedScreenshots": [
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/action-1920.png",
+      "bytes": 2234036,
+      "sha256": "bf3620487914c61dbf6727ac50f90078cb5b8a4e7b03ecc8818889af6e290413"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/action-hdri-settings-1920.png",
+      "bytes": 1988491,
+      "sha256": "f9f64b75a9e85b610c90bd360a1bbfb72558a449518f9d49082b2028a00b5b88"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/hdri-settings-1366.png",
+      "bytes": 1071354,
+      "sha256": "2cd994d6b3ecd0289ce212b42216de587e8858e8a57e74b2aab56c8c554bab7d"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/hdri-settings-1920.png",
+      "bytes": 2105312,
+      "sha256": "22116d753217214d98b1615bb4d0eb13319191ba87cd57dfdb523363193c9df8"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-1366.png",
+      "bytes": 1255904,
+      "sha256": "c475df4d570750bef13ed194147ae9b29ed1bea3f3d5b39a3f1d8facdf68ade0"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-1920.png",
+      "bytes": 2394934,
+      "sha256": "5ddec1a7cd91cebc469bd5104f8812f458c98e0691c08877fe5b41828d74097f"
+    },
+    {
+      "from": "actual Chrome HDRI yaw comparison, auxiliary lights 0, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-zero.png",
+      "bytes": 2244171,
+      "sha256": "e34a6450db9262439ed2fd4b72fc94f48f100e3f5205a4f987fa92d44f2b1e72"
+    },
+    {
+      "from": "actual Chrome HDRI yaw comparison, auxiliary lights 0, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-120.png",
+      "bytes": 2227515,
+      "sha256": "f68ff9b4cc0a4618add539a6dc431e23ea50469d60e50accea7ffd6454626239"
+    }
+  ],
+  "toolCorrections": [
+    "First manual QA needed a separately started preview because Playwright stopped its own server at batch completion.",
+    "Manual QA init script initially touched sandboxed book frames; guarded window===window.top, reran full6captures with zero page/HTTP/GL errors. Product unchanged.",
+    "Final service request-timeout and pending-enable status fixes were rebuilt and covered by final30browser cases."
+  ],
+  "limitations": [
+    "Desktop Chrome and this local GPU only; no mobile or other hardware/browser claims.",
+    "No formal hosting deployment or new portable EXE build.",
+    "AgX remains Three implementation, not Blender OCIO pixel-identical."
+  ],
+  "memoryCheck": {
+    "command": "python wiki_memory/工具/memory.py check --project . --require-ready",
+    "pages": 91,
+    "errors": [],
+    "preexistingHistoricalSourceWarnings": 4,
+    "indexRefreshed": true
+  },
+  "sourceCodeSha256": {
+    "src/config/hdri.js": "f38c95ba118ada0e3bdeae74983bbab74d6747f44f38b098364f5e1a4ffb9ffb",
+    "src/config/assetPaths.js": "120e19f07928e261c0457de12b7babafe99a5bdea050b92ae3f1dec49101ce4f",
+    "src/services/lionHdriEnvironment.js": "ebb3b5e35c07b1f8780680fb90eec7c8ab327dde892e9e4802482086a8d55014",
+    "src/services/lionLightingSettings.js": "b7fe47f40f7cd0c05f400774cdd606f3e011b9087a943c75e9797467f7d1a7a2",
+    "src/services/lionScene.js": "f89b09c77fcf198ecb5fc6057ca63cd3cca019fdda105519b2bc951a7965caaf",
+    "src/services/actionTheaterScene.js": "eb307a46bcb1ab228859de98d5ab3da6e96c23acecfecf13de67fd2c44c7ed53",
+    "src/App.jsx": "eec507264602cdf9b9faadaaee651ace64e9e98d1ba94825098bfaebb76947d3",
+    "src/features/model/ModelPage.jsx": "93da7da868c638fb7611c44dfbee62d885a879fe5629ab1357fefa2419e36352",
+    "src/features/action/ActionPage.jsx": "a3660fccdee883ea80b088954b0ea38681fd86a7288acca79095c3812dc3ccde",
+    "src/features/developer-settings/DeveloperSettingsPanel.jsx": "611da116589d7f802e93c5608d65f211d33ea57afb2dd78b05876ee2e2370f10",
+    "src/features/developer-settings/useDeveloperSettings.js": "ba9d985f2b8e9b6ac72e234b1f920ad129d708d8f86d26b1583209a9e284efca",
+    "tests/e2e/hdri-settings.spec.js": "9daf95f2bdd1f009520e7ab3f9be2943e46c2b7d8fd455cd77f378a713ed26a1"
+  }
+}

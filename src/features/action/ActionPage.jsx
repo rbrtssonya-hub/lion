@@ -28,10 +28,12 @@ function ActionCaption({ clip, index, leaving = false }) {
   </div>;
 }
 
-export default function ActionPage({ clips = theaterActions, assets = media }) {
+export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings }) {
   const stageRef = useRef(null);
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
+  const lightingSettingsRef = useRef(lightingSettings);
+  lightingSettingsRef.current = lightingSettings;
   const requestedScreen = useRef(clips[0].id);
   const activeRef = useRef(clips[0].id);
   const visibleRef = useRef(true);
@@ -39,6 +41,7 @@ export default function ActionPage({ clips = theaterActions, assets = media }) {
   const [activeId, setActiveId] = useState(clips[0].id);
   const [sceneState, setSceneState] = useState('loading');
   const [sceneError, setSceneError] = useState('');
+  const [lightingStatus, setLightingStatus] = useState({ phase: 'loading' });
   const [sceneVersion, setSceneVersion] = useState(0);
   const [flatMode, setFlatMode] = useState(false);
   const [visible, setVisible] = useState(!document.hidden);
@@ -79,6 +82,8 @@ export default function ActionPage({ clips = theaterActions, assets = media }) {
     import('../../services/actionTheaterScene.js').then(({ createActionTheater }) => {
       if (cancelled) return;
       handle = createActionTheater({
+        lightingSettings: lightingSettingsRef.current,
+        onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
         onActiveScreen: id => {
           if (cancelled) return;
@@ -116,6 +121,9 @@ export default function ActionPage({ clips = theaterActions, assets = media }) {
   }, [assets.actionTheaterScene, clips, playback.getVideo, sceneVersion]);
 
   useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
+  useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
+    [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
+      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);
   useEffect(() => {
     const update = () => setFullscreen(document.fullscreenElement === stageRef.current);
     document.addEventListener('fullscreenchange', update);
@@ -179,6 +187,10 @@ export default function ActionPage({ clips = theaterActions, assets = media }) {
       </div>}
       {sceneError && <div className="theater-scene-error" role="status"><span>{sceneError}</span>
         <button type="button" onClick={retryScene}>重新载入动作空间</button></div>}
+      {lightingStatus.phase === 'error' && <div className="theater-hdri-notice" role="status">
+        <span>HDRI 环境光载入失败</span>
+        <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
+      </div>}
 
       <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
         {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}

@@ -18,13 +18,14 @@ function DetailList({ entries, className = 'panel-detail-list' }) {
   );
 }
 
-export default function ModelPage({ active = true, onReady, onObserve, onPartChange }) {
+export default function ModelPage({ active = true, onReady, onObserve, onPartChange, lightingSettings }) {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [autoRotate, setAutoRotate] = useState(false);
   const [focusState, setFocusState] = useState('overall');
   const [detailTab, setDetailTab] = useState('structure');
   const [status, setStatus] = useState(initialStatus);
+  const [lightingStatus, setLightingStatus] = useState({ phase: 'loading' });
   const [loadAttempt, setLoadAttempt] = useState(0);
   const containerRef = useRef(null);
   const interactionRef = useRef(null);
@@ -34,6 +35,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   const hotspotOverlayRef = useRef(null);
   const projectedHotspotRefs = useRef(new Map());
   const sceneRef = useRef(null);
+  const lightingSettingsRef = useRef(lightingSettings);
   const autoRotateRef = useRef(autoRotate);
   const activeRef = useRef(active);
   const onReadyRef = useRef(onReady);
@@ -47,6 +49,11 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   onReadyRef.current = onReady;
   selectedRef.current = selected;
   focusStateRef.current = focusState;
+  lightingSettingsRef.current = lightingSettings;
+
+  useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
+    [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
+      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);
 
   const selectHotspot = (id, point) => {
     const next = hotspots.find((item) => item.id === id);
@@ -183,6 +190,8 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
           interactionElement: interactionRef.current,
           layoutElement: headerRef.current,
           modelUrl: media.model,
+          lightingSettings: lightingSettingsRef.current,
+          onLightingStatus: next => { if (!controller.signal.aborted) setLightingStatus(next); },
           hotspots,
           onSelectPart: selectHotspot,
           onProjectParts: projectHotspots,
@@ -207,6 +216,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
           return;
         }
         sceneRef.current = mountedScene;
+        mountedScene.setLightingSettings(lightingSettingsRef.current);
         clearTimeout(preparationTimeout);
         mountedScene.setAutoRotate(autoRotateRef.current);
         mountedScene.setActive(activeRef.current && !document.hidden);
@@ -296,6 +306,10 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
               <span id="modelStatus" role="status">{status.message}</span>
               {status.phase === 'error' && <button className="model-retry" type="button" onClick={() => setLoadAttempt((value) => value + 1)}>重新载入</button>}
             </div>
+            {lightingStatus.phase === 'error' && <p className="model-hdri-notice" role="status">
+              HDRI 环境光载入失败
+              <button className="model-retry" type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
+            </p>}
           </header>
 
           <div className="model-view-tools">

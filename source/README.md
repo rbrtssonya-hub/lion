@@ -7,6 +7,7 @@
 | `public/assets/entry/` | 首页循环视频、封面、图片标题与透明书法按钮字图 | 复制到 `dist/assets/entry/` |
 | `public/assets/intro/` | 当前入场视频与运行海报 | 复制到 `dist/assets/intro/` |
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
+| `public/assets/environments/` | 用户指定的原字节4K EXR，供结构和动作HDRI照明 | 复制到 `dist/assets/environments/` |
 | `public/assets/action/videos/` | 用户提供的四段动作MP4及各自真实抽帧海报 | 复制到 `dist/assets/action/videos/` |
 | `public/assets/culture/` | 首页文化图鉴的八张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
 | `public/assets/lion-types/` | 首页三形制AI辅助示意图，原输出与提示词另存design | 复制到 `dist/assets/lion-types/` |

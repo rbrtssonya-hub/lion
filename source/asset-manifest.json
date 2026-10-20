@@ -3044,6 +3044,60 @@
       "path": "source/reviews/model/2026-10-20-lighting/production-structure-1920.png",
       "bytes": 2403062,
       "sha256": "9ed1f648d15ab2f7562d55a6b5deb9ac2e99d6dcfb399e41c76709a494d29dc0"
+    },
+    {
+      "from": "D:/04_EdgeDownload/citrus_orchard_road_puresky_4k.exr",
+      "path": "source/public/assets/environments/citrus_orchard_road_puresky_4k.exr",
+      "bytes": 70720809,
+      "sha256": "8aa6cc5bb4a5a8f5fa12870cefdd6a6b600072454add837dca45e340c1549d30"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/action-1920.png",
+      "bytes": 2234036,
+      "sha256": "bf3620487914c61dbf6727ac50f90078cb5b8a4e7b03ecc8818889af6e290413"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/action-hdri-settings-1920.png",
+      "bytes": 1988491,
+      "sha256": "f9f64b75a9e85b610c90bd360a1bbfb72558a449518f9d49082b2028a00b5b88"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/hdri-settings-1366.png",
+      "bytes": 1071354,
+      "sha256": "2cd994d6b3ecd0289ce212b42216de587e8858e8a57e74b2aab56c8c554bab7d"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/hdri-settings-1920.png",
+      "bytes": 2105312,
+      "sha256": "22116d753217214d98b1615bb4d0eb13319191ba87cd57dfdb523363193c9df8"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-1366.png",
+      "bytes": 1255904,
+      "sha256": "c475df4d570750bef13ed194147ae9b29ed1bea3f3d5b39a3f1d8facdf68ade0"
+    },
+    {
+      "from": "actual Chrome production HDRI review, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-1920.png",
+      "bytes": 2394934,
+      "sha256": "5ddec1a7cd91cebc469bd5104f8812f458c98e0691c08877fe5b41828d74097f"
+    },
+    {
+      "from": "actual Chrome HDRI yaw comparison, auxiliary lights 0, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-zero.png",
+      "bytes": 2244171,
+      "sha256": "e34a6450db9262439ed2fd4b72fc94f48f100e3f5205a4f987fa92d44f2b1e72"
+    },
+    {
+      "from": "actual Chrome HDRI yaw comparison, auxiliary lights 0, 2026-10-21",
+      "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-120.png",
+      "bytes": 2227515,
+      "sha256": "f68ff9b4cc0a4618add539a6dc431e23ea50469d60e50accea7ffd6454626239"
     }
   ]
 }

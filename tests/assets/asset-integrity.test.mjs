@@ -10,7 +10,7 @@ const root = resolve(import.meta.dirname, '../..');
 const sourceRoot = resolve(root, 'source');
 const publicRoot = resolve(sourceRoot, 'public');
 const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
-const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.gz', '.gzip', '.moc3', '.psd', '.cmo3', '.blend', '.woff', '.woff2', '.ttf', '.otf']);
+const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.gz', '.gzip', '.exr', '.moc3', '.psd', '.cmo3', '.blend', '.woff', '.woff2', '.ttf', '.otf']);
 const localSourcePath = 'source/models/user-lion-2026-10-20.blend';
 const userSourceSha256 = 'dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770';
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
