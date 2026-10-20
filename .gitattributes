@@ -3,3 +3,6 @@ source/public/assets/decor/lion-culture-pattern.svg -text
 # Preserve the user-supplied single-file loading design byte for byte.
 source/design/loading/supplied-loading.html -text -diff
 source/public/assets/loading/index.html text eol=lf
+
+# This generated runtime manifest is authenticated byte for byte.
+source/public/assets/models/lion-user-hair.json -text

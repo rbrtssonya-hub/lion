@@ -5,6 +5,7 @@ import {
   Color,
   DirectionalLight,
   HemisphereLight,
+  Group,
   LinearFilter,
   MeshBasicMaterial,
   PCFSoftShadowMap,
@@ -24,6 +25,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
+import { media } from '../config/media.js';
+import { acquireFullLion } from './lionFullHair.js';
 
 const mountedScenes = new WeakMap();
 const ROTATION_SPEED = Math.PI * 2 / 36;
@@ -89,7 +92,7 @@ function projectedBounds(root, camera, { vertices = false } = {}) {
   root.traverseVisible(object => {
     if (!object.geometry || object.isInstancedMesh) return;
     const { geometry } = object;
-    if (vertices) {
+    if (vertices && !object.userData.fullHair) {
       const position = geometry.attributes.position;
       for (let i = 0; i < position.count; i += 1) { point.fromBufferAttribute(position, i).applyMatrix4(object.matrixWorld); add(); }
     } else {
@@ -151,6 +154,7 @@ function releaseResources(roots, extraMaterials = [], extraTextures = []) {
   const textures = new Set(extraTextures);
   const images = new Set();
   roots.filter(Boolean).forEach((root) => root.traverse((object) => {
+    if (object.userData.sharedLionResources) return;
     if (object.isInstancedMesh) object.dispose();
     if (object.geometry) geometries.add(object.geometry);
     if (object.skeleton?.boneTexture) textures.add(object.skeleton.boneTexture);
@@ -243,6 +247,7 @@ export function createActionTheater({
   let observer;
   let environmentTarget;
   let lionRoot;
+  let fullLion;
   let architecture;
   let reflection;
   let animationFrame = 0;
@@ -351,6 +356,12 @@ export function createActionTheater({
     renderedFrames,
     drawCalls: renderer?.info.render.calls ?? 0,
     triangles: renderer?.info.render.triangles ?? 0,
+    lines: renderer?.info.render.lines ?? 0,
+    fullHairStrands: fullLion?.statistics.strands ?? 0,
+    fullHairGroups: fullLion?.statistics.groups ?? 0,
+    fullHairPoints: fullLion?.statistics.points ?? 0,
+    sourceModel: fullLion?.statistics.sourceModel ?? '',
+    fullHairDraws: renderer && fullLion ? fullLion.getDrawStatistics(renderer) : { groups: 0, strands: 0, points: 0 },
   });
   const publishDiagnostics = () => {
     if (!renderer) return;
@@ -368,6 +379,14 @@ export function createActionTheater({
     dataset.cameraState = state.cameraState;
     dataset.renderState = state.visible && !disposed ? 'active' : 'inactive';
     dataset.renderedFrames = String(renderedFrames);
+    dataset.fullHairStrands = String(state.fullHairStrands);
+    dataset.fullHairGroups = String(state.fullHairGroups);
+    dataset.fullHairPoints = String(state.fullHairPoints);
+    dataset.sourceModel = state.sourceModel;
+    dataset.fullHairDrawnGroups = String(state.fullHairDraws.groups);
+    dataset.fullHairDrawnStrands = String(state.fullHairDraws.strands);
+    dataset.fullHairDrawnPoints = String(state.fullHairDraws.points);
+    dataset.renderLines = String(state.lines);
     dataset.composition = JSON.stringify(composition());
   };
   const resize = () => {
@@ -590,6 +609,8 @@ export function createActionTheater({
     publishDiagnostics();
     const placeholders = [...screenRecords.values()].map((record) => record.placeholder);
     reflection?.dispose();
+    fullLion?.release();
+    fullLion = null;
     releaseResources(activeScenes, replacedMaterials, placeholders);
     screenRecords.clear();
     pendingVideos.clear();
@@ -726,16 +747,42 @@ export function createActionTheater({
       scene.add(room);
       lionRoot = room.getObjectByName('Lion_RotationRoot');
       if (!lionRoot) throw new Error('巨幕厅缺少醒狮整体旋转节点');
-      // Keep the verified source lion and screen UVs. The blockout shell stays
-      // loaded for provenance but the ornate reusable room replaces its meshes.
+      room.updateMatrixWorld(true);
+      const previousLionBox = new Box3().setFromObject(lionRoot);
+      const previousLionHeight = previousLionBox.max.y - previousLionBox.min.y;
+      const loadedLion = await acquireFullLion({
+        modelUrl: media.model,
+        manifestUrl: media.modelHair,
+        resolveAsset: key => media[key],
+        signal: loadController.signal,
+      });
+      if (disposed) { loadedLion.release(); return; }
+      fullLion = loadedLion;
+      const previousLionChildren = [...lionRoot.children];
+      previousLionChildren.forEach(object => lionRoot.remove(object));
+      releaseResources(previousLionChildren);
+      const replacementBox = new Box3().setFromObject(fullLion.root);
+      const replacementHeight = replacementBox.max.y - replacementBox.min.y;
+      if (!Number.isFinite(replacementHeight) || replacementHeight <= 0) throw new Error('完整醒狮模型没有可显示尺寸');
+      const replacementCenter = replacementBox.getCenter(new Vector3());
+      fullLion.root.position.sub(new Vector3(replacementCenter.x, replacementBox.min.y, replacementCenter.z));
+      const lionMount = new Group();
+      lionMount.name = 'Lion_Full_Source_Mount';
+      lionMount.scale.setScalar(previousLionHeight / replacementHeight);
+      lionMount.add(fullLion.root);
+      lionRoot.add(lionMount);
+      lionRoot.userData.fullSourceModel = media.model;
+      lionRoot.userData.fullSourceHair = media.modelHair;
+      // The room's screen geometry and UVs stay intact. Its historical embedded
+      // lion is replaced by the same complete mesh/strand asset as structure.
       const screenNames = new Set(screenDefinitions.map(item => item.objectName));
       room.traverse((object) => {
-        if (!object.isMesh) return;
+        if (!object.isMesh && !object.userData.fullHair) return;
         let parent = object;
         let isLion = false;
         while (parent) { if (parent === lionRoot) { isLion = true; break; } parent = parent.parent; }
         if (!isLion && !screenNames.has(object.name) && !object.name.startsWith('Room_')) object.visible = false;
-        object.castShadow = isLion;
+        object.castShadow = isLion && !object.userData.fullHair;
         object.receiveShadow = !isLion;
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => {
           if ('envMapIntensity' in material) material.envMapIntensity = isLion ? 0.65 : 0.18;

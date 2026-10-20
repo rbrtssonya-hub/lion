@@ -14,9 +14,10 @@ import {
   WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from 'three-mesh-bvh';
+import { media } from '../config/media.js';
+import { acquireFullLion } from './lionFullHair.js';
 
 const activeScenes = new WeakMap();
 
@@ -32,6 +33,7 @@ function disposeResources(...roots) {
 
   roots.forEach((root) => {
     root.traverse((object) => {
+      if (object.userData.sharedLionResources) return;
       if (object.geometry) geometries.add(object.geometry);
       if (object.skeleton?.boneTexture) textures.add(object.skeleton.boneTexture);
       const objectMaterials = Array.isArray(object.material) ? object.material : [object.material];
@@ -137,6 +139,7 @@ export async function createLionScene({
   let isActive = active;
   let draw;
   let modelScenes = [];
+  let fullLion;
   let viewTween = null;
   let modelGroup;
   let modelRoot;
@@ -246,6 +249,11 @@ export async function createLionScene({
     // Read-only observations of the rendered camera and actual pickable surface.
     // They also make browser regression checks independent of React's state.
     const canvas = renderer.domElement;
+    const hairDraws = fullLion?.getDrawStatistics(renderer);
+    canvas.dataset.fullHairDrawnGroups = String(hairDraws?.groups ?? 0);
+    canvas.dataset.fullHairDrawnStrands = String(hairDraws?.strands ?? 0);
+    canvas.dataset.fullHairDrawnPoints = String(hairDraws?.points ?? 0);
+    canvas.dataset.renderLines = String(renderer.info.render.lines);
     canvas.dataset.cameraDistance = camera.position.distanceTo(controls.target).toFixed(4);
     canvas.dataset.focusState = viewTween ? 'running' : 'idle';
     canvas.dataset.focusedPart = focusedPart;
@@ -326,6 +334,8 @@ export async function createLionScene({
     window.removeEventListener('blur', clearPointer);
     interactionElement.style.cursor = '';
     controls?.dispose();
+    fullLion?.release();
+    fullLion = null;
     disposeResources(scene, ...modelScenes);
     scene.environment = null;
     environmentTarget?.dispose();
@@ -458,23 +468,28 @@ export async function createLionScene({
       report({ phase: 'error', message: '模型准备超时 · 保留结构预览，可重新载入' });
       dispose();
     }, 45_000);
-    const buffer = await readModel(modelUrl, loadController.signal, report);
-    if (disposed || signal?.aborted) throw aborted();
-    report({ phase: 'loading', message: '正在解析醒狮模型' });
-    const baseUrl = new URL('.', new URL(modelUrl, window.location.href)).href;
-    const gltf = await new GLTFLoader().parseAsync(buffer, baseUrl);
-    const parsedScenes = gltf.scenes?.length ? gltf.scenes : [gltf.scene];
+    const loadedLion = await acquireFullLion({
+      modelUrl,
+      manifestUrl: media.modelHair,
+      resolveAsset: key => media[key],
+      signal: loadController.signal,
+      onStatus: report,
+      readModel: sharedSignal => readModel(modelUrl, sharedSignal, report),
+    });
     if (disposed || signal?.aborted) {
-      disposeResources(...parsedScenes);
+      loadedLion.release();
       throw aborted();
     }
-    modelScenes = parsedScenes;
-
-    const model = gltf.scene;
+    fullLion = loadedLion;
+    renderer.domElement.dataset.fullHairStrands = String(fullLion.statistics.strands);
+    renderer.domElement.dataset.fullHairGroups = String(fullLion.statistics.groups);
+    renderer.domElement.dataset.fullHairPoints = String(fullLion.statistics.points);
+    renderer.domElement.dataset.sourceModel = fullLion.statistics.sourceModel;
+    const model = fullLion.root;
     modelRoot = model;
     model.name = 'Lion_Structure';
     model.traverse((object) => {
-      if (!object.isMesh) return;
+      if (!object.isMesh || object.userData.fullHair) return;
       object.castShadow = true;
       object.receiveShadow = true;
       // Acceleration is instance-local; other Three.js features are unaffected.
@@ -514,6 +529,15 @@ export async function createLionScene({
       const step = Math.max(1, Math.floor(position.count / 400));
       for (let index = 0; index < position.count; index += step) {
         fitPoints.push(mesh.localToWorld(new Vector3().fromBufferAttribute(position, index)).sub(overviewTarget));
+      }
+    });
+    // Instanced hair positions live in strand attributes. Include each complete
+    // group bound in the overview fit instead of reading its template vertices.
+    model.traverse(object => {
+      if (!object.userData.fullHair) return;
+      const { min, max } = object.geometry.boundingBox;
+      for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) {
+        fitPoints.push(object.localToWorld(new Vector3(x, y, z)).sub(overviewTarget));
       }
     });
     fitOverview = (apply = true) => {

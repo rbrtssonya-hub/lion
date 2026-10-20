@@ -1,0 +1,393 @@
+{
+  "date": "2026-10-20",
+  "workspace": "E:/数字媒体竞赛/张钧儒/lion",
+  "baseline": "main@54110c4",
+  "environment": {
+    "os": "Windows",
+    "node": "24.16.0",
+    "browser": "installed Chrome, desktop",
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "source_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+  "source_unchanged": true,
+  "export": {
+    "path": "source/public/assets/models/lion-user-full.glb",
+    "bytes": 81290340,
+    "sha256": "0a0a855cde7981e9eef2f622863bbae64bda3e156791f3410d89cf8051f02e00",
+    "settings": {
+      "export_format": "GLB",
+      "use_selection": true,
+      "export_yup": true,
+      "export_apply": true,
+      "export_texcoords": true,
+      "export_normals": true,
+      "export_materials": "EXPORT",
+      "export_image_format": "AUTO",
+      "export_animations": true,
+      "export_extras": true,
+      "export_cameras": false,
+      "export_lights": false
+    },
+    "gltf_nodes": 102,
+    "gltf_meshes": 53,
+    "gltf_materials": 23,
+    "gltf_triangles": 657831,
+    "mesh_object_names": [
+      "立方体",
+      "牙下",
+      "上牙",
+      "Lion_Head.001",
+      "Lion_Forehead_Bead_09",
+      "Lion_Crown",
+      "Lion_Body",
+      "Lion_Tail.001",
+      "Lion_Hindpaw_R.001",
+      "Lion_Hindpaw_L.001",
+      "Lion_Hindleg_R.001",
+      "Lion_Hindleg_L.001",
+      "Lion_Forepaw_R.001",
+      "Lion_Forepaw_L.001",
+      "Lion_Foreleg_R.001",
+      "Lion_Foreleg_L.001",
+      "Lion_Ear_R.001",
+      "Lion_Ear_L.001",
+      "Lion_Brow_R.001",
+      "Lion_Brow_L.001",
+      "Lion_Body_Red_Trim.001",
+      "Lion_Beard.001",
+      "Lion_Ear_L.003",
+      "Lion_Ear_R.003",
+      "Lion_Hindpaw_L.003",
+      "Lion_Hindpaw_R.003",
+      "Lion_Foreleg_R.003",
+      "Lion_Nose.003",
+      "Lion_Brow_R.002",
+      "Lion_Brow_L.002",
+      "Lion_Nose.002",
+      "Lion_Ear_L.002",
+      "Lion_Ear_R.002",
+      "Lion_Nose.001",
+      "Lion_Body_Red_Trim.002",
+      "Lion_Foreleg_R.002",
+      "Lion_Foreleg_L.002",
+      "Lion_Hindleg_L.002",
+      "Lion_Hindleg_R.002",
+      "Lion_Body.001",
+      "Lion_Tail.002",
+      "Lion_Forepaw_R.002",
+      "Lion_Body.002",
+      "Lion_Forepaw_L.002",
+      "Lion_Hindpaw_L.002",
+      "Lion_Hindleg_L.003",
+      "Lion_Body.003",
+      "Lion_Hindpaw_R.002",
+      "Lion_Hindleg_R.003",
+      "Lion_Forepaw_R.003",
+      "Lion_Forepaw_L.003",
+      "Lion_Foreleg_L.003",
+      "Lion_Body.004"
+    ],
+    "hair_manifest": "source/public/assets/models/lion-user-hair.json",
+    "hair_groups": 33,
+    "hair_strands": 2295421,
+    "hair_points": 19957105
+  },
+  "independent_source_audit": {
+    "passed": true,
+    "checks": 156,
+    "errors": [],
+    "report": "source/references/lion-full-model-source-verification-2026-10-20.json",
+    "scope": "all evaluated mesh coordinates, triangle connectivity and winding; all Curves points; all sidecars/counts/radii; 630 independent complete particle strand samples and root UVs; all parent-guide hashes",
+    "script": "scripts/verify_full_lion_source.py"
+  },
+  "asset_tests": {
+    "command": "npm test",
+    "passed": 52,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 323,
+    "passed": true,
+    "warning": "Existing Three.js chunk exceeds 500 kB"
+  },
+  "public_dist_check": {
+    "configured_files": 106,
+    "sha_mismatches": []
+  },
+  "browser": {
+    "production_base_url": "http://127.0.0.1:4188",
+    "unique_cases_passed": 25,
+    "regression_first_run": {
+      "stats": {
+        "startTime": "2026-10-20T13:45:52.024Z",
+        "duration": 211737.367,
+        "expected": 16,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "name": "模型下载失败保留参考图，重试能够恢复3D场景",
+          "passed": false,
+          "duration_ms": 10856,
+          "errors": [
+            "Error: browserContext.close: ENOENT: no such file or directory, open 'E:\\数字媒体竞赛\\张钧儒\\lion\\test-results\\.playwright-artifacts-0\\traces\\a510cc93a867214a2ea0-0ccfc142b08b19368101.network'"
+          ]
+        },
+        {
+          "name": "结构模型以透明全页画布融入指定背景，模型展示与右侧说明保持分离",
+          "passed": true,
+          "duration_ms": 8649,
+          "errors": []
+        },
+        {
+          "name": "结构模型真实滚轮放大改变绘制尺寸，透明画布保留全页绘制范围",
+          "passed": true,
+          "duration_ms": 9277,
+          "errors": []
+        },
+        {
+          "name": "结构页在900电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "passed": true,
+          "duration_ms": 8081,
+          "errors": []
+        },
+        {
+          "name": "结构页在1366电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "passed": true,
+          "duration_ms": 8129,
+          "errors": []
+        },
+        {
+          "name": "结构页在1920电脑窗口按余宽排列模型资料，导航与部件目录可操作",
+          "passed": true,
+          "duration_ms": 8307,
+          "errors": []
+        },
+        {
+          "name": "模型页复用全局品牌与章节导航并高亮当前章节",
+          "passed": true,
+          "duration_ms": 8056,
+          "errors": []
+        },
+        {
+          "name": "结构页右侧部件目录驱动局部聚焦，离页暂停并复用预热场景",
+          "passed": true,
+          "duration_ms": 8369,
+          "errors": []
+        },
+        {
+          "name": "点击醒狮真实表面同步右侧部件，镜头在左侧放大聚焦实际目标",
+          "passed": true,
+          "duration_ms": 14759,
+          "errors": []
+        },
+        {
+          "name": "拖动模型旋转与点击空白不误选部件",
+          "passed": true,
+          "duration_ms": 8257,
+          "errors": []
+        },
+        {
+          "name": "模型预热失败后切换页面可重试，恢复时只有一个canvas",
+          "passed": true,
+          "duration_ms": 11076,
+          "errors": []
+        },
+        {
+          "name": "旧入场与结构链接兼容到首页与整体，不再保留独立页面",
+          "passed": true,
+          "duration_ms": 39241,
+          "errors": []
+        },
+        {
+          "name": "冷启动等待真实模型准备，书册不提前快翻，章节复用已编译画布",
+          "passed": true,
+          "duration_ms": 9369,
+          "errors": []
+        },
+        {
+          "name": "模型网络失败展示预览状态并完成加载，无永久挡屏",
+          "passed": true,
+          "duration_ms": 8089,
+          "errors": []
+        },
+        {
+          "name": "模型下载途中丢失WebGL上下文仍结束加载并保留重试",
+          "passed": true,
+          "duration_ms": 8094,
+          "errors": []
+        },
+        {
+          "name": "结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和重入仍更新画面",
+          "passed": true,
+          "duration_ms": 28354,
+          "errors": []
+        },
+        {
+          "name": "视口部件标注随模型转动并连接结构锚点，点击同步右侧目录与聚焦",
+          "passed": true,
+          "duration_ms": 13282,
+          "errors": []
+        }
+      ]
+    },
+    "isolated_retry_and_new_full_model_cases": {
+      "stats": {
+        "startTime": "2026-10-20T13:49:56.118Z",
+        "duration": 35229.882,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "name": "模型下载失败保留参考图，重试能够恢复3D场景",
+          "passed": true,
+          "duration_ms": 11168,
+          "errors": []
+        },
+        {
+          "name": "结构与巨幕都实际绘制完整新狮，跨章复用全部模型与毛发请求",
+          "passed": true,
+          "duration_ms": 12090,
+          "errors": []
+        },
+        {
+          "name": "完整毛发请求失败会明确退出加载并可重试恢复全量毛发",
+          "passed": true,
+          "duration_ms": 11293,
+          "errors": []
+        }
+      ]
+    },
+    "action_regression": {
+      "stats": {
+        "startTime": "2026-10-20T13:51:20.652Z",
+        "duration": 60951.939,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "name": "红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例",
+          "passed": true,
+          "duration_ms": 10867,
+          "errors": []
+        },
+        {
+          "name": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+          "passed": true,
+          "duration_ms": 8650,
+          "errors": []
+        },
+        {
+          "name": "中央模型按36秒均速自转，摄像机静置且不继承模型旋转",
+          "passed": true,
+          "duration_ms": 9037,
+          "errors": []
+        },
+        {
+          "name": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+          "passed": true,
+          "duration_ms": 10076,
+          "errors": []
+        },
+        {
+          "name": "四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置",
+          "passed": true,
+          "duration_ms": 12720,
+          "errors": []
+        },
+        {
+          "name": "网络场景失败可重载，恢复只生成一个有效WebGL画布",
+          "passed": true,
+          "duration_ms": 8789,
+          "errors": []
+        }
+      ]
+    },
+    "review": {
+      "structure": {
+        "elapsedMs": 7649,
+        "dataset": {
+          "engine": "three.js r160",
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "sourceModel": "./assets/models/lion-user-full.glb",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105",
+          "renderLines": "25380208",
+          "cameraDistance": "3.2318",
+          "focusState": "idle",
+          "focusedPart": "overall",
+          "targetScreen": "{\"x\":685.8359374999999,\"y\":581.9999999999999}",
+          "partProjections": "{\"outer_shell\":{\"x\":663.2858546481854,\"y\":605.0522657627953,\"visible\":true},\"eyes\":{\"x\":551.5184943285218,\"y\":521.0094800074658,\"visible\":true},\"mirror\":{\"x\":469.13920001540293,\"y\":495.9128493055587,\"visible\":true},\"mouth\":{\"x\":483.01574553806415,\"y\":675.9737577068363,\"visible\":true},\"fur_and_bells\":{\"x\":485.7771513176659,\"y\":784.9426270756292,\"visible\":true},\"lion_cloth\":{\"x\":878.1048949777181,\"y\":516.2777780587737,\"visible\":false}}"
+        },
+        "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "frameTiming": {
+          "samples": 624,
+          "medianMs": 5.599999999998545,
+          "p95Ms": 5.699999999998909
+        }
+      },
+      "action": {
+        "dataset": {
+          "engine": "three.js r160",
+          "sceneReady": "true",
+          "cameraPosition": "[0,1.6000000000000008,8.6]",
+          "cameraTarget": "[0,1.45,0]",
+          "cameraRadius": "8.6013",
+          "cameraAzimuth": "0.0000",
+          "lionRotation": "0.04595",
+          "activeScreen": "tanqing",
+          "screenBrightness": "{\"tanqing\":1,\"doumao\":0.25,\"tuqiu\":0.25,\"meihuazhuang\":0.25}",
+          "videoBindings": "{\"tanqing\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.171072,\"readyState\":4},\"doumao\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.172076,\"readyState\":4},\"tuqiu\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.172088,\"readyState\":4},\"meihuazhuang\":{\"bound\":true,\"width\":2560,\"height\":1440,\"time\":3.171081,\"readyState\":4}}",
+          "cameraState": "idle",
+          "renderState": "active",
+          "renderedFrames": "29",
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "sourceModel": "./assets/models/lion-user-full.glb",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105",
+          "renderLines": "25380208",
+          "composition": "{\"lion\":{\"left\":0.4275275226934504,\"top\":0.26669974080964276,\"right\":0.5804051719416594,\"bottom\":0.6441396421336127,\"inFront\":true,\"visible\":true,\"widthRatio\":0.152877649248209,\"heightRatio\":0.37743990132397,\"worldMinY\":0.4,\"worldHeight\":2.685597053944247},\"stage\":{\"left\":0.18302565145468552,\"right\":0.8169743485453145,\"top\":0.5694309627861958,\"bottom\":0.8667639310381577,\"inFront\":true,\"visible\":true,\"widthRatio\":0.633948697090629,\"heightRatio\":0.297332968251962,\"worldTopY\":0.39999999880790715,\"radius\":4.7},\"screens\":{\"tanqing\":{\"left\":0.30473915113836375,\"top\":0.10259267563937219,\"right\":0.6952608488616363,\"bottom\":0.5250276184405398,\"inFront\":true,\"visible\":true,\"widthRatio\":0.39052169772327255,\"heightRatio\":0.4224349428011676,\"worldWidth\":14.4,\"worldHeight\":8.1},\"doumao\":{\"left\":0.7951649793448654,\"top\":-4.91192142769144,\"right\":4.1676507255278,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":3.3724857461829343,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1},\"tuqiu\":{\"left\":null,\"top\":null,\"right\":null,\"bottom\":null,\"inFront\":false,\"visible\":false,\"widthRatio\":null,\"heightRatio\":null,\"worldWidth\":14.4,\"worldHeight\":8.1},\"meihuazhuang\":{\"left\":-3.1676507255278,\"top\":-4.91192142769144,\"right\":0.20483502065513454,\"bottom\":1.0158077929218772,\"inFront\":true,\"visible\":true,\"widthRatio\":3.3724857461829347,\"heightRatio\":5.927729220613317,\"worldWidth\":14.4,\"worldHeight\":8.1}},\"architecture\":{\"meshBatches\":29,\"instancedDraws\":19,\"instances\":1445,\"groups\":{\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Column_Stone_Foot\":20,\"Theater_Column_Lotus_Foot\":12,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Cuff_Carving\":80,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":60,\"Theater_Dougong_Brass_Edge\":80,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":108,\"Theater_Screen_Brass_Upright_Fillet\":16,\"Theater_Screen_Raised_Vertical_Keys\":296,\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Stage_Low_Base\":2,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Continuous_Raised_Clouds\":72},\"components\":{\"Theater_Polished_Stone_Floor\":1,\"Theater_Floor_Inlay_Outer\":1,\"Theater_Floor_Inlay_Inner\":1,\"Theater_Floor_Inlaid_Clouds\":64,\"Theater_Floor_Perimeter_Inlay\":72,\"Theater_Stage_Low_Base\":1,\"Theater_Stage_Bronze_Plinth\":1,\"Theater_Stage_Carved_Fascia\":1,\"Theater_Stage_Polished_Stone_Top\":1,\"Theater_Stage_Lower_Gold_Bevel\":1,\"Theater_Stage_Upper_Gold_Bevel\":1,\"Theater_Stage_Warm_Recess\":1,\"Theater_Stage_Concentric_Brass_Inlay\":3,\"Theater_Stage_Continuous_Raised_Clouds\":72,\"Theater_Column_Stone_Foot\":4,\"Theater_Column_Lotus_Foot\":4,\"Theater_Column_Red_Lacquer\":4,\"Theater_Column_Brass_Collars\":28,\"Theater_Column_Layered_Lotus_Petals\":256,\"Theater_Column_Embossed_Cuff\":8,\"Theater_Column_Cuff_Carving\":64,\"Theater_Column_Carved_Capital\":4,\"Theater_Dougong_Stepped_Arms\":48,\"Theater_Dougong_Brass_Edge\":48,\"Theater_Capital_Raised_Scroll\":16,\"Theater_Continuous_RedGold_Beam\":12,\"Theater_Beam_Raised_Brass_Fillet\":24,\"Theater_Continuous_Carved_Lintel\":216,\"Theater_Ceiling_Rafter\":44,\"Theater_Ceiling_Inner_Purlin\":4,\"Theater_Ceiling_Inner_Purlin_Inlay\":4,\"Theater_Screen_Thick_Black_Upright\":8,\"Theater_Screen_Brass_Upright_Fillet\":8,\"Theater_Screen_Raised_Vertical_Keys\":128,\"Theater_Screen_Thick_Black_Crossbar\":8,\"Theater_Screen_Brass_Crossbar_Fillet\":8,\"Theater_Screen_Continuous_Raised_Keys\":168,\"Theater_Low_Wall_Red_Pilasters\":104,\"Theater_Low_Wall_Bronze_Rail\":4},\"gridVisibleCount\":0,\"stoneRoughness\":0.54},\"reflection\":{\"enabled\":true,\"size\":768,\"passes\":5,\"maxHz\":18,\"blurTaps\":9},\"lighting\":{\"exposure\":1,\"lights\":[{\"type\":\"HemisphereLight\",\"name\":\"\",\"color\":\"#ffddba\",\"intensity\":0.24,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Warm_Front_Key\",\"color\":\"#ffe3bd\",\"intensity\":3.25,\"shadow\":true},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Soft_Contour\",\"color\":\"#ffe9cd\",\"intensity\":1.7,\"shadow\":false},{\"type\":\"DirectionalLight\",\"name\":\"Theater_Gold_Bounce\",\"color\":\"#ffb365\",\"intensity\":0.85,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false},{\"type\":\"SpotLight\",\"name\":\"Theater_Architectural_Warm_Wash\",\"color\":\"#ffb66d\",\"intensity\":75,\"shadow\":false}]},\"quality\":{\"pixelRatio\":1,\"reduced\":false,\"fov\":56,\"width\":1905,\"height\":990}}"
+        }
+      },
+      "errors": [],
+      "failed": [],
+      "screenshots": "source/reviews/model/2026-10-20-full-source"
+    }
+  },
+  "resolved_test_harness_issues": [
+    "The initial new retry case used an incorrect accessible button name. Corrected the locator to the existing 重新载入 label; final isolated case passed.",
+    "The first broad regression overlapped a prior run cleaning test-results, causing one browserContext.close ENOENT for a trace artifact. Isolated output directories; the affected model network failure/retry case passed with both new full-model cases (3/3)."
+  ],
+  "resolved_implementation_issues": [
+    "Stock Blender exporter Mesh.validate removed 72 authored degenerate triangles. Disabled only that call in a fingerprinted Blender 5.1.2 exporter function; all 657831 evaluated triangles now match the source.",
+    "Vite serves .bin.gz with HTTP Content-Encoding gzip, which Fetch already decodes. Loader handles both decoded HTTP and ordinary binary payloads with exact byte length and SHA checks."
+  ],
+  "boundaries": [
+    "Desktop only. No mobile regression or formal hosting deployment.",
+    "Original source Blender file and all authored model/hair data retained; web lighting and Blender procedural shader rendering can differ.",
+    "The oversized 136543222-byte original Blender archive is localOnly and Git-ignored; complete runtime GLB and all hair sidecars are committed.",
+    "Hair source STRAND mode keeps radius data but renders native one-pixel centerlines. No strand LOD, thinning or source point simplification.",
+    "Timing samples are browser RAF intervals on this machine, not a cross-device GPU benchmark."
+  ],
+  "memory_check": {
+    "command": "python wiki_memory/工具/memory.py check --project . --require-ready",
+    "pages": 89,
+    "errors": 0,
+    "preexisting_historical_source_warnings": 4
+  }
+}

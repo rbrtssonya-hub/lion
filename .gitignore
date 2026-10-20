@@ -4,6 +4,9 @@ test-results/
 playwright-report/
 tmp/
 
+# Byte-identical user Blender source (136 MB); runtime exports are tracked.
+source/models/user-lion-2026-10-20.blend
+
 # Local/editor noise
 .DS_Store
 Thumbs.db
