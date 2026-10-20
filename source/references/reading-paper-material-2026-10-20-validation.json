@@ -9,6 +9,17 @@
     "changed": "4 wiki documentation files only; no product change",
     "conflicts": 0
   },
+  "postPushRemoteAudit": {
+    "featureCommitVerified": "1695339efd7ec16bb4eb14c5bed9adf695097b68",
+    "newMain": "62bcd8eddc1fa2e3b7a2aa3b1091f1c8f5967b37",
+    "subject": "feat: replace lions with complete source model and preserve all hair",
+    "mainIntegrated": false,
+    "reason": "This new independent 70-file model/action/hair replacement appeared after the material branch was pushed; those areas are explicitly frozen by the current approved plan. Preserve the verified material branch, do not silently broaden the task.",
+    "diagnostic": "git merge-tree --write-tree HEAD origin/main (read-only working-tree/index/HEAD audit)",
+    "conflictFiles": ["wiki_memory/当前状态/已知问题.md", "wiki_memory/当前状态/当前待办.md", "wiki_memory/当前状态/当前约束.md", "wiki_memory/当前状态/项目概览.md"],
+    "directProductTextConflicts": 0,
+    "futureIntegration": "Requires integrating both sets of memory facts and revalidating the new model/assets/actions plus material; current material verification does not cover62bcd8e. No merge operation started, no main push, no PR."
+  },
   "scope": {
     "desktopOnly": true,
     "newRuntimeImages": 0,
@@ -534,7 +545,7 @@
   },
   "finalChecks": {
     "memoryIndexApplied": true,
-    "memoryRequireReady": { "pages": 89, "errors": 0, "historicalSourceWarnings": 4 },
+    "memoryRequireReady": { "pages": 90, "errors": 0, "historicalSourceWarnings": 4 },
     "diffCheck": "passed",
     "finalCore": { "passed": 56, "failed": 0, "durationMs": 1364.8291 }
   }
