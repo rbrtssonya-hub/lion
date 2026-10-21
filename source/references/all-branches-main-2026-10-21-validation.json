@@ -100,7 +100,100 @@
       "wiki_memory/当前状态/当前待办.md",
       "wiki_memory/当前状态/已知问题.md"
     ],
-    "publication": "pending merge commit and ordinary push"
+    "publication": {
+      "status": "merge pushed and verified",
+      "mergeCommit": "705531db801ec8c2c45061f0391ede63ea959305",
+      "remoteMain": "705531db801ec8c2c45061f0391ede63ea959305",
+      "allLocalAndRemoteTipsInMain": true,
+      "branchEndpoints": [
+        {
+          "ref": "refs/heads/codex/content-responsive-2026-10-20",
+          "commit": "4017f3f6e7a65d89479dda6faeddedc14023d819",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/codex/home-chapters-2026-10-13",
+          "commit": "8b2b7f5cbf97ebd64f061b9afb32dfe05e8daf14",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/codex/home-lion-types-inheritors-2026-10-19",
+          "commit": "2aefef90e79a25c8a53ea8b5bb81ab59ca04766f",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/codex/lion-next-2026-10-14",
+          "commit": "d77b8160d556b124aa2f6fe67750b7dd48da4e8b",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/codex/reading-paper-material-2026-10-20",
+          "commit": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/codex/replace-home-videos-2026-10-19",
+          "commit": "b9eac7dca5a2707b8c2c71a434658e45824f46b4",
+          "merged": true
+        },
+        {
+          "ref": "refs/heads/main",
+          "commit": "705531db801ec8c2c45061f0391ede63ea959305",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/content-responsive-2026-10-20",
+          "commit": "4017f3f6e7a65d89479dda6faeddedc14023d819",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/home-chapters-2026-10-13",
+          "commit": "8b2b7f5cbf97ebd64f061b9afb32dfe05e8daf14",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/home-lion-types-inheritors-2026-10-19",
+          "commit": "2aefef90e79a25c8a53ea8b5bb81ab59ca04766f",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/huangzhi10.15",
+          "commit": "8df6ee0979324cc1facc66263bf2c857ab9dbe72",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/lion-next-2026-10-14",
+          "commit": "d77b8160d556b124aa2f6fe67750b7dd48da4e8b",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/navigation-image-icons",
+          "commit": "c45502c31c5580d716bdf2952cf6d219816e51e1",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/navigation-stable-background",
+          "commit": "8748cc798bb89dc1f0f78961fa077e1a91881e2e",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/reading-paper-material-2026-10-20",
+          "commit": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/codex/replace-home-videos-2026-10-19",
+          "commit": "b9eac7dca5a2707b8c2c71a434658e45824f46b4",
+          "merged": true
+        },
+        {
+          "ref": "refs/remotes/origin/main",
+          "commit": "705531db801ec8c2c45061f0391ede63ea959305",
+          "merged": true
+        }
+      ],
+      "finalDocumentationCommit": "Resolved by containing documentation commit and final ls-remote check"
+    }
   },
   "environment": {
     "node": "v24.20.0",
@@ -115,7 +208,14 @@
     "passed": 59,
     "failed": 0,
     "skipped": 0,
-    "durationMs": 7850.6628
+    "durationMs": 7850.6628,
+    "finalRerun": {
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 8351.7062,
+      "log": "tmp/all-branches-main-2026-10-21/core-final.log"
+    }
   },
   "build": {
     "command": "npm run build",
@@ -270,5 +370,28 @@
     "other browsers or hardware",
     "public hosting",
     "EXE rebuilding"
-  ]
+  ],
+  "videos": [
+    {
+      "role": "first-entry",
+      "original": "F:/数媒竞赛/醒狮素材/入场视频.mp4",
+      "runtime": "assets/intro/entry-intro.mp4",
+      "bytes": 17701673,
+      "sha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e",
+      "originalPublicDistRemoteMatch": true
+    },
+    {
+      "role": "second-loop",
+      "original": "F:/数媒竞赛/醒狮素材/循环视频.mp4",
+      "runtime": "assets/entry/home-lion-loop.mp4",
+      "bytes": 33463217,
+      "sha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9",
+      "originalPublicDistRemoteMatch": true
+    }
+  ],
+  "wiki": {
+    "pages": 95,
+    "errors": 0,
+    "historicalSourceWarnings": 4
+  }
 }
