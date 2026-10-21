@@ -1,7 +1,69 @@
+import { useEffect, useRef } from 'react';
 import { media } from '../../config/media.js';
 import { getStructureAtlasEntry } from '../../data/structure-atlas.js';
 
 const folios = ['壹', '贰', '叁', '肆', '伍', '陆'];
+const shortPartNames = { outer_shell: '狮头', eyes: '眉眼', mirror: '额饰', mouth: '狮嘴', fur_and_bells: '须毛', lion_cloth: '狮被' };
+
+function StructurePartNavigation({ hotspots, selectedIndex, onSelect }) {
+  const directoryRef = useRef(null);
+  useEffect(() => {
+    const directory = directoryRef.current;
+    if (!directory) return undefined;
+    const revealCurrent = () => {
+      const current = directory.querySelector('[aria-current="true"]');
+      if (!current || directory.scrollHeight <= directory.clientHeight) return;
+      const directoryBounds = directory.getBoundingClientRect();
+      const currentBounds = current.getBoundingClientRect();
+      if (currentBounds.top < directoryBounds.top + 4) directory.scrollTop += currentBounds.top - directoryBounds.top - 4;
+      else if (currentBounds.bottom > directoryBounds.bottom - 4) directory.scrollTop += currentBounds.bottom - directoryBounds.bottom + 4;
+    };
+    revealCurrent();
+    const resizeObserver = new ResizeObserver(revealCurrent);
+    resizeObserver.observe(directory);
+    return () => resizeObserver.disconnect();
+  }, [selectedIndex]);
+
+  const navigateWithKeyboard = (event, index) => {
+    let nextIndex;
+    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % hotspots.length;
+    else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index - 1 + hotspots.length) % hotspots.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = hotspots.length - 1;
+    else return;
+    event.preventDefault();
+    const buttons = event.currentTarget.closest('nav').querySelectorAll('button');
+    buttons[nextIndex]?.focus({ preventScroll: true });
+    onSelect?.(hotspots[nextIndex].id);
+  };
+
+  return (
+    <nav className="structure-part-directory" aria-label="结构部件目录" ref={directoryRef}>
+      <div className="structure-directory-heading" aria-hidden="true"><span>形制</span><span>目录</span></div>
+      <ol>
+        {hotspots.map((part, index) => (
+          <li key={part.id}>
+            <button type="button" data-part-id={part.id}
+              aria-label={`查看${part.name}`} aria-current={selectedIndex === index ? 'true' : undefined}
+              aria-controls="modelDetailContent" tabIndex={selectedIndex === index ? 0 : -1}
+              title={part.name} onClick={() => onSelect?.(part.id)}
+              onKeyDown={(event) => navigateWithKeyboard(event, index)}>
+              <span className="structure-directory-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span className="structure-directory-name">{shortPartNames[part.id] ?? part.name}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+      <div className="structure-directory-position" role="progressbar" aria-label="图鉴页码"
+        aria-valuemin={1} aria-valuemax={hotspots.length} aria-valuenow={selectedIndex + 1}
+        aria-valuetext={`第${selectedIndex + 1}部件，共${hotspots.length}部件`}
+        style={{ '--structure-directory-progress': `${((selectedIndex + 1) / hotspots.length) * 100}%` }}>
+        <span aria-hidden="true">{String(selectedIndex + 1).padStart(2, '0')}<i> / {String(hotspots.length).padStart(2, '0')}</i></span>
+        <b aria-hidden="true" />
+      </div>
+    </nav>
+  );
+}
 
 function CloudMotif({ className = '' }) {
   return (
@@ -27,7 +89,7 @@ function DetailList({ entries }) {
 
 export default function StructureReadingPanel({
   selected, selectedIndex, hotspots, focusState, detailScrollRef,
-  onPrevious, onNext, expressionLink, onObserve, artworkEnabled = true,
+  onPrevious, onNext, onSelect, expressionLink, onObserve, artworkEnabled = true,
 }) {
   const atlas = getStructureAtlasEntry(selected.id);
   const previous = hotspots[(selectedIndex - 1 + hotspots.length) % hotspots.length];
@@ -40,7 +102,9 @@ export default function StructureReadingPanel({
         <span lang="en">STRUCTURE</span>
       </header>
 
-      <div className="model-detail-scroll" id="modelDetailContent" ref={detailScrollRef}
+      <div className="structure-atlas-body">
+        <StructurePartNavigation hotspots={hotspots} selectedIndex={selectedIndex} onSelect={onSelect} />
+        <div className="model-detail-scroll" id="modelDetailContent" ref={detailScrollRef}
         tabIndex={0} aria-labelledby="structureTitle">
         <article className="structure-atlas-entry" key={selected.id} data-part-id={selected.id}>
           <div className="structure-atlas-hero">
@@ -115,6 +179,7 @@ export default function StructureReadingPanel({
             <p>当前展示来自用户提供的 Blender 醒狮模型，支持点选可见结构。纸扎内骨架、活动连接与制作工艺仅作资料说明，未展示内部拆装。本页六幅朱砂书法由 AI 辅助生成，用于展陈视觉。</p>
           </details>
         </article>
+        </div>
       </div>
 
       <footer className="structure-atlas-footer">

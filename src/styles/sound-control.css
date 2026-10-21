@@ -1,0 +1,14 @@
+.sound-control {
+  position: fixed; right: 24px; bottom: 24px; z-index: 30;
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 42px; padding: 10px 15px;
+  border: 1px solid rgb(226 186 118 / .56); border-radius: 24px;
+  color: #f6dfb5; background: rgb(48 17 11 / .86);
+  box-shadow: 0 4px 20px rgb(18 5 2 / .22); backdrop-filter: blur(12px);
+  font: 12px/1.4 var(--sans); letter-spacing: .04em; cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.sound-control:hover { border-color: #f3d69b; background: rgb(108 31 18 / .96); }
+.sound-control:focus-visible { outline: 2px solid #f3d69b; outline-offset: 4px; }
+.sound-control svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sound-control[data-audio-state='muted'] { color: #d9c19e; }

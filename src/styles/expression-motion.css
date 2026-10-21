@@ -1,0 +1,10 @@
+.expression-page .expression-copy-content { animation: none; }
+.expression-page .expression-state-character { position: relative; }
+.expression-page .expression-state-glyph { display: block; width: 1em; height: 1em; object-fit: contain; pointer-events: none; }
+.expression-page .expression-copy[data-view='details'] .expression-state-character { width: 1.33333em; height: 1.33333em; border: 0; border-radius: 0; }
+.expression-page .expression-copy[data-view='details'] .expression-state-glyph { width: 100%; height: 100%; }
+.expression-page .expression-state-character, .expression-page [data-expression-reveal] { backface-visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-expression-ghost] { display: none; }
+}

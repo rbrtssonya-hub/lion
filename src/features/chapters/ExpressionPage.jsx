@@ -3,6 +3,11 @@ import { media } from '../../config/media.js';
 import { lionExpressions, expressionComparisons } from '../../data/lion-expressions.js';
 import ExpressionMotif from './ExpressionMotif.jsx';
 import ExpressionComparison from './ExpressionComparison.jsx';
+import useExpressionMotion from './useExpressionMotion.js';
+import '../../styles/expression-motion.css';
+
+const glyphKeys = ['expressionGlyphJoy', 'expressionGlyphAnger', 'expressionGlyphSorrow', 'expressionGlyphDelight',
+  'expressionGlyphMotion', 'expressionGlyphStillness', 'expressionGlyphSurprise', 'expressionGlyphDoubt'];
 
 function Cloud({ className = '' }) {
   return <svg className={`expression-cloud ${className}`} viewBox="0 -4 100 60" aria-hidden="true" focusable="false">
@@ -21,33 +26,47 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
   const stageRef = useRef(null);
   const triggerRef = useRef(null);
   const responseRef = useRef(null);
+  const copyRef = useRef(null);
+  const characterRef = useRef(null);
   const spaceActivation = useRef(null);
+  const interactionRef = useRef(null);
+  interactionRef.current = { index: selection.index, viewMode };
   const current = lionExpressions[selection.index];
+  const { capture: captureMotion, reset: resetMotion } = useExpressionMotion(copyRef, characterRef, current.id, viewMode, comparing);
   const showComparison = () => {
+    resetMotion();
     responseRef.current?.cancel();
     spaceActivation.current = null;
     setPairId((expressionComparisons.find(pair => pair.ids.includes(current.id)) ?? expressionComparisons[0]).id);
     setComparing(true);
   };
-  const exitComparison = () => { setComparing(false); compareButton.current?.focus({ preventScroll: true }); };
+  const exitComparison = () => { resetMotion(); setComparing(false); compareButton.current?.focus({ preventScroll: true }); };
   const select = useCallback((value) => {
-    setViewMode('overview');
     if (spaceActivation.current !== null) spaceActivation.current = false;
     responseRef.current?.cancel();
+    const previousInteraction = interactionRef.current;
+    const target = typeof value === 'function' ? value(previousInteraction.index) : value;
+    const index = (target + lionExpressions.length) % lionExpressions.length;
+    if (index === previousInteraction.index && previousInteraction.viewMode === 'overview') return;
+    captureMotion();
+    interactionRef.current = { index, viewMode: 'overview' };
+    setViewMode('overview');
     setSelection(previous => {
-      const target = typeof value === 'function' ? value(previous.index) : value;
-      const index = (target + lionExpressions.length) % lionExpressions.length;
       if (index === previous.index) return previous;
       return { index, previous: previous.index, direction: target > previous.index ? 'next' : 'previous', revision: previous.revision + 1 };
     });
-  }, []);
+  }, [captureMotion]);
   const step = useCallback(direction => select(index => index + direction), [select]);
   const returnToOverview = () => {
+    if (interactionRef.current.viewMode !== 'overview') captureMotion();
+    interactionRef.current = { ...interactionRef.current, viewMode: 'overview' };
     responseRef.current?.cancel();
     setViewMode('overview');
     triggerRef.current?.focus({ preventScroll: true });
   };
   const showDetails = () => {
+    if (interactionRef.current.viewMode !== 'details') captureMotion();
+    interactionRef.current = { ...interactionRef.current, viewMode: 'details' };
     setViewMode('details');
     responseRef.current?.cancel();
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -137,24 +156,24 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
           <p className="expression-interaction-hint" id="expressionInteractionHint">点击狮头，查看神态解读 · 滚轮或箭头切态</p>
         </div>
 
-        <div className="expression-copy" id="expressionStateCopy" data-view={viewMode} data-surface="expressionOverlay" aria-live="polite" aria-atomic="true">
-          <div key={`copy-${selection.revision}-${viewMode}`} className="expression-copy-content">
-            <p className="expression-copy-kicker"><ExpressionMotif />{viewMode === 'overview' ? '醒狮八态 · 神态简介' : '狮艺解读 · 观形识意'}</p>
+        <div className="expression-copy" id="expressionStateCopy" ref={copyRef} data-view={viewMode} data-surface="expressionOverlay" aria-live="polite" aria-atomic="true">
+          <div className="expression-copy-content">
+            <p className="expression-copy-kicker" data-expression-reveal><ExpressionMotif />{viewMode === 'overview' ? '醒狮八态 · 神态简介' : '狮艺解读 · 观形识意'}</p>
             <div className="expression-copy-heading">
-              <div className="expression-state-heading"><strong className="expression-state-character" id="expressionStateTitle">{current.name}</strong><Cloud /></div>
-              {viewMode === 'overview' ? <h2 id="expressionSummary">{current.summary}</h2>
-                : <h2 id="expressionDetailTitle">{current.name}态怎么看</h2>}
-              <p className="expression-detail-subtitle">{viewMode === 'overview' ? current.verse : `从狮头到鼓点，寻找${current.meaning}的线索。`}</p>
+              <div className="expression-state-heading"><strong className="expression-state-character" id="expressionStateTitle" ref={characterRef}><span className="sr-only">{current.name}</span><img className="expression-state-glyph" src={media[glyphKeys[selection.index]]} alt="" aria-hidden="true" draggable="false" /></strong><Cloud /></div>
+              {viewMode === 'overview' ? <h2 id="expressionSummary" data-expression-reveal>{current.summary}</h2>
+                : <h2 id="expressionDetailTitle" data-expression-reveal>{current.name}态怎么看</h2>}
+              <p className="expression-detail-subtitle" data-expression-reveal>{viewMode === 'overview' ? current.verse : `从狮头到鼓点，寻找${current.meaning}的线索。`}</p>
             </div>
             <div className="expression-copy-rule" aria-hidden="true" />
-            {viewMode === 'overview' ? <div className="expression-description">{current.description.map(line => <p key={line}>{line}</p>)}</div> : <>
+            {viewMode === 'overview' ? <div className="expression-description">{current.description.map(line => <p key={line} data-expression-reveal>{line}</p>)}</div> : <>
               <div className="expression-cues">
-                <div className="expression-cue"><span className="expression-cue-emblem"><ExpressionMotif /><span>壹</span></span><div><h3>看狮头 · 眉眼与狮口</h3><p id="expressionEmotionCue">{current.emotion}</p></div></div>
-                <div className="expression-cue"><span className="expression-cue-emblem"><ExpressionMotif kind="drum" /><span>贰</span></span><div><h3>听锣鼓 · 身段与步法</h3><p id="expressionMotionCue">{current.motion}</p></div></div>
+                <div className="expression-cue" data-expression-reveal><span className="expression-cue-emblem"><ExpressionMotif /><span>壹</span></span><div><h3>看狮头 · 眉眼与狮口</h3><p id="expressionEmotionCue">{current.emotion}</p></div></div>
+                <div className="expression-cue" data-expression-reveal><span className="expression-cue-emblem"><ExpressionMotif kind="drum" /><span>贰</span></span><div><h3>听锣鼓 · 身段与步法</h3><p id="expressionMotionCue">{current.motion}</p></div></div>
               </div>
-              <button type="button" className="expression-return" onClick={returnToOverview}>返回神态简介 <span aria-hidden="true">↗</span></button>
+              <button type="button" className="expression-return" data-expression-reveal onClick={returnToOverview}>返回神态简介 <span aria-hidden="true">↗</span></button>
             </>}
-            <p className="expression-state-count"><span>一狮一态 · 八面生辉</span><span>{String(selection.index + 1).padStart(2, '0')} / 08</span></p>
+            <p className="expression-state-count" data-expression-reveal><span>一狮一态 · 八面生辉</span><span>{String(selection.index + 1).padStart(2, '0')} / 08</span></p>
           </div>
         </div>
       </div>

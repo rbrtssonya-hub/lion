@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import VideoStage from '../../components/VideoStage.jsx';
+import SoundControl from '../../components/SoundControl.jsx';
+import { useMediaAudioPreference } from '../../hooks/useMediaAudioPreference.js';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
@@ -12,7 +14,9 @@ import '../../styles/home-archive.css';
 
 export default function HomePage({ settings, playbackEnabled = true, onBookReady, onGalleryReady, onVideoReady }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback(playbackEnabled);
-  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
+  const [audioState, setAudioState] = useState({ enabled: false, pending: false });
+  const resumeAudioRef = useRef(null);
   const exploreCulture = () => {
     const book = document.querySelector('#homeLionBook');
     if (!book) return;
@@ -27,7 +31,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
     <VideoStage key={introActive ? `intro-${playbackId}` : 'home-loop'}
       id={introActive ? 'introVideo' : 'entryLionVideo'} src={introActive ? media.intro : media.home}
-      poster={media.cover} loop={!introActive} playing={playbackEnabled} audioEnabled={audioEnabled} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
+      poster={media.cover} loop={!introActive} playing={playbackEnabled} audioEnabled={audioEnabled} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
       onEnded={introActive ? finishIntro : undefined} onContinue={introActive ? finishIntro : undefined} continueLabel="继续浏览首页"
       label={introActive ? 'AI辅助创作的醒狮入场视频' : '循环播放的醒狮首页视频'} className="entry-visual entry-visual-video" />
     <div className="entry-vignette" aria-hidden="true" />
@@ -39,10 +43,6 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <button type="button" id="replayIntro" className="entry-replay" onClick={replayIntro} aria-label="重播入场">
         <span className="entry-replay-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="21" /><path d="M34.5 19a12 12 0 1 0 .7 8M34.5 10.5V19H26" /><path className="entry-replay-play" d="m21 17 10 7-10 7Z" /><path className="entry-replay-spark" d="M11 8.5h5M13.5 6v5M36.5 35h5M39 32.5v5" /></svg></span>
         <span><strong>重播入场</strong><small>再听一声醒狮鼓</small></span>
-      </button>
-      <button type="button" id="toggleHomeAudio" aria-label={audioEnabled ? '关闭首页声音' : '开启首页声音'}
-        aria-pressed={audioEnabled} onClick={() => setAudioEnabled(value => !value)}>
-        {audioEnabled ? '关闭声音' : '开启声音'}
       </button>
       {introActive && <button type="button" id="skipIntro" onClick={finishIntro}>跳过入场 <span aria-hidden="true">→</span></button>}
       {introActive && <span className="entry-video-note">开场影像 · AI辅助创作</span>}
@@ -76,5 +76,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
     </div>
   </div>
   <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />
+  {playbackEnabled && <SoundControl id="toggleHomeAudio" enabled={audioState.enabled} pending={audioState.pending}
+    onToggle={() => { if (audioState.enabled) setAudioEnabled(false); else if (audioState.pending) resumeAudioRef.current?.(); else setAudioEnabled(true); }} />}
   </div>;
 }

@@ -96,20 +96,21 @@ test('等待原生play时隐藏页面不会留下后台播放或迟到恢复', a
   await expect.poll(() => running(page)).toBe(0);
 });
 
-test('播放受浏览器阻止时给出可恢复状态，下一次点击可播放真实媒体', async ({ page }) => {
+test('有声播放被拒绝后静音继续，下一次手势恢复真实媒体声音', async ({ page }) => {
   await page.addInitScript(() => {
     const actual = HTMLMediaElement.prototype.play;
     let allowed = false;
     document.addEventListener('pointerdown', event => { if (event.isTrusted) allowed = true; }, { capture: true });
     HTMLMediaElement.prototype.play = function () {
-      if ((this.dataset.actionId === 'tanqing' || this.src.endsWith('/tanqing.mp4')) && !allowed) return Promise.reject(new DOMException('test-only denied gesture', 'NotAllowedError'));
+      if ((this.dataset.actionId === 'tanqing' || this.src.endsWith('/tanqing.mp4')) && !this.muted && !allowed) return Promise.reject(new DOMException('test-only denied gesture', 'NotAllowedError'));
       return actual.call(this);
     };
   });
   await openTheater(page);
-  await expect(stage(page)).toContainText(/点击.*播放|播放.*允许|播放.*阻止/);
-  await ensurePlaying(page);
-  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && video.currentTime > .1)).toBe(true);
+  await expect(page.locator('#actionTheater .sound-control')).toHaveAttribute('data-audio-state', 'awaiting-gesture');
+  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && video.muted && video.currentTime > .1)).toBe(true);
+  await page.getByRole('button', { name: '开启声音', exact: true }).click();
+  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && !video.muted && video.currentTime > .1)).toBe(true);
 });
 
 test('真实视频请求失败能在当前主屏重试，其他场景与按钮仍可使用', async ({ page }) => {

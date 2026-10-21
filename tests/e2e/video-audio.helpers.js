@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 
 export async function recordVideoAudio(page) {
   await page.addInitScript(() => {
-    const audit = window.videoAudioAudit = { plays: [], overlaps: [] };
+    const audit = window.videoAudioAudit = { plays: [], overlaps: [], rejections: [] };
     const id = video => video.dataset.actionId || video.id;
     const sample = kind => {
       const audible = [...document.querySelectorAll('video')].filter(video => !video.paused && !video.muted && video.volume > 0).map(id);
@@ -12,6 +12,7 @@ export async function recordVideoAudio(page) {
     HTMLMediaElement.prototype.play = function () {
       audit.plays.push({ id: id(this), volume: this.volume, muted: this.muted });
       const result = nativePlay.call(this);
+      result?.catch(error => audit.rejections.push({ id: id(this), name: error.name }));
       sample('play-call');
       return result;
     };

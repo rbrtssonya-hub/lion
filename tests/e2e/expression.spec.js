@@ -130,7 +130,7 @@ test('八态独立狮头与目录同步右侧简介和详细解读，移除下�
   await expect(page).toHaveURL(/#\/state$/);
 });
 
-test('点击狮头由书法简介切换为印章与编号解读卡，同一触发器和当前图像保持', async ({ page }) => {
+test('点击狮头由书法简介切换为毛笔标题与编号解读卡，同一触发器和当前图像保持', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openPage(page, '/#/state');

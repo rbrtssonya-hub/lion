@@ -3416,6 +3416,264 @@
       "path": "source/reviews/view-scene-settings/2026-10-21/structure-production.png",
       "bytes": 2400241,
       "sha256": "445c6ab4f5399daa96f569db8bb2d4483070715a00613eed1a2ed3d69c81f6d3"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/anger.png",
+      "bytes": 1224080,
+      "sha256": "21ada293934054b5db68436291d0bc6d0a3908ef8bd5e5ed7a1366ca8d23f865"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/delight.png",
+      "bytes": 1021041,
+      "sha256": "21dffb00f51ed66a96f9d6b94407f626ea7885cff06c88c26605da5f871d8c58"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/doubt.png",
+      "bytes": 1362027,
+      "sha256": "5b95eacaeb224f03edbb8dc82e9b24a26ac21880403de9b2290dfb9898972bda"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/joy.png",
+      "bytes": 1200596,
+      "sha256": "ebf165d56cd495c72c00e4597b93d696362f29af81d36cb3c49d29ce5ca790cb"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/motion.png",
+      "bytes": 1211487,
+      "sha256": "ab684e44b2edabd44b90466dac9272a5bb90e595a1005fe8f22acf3ce04bd0a8"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/sorrow.png",
+      "bytes": 1089829,
+      "sha256": "846fbbb6ec60f77a0d4a262c83cc2d64cea1a2db460e9b8cf8f1e6ce458129fb"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/stillness.png",
+      "bytes": 1276111,
+      "sha256": "156d01bc419592fd103b960a754cac58d41c89419fca441e4f56c9151382ebb6"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/public/assets/expression/calligraphy/surprise.png",
+      "bytes": 1265039,
+      "sha256": "953ca8d657b3616c05fe06c7146544b2f8295f4e313d8378def95f98a5a50f82"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/anger.png",
+      "bytes": 1224080,
+      "sha256": "21ada293934054b5db68436291d0bc6d0a3908ef8bd5e5ed7a1366ca8d23f865"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/delight.png",
+      "bytes": 1021041,
+      "sha256": "21dffb00f51ed66a96f9d6b94407f626ea7885cff06c88c26605da5f871d8c58"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/doubt.png",
+      "bytes": 1362027,
+      "sha256": "5b95eacaeb224f03edbb8dc82e9b24a26ac21880403de9b2290dfb9898972bda"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/joy.png",
+      "bytes": 1200596,
+      "sha256": "ebf165d56cd495c72c00e4597b93d696362f29af81d36cb3c49d29ce5ca790cb"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/motion.png",
+      "bytes": 1211487,
+      "sha256": "ab684e44b2edabd44b90466dac9272a5bb90e595a1005fe8f22acf3ce04bd0a8"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/sorrow.png",
+      "bytes": 1089829,
+      "sha256": "846fbbb6ec60f77a0d4a262c83cc2d64cea1a2db460e9b8cf8f1e6ce458129fb"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/stillness.png",
+      "bytes": 1276111,
+      "sha256": "156d01bc419592fd103b960a754cac58d41c89419fca441e4f56c9151382ebb6"
+    },
+    {
+      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
+      "path": "source/design/expression-calligraphy/2026-10-22/surprise.png",
+      "bytes": 1265039,
+      "sha256": "953ca8d657b3616c05fe06c7146544b2f8295f4e313d8378def95f98a5a50f82"
+    },
+    {
+      "from": "actual desktop Chrome interface review, audio-control 2026-10-22",
+      "path": "source/reviews/audio-control/2026-10-22/action-sound-control.png",
+      "bytes": 2267886,
+      "sha256": "a79cdfe0de0f80b14522eb63b9a8c8933a49d5415bd3f1aeb73af8da0ab83c57"
+    },
+    {
+      "from": "actual desktop Chrome interface review, audio-control 2026-10-22",
+      "path": "source/reviews/audio-control/2026-10-22/home-autoplay-fallback.png",
+      "bytes": 2350363,
+      "sha256": "ef12eb4a92a8c6e26b6dfb7a75408890d2497f00aa3ca5b670e85d3b4f953814"
+    },
+    {
+      "from": "actual desktop Chrome interface review, audio-control 2026-10-22",
+      "path": "source/reviews/audio-control/2026-10-22/home-sound-control.png",
+      "bytes": 2232614,
+      "sha256": "5f9450130090b14479050c606be39b514c9d5934159e72989cbc7418ace43b3a"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/details-doubt-1920.png",
+      "bytes": 2171932,
+      "sha256": "bf6322e490c6671a0b2c0f4cd213470ef7491a356cdd5eb1098cc26f9d02cf10"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/details-joy-1920.png",
+      "bytes": 2166169,
+      "sha256": "8fea04de03ad2106b1bb82c0b9e056b8aa29a981101144a16e75353812d5a0c7"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-02-1920.png",
+      "bytes": 2159207,
+      "sha256": "7347b612ca4f221069d1bcc3441e888d4fca59babf1e81892f30f85e536ca7c2"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-03-1920.png",
+      "bytes": 2161353,
+      "sha256": "66c6404fcd36e148e9d890b2de485356f4577fbe22e43818d5ebe8494e4d3a87"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-04-1920.png",
+      "bytes": 2168709,
+      "sha256": "a7417642da01e995f1e88fab4202d6e0f8bb5703da3169fa6f012c578c989269"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-05-1920.png",
+      "bytes": 2183719,
+      "sha256": "d0d7dc0855e314c2262faee3a09e00c2fe13d613ec52c24a923cb96a6a1418bc"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-06-1920.png",
+      "bytes": 2160322,
+      "sha256": "d51ae84a1ba27899ea176ed6000f6670b1e9779d25ee7fd72eb95de463a8f9c7"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-07-1920.png",
+      "bytes": 2150100,
+      "sha256": "3b25bee107b587102f31ee3fbc49fed084045e8ee0182b26f9e44120d2d71f43"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-08-1920.png",
+      "bytes": 2138139,
+      "sha256": "3082a61abb019c1ab6a6b3588c765805ecb343dfa5286322048e550fb06f910a"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/overview-joy-1920.png",
+      "bytes": 2144940,
+      "sha256": "b44c008667fdffc1cbb8d95e91a54c52b99361aa09b67cf398a4a13a2a7f68a3"
+    },
+    {
+      "from": "actual desktop Chrome interface review, expression-motion 2026-10-22",
+      "path": "source/reviews/expression-motion/2026-10-22/transition-joy-145ms-1920.png",
+      "bytes": 2094292,
+      "sha256": "6d3110fdacd3ad61dde4f4a045a17892a0518063e93b63d47586fbbb6d5b034b"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-atlas-width40-1920.png",
+      "bytes": 112442,
+      "sha256": "6eb8a28d6b662fc40d98ee196845104c7471e3adfe199435829a25c58e17b6e6"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-atlas-width40-900.png",
+      "bytes": 72697,
+      "sha256": "6c400f4b3e03fcb815a4cea4c5445f5a9f913b750ed46d57024d5f23d64488bb"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-directory-1280x600.png",
+      "bytes": 870023,
+      "sha256": "f9dc0104e1ed699515b15dc6d979f6def6b4747605575c225570807ee84f0d5e"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-directory-1920x1080.png",
+      "bytes": 2405474,
+      "sha256": "74893acdfd92877ffdc681d7b7e12abdb7fbd0a4814aa507f24373713e1d8d9e"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-directory-900x900.png",
+      "bytes": 764066,
+      "sha256": "80b2d9b87a198d99ac935cf86d1e183aab56b2a7e60555326f22716bcd4bd978"
+    },
+    {
+      "from": "actual desktop Chrome interface review, structure-directory 2026-10-22",
+      "path": "source/reviews/structure-directory/2026-10-22/structure-directory-settings-push.png",
+      "bytes": 2181485,
+      "sha256": "fe21465eb6c92a26b35549979ff5ecf34b07166be35f0fe7de82eee6cf3abe5b"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/action-sound-control.png",
+      "bytes": 2324791,
+      "sha256": "f21e25f66e165cd52c3e3af035126a58bd6f05d2c8ace47290a15681311860f2"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/details-joy-1920.png",
+      "bytes": 2165902,
+      "sha256": "2be95bb845ded23e75edc7b708f613d4bc677269634e81cb38d50947f61a305e"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/home-autoplay-fallback.png",
+      "bytes": 2269932,
+      "sha256": "ee279c1e0438e76a2b541958123399683dd28eaaf76bb574a95dedfe88f3efc4"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/home-sound-control.png",
+      "bytes": 2242361,
+      "sha256": "faa8f6891cc7f3f15f35910b769eae1c313fb85575a974e8a8048b4d46df8fbc"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/overview-joy-1920.png",
+      "bytes": 2144306,
+      "sha256": "0f7ae5dc79a79e747fc336cf854a7ef404039ab3c1f69fd84ff3e7882f691e48"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/structure-directory-1920x1080.png",
+      "bytes": 2405409,
+      "sha256": "eb7c64c68b500140a63c21349c02ddf6862abb4b86ad984f8a493bdb33681a6e"
+    },
+    {
+      "from": "actual desktop Chrome interface review, interface-production 2026-10-22",
+      "path": "source/reviews/interface-production/2026-10-22/transition-joy-145ms-1920.png",
+      "bytes": 2102879,
+      "sha256": "5dc6bb449e6419418d560a915dc811125291cd655e451145680ec500c2e71c92"
     }
   ]
 }
