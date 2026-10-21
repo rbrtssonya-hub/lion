@@ -219,6 +219,14 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
     record.node.load();
     reconcile();
   };
+  const resume = () => {
+    if (records.get(config.activeId)?.status === 'error') { retry(); return; }
+    setIntent(true);
+    for (const record of records.values()) {
+      if (record.status === 'blocked') { record.status = 'paused'; record.error = ''; }
+    }
+    reconcile();
+  };
 
   return {
     bindVideo,
@@ -260,13 +268,9 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
         reconcile();
         return;
       }
-      if (active?.status === 'error') { retry(); return; }
-      setIntent(true);
-      for (const record of records.values()) {
-        if (record.status === 'blocked') { record.status = 'paused'; record.error = ''; }
-      }
-      reconcile();
+      resume();
     },
+    resume,
     toggleAudio() {
       const next = !config.audioEnabled;
       config = { ...config, audioEnabled: next };
@@ -315,6 +319,7 @@ export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false 
     playingIntent,
     audioEnabled,
     togglePlayback: controller.togglePlayback,
+    resume: controller.resume,
     toggleAudio: controller.toggleAudio,
     seek: controller.seek,
     retry: controller.retry,

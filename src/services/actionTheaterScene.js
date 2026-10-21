@@ -20,7 +20,10 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
+import { constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
+import { createActiveScreenController } from './actionTheaterActiveScreen.js';
+import { createTheaterFloorGuide } from './actionTheaterFloorGuide.js';
+import { createTheaterSpatialUI } from './actionTheaterSpatialUI.js';
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
 import { media } from '../config/media.js';
@@ -227,6 +230,7 @@ export function createActionTheater({
   onReady = () => {},
   onError = () => {},
   onAnchorUpdate = () => {},
+  spatialElements,
   lightingSettings,
   onLightingStatus = () => {},
 }) {
@@ -241,7 +245,6 @@ export function createActionTheater({
   const pendingVideos = new Map();
   const replacedMaterials = new Set();
   const projectedAnchor = new Vector3();
-  const forward = new Vector3();
   const activeScenes = [];
   let renderer;
   let controls;
@@ -252,6 +255,12 @@ export function createActionTheater({
   let fullLion;
   let architecture;
   let reflection;
+  let spatialUI;
+  let floorGuide;
+  let activeScreenController;
+  let lionRotating = true;
+  let firstExposure = false;
+  const lastCameraPosition = new Vector3();
   let animationFrame = 0;
   let loadTimeout = 0;
   let disposed = false;
@@ -259,6 +268,7 @@ export function createActionTheater({
   let ready = false;
   let visible = true;
   let interacting = false;
+  let pointerOrbit = false;
   let lastFrameTime = 0;
   let lastDiagnosticTime = 0;
   let renderedFrames = 0;
@@ -348,6 +358,10 @@ export function createActionTheater({
     cameraRadius: camera.position.distanceTo(orbitTarget),
     cameraAzimuth: Math.atan2(camera.position.x, camera.position.z),
     cameraState: interacting ? 'dragging' : focusTween ? 'focusing' : 'idle',
+    spatialUI: spatialUI?.diagnostics(),
+    floorGuide: floorGuide?.diagnostics(),
+    screenDetection: activeScreenController?.getState(),
+    lionRotating,
     lionRotation: lionRoot?.rotation.y ?? 0,
     rotationSpeed: ROTATION_SPEED,
     screenBrightness: Object.fromEntries([...screenRecords].map(([id, record]) => [id, record.brightness])),
@@ -379,6 +393,10 @@ export function createActionTheater({
     dataset.screenBrightness = JSON.stringify(state.screenBrightness);
     dataset.videoBindings = JSON.stringify(state.videoBindings);
     dataset.cameraState = state.cameraState;
+    dataset.spatialUi = JSON.stringify(state.spatialUI);
+    dataset.floorGuide = JSON.stringify(state.floorGuide);
+    dataset.screenDetection = JSON.stringify(state.screenDetection);
+    dataset.lionRotating = String(lionRotating);
     dataset.renderState = state.visible && !disposed ? 'active' : 'inactive';
     dataset.renderedFrames = String(renderedFrames);
     dataset.fullHairStrands = String(state.fullHairStrands);
@@ -405,6 +423,7 @@ export function createActionTheater({
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
+    spatialUI?.resize(frameWidth, frameHeight);
     if (ready) { updateAnchor(); requestFrame(); }
   };
   const commitActive = (nextId, now) => {
@@ -419,11 +438,10 @@ export function createActionTheater({
     onActiveScreen(activeId);
   };
   const updateScreenDirection = (now) => {
-    camera.getWorldDirection(forward);
-    const selection = chooseScreen({ forward: forward.toArray(), definitions: screenDefinitions, activeId, pendingId, pendingSince, now });
-    pendingId = selection.pendingId;
-    pendingSince = selection.pendingSince;
-    commitActive(selection.activeId, now);
+    activeScreenController?.update({ camera, now, interacting, moving: Boolean(focusTween) });
+    const selection = activeScreenController?.getState();
+    pendingId = selection?.pendingId ?? null;
+    pendingSince = selection?.pendingSince ?? 0;
   };
   const onControlStart = () => {
     interacting = true;
@@ -432,7 +450,14 @@ export function createActionTheater({
     pendingSince = 0;
     requestFrame();
   };
-  const onControlEnd = () => { interacting = false; requestFrame(); };
+  const onControlChange = () => {
+    // OrbitControls wheel start/end can both happen between two RAFs. Its
+    // change event identifies real user movement without mistaking a tween.
+    if (interacting && pointerOrbit && !focusTween) activeScreenController?.noteUserMovement(performance.now());
+    if (interacting) floorGuide?.reveal();
+  };
+  const onControlEnd = () => { interacting = false; pointerOrbit = false; requestFrame(); };
+  const onCanvasPointerDown = () => { pointerOrbit = true; };
   const preventPageWheel = (event) => { if (visible) event.preventDefault(); };
   const synchronizeActivityClock = () => {
     const now = performance.now();
@@ -454,6 +479,7 @@ export function createActionTheater({
     // A hidden-tab delay must not finish a direction dwell without observation.
     pendingId = null;
     pendingSince = 0;
+    activeScreenController?.resetMotion(performance.now());
     publishDiagnostics();
     requestFrame();
   };
@@ -491,7 +517,7 @@ export function createActionTheater({
         }
       }
       // The model alone rotates; changing the camera never resets its phase.
-      lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
+      if (lionRotating) lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
       if (focusTween) {
         const fraction = Math.min(1, (now - focusTween.startedAt) / focusTween.duration);
         const eased = fraction * fraction * (3 - 2 * fraction);
@@ -503,7 +529,17 @@ export function createActionTheater({
       camera.position.fromArray(constrainOrbit(camera.position.toArray()));
       camera.lookAt(orbitTarget);
       camera.updateMatrixWorld();
+      if (!firstExposure && !document.getElementById('startupLoading') && !container.closest('[inert]')
+        && !spatialElements?.container?.closest('[hidden]')) {
+        firstExposure = true;
+        spatialUI?.resize(frameWidth, frameHeight);
+        floorGuide?.reveal();
+      }
+      const cameraMoving = lastCameraPosition.distanceToSquared(camera.position) > 1e-8;
+      lastCameraPosition.copy(camera.position);
       updateScreenDirection(now);
+      spatialUI?.update({ now, activeId, visible, moving: cameraMoving, interacting });
+      floorGuide?.update({ now, camera, moving: cameraMoving, interacting });
       const fraction = brightnessTransition ? Math.min(1, (now - brightnessTransition.startedAt) / TRANSITION_MS) : 1;
       const eased = fraction * fraction * (3 - 2 * fraction);
       screenRecords.forEach((record, id) => {
@@ -570,6 +606,7 @@ export function createActionTheater({
     const definition = screenDefinitions.find((item) => item.id === id);
     if (!definition) return;
     if (!ready) { queuedFocus = { id, instant }; return; }
+    activeScreenController?.select(id);
     // Flush OrbitControls inertia before a deliberate direction change.
     controls.enableDamping = false;
     controls.update();
@@ -603,8 +640,11 @@ export function createActionTheater({
     document.removeEventListener('visibilitychange', onDocumentVisibility);
     controls?.removeEventListener('start', onControlStart);
     controls?.removeEventListener('end', onControlEnd);
+    controls?.removeEventListener('change', onControlChange);
     controls?.dispose();
     lighting?.dispose();
+    spatialUI?.dispose();
+    floorGuide?.dispose();
     screenRecords.forEach((record) => {
       record.removeVideoListeners?.();
       record.videoTexture?.dispose();
@@ -622,6 +662,7 @@ export function createActionTheater({
     if (renderer) {
       renderer.domElement.removeEventListener('webglcontextlost', onContextLost);
       renderer.domElement.removeEventListener('wheel', preventPageWheel);
+      renderer.domElement.removeEventListener('pointerdown', onCanvasPointerDown);
       renderer.renderLists.dispose();
       renderer.dispose();
       renderer.forceContextLoss();
@@ -650,6 +691,9 @@ export function createActionTheater({
       requestFrame();
     },
     focusScreen,
+    activateScreen(id) { if (!disposed) activeScreenController?.select(id); },
+    revealGuide() { floorGuide?.reveal(); requestFrame(); },
+    setLionRotating(value) { lionRotating = Boolean(value); floorGuide?.setRotationEnabled(lionRotating); requestFrame(); },
     getDiagnostics,
     dispose,
   };
@@ -677,6 +721,7 @@ export function createActionTheater({
       renderer.domElement.style.touchAction = 'none';
       renderer.domElement.addEventListener('webglcontextlost', onContextLost);
       renderer.domElement.addEventListener('wheel', preventPageWheel, { passive: false });
+      renderer.domElement.addEventListener('pointerdown', onCanvasPointerDown);
       container.append(renderer.domElement);
       controls = new OrbitControls(camera, renderer.domElement);
       controls.target.copy(orbitTarget);
@@ -693,6 +738,7 @@ export function createActionTheater({
       controls.enabled = visible;
       controls.addEventListener('start', onControlStart);
       controls.addEventListener('end', onControlEnd);
+      controls.addEventListener('change', onControlChange);
       controls.update();
       document.addEventListener('visibilitychange', onDocumentVisibility);
       if (typeof ResizeObserver !== 'undefined') {
@@ -832,6 +878,27 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
+      const spatialScreens = screenDefinitions.map(definition => {
+        const { object } = screenRecords.get(definition.id);
+        object.geometry.computeBoundingBox();
+        const size = object.geometry.boundingBox.getSize(new Vector3()).multiply(object.scale).toArray().sort((a, b) => b - a);
+        return { id: definition.id, center: object.getWorldPosition(new Vector3()),
+          normal: new Vector3(...definition.direction).negate(), width: size[0], height: size[1] };
+      });
+      activeScreenController = createActiveScreenController({ screens: spatialScreens, initialId: activeId,
+        onChange: id => commitActive(id, performance.now()) });
+      if (spatialElements?.container) {
+        const occluders = [];
+        architecture.root.traverseVisible(object => {
+          if (object.isMesh && /^(Theater_Column_(Red_Lacquer|Stone_Foot)|Theater_Screen_Thick_Black_(Upright|Crossbar)|Theater_Stage_(Low_Base|Carved_Fascia|Polished_Stone_Top))$/.test(object.name)) occluders.push(object);
+        });
+        room.traverseVisible(object => { if (object.isMesh && /Room_.*Wall/.test(object.name)) occluders.push(object); });
+        spatialUI = createTheaterSpatialUI({ scene, camera, ...spatialElements, screens: spatialScreens, occluders });
+        spatialUI.resize(frameWidth, frameHeight);
+      }
+      floorGuide = createTheaterFloorGuide({ scene });
+      floorGuide.setRotationEnabled(lionRotating);
+      lastCameraPosition.copy(camera.position);
       lighting.refresh();
       await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });
       if (disposed) return;

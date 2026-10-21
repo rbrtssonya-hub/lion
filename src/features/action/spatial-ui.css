@@ -1,0 +1,43 @@
+/* The projective transforms come from actual world planes, not viewport pins. */
+.theater-world-ui, .theater-spatial-layer { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.theater-world-ui[hidden] { display: none; }
+.theater-spatial-plane { position: absolute; left: 0; top: 0; transform-origin: 0 0; visibility: hidden; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+.theater-intro-plane { width: 390px; height: 180px; }
+.theater-info-plane { width: 380px; height: 270px; }
+.theater-play-plane { width: 300px; height: 52px; }
+.theater-plaque { position: relative; box-sizing: border-box; width: 100%; height: 100%; padding: 22px 25px; border: 1px solid #bd864170; border-radius: 3px; color: #f1e0c4; background: linear-gradient(125deg, #2b140fed, #1c0e0bd9); box-shadow: 0 8px 28px #09030238, inset 0 0 0 4px #bd864109; font-family: var(--theater-serif); }
+.theater-plaque::before, .theater-plaque::after { content: ''; position: absolute; inset: 5px; pointer-events: none; border: 1px solid #bd86412b; clip-path: polygon(0 0, 24px 0, 24px 6px, 6px 6px, 6px 24px, 0 24px, 0 0, 100% 0, 100% 24px, calc(100% - 6px) 24px, calc(100% - 6px) 6px, calc(100% - 24px) 6px, calc(100% - 24px) 0, 100% 0, 100% 100%, calc(100% - 24px) 100%, calc(100% - 24px) calc(100% - 6px), calc(100% - 6px) calc(100% - 6px), calc(100% - 6px) calc(100% - 24px), 100% calc(100% - 24px), 100% 100%, 0 100%, 0 calc(100% - 24px), 6px calc(100% - 24px), 6px calc(100% - 6px), 24px calc(100% - 6px), 24px 100%, 0 100%); }
+.theater-plaque::after { inset: 9px; border-color: #ebc17b35; }
+.theater-plaque h2 { margin: 8px 0 12px; color: #f1e0c4; font: 400 32px/1.3 var(--theater-serif); letter-spacing: .15em; }
+.theater-plaque p { text-wrap: pretty; }
+.theater-plaque-eyebrow { margin: 0; color: #bd9e72; font-size: 12px; letter-spacing: .14em; }
+.theater-intro > p:not(.theater-plaque-eyebrow) { margin: 0; color: #dbcaac; font-size: 14px; letter-spacing: .02em; }
+.theater-plaque-foot { display: block; margin-top: 13px; color: #b7996c; font-size: 11px; letter-spacing: .22em; }
+.theater-cloud { position: absolute; top: 14px; right: 20px; color: #bd86416b; font-size: 10px; letter-spacing: .16em; }
+.theater-screen-info .theater-caption-kicker { font-size: 13px; margin: 0; }
+.theater-screen-info h2 { font-size: 31px; margin: 9px 0 11px; }
+.theater-screen-info .theater-description { font-size: 16px; line-height: 1.8; letter-spacing: .01em; }
+.theater-screen-info .theater-keywords { font-size: 12px; margin: 11px 0 10px; padding-top: 9px; }
+.theater-screen-info button { display: flex; align-items: center; gap: 9px; padding: 4px 10px; border: 1px solid #bd864151; color: #ebc17b; background: #4a151250; font-size: 13px; }
+.theater-screen-play { display: flex; align-items: stretch; width: 100%; height: 100%; gap: 6px; }
+.theater-screen-play button { padding: 8px 13px; border: 1px solid #bd864180; border-radius: 3px; background: #1c0e0bd9; color: #f1e0c4; font-size: 17px; letter-spacing: .05em; white-space: nowrap; }
+.theater-screen-play button:first-child { flex: 1; }
+.theater-screen-play button > span { margin-right: 10px; color: #ebc17b; }
+.theater-view-tools { top: 18px; }
+.theater-view-tools button { height: 31px; font-size: 12px; }
+.theater-bottom { left: var(--theater-edge); bottom: 16px; width: min(590px, calc(100% - 46px)); transform: none; padding: 8px 13px; background: #1c0e0bc7; border-color: #bd864142; }
+.theater-action-nav { margin-bottom: 5px; }
+.theater-action-nav button { min-height: 26px; padding-block: 3px; }
+.theater-action-nav button > strong { font-size: 14px; }
+.theater-source-note { font-size: 10px; margin-top: 4px; }
+.theater-audio-note { flex-basis: 100px; }
+.action-theater[data-view='flat'] .theater-bottom { left: 26px; transform: none; }
+/* Reuse the existing five navigation actions and its motion/layout ownership. */
+.site-header[data-current-route='action'] > .navigation-surface { inset: 3px 12px 2px; border-radius: 0 0 48% 16%; border-bottom: 1px solid #bd86416b; background: linear-gradient(105deg, #35100ee8, #4a1512d9 50%, #35100ee8); box-shadow: 0 3px 18px #15070526; transform: perspective(1600px) rotateX(-4deg); transform-origin: center top; }
+.site-header[data-current-route='action'] .site-nav-item { transition: color 200ms ease, background 200ms ease; }
+.site-header[data-current-route='action'] .site-nav-item.is-current { color: #ebc17b; background: linear-gradient(180deg, #ebc17b04, #ebc17b12); }
+.site-header[data-current-route='action'] .site-nav-item.is-current .site-nav-icon::after { background: #ebc17b; }
+.site-header[data-current-route='action'] .site-nav-item:hover .site-nav-symbol { filter: drop-shadow(0 0 5px #ebc17b35); scale: 1.035; }
+@media (prefers-reduced-motion: reduce) {
+  .theater-spatial-plane { will-change: auto; }
+}

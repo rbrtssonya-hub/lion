@@ -3170,6 +3170,30 @@
       "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-120.png",
       "bytes": 2227515,
       "sha256": "f68ff9b4cc0a4618add539a6dc431e23ea50469d60e50accea7ffd6454626239"
+    },
+    {
+      "from": "actual production Chrome four-direction spatial UI, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-spatial/back.png",
+      "bytes": 2368891,
+      "sha256": "4d375180f6566aae125e13a602ef7c350ae06129d73a464f02bf41ac19a1ca08"
+    },
+    {
+      "from": "actual production Chrome four-direction spatial UI, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-spatial/front.png",
+      "bytes": 2325070,
+      "sha256": "46be1ef1904f3d47e36e2c8825f17d6527898f0e5266a7769ab2492eacd0898e"
+    },
+    {
+      "from": "actual production Chrome four-direction spatial UI, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-spatial/left.png",
+      "bytes": 2284830,
+      "sha256": "3694ad814695092f8943002d7f8cc049efc8f5291e09bc6e928bc04290fd892e"
+    },
+    {
+      "from": "actual production Chrome four-direction spatial UI, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-spatial/right.png",
+      "bytes": 2344983,
+      "sha256": "0901ab7c5012a8123cea6615f80560ce787eb63923b4b5a198a77fe5cad3aa79"
     }
   ]
 }

@@ -33,6 +33,8 @@ npm run preview
 
 ## 代码边界
 
+2026-10-21动作页新增三层空间UI：稳定顶部HUD、固定世界介绍/四屏侧廊解读及真实地面投影；原生Three.js与四video控制保持。定位/遮挡/显隐由`actionTheaterSpatialUI`管理，`actionTheaterActiveScreen`在相机稳定500ms及12°迟滞后确认，手动立即优先；`actionTheaterFloorGuide`共用场景RAF。回归入口`tests/e2e/action-spatial-ui.spec.js`和`tests/assets/action-theater-spatial.test.mjs`，配合原theater/player测试。实现参数、截图与本轮实际结果见[空间UI记录](../source/references/action-spatial-ui-2026-10-21.md)。
+
 2026-10-20最新整改：首页已移除传承人物，书册→文化→类型→资料四区与四入口侧轨对应；人物资料仅作历史保留，researchPhotos参数不再启用预览。侧轨按实际顶栏与可用高度自适应，减少动态仍观察必要布局但不绘制动画。设置拆为公共模块/外观/导航/首页/章节/资料/动画/轮播/布局九页，首页与章节有子分页；共用控件在`SettingsControls.jsx`。公共材质点击后按范围原子应用四项材质，宽高/字号/播放保持，旧设置兼容；加载辅助字18–20px、进度数字36px。现行路径、边界和验证入口见[本轮说明](../source/references/settings-archive-2026-10-20.md)，下方含人物与五侧栏的段落为前阶段。
 
 2026-10-20首页续接采用用户新竖幅背景分层等比取景，阅读大框的边角淡纹理随原surface透明度一起减弱。三款获批小装饰使用独立透明PNG，显示40–48px；不再以品牌狮头重复点缀标题。七年代书下导航复用原游戏角色idle/mov/poster图集，不含加载百分比；`HomeArchiveNav`为固定五栏目侧轨，滚动同步、不改Hash，共用原粒子开关。三形制图片初始居中，点击/键盘展开，切换与Escape/收起复位；观察点仅为正文。详细边界见[首页续接说明](../source/references/home-refresh-2026-10-20.md)。

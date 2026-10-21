@@ -2,7 +2,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { media } from '../../config/media.js';
 import { theaterActions } from './actionClips.js';
 import { useTheaterPlayback } from './useTheaterPlayback.js';
+import { flushSync } from 'react-dom';
+import SpatialUI, { InteractionBoundary } from './SpatialUI.jsx';
 import './action-theater.css';
+import './spatial-ui.css';
 
 const clock = value => {
   const seconds = Math.max(0, Number.isFinite(value) ? value : 0);
@@ -32,6 +35,11 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const stageRef = useRef(null);
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
+  const layerRef = useRef(null);
+  const introRef = useRef(null);
+  const infoRefs = useRef(new Map());
+  const playRefs = useRef(new Map());
+  const [lionRotating, setLionRotating] = useState(true);
   const lightingSettingsRef = useRef(lightingSettings);
   lightingSettingsRef.current = lightingSettings;
   const requestedScreen = useRef(clips[0].id);
@@ -85,6 +93,8 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         lightingSettings: lightingSettingsRef.current,
         onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
+        spatialElements: { container: layerRef.current, introElement: introRef.current,
+          screenElements: infoRefs.current, playElements: playRefs.current },
         onActiveScreen: id => {
           if (cancelled) return;
           requestedScreen.current = id;
@@ -121,6 +131,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   }, [assets.actionTheaterScene, clips, playback.getVideo, sceneVersion]);
 
   useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
+  useEffect(() => { sceneRef.current?.setLionRotating(lionRotating); }, [lionRotating, sceneState]);
   useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
     [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
       lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);
@@ -137,6 +148,21 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       sceneRef.current?.focusScreen(id, { instant: true });
     } else sceneRef.current.focusScreen(id);
   }, [sceneState]);
+  const onScreenPlayback = id => {
+    const sameScreen = id === activeRef.current;
+    requestedScreen.current = id;
+    // Commit the shared active ID within the original media gesture, preserving
+    // browser playback authorization and the existing single playback state.
+    flushSync(() => {
+      sceneRef.current?.activateScreen(id);
+      setActiveId(id);
+    });
+    if (sameScreen) playback.togglePlayback();
+    else playback.resume();
+  };
+  const toggleLionRotation = () => {
+    setLionRotating(value => !value);
+  };
   const retryScene = () => { setFlatMode(false); setSceneVersion(value => value + 1); };
   const toggleFullscreen = async () => {
     try {
@@ -168,18 +194,23 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           muted playsInline loop preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
       </div>
       <div className="theater-vignette" aria-hidden="true" />
-      <header className="theater-topline">
+      {flatMode && <header className="theater-topline">
         <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
         <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
-      </header>
-      <div className="theater-view-tools">
+      </header>}
+      <InteractionBoundary className="theater-view-tools">
+        {!flatMode && <button type="button" aria-label="显示空间操作引导"
+          onMouseEnter={() => sceneRef.current?.revealGuide()} onFocus={() => sceneRef.current?.revealGuide()}
+          onClick={() => sceneRef.current?.revealGuide()}>操作指引</button>}
+        {!flatMode && <button type="button" aria-pressed={lionRotating} onClick={toggleLionRotation}>
+          {lionRotating ? '醒狮自转 · 开' : '醒狮自转 · 停'}</button>}
         <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
           {flatMode ? '返回巨幕' : '平面观看'}
         </button>
         <button type="button" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
           <Icon kind="fullscreen" />
         </button>
-      </div>
+      </InteractionBoundary>
 
       {sceneState === 'loading' && !flatMode && <div className="theater-loading" role="status">
         <span className="theater-loading-ring" aria-hidden="true" /><p>正在进入四面巨幕…</p>
@@ -192,12 +223,18 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
       </div>}
 
-      <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
+      <div hidden={flatMode || sceneState !== 'ready'} className="theater-world-ui">
+        <SpatialUI introRef={introRef} infoRefs={infoRefs} playRefs={playRefs} layerRef={layerRef}
+          clips={clips} activeId={activeId} playing={playing} flatMode={flatMode}
+          onSelect={selectAction} onScreenPlayback={onScreenPlayback} />
+      </div>
+      <p className="sr-only" aria-live="polite">当前巨幕：{active.name}</p>
+      {flatMode && <aside className="theater-observation" id="theaterFlatObservation" aria-live="polite" aria-label="当前动作解读">
         {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
         <ActionCaption key={currentCaption.id} clip={currentCaption} index={clips.indexOf(currentCaption)} />
-      </aside>
+      </aside>}
 
-      <div className="theater-bottom">
+      <InteractionBoundary className="theater-bottom">
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
           {clips.map((clip, index) => <button type="button" key={clip.id} data-action-id={clip.id}
             aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>
@@ -215,7 +252,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           <span className="theater-audio-note">{playback.audioEnabled ? '仅当前巨幕发声' : '静音播放'}</span>
         </div>
         <p className="theater-source-note" id="chapterEvidence">{active.sourceNote} <span>· 广府醒狮 / 动作空间</span></p>
-      </div>
+      </InteractionBoundary>
       {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
         <span>{notice || playback.view.error}</span>
         {playback.view.error && <button type="button" onClick={playback.retry}>重试当前动作视频</button>}
