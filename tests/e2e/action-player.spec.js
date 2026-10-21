@@ -129,14 +129,61 @@ test('全屏使用当前巨幕场景，退出后四屏播放和页面控制仍�
   await expect.poll(() => running(page)).toBe(0);
 });
 
-test('循环播放到结尾连续进入下一轮，切屏不从零重建实例', async ({ page }) => {
+test('循环播放到结尾连续进入下一轮，切屏不从零重建实例', async ({ page }, testInfo) => {
+  test.setTimeout(120_000);
   await openTheater(page);
   await ensurePlaying(page);
-  await expect(actionVideo(page, 'tanqing')).toHaveJSProperty('loop', true);
-  await actionVideo(page, 'tanqing').evaluate(video => { video.currentTime = video.duration - .12; });
-  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && video.currentTime < 2)).toBe(true);
+  const current = actionVideo(page, 'tanqing');
+  await expect(current).toHaveJSProperty('loop', true);
+  await expect.poll(() => current.evaluate(video => !video.paused && video.readyState >= 2 && Number.isFinite(video.duration))).toBe(true);
+  const retained = await current.elementHandle();
+  await current.evaluate(video => {
+    const state = { tailDecoded: false, loopDecoded: false, continued: false, frames: 0, tailFrame: null, loopFrame: null, continuedFrame: null, seeked: [] };
+    let frame;
+    let disposed = false;
+    const onSeeked = () => state.seeked.push(video.currentTime);
+    const observeFrame = (_now, metadata) => {
+      if (disposed) return;
+      const time = metadata.mediaTime;
+      state.frames += 1;
+      if (!state.tailDecoded && time >= video.duration - .45) {
+        state.tailDecoded = true;
+        state.tailFrame = time;
+      } else if (state.tailDecoded && !video.paused) {
+        if (!state.loopDecoded && time < 1) { state.loopDecoded = true; state.loopFrame = time; }
+        else if (state.loopDecoded && time > state.loopFrame + .05 && time < video.duration - .45) {
+          state.continued = true; state.continuedFrame = time;
+        }
+      }
+      if (!state.continued) frame = video.requestVideoFrameCallback(observeFrame);
+    };
+    video.addEventListener('seeked', onSeeked);
+    frame = video.requestVideoFrameCallback(observeFrame);
+    video.__loopProbe = {
+      state,
+      dispose() { disposed = true; video.cancelVideoFrameCallback(frame); video.removeEventListener('seeked', onSeeked); },
+    };
+    video.currentTime = video.duration - .30;
+  });
+  try {
+    // Native tail seeking/decoding can take longer than an ordinary UI update.
+    // Latch actual presented tail -> wrapped -> advancing frames so polling
+    // cannot miss the brief first seconds or mistake an uncompleted seek for a loop.
+    await expect.poll(() => current.evaluate(video => ({
+      ...video.__loopProbe.state,
+      paused: video.paused, seeking: video.seeking, readyState: video.readyState,
+      currentTime: video.currentTime,
+      buffered: Array.from({ length: video.buffered.length }, (_, index) => [video.buffered.start(index), video.buffered.end(index)]),
+    })), { timeout: 30_000 }).toMatchObject({ tailDecoded: true, loopDecoded: true, continued: true, paused: false });
+    await testInfo.attach('native-loop-presented-frames', {
+      body: JSON.stringify(await current.evaluate(video => video.__loopProbe.state), null, 2), contentType: 'application/json',
+    });
+  } finally {
+    await current.evaluate(video => { video.__loopProbe?.dispose(); delete video.__loopProbe; });
+  }
   await selectAction(page, 'doumao');
   await expect.poll(() => running(page)).toBe(4);
+  expect(await retained.evaluate(video => video.isConnected && video === document.querySelector('video[data-action-id="tanqing"]'))).toBe(true);
 });
 
 test('离开动作页释放四个媒体元素与画布，返回后只有一套场景', async ({ page }) => {

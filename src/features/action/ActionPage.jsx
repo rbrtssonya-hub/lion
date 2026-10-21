@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { media } from '../../config/media.js';
 import { theaterActions } from './actionClips.js';
 import { useTheaterPlayback } from './useTheaterPlayback.js';
@@ -15,22 +16,41 @@ function Icon({ kind }) {
     sound: 'M5 11h5l6-5v16l-6-5H5ZM20 9q7 5 0 10',
     muted: 'M5 11h5l6-5v16l-6-5H5ZM21 10l6 8M27 10l-6 8',
     fullscreen: 'M4 11V4h7M17 4h7v7M24 17v7h-7M11 24H4v-7',
+    mouse: 'M9 3h10a5 5 0 0 1 5 5v12a7 7 0 0 1-14 0V8a5 5 0 0 1 5-5ZM17 3v8m-7 0h14',
+    wheel: 'M14 2a7 7 0 0 1 7 7v10a7 7 0 0 1-14 0V9a7 7 0 0 1 7-7Zm0 5v5m0 4v1m0 3v1',
+    eye: 'M2 14s4-8 12-8 12 8 12 8-4 8-12 8S2 14 2 14Zm16 0a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
+    monitor: 'M3 4h22v16H3Zm7 21h8m-4-5v5',
+    left: 'm18 7-8 7 8 7M10 14h15',
+    right: 'm10 7 8 7-8 7M3 14h15',
+    compass: 'm14 3 10 11-10 11L4 14Zm0 0v22M4 14h20',
   };
   return <svg viewBox="0 0 28 28" aria-hidden="true"><path d={paths[kind]} /></svg>;
 }
 
-function ActionCaption({ clip, index, leaving = false }) {
-  return <div className={`theater-caption ${leaving ? 'is-leaving' : 'is-current'}`} aria-hidden={leaving || undefined}>
+function GoldCorners() {
+  return <span className="theater-gold-corners" aria-hidden="true">{[0, 1, 2, 3].map(corner =>
+    <svg key={corner} className={`theater-gold-corner corner-${corner}`} viewBox="0 0 56 56">
+      <path d="M2 52V19Q2 2 19 2h33M7 42V20Q7 7 20 7h22M3 28q17 0 17-14 0-8-7-8M8 33q20 0 20-20M14 27q-8-5-3-10t10 0M28 3q0 17-14 17M33 8q0 20-20 20M22 33q-1-12 11-11-1 12-11 11Z" />
+    </svg>)}</span>;
+}
+
+function ActionCaption({ clip, index, active, flat = false }) {
+  return <article className={`theater-caption ${active ? 'is-current' : ''} ${flat ? 'is-flat-caption' : 'theater-world-caption theater-gold-panel'}`}
+    {...(!flat && { 'data-spatial-panel': 'caption', 'data-screen-id': clip.id })}
+    id={active ? 'theaterObservation' : undefined} aria-label={`${clip.name}动作解读`}>
+    {!flat && <GoldCorners />}
     <p className="theater-caption-kicker">当前巨幕 <span>{String(index + 1).padStart(2, '0')} / 04</span></p>
-    <h2 id={leaving ? undefined : 'theaterActionName'}>{clip.name}</h2>
+    <h2 id={active ? 'theaterActionName' : undefined}>{clip.name}</h2>
     <p className="theater-description">{clip.description}</p>
     <p className="theater-keywords">{clip.keywords?.join(' · ')}</p>
-  </div>;
+    {!flat && <span className="theater-caption-seal" aria-hidden="true">狮<br />艺</span>}
+  </article>;
 }
 
 export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings }) {
   const stageRef = useRef(null);
   const containerRef = useRef(null);
+  const spatialRef = useRef(null);
   const sceneRef = useRef(null);
   const lightingSettingsRef = useRef(lightingSettings);
   lightingSettingsRef.current = lightingSettings;
@@ -38,6 +58,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const activeRef = useRef(clips[0].id);
   const visibleRef = useRef(true);
   const flatRef = useRef(false);
+  const autoRotateRef = useRef(true);
   const [activeId, setActiveId] = useState(clips[0].id);
   const [sceneState, setSceneState] = useState('loading');
   const [sceneError, setSceneError] = useState('');
@@ -47,22 +68,12 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const [visible, setVisible] = useState(!document.hidden);
   const [fullscreen, setFullscreen] = useState(false);
   const [notice, setNotice] = useState('');
-  const [caption, setCaption] = useState({ current: clips[0].id, previous: null });
-  const previousCaption = useRef(clips[0].id);
+  const [autoRotate, setAutoRotate] = useState(true);
   const active = clips.find(clip => clip.id === activeId) || clips[0];
   const playback = useTheaterPlayback({ clips, activeId, enabled: visible, flatMode });
   activeRef.current = activeId;
   visibleRef.current = visible;
   flatRef.current = flatMode;
-
-  useLayoutEffect(() => {
-    const previous = previousCaption.current;
-    if (previous === activeId) return;
-    previousCaption.current = activeId;
-    setCaption({ current: activeId, previous });
-    const timeout = setTimeout(() => setCaption(current => ({ ...current, previous: null })), 460);
-    return () => clearTimeout(timeout);
-  }, [activeId]);
 
   useEffect(() => {
     let intersecting = true;
@@ -85,11 +96,14 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         lightingSettings: lightingSettingsRef.current,
         onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
+        spatialLayer: spatialRef.current,
         onActiveScreen: id => {
           if (cancelled) return;
           requestedScreen.current = id;
           activeRef.current = id;
-          setActiveId(id);
+          // This callback only fires for a discrete screen change. Commit the
+          // text before this rendering frame paints, independently of media.
+          flushSync(() => setActiveId(id));
         },
         onReady: () => {
           if (cancelled) return;
@@ -104,6 +118,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         },
       });
       sceneRef.current = handle;
+      handle.setAutoRotate(autoRotateRef.current);
       clips.forEach(clip => handle.setVideo(clip.id, playback.getVideo(clip.id)));
       handle.setVisible(visibleRef.current && !flatRef.current);
     }).catch(() => {
@@ -138,6 +153,13 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
     } else sceneRef.current.focusScreen(id);
   }, [sceneState]);
   const retryScene = () => { setFlatMode(false); setSceneVersion(value => value + 1); };
+  const toggleAutoRotate = () => {
+    const next = !autoRotateRef.current;
+    autoRotateRef.current = next;
+    setAutoRotate(next);
+    sceneRef.current?.setAutoRotate(next);
+  };
+  const stepAction = delta => selectAction(clips[(clips.findIndex(clip => clip.id === activeRef.current) + delta + clips.length) % clips.length].id);
   const toggleFullscreen = async () => {
     try {
       if (document.fullscreenElement === stageRef.current) await document.exitFullscreen();
@@ -153,8 +175,6 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
     selectAction(clips[(clips.findIndex(clip => clip.id === activeRef.current) + delta + clips.length) % clips.length].id);
   };
   const playing = playback.playingIntent && !['paused', 'blocked', 'error', 'idle'].includes(playback.view.status);
-  const currentCaption = clips.find(clip => clip.id === caption.current) || active;
-  const previous = clips.find(clip => clip.id === caption.previous);
   const duration = Number.isFinite(playback.view.duration) && playback.view.duration > 0 ? playback.view.duration : 0;
 
   return <section className="chapter-stage action-page action-theater-page" id="chapterStage" data-chapter="action" data-active-action={activeId} aria-label="醒狮动作巨幕厅">
@@ -168,14 +188,21 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           muted playsInline loop preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
       </div>
       <div className="theater-vignette" aria-hidden="true" />
-      <header className="theater-topline">
-        <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
-        <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
-      </header>
+      <div className="theater-spatial-layer" ref={spatialRef} aria-label="巨幕空间悬浮界面">
+        <header className="theater-topline theater-gold-panel" data-spatial-panel="title" data-screen-id={clips[0].id}>
+          <GoldCorners /><p>南风有狮 <span> / 动作空间</span></p><h2>四面观狮</h2>
+          <p className="theater-gesture-hint">推动漫游视角 · 左右切换观赏</p>
+        </header>
+        {clips.map((clip, index) => <div className="theater-screen-label" key={`screen-${clip.id}`} data-spatial-panel="screen" data-screen-id={clip.id}>
+          <span className="theater-screen-number">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{clip.name}</h3>
+          <button type="button" aria-label={`观看${clip.name}`} onClick={() => selectAction(clip.id)}><Icon kind="play" /></button>
+          <span className="theater-screen-status">{activeId === clip.id ? '正在观赏' : '转向此幕'}</span>
+        </div>)}
+        {clips.map((clip, index) => <ActionCaption key={clip.id} clip={clip} index={index} active={!flatMode && activeId === clip.id} />)}
+      </div>
+      {flatMode && <header className="theater-flat-title"><p>南风有狮 / 动作空间</p><h2>四面观狮</h2></header>}
       <div className="theater-view-tools">
-        <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
-          {flatMode ? '返回巨幕' : '平面观看'}
-        </button>
         <button type="button" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
           <Icon kind="fullscreen" />
         </button>
@@ -192,18 +219,41 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
       </div>}
 
-      <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
-        {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
-        <ActionCaption key={currentCaption.id} clip={currentCaption} index={clips.indexOf(currentCaption)} />
-      </aside>
+      <p className="sr-only" aria-live="polite">当前动作 {String(clips.indexOf(active) + 1).padStart(2, '0')} / 04，{active.name}。{active.description}</p>
+      {flatMode && <aside className="theater-flat-observation"><ActionCaption clip={active} index={clips.indexOf(active)} active flat /></aside>}
 
       <div className="theater-bottom">
+        <div className="theater-gesture-panel theater-gold-panel">
+          <GoldCorners /><div><Icon kind="mouse" /><p>拖动<span>旋转视角</span></p></div>
+          <i /><div><Icon kind="wheel" /><p>滚轮<span>缩放远近</span></p></div>
+        </div>
+        <div className="theater-center-console">
+          <div className="theater-compass" data-view-compass>
+            <span className="theater-compass-north" aria-hidden="true">↑</span>
+            <button type="button" aria-label="转向上一面巨幕" onClick={() => stepAction(-1)}><Icon kind="left" /></button>
+            <button className="theater-compass-home" type="button" aria-label="回到探青采青正面视角" onClick={() => selectAction(clips[0].id)}><Icon kind="compass" /></button>
+            <button type="button" aria-label="转向下一面巨幕" onClick={() => stepAction(1)}><Icon kind="right" /></button>
+            <span className="theater-compass-south" aria-hidden="true">↓</span>
+            <p>拖动观察四周 <span>{String(clips.indexOf(active) + 1).padStart(2, '0')} / 04</span></p>
+          </div>
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
           {clips.map((clip, index) => <button type="button" key={clip.id} data-action-id={clip.id}
             aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>
             <span>{String(index + 1).padStart(2, '0')}</span><strong>{clip.name}</strong>
           </button>)}
         </nav>
+        </div>
+        <div className="theater-mode-panel theater-gold-panel">
+          <GoldCorners />
+          <button type="button" aria-label="醒狮自动旋转" aria-pressed={autoRotate} onClick={toggleAutoRotate}>
+            <Icon kind="eye" /><span>自动旋转<small>{autoRotate ? '醒狮缓慢旋转' : '醒狮已暂停'}<i className={`theater-toggle ${autoRotate ? 'is-on' : ''}`} /></small></span>
+          </button><i />
+          <button type="button" aria-label={flatMode ? '返回巨幕' : '平面观看'} onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
+            <Icon kind="monitor" /><span>视角切换<small>{flatMode ? '返回四面巨幕' : '自动播放对应视频'}</small></span>
+          </button>
+        </div>
+      </div>
+      <div className="theater-player-dock">
         <div id="theaterControls" className="theater-controls" aria-label="当前动作播放控制">
           <button type="button" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
           <span className="theater-time">{clock(playback.view.currentTime)} <i>/</i> {clock(duration)}</span>

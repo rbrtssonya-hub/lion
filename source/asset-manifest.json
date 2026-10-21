@@ -3182,6 +3182,54 @@
       "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-120.png",
       "bytes": 2227515,
       "sha256": "f68ff9b4cc0a4618add539a6dc431e23ea50469d60e50accea7ffd6454626239"
+    },
+    {
+      "from": "user attachment image-1.png, 2026-10-21 action floating UI reference",
+      "path": "source/design/action-theater/2026-10-21-floating-ui-reference.png",
+      "bytes": 3146931,
+      "sha256": "cc4cd469aa2c64dec8aa494bed63dac2896d33eef5e9c30cf1067fca41dcf751"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1366.png",
+      "bytes": 1331371,
+      "sha256": "dadedb3a880d48e925cb55edc346645c435a533b6f740c19eefbe82416af0563"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1920.png",
+      "bytes": 2364768,
+      "sha256": "5def16a91d1495c3c00bebf591f6ab8fa71c4c2173057346dd0ed4a6cd4e8fb2"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-900.png",
+      "bytes": 957390,
+      "sha256": "fb0c0b39b42084efcc9dd0c2c0e2acd356c12dc0653cf7c9fef48a1a3f777090"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/drag-left-90.png",
+      "bytes": 2332646,
+      "sha256": "8fc6755e413130e413e5df9c34e34b36aa754019411fa151e340a389fe3d971f"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/drag-next-180.png",
+      "bytes": 2356295,
+      "sha256": "b956946ced007286d83952c30e322dd9c0b85a8e988ef3e4d7b1afc3202418a4"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/flat-video.png",
+      "bytes": 2391875,
+      "sha256": "6642e6f8abba83bdf859c1f6574ef839fe47160329e9326a7d73effcc88d02d1"
+    },
+    {
+      "from": "actual Chrome production spatial UI audit, 2026-10-21",
+      "path": "source/reviews/action-theater/2026-10-21-floating-ui/settings-push-900.png",
+      "bytes": 1238938,
+      "sha256": "2482c99eaac90e9fdad74941cace9a77f3fde04a3c66f81f83b982aded846b6e"
     }
   ]
 }

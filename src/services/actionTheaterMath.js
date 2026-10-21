@@ -27,23 +27,23 @@ export function constrainOrbit(position, target = THEATER_ORBIT.target) {
   return [target[0] + Math.sin(azimuth) * horizontal, target[1] + y, target[2] + Math.cos(azimuth) * horizontal];
 }
 
-/** Keep the current direction across a 12° angular advantage and 180 ms dwell. */
-export function chooseScreen({ forward, definitions, activeId, pendingId, pendingSince, now, hysteresis = 12 * DEG, dwell = 180 }) {
+/** Angular hysteresis only: a better visible screen wins in this render frame. */
+export function chooseScreen({ forward, definitions, activeId, scores, hysteresis = 7 * DEG }) {
   const length = Math.hypot(forward[0], forward[2]);
   if (length < 0.00001) return { activeId, pendingId: null, pendingSince: 0 };
-  const angles = definitions.map(({ id, direction }) => {
+  const angles = scores ?? definitions.map(({ id, direction }) => {
     const directionLength = Math.hypot(direction[0], direction[2]);
     const dot = (forward[0] * direction[0] + forward[2] * direction[2]) / (length * directionLength);
     return { id, angle: Math.acos(Math.max(-1, Math.min(1, dot))) };
   });
+  const eligible = item => item.visible !== false && item.frontFacing !== false && Number.isFinite(item.angle);
   const current = angles.find(({ id }) => id === activeId);
-  const best = angles.reduce((candidate, item) => item.angle < candidate.angle ? item : candidate);
-  if (best.id === activeId || (current && current.angle - best.angle < hysteresis)) {
+  let best = null;
+  for (const item of angles) if (eligible(item) && (!best || item.angle < best.angle)) best = item;
+  if (!best || best.id === activeId || (current && eligible(current) && current.angle - best.angle < hysteresis)) {
     return { activeId, pendingId: null, pendingSince: 0 };
   }
-  if (pendingId !== best.id) return { activeId, pendingId: best.id, pendingSince: now };
-  if (now - pendingSince >= dwell) return { activeId: best.id, pendingId: null, pendingSince: 0 };
-  return { activeId, pendingId, pendingSince };
+  return { activeId: best.id, pendingId: null, pendingSince: 0 };
 }
 
 /** Scale the visible rectangle, preserving the entire source video's aspect. */

@@ -3,6 +3,12 @@ import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAc
 import { assetPaths } from '../../src/config/assetPaths.js';
 import { THEATER_ORBIT } from '../../src/services/actionTheaterMath.js';
 
+const sixFrames = page => page.evaluate(() => new Promise(resolve => {
+  let frames = 6;
+  const next = () => --frames ? requestAnimationFrame(next) : resolve();
+  requestAnimationFrame(next);
+}));
+
 test('巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素', async ({ page }) => {
   const errors = [], failed = [], requests = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -48,13 +54,13 @@ test('真实鼠标环绕驱动主屏和文案，停止拖动后保留视角', as
   await page.mouse.up();
   await expect(scene(page)).not.toHaveAttribute('data-active-screen', 'tanqing');
   await expect(scene(page)).toHaveAttribute('data-camera-state', 'idle');
-  await page.waitForTimeout(800); // Let real OrbitControls inertia settle before checking persistence.
+  await sixFrames(page); // Direct orbit input stops with the pointer; there is no inertia or dwell.
   const id = await scene(page).getAttribute('data-active-screen');
   await expect(actionButton(page, id)).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#theaterActionName')).toHaveText(actions.find(action => action.id === id).name);
   const finalPosition = await jsonAttribute(scene(page), 'data-camera-position');
   expect(Math.hypot(...finalPosition.map((value, index) => value - initialPosition[index]))).toBeGreaterThan(1);
-  await page.waitForTimeout(600); // Covers damping and the 180ms direction dwell.
+  await sixFrames(page);
   const settled = await jsonAttribute(scene(page), 'data-camera-position');
   expect(Math.hypot(...settled.map((value, index) => value - finalPosition[index]))).toBeLessThan(.04);
   expect(await scene(page).getAttribute('data-active-screen')).toBe(id);
@@ -69,7 +75,7 @@ test('真实鼠标环绕驱动主屏和文案，停止拖动后保留视角', as
   expect(polar).toBeLessThanOrEqual(THEATER_ORBIT.polarMax + .001);
 });
 
-test('四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置', async ({ page }) => {
+test('四动作切向独立16:9显示面，主辅亮度即时更新并保留各视频位置', async ({ page }) => {
   test.setTimeout(120_000);
   await openTheater(page);
   await actionVideo(page, 'tanqing').evaluate(video => { video.currentTime = 2; });

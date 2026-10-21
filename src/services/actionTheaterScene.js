@@ -23,13 +23,13 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
+import { createTheaterSpatialUI } from './actionTheaterSpatialUI.js';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
 import { createLionLightingControls } from './lionLightingSettings.js';
 
 const mountedScenes = new WeakMap();
 const ROTATION_SPEED = Math.PI * 2 / 36;
-const TRANSITION_MS = 450;
 
 // Cold context/PMREM/shader preparation must not interrupt the shared header's
 // title/helper flight. Observe its actual lifecycle, including interruptions,
@@ -223,10 +223,11 @@ export function createActionTheater({
   container,
   modelUrl,
   screenDefinitions,
+  spatialLayer,
   onActiveScreen = () => {},
   onReady = () => {},
   onError = () => {},
-  onAnchorUpdate = () => {},
+  onAnchorUpdate,
   lightingSettings,
   onLightingStatus = () => {},
 }) {
@@ -252,6 +253,8 @@ export function createActionTheater({
   let fullLion;
   let architecture;
   let reflection;
+  let spatialUI;
+  let autoRotating = true;
   let animationFrame = 0;
   let loadTimeout = 0;
   let disposed = false;
@@ -265,11 +268,8 @@ export function createActionTheater({
   let frameWidth = 1;
   let frameHeight = 1;
   let activeId = screenDefinitions[0]?.id ?? null;
-  let pendingId = null;
-  let pendingSince = 0;
   let focusTween = null;
   let queuedFocus = null;
-  let brightnessTransition = null;
   let pausedAt = document.hidden ? performance.now() : null;
   let qualityReduced = false;
   let sampleFrames = 0;
@@ -326,6 +326,7 @@ export function createActionTheater({
     if (canRender() && !animationFrame) animationFrame = requestAnimationFrame(draw);
   };
   const updateAnchor = () => {
+    if (!onAnchorUpdate) return;
     const anchor = screenRecords.get(activeId)?.anchor;
     if (!anchor) return;
     anchor.getWorldPosition(projectedAnchor);
@@ -342,7 +343,8 @@ export function createActionTheater({
     visible: visible && !document.hidden,
     disposed,
     activeScreen: activeId,
-    pendingScreen: pendingId,
+    pendingScreen: null,
+    autoRotating,
     cameraPosition: camera.position.toArray(),
     cameraTarget: controls?.target.toArray() ?? orbitTarget.toArray(),
     cameraRadius: camera.position.distanceTo(orbitTarget),
@@ -381,6 +383,7 @@ export function createActionTheater({
     dataset.cameraState = state.cameraState;
     dataset.renderState = state.visible && !disposed ? 'active' : 'inactive';
     dataset.renderedFrames = String(renderedFrames);
+    dataset.autoRotating = String(autoRotating);
     dataset.fullHairStrands = String(state.fullHairStrands);
     dataset.fullHairGroups = String(state.fullHairGroups);
     dataset.fullHairPoints = String(state.fullHairPoints);
@@ -405,31 +408,23 @@ export function createActionTheater({
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
+    spatialUI?.resize(frameWidth, frameHeight);
     if (ready) { updateAnchor(); requestFrame(); }
   };
   const commitActive = (nextId, now) => {
     if (!nextId || nextId === activeId) return;
     activeId = nextId;
-    pendingId = null;
-    pendingSince = 0;
-    brightnessTransition = {
-      startedAt: now,
-      from: new Map([...screenRecords].map(([id, record]) => [id, record.brightness])),
-    };
     onActiveScreen(activeId);
   };
   const updateScreenDirection = (now) => {
-    camera.getWorldDirection(forward);
-    const selection = chooseScreen({ forward: forward.toArray(), definitions: screenDefinitions, activeId, pendingId, pendingSince, now });
-    pendingId = selection.pendingId;
-    pendingSince = selection.pendingSince;
+    if (spatialUI) forward.copy(spatialUI.updateCamera(camera));
+    else camera.getWorldDirection(forward);
+    const selection = chooseScreen({ forward: forward.toArray(), definitions: screenDefinitions, activeId, scores: spatialUI?.scores });
     commitActive(selection.activeId, now);
   };
   const onControlStart = () => {
     interacting = true;
     focusTween = null;
-    pendingId = null;
-    pendingSince = 0;
     requestFrame();
   };
   const onControlEnd = () => { interacting = false; requestFrame(); };
@@ -442,7 +437,6 @@ export function createActionTheater({
       // Resume both motions from their displayed frame, including a direction
       // tween started while the chapter was off screen.
       if (focusTween) focusTween.startedAt += now - Math.max(pausedAt, focusTween.startedAt);
-      if (brightnessTransition) brightnessTransition.startedAt += now - Math.max(pausedAt, brightnessTransition.startedAt);
       pausedAt = null;
     }
     lastFrameTime = 0;
@@ -451,9 +445,6 @@ export function createActionTheater({
     cancelAnimationFrame(animationFrame);
     animationFrame = 0;
     synchronizeActivityClock();
-    // A hidden-tab delay must not finish a direction dwell without observation.
-    pendingId = null;
-    pendingSince = 0;
     publishDiagnostics();
     requestFrame();
   };
@@ -491,7 +482,7 @@ export function createActionTheater({
         }
       }
       // The model alone rotates; changing the camera never resets its phase.
-      lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
+      if (autoRotating) lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
       if (focusTween) {
         const fraction = Math.min(1, (now - focusTween.startedAt) / focusTween.duration);
         const eased = fraction * fraction * (3 - 2 * fraction);
@@ -504,16 +495,26 @@ export function createActionTheater({
       camera.lookAt(orbitTarget);
       camera.updateMatrixWorld();
       updateScreenDirection(now);
-      const fraction = brightnessTransition ? Math.min(1, (now - brightnessTransition.startedAt) / TRANSITION_MS) : 1;
-      const eased = fraction * fraction * (3 - 2 * fraction);
       screenRecords.forEach((record, id) => {
         const target = id === activeId ? 1 : 0.25;
-        record.brightness = brightnessTransition ? brightnessTransition.from.get(id) + (target - brightnessTransition.from.get(id)) * eased : target;
+        record.brightness = target;
         record.material.color.setScalar(record.brightness);
       });
-      if (fraction >= 1) brightnessTransition = null;
+      spatialUI?.updatePanels(camera, activeId, frameWidth, frameHeight, renderedFrames + 1);
       renderer.render(scene, camera);
       renderedFrames += 1;
+      // These small diagnostics describe the exact camera/UI pair submitted in
+      // this frame. Heavy model bounds and composition stay off the frame path.
+      const { dataset } = renderer.domElement;
+      dataset.frameId = String(renderedFrames);
+      dataset.spatialFrameId = String(renderedFrames);
+      dataset.cameraPosition = JSON.stringify(camera.position.toArray());
+      dataset.cameraForward = JSON.stringify(forward.toArray());
+      dataset.cameraAzimuth = Math.atan2(camera.position.x, camera.position.z).toFixed(6);
+      dataset.cameraState = interacting ? 'dragging' : focusTween ? 'focusing' : 'idle';
+      dataset.activeScreen = activeId ?? '';
+      dataset.screenScores = JSON.stringify(spatialUI?.scores ?? []);
+      dataset.autoRotating = String(autoRotating);
       updateAnchor();
       if (now - lastDiagnosticTime > 180) { publishDiagnostics(); lastDiagnosticTime = now; }
       requestFrame();
@@ -573,20 +574,17 @@ export function createActionTheater({
     // Flush OrbitControls inertia before a deliberate direction change.
     controls.enableDamping = false;
     controls.update();
-    controls.enableDamping = true;
     const fromAngle = Math.atan2(camera.position.x, camera.position.z);
     const toAngle = Math.atan2(-definition.direction[0], -definition.direction[2]);
     const delta = shortestAngle(fromAngle, toAngle);
     const horizontal = Math.hypot(camera.position.x, camera.position.z);
-    pendingId = null;
-    pendingSince = 0;
     if (instant) {
       focusTween = null;
       camera.position.set(Math.sin(toAngle) * horizontal, camera.position.y, Math.cos(toAngle) * horizontal);
       controls.update();
       commitActive(id, performance.now());
     } else {
-      focusTween = { fromAngle, angleDelta: delta, horizontal, height: camera.position.y, startedAt: performance.now(), duration: Math.abs(delta) > 2 ? 900 : 720 };
+      focusTween = { fromAngle, angleDelta: delta, horizontal, height: camera.position.y, startedAt: performance.now(), duration: 120 };
     }
     requestFrame();
   }
@@ -605,6 +603,7 @@ export function createActionTheater({
     controls?.removeEventListener('end', onControlEnd);
     controls?.dispose();
     lighting?.dispose();
+    spatialUI?.dispose();
     screenRecords.forEach((record) => {
       record.removeVideoListeners?.();
       record.videoTexture?.dispose();
@@ -629,13 +628,14 @@ export function createActionTheater({
     }
     scene.clear();
     if (mountedScenes.get(container) === dispose) mountedScenes.delete(container);
-    onAnchorUpdate({ id: activeId, x: 0, y: 0, visible: false });
+    onAnchorUpdate?.({ id: activeId, x: 0, y: 0, visible: false });
   }
 
   const api = {
     setLightingSettings(value) { currentLightingSettings = value; lighting?.update(value); },
     retryHdri: () => lighting?.retry(),
     setVideo,
+    setAutoRotate(value) { autoRotating = Boolean(value); requestFrame(); },
     setVisible(value) {
       if (disposed || visible === Boolean(value)) return;
       visible = Boolean(value);
@@ -643,10 +643,9 @@ export function createActionTheater({
       cancelAnimationFrame(animationFrame);
       animationFrame = 0;
       synchronizeActivityClock();
-      pendingId = null;
-      pendingSince = 0;
+      spatialUI?.setVisible(visible);
       publishDiagnostics();
-      if (!visible) onAnchorUpdate({ id: activeId, x: 0, y: 0, visible: false });
+      if (!visible) onAnchorUpdate?.({ id: activeId, x: 0, y: 0, visible: false });
       requestFrame();
     },
     focusScreen,
@@ -682,8 +681,7 @@ export function createActionTheater({
       controls.target.copy(orbitTarget);
       controls.enablePan = false;
       controls.autoRotate = false;
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.075;
+      controls.enableDamping = false;
       controls.rotateSpeed = 0.42;
       controls.zoomSpeed = 0.65;
       controls.minDistance = THEATER_ORBIT.radiusMin;
@@ -832,6 +830,9 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
+      spatialUI = createTheaterSpatialUI({ layer: spatialLayer, screenRecords });
+      spatialUI.resize(frameWidth, frameHeight);
+      spatialUI.setVisible(visible);
       lighting.refresh();
       await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });
       if (disposed) return;

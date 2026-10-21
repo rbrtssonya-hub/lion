@@ -1,0 +1,1812 @@
+{
+  "testedOn": "2026-10-21",
+  "baseURL": "http://127.0.0.1:4173",
+  "browser": "155.0.8059.85",
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "WebKit"
+  },
+  "frameTiming": {
+    "samples": 288,
+    "fps": 132.12411380167566,
+    "renderedFps": 132.12411380167566,
+    "repeatedFrameSamples": 0,
+    "intervalMedianMs": 5.599999999998545,
+    "intervalP95Ms": 11.200000000000728,
+    "mismatchedFramePairs": 0,
+    "note": "Browser RAF wall-clock intervals include real input and screenshots; this is a local hardware observation, not a GPU timing or cross-device guarantee."
+  },
+  "idleFrameTiming": {
+    "samples": 120,
+    "renderedFps": 126.75756284618623,
+    "note": "First 120 sampled frames before mouse input and screenshots."
+  },
+  "drags": [
+    {
+      "requestedDegrees": 90,
+      "actualDegrees": 89.99998127603168,
+      "before": 0,
+      "after": 1.570796
+    },
+    {
+      "requestedDegrees": 180,
+      "actualDegrees": 179.99996255206335,
+      "before": 1.570796,
+      "after": -1.570796
+    }
+  ],
+  "errors": [],
+  "captures": [
+    {
+      "name": "desktop-1920",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          0,
+          1.6000000000000008,
+          8.6
+        ],
+        "frame": "379",
+        "spatialFrame": "379",
+        "composition": {
+          "lion": {
+            "left": 0.4033372251863066,
+            "top": 0.2627124468869179,
+            "right": 0.6296465540334665,
+            "bottom": 0.6509918920665512,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.22630932884715987,
+            "heightRatio": 0.38827944517963325,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145468552,
+            "right": 0.8169743485453145,
+            "top": 0.5694309627861958,
+            "bottom": 0.8667639310381577,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090629,
+            "heightRatio": 0.297332968251962,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836375,
+              "top": 0.10259267563937219,
+              "right": 0.6952608488616363,
+              "bottom": 0.5250276184405398,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772327255,
+              "heightRatio": 0.4224349428011676,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448654,
+              "top": -4.91192142769144,
+              "right": 4.1676507255278,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829343,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255278,
+              "top": -4.91192142769144,
+              "right": 0.20483502065513454,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829347,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 48,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      }
+    },
+    {
+      "name": "drag-left-90",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/drag-left-90.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "meihuazhuang",
+        "camera": [
+          8.600000000000025,
+          1.6000000000000028,
+          -0.0000011992940735235855
+        ],
+        "frame": "584",
+        "spatialFrame": "584",
+        "composition": {
+          "lion": {
+            "left": 0.360065579037649,
+            "top": 0.2704037777764652,
+            "right": 0.6115842529117008,
+            "bottom": 0.6490392804082433,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2515186738740518,
+            "heightRatio": 0.37863550263177814,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565460053022,
+            "right": 0.8169743516911407,
+            "top": 0.5694309627861954,
+            "bottom": 0.8667639310381436,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6339486970906105,
+            "heightRatio": 0.2973329682519482,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.7951650518762214,
+              "top": -4.911927516198943,
+              "right": 4.167653996262487,
+              "bottom": 1.0158086526320753,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372488944386266,
+              "heightRatio": 5.927736168831018,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": -3.167653458689912,
+              "top": -4.911924921157246,
+              "right": 0.20483512312749236,
+              "bottom": 1.0158085189918862,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372488581817404,
+              "heightRatio": 5.927733440149133,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": 0.30473920413194383,
+              "top": 0.1025926945181782,
+              "right": 0.6952608898586543,
+              "bottom": 0.5250275938135831,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.3905216857267105,
+              "heightRatio": 0.4224348992954049,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 75,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      }
+    },
+    {
+      "name": "drag-next-180",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/drag-next-180.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "doumao",
+        "camera": [
+          -8.599999999999849,
+          1.6000000000000032,
+          0.0000021987057981779645
+        ],
+        "frame": "667",
+        "spatialFrame": "667",
+        "composition": {
+          "lion": {
+            "left": 0.3782835432817128,
+            "top": 0.31919002427473864,
+            "right": 0.6070216198457311,
+            "bottom": 0.6550083339011047,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2287380765640183,
+            "heightRatio": 0.33581830962636605,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565722207087,
+            "right": 0.8169743543126602,
+            "top": 0.569430962786196,
+            "bottom": 0.8667639310381308,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6339486970905893,
+            "heightRatio": 0.2973329682519348,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": -3.16764421458243,
+              "top": -4.9119115190011025,
+              "right": 0.2048351064792745,
+              "bottom": 1.015807232346218,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724793210617046,
+              "heightRatio": 5.927718751347321,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.3047392432946894,
+              "top": 0.1025926768296877,
+              "right": 0.6952609290214075,
+              "bottom": 0.5250275957220104,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.3905216857267181,
+              "heightRatio": 0.4224349188923227,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": 0.7951650221771638,
+              "top": -4.911939929149418,
+              "right": 4.16766249343833,
+              "bottom": 1.0158096579390095,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372497471261166,
+              "heightRatio": 5.927749587088428,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 84,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      }
+    },
+    {
+      "name": "desktop-1366",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          9.54791801177649e-15,
+          1.6000000000000032,
+          8.60000000000013
+        ],
+        "frame": "715",
+        "spatialFrame": "715",
+        "composition": {
+          "lion": {
+            "left": 0.3859402970431068,
+            "top": 0.2744224378035618,
+            "right": 0.6352602229691611,
+            "bottom": 0.6486151502012644,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2493199259260543,
+            "heightRatio": 0.3741927123977026,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.19390358145658332,
+            "right": 0.8060964185434167,
+            "top": 0.5694309627861951,
+            "bottom": 0.8667639310381456,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6121928370868335,
+            "heightRatio": 0.29733296825195055,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.31144011560370655,
+              "top": 0.10259267563937485,
+              "right": 0.6885598843962942,
+              "bottom": 0.5250276184405396,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.3771197687925877,
+              "heightRatio": 0.4224349428011647,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7850355035716396,
+              "top": -4.911921427690934,
+              "right": 4.0417842380758024,
+              "bottom": 1.015807792921834,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.256748734504163,
+              "heightRatio": 5.927729220612768,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.04178423807575,
+              "top": -4.911921427690843,
+              "right": 0.21496449642836118,
+              "bottom": 1.0158077929218259,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.2567487345041113,
+              "heightRatio": 5.927729220612669,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 90,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1351,
+            "height": 678
+          }
+        }
+      }
+    },
+    {
+      "name": "desktop-900",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/desktop-900.png",
+      "viewport": {
+        "width": 900,
+        "height": 900
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          9.54791801177649e-15,
+          1.6000000000000032,
+          8.60000000000013
+        ],
+        "frame": "740",
+        "spatialFrame": "740",
+        "composition": {
+          "lion": {
+            "left": 0.33847957884094104,
+            "top": 0.32136059988317844,
+            "right": 0.6895486897323029,
+            "bottom": 0.6179694617100517,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.35106911089136184,
+            "heightRatio": 0.2966088618268733,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798532663,
+            "right": 0.9303718520146734,
+            "top": 0.5553019380389786,
+            "bottom": 0.7921284017285235,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293469,
+            "heightRatio": 0.23682646368954485,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833316,
+              "top": 0.18346405773308194,
+              "right": 0.7651153745916679,
+              "bottom": 0.5199345615950052,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833347,
+              "heightRatio": 0.33647050386192323,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800305,
+              "top": -3.810609149805604,
+              "right": 5.479751965836405,
+              "bottom": 0.9108422159149037,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780056374,
+              "heightRatio": 4.721451365720507,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.47975196583633,
+              "top": -3.810609149805531,
+              "right": 0.0992398142199708,
+              "bottom": 0.9108422159148971,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780056301,
+              "heightRatio": 4.721451365720428,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 93,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 67.45059790817311,
+            "width": 885,
+            "height": 784
+          }
+        }
+      }
+    },
+    {
+      "name": "settings-push-900",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/settings-push-900.png",
+      "viewport": {
+        "width": 1675,
+        "height": 1000
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          9.54791801177649e-15,
+          1.6000000000000032,
+          8.60000000000013
+        ],
+        "frame": "789",
+        "spatialFrame": "789",
+        "composition": {
+          "lion": {
+            "left": 0.33590581337618963,
+            "top": 0.34192505968310977,
+            "right": 0.6864741528874285,
+            "bottom": 0.605112596821014,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.3505683395112389,
+            "heightRatio": 0.26318753713790427,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798532668,
+            "right": 0.9303718520146733,
+            "top": 0.5498773518934266,
+            "bottom": 0.7634734262081015,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293466,
+            "heightRatio": 0.21359607431467498,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833321,
+              "top": 0.21451317730968972,
+              "right": 0.7651153745916678,
+              "bottom": 0.5179791735836538,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833346,
+              "heightRatio": 0.30346599627396403,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800304,
+              "top": -3.387780013936183,
+              "right": 5.479751965836404,
+              "bottom": 0.8705425614816524,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.5789917800563735,
+              "heightRatio": 4.258322575417836,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965836329,
+              "top": -3.387780013936118,
+              "right": 0.09923981421997086,
+              "bottom": 0.8705425614816464,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780056301,
+              "heightRatio": 4.258322575417765,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 102,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 73.01454589282741,
+            "width": 900,
+            "height": 884
+          }
+        }
+      }
+    },
+    {
+      "name": "flat-video",
+      "file": "source/reviews/action-theater/2026-10-21-floating-ui/flat-video.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          9.54791801177649e-15,
+          1.6000000000000032,
+          8.60000000000013
+        ],
+        "frame": "807",
+        "spatialFrame": "807",
+        "composition": {
+          "lion": {
+            "left": 0.37867344198134684,
+            "top": 0.28186046802834674,
+            "right": 0.6360097908434003,
+            "bottom": 0.6454554598968848,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2573363488620534,
+            "heightRatio": 0.36359499186853805,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145469207,
+            "right": 0.816974348545308,
+            "top": 0.5694309627861951,
+            "bottom": 0.8667639310381456,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090616,
+            "heightRatio": 0.29733296825195055,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836547,
+              "top": 0.10259267563937485,
+              "right": 0.6952608488616352,
+              "bottom": 0.5250276184405396,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.3905216977232697,
+              "heightRatio": 0.4224349428011647,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448635,
+              "top": -4.911921427690934,
+              "right": 4.167650725527453,
+              "bottom": 1.015807792921834,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461825897,
+              "heightRatio": 5.927729220612768,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.167650725527399,
+              "top": -4.911921427690843,
+              "right": 0.20483502065513742,
+              "bottom": 1.0158077929218259,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461825364,
+              "heightRatio": 5.927729220612669,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 105,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        }
+      }
+    }
+  ]
+}

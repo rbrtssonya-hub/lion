@@ -12,26 +12,29 @@ const definitions = [
 ];
 const select = (degrees, state, now) => chooseScreen({ forward: forward(degrees), definitions, ...state, now });
 
-test('巨幕方向选择在边界保留当前屏，超过12度优势后仍等待180毫秒', () => {
+test('巨幕方向选择以7度角优势迟滞，越界在当前调用立即切换', () => {
   const initial = { activeId: 'tanqing', pendingId: null, pendingSince: 0 };
-  assert.deepEqual(select(50, initial, 100), initial);
-  const pending = select(52, initial, 100);
-  assert.deepEqual(pending, { activeId: 'tanqing', pendingId: 'doumao', pendingSince: 100 });
-  assert.deepEqual(select(52, pending, 279), pending);
-  assert.deepEqual(select(52, pending, 280), { activeId: 'doumao', pendingId: null, pendingSince: 0 });
+  assert.deepEqual(select(48, initial, 100), initial);
+  assert.deepEqual(select(49, initial, 100), { activeId: 'doumao', pendingId: null, pendingSince: 0 });
+  assert.deepEqual(select(90, initial, 100), { activeId: 'doumao', pendingId: null, pendingSince: 0 });
 });
 
-test('巨幕边界抖动取消旧停留，换向和回看必须重新观察完整停留期', () => {
+test('巨幕边界往返由角优势防抖，快速反转不排队也不等待停留', () => {
   const initial = { activeId: 'tanqing', pendingId: null, pendingSince: 0 };
-  const pending = select(60, initial, 100);
-  const reset = select(47, pending, 240);
-  assert.deepEqual(reset, initial);
-  const restarted = select(60, reset, 260);
-  assert.equal(select(60, restarted, 400).activeId, 'tanqing');
-  const current = select(60, restarted, 440);
+  let current = initial;
+  for (const angle of [44, 46, 44, 47, 43]) {
+    current = select(angle, current, 100);
+    assert.equal(current.activeId, 'tanqing');
+  }
+  current = select(50, current, 100);
   assert.equal(current.activeId, 'doumao');
-  assert.equal(select(40, current, 700).activeId, 'doumao');
-  assert.equal(select(35, current, 800).pendingId, 'tanqing');
+  for (const angle of [44, 46, 43, 47]) {
+    current = select(angle, current, 100);
+    assert.equal(current.activeId, 'doumao');
+  }
+  current = select(40, current, 100);
+  assert.deepEqual(current, initial);
+  assert.equal(select(90, { ...current, pendingId: 'tuqiu', pendingSince: 99999 }, 100).activeId, 'doumao');
 });
 
 test('四个方向及±180度接缝均选择正确主屏，垂直观看不引起切换', () => {
@@ -40,6 +43,22 @@ test('四个方向及±180度接缝均选择正确主屏，垂直观看不引起
     assert.equal(select(degrees, first, 280).activeId, id);
   }
   assert.deepEqual(chooseScreen({ forward: [0, 1, 0], definitions, activeId: 'tuqiu', pendingId: 'doumao', pendingSince: 100, now: 900 }), { activeId: 'tuqiu', pendingId: null, pendingSince: 0 });
+});
+
+test('空间角度选择排除视锥外和背向屏幕，当前失去可见性时即时接续', () => {
+  const scores = [
+    { id: 'tanqing', angle: rad(42), visible: true, frontFacing: true },
+    { id: 'doumao', angle: rad(44), visible: true, frontFacing: true },
+    { id: 'tuqiu', angle: rad(1), visible: false, frontFacing: true },
+    { id: 'meihuazhuang', angle: rad(0), visible: true, frontFacing: false },
+  ];
+  const selectScores = activeId => chooseScreen({ forward: forward(0), definitions, activeId, scores });
+  assert.equal(selectScores('doumao').activeId, 'doumao');
+  assert.equal(selectScores('tanqing').activeId, 'tanqing');
+  scores[0].visible = false;
+  assert.equal(selectScores('tanqing').activeId, 'doumao');
+  scores[1].visible = false;
+  assert.equal(selectScores('tanqing').activeId, 'tanqing');
 });
 
 test('动作空间镜头插值始终选择跨接缝的最短角度', () => {

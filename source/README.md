@@ -2,6 +2,8 @@
 
 `source/` 统一管理媒体、模型、创作源文件、设计文档、审查截图与参考资料。应用代码位于根 `src/`。
 
+2026-10-21动作悬浮UI参考与完整提示词归档 `design/action-theater/2026-10-21-floating-ui-*`，真实电脑浏览器图集位于 `reviews/action-theater/2026-10-21-floating-ui/`。面板采用React/CSS/SVG与真实相机投影，没有新增运行贴图；参考与审查图不部署。实现与验收入口见[空间UI说明](references/action-spatial-ui-2026-10-21.md)。
+
 | 分类 | 存放内容 | 网页构建 |
 | --- | --- | --- |
 | `public/assets/entry/` | 首页循环视频、封面、图片标题与透明书法按钮字图 | 复制到 `dist/assets/entry/` |
