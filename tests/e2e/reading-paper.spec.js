@@ -52,7 +52,7 @@ test('old defaults migrate once and mixed custom material, dimensions and playba
   await open(page, { bookTitleColor: '#fff9ee', bookTitleTransparency: 40, bookTitleBlur: 5, bookTitleRadius: 14,
     cultureBodyColor: '#aabbcc', cultureBodyTransparency: 63, cultureBodyBlur: 5, cultureBodyRadius: 27,
     expressionOverlayColor: '#fff8ea', expressionOverlayTransparency: 22, expressionOverlayBlur: 6, expressionOverlayRadius: 24,
-    bookTitleWidth: 61, bookTitleLayoutVersion: 1, bookTitleSpacing: 77, bookIntroDuration: 19, navFontSize: 27, modelOverlayColor: '#68170f',
+    bookTitleWidth: 61, bookTitleLayoutVersion: 1, bookTitleSpacing: 77, bookIntroDuration: 19, navFontSize: 27, modelOverlayColor: '#68170f', structureAtlasVersion: 1,
     hdriEnabled: false, hdriIntensity: 1.35, hdriRotation: 47, hdriExposure: -.4, hdriLightIntensity: .65 });
   await expect.poll(() => stored(page)).toMatchObject({ readingPaperVersion: 1, bookTitleColor: '#f7f5f0', bookTitleTransparency: 35, bookTitleBlur: 0, bookTitleRadius: 0,
     cultureBodyColor: '#aabbcc', cultureBodyTransparency: 63, cultureBodyBlur: 0, cultureBodyRadius: 27, expressionOverlayTransparency: 10,

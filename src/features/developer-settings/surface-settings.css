@@ -110,14 +110,14 @@
 .site-shell .info-panel {
   box-sizing: border-box;
   width: var(--modelOverlay-surface-width, 100%);
-  min-height: var(--modelOverlay-surface-height, 620px);
+  min-height: var(--modelOverlay-surface-height, 0px);
   justify-self: center;
-  border-radius: var(--modelOverlay-surface-radius, 24px);
-  border-color: rgb(255 226 177 / calc(var(--modelOverlay-surface-opacity, .8) * .52));
-  background: rgb(var(--modelOverlay-surface-rgb, 104 23 15) / var(--modelOverlay-surface-opacity, .8));
-  backdrop-filter: var(--modelOverlay-surface-blur, blur(12px));
-  -webkit-backdrop-filter: var(--modelOverlay-surface-blur, blur(12px));
-  box-shadow: 0 18px 60px rgb(61 16 9 / calc(var(--modelOverlay-surface-opacity, .8) * .17));
+  border-radius: var(--modelOverlay-surface-radius, 10px);
+  border-color: rgb(217 203 190 / calc(var(--modelOverlay-surface-opacity, .95) * .65));
+  background: rgb(var(--modelOverlay-surface-rgb, 247 244 237) / var(--modelOverlay-surface-opacity, .95));
+  backdrop-filter: var(--modelOverlay-surface-blur, none);
+  -webkit-backdrop-filter: var(--modelOverlay-surface-blur, none);
+  box-shadow: 0 18px 44px rgb(62 53 47 / calc(var(--modelOverlay-surface-opacity, .95) * .1));
 }
 .site-shell .action-sticky-index {
   box-sizing: border-box;

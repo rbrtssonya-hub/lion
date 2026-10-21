@@ -3182,6 +3182,186 @@
       "path": "source/reviews/model/2026-10-21-hdri/structure-rotation-120.png",
       "bytes": 2227515,
       "sha256": "f68ff9b4cc0a4618add539a6dc431e23ea50469d60e50accea7ffd6454626239"
+    },
+    {
+      "from": "user attachment: original structure sidebar reference, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/before-reference.png",
+      "bytes": 955983,
+      "sha256": "0e18b5d46f86e378b5ddc5295956132976c454f7fadaaadb6b97abb2425a81a9"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/guan.png",
+      "bytes": 1303768,
+      "sha256": "8ceeed24fa9c9b7a59c2cf3785c3322ecf0bac61d307218293116e2cdc8b8d23"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/ling.png",
+      "bytes": 1057602,
+      "sha256": "a2c730c799955e688c113df349276a12b2910bdf0548f04b7165224701a05584"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/qi.png",
+      "bytes": 1053527,
+      "sha256": "e91237534ae92d37a302b0971b25174dd3f1278cc20c920773cafd414dd90665"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/shen.png",
+      "bytes": 1274605,
+      "sha256": "c2a9d6f7eba55f59096469de16070eaa9878ceba84e94488d46b77a08962ef2f"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/shi.png",
+      "bytes": 1287997,
+      "sha256": "46afcae7ba90845f2d5e64075218591b3859bed7d51aef19344fdf35bf7bc992"
+    },
+    {
+      "from": "imagegen: six independent generated calligraphy originals, 2026-10-21",
+      "path": "source/design/structure-atlas/2026-10-21/originals/wei.png",
+      "bytes": 1155039,
+      "sha256": "53ba8000578dd4e15af6735cf65500e4a389481554cefb42bd40b7224ffb8544"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/guan.png",
+      "bytes": 709168,
+      "sha256": "09d163d4449ce9cc2a3005588d631754b29680ef1060716065bd1e1ecab4f646"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/ling.png",
+      "bytes": 645783,
+      "sha256": "91d09f2797850908a15f25509040b78e4cd6020afd4b87d143dd0421dc4bdce1"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/qi.png",
+      "bytes": 556384,
+      "sha256": "50587ba9daf5be51787fe18d9cf9a9d81ec6cf1af80a3f53e55118b531ada353"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/shen.png",
+      "bytes": 660185,
+      "sha256": "95fe040d4f86373027776a48c83b9ed0a25276410b02c290252b689f61b47e13"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/shi.png",
+      "bytes": 639788,
+      "sha256": "e8c6e62a61b7c7d6a612ee671a414eba0e5f13ce80714d371b39829ec17bf514"
+    },
+    {
+      "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
+      "path": "source/public/assets/structure/calligraphy/wei.png",
+      "bytes": 646034,
+      "sha256": "a7da93f6b9267011774818ce79fb649800ae32fee8e488e67924aaf51b6e1de0"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-shen.png",
+      "bytes": 228346,
+      "sha256": "01ecbe255a000db0e34ae2d859a3aa76ebb4476bee0721fed661be2fc3213338"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-wei.png",
+      "bytes": 228930,
+      "sha256": "3d57a56c2a4c16cb2c4b13b6a463609136b40a4d9d1e686a6daa7dde50cc33b1"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-guan.png",
+      "bytes": 234656,
+      "sha256": "96d427a71dc0a4cfa8adf55cc1510f315bb3ce22ec60280675e8b1c5858ef712"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-qi.png",
+      "bytes": 224279,
+      "sha256": "c76af936fbedb05321f2b14eb4119ffc7716b63e5ca3ec5b4682f92a92c3f1e3"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-ling.png",
+      "bytes": 232421,
+      "sha256": "c09e12d5c19166d345bd788602df53ef862b0c9d053306f9f38e67eced629c42"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-panel-shi.png",
+      "bytes": 232203,
+      "sha256": "46d5ea097beba5f7ec13911c2acf2d8dd7a768d78adf37651055301e97e6ba52"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-initial-1920.png",
+      "bytes": 2364470,
+      "sha256": "36838c8b1f132bafce0526c23bc016bcc5cf856b42dfe3500e895df55ab4493b"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-900.png",
+      "bytes": 802235,
+      "sha256": "300519ae2ecdd2a73acaa4d5682d79ced3b382ea4a92fc340e2aa691f34d43c9"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-1366.png",
+      "bytes": 1197955,
+      "sha256": "987551eb523a22302807600da226d793f4c963bf40510f5e7a22e55fd6724e62"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-1920.png",
+      "bytes": 2373503,
+      "sha256": "e2b0eea4bdc1a5a04817a9cd5b292ca00ee5886437c9d47bd72d80a5e5c12f22"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-683-model-viewport.png",
+      "bytes": 428820,
+      "sha256": "964dac2231591f9a01a175fd53aaed0cd871c595b78b848a8e9a3d82fee78203"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-683-reading-viewport.png",
+      "bytes": 333901,
+      "sha256": "d18631eeb24e51ac58501d77ebb520ee97d35f5514ee19647178a0c7d5596b2f"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-full-reading-end.png",
+      "bytes": 242710,
+      "sha256": "c8d0474634b0fafab4020ad3b49702b274ba37088924f77ab81f253da84f496e"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-width40-900.png",
+      "bytes": 75525,
+      "sha256": "8cb582ce80980963f37792b96b4040f984d69be4fa028cfc6010d2e71f831520"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas/structure-atlas-width40-1920.png",
+      "bytes": 115081,
+      "sha256": "02a8947f3138339d6dc76d56d80d9cc8511331a51e386cf739a3e12dea3c0835"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-main-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas-main/main-1920.png",
+      "bytes": 2364140,
+      "sha256": "f85f270f64d0a74dd47309b3e25563d26439e19f3fc235816037ae2f45381f90"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-main-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas-main/main-900.png",
+      "bytes": 802235,
+      "sha256": "300519ae2ecdd2a73acaa4d5682d79ced3b382ea4a92fc340e2aa691f34d43c9"
     }
   ]
 }

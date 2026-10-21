@@ -1,29 +1,16 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
+import StructureReadingPanel from './StructureReadingPanel.jsx';
 
 const initialStatus = { phase: 'loading', message: '正在载入醒狮模型' };
 const shortPartNames = { outer_shell: '狮头', eyes: '眉眼', mirror: '额饰', mouth: '狮嘴', fur_and_bells: '须毛', lion_cloth: '狮被' };
-
-function DetailList({ entries, className = 'panel-detail-list' }) {
-  return (
-    <dl className={className}>
-      {entries.map(([label, value]) => (
-        <div key={label} className="panel-detail-row">
-          <dt>{label}</dt>
-          <dd>{value}</dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
 
 export default function ModelPage({ active = true, onReady, onObserve, onPartChange, lightingSettings }) {
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [autoRotate, setAutoRotate] = useState(false);
   const [focusState, setFocusState] = useState('overall');
-  const [detailTab, setDetailTab] = useState('structure');
   const [status, setStatus] = useState(initialStatus);
   const [lightingStatus, setLightingStatus] = useState({ phase: 'loading' });
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -31,7 +18,8 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   const interactionRef = useRef(null);
   const headerRef = useRef(null);
   const detailScrollRef = useRef(null);
-  const scrollToTab = useRef(false);
+  const atlasVisitedRef = useRef(active);
+  if (active) atlasVisitedRef.current = true;
   const hotspotOverlayRef = useRef(null);
   const projectedHotspotRefs = useRef(new Map());
   const sceneRef = useRef(null);
@@ -77,6 +65,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
     setSelectedId(hotspots[0]?.id);
     setFocusState('overall');
     setAutoRotate(false);
+    if (detailScrollRef.current) detailScrollRef.current.scrollTop = 0;
     sceneRef.current?.resetView();
   };
 
@@ -94,6 +83,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
       overlay.style.setProperty('--model-hotspot-width', `${chipWidth}px`);
     }
     const leftParts = new Set(['mirror', 'eyes', 'fur_and_bells']);
+    const headingBottom = (headerRef.current?.offsetTop ?? 0) + (headerRef.current?.offsetHeight ?? 0);
     const columns = [[], []];
     const projected = new Map(anchors.map((anchor) => [anchor.id, anchor]));
     for (const item of hotspots) {
@@ -112,7 +102,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
     }
     columns.forEach((entries, column) => {
       entries.sort((a, b) => a.anchor.y - b.anchor.y);
-      const minY = 56;
+      const minY = Math.max(56, headingBottom + 24);
       const maxY = Math.max(minY, height - 24);
       const gap = 44;
       const positions = entries.map(({ anchor }) => Math.min(maxY, Math.max(minY, anchor.y)));
@@ -159,17 +149,6 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   useEffect(() => {
     if (detailScrollRef.current) detailScrollRef.current.scrollTop = 0;
   }, [selectedId]);
-  useLayoutEffect(() => {
-    if (!scrollToTab.current) return;
-    scrollToTab.current = false;
-    const pane = detailScrollRef.current;
-    const tabs = pane?.querySelector('.model-detail-tabs');
-    if (pane && tabs && getComputedStyle(pane).overflowY === 'auto') {
-      pane.scrollTop += tabs.getBoundingClientRect().top - pane.getBoundingClientRect().top - 8;
-    }
-  }, [detailTab]);
-  const selectDetailTab = value => { scrollToTab.current = value !== detailTab; setDetailTab(value); };
-
   useEffect(() => {
     const controller = new AbortController();
     let mountedScene;
@@ -262,6 +241,11 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
       <div className="model-layout">
         <div className="scene-column">
           <div className="scene-frame" id="sceneFrame">
+            <header className="model-scene-heading" ref={headerRef}>
+              <p>一狮一世界 <span aria-hidden="true">／</span> 形中见艺</p>
+              <h1>解构一头醒狮</h1>
+              <span>从整体轮廓，走近每一处匠心。</span>
+            </header>
             {status.phase !== 'ready' && (
               <img className="model-fallback" id="modelFallback" src={media.poster} alt="" />
             )}
@@ -269,7 +253,6 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
               aria-label="醒狮三维模型，可拖动旋转、滚轮缩放或点击部件聚焦" />
             <nav className="model-hotspots" id="modelHotspots" ref={hotspotOverlayRef}
               hidden={status.phase !== 'ready'} aria-label="模型对应结构">
-              <p className="model-hotspots-caption" aria-hidden="true">对应结构<span>点击标签聚焦</span></p>
               <svg className="model-anchor-guides" aria-hidden="true">
                 {hotspots.map((item) => (
                   <g key={item.id} className={focusState === item.id ? 'is-active' : ''}>
@@ -293,100 +276,36 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
                 </button>
               ))}
             </nav>
+            <div className="model-scene-tools">
+              <div className={`model-header-meta is-${status.phase}`}>
+                {status.phase === 'loading' ? <span className="loader-ring" aria-hidden="true" /> : <span className="live-dot" aria-hidden="true" />}
+                <span id="modelStatus" role="status">{status.message}</span>
+                {status.phase === 'error' && <button className="model-retry" type="button" onClick={() => setLoadAttempt((value) => value + 1)}>重新载入</button>}
+              </div>
+              {lightingStatus.phase === 'error' && <p className="model-hdri-notice" role="status">
+                HDRI 环境光载入失败
+                <button className="model-retry" type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
+              </p>}
+              <div className="scene-action-row" aria-label="模型视图工具">
+                <button type="button" id="resetView" disabled={status.phase !== 'ready'} onClick={resetView}>
+                  <span aria-hidden="true">↶</span>复原整体
+                </button>
+                <button type="button" id="toggleRotate" className={autoRotate ? 'active' : ''}
+                  disabled={status.phase !== 'ready'} aria-pressed={autoRotate}
+                  aria-label={autoRotate ? '暂停自动旋转' : '开启自动旋转'}
+                  onClick={() => setAutoRotate((value) => !value)}>
+                  <span aria-hidden="true">↻</span>{autoRotate ? '暂停旋转' : '自动旋转'}
+                </button>
+              </div>
+              <p className="scene-controls">拖动旋转<span aria-hidden="true">·</span>滚轮缩放<span aria-hidden="true">·</span>点击部件聚焦</p>
+            </div>
           </div>
         </div>
-
-        <aside className="info-panel structure-panel" id="structurePanel" aria-label="醒狮部件档案">
-          <header className="model-header" ref={headerRef}>
-            <div className="panel-section-mark"><span>结构 · 形中见艺</span><span>STRUCTURE</span></div>
-            <h1>解构一头醒狮</h1>
-            <p className="model-intro">从整体轮廓，走近每一处匠心。</p>
-            <div className={`model-header-meta is-${status.phase}`}>
-              {status.phase === 'loading' ? <span className="loader-ring" aria-hidden="true" /> : <span className="live-dot" aria-hidden="true" />}
-              <span id="modelStatus" role="status">{status.message}</span>
-              {status.phase === 'error' && <button className="model-retry" type="button" onClick={() => setLoadAttempt((value) => value + 1)}>重新载入</button>}
-            </div>
-            {lightingStatus.phase === 'error' && <p className="model-hdri-notice" role="status">
-              HDRI 环境光载入失败
-              <button className="model-retry" type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
-            </p>}
-          </header>
-
-          <div className="model-view-tools">
-            <div className="scene-action-row">
-              <button type="button" id="resetView" disabled={status.phase !== 'ready'} onClick={resetView}>
-                <span aria-hidden="true">↶</span> 复原整体
-              </button>
-              <button type="button" id="toggleRotate" className={autoRotate ? 'active' : ''}
-                disabled={status.phase !== 'ready'} aria-pressed={autoRotate}
-                aria-label={autoRotate ? '暂停自动旋转' : '开启自动旋转'}
-                onClick={() => setAutoRotate((value) => !value)}>
-                <span aria-hidden="true">↻</span> {autoRotate ? '暂停旋转' : '自动旋转'}
-              </button>
-            </div>
-            <p className="scene-controls">拖动旋转<span aria-hidden="true">·</span>滚轮缩放<span aria-hidden="true">·</span>点击部件聚焦</p>
-          </div>
-
-          <div className="model-part-picker">
-            <div className="part-picker-heading"><span>部件索引</span><span>点击模型或下方部件</span></div>
-            <nav className="hotspot-list" id="hotspotList" aria-label="部件列表">
-              {hotspots.map((item, index) => (
-                <button key={item.id} type="button" data-id={item.id}
-                  className={selectedId === item.id ? 'active' : ''}
-                  aria-pressed={selectedId === item.id}
-                  onClick={() => selectHotspot(item.id)}>
-                  <span className="list-number">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="list-name">{item.name}</span>
-                  <span className="list-arrow" aria-hidden="true">↗</span>
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          <div className="model-detail-scroll" id="modelDetailContent" ref={detailScrollRef} tabIndex={0}
-            aria-labelledby={detailTab === 'structure' ? 'structureDetailTab' : 'cultureDetailTab'}>
-            <div className="part-detail-heading">
-              <div className="panel-index" id="panelIndex">{String(selectedIndex + 1).padStart(2, '0')} / {String(hotspots.length).padStart(2, '0')}</div>
-              <span className="focus-indicator">{focusState === 'overall' ? '整体视图' : '局部聚焦'}</span>
-            </div>
-            <p className="panel-kicker">{selected.kicker}</p>
-            <h2 id="structureTitle" aria-live="polite"><span id="panelTitle">{selected.name}</span></h2>
-            <div className="function-block model-part-purpose"><span className="label">部位作用</span><p id="panelFunction">{selected.function}</p></div>
-            <p className="panel-description model-observation" id="panelDescription">{selected.description}</p>
-            {expressionLink && <div className="model-expression-recommendation"><button type="button" id="modelExpressionLink" onClick={() => onObserve?.({ ...expressionLink, returnPartId: selected.id })}>去神态页观察{expressionLink.name}态</button><p>观察推荐，并非部位与情绪的固定对应。</p></div>}
-            <div className="model-detail-tabs" aria-label="部件解读内容">
-              <button type="button" id="structureDetailTab" className={detailTab === 'structure' ? 'active' : ''}
-                aria-pressed={detailTab === 'structure'} aria-controls="modelDetailContent" onClick={() => selectDetailTab('structure')}>结构与工艺</button>
-              <button type="button" id="cultureDetailTab" className={detailTab === 'culture' ? 'active' : ''}
-                aria-pressed={detailTab === 'culture'} aria-controls="modelDetailContent" onClick={() => selectDetailTab('culture')}>文化与造型</button>
-            </div>
-            <p className="panel-material" id="panelMaterial">{selected.material}</p>
-
-            {detailTab === 'structure' ? (
-              <section className="part-structure-detail" aria-label="当前部件结构与工艺">
-                <DetailList entries={[
-                  ['组成', selected.structure.parts.join(' · ')],
-                  ['材料', selected.structure.material],
-                  ['工艺', selected.structure.craft],
-                  ['连接', selected.structure.connection],
-                ]} />
-              </section>
-            ) : (
-              <section className="culture-panel" id="culturePanel" aria-label="当前部件文化与造型">
-                <p className="panel-lede">{selected.culture.meaning}</p>
-                <DetailList className="culture-detail-list" entries={[
-                  ['纹样', selected.culture.pattern],
-                  ['造型', selected.culture.form],
-                ]} />
-              </section>
-            )}
-            <div className="source-tag" id="panelSource">{selected.sourceTag}</div>
-            <details className="structure-boundary" id="structureBoundary">
-              <summary>模型与资料说明</summary>
-              <p>当前展示来自用户提供的 Blender 醒狮模型，支持点选可见结构。纸扎内骨架、活动连接与制作工艺仅作资料说明，未展示内部拆装；AI 辅助内容依各条来源标注。</p>
-            </details>
-          </div>
-        </aside>
+        <StructureReadingPanel selected={selected} selectedIndex={selectedIndex} hotspots={hotspots}
+          artworkEnabled={atlasVisitedRef.current}
+          focusState={focusState} detailScrollRef={detailScrollRef} expressionLink={expressionLink} onObserve={onObserve}
+          onPrevious={() => selectHotspot(hotspots[(selectedIndex - 1 + hotspots.length) % hotspots.length].id)}
+          onNext={() => selectHotspot(hotspots[(selectedIndex + 1) % hotspots.length].id)} />
       </div>
     </section>
   );

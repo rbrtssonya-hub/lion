@@ -16,7 +16,7 @@ test('结构与巨幕都实际绘制完整新狮，跨章复用全部模型与�
   }
   await expect(model).toHaveAttribute('data-source-model', new RegExp('lion-user-full\\.glb$'));
   expect(Number(await model.getAttribute('data-render-lines'))).toBe(25_380_208);
-  await page.locator('#hotspotList [data-id="eyes"]').click();
+  await page.locator('#modelHotspots [data-id="eyes"]').click();
   await expect(model).toHaveAttribute('data-focused-part', 'eyes');
   await page.locator('#resetView').click();
   await expect(model).toHaveAttribute('data-focused-part', 'overall');

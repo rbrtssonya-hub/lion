@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion } from './surfaceSettings.js';
+import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion, migrateStructureAtlas, structureAtlasVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
@@ -91,6 +91,7 @@ export function normalizeDeveloperSetting(name, value) {
 function resolveSettings(settings) {
   const resolved = { ...defaultDeveloperSettings, ...settings };
   resolved.readingPaperVersion ??= readingPaperVersion;
+  resolved.structureAtlasVersion ??= structureAtlasVersion;
   // Upgrade the previous default once, preserving the other saved controls.
   if (resolved.navigationTypographyVersion !== navigationTypographyVersion && resolved.navFontSize === 20) {
     resolved.navFontSize = defaultDeveloperSettings.navFontSize;
@@ -103,18 +104,24 @@ function resolveSettings(settings) {
   return resolved;
 }
 
+export function restoreDeveloperSettings(saved) {
+  if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return resolveSettings();
+  const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalizeDeveloperSetting(name, saved[name])]));
+  // Preserve the previously shared reading-paper preference when splitting it into four surfaces.
+  for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) {
+    if (!Object.hasOwn(saved, `${prefix}Transparency`) && typeof saved.archivePanelTransparency === 'number' && Number.isFinite(saved.archivePanelTransparency)) {
+      normalized[`${prefix}Transparency`] = normalized.archivePanelTransparency;
+    }
+  }
+  return resolveSettings(migrateStructureAtlas(migrateReadingPaper({ ...normalized,
+    readingPaperVersion: saved.readingPaperVersion, structureAtlasVersion: saved.structureAtlasVersion,
+    navigationTypographyVersion: saved.navigationTypographyVersion, bookTitleLayoutVersion: saved.bookTitleLayoutVersion,
+  })));
+}
+
 function readSettings() {
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey));
-    if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return resolveSettings();
-    const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalizeDeveloperSetting(name, saved[name])]));
-    // Preserve the previously shared reading-paper preference when splitting it into four surfaces.
-    for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) {
-      if (!Object.hasOwn(saved, `${prefix}Transparency`) && typeof saved.archivePanelTransparency === 'number' && Number.isFinite(saved.archivePanelTransparency)) {
-        normalized[`${prefix}Transparency`] = normalized.archivePanelTransparency;
-      }
-    }
-    return resolveSettings(migrateReadingPaper({ ...normalized, readingPaperVersion: saved.readingPaperVersion, navigationTypographyVersion: saved.navigationTypographyVersion, bookTitleLayoutVersion: saved.bookTitleLayoutVersion }));
+    return restoreDeveloperSettings(JSON.parse(localStorage.getItem(storageKey)));
   } catch {
     return resolveSettings();
   }

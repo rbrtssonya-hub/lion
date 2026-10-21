@@ -1,0 +1,1679 @@
+{
+  "date": "2026-10-21",
+  "workspace": "E:/数字媒体竞赛/张钧儒/lion",
+  "branch": "main",
+  "baseRevision": "a3898e517893fd9611d7d60248b219ec411df79a",
+  "selectedStructureCommit": "6e9df369c40bf35693833b7dc4912cbc86988e92",
+  "excludedActionCommits": [
+    "ce97297aec6da22fd2f74f45d4697600c814245d",
+    "38ba57496f30def0519453f451e5e883b7a6e7bb"
+  ],
+  "method": "Apply only the selected structure commit with git cherry-pick --no-commit; resolve shared documentation/manifest/wiki from main baseline and append only structure changes. No merge of the source parent chain.",
+  "initialEWorktree": {
+    "branch": "codex/huangzhi_ARUI",
+    "revision": "38ba57496f30def0519453f451e5e883b7a6e7bb",
+    "trackedChanges": 0,
+    "untrackedModel": [
+      {
+        "path": "E:\\数字媒体竞赛\\张钧儒\\lion\\model\\醒狮_保留UV_三角转四边_优化.blend",
+        "bytes": 139309821,
+        "sha256": "2230dbce24b0d9bead0b6781410cfbb9acf6d249c99113210f21ba0b16991bd2"
+      }
+    ]
+  },
+  "environment": {
+    "os": "Windows",
+    "node": "v24.16.0",
+    "npm": "12.0.1",
+    "browserChannel": "chrome",
+    "browser": "156.0.8078.47",
+    "graphics": {
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (NVIDIA)"
+    },
+    "preview": "http://127.0.0.1:4191",
+    "workers": 1
+  },
+  "core": {
+    "command": "npm test",
+    "log": "tmp/structure-main-core.log",
+    "tests": 66,
+    "pass": 66,
+    "fail": 0,
+    "skipped": 0,
+    "duration_ms": 4370.3734
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "modules": 330,
+    "css": "dist/assets/index-22z5b474.css",
+    "modelChunk": "dist/assets/ModelPage-Ct0rHS69.js",
+    "knownWarning": "Existing Three.js chunk exceeds 500kB."
+  },
+  "browser": {
+    "command": [
+      "test",
+      "--config",
+      "playwright.preview.config.js",
+      "tests/e2e/structure-atlas.spec.js",
+      "tests/e2e/structure-interaction.spec.js",
+      "tests/e2e/action-theater.spec.js",
+      "tests/e2e/full-lion-model.spec.js",
+      "tests/e2e/developer-settings.spec.js:776",
+      "tests/e2e/content-comparison.spec.js:105",
+      "tests/e2e/content-comparison.spec.js:161",
+      "tests/e2e/reading-paper.spec.js:51",
+      "--output=test-results/structure-main-production",
+      "--reporter=list,json"
+    ],
+    "report": "tmp/structure-main-production.json",
+    "stats": {
+      "startTime": "2026-10-21T09:21:37.883Z",
+      "duration": 282086.062,
+      "expected": 25,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "action-theater.spec.js",
+        "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 14115,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "action-theater.spec.js",
+        "title": "中央模型按36秒均速自转，摄像机静置且不继承模型旋转",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 11340,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "action-theater.spec.js",
+        "title": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 12332,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "action-theater.spec.js",
+        "title": "四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 15016,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "action-theater.spec.js",
+        "title": "网络场景失败可重载，恢复只生成一个有效WebGL画布",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9935,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "content-comparison.spec.js",
+        "title": "结构观察跳转与浏览器返回保留部位、相机、展开资料和详情位置",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9209,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "content-comparison.spec.js",
+        "title": "结构观察往返保留非零资料滚动和转动后的实际投影",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8708,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "developer-settings.spec.js",
+        "title": "设置和尺寸调整保留首页视频及模型画布实例，切换章节与模型控件继续可用",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 11763,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "full-lion-model.spec.js",
+        "title": "结构与巨幕都实际绘制完整新狮，跨章复用全部模型与毛发请求",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 10293,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "full-lion-model.spec.js",
+        "title": "完整毛发请求失败会明确退出加载并可重试恢复全量毛发",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 14361,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "reading-paper.spec.js",
+        "title": "old defaults migrate once and mixed custom material, dimensions and playback settings survive",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 11093,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "首页预热保留原体验，首次进入结构时才请求书法图片",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8779,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "图鉴六部件均使用独立朱砂PNG、真实透明像素和正确内容映射",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 10417,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "点击真实模型表面同时切换图鉴、结构高亮和聚焦，保留实际镜头放大",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9008,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "前后导航双向循环并复用模型，选择停止自动旋转且复原恢复整体",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9194,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "三段文化解说可展开阅读六部件的全部原结构、工艺和文化资料",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 10078,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "900电脑窗口宣纸图鉴可读、艺术字无裁切且末尾阅读可达",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8609,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "1366电脑窗口宣纸图鉴可读、艺术字无裁切且末尾阅读可达",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8835,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "1920电脑窗口宣纸图鉴可读、艺术字无裁切且末尾阅读可达",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9049,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "电脑缩放后的683px余宽将图鉴置于模型下方，正文滚动与翻页仍可用",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8951,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "合法40%资料底板宽度在900与1920电脑窗仍完整呈现题签图片及可点击翻页",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9997,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "已有深红默认偏好升级为宣纸材质，其他自定义尺寸及首页偏好保留",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 8460,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "title": "设置推开页面后图鉴和实际热点仍同步，跨章保留首页与动作场景",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 9866,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-interaction.spec.js",
+        "title": "结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和重入仍更新画面",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 26106,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "structure-interaction.spec.js",
+        "title": "视口部件标注随模型转动并连接结构锚点，点击同步右侧目录与聚焦",
+        "passed": true,
+        "results": [
+          {
+            "status": "passed",
+            "duration": 14376,
+            "errors": []
+          }
+        ]
+      }
+    ],
+    "scope": "12 complete atlas cases + 2 projection/on-demand GPU cases + 5 unchanged main action cases + 2 full-lion cases + 1 settings lifecycle + 2 expression return + 1 prior reading-paper migration. One production run, no retries."
+  },
+  "integrity": {
+    "preservedMainManifestObjects": 530,
+    "selectedStructureManifestObjects": 28,
+    "originalIntegratedManifestCount": 558,
+    "addedCurrentMainReviewRecords": 2,
+    "finalManifestCount": 560,
+    "excludedActionNewFilesAbsent": 49,
+    "excludedActionNewFiles": [
+      "scripts/audit_action_spatial_ui.mjs",
+      "source/design/action-theater/2026-10-21-floating-ui-brief.md",
+      "source/design/action-theater/2026-10-21-floating-ui-reference.png",
+      "source/references/action-spatial-ui-2026-10-21-validation.json",
+      "source/references/action-spatial-ui-2026-10-21.md",
+      "source/reviews/action-theater/2026-10-21-floating-ui/audit.json",
+      "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1366.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/desktop-1920.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/desktop-900.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/drag-left-90.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/drag-next-180.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/flat-video.png",
+      "source/reviews/action-theater/2026-10-21-floating-ui/settings-push-900.png",
+      "src/services/actionTheaterSpatialUI.js",
+      "tests/e2e/action-spatial-ui.spec.js",
+      "wiki_memory/日志/UI修改/2026-10-21-动作实时空间悬浮UI.md",
+      "scripts/audit_action_soft_ui.mjs",
+      "source/design/action-theater/2026-10-21-soft-spatial-ui-brief.md",
+      "source/references/action-soft-spatial-ui-2026-10-21-validation.json",
+      "source/references/action-soft-spatial-ui-2026-10-21.md",
+      "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-depth.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-hidden.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-no-depth.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/audit.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1366.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1920.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/desktop-900.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/drag-left-90.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/drag-next-180.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/flat-video.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/gpu-depth-pixel-counts.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/low-alpha-real-pointer-pass-through.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/measured-fade-duration-response.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/opaque-lion-native-pointer-guard-and-camera-handoff.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/public-parameters.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/public-spatial-settings.json",
+      "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-900.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-scale-125.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/slow-edge-fade.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/slow-return.png",
+      "source/reviews/action-theater/2026-10-21-soft-ui/soft-test-evidence.json",
+      "src/config/actionSpatialSettings.js",
+      "src/services/actionPanelTextures.js",
+      "src/services/actionSpatialMotion.js",
+      "tests/assets/action-spatial-fade.test.mjs",
+      "tests/assets/action-spatial-settings.test.mjs",
+      "tests/e2e/action-spatial-hit.spec.js",
+      "tests/e2e/action-spatial-soft.spec.js",
+      "wiki_memory/日志/UI修改/2026-10-21-动作柔和渐变与公开参数.md"
+    ],
+    "protectedActionAndSharedPaths": [
+      {
+        "path": "src/App.jsx",
+        "gitBlob": "49fe19916d72a05d85c6ac517af120376b829807"
+      },
+      {
+        "path": "src/features/action/ActionGuideCharacter.jsx",
+        "gitBlob": "053905a913b10a1538f36f51cfbaa32a23e08ee8"
+      },
+      {
+        "path": "src/features/action/ActionPage.jsx",
+        "gitBlob": "2ccc8d18aa2ee09402cbc2a03c29d0825c91c3ef"
+      },
+      {
+        "path": "src/features/action/ActionTimeline.jsx",
+        "gitBlob": "afa94f9b2582145336aac03d41549eb486fcebe1"
+      },
+      {
+        "path": "src/features/action/ActionVideo.jsx",
+        "gitBlob": "7172e29f8230a1ebbc5847830afb423d2d3d06d2"
+      },
+      {
+        "path": "src/features/action/action-theater.css",
+        "gitBlob": "6562b0a35295b38cc17498241b6200234957d3dc"
+      },
+      {
+        "path": "src/features/action/action.css",
+        "gitBlob": "48d80b8f210e0fd05a1352184c76ab6598e78419"
+      },
+      {
+        "path": "src/features/action/actionClips.js",
+        "gitBlob": "1a26c234462db1b8da7a0f2cc2292153211bcf63"
+      },
+      {
+        "path": "src/features/action/useTheaterPlayback.js",
+        "gitBlob": "04286ab9f670e174e997ffe0870eaf327edce86d"
+      },
+      {
+        "path": "src/features/chapters/ChapterPage.jsx",
+        "gitBlob": "989e57738416f0daa88bbda8f95b00d2b0f44241"
+      },
+      {
+        "path": "src/features/developer-settings/DeveloperSettingsPanel.jsx",
+        "gitBlob": "2e4834f701cf4fd92b83fc7f989f26e07f3fa704"
+      },
+      {
+        "path": "src/services/actionTheaterArchitecture.js",
+        "gitBlob": "5f3b6904f5112ea4f76f05bb2375a7fcd7fca620"
+      },
+      {
+        "path": "src/services/actionTheaterMath.js",
+        "gitBlob": "4d79ec5a447a581edfec08ca5ac83c0009bd9117"
+      },
+      {
+        "path": "src/services/actionTheaterReflection.js",
+        "gitBlob": "ee2b66fc51021a6e0a490a3684bc4b363f92ca41"
+      },
+      {
+        "path": "src/services/actionTheaterScene.js",
+        "gitBlob": "4f23e436ed4f45dc65e7d07bc39e5a3a013b3f06"
+      },
+      {
+        "path": "src/services/cultureDepthGallery.js",
+        "gitBlob": "56d55d9a0f3d75e60c72a0823f0513d825414af4"
+      },
+      {
+        "path": "src/services/lionFullHair.js",
+        "gitBlob": "a3500394e97445be7c7e66f1dd15a54722709753"
+      },
+      {
+        "path": "src/services/lionHdriEnvironment.js",
+        "gitBlob": "579d96e1bdae3962b4ad76f44cbe7fdb5321715a"
+      },
+      {
+        "path": "src/services/lionLightingSettings.js",
+        "gitBlob": "f318ab8d9be9ed63ea5b60ad275465346190a716"
+      },
+      {
+        "path": "src/services/lionScene.js",
+        "gitBlob": "4e819b2817e62d710afac33a0131e2a4e6b384d5"
+      },
+      {
+        "path": "src/services/lionSketchbookDocument.js",
+        "gitBlob": "c08efcdb67f65abe546deb8eea8b3e296c477b9a"
+      },
+      {
+        "path": "src/services/lionSketchbookFactory.js",
+        "gitBlob": "5f2358af468aa504bc10725f1f3b8efc3d7dfde3"
+      },
+      {
+        "path": "tests/assets/action-theater.test.mjs",
+        "gitBlob": "73aa64af408ac03a3f886a580adb4a5c820ac03b"
+      },
+      {
+        "path": "tests/e2e/action-player.spec.js",
+        "gitBlob": "d5a043859be6387dba5ccfe2d4f7a5becc7dba95"
+      },
+      {
+        "path": "tests/e2e/action-theater.helpers.js",
+        "gitBlob": "802d0ac1d17f294f41a3986444ddc8b983047136"
+      },
+      {
+        "path": "tests/e2e/action-theater.spec.js",
+        "gitBlob": "161bc49d249da8af452eaf64731ab92d503cfc05"
+      },
+      {
+        "path": "tests/e2e/action-theater-integrated.spec.js",
+        "gitBlob": "bd5a2ae831215e68bb714ec2ae83daf6913ceb6c"
+      },
+      {
+        "path": "tests/e2e/action-theater-ornate.spec.js",
+        "gitBlob": "8dc6d78d4759dd0e0954d1917f87c7d05479eaf7"
+      },
+      {
+        "path": "tests/e2e/action.spec.js",
+        "gitBlob": "b71af36fc8723e97961e7ec859f4b18ef22a455a"
+      }
+    ],
+    "oldPublicGitContentsPreserved": 124,
+    "publicDistMatchingFiles": 130,
+    "publicDistFiles": [
+      {
+        "path": "assets/action/action-entry-poster.png",
+        "bytes": 2161930,
+        "sha256": "50697a5e3d546f6c39eb139f2faf84c69f9e64be6b8a7713397534f4e651691d"
+      },
+      {
+        "path": "assets/action/action-probe-poster.png",
+        "bytes": 2121230,
+        "sha256": "51a5f6f64823b384f52680ac91fe4d42c5498c696d708195bb3976dc8e2aece8"
+      },
+      {
+        "path": "assets/action/action-settle-poster.png",
+        "bytes": 2100718,
+        "sha256": "581f6c71e0d2a57d5adc332fcbd89e15a21080deb6bfbaf96b07da64b578edfd"
+      },
+      {
+        "path": "assets/action/action-turn-poster.png",
+        "bytes": 2241116,
+        "sha256": "46ad3cc68afd465e6eba20ee09eaa80d0171e5ee2c6a612db03ef33d7c5c579d"
+      },
+      {
+        "path": "assets/action/videos/doumao-poster.jpg",
+        "bytes": 236762,
+        "sha256": "9c606f8cf62c87d070a4cdb5cff6feed13056ca6f32763b60d961f205da60c44"
+      },
+      {
+        "path": "assets/action/videos/doumao.mp4",
+        "bytes": 6159115,
+        "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a"
+      },
+      {
+        "path": "assets/action/videos/meihuazhuang-poster.jpg",
+        "bytes": 260139,
+        "sha256": "eac12867209074d3ad265e02fbbdacd5c848ecdaf9365e95a486938ce935755b"
+      },
+      {
+        "path": "assets/action/videos/meihuazhuang.mp4",
+        "bytes": 7929073,
+        "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866"
+      },
+      {
+        "path": "assets/action/videos/tanqing-poster.jpg",
+        "bytes": 239641,
+        "sha256": "97797623d1ce2730ae2d1b18a5e1f977dc0d34f4644982049a4b0307918feacc"
+      },
+      {
+        "path": "assets/action/videos/tanqing.mp4",
+        "bytes": 7593974,
+        "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143"
+      },
+      {
+        "path": "assets/action/videos/tuqiu-poster.jpg",
+        "bytes": 193477,
+        "sha256": "f86322ea17d60f8d01ecd863438affa6636559c2b188ce89bdd4d7bd31c45baa"
+      },
+      {
+        "path": "assets/action/videos/tuqiu.mp4",
+        "bytes": 6519176,
+        "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650"
+      },
+      {
+        "path": "assets/action-guide/adam-idle.png",
+        "bytes": 1342738,
+        "sha256": "1055c03b17cfa76e4730b1bd5d5e6bde4acf18fd73ac7fedaf8f307eb820ff76"
+      },
+      {
+        "path": "assets/action-guide/adam-move.png",
+        "bytes": 744782,
+        "sha256": "36c58dddc1a815d58d884a14a1fed058ffb87fea9a6b7ea7fd86c6d49b33caf8"
+      },
+      {
+        "path": "assets/action-guide/adam-poster.png",
+        "bytes": 68780,
+        "sha256": "5967dbc37423020cc00af4e804df6d3894624819c17d5904548e21faa88d3d2d"
+      },
+      {
+        "path": "assets/backgrounds/home-archive-ink-2026-10-20.png",
+        "bytes": 3411525,
+        "sha256": "05300bcdfe5a51338026e22fe2b8e2ddec214e4cd30964c13e34d83bd7385597"
+      },
+      {
+        "path": "assets/backgrounds/lion-action-background.png",
+        "bytes": 2858010,
+        "sha256": "3ea839fe3e2e51f57ef706d5da33841e2ecea6227b975420dc900e2ff6731651"
+      },
+      {
+        "path": "assets/backgrounds/lion-expression-background.png",
+        "bytes": 2388839,
+        "sha256": "45394bab5d53f8f30ae11078c16a3f325416a35f2043c637ba4e491ce8022dbe"
+      },
+      {
+        "path": "assets/backgrounds/lion-structure-background.png",
+        "bytes": 3296020,
+        "sha256": "8ac4641db9fcc037d5ba79134b5be828b79cfb03e5f070d966ab107f817908b5"
+      },
+      {
+        "path": "assets/culture/foshan-lion-dance.jpg",
+        "bytes": 264414,
+        "sha256": "befd672af835e16736841afba86a6191a12b4e0c8cbe96eaf0d8b997c8166a09"
+      },
+      {
+        "path": "assets/culture/guangzhou-lion-head.jpg",
+        "bytes": 277498,
+        "sha256": "95e33217bf3b31ffc8268239f5e6484aaa64c4ae04bfa1104cc04a035179b791"
+      },
+      {
+        "path": "assets/culture/hong-kong-lion-dance.jpg",
+        "bytes": 403391,
+        "sha256": "6f83643f370e3b9bd41bd99723cfc978fe9e112dc4a2d85af55fd2c3d6b73234"
+      },
+      {
+        "path": "assets/culture/lion-cai-qing.jpg",
+        "bytes": 321822,
+        "sha256": "ca06712fde35b3f32e647855e3cfce05d29aa767d300e37ea3002f2d3261c32e"
+      },
+      {
+        "path": "assets/culture/san-francisco-pole-lions.jpg",
+        "bytes": 340405,
+        "sha256": "018f48c980399c016d1cf3bfc1653b31446cfea21fb0c87d6ff72095857dfe45"
+      },
+      {
+        "path": "assets/culture/singapore-community-lions.jpg",
+        "bytes": 378744,
+        "sha256": "b0fb705ccf505d9f1ff60e90d5477808c85f0ac5d13852f1f312989153bb19a1"
+      },
+      {
+        "path": "assets/culture/singapore-lion-drum.jpg",
+        "bytes": 383528,
+        "sha256": "a987c94eea4c18213b24dfca3b8c223bbe300cb2479619c5db90e34f105023a5"
+      },
+      {
+        "path": "assets/culture/singapore-lion-expression.jpg",
+        "bytes": 192659,
+        "sha256": "69579213c3b4f0f21e456e8864956c7d1ef040b1bc9b010929a0abacc5dc865d"
+      },
+      {
+        "path": "assets/decor/archive-ornament-paw.png",
+        "bytes": 1696354,
+        "sha256": "6d33ff08d00f4f02888b82e197fce487879a4e8a89e02770b105abe7203c0f6d"
+      },
+      {
+        "path": "assets/decor/archive-ornament-peeking.png",
+        "bytes": 1608685,
+        "sha256": "e41ba0262ff5536fe07ad09fb11020a08147428be751e6f5575373d661e2e178"
+      },
+      {
+        "path": "assets/decor/archive-ornament-tail.png",
+        "bytes": 1835690,
+        "sha256": "633b35c80a6a5da49ccd16e2f82ed6c50f7bf94b7039e1d3c876023d3668edcd"
+      },
+      {
+        "path": "assets/decor/lion-culture-pattern.svg",
+        "bytes": 673,
+        "sha256": "d28bd98a828731093bbea211913a755fba2e693661bf1d76e273803e2fe4633b"
+      },
+      {
+        "path": "assets/decor/lion-peeking-divider.png",
+        "bytes": 2392827,
+        "sha256": "61cc43ea9fa347253c2f0edafb69fb73675a02136501049b866601926c665229"
+      },
+      {
+        "path": "assets/entry/explore-more-calligraphy.png",
+        "bytes": 1359903,
+        "sha256": "63c86eee452d750c070bc047316fde34ecf3ba65581f82a7beb2270b1af4ece0"
+      },
+      {
+        "path": "assets/entry/home-cover.png",
+        "bytes": 3464806,
+        "sha256": "b075bb05bf04fcb43d1cbddd6b736906658245701c96203e076c755cba08c401"
+      },
+      {
+        "path": "assets/entry/home-lion-loop.mp4",
+        "bytes": 23125289,
+        "sha256": "cd9f5b069475365707986f0fba828854e0beb420d038a1cfe54442c9f7e47745"
+      },
+      {
+        "path": "assets/entry/nav-lion-head.png",
+        "bytes": 3920112,
+        "sha256": "26db0cacaa575601d367028f51550669d962c53dddb3f596474ee57a44783a07"
+      },
+      {
+        "path": "assets/entry/title-nanfeng-youshi.png",
+        "bytes": 207636,
+        "sha256": "e43819930d4cef53a2ed9d58e0eaced848cbf6c0ed0791d2806ed0a993b4e704"
+      },
+      {
+        "path": "assets/environments/citrus_orchard_road_puresky_4k.exr",
+        "bytes": 70720809,
+        "sha256": "8aa6cc5bb4a5a8f5fa12870cefdd6a6b600072454add837dca45e340c1549d30"
+      },
+      {
+        "path": "assets/expression/lion-anger-v2.png",
+        "bytes": 2148975,
+        "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+      },
+      {
+        "path": "assets/expression/lion-delight-v2.png",
+        "bytes": 2210847,
+        "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+      },
+      {
+        "path": "assets/expression/lion-doubt-v2.png",
+        "bytes": 1899231,
+        "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+      },
+      {
+        "path": "assets/expression/lion-head-front.png",
+        "bytes": 1930415,
+        "sha256": "2cb4b75558552f634d9e3b37869c535037ed60094945588f26a3ab284c1ab896"
+      },
+      {
+        "path": "assets/expression/lion-joy-v2.png",
+        "bytes": 1973680,
+        "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+      },
+      {
+        "path": "assets/expression/lion-motion-v2.png",
+        "bytes": 2272850,
+        "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+      },
+      {
+        "path": "assets/expression/lion-sorrow-v2.png",
+        "bytes": 2072160,
+        "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+      },
+      {
+        "path": "assets/expression/lion-stillness-v2.png",
+        "bytes": 2045186,
+        "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+      },
+      {
+        "path": "assets/expression/lion-surprise-v2.png",
+        "bytes": 1975024,
+        "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+      },
+      {
+        "path": "assets/fonts/nanfeng-navigation-brush.woff",
+        "bytes": 140432,
+        "sha256": "de02b14cddf8a9bc33000e4e4078e0636b5113984502a46ccadee8f6da2cfae5"
+      },
+      {
+        "path": "assets/fonts/OFL.txt",
+        "bytes": 4425,
+        "sha256": "42de6fc9b95906a0ee6a852e4bfae06bcfc6c155f242272cad469a321c1adec8"
+      },
+      {
+        "path": "assets/intro/entry-intro.mp4",
+        "bytes": 7367184,
+        "sha256": "2bec8c98794c8f78a4115b9dabed460245be215b5ff2efb42d428809b10cbdfd"
+      },
+      {
+        "path": "assets/licenses/codrops-depth-gallery-LICENSE.txt",
+        "bytes": 1115,
+        "sha256": "f416f406b8e3eee0b47706dbe6cf306e540f4d73b50ee9339d189b67273f7939"
+      },
+      {
+        "path": "assets/licenses/threeui-FONT-LICENSES.txt",
+        "bytes": 4817,
+        "sha256": "05f4ec01ea30193a48878689209f39a2b6541e44291ad8ddc1909a1c1b8b6eeb"
+      },
+      {
+        "path": "assets/licenses/threeui-LICENSE.txt",
+        "bytes": 1064,
+        "sha256": "b2a071ba22fefd803f4e9d1f5c777dd79c62d191695586a1a73fd4d0ebd051c6"
+      },
+      {
+        "path": "assets/lion-book/cover.png",
+        "bytes": 1818502,
+        "sha256": "d14823734098edbc87d60c94a56ff7f46d773d2c4037a346944b1c61222de7d1"
+      },
+      {
+        "path": "assets/lion-book/ending.png",
+        "bytes": 1793794,
+        "sha256": "1e38d0a844d879fca441a4acf4d1283bf8d356db9322ba346287781ddfa29132"
+      },
+      {
+        "path": "assets/lion-book/formation.png",
+        "bytes": 1949885,
+        "sha256": "f96520c7dc3ae24823d73dd1b7957d4a0e560fa9dd91fe946efd1536970b1552"
+      },
+      {
+        "path": "assets/lion-book/martial.png",
+        "bytes": 1963362,
+        "sha256": "8cbb9670b194059085d688623b47cefc48d78d3f73040478772453b54b635b9d"
+      },
+      {
+        "path": "assets/lion-book/modern.png",
+        "bytes": 1946279,
+        "sha256": "c67f0f77e5fe9da933e3600bbf6f57518b6a59a1982d244acb8fe1f76c2318bd"
+      },
+      {
+        "path": "assets/lion-book/origin.png",
+        "bytes": 1876763,
+        "sha256": "17c11521c523210ae7605bf7cf5d38405b088265648f0ed3f442d8f1e28063d0"
+      },
+      {
+        "path": "assets/lion-book/spread.png",
+        "bytes": 1762761,
+        "sha256": "331c4fcd89b0beb765543ce890fd8c3baaed432a857b4de07a783d07702b2839"
+      },
+      {
+        "path": "assets/lion-types/foshan.png",
+        "bytes": 3106271,
+        "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+      },
+      {
+        "path": "assets/lion-types/fut-hok.png",
+        "bytes": 3104318,
+        "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+      },
+      {
+        "path": "assets/lion-types/heshan.png",
+        "bytes": 3157050,
+        "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/model-manifest.json",
+        "bytes": 1335,
+        "sha256": "62fa3d9e026a9a2c0607ae4934c89a564ab019b7775f3a6e277fdebe90793d1f"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/motions/Blink.motion3.json",
+        "bytes": 501,
+        "sha256": "0c7eabdc2299f561fb78c9de8eea7413845e5427bc20dd606cbf9c00c4ba43c0"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/motions/EntryConfirm.motion3.json",
+        "bytes": 736,
+        "sha256": "debd445ed73df83ba6cd68560375ad90b5d3966049192f598bfd5ef4d02fdd81"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/motions/Idle.motion3.json",
+        "bytes": 862,
+        "sha256": "593d34b0e68599167f5d6ba52fa8279ea2ac6ca44d60e1fab2145ac7a175a20b"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/motions/LookAt.motion3.json",
+        "bytes": 649,
+        "sha256": "92c4b8a96ef154f0f489a77df759bd3344fd49bd085ba318ce464425770cc058"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/nanfeng-lion.cdi3.json",
+        "bytes": 2339,
+        "sha256": "86297cd0a1fb2f8b9974114ac5e3eabe65345af9a61300dce05de6dbd9daba20"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/nanfeng-lion.moc3",
+        "bytes": 21888,
+        "sha256": "c7986863e8d2e5253ca2af7357750d35afe237f3067b040dc6db083867975648"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/nanfeng-lion.model3.json",
+        "bytes": 779,
+        "sha256": "5231b26c7aa270749ee6296b03f98e6d2fe0181b4fbe3baa6b9f96816f4ed80a"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/nanfeng-lion.physics3.json",
+        "bytes": 278,
+        "sha256": "fede7d4fe6f9bd99032b0e842ad88a909651d4f80c8472e60c90c66adce6847b"
+      },
+      {
+        "path": "assets/live2d/nanfeng-lion/textures/texture_00.png",
+        "bytes": 2243385,
+        "sha256": "7b1b163f20d9c3d49df048c2e87fde40419bb4f79fbd522e02039a33d94b581a"
+      },
+      {
+        "path": "assets/live2d/README.md",
+        "bytes": 4261,
+        "sha256": "122d4cc8b623b072bf8d4c6aedef9d495dba4bf641e1a55586fb70035d6e953a"
+      },
+      {
+        "path": "assets/live2d/runtime/live2dcubismcore.min.js",
+        "bytes": 228050,
+        "sha256": "0ceb97935bb296ac7666824ff13d8dfdc21802b7694152f637502093b88f9412"
+      },
+      {
+        "path": "assets/live2d/runtime/nanfeng-live2d-runtime.js",
+        "bytes": 5355,
+        "sha256": "a82c96ae72362b86e9228ed9171329731b057389f03a256d764e4f9753797c16"
+      },
+      {
+        "path": "assets/live2d/runtime/pixi-live2d-display-cubism4.min.js",
+        "bytes": 119923,
+        "sha256": "f7b13964a792dc9dca64f11e4ad43aca971a1047e7ad4169c5cb5c451ad2ceac"
+      },
+      {
+        "path": "assets/live2d/runtime/pixi.min.js",
+        "bytes": 457241,
+        "sha256": "4222bcce8ce8a0a6437b6e966286a8d2cc979d92147b57b71f5df41ba8338de3"
+      },
+      {
+        "path": "assets/live2d/runtime/THIRD-PARTY-NOTICES.md",
+        "bytes": 499,
+        "sha256": "37fe229497dfc4c537afd0780a0f6328c01a5961309689521475fd075ceb58d9"
+      },
+      {
+        "path": "assets/loading/index.html",
+        "bytes": 16974,
+        "sha256": "e6eb7d10565257fabdd29634acebde065fc13db0d5d1669cd7745999e83935a6"
+      },
+      {
+        "path": "assets/loading/painting.png",
+        "bytes": 2527651,
+        "sha256": "2bf33e1ab7a5fd29ee13ec90dc998a7dafe78fa68e10333110eb7431b481a037"
+      },
+      {
+        "path": "assets/loading/title-ink.png",
+        "bytes": 827279,
+        "sha256": "e484178805cead8fd076f4966425c4e0cfbe848ba46816297a73caffa06614a1"
+      },
+      {
+        "path": "assets/models/lion-action-theater.glb",
+        "bytes": 31826708,
+        "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+      },
+      {
+        "path": "assets/models/lion-user-full.glb",
+        "bytes": 81290340,
+        "sha256": "0a0a855cde7981e9eef2f622863bbae64bda3e156791f3410d89cf8051f02e00"
+      },
+      {
+        "path": "assets/models/lion-user-hair-01.bin.gz",
+        "bytes": 5419825,
+        "sha256": "50ee22db4510bee0feee7ae55e90cb5a267753e8f72032276f596af0f6101d9c"
+      },
+      {
+        "path": "assets/models/lion-user-hair-02.bin.gz",
+        "bytes": 1905151,
+        "sha256": "f3be680860b8b53ae22dcddf8d86a57a5cdefc399246ba0e7bab30dc6f6572a4"
+      },
+      {
+        "path": "assets/models/lion-user-hair-03.bin.gz",
+        "bytes": 2127965,
+        "sha256": "0848c733f1a41ab5e8f37d74910d44408748ec298e912f06e25c07c530b44d87"
+      },
+      {
+        "path": "assets/models/lion-user-hair-04.bin.gz",
+        "bytes": 5115062,
+        "sha256": "5af3484a9da736f43b96580777630eba7848d4b267002a8a87c91fcee64af5a1"
+      },
+      {
+        "path": "assets/models/lion-user-hair-05.bin.gz",
+        "bytes": 5107652,
+        "sha256": "595d560733bcdc25bd2ace4785bc3aa7714a8b7d6a7f6ee5b8732bcbfdc39266"
+      },
+      {
+        "path": "assets/models/lion-user-hair-06.bin.gz",
+        "bytes": 5257452,
+        "sha256": "32d90fe97efe7d1ea5a3afc8d89ef78c36ae701896a60c9cc6af5ff303a44b70"
+      },
+      {
+        "path": "assets/models/lion-user-hair-07.bin.gz",
+        "bytes": 5265117,
+        "sha256": "14597f178c34909d6587a1e644bf7adf43389840392590eb95488b6c33ffb857"
+      },
+      {
+        "path": "assets/models/lion-user-hair-08.bin.gz",
+        "bytes": 5172259,
+        "sha256": "94784f3c749412b1bea5775b2c45de9e97f137732791ed8fbd2d22a50b6f3dab"
+      },
+      {
+        "path": "assets/models/lion-user-hair-09.bin.gz",
+        "bytes": 5265132,
+        "sha256": "ed8bd259291c56410a527876dfc5329bf5c9d266c697bc86b733aa64b8316819"
+      },
+      {
+        "path": "assets/models/lion-user-hair-10.bin.gz",
+        "bytes": 5193935,
+        "sha256": "af94ffe7dfc09636118d014c79637f201cab3b32562c01b76f0248f7a5f8829f"
+      },
+      {
+        "path": "assets/models/lion-user-hair-11.bin.gz",
+        "bytes": 7355082,
+        "sha256": "52096c5ce39ff6a1bec6f5fb8cf111cfee3d5e023a631d5d707b467661feb015"
+      },
+      {
+        "path": "assets/models/lion-user-hair-12.bin.gz",
+        "bytes": 5234080,
+        "sha256": "adaad1f09e91bb37d4db391b1f9120c13b89ff9a86ed18a7d06f11dad7f9ec88"
+      },
+      {
+        "path": "assets/models/lion-user-hair-13.bin.gz",
+        "bytes": 5233107,
+        "sha256": "d7ee7b56619d0c3f01ba7672299347a1e87a43cba8effdef6d22fec7f2cfd07b"
+      },
+      {
+        "path": "assets/models/lion-user-hair-14.bin.gz",
+        "bytes": 5159773,
+        "sha256": "eedf10f1aab732836a83a4b37286396f6eb678ef68f4ffcdb3ca6611eb9ff970"
+      },
+      {
+        "path": "assets/models/lion-user-hair-15.bin.gz",
+        "bytes": 16204130,
+        "sha256": "b697c9ed4de84e8a214254d64223bc3854e78023730bd62e4ed2ec265d5e89ad"
+      },
+      {
+        "path": "assets/models/lion-user-hair-16.bin.gz",
+        "bytes": 7454807,
+        "sha256": "797e3533aa1e7307a3b37f8be15ce6ec1f47bcd7d20618ad9b5b46c584e4c16f"
+      },
+      {
+        "path": "assets/models/lion-user-hair-17.bin.gz",
+        "bytes": 7342301,
+        "sha256": "9775635edf05976fbeabbfc2fc0d958401a8436f307bd3e445bdfb08a4b0f3cd"
+      },
+      {
+        "path": "assets/models/lion-user-hair-18.bin.gz",
+        "bytes": 7309171,
+        "sha256": "9d6aebceda99aa2d7d9f81c3b543c2eae56e3f645a422797f8cbe26e632ac305"
+      },
+      {
+        "path": "assets/models/lion-user-hair-19.bin.gz",
+        "bytes": 7388576,
+        "sha256": "3fa0763a2154fada04bc7149d4a29e06b3e676d266e9f3a5ffb3ca02d58ca3c2"
+      },
+      {
+        "path": "assets/models/lion-user-hair-20.bin.gz",
+        "bytes": 16132730,
+        "sha256": "2ca024afb3a1179690d1f67bee7297047d0f78de67f481b8be372b5ccb45b377"
+      },
+      {
+        "path": "assets/models/lion-user-hair-21.bin.gz",
+        "bytes": 7279813,
+        "sha256": "0c299a9383d9a684b01f07049760b50946c5ef729a56bf800f5a85f7f2594179"
+      },
+      {
+        "path": "assets/models/lion-user-hair-22.bin.gz",
+        "bytes": 15820828,
+        "sha256": "c88aab7748b187318064a4816644c7145eb9d474536a14779ca8a2caf154ad09"
+      },
+      {
+        "path": "assets/models/lion-user-hair-23.bin.gz",
+        "bytes": 5295638,
+        "sha256": "b2299706714c3c7b35f63d737e2d5b4a16474ec89156e5ca053aa798328e4bfe"
+      },
+      {
+        "path": "assets/models/lion-user-hair-24.bin.gz",
+        "bytes": 15786655,
+        "sha256": "e52bdaaf5bd221d31fe5742b140b51da4bfa9869d90e3992530bddfb4fb89a71"
+      },
+      {
+        "path": "assets/models/lion-user-hair-25.bin.gz",
+        "bytes": 5252202,
+        "sha256": "be083c0965f43e0d725634f7f80c6824d29aabe52d5dbef46f1ca44073d89d64"
+      },
+      {
+        "path": "assets/models/lion-user-hair-26.bin.gz",
+        "bytes": 5210182,
+        "sha256": "464bb36f92a6a1021b8cbd409d0eeded5efd1539e7b765b11d5212f5dad601e9"
+      },
+      {
+        "path": "assets/models/lion-user-hair-27.bin.gz",
+        "bytes": 15377391,
+        "sha256": "aad7d7fd8b8f001c65305b15f274043b10bdff3632dea958109ceb18013f6f56"
+      },
+      {
+        "path": "assets/models/lion-user-hair-28.bin.gz",
+        "bytes": 5290533,
+        "sha256": "70fde991119f8ddeac543aa987694da07a5cc1dd1dbb5a86b152581cf13c49bf"
+      },
+      {
+        "path": "assets/models/lion-user-hair-29.bin.gz",
+        "bytes": 5196893,
+        "sha256": "cf69c48196ae2a9a374453416d1e7439b91e51d9dbbb0b67c18e181c9821f596"
+      },
+      {
+        "path": "assets/models/lion-user-hair-30.bin.gz",
+        "bytes": 5266205,
+        "sha256": "9bc08c1edacb237c1e4a644f87424e164276e08992d6a847500528dc8266ba0f"
+      },
+      {
+        "path": "assets/models/lion-user-hair-31.bin.gz",
+        "bytes": 5263236,
+        "sha256": "e335c48f814aa14e940d9799d70075360784dbd0c4ed9a1680bacb7b53e7fcae"
+      },
+      {
+        "path": "assets/models/lion-user-hair-32.bin.gz",
+        "bytes": 5208983,
+        "sha256": "a9ab87f76891566a1c978674096353cf005e6c239008961fed2e5b68efe26151"
+      },
+      {
+        "path": "assets/models/lion-user-hair-33.bin.gz",
+        "bytes": 5193087,
+        "sha256": "a09e92e1aab05045229a3a898f3745033bf67d68ae5062186c4f675f4568f35c"
+      },
+      {
+        "path": "assets/models/lion-user-hair.json",
+        "bytes": 38393,
+        "sha256": "7b5ba72d17ab24c5f89e0a5707de139b37e2e924a496c9c752e7635f8396f8b6"
+      },
+      {
+        "path": "assets/navigation/action.png",
+        "bytes": 1008107,
+        "sha256": "221553ccde70ed29b39c5ee4ff1c293ab6ec0af5a09c09d21c9f3df827081b16"
+      },
+      {
+        "path": "assets/navigation/expression.png",
+        "bytes": 818617,
+        "sha256": "b1232fda329b44450867457acff3677935c7e2309865931cb06a9fb8a55c00f1"
+      },
+      {
+        "path": "assets/navigation/home.png",
+        "bytes": 646689,
+        "sha256": "cedee6497ef0e0a02ed3f907ecf14981ae2950078cdbedf704eac6711e7abd99"
+      },
+      {
+        "path": "assets/navigation/settings.png",
+        "bytes": 612160,
+        "sha256": "4fdfc5b5bf17c5e14392fddef1a4a3710a325be7636b118999f1d7b929ef2737"
+      },
+      {
+        "path": "assets/navigation/structure.png",
+        "bytes": 1267277,
+        "sha256": "3fb9764ee71915e1c2fc3a2a80b81e59366bd77fc2404206b63249ea2c764a20"
+      },
+      {
+        "path": "assets/poster/lion-full.png",
+        "bytes": 3567941,
+        "sha256": "e58ee7dae46691e8d3f9ca55e746a90153532016b73c5e25dbd4bef0de8f6e27"
+      },
+      {
+        "path": "assets/structure/calligraphy/guan.png",
+        "bytes": 709168,
+        "sha256": "09d163d4449ce9cc2a3005588d631754b29680ef1060716065bd1e1ecab4f646"
+      },
+      {
+        "path": "assets/structure/calligraphy/ling.png",
+        "bytes": 645783,
+        "sha256": "91d09f2797850908a15f25509040b78e4cd6020afd4b87d143dd0421dc4bdce1"
+      },
+      {
+        "path": "assets/structure/calligraphy/qi.png",
+        "bytes": 556384,
+        "sha256": "50587ba9daf5be51787fe18d9cf9a9d81ec6cf1af80a3f53e55118b531ada353"
+      },
+      {
+        "path": "assets/structure/calligraphy/shen.png",
+        "bytes": 660185,
+        "sha256": "95fe040d4f86373027776a48c83b9ed0a25276410b02c290252b689f61b47e13"
+      },
+      {
+        "path": "assets/structure/calligraphy/shi.png",
+        "bytes": 639788,
+        "sha256": "e8c6e62a61b7c7d6a612ee671a414eba0e5f13ce80714d371b39829ec17bf514"
+      },
+      {
+        "path": "assets/structure/calligraphy/wei.png",
+        "bytes": 646034,
+        "sha256": "a7da93f6b9267011774818ce79fb649800ae32fee8e488e67924aaf51b6e1de0"
+      }
+    ],
+    "exactStructureGitContents": [
+      "src/config/assetPaths.js",
+      "src/data/structure-atlas.js",
+      "src/features/developer-settings/surface-settings.css",
+      "src/features/developer-settings/surfaceSettings.js",
+      "src/features/developer-settings/useDeveloperSettings.js",
+      "src/features/loading/useStartupLoading.js",
+      "src/features/model/ModelPage.jsx",
+      "src/features/model/StructureReadingPanel.jsx",
+      "src/styles/model.css",
+      "source/public/assets/structure/calligraphy/shen.png",
+      "source/public/assets/structure/calligraphy/wei.png",
+      "source/public/assets/structure/calligraphy/guan.png",
+      "source/public/assets/structure/calligraphy/qi.png",
+      "source/public/assets/structure/calligraphy/ling.png",
+      "source/public/assets/structure/calligraphy/shi.png"
+    ],
+    "originalUntrackedModelHashPreserved": true
+  },
+  "screenshots": [
+    {
+      "from": "generated:chrome-review/structure-atlas-main-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas-main/main-1920.png",
+      "bytes": 2364140,
+      "sha256": "f85f270f64d0a74dd47309b3e25563d26439e19f3fc235816037ae2f45381f90",
+      "capture": "test-results/structure-main-production/structure-atlas-图鉴六部件均使用独立朱砂PNG、真实透明像素和正确内容映射-chromium/structure-atlas-initial-1920.png"
+    },
+    {
+      "from": "generated:chrome-review/structure-atlas-main-2026-10-21",
+      "path": "source/reviews/model/2026-10-21-structure-atlas-main/main-900.png",
+      "bytes": 802235,
+      "sha256": "300519ae2ecdd2a73acaa4d5682d79ced3b382ea4a92fc340e2aa691f34d43c9",
+      "capture": "test-results/structure-main-production/structure-atlas-900电脑窗口宣纸图鉴可读、艺术字无裁切且末尾阅读可达-chromium/structure-atlas-900.png"
+    }
+  ],
+  "historicalEvidence": {
+    "originalStructureReport": "source/references/structure-atlas-2026-10-21-validation.json",
+    "scope": "Retained as historical evidence from the structure branch based on ce97297; its 67 core cases / 31 phased browser cases / 566 manifest / 332 modules do not describe this main integration."
+  },
+  "limits": [
+    "Selected local desktop Chrome production cases only, not all E2E or other hardware/browsers.",
+    "No F-drive synchronization, portable EXE rebuild or public hosting deployment.",
+    "Source/action branches remain available; no branch deletion, force push, action-source rewrite or ancestry merge."
+  ],
+  "delivery": {
+    "target": "origin/main",
+    "mode": "Normal push of only structure integration; actual containing commit and remote confirmation are checked at final delivery.",
+    "finalRemoteBaseline": "08d3afc963f9cc6a3f9c3adbae6826bb26e3e102"
+  },
+  "finalAssetCheck": {
+    "command": "node --test tests/assets/asset-integrity.test.mjs",
+    "log": "tmp/structure-main-final-assets.log",
+    "tests": 10,
+    "pass": 10,
+    "fail": 0,
+    "skipped": 0,
+    "duration_ms": 4156.4811
+  },
+  "memory": {
+    "indexApplied": true,
+    "command": "python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready",
+    "pages": 99,
+    "errors": 0,
+    "warnings": 4,
+    "warningScope": "Existing historical references: three EntryNavTools.jsx references and one lion-overall.glb reference; no new memory errors.",
+    "status": "Final remote-main integration memory index and ready check completed before the integration commit."
+  },
+  "remoteConcurrentUpdate": {
+    "rejectedPush": "Normal push of unpublished local 440bebb was rejected because origin/main advanced from a3898e5 to 08d3afc.",
+    "unpublishedInitialIntegrationCommit": "440bebbb62f830bfa21e49ad47948496f5f676e3",
+    "remoteRevision": "08d3afc963f9cc6a3f9c3adbae6826bb26e3e102",
+    "remoteChange": "Existing main commit enables 25% video audio and safe playback handoff; preserved in full. It is separate from the excluded ce97297 / 38ba574 spatial UI commits.",
+    "resolution": "Rebase the one unpublished structure integration commit onto the new main. Product changes apply without conflicts; six wiki conflicts combine both histories. No force push or published history rewrite."
+  },
+  "finalRevalidation": {
+    "baseline": "08d3afc963f9cc6a3f9c3adbae6826bb26e3e102",
+    "core": {
+      "command": "npm test",
+      "log": "tmp/structure-main-remote-core.log",
+      "tests": 66,
+      "pass": 66,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 4230.6087
+    },
+    "build": {
+      "passed": true,
+      "command": "npm run build",
+      "log": "tmp/structure-main-remote-build.log",
+      "modules": 331,
+      "css": "dist/assets/index-22z5b474.css",
+      "modelChunk": "dist/assets/ModelPage-BsEFLCEJ.js"
+    },
+    "browser": {
+      "report": "tmp/structure-main-remote-production.json",
+      "argv": [
+        "test",
+        "--config",
+        "tmp/structure-main-audio-preview.config.js",
+        "tests/e2e/video-audio.spec.js",
+        "tests/e2e/action-player.spec.js:13",
+        "tests/e2e/action-player.spec.js:26",
+        "tests/e2e/action-player.spec.js:50",
+        "tests/e2e/action-theater-integrated.spec.js:18",
+        "tests/e2e/home-video-replacement.spec.js:5",
+        "tests/e2e/structure-atlas.spec.js:110",
+        "tests/e2e/structure-atlas.spec.js:362",
+        "tests/e2e/action-theater.spec.js:27",
+        "tests/e2e/action-theater.spec.js:41",
+        "tests/e2e/full-lion-model.spec.js:4",
+        "--output=test-results/structure-main-remote-production",
+        "--reporter=list,json"
+      ],
+      "stats": {
+        "startTime": "2026-10-21T09:40:48.304Z",
+        "duration": 201512.816,
+        "expected": 11,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "file": "action-player.spec.js",
+          "title": "用户四段真实视频推进，暂停、拖动进度和继续观看保留当前位置",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 13709,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "action-player.spec.js",
+          "title": "四屏默认低音量有声，只有当前主屏发声且切屏不重载视频",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 13227,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "action-player.spec.js",
+          "title": "快速选择最终动作不会恢复旧主屏声音或重置已播放进度",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 11350,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "action-theater-integrated.spec.js",
+          "title": "合并后首页媒体与四面巨幕往返保持独立播放实例，离页释放后仅重建一套动作画布",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 12479,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "action-theater.spec.js",
+          "title": "中央模型按36秒均速自转，摄像机静置且不继承模型旋转",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 11369,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "action-theater.spec.js",
+          "title": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 12146,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "full-lion-model.spec.js",
+          "title": "结构与巨幕都实际绘制完整新狮，跨章复用全部模型与毛发请求",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 10518,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "home-video-replacement.spec.js",
+          "title": "new entry plays to its natural end, then the new home clip really loops",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 26141,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "structure-atlas.spec.js",
+          "title": "首页预热保留原体验，首次进入结构时才请求书法图片",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 8637,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "structure-atlas.spec.js",
+          "title": "设置推开页面后图鉴和实际热点仍同步，跨章保留首页与动作场景",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 9810,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "video-audio.spec.js",
+          "title": "首页低音量播放，静音选择跨入场和循环保留，后台及离页停止播放",
+          "passed": true,
+          "results": [
+            {
+              "status": "passed",
+              "duration": 10299,
+              "errors": []
+            }
+          ]
+        },
+        {
+          "file": "video-audio.spec.js",
+          "title": "首页不偷偷静音，点击明确入口后低音量有声播放",
+          "passed": false,
+          "results": [
+            {
+              "status": "failed",
+              "duration": 59832,
+              "errors": [
+                "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\nExpected: \u001b[32m{\"activation\": false, \"blocked\": true, \"muted\": false, \"paused\": true, \"volume\": 0.25}\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Test timeout of 60000ms exceeded\n\n  63 |         });\n  64 |         return result.value;\n> 65 |       }, { timeout: 60_000 }).toEqual({ activation: false, muted: false, volume: .25, paused: true, blocked: true });\n     |                               ^\n  66 |       await page.getByRole('button', { name: '开启声音并播放', exact: true }).click();\n  67 |       await expect.poll(() => page.locator('#introVideo').evaluate(video => !video.paused && video.currentTime > .1 && !video.muted && video.volume === .25)).toBe(true);\n  68 |     } finally { await browser.close(); }\n    at E:\\数字媒体竞赛\\张钧儒\\lion\\tests\\e2e\\video-audio.spec.js:65:31"
+              ]
+            }
+          ]
+        }
+      ],
+      "policy": "Main worker explicitly allows audible autoplay using an ignored test-only config; the blocked-autoplay case launches its own independent Chrome with strict user-activation policy and verifies native rejection then real-click recovery.",
+      "strictSpecRecheck": {
+        "report": "tmp/structure-main-strict-recheck.json",
+        "stats": {
+          "startTime": "2026-10-21T09:46:25.151Z",
+          "duration": 61122.812,
+          "expected": 0,
+          "skipped": 0,
+          "unexpected": 1,
+          "flaky": 0
+        }
+      },
+      "independentNativeAutoplayAudit": {
+        "report": "tmp/structure-strict-diagnostic.json",
+        "passed": true,
+        "before": {
+          "href": "http://127.0.0.1:4191/",
+          "activation": false,
+          "videos": [
+            {
+              "id": "introVideo",
+              "muted": false,
+              "paused": true,
+              "volume": 0.25,
+              "readyState": 4,
+              "time": 0
+            }
+          ],
+          "status": [
+            "浏览器需要一次点击才能播放声音\n开启声音并播放\n继续浏览首页"
+          ],
+          "model": ""
+        },
+        "after": {
+          "activation": true,
+          "muted": false,
+          "paused": false,
+          "volume": 0.25,
+          "time": 0.105918
+        },
+        "pageErrors": [],
+        "method": "Fresh standalone Chrome with document-user-activation-required; CDP observes without userGesture until loader is gone, activation=false, intro paused/unmuted/volume=.25 and visible recovery entry. A real Playwright click then starts native playback with activation=true at volume=.25. No product or protected audio test changes."
+      },
+      "limitations": [
+        "The inherited video-audio.spec.js native-policy case timed out returning false in both test-runner invocations. Its harness-specific reason is not established; these runs are recorded as failures, not 12/12. The same complete native rejection and real-click recovery criteria passed in an independent fresh Chrome audit."
+      ]
+    },
+    "protectedMainPaths": [
+      {
+        "path": "src/App.jsx",
+        "gitBlob": "49fe19916d72a05d85c6ac517af120376b829807"
+      },
+      {
+        "path": "src/features/action/ActionGuideCharacter.jsx",
+        "gitBlob": "053905a913b10a1538f36f51cfbaa32a23e08ee8"
+      },
+      {
+        "path": "src/features/action/ActionPage.jsx",
+        "gitBlob": "2ccc8d18aa2ee09402cbc2a03c29d0825c91c3ef"
+      },
+      {
+        "path": "src/features/action/ActionTimeline.jsx",
+        "gitBlob": "afa94f9b2582145336aac03d41549eb486fcebe1"
+      },
+      {
+        "path": "src/features/action/ActionVideo.jsx",
+        "gitBlob": "7172e29f8230a1ebbc5847830afb423d2d3d06d2"
+      },
+      {
+        "path": "src/features/action/action-theater.css",
+        "gitBlob": "6562b0a35295b38cc17498241b6200234957d3dc"
+      },
+      {
+        "path": "src/features/action/action.css",
+        "gitBlob": "48d80b8f210e0fd05a1352184c76ab6598e78419"
+      },
+      {
+        "path": "src/features/action/actionClips.js",
+        "gitBlob": "1a26c234462db1b8da7a0f2cc2292153211bcf63"
+      },
+      {
+        "path": "src/features/action/useTheaterPlayback.js",
+        "gitBlob": "1924496d38e680da688b8b991651713743448e91"
+      },
+      {
+        "path": "src/features/chapters/ChapterPage.jsx",
+        "gitBlob": "989e57738416f0daa88bbda8f95b00d2b0f44241"
+      },
+      {
+        "path": "src/features/developer-settings/DeveloperSettingsPanel.jsx",
+        "gitBlob": "2e4834f701cf4fd92b83fc7f989f26e07f3fa704"
+      },
+      {
+        "path": "src/services/actionTheaterArchitecture.js",
+        "gitBlob": "5f3b6904f5112ea4f76f05bb2375a7fcd7fca620"
+      },
+      {
+        "path": "src/services/actionTheaterMath.js",
+        "gitBlob": "4d79ec5a447a581edfec08ca5ac83c0009bd9117"
+      },
+      {
+        "path": "src/services/actionTheaterReflection.js",
+        "gitBlob": "ee2b66fc51021a6e0a490a3684bc4b363f92ca41"
+      },
+      {
+        "path": "src/services/actionTheaterScene.js",
+        "gitBlob": "4f23e436ed4f45dc65e7d07bc39e5a3a013b3f06"
+      },
+      {
+        "path": "src/services/cultureDepthGallery.js",
+        "gitBlob": "56d55d9a0f3d75e60c72a0823f0513d825414af4"
+      },
+      {
+        "path": "src/services/lionFullHair.js",
+        "gitBlob": "a3500394e97445be7c7e66f1dd15a54722709753"
+      },
+      {
+        "path": "src/services/lionHdriEnvironment.js",
+        "gitBlob": "579d96e1bdae3962b4ad76f44cbe7fdb5321715a"
+      },
+      {
+        "path": "src/services/lionLightingSettings.js",
+        "gitBlob": "f318ab8d9be9ed63ea5b60ad275465346190a716"
+      },
+      {
+        "path": "src/services/lionScene.js",
+        "gitBlob": "4e819b2817e62d710afac33a0131e2a4e6b384d5"
+      },
+      {
+        "path": "src/services/lionSketchbookDocument.js",
+        "gitBlob": "c08efcdb67f65abe546deb8eea8b3e296c477b9a"
+      },
+      {
+        "path": "src/services/lionSketchbookFactory.js",
+        "gitBlob": "5f2358af468aa504bc10725f1f3b8efc3d7dfde3"
+      },
+      {
+        "path": "tests/assets/action-theater.test.mjs",
+        "gitBlob": "73aa64af408ac03a3f886a580adb4a5c820ac03b"
+      },
+      {
+        "path": "tests/e2e/action-player.spec.js",
+        "gitBlob": "0fd69475a0b462ac7aeb28d3fd92dce0c63c29a4"
+      },
+      {
+        "path": "tests/e2e/action-theater.helpers.js",
+        "gitBlob": "802d0ac1d17f294f41a3986444ddc8b983047136"
+      },
+      {
+        "path": "tests/e2e/action-theater.spec.js",
+        "gitBlob": "161bc49d249da8af452eaf64731ab92d503cfc05"
+      },
+      {
+        "path": "tests/e2e/action-theater-integrated.spec.js",
+        "gitBlob": "cd001046afb7fecc3af315656e1c067bb70795bd"
+      },
+      {
+        "path": "tests/e2e/action-theater-ornate.spec.js",
+        "gitBlob": "8dc6d78d4759dd0e0954d1917f87c7d05479eaf7"
+      },
+      {
+        "path": "tests/e2e/action.spec.js",
+        "gitBlob": "b71af36fc8723e97961e7ec859f4b18ef22a455a"
+      },
+      {
+        "path": "src/components/VideoStage.jsx",
+        "gitBlob": "b705e4858f6ff7c77d2d1a531b129bbff9930ac1"
+      },
+      {
+        "path": "src/config/playback.js",
+        "gitBlob": "0cd0cb11f73d5858efdcb95ab2463a3a8cee7b05"
+      },
+      {
+        "path": "src/features/home/HomePage.jsx",
+        "gitBlob": "4c00bfd77592a9482d582b01e27f6619fd9d6440"
+      },
+      {
+        "path": "tests/e2e/video-audio.spec.js",
+        "gitBlob": "d13411951d042e0606b18ff30e5f58576723efae"
+      },
+      {
+        "path": "tests/e2e/video-audio.helpers.js",
+        "gitBlob": "ad132b183a95f38390fb32f07e4f9a80fec5972b"
+      },
+      {
+        "path": "tests/e2e/home-video-replacement.spec.js",
+        "gitBlob": "9fceaf1e6ecd344d9362d190679410795adabb43"
+      }
+    ],
+    "protectedMainPathsCount": 35,
+    "excludedActionNewFilesAbsent": 49,
+    "exactStructureContents": 15,
+    "publicDistMatches": 130,
+    "manifest": 560,
+    "originalMainManifestObjectsPreserved": 530,
+    "untrackedUserModelPreserved": true
+  }
+}

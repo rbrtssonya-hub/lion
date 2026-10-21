@@ -6,7 +6,7 @@ export const surfaceDefinitions = Object.freeze([
   { prefix: 'cultureBody', label: '文化正文底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
   { prefix: 'cultureSources', label: '参考资料区域', color: '#f7f5f0', transparency: 5, blur: 0, radius: 10 },
   { prefix: 'cultureSourceCard', label: '参考资料卡片', color: '#f7f5f0', transparency: 5, blur: 0, radius: 10, height: 186, heightStep: 1 },
-  { prefix: 'modelOverlay', label: '结构资料底板', color: '#68170f', transparency: 20, blur: 12, radius: 24, height: 620 },
+  { prefix: 'modelOverlay', label: '结构资料底板', color: '#f7f4ed', transparency: 5, blur: 0, radius: 10, height: 0 },
   { prefix: 'expressionOverlay', label: '神态文字底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
   { prefix: 'actionOverlay', label: '动作目录底板', color: '#faf7f1', transparency: 9, blur: 10, radius: 0 },
   { prefix: 'videoOverlay', label: '视频提示底板', color: '#080b0a', transparency: 12, blur: 0, radius: 8, width: 80 },
@@ -55,6 +55,27 @@ export function migrateReadingPaper(saved) {
     });
   }
   if (saved.archivePanelTransparency === 40) next.archivePanelTransparency = surfaceDefaults.bookTitleTransparency;
+  return next;
+}
+
+// Keep this upgrade independent from readingPaperVersion: the earlier paper
+// migration deliberately leaves the model surface alone. A persisted marker
+// also lets a user choose the historical material again after this one upgrade.
+export const structureAtlasVersion = 1;
+const previousStructureSurface = Object.freeze({
+  modelOverlayColor: '#68170f',
+  modelOverlayTransparency: 20,
+  modelOverlayBlur: 12,
+  modelOverlayRadius: 24,
+  modelOverlayWidth: 100,
+  modelOverlayHeight: 620,
+});
+export function migrateStructureAtlas(saved) {
+  if (saved.structureAtlasVersion >= structureAtlasVersion) return saved;
+  const next = { ...saved, structureAtlasVersion };
+  for (const [name, previousValue] of Object.entries(previousStructureSurface)) {
+    if (saved[name] === previousValue) next[name] = surfaceDefaults[name];
+  }
   return next;
 }
 
