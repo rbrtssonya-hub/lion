@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { selectSettingsFor } from './settings-navigation.helpers.js';
+import { expandSettingsGroups, selectSettingsFor, settingsPages } from './settings-navigation.helpers.js';
 
 const sizes = [[1024, 768], [1366, 768], [1440, 900], [1920, 1080], [2560, 1440], [3840, 2160], [1280, 600], [900, 600]];
 async function open(page, route = '') {
@@ -144,9 +144,10 @@ test('设置面板按900px余宽回退且不覆盖保存偏好，窄面板可操
   }
   await field.fill('280'); await field.press('Tab');
   const tabs = panel.getByRole('tablist', { name: '设置分类', exact: true }).getByRole('tab');
-  await expect(tabs).toHaveCount(10);
+  await expect(tabs).toHaveCount(settingsPages.length);
   for (const tab of await tabs.all()) {
     await tab.click(); await expect(tab).toHaveAttribute('aria-selected', 'true');
+    await expandSettingsGroups(page);
     const lastControl = panel.locator('.developer-settings-page:visible').locator('input:visible,select:visible,button:visible').last();
     await lastControl.scrollIntoViewIfNeeded(); await expect(lastControl).toBeInViewport();
   }

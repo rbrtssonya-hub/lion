@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-21",
+  "stage": "Production visual discovery before final thumb URL fix",
+  "cause": "Relative URL in inline custom property consumed in external dist/assets CSS resolves under /assets/assets; SPA fallback is 200 text/html, so HTTP-error checks did not detect it",
+  "fix": "Resolve navLion with new URL(asset, document.baseURI).href before setting custom property",
+  "evidence": {
+    "requests": [
+      "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+      "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+      "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+      "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png"
+    ],
+    "responses": [
+      {
+        "url": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "url": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+        "status": 200,
+        "contentType": "image/png"
+      },
+      {
+        "url": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "url": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+        "status": 200,
+        "contentType": "text/html"
+      }
+    ],
+    "computed": {
+      "inline": "--theater-seek-head: url(\"./assets/entry/nav-lion-head.png\");",
+      "variable": "url(\"./assets/entry/nav-lion-head.png\")",
+      "thumbBackground": "none",
+      "resources": [
+        {
+          "name": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+          "initiatorType": "css",
+          "transferSize": 1097,
+          "decodedBodySize": 797
+        },
+        {
+          "name": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+          "initiatorType": "img",
+          "transferSize": 3920412,
+          "decodedBodySize": 3920112
+        },
+        {
+          "name": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+          "initiatorType": "css",
+          "transferSize": 1097,
+          "decodedBodySize": 797
+        },
+        {
+          "name": "http://127.0.0.1:4187/assets/assets/entry/nav-lion-head.png",
+          "initiatorType": "css",
+          "transferSize": 1097,
+          "decodedBodySize": 797
+        }
+      ],
+      "styleSheets": [
+        "http://127.0.0.1:4187/assets/index-gVDgbeQ-.css",
+        "http://127.0.0.1:4187/assets/LionBookExperience-CWaMDFrR.css"
+      ]
+    }
+  }
+}

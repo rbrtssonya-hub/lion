@@ -1,28 +1,29 @@
+import { resolveViewSettings, viewDefaults } from '../config/viewSettings.js';
+
 const TAU = Math.PI * 2;
 const DEG = Math.PI / 180;
 
 export const THEATER_ORBIT = Object.freeze({
   target: Object.freeze([0, 1.45, 0]),
-  radiusMin: 7.2,
-  radiusMax: 8.8,
-  heightMin: 1.55,
-  heightMax: 3.75,
-  polarMin: 74 * DEG,
-  polarMax: 89.5 * DEG,
+  radiusMin: viewDefaults.actionMinDistance,
+  radiusMax: viewDefaults.actionMaxDistance,
+  polarMin: viewDefaults.actionMinPolarAngle * DEG,
+  polarMax: viewDefaults.actionMaxPolarAngle * DEG,
 });
 
 export function shortestAngle(from, to) {
   return ((to - from + Math.PI) % TAU + TAU) % TAU - Math.PI;
 }
 
-/** Jointly satisfy the spherical orbit limits and the room's camera height. */
-export function constrainOrbit(position, target = THEATER_ORBIT.target) {
+/** Configurable spherical limits. No separate room-height restriction. */
+export function constrainOrbit(position, target = THEATER_ORBIT.target, settings = {}) {
+  const view = resolveViewSettings(settings);
   const offset = position.map((value, index) => value - target[index]);
-  const radius = Math.max(THEATER_ORBIT.radiusMin, Math.min(THEATER_ORBIT.radiusMax, Math.hypot(...offset)));
+  const length = Math.hypot(...offset);
+  const radius = Math.max(view.actionMinDistance, Math.min(view.actionMaxDistance, length));
   const azimuth = Math.atan2(offset[0], offset[2]);
-  const lowY = Math.max(THEATER_ORBIT.heightMin - target[1], radius * Math.cos(THEATER_ORBIT.polarMax));
-  const highY = Math.min(THEATER_ORBIT.heightMax - target[1], radius * Math.cos(THEATER_ORBIT.polarMin));
-  const y = Math.max(lowY, Math.min(highY, offset[1]));
+  const polar = Math.max(view.actionMinPolarAngle * DEG, Math.min(view.actionMaxPolarAngle * DEG, length ? Math.acos(Math.max(-1, Math.min(1, offset[1] / length))) : Math.PI / 2));
+  const y = radius * Math.cos(polar);
   const horizontal = Math.sqrt(Math.max(0, radius * radius - y * y));
   return [target[0] + Math.sin(azimuth) * horizontal, target[1] + y, target[2] + Math.cos(azimuth) * horizontal];
 }

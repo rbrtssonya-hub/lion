@@ -17,6 +17,7 @@ import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from 'three-
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
 import { createLionLightingControls } from './lionLightingSettings.js';
+import { resolveViewSettings } from '../config/viewSettings.js';
 
 const activeScenes = new WeakMap();
 
@@ -121,12 +122,23 @@ export async function createLionScene({
 
   const loadController = new AbortController();
   const scene = new Scene();
-  const camera = new PerspectiveCamera(34, 1, 0.025, 30);
+  let viewSettings = resolveViewSettings(lightingSettings);
+  let overviewDistance = 3;
+  let focusDistance = null;
+  const camera = new PerspectiveCamera(viewSettings.structureFov, 1, 0.025, 100);
   camera.position.set(2.7, 1.05, 4);
   let renderer;
   let lighting;
   let maxRenderSize;
   let controls;
+  const applyCameraLimits = () => {
+    if (!controls) return;
+    const reference = focusDistance ?? overviewDistance;
+    controls.minDistance = reference * viewSettings.structureMinDistanceRatio;
+    controls.maxDistance = overviewDistance * viewSettings.structureMaxDistanceRatio;
+    renderer.domElement.dataset.viewSettings = JSON.stringify(viewSettings);
+    renderer.domElement.dataset.cameraLimits = JSON.stringify({ min: controls.minDistance, max: controls.maxDistance, fov: camera.fov });
+  };
   let observer;
   let animationFrame = 0;
   let settlingTimer = 0;
@@ -377,8 +389,7 @@ export async function createLionScene({
     controls.enablePan = false;
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 0.42;
-    controls.minDistance = 0.32;
-    controls.maxDistance = 8;
+    applyCameraLimits();
     controls.target.set(0, 0.08, 0);
     controls.addEventListener('start', stopRotation);
     controls.addEventListener('end', endInteraction);
@@ -560,6 +571,8 @@ export async function createLionScene({
           relative.dot(direction) + Math.abs(relative.dot(right)) / (horizontalTan * 0.86));
       });
       initialCameraPosition.copy(overviewTarget).addScaledVector(direction, Math.max(2.2, fitDistance));
+      overviewDistance = initialCameraPosition.distanceTo(overviewTarget);
+      applyCameraLimits();
       initialTarget.copy(overviewTarget);
       if (apply) {
         camera.position.copy(initialCameraPosition);
@@ -579,7 +592,19 @@ export async function createLionScene({
     report({ phase: 'ready', message: '模型已载入 · 可交互' });
 
     return {
-      setLightingSettings: value => lighting?.update(value),
+      setLightingSettings(value) {
+        if (disposed) return;
+        lighting?.update(value);
+        const next = resolveViewSettings(value);
+        if (JSON.stringify(next) === JSON.stringify(viewSettings)) return;
+        viewSettings = next;
+        viewTween = null;
+        camera.fov = next.structureFov;
+        camera.updateProjectionMatrix();
+        fitOverview(false);
+        controls.update();
+        requestDraw();
+      },
       retryHdri: () => lighting?.retry(),
       setActive(value) {
         if (disposed || isActive === Boolean(value)) return;
@@ -602,12 +627,14 @@ export async function createLionScene({
         const nextTarget = point ? new Vector3(...point.map(Number)) : modelRoot.localToWorld(new Vector3(...target.map(Number)));
         const nextDistance = Number(distance);
         if (!nextTarget.toArray().every(Number.isFinite) || !Number.isFinite(nextDistance) || nextDistance <= 0) return;
+        focusDistance = Math.min(8, Math.max(0.4, nextDistance));
+        applyCameraLimits();
 
         const part = hotspots.find((item) => item.id === id);
         // Return to a useful viewing side instead of zooming into the back
         // after the visitor has orbited the complete model.
         const direction = new Vector3(...(part?.viewDirection ?? [0.18, 0.12, 1])).normalize();
-        const nextCamera = nextTarget.clone().addScaledVector(direction, Math.min(8, Math.max(0.4, nextDistance)));
+        const nextCamera = nextTarget.clone().addScaledVector(direction, Math.min(controls.maxDistance, Math.max(controls.minDistance, focusDistance)));
         controls.enableDamping = false;
         controls.update();
         controls.enableDamping = true;
@@ -627,6 +654,7 @@ export async function createLionScene({
       },
       resetView() {
         if (disposed || !modelReady) return;
+        focusDistance = null;
         fitOverview(false);
         controls.autoRotate = false;
         onAutoRotateChange(false);

@@ -42,6 +42,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const [sceneState, setSceneState] = useState('loading');
   const [sceneError, setSceneError] = useState('');
   const [lightingStatus, setLightingStatus] = useState({ phase: 'loading' });
+  const [drumState, setDrumState] = useState('loading');
   const [sceneVersion, setSceneVersion] = useState(0);
   const [flatMode, setFlatMode] = useState(false);
   const [visible, setVisible] = useState(!document.hidden);
@@ -78,12 +79,14 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
     let cancelled = false;
     let handle;
     setSceneState('loading');
+    setDrumState('loading');
     setSceneError('');
     import('../../services/actionTheaterScene.js').then(({ createActionTheater }) => {
       if (cancelled) return;
       handle = createActionTheater({
         lightingSettings: lightingSettingsRef.current,
         onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
+        onDrumStatus: next => { if (!cancelled) setDrumState(next); },
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
         onActiveScreen: id => {
           if (cancelled) return;
@@ -123,7 +126,9 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
   useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
     [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
-      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);
+      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity, lightingSettings?.hdriSource, lightingSettings?.hdriUrl, lightingSettings?.hdriFile,
+      lightingSettings?.structureMinDistanceRatio, lightingSettings?.structureMaxDistanceRatio, lightingSettings?.structureFov,
+      lightingSettings?.actionMinDistance, lightingSettings?.actionMaxDistance, lightingSettings?.actionMinPolarAngle, lightingSettings?.actionMaxPolarAngle, lightingSettings?.actionFov]);
   useEffect(() => {
     const update = () => setFullscreen(document.fullscreenElement === stageRef.current);
     document.addEventListener('fullscreenchange', update);
@@ -191,6 +196,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         <span>HDRI 环境光载入失败</span>
         <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
       </div>}
+      {drumState === 'error' && <div className="theater-drum-notice" role="status">
+        <span>场景鼓暂未载入</span>
+        <button type="button" onClick={() => sceneRef.current?.retryDrums()?.catch(() => {})}>重新载入鼓</button>
+      </div>}
 
       <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
         {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
@@ -208,6 +217,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           <button type="button" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
           <span className="theater-time">{clock(playback.view.currentTime)} <i>/</i> {clock(duration)}</span>
           <input type="range" min="0" max={duration || 1} step=".01" value={duration ? Math.min(playback.view.currentTime || 0, duration) : 0}
+            style={{ '--theater-seek-head': `url("${new URL(assets.navLion ?? media.navLion, document.baseURI).href}")` }}
             disabled={!duration} aria-label="当前动作播放进度" onChange={event => playback.seek(Number(event.target.value))} />
           <button type="button" aria-label={playback.audioEnabled ? '关闭声音' : '开启声音'} aria-pressed={playback.audioEnabled} onClick={playback.toggleAudio}>
             <Icon kind={playback.audioEnabled ? 'sound' : 'muted'} />

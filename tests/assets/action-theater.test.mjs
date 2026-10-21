@@ -49,10 +49,10 @@ test('动作空间镜头插值始终选择跨接缝的最短角度', () => {
   assert.ok(Math.abs(shortestAngle(rad(20), rad(740))) < 1e-12);
 });
 
-test('巨幕环绕同时约束半径、高度和俯仰，极限滚轮与拖拽不会离开室内', () => {
-  const { target, radiusMin, radiusMax, heightMin, heightMax, polarMin, polarMax } = THEATER_ORBIT;
+test('巨幕环绕限定缩放并开放俯仰，不再夹紧相机高度', () => {
+  const { target, radiusMin, radiusMax, polarMin, polarMax } = THEATER_ORBIT;
   for (const radius of [0, .1, 2, radiusMin, radiusMax, 15, 1000]) {
-    for (const y of [-100, 0, target[1], heightMin, (heightMin + heightMax) / 2, heightMax, 100]) {
+    for (const y of [-100, -20, 0, target[1], 20, 100]) {
       for (const angle of [-180, -90, 0, 90, 180]) {
         const point = constrainOrbit([Math.sin(rad(angle)) * radius, y, Math.cos(rad(angle)) * radius]);
         const offset = point.map((value, index) => value - target[index]);
@@ -60,7 +60,7 @@ test('巨幕环绕同时约束半径、高度和俯仰，极限滚轮与拖拽�
         const polar = Math.acos(offset[1] / distance);
         assert.ok(point.every(Number.isFinite));
         assert.ok(distance >= radiusMin - 1e-9 && distance <= radiusMax + 1e-9);
-        assert.ok(point[1] >= heightMin - 1e-9 && point[1] <= heightMax + 1e-9);
+
         assert.ok(polar >= polarMin - 1e-9 && polar <= polarMax + 1e-9);
       }
     }
@@ -68,10 +68,10 @@ test('巨幕环绕同时约束半径、高度和俯仰，极限滚轮与拖拽�
 });
 
 test('环绕约束保留合法视角和水平目标偏移，不因模型旋转改变目标', () => {
-  const { target, radiusMin, radiusMax, heightMin, heightMax, polarMin, polarMax } = THEATER_ORBIT;
+  const { target, radiusMin, radiusMax, polarMin, polarMax } = THEATER_ORBIT;
   const radius = (radiusMin + radiusMax) / 2;
-  const lowY = Math.max(heightMin - target[1], radius * Math.cos(polarMax));
-  const highY = Math.min(heightMax - target[1], radius * Math.cos(polarMin));
+  const lowY = radius * Math.cos(polarMax);
+  const highY = radius * Math.cos(polarMin);
   const y = (lowY + highY) / 2;
   const horizontal = Math.sqrt(radius ** 2 - y ** 2);
   const point = [target[0] + horizontal / Math.sqrt(2), target[1] + y, target[2] + horizontal / Math.sqrt(2)];
@@ -81,6 +81,16 @@ test('环绕约束保留合法视角和水平目标偏移，不因模型旋转�
   const movedPoint = [point[0] + 10, point[1], point[2] - 3];
   const moved = constrainOrbit(movedPoint, movedTarget);
   moved.forEach((value, index) => assert.ok(Math.abs(value - movedPoint[index]) < 1e-12));
+});
+
+test('自定义环绕边界允许俯视仰视且遵守保存的距离与角度', () => {
+  const settings = { actionMinDistance: 4, actionMaxDistance: 10, actionMinPolarAngle: 20, actionMaxPolarAngle: 160 };
+  for (const [inputY, expectedAngle] of [[100, 20], [-100, 160]]) {
+    const point = constrainOrbit([0, inputY, 0], [0, 0, 0], settings);
+    assert.ok(Math.abs(Math.hypot(...point) - 10) < 1e-9);
+    assert.ok(Math.abs(Math.acos(point[1] / 10) - rad(expectedAngle)) < 1e-9);
+    assert.ok(Math.abs(point[1]) > 3.75);
+  }
 });
 
 test('巨幕完整容纳16:9、宽屏和竖屏视频，保留比例并对未知尺寸安全回退', () => {

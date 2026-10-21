@@ -41,7 +41,9 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
 
   useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
     [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
-      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);
+      lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity, lightingSettings?.hdriSource, lightingSettings?.hdriUrl, lightingSettings?.hdriFile,
+      lightingSettings?.structureMinDistanceRatio, lightingSettings?.structureMaxDistanceRatio, lightingSettings?.structureFov,
+      lightingSettings?.actionMinDistance, lightingSettings?.actionMaxDistance, lightingSettings?.actionMinPolarAngle, lightingSettings?.actionMaxPolarAngle, lightingSettings?.actionFov]);
 
   const selectHotspot = (id, point) => {
     const next = hotspots.find((item) => item.id === id);

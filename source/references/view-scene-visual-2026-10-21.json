@@ -1,0 +1,695 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "baseURL": "http://127.0.0.1:4187",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "head": "4da11160f6af7adc063fa65b9222e65834998add",
+  "status": "passed",
+  "pageErrors": [],
+  "screenshots": [
+    "source/reviews/view-scene-settings/2026-10-21/action-production.png",
+    "source/reviews/view-scene-settings/2026-10-21/settings-collapsed-production.png",
+    "source/reviews/view-scene-settings/2026-10-21/hdri-production.png",
+    "source/reviews/view-scene-settings/2026-10-21/structure-production.png"
+  ],
+  "captures": {
+    "action-production": {
+      "canvas": {
+        "hdr": {
+          "state": "ready",
+          "source": "./assets/environments/forest.exr",
+          "name": "./assets/environments/forest.exr",
+          "resolution": "1024x512",
+          "settings": {
+            "hdriEnabled": true,
+            "hdriIntensity": 1,
+            "hdriRotation": 0,
+            "hdriExposure": 0,
+            "hdriLightIntensity": 0.35,
+            "hdriSource": "forest",
+            "hdriUrl": "",
+            "hdriFile": null
+          }
+        },
+        "hair": {
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105"
+        },
+        "drums": {
+          "state": "ready",
+          "count": "4"
+        },
+        "view": {
+          "structureMinDistanceRatio": 0.55,
+          "structureMaxDistanceRatio": 2.5,
+          "structureFov": 34,
+          "actionMinDistance": 3,
+          "actionMaxDistance": 14,
+          "actionMinPolarAngle": 1,
+          "actionMaxPolarAngle": 179,
+          "actionFov": 56
+        },
+        "cameraLimits": {
+          "min": 3,
+          "max": 14,
+          "minPolar": 1,
+          "maxPolar": 179,
+          "fov": 56
+        },
+        "cameraDistance": null,
+        "cameraPosition": [
+          0,
+          1.6000000000000008,
+          8.6
+        ],
+        "cameraTarget": [
+          0,
+          1.45,
+          0
+        ],
+        "activeScreen": "tanqing",
+        "sceneReady": "true",
+        "renderedFrames": "264"
+      },
+      "playbackGesture": "Clicked the native action control to play with sound.",
+      "nativeMedia": [
+        {
+          "id": "entryLionVideo",
+          "actionId": null,
+          "current": null,
+          "source": "http://127.0.0.1:4187/assets/entry/home-lion-loop.mp4",
+          "paused": true,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 0,
+          "duration": 10.356009,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tanqing",
+          "current": "true",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tanqing.mp4",
+          "paused": false,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 0.43062,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "doumao",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/doumao.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 2.636972,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tuqiu",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tuqiu.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 2.636973,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "meihuazhuang",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/meihuazhuang.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 2.636975,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        }
+      ],
+      "url": "http://127.0.0.1:4187/#/action"
+    },
+    "settings-collapsed-production": {
+      "canvas": {
+        "hdr": {
+          "state": "ready",
+          "source": "./assets/environments/forest.exr",
+          "name": "./assets/environments/forest.exr",
+          "resolution": "1024x512",
+          "settings": {
+            "hdriEnabled": true,
+            "hdriIntensity": 1,
+            "hdriRotation": 0,
+            "hdriExposure": 0,
+            "hdriLightIntensity": 0.35,
+            "hdriSource": "forest",
+            "hdriUrl": "",
+            "hdriFile": null
+          }
+        },
+        "hair": {
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105"
+        },
+        "drums": {
+          "state": "ready",
+          "count": "4"
+        },
+        "view": {
+          "structureMinDistanceRatio": 0.55,
+          "structureMaxDistanceRatio": 2.5,
+          "structureFov": 34,
+          "actionMinDistance": 3,
+          "actionMaxDistance": 14,
+          "actionMinPolarAngle": 1,
+          "actionMaxPolarAngle": 179,
+          "actionFov": 56
+        },
+        "cameraLimits": {
+          "min": 3,
+          "max": 14,
+          "minPolar": 1,
+          "maxPolar": 179,
+          "fov": 56
+        },
+        "cameraDistance": null,
+        "cameraPosition": [
+          0,
+          1.6000000000000008,
+          8.6
+        ],
+        "cameraTarget": [
+          0,
+          1.45,
+          0
+        ],
+        "activeScreen": "tanqing",
+        "sceneReady": "true",
+        "renderedFrames": "341"
+      },
+      "settingsGroups": [
+        {
+          "title": "结构模型视角",
+          "open": false
+        },
+        {
+          "title": "动作场景视角",
+          "open": false
+        }
+      ],
+      "nativeMedia": [
+        {
+          "id": "entryLionVideo",
+          "actionId": null,
+          "current": null,
+          "source": "http://127.0.0.1:4187/assets/entry/home-lion-loop.mp4",
+          "paused": true,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 0,
+          "duration": 10.356009,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tanqing",
+          "current": "true",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tanqing.mp4",
+          "paused": false,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 1.505482,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "doumao",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/doumao.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 3.610301,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tuqiu",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tuqiu.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 3.610305,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "meihuazhuang",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/meihuazhuang.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 3.60962,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        }
+      ],
+      "url": "http://127.0.0.1:4187/#/action"
+    },
+    "hdri-production": {
+      "canvas": {
+        "hdr": {
+          "state": "ready",
+          "source": "./assets/environments/forest.exr",
+          "name": "./assets/environments/forest.exr",
+          "resolution": "1024x512",
+          "settings": {
+            "hdriEnabled": true,
+            "hdriIntensity": 1,
+            "hdriRotation": 0,
+            "hdriExposure": 0,
+            "hdriLightIntensity": 0.35,
+            "hdriSource": "forest",
+            "hdriUrl": "",
+            "hdriFile": null
+          }
+        },
+        "hair": {
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105"
+        },
+        "drums": {
+          "state": "ready",
+          "count": "4"
+        },
+        "view": {
+          "structureMinDistanceRatio": 0.55,
+          "structureMaxDistanceRatio": 2.5,
+          "structureFov": 34,
+          "actionMinDistance": 3,
+          "actionMaxDistance": 14,
+          "actionMinPolarAngle": 1,
+          "actionMaxPolarAngle": 179,
+          "actionFov": 56
+        },
+        "cameraLimits": {
+          "min": 3,
+          "max": 14,
+          "minPolar": 1,
+          "maxPolar": 179,
+          "fov": 56
+        },
+        "cameraDistance": null,
+        "cameraPosition": [
+          0,
+          1.6000000000000008,
+          8.6
+        ],
+        "cameraTarget": [
+          0,
+          1.45,
+          0
+        ],
+        "activeScreen": "tanqing",
+        "sceneReady": "true",
+        "renderedFrames": "441"
+      },
+      "activeSource": "forest",
+      "nativeMedia": [
+        {
+          "id": "entryLionVideo",
+          "actionId": null,
+          "current": null,
+          "source": "http://127.0.0.1:4187/assets/entry/home-lion-loop.mp4",
+          "paused": true,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 0,
+          "duration": 10.356009,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tanqing",
+          "current": "true",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tanqing.mp4",
+          "paused": false,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 2.334802,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "doumao",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/doumao.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 4.321418,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "tuqiu",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/tuqiu.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 4.321415,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        },
+        {
+          "id": "",
+          "actionId": "meihuazhuang",
+          "current": "false",
+          "source": "http://127.0.0.1:4187/assets/action/videos/meihuazhuang.mp4",
+          "paused": false,
+          "muted": true,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 4.321434,
+          "duration": 8,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        }
+      ],
+      "url": "http://127.0.0.1:4187/#/action"
+    },
+    "structure-production": {
+      "canvas": {
+        "hdr": {
+          "state": "ready",
+          "source": "./assets/environments/forest.exr",
+          "name": "./assets/environments/forest.exr",
+          "resolution": "1024x512",
+          "settings": {
+            "hdriEnabled": true,
+            "hdriIntensity": 1,
+            "hdriRotation": 0,
+            "hdriExposure": 0,
+            "hdriLightIntensity": 0.35,
+            "hdriSource": "forest",
+            "hdriUrl": "",
+            "hdriFile": null
+          }
+        },
+        "hair": {
+          "fullHairStrands": "2295421",
+          "fullHairGroups": "33",
+          "fullHairPoints": "19957105",
+          "fullHairDrawnGroups": "33",
+          "fullHairDrawnStrands": "2295421",
+          "fullHairDrawnPoints": "19957105"
+        },
+        "drums": {
+          "state": null,
+          "count": null
+        },
+        "view": {
+          "structureMinDistanceRatio": 0.55,
+          "structureMaxDistanceRatio": 2.5,
+          "structureFov": 34,
+          "actionMinDistance": 3,
+          "actionMaxDistance": 14,
+          "actionMinPolarAngle": 1,
+          "actionMaxPolarAngle": 179,
+          "actionFov": 56
+        },
+        "cameraLimits": {
+          "min": 1.77747360630415,
+          "max": 8.079425483200682,
+          "fov": 34
+        },
+        "cameraDistance": "3.2318",
+        "cameraPosition": null,
+        "cameraTarget": null,
+        "activeScreen": null,
+        "sceneReady": null,
+        "renderedFrames": null
+      },
+      "nativeMedia": [
+        {
+          "id": "entryLionVideo",
+          "actionId": null,
+          "current": null,
+          "source": "http://127.0.0.1:4187/assets/entry/home-lion-loop.mp4",
+          "paused": true,
+          "muted": false,
+          "volume": 0.25,
+          "readyState": 4,
+          "currentTime": 0,
+          "duration": 10.356009,
+          "videoWidth": 2560,
+          "videoHeight": 1440,
+          "error": null
+        }
+      ],
+      "url": "http://127.0.0.1:4187/#/model"
+    }
+  },
+  "method": "Production preview; fresh browser storage; ordinary navigation/settings/playback clicks only; scene, materials and camera not modified by the QA script.",
+  "priorAttempt": "The first temporary QA run stopped before screenshots because it compared ./assets and /assets as literal HDRI strings. The source was ready with zero page errors. The QA assertion now compares resolved URLs; the failed run is preserved in tmp/view-scene-visual-first-url-assertion.json. Product code was not changed for this correction.",
+  "priorVisualFinding": "The first four production screenshots passed the data checks but visual inspection found a missing range-thumb lion image. CSS requested /assets/assets/entry/nav-lion-head.png and received the SPA HTML fallback (200 text/html). The product now resolves the inline custom-property image URL absolutely. The original four screenshots/report are retained in tmp/production-before-thumb-fix; network evidence is in tmp/thumb-production-before-fix.json. This final QA runs after the product fix and rebuilt production preview.",
+  "browser": "156.0.8078.4",
+  "thumbNetwork": [
+    {
+      "url": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+      "status": 200,
+      "contentType": "image/png"
+    }
+  ],
+  "initialSettings": {
+    "headerTransparency": 20,
+    "headerBlur": 12,
+    "headerWidth": 100,
+    "headerRadius": 0,
+    "headerColor": "#801d17",
+    "sidebarTransparency": 14,
+    "sidebarBlur": 18,
+    "sidebarHeight": 100,
+    "sidebarRadius": 0,
+    "sidebarColor": "#fff6e4",
+    "archivePanelTransparency": 35,
+    "bookTitleSpacing": 100,
+    "bookIntroDuration": 12,
+    "bookScale": 116,
+    "bookStageHeight": 680,
+    "bookInkEnabled": true,
+    "pageHitEnabled": false,
+    "headerHeight": 90,
+    "navFontSize": 26,
+    "helperFontSize": 18,
+    "expressionOverviewFontSize": 22,
+    "expressionDetailFontSize": 18,
+    "navIconSize": 40,
+    "helperTransparency": 50,
+    "brandPadding": 24,
+    "homeBrandOffset": 24,
+    "navigationDuration": 720,
+    "navigationEasing": "smooth",
+    "compactNavGap": 14,
+    "compactNavInset": 48,
+    "carouselAutoplay": true,
+    "carouselInterval": 6,
+    "carouselResumeDelay": 3,
+    "carouselTransitionDuration": 800,
+    "carouselFocusScale": 104,
+    "panelWidth": 340,
+    "pushPage": true,
+    "bookTitleWidth": 69,
+    "bookTitleHeight": 0,
+    "bookTitleTransparency": 35,
+    "bookTitleBlur": 0,
+    "bookTitleRadius": 0,
+    "bookTitleColor": "#f7f5f0",
+    "bookDetailsWidth": 100,
+    "bookDetailsHeight": 0,
+    "bookDetailsTransparency": 10,
+    "bookDetailsBlur": 0,
+    "bookDetailsRadius": 10,
+    "bookDetailsColor": "#f7f5f0",
+    "cultureTitleWidth": 100,
+    "cultureTitleHeight": 0,
+    "cultureTitleTransparency": 35,
+    "cultureTitleBlur": 0,
+    "cultureTitleRadius": 0,
+    "cultureTitleColor": "#f7f5f0",
+    "cultureBodyWidth": 100,
+    "cultureBodyHeight": 0,
+    "cultureBodyTransparency": 10,
+    "cultureBodyBlur": 0,
+    "cultureBodyRadius": 10,
+    "cultureBodyColor": "#f7f5f0",
+    "cultureSourcesWidth": 100,
+    "cultureSourcesHeight": 0,
+    "cultureSourcesTransparency": 5,
+    "cultureSourcesBlur": 0,
+    "cultureSourcesRadius": 10,
+    "cultureSourcesColor": "#f7f5f0",
+    "cultureSourceCardWidth": 100,
+    "cultureSourceCardHeight": 186,
+    "cultureSourceCardTransparency": 5,
+    "cultureSourceCardBlur": 0,
+    "cultureSourceCardRadius": 10,
+    "cultureSourceCardColor": "#f7f5f0",
+    "modelOverlayWidth": 100,
+    "modelOverlayHeight": 0,
+    "modelOverlayTransparency": 5,
+    "modelOverlayBlur": 0,
+    "modelOverlayRadius": 10,
+    "modelOverlayColor": "#f7f4ed",
+    "expressionOverlayWidth": 100,
+    "expressionOverlayHeight": 0,
+    "expressionOverlayTransparency": 10,
+    "expressionOverlayBlur": 0,
+    "expressionOverlayRadius": 10,
+    "expressionOverlayColor": "#f7f5f0",
+    "actionOverlayWidth": 100,
+    "actionOverlayHeight": 0,
+    "actionOverlayTransparency": 9,
+    "actionOverlayBlur": 10,
+    "actionOverlayRadius": 0,
+    "actionOverlayColor": "#faf7f1",
+    "videoOverlayWidth": 80,
+    "videoOverlayHeight": 0,
+    "videoOverlayTransparency": 12,
+    "videoOverlayBlur": 0,
+    "videoOverlayRadius": 8,
+    "videoOverlayColor": "#080b0a",
+    "hdriEnabled": true,
+    "hdriIntensity": 1,
+    "hdriRotation": 0,
+    "hdriExposure": 0,
+    "hdriLightIntensity": 0.35,
+    "hdriSource": "forest",
+    "hdriUrl": "",
+    "structureMinDistanceRatio": 0.55,
+    "structureMaxDistanceRatio": 2.5,
+    "structureFov": 34,
+    "actionMinDistance": 3,
+    "actionMaxDistance": 14,
+    "actionMinPolarAngle": 1,
+    "actionMaxPolarAngle": 179,
+    "actionFov": 56,
+    "readingPaperVersion": 1,
+    "structureAtlasVersion": 1,
+    "navigationTypographyVersion": 2,
+    "bookTitleLayoutVersion": 1
+  },
+  "progressThumb": {
+    "inline": "--theater-seek-head: url(\"http://127.0.0.1:4187/assets/entry/nav-lion-head.png\");",
+    "variable": "url(\"http://127.0.0.1:4187/assets/entry/nav-lion-head.png\")",
+    "url": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+    "width": 1859,
+    "height": 1976,
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+        "initiatorType": "css",
+        "decodedBodySize": 3920112
+      }
+    ]
+  },
+  "finishedAt": "2026-10-21T14:47:36.476Z",
+  "visualReview": {
+    "status": "passed",
+    "tool": "view_image",
+    "reviewedAt": "2026-10-21T14:48:20.690312+00:00",
+    "images": [
+      {
+        "file": "source/reviews/view-scene-settings/2026-10-21/action-production.png",
+        "result": "The live production action scene, drums, stage, playback controls and existing lion-head progress marker are visible; no playback-block notice."
+      },
+      {
+        "file": "source/reviews/view-scene-settings/2026-10-21/settings-collapsed-production.png",
+        "result": "The view category shows both camera groups collapsed; navigation and footer remain visible."
+      },
+      {
+        "file": "source/reviews/view-scene-settings/2026-10-21/hdri-production.png",
+        "result": "The forest preset and environment/HDRI parameter groups are open and legible; auxiliary lights and comparison groups remain collapsed."
+      },
+      {
+        "file": "source/reviews/view-scene-settings/2026-10-21/structure-production.png",
+        "result": "The complete default structure composition, six labels and paper reading panel remain visible with full hair statistics recorded."
+      }
+    ],
+    "thumbCloseup": "The live browser screenshot tmp/qa-thumb-production.png was also opened with view_image; the existing red/white lion-head image is visibly rendered on the actual range thumb.",
+    "limits": "This visual inspection does not claim Blender render parity or cover other desktop devices/browsers."
+  }
+}

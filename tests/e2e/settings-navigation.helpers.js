@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', 'HDRI', '资料', '动画', '轮播', '布局'];
+export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', '视角', 'HDRI', '资料', '动画', '轮播', '布局'];
 export const settingsPanel = page => page.getByRole('region', { name: '开发者参数设置', exact: true });
 
 // Route by the unchanged accessible label or storage/surface prefix. Keep main
@@ -14,6 +14,7 @@ const routes = [
   [['modelOverlay', '结构资料'], ['章节', '结构']],
   [['actionOverlay', 'videoOverlay', '动作目录', '视频提示'], ['章节', '动作']],
   [['expressionOverlay', 'expressionOverviewFontSize', 'expressionDetailFontSize', '神态文字', '神态简介', '神态解读'], ['章节', '神态']],
+  [['structureMinDistance', 'structureMaxDistance', 'structureFov', 'actionMinDistance', 'actionMaxDistance', 'actionMinPolarAngle', 'actionMaxPolarAngle', 'actionFov', '结构最近', '结构最远', '结构镜头', '动作最近', '动作最远', '动作俯视', '动作仰视', '动作镜头'], ['视角']],
   [['hdri', 'HDRI', '辅助灯光'], ['HDRI']],
   [['cultureSources', 'cultureSourceCard', '参考资料'], ['资料']],
   [['navigationDuration', 'navigationEasing', 'bookInkEnabled', '导航动画', '动画变速', '书册导航粒子'], ['动画']],
@@ -32,7 +33,19 @@ export async function selectSettingsPage(page, name, subpage) {
     if (await nested.getAttribute('aria-selected') !== 'true') await nested.click();
     await expect(nested).toHaveAttribute('aria-selected', 'true');
   }
+  await expandSettingsGroups(page);
   return panel;
+}
+
+export async function expandSettingsGroups(page) {
+  const scroll = settingsPanel(page).locator('.developer-settings-scroll');
+  const scrollTop = await scroll.evaluate(element => element.scrollTop);
+  const summaries = settingsPanel(page).locator('.developer-settings-page:not([hidden]) .developer-settings-group:visible:not([open]) > summary');
+  while (await summaries.count()) await summaries.first().click();
+  // Opening the last group can scroll its summary into view. Keep the position
+  // established by the actual page/subpage navigation, then let the caller's
+  // input interaction scroll naturally to its control.
+  await scroll.evaluate((element, top) => { element.scrollTop = top; }, scrollTop);
 }
 
 export async function selectSettingsFor(page, labelOrPrefix) {

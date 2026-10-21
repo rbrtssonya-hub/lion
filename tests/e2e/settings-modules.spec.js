@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { expandSettingsGroups, settingsPages } from './settings-navigation.helpers.js';
 
 const key = 'nanfeng-lion:developer-settings:v1';
 const panel = page => page.getByRole('region', { name: '开发者参数设置' });
@@ -16,8 +17,9 @@ async function open(page, saved = {}) {
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveCount(0, {timeout:60000});
   await page.locator('.site-navigation [data-action="settings"]').click();
+  await expandSettingsGroups(page);
 }
-async function tab(page, name) { await panel(page).getByRole('tab', { name, exact: true }).click(); }
+async function tab(page, name) { await panel(page).getByRole('tab', { name, exact: true }).click(); await expandSettingsGroups(page); }
 async function number(page, name, value) {
   const input = panel(page).getByRole('spinbutton', {name:`${name}数值`,exact:true});
   await input.fill(String(value)); await input.press('Tab');
@@ -26,7 +28,7 @@ const stored = page => page.evaluate(key => JSON.parse(localStorage.getItem(key)
 
 test('settings separate common, home, chapter and source controls into focused pages', async ({page}) => {
   await open(page);
-  await expect(panel(page).getByRole('tablist', {name:'设置分类'}).getByRole('tab')).toHaveText(['公共模块','外观','导航','首页','章节','HDRI','资料','动画','轮播','布局']);
+  await expect(panel(page).getByRole('tablist', {name:'设置分类'}).getByRole('tab')).toHaveText(settingsPages);
   await expect(panel(page).getByRole('tabpanel')).toHaveCount(1);
   await expect(panel(page).getByRole('button', {name:'应用公共材质',exact:true})).toBeVisible();
   await tab(page, '首页');

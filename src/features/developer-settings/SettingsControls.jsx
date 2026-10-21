@@ -32,10 +32,10 @@ export function RangeControl({ name, label, value, min, max, step = 1, unit = 'p
 }
 
 export function SettingsGroup({ title, note, children }) {
-  return <section className="developer-settings-group">
-    <div className="developer-settings-group-heading"><h4>{title}</h4>{note && <small>{note}</small>}</div>
+  return <details className="developer-settings-group">
+    <summary className="developer-settings-group-heading"><h4>{title}</h4>{note && <small>{note}</small>}<span className="developer-settings-group-chevron" aria-hidden="true" /></summary>
     <div className="developer-settings-group-content">{children}</div>
-  </section>;
+  </details>;
 }
 
 export function ColorControl({ name, label, value, onChange }) {

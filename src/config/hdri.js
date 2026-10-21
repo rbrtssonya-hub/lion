@@ -4,7 +4,10 @@ export const hdriDefaults = Object.freeze({
   hdriIntensity: 1,
   hdriRotation: 0,
   hdriExposure: 0,
-  hdriLightIntensity: 1,
+  hdriLightIntensity: 0.35,
+  hdriSource: 'forest',
+  hdriUrl: '',
+  hdriFile: null,
 });
 
 export const hdriRanges = Object.freeze({
@@ -17,6 +20,9 @@ export const hdriRanges = Object.freeze({
 export function resolveHdriSettings(settings = {}) {
   const result = { ...hdriDefaults };
   if (typeof settings.hdriEnabled === 'boolean') result.hdriEnabled = settings.hdriEnabled;
+  if (['forest', 'default', 'url', 'local'].includes(settings.hdriSource)) result.hdriSource = settings.hdriSource;
+  if (typeof settings.hdriUrl === 'string') result.hdriUrl = settings.hdriUrl.trim();
+  if (typeof File !== 'undefined' && settings.hdriFile instanceof File) result.hdriFile = settings.hdriFile;
   for (const [name, [min, max, step]] of Object.entries(hdriRanges)) {
     const value = settings[name];
     if (typeof value !== 'number' || !Number.isFinite(value)) continue;

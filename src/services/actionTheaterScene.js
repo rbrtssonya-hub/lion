@@ -23,9 +23,11 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
+import { createActionTheaterDrums } from './actionTheaterDrums.js';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
 import { createLionLightingControls } from './lionLightingSettings.js';
+import { resolveViewSettings } from '../config/viewSettings.js';
 
 const mountedScenes = new WeakMap();
 const ROTATION_SPEED = Math.PI * 2 / 36;
@@ -229,12 +231,14 @@ export function createActionTheater({
   onAnchorUpdate = () => {},
   lightingSettings,
   onLightingStatus = () => {},
+  onDrumStatus = () => {},
 }) {
   mountedScenes.get(container)?.();
   const loadController = new AbortController();
   const scene = new Scene();
+  let viewSettings = resolveViewSettings(lightingSettings);
   scene.background = new Color('#080605');
-  const camera = new PerspectiveCamera(56, 1, 0.12, 45);
+  const camera = new PerspectiveCamera(viewSettings.actionFov, 1, 0.05, 100);
   camera.position.set(0, 1.6, 8.6);
   const orbitTarget = new Vector3(...THEATER_ORBIT.target);
   const screenRecords = new Map();
@@ -252,6 +256,7 @@ export function createActionTheater({
   let fullLion;
   let architecture;
   let reflection;
+  let drums;
   let animationFrame = 0;
   let loadTimeout = 0;
   let disposed = false;
@@ -401,8 +406,16 @@ export function createActionTheater({
     // Preserve the full round dais on narrow desktop/pushed layouts. The
     // circular silhouette needs 74° horizontally at the initial orbit.
     const horizontalFitFov = 2 * Math.atan(Math.tan(37 * Math.PI / 180) / camera.aspect) * 180 / Math.PI;
-    camera.fov = Math.min(110, Math.max(camera.aspect < 1.45 ? 59 : 56, horizontalFitFov));
+    camera.fov = Math.min(110, viewSettings.actionFov + Math.max(0, horizontalFitFov - 56));
     camera.updateProjectionMatrix();
+    if (controls) {
+      controls.minDistance = viewSettings.actionMinDistance;
+      controls.maxDistance = viewSettings.actionMaxDistance;
+      controls.minPolarAngle = viewSettings.actionMinPolarAngle * Math.PI / 180;
+      controls.maxPolarAngle = viewSettings.actionMaxPolarAngle * Math.PI / 180;
+      renderer.domElement.dataset.viewSettings = JSON.stringify(viewSettings);
+      renderer.domElement.dataset.cameraLimits = JSON.stringify({ min: controls.minDistance, max: controls.maxDistance, minPolar: viewSettings.actionMinPolarAngle, maxPolar: viewSettings.actionMaxPolarAngle, fov: camera.fov });
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
     if (ready) { updateAnchor(); requestFrame(); }
@@ -500,7 +513,7 @@ export function createActionTheater({
         if (fraction >= 1) focusTween = null;
       }
       controls.update();
-      camera.position.fromArray(constrainOrbit(camera.position.toArray()));
+      camera.position.fromArray(constrainOrbit(camera.position.toArray(), orbitTarget.toArray(), viewSettings));
       camera.lookAt(orbitTarget);
       camera.updateMatrixWorld();
       updateScreenDirection(now);
@@ -605,6 +618,7 @@ export function createActionTheater({
     controls?.removeEventListener('end', onControlEnd);
     controls?.dispose();
     lighting?.dispose();
+    drums?.dispose();
     screenRecords.forEach((record) => {
       record.removeVideoListeners?.();
       record.videoTexture?.dispose();
@@ -633,8 +647,20 @@ export function createActionTheater({
   }
 
   const api = {
-    setLightingSettings(value) { currentLightingSettings = value; lighting?.update(value); },
+    setLightingSettings(value) {
+      if (disposed) return;
+      currentLightingSettings = value;
+      lighting?.update(value);
+      const next = resolveViewSettings(value);
+      if (JSON.stringify(next) === JSON.stringify(viewSettings)) return;
+      viewSettings = next;
+      focusTween = null;
+      if (renderer) resize();
+      controls?.update();
+      requestFrame();
+    },
     retryHdri: () => lighting?.retry(),
+    retryDrums: () => drums?.retry(),
     setVideo,
     setVisible(value) {
       if (disposed || visible === Boolean(value)) return;
@@ -686,10 +712,6 @@ export function createActionTheater({
       controls.dampingFactor = 0.075;
       controls.rotateSpeed = 0.42;
       controls.zoomSpeed = 0.65;
-      controls.minDistance = THEATER_ORBIT.radiusMin;
-      controls.maxDistance = THEATER_ORBIT.radiusMax;
-      controls.minPolarAngle = THEATER_ORBIT.polarMin;
-      controls.maxPolarAngle = THEATER_ORBIT.polarMax;
       controls.enabled = visible;
       controls.addEventListener('start', onControlStart);
       controls.addEventListener('end', onControlEnd);
@@ -743,6 +765,23 @@ export function createActionTheater({
         renderer, scene, signal: loadController.signal, settings: currentLightingSettings,
         onStatus: onLightingStatus, requestDraw: requestFrame,
       });
+      drums = createActionTheaterDrums({
+        scene, signal: loadController.signal,
+        onReady: () => {
+          if (disposed) return;
+          renderer.domElement.dataset.drumState = 'ready';
+          renderer.domElement.dataset.drumCount = String(drums.stats.count ?? 4);
+          onDrumStatus('ready');
+          lighting.refresh();
+          requestFrame();
+        },
+        onError: () => {
+          if (disposed) return;
+          renderer.domElement.dataset.drumState = 'error';
+          onDrumStatus('error');
+        },
+      });
+      renderer.domElement.dataset.drumState = 'loading';
       loadTimeout = setTimeout(() => fail(new Error('巨幕厅载入超时，请检查网络后重新载入')), 60_000);
       const response = await fetch(modelUrl, { signal: loadController.signal });
       if (!response.ok) throw new Error(`巨幕厅请求失败：HTTP ${response.status}`);
@@ -833,7 +872,7 @@ export function createActionTheater({
       pendingVideos.clear();
       room.updateMatrixWorld(true);
       lighting.refresh();
-      await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });
+      await lighting.ready.catch(error => { if (error.name === 'AbortError' && loadController.signal.aborted) throw error; });
       if (disposed) return;
       // r160 compileAsync owns uncancellable timers that read material programs
       // after disposal. Submit compilation synchronously after header motion;

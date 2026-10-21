@@ -1,0 +1,370 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "4da1116",
+  "branch": "main",
+  "initialWorkingTree": "Only unrelated untracked model/; no tracked or staged changes",
+  "environment": {
+    "os": "Windows",
+    "node": "v24.16.0",
+    "npm": "12.0.1",
+    "browser": "Playwright Chromium desktop",
+    "preview": "http://127.0.0.1:4187",
+    "targets": "Desktop only"
+  },
+  "implementation": {
+    "viewDefaults": {
+      "structureMinDistanceRatio": 0.55,
+      "structureMaxDistanceRatio": 2.5,
+      "structureFov": 34,
+      "actionMinDistance": 3,
+      "actionMaxDistance": 14,
+      "actionMinPolarAngle": 1,
+      "actionMaxPolarAngle": 179,
+      "actionFov": 56
+    },
+    "hdriDefault": "forest.exr 1024x512, auxiliary lights .35",
+    "hairDataUnchanged": {
+      "groups": 33,
+      "strands": 2295421,
+      "points": 19957105
+    },
+    "drums": {
+      "count": 4,
+      "batches": 7,
+      "heightMetres": 2,
+      "trianglesPerDrum": 295280
+    }
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 70,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 4907.815,
+    "log": "tmp/view-scene-core-final.log",
+    "stage": "After final screenshots were registered"
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 335,
+    "durationSeconds": 1.83,
+    "result": "passed",
+    "warning": "Existing shared Three chunk 538.04 kB",
+    "stage": "After final thumb correction"
+  },
+  "production": {
+    "command": "PLAYWRIGHT_PREVIEW_PORT=4187 npx playwright test --config playwright.preview.config.js tests/e2e/view-scene-settings.spec.js tests/e2e/settings-view-source.spec.js tests/e2e/hdri-settings.spec.js tests/e2e/structure-interaction.spec.js tests/e2e/structure-atlas.spec.js:160 tests/e2e/structure-atlas.spec.js:178 tests/e2e/settings-modules.spec.js tests/e2e/action-theater.spec.js:42 --reporter=line,json --output=tmp/e2e-view-scene-production",
+    "stats": {
+      "startTime": "2026-10-21T14:36:55.181Z",
+      "duration": 341179.831,
+      "expected": 24,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "action-theater.spec.js",
+        "line": 42,
+        "title": "真实鼠标环绕驱动主屏和文案，停止拖动后保留视角",
+        "status": "passed",
+        "durationMs": 22588
+      },
+      {
+        "file": "hdri-settings.spec.js",
+        "line": 107,
+        "title": "HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数",
+        "status": "passed",
+        "durationMs": 19838
+      },
+      {
+        "file": "hdri-settings.spec.js",
+        "line": 132,
+        "title": "结构页真实EXR强度、旋转和曝光改变像素，同一画布保留完整毛发",
+        "status": "passed",
+        "durationMs": 19397
+      },
+      {
+        "file": "hdri-settings.spec.js",
+        "line": 188,
+        "title": "动作共享HDRI并实时改变实际模型照明，跨章请求复用且退出释放场景",
+        "status": "passed",
+        "durationMs": 11976
+      },
+      {
+        "file": "hdri-settings.spec.js",
+        "line": 251,
+        "title": "结构HDRI下载失败保留模型，原画布重试恢复环境光",
+        "status": "passed",
+        "durationMs": 8525
+      },
+      {
+        "file": "hdri-settings.spec.js",
+        "line": 251,
+        "title": "动作HDRI下载失败保留模型，原画布重试恢复环境光",
+        "status": "passed",
+        "durationMs": 11205
+      },
+      {
+        "file": "settings-modules.spec.js",
+        "line": 29,
+        "title": "settings separate common, home, chapter and source controls into focused pages",
+        "status": "passed",
+        "durationMs": 9217
+      },
+      {
+        "file": "settings-modules.spec.js",
+        "line": 46,
+        "title": "common material applies only on command to selected surfaces, preserving dimensions and old preferences",
+        "status": "passed",
+        "durationMs": 16274
+      },
+      {
+        "file": "settings-modules.spec.js",
+        "line": 65,
+        "title": "shared material and independent panels reset correctly, with scoped keyboard navigation",
+        "status": "passed",
+        "durationMs": 9135
+      },
+      {
+        "file": "settings-modules.spec.js",
+        "line": 86,
+        "title": "settings navigation and active controls remain usable at 280-760px panel widths",
+        "status": "passed",
+        "durationMs": 12142
+      },
+      {
+        "file": "settings-modules.spec.js",
+        "line": 102,
+        "title": "changing a subpage starts at its heading and reopening retains that subpage",
+        "status": "passed",
+        "durationMs": 9689
+      },
+      {
+        "file": "settings-view-source.spec.js",
+        "line": 26,
+        "title": "设置分组首次打开和重新打开默认折叠，支持键盘展开收起",
+        "status": "passed",
+        "durationMs": 8469
+      },
+      {
+        "file": "settings-view-source.spec.js",
+        "line": 45,
+        "title": "视角独立页保存缩放与俯仰边界，重置不覆盖其他参数",
+        "status": "passed",
+        "durationMs": 16284
+      },
+      {
+        "file": "settings-view-source.spec.js",
+        "line": 62,
+        "title": "HDRI保留森林与链接选择，本地文件不会写入持久化存储",
+        "status": "passed",
+        "durationMs": 16922
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "line": 160,
+        "title": "点击真实模型表面同时切换图鉴、结构高亮和聚焦，保留实际镜头放大",
+        "status": "passed",
+        "durationMs": 6608
+      },
+      {
+        "file": "structure-atlas.spec.js",
+        "line": 178,
+        "title": "前后导航双向循环并复用模型，选择停止自动旋转且复原恢复整体",
+        "status": "passed",
+        "durationMs": 7153
+      },
+      {
+        "file": "structure-interaction.spec.js",
+        "line": 45,
+        "title": "结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和重入仍更新画面",
+        "status": "passed",
+        "durationMs": 25642
+      },
+      {
+        "file": "structure-interaction.spec.js",
+        "line": 99,
+        "title": "视口部件标注随模型转动并连接结构锚点，点击同步右侧目录与聚焦",
+        "status": "passed",
+        "durationMs": 15540
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 93,
+        "title": "结构真实滚轮到达有限远近边界，视角参数原位生效并保存",
+        "status": "passed",
+        "durationMs": 14456
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 119,
+        "title": "动作真实拖拽可俯视和仰视，设置限幅生效，四鼓和狮头进度标记可用",
+        "status": "passed",
+        "durationMs": 15075
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 165,
+        "title": "真实森林、内置4K和URL环境原位切换，保持相机及完整模型",
+        "status": "passed",
+        "durationMs": 18730
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 186,
+        "title": "本地真实EXR和有效RGBE文件能解码，替换后撤销旧URL且刷新回森林",
+        "status": "passed",
+        "durationMs": 24576
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 218,
+        "title": "自定义HDRI解码错误显示重试，原画布恢复且不重载模型",
+        "status": "passed",
+        "durationMs": 8948
+      },
+      {
+        "file": "view-scene-settings.spec.js",
+        "line": 240,
+        "title": "动作离页释放WebGL，迟到HDRI不能恢复已移除画布，重入仍正常",
+        "status": "passed",
+        "durationMs": 10352
+      }
+    ],
+    "metrics": {
+      "structure-pixel-metrics": {
+        "intensity": {
+          "meanAbsolute": 40.94287789209664,
+          "changedFraction": 0.2865958998771499,
+          "lightIncrease": 40.94287789209664
+        },
+        "exposure": {
+          "meanAbsolute": 29.496493652743652,
+          "changedFraction": 0.28657670454545453,
+          "lightIncrease": 29.496493652743652
+        },
+        "rotation": {
+          "meanAbsolute": 9.072558353808354,
+          "changedFraction": 0.26111409705159705,
+          "lightIncrease": -8.956234643734645
+        },
+        "enabled": {
+          "meanAbsolute": 19.358316057534807,
+          "changedFraction": 0.285645730958231,
+          "lightIncrease": 19.358316057534807
+        },
+        "auxiliary": {
+          "meanAbsolute": 29.4216606521294,
+          "changedFraction": 0.28649992321867324,
+          "lightIncrease": 29.4216606521294
+        }
+      },
+      "theater-pixel-metrics": {
+        "intensity": {
+          "meanAbsolute": 103.32655296510718,
+          "changedFraction": 0.9965576592082617,
+          "lightIncrease": 101.30558598028477
+        },
+        "exposure": {
+          "meanAbsolute": 102.90622229176446,
+          "changedFraction": 0.9851353465811297,
+          "lightIncrease": 101.8544307098524
+        },
+        "rotationDelta": 0.0659799999999997
+      },
+      "actual-orbit-and-progress": {
+        "overhead": 1.0000000000013582,
+        "underside": 129.20292787468023,
+        "head": {
+          "url": "http://127.0.0.1:4187/assets/entry/nav-lion-head.png",
+          "width": 1859,
+          "height": 1976
+        }
+      }
+    },
+    "fullLocalReport": "tmp/view-scene-production.json",
+    "stage": "24-case single run before final thumb URL correction; functional assertions passed but did not detect the CSS-relative image failure"
+  },
+  "developmentStages": [
+    {
+      "scope": "settings modules and three new settings tests",
+      "firstRun": "7/8; helper opening a group changed scroll position",
+      "finalAffectedRun": "4/4 after restoring actual pre-expand scrollTop; remaining first-run cases passed"
+    },
+    {
+      "scope": "existing action three files",
+      "firstRun": "10/10",
+      "secondRun": "Interrupted by GPU scheduling after integrated case passed; not a complete run",
+      "changedOrbitCase": "1/1, 25.0 seconds, actual wheel reaches 3m and 14m"
+    },
+    {
+      "scope": "six new GPU integration tests",
+      "firstRun": "5/6; reverse drag was too short",
+      "secondActionRun": "Origin over bottom-left controls intercepted the drag",
+      "finalActionRun": "1/1, 23.2 seconds after verifying canvas hit and moving gesture to clear central column; no product change for these failures"
+    }
+  ],
+  "assetChecks": {
+    "baselineManifestRecordsPreserved": 560,
+    "publicDistCompared": 133,
+    "publicDistMismatch": [],
+    "finalManifestRecords": 569
+  },
+  "independentEvidence": [
+    "source/references/action-drum-browser-2026-10-21.json",
+    "source/references/action-drum-integrated-2026-10-21.json",
+    "source/references/lion-forest-hdri-2026-10-21.md",
+    "source/references/view-scene-visual-2026-10-21.json",
+    "source/references/view-scene-thumb-path-2026-10-21.json"
+  ],
+  "review": {
+    "code": "Independent read-only review found no blocking issue; focus-distance documentation clarified",
+    "visual": {
+      "report": "source/references/view-scene-visual-2026-10-21.json",
+      "status": "Four final production screenshots individually inspected by root and QA agent",
+      "pageErrors": [],
+      "thumb": "Absolute CSS resource resolves correct image/png; no /assets/assets path or PNG returning HTML"
+    }
+  },
+  "limits": [
+    "Selected desktop Chromium integration set; not full repository E2E or other hardware/browser/EXE verification",
+    "WebGL strand shading, self-occlusion, material and display transforms are not pixel-identical to Blender",
+    "Legacy explicit lighting preferences are retained; HDRI reset applies new defaults",
+    "Extreme below-floor viewing is geometrically occluded by the physical stage/floor",
+    "Pre-existing strict autoplay-spec observation gap was outside this change"
+  ],
+  "finalThumbCorrection": {
+    "cause": "External CSS resolved relative custom property URL under /assets/assets; 200 text/html SPA fallback",
+    "code": "ActionPage sets an absolute document-base URL",
+    "regression": "New orbit/progress case now requires absolute HTTP(S) thumb URL; final visual QA also audits CSS resource type and inspects rendered thumb",
+    "productionStats": {
+      "startTime": "2026-10-21T14:46:09.797Z",
+      "duration": 23519.42,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素",
+        "status": "passed",
+        "durationMs": 11758
+      },
+      {
+        "title": "动作真实拖拽可俯视和仰视，设置限幅生效，四鼓和狮头进度标记可用",
+        "status": "passed",
+        "durationMs": 10926
+      }
+    ],
+    "evidence": "source/references/view-scene-thumb-path-2026-10-21.json"
+  },
+  "memory": {
+    "command": "python wiki_memory/工具/memory.py index --project . --memory-dir wiki_memory --apply; python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready",
+    "pages": 100,
+    "errors": 0,
+    "warnings": "4 inherited historical source-path notices",
+    "result": "passed"
+  }
+}

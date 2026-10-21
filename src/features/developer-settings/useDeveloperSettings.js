@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion, migrateStructureAtlas, structureAtlasVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
+import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -46,6 +47,7 @@ export const defaultDeveloperSettings = Object.freeze({
   pushPage: true,
   ...surfaceDefaults,
   ...hdriDefaults,
+  ...viewDefaults,
 });
 
 const ranges = {
@@ -69,6 +71,7 @@ const ranges = {
   carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
   ...surfaceRanges,
   ...hdriRanges,
+  ...viewRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {
@@ -83,6 +86,17 @@ export function normalizeDeveloperSetting(name, value) {
   if (name === 'navigationEasing') {
     return ['smooth', 'swift', 'soft'].includes(value) ? value : defaultDeveloperSettings.navigationEasing;
   }
+  if (name === 'hdriSource') return ['default', 'forest', 'url', 'local'].includes(value) ? value : hdriDefaults.hdriSource;
+  if (name === 'hdriUrl') {
+    if (typeof value !== 'string') return '';
+    const url = value.trim();
+    if (!url || url.length > 2048 || /^(?:javascript|data|file|blob):/i.test(url)) return '';
+    try {
+      const parsed = new URL(url, 'https://local.invalid/');
+      return ['http:', 'https:'].includes(parsed.protocol) ? url : '';
+    } catch { return ''; }
+  }
+  if (name === 'hdriFile') return typeof File !== 'undefined' && value instanceof File ? value : null;
   const [min, max, step] = ranges[name];
   if (typeof value !== 'number' || !Number.isFinite(value)) return defaultDeveloperSettings[name];
   return snapSettingsRange(value, min, max, step);
@@ -107,6 +121,9 @@ function resolveSettings(settings) {
 export function restoreDeveloperSettings(saved) {
   if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return resolveSettings();
   const normalized = Object.fromEntries(Object.keys(defaultDeveloperSettings).map(name => [name, normalizeDeveloperSetting(name, saved[name])]));
+  // File objects only live in the current page; a reload uses the bundled map.
+  normalized.hdriFile = null;
+  if (normalized.hdriSource === 'local') normalized.hdriSource = hdriDefaults.hdriSource;
   // Preserve the previously shared reading-paper preference when splitting it into four surfaces.
   for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) {
     if (!Object.hasOwn(saved, `${prefix}Transparency`) && typeof saved.archivePanelTransparency === 'number' && Number.isFinite(saved.archivePanelTransparency)) {
@@ -133,7 +150,11 @@ export function useDeveloperSettings() {
   const resolvedSettings = resolveSettings(settings);
   useEffect(() => {
     if (!shouldPersist.current) return;
-    try { localStorage.setItem(storageKey, JSON.stringify(resolveSettings(settings))); }
+    try {
+      const { hdriFile, ...persisted } = resolveSettings(settings);
+      if (persisted.hdriSource === 'local') persisted.hdriSource = hdriDefaults.hdriSource;
+      localStorage.setItem(storageKey, JSON.stringify(persisted));
+    }
     catch { /* Live controls remain usable when browser storage is unavailable. */ }
   }, [settings]);
 

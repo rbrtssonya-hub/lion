@@ -192,7 +192,26 @@
   color: #7e251b;
   font-size: 13px;
   font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.developer-settings-group-heading::-webkit-details-marker { display: none; }
+.developer-settings-group-heading:focus-visible { outline: 2px solid #a85c2e; outline-offset: 2px; border-radius: 5px; }
+.developer-settings-group[open] > .developer-settings-group-heading {
   border-bottom: 1px solid rgba(157, 104, 60, calc(.16 * var(--sidebar-decoration-opacity, .86)));
+}
+.developer-settings-group-chevron {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+.developer-settings-group[open] > summary .developer-settings-group-chevron {
+  transform: rotate(225deg) translate(-2px,-1px);
 }
 
 .developer-settings-group-heading h4 {
@@ -416,6 +435,10 @@
 .developer-range-heading label { flex: 1 1 110px; font-size: 13px; line-height: 1.6; }
 .developer-range-value { margin-left: auto; }
 .developer-settings-group-content { min-width: 0; }
+.developer-settings-source-control { display: grid; gap: 8px; min-width: 0; margin: 0; }
+.developer-settings-source-control > label { font-size: 13px; }
+.developer-settings-source-control input { box-sizing: border-box; min-width: 0; width: 100%; font: 12px/1.6 var(--sans); }
+.developer-settings-source-control input[type='text'] { padding: 8px; border: 1px solid rgba(157,104,60,.3); border-radius: 5px; background: #fffaf0; color: #713221; }
 .developer-settings-panel :is(select, input[type='number']) { max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {

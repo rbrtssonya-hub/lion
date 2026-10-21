@@ -3362,6 +3362,60 @@
       "path": "source/reviews/model/2026-10-21-structure-atlas-main/main-900.png",
       "bytes": 802235,
       "sha256": "300519ae2ecdd2a73acaa4d5682d79ced3b382ea4a92fc340e2aa691f34d43c9"
+    },
+    {
+      "from": "User drum blend / Blender bundled CC0 forest / actual browser QA, 2026-10-21",
+      "path": "source/models/action-drum/gu.blend",
+      "bytes": 43214735,
+      "sha256": "de6fc54cb1d0943e839a1579bc950d4137f12e09bd74fd891defa8abf8af5ac2"
+    },
+    {
+      "from": "User drum blend / Blender bundled CC0 forest / actual browser QA, 2026-10-21",
+      "path": "source/public/assets/models/lion-action-drum.glb",
+      "bytes": 32673864,
+      "sha256": "2cf218fc63031a6fc5769a451166d82616315d43b5dc353a8e9e7837c8349d52"
+    },
+    {
+      "from": "User drum blend / Blender bundled CC0 forest / actual browser QA, 2026-10-21",
+      "path": "source/public/assets/environments/forest.exr",
+      "bytes": 552641,
+      "sha256": "bdf2298244affa0f85509380fd130ac6d4dfaa3c856df065998f7f4c1a93dc0d"
+    },
+    {
+      "from": "User drum blend / Blender bundled CC0 forest / actual browser QA, 2026-10-21",
+      "path": "source/reviews/action-drum/2026-10-21/isolated-web-drum.png",
+      "bytes": 216258,
+      "sha256": "9f129bef8bc4e951cbb56a417e01aeddf970e737c2e77790daa75f00cebff3b9"
+    },
+    {
+      "from": "Actual Chromium desktop integrated action scene review, 2026-10-21",
+      "path": "source/reviews/action-drum/2026-10-21/integrated-theater.png",
+      "bytes": 2272536,
+      "sha256": "907ea952e10a071c7d52e49e730df04bbb4b58e3fa80efb1fad726c1538e3066"
+    },
+    {
+      "from": "Actual Chromium production review after absolute progress-thumb URL correction, 2026-10-21",
+      "path": "source/reviews/view-scene-settings/2026-10-21/action-production.png",
+      "bytes": 2288936,
+      "sha256": "80778bad008c48000b421d97723a7219edc3c8fc5aa14fc734b9f9a8b76b4e4f"
+    },
+    {
+      "from": "Actual Chromium production review after absolute progress-thumb URL correction, 2026-10-21",
+      "path": "source/reviews/view-scene-settings/2026-10-21/hdri-production.png",
+      "bytes": 2027706,
+      "sha256": "8555564b2b5a1660819948990f34d74638f9de37878edae9baf84ebbf74786fb"
+    },
+    {
+      "from": "Actual Chromium production review after absolute progress-thumb URL correction, 2026-10-21",
+      "path": "source/reviews/view-scene-settings/2026-10-21/settings-collapsed-production.png",
+      "bytes": 1992907,
+      "sha256": "df6dd385a8c90554084c7ae7c412400cbe23b5de9259d391ed964d4562e1150d"
+    },
+    {
+      "from": "Actual Chromium production review after absolute progress-thumb URL correction, 2026-10-21",
+      "path": "source/reviews/view-scene-settings/2026-10-21/structure-production.png",
+      "bytes": 2400241,
+      "sha256": "445c6ab4f5399daa96f569db8bb2d4483070715a00613eed1a2ed3d69c81f6d3"
     }
   ]
 }

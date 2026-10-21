@@ -123,7 +123,7 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await expect(trigger(page)).toBeFocused();
 });
 
-test('十个主分类纵向排列，主子页面键盘切换并保留已调参数与当前类别', async ({ page }) => {
+test('设置主分类纵向排列，主子页面键盘切换并保留已调参数与当前类别', async ({ page }) => {
   await loadPage(page);
   await openSettings(page);
   const categories = panel(page).getByRole('tablist', { name: '设置分类', exact: true });
@@ -131,7 +131,7 @@ test('十个主分类纵向排列，主子页面键盘切换并保留已调参�
   await expect(tabs).toHaveText(settingsPages);
   await expect(categories).toHaveAttribute('aria-orientation', 'vertical');
   expect(await tabs.evaluateAll(elements => elements.every((element, index) => index === 0 || element.getBoundingClientRect().top > elements[index - 1].getBoundingClientRect().top))).toBe(true);
-  await expect(panel(page).locator('.developer-settings-page')).toHaveCount(10);
+  await expect(panel(page).locator('.developer-settings-page')).toHaveCount(settingsPages.length);
   await expect(panel(page).locator('.developer-settings-page:visible')).toHaveCount(1);
   await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
   await selectSettingsFor(page, '首页阅读底板透明度数值');
@@ -319,7 +319,7 @@ test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢
   }
 });
 
-test('280px侧栏完整显示十个主分类，轮播滑块及数值校验范围与步长', async ({ page }) => {
+test('280px侧栏完整显示设置主分类，轮播滑块及数值校验范围与步长', async ({ page }) => {
   await loadPage(page);
   await openSettings(page);
   await editNumber(page, '设置面板宽度', 280);

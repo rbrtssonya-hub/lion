@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAction, prepare, jsonAttribute, canvasPixels } from './action-theater.helpers.js';
 import { assetPaths } from '../../src/config/assetPaths.js';
 import { THEATER_ORBIT } from '../../src/services/actionTheaterMath.js';
+import { viewDefaults } from '../../src/config/viewSettings.js';
 
 test('巨幕厅实际载入独立场景、四面真视频纹理及可见彩色像素', async ({ page }) => {
   const errors = [], failed = [], requests = [];
@@ -58,15 +59,17 @@ test('真实鼠标环绕驱动主屏和文案，停止拖动后保留视角', as
   const settled = await jsonAttribute(scene(page), 'data-camera-position');
   expect(Math.hypot(...settled.map((value, index) => value - finalPosition[index]))).toBeLessThan(.04);
   expect(await scene(page).getAttribute('data-active-screen')).toBe(id);
-  await page.mouse.wheel(0, 8000);
-  await expect.poll(async () => Number(await scene(page).getAttribute('data-camera-radius'))).toBeLessThanOrEqual(THEATER_ORBIT.radiusMax + .001);
-  expect(Number(await scene(page).getAttribute('data-camera-radius'))).toBeGreaterThanOrEqual(THEATER_ORBIT.radiusMin - .001);
+  // Repeated real wheel events must reach the public zoom bounds; checking only
+  // that the radius falls inside a broad interval would also accept old clamps.
+  for (let index = 0; index < 30; index += 1) await page.mouse.wheel(0, 800);
+  await expect.poll(async () => Number(await scene(page).getAttribute('data-camera-radius'))).toBeCloseTo(viewDefaults.actionMaxDistance, 2);
+  for (let index = 0; index < 65; index += 1) await page.mouse.wheel(0, -800);
+  await expect.poll(async () => Number(await scene(page).getAttribute('data-camera-radius'))).toBeCloseTo(viewDefaults.actionMinDistance, 2);
   const limited = await jsonAttribute(scene(page), 'data-camera-position');
-  expect(limited[1]).toBeGreaterThanOrEqual(THEATER_ORBIT.heightMin - .001); expect(limited[1]).toBeLessThanOrEqual(THEATER_ORBIT.heightMax + .001);
   const offset = limited.map((value, index) => value - THEATER_ORBIT.target[index]);
   const polar = Math.acos(offset[1] / Math.hypot(...offset));
-  expect(polar).toBeGreaterThanOrEqual(THEATER_ORBIT.polarMin - .001);
-  expect(polar).toBeLessThanOrEqual(THEATER_ORBIT.polarMax + .001);
+  expect(polar).toBeGreaterThanOrEqual(viewDefaults.actionMinPolarAngle * Math.PI / 180 - .001);
+  expect(polar).toBeLessThanOrEqual(viewDefaults.actionMaxPolarAngle * Math.PI / 180 + .001);
 });
 
 test('四动作切向独立16:9显示面，主辅亮度渐变并保留各视频位置', async ({ page }) => {

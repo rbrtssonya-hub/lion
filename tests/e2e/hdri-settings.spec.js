@@ -126,7 +126,7 @@ test('HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数', 
   await expect(settingsPanel(page).getByRole('checkbox', { name: 'HDRI环境照明', exact: true })).not.toBeChecked();
   for (const name of Object.keys(labels)) await expect(settingsPanel(page).getByRole('spinbutton', { name: `${labels[name]}数值`, exact: true })).toHaveValue(String(chosen[name]));
   await settingsPanel(page).getByRole('button', { name: '恢复HDRI默认参数', exact: true }).click();
-  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey)).toMatchObject({ ...hdriDefaults, panelWidth: 372, headerTransparency: 37 });
+  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey)).toMatchObject({ ...Object.fromEntries(Object.entries(hdriDefaults).filter(([name]) => name !== 'hdriFile')), panelWidth: 372, headerTransparency: 37 });
 });
 
 test('结构页真实EXR强度、旋转和曝光改变像素，同一画布保留完整毛发', async ({ page }, testInfo) => {
@@ -176,7 +176,7 @@ test('结构页真实EXR强度、旋转和曝光改变像素，同一画布保�
   expect(auxiliary.lightIncrease).toBeGreaterThan(5);
   expect(await original.evaluate(node => node === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await expectCompleteHair(canvas);
-  expect(requests.filter(path => path.endsWith(assetPaths.lionHdri))).toHaveLength(1);
+  expect(requests.filter(path => path.endsWith(assetPaths.lionForestHdri))).toHaveLength(1);
   expect(requests.filter(path => path.endsWith(assetPaths.model))).toHaveLength(1);
   expect(errors).toEqual([]);
   await testInfo.attach('structure-pixel-metrics', { body: JSON.stringify({ intensity, exposure, rotation, enabled, auxiliary }, null, 2), contentType: 'application/json' });
@@ -236,7 +236,7 @@ test('动作共享HDRI并实时改变实际模型照明，跨章请求复用且�
   await expect.poll(() => original.evaluate(node => !node.isConnected && (node.getContext('webgl2') || node.getContext('webgl')).isContextLost())).toBe(true);
   expect(await structure.evaluate(node => node === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await expectApplied(modelCanvas(page), { hdriIntensity: 3, hdriRotation: -90, hdriExposure: 2 });
-  expect(requests.filter(path => path.endsWith(assetPaths.lionHdri))).toHaveLength(1);
+  expect(requests.filter(path => path.endsWith(assetPaths.lionForestHdri))).toHaveLength(1);
   for (const [name, path] of Object.entries(assetPaths)) {
     if (name === 'model' || name === 'modelHair' || /^lionHair\d+$/.test(name)) expect(requests.filter(request => request.endsWith(path)), name).toHaveLength(1);
   }
@@ -252,7 +252,7 @@ for (const route of ['model', 'action']) {
     let failed = true;
     const requests = [];
     page.on('request', request => requests.push(new URL(request.url()).pathname));
-    await page.route(`**/${assetPaths.lionHdri}`, route => failed ? route.fulfill({ status: 503, body: 'EXR unavailable' }) : route.continue());
+    await page.route(`**/${assetPaths.lionForestHdri}`, route => failed ? route.fulfill({ status: 503, body: 'EXR unavailable' }) : route.continue());
     await prepare(page); await page.goto(`/#/${route}`); await waitStartup(page);
     const canvas = route === 'model' ? modelCanvas(page) : theaterCanvas(page);
     await expect(canvas).toHaveAttribute('data-hdri-state', 'error', { timeout: 50_000 });
@@ -265,6 +265,6 @@ for (const route of ['model', 'action']) {
     await expect(retry).toHaveCount(0); await expectCompleteHair(canvas);
     expect(await original.evaluate((node, selector) => node === document.querySelector(selector), route === 'model' ? '#sceneContainer canvas' : '#chapterStage canvas')).toBe(true);
     expect(requests.filter(path => path.endsWith(assetPaths.model))).toHaveLength(modelRequests);
-    expect(requests.filter(path => path.endsWith(assetPaths.lionHdri)).length).toBeGreaterThanOrEqual(2);
+    expect(requests.filter(path => path.endsWith(assetPaths.lionForestHdri)).length).toBeGreaterThanOrEqual(2);
   });
 }

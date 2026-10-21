@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-21新增独立“视角”设置页，结构缩放按整体/聚焦部件标准观看距离设置有限阈值，动作取消旧室内高度夹取并开放1–179°极角。HDRI默认采用Blender真实forest.exr与0.35倍补光，可改预设、URL或当前会话本地EXR/HDR；源File/blob不持久化。参数组默认折叠，动作四角使用用户原鼓模型，进度手柄复用已有狮头。配置入口为 `src/config/viewSettings.js`、`src/config/hdri.js`，场景鼓独立为 `src/services/actionTheaterDrums.js`；回归为 `view-scene-settings.spec.js`、`settings-view-source.spec.js` 及原结构/动作/HDRI相关用例。来源、实时渲染与Blender的差异及本轮验证入口见[实施说明](../source/references/view-scene-settings-2026-10-21.md)。
+
 本页说明日常开发方式；当前进度和验证结果由 [工程记忆](../wiki_memory/README.md) 维护。
 
 自2026-10-14起，后续开发与验收仅以电脑端为目标，不考虑手机端适配或专项手机回归；既有手机相关代码与历史验证不作为本轮验收范围。

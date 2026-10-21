@@ -18,6 +18,7 @@ import {
   WebGLRenderTarget,
 } from 'three';
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { media } from '../config/media.js';
 
 // Only decoded CPU pixels are shared. Every scene/renderer owns its own GPU
@@ -27,7 +28,7 @@ const rotationDelay = 140;
 const requestTimeout = 30_000;
 const abortError = () => new DOMException('HDRI 载入已取消', 'AbortError');
 
-async function acquireSource(url, signal) {
+async function acquireSource(url, signal, format) {
   if (signal.aborted) throw abortError();
   let entry = decodedSources.get(url);
   if (!entry) {
@@ -43,10 +44,13 @@ async function acquireSource(url, signal) {
         if (!response.ok) throw new Error(`HDRI 请求失败：HTTP ${response.status}`);
         const bytes = await response.arrayBuffer();
         if (entry.controller.signal.aborted) throw abortError();
-        const source = new EXRLoader().setDataType(HalfFloatType).parse(bytes);
+        const radiance = new Uint8Array(bytes)[0] === 35 || format === 'hdr';
+        const loader = radiance ? new RGBELoader() : new EXRLoader();
+        const source = loader.setDataType(HalfFloatType).parse(bytes);
+        source.flipY = radiance;
         if (entry.controller.signal.aborted) throw abortError();
         if (!source.data || !source.width || !source.height || source.width !== source.height * 2) {
-          throw new Error('HDRI 必须是完整的 2:1 经纬度 EXR 图像');
+          throw new Error('HDRI 必须是完整的 2:1 经纬度 EXR 或 HDR 图像');
         }
         return source;
       } finally {
@@ -105,6 +109,8 @@ export function createLionHdriEnvironment({
   renderer,
   scene,
   signal,
+  sourceUrl = media.lionHdri,
+  sourceFormat = 'exr',
   settings = {},
   onUpdate = () => {},
   onError = () => {},
@@ -127,7 +133,7 @@ export function createLionHdriEnvironment({
   const snapshot = () => ({
     phase,
     enabled,
-    source: media.lionHdri,
+    source: sourceUrl,
     width: lease?.source.width ?? null,
     height: lease?.source.height ?? null,
     requestedRotation,
@@ -145,13 +151,13 @@ export function createLionHdriEnvironment({
     sourceTexture = new DataTexture(source.data, source.width, source.height, source.format, source.type);
     sourceTexture.name = 'Lion.HDRI.Source';
     sourceTexture.mapping = EquirectangularReflectionMapping;
-    sourceTexture.colorSpace = source.colorSpace;
+    sourceTexture.colorSpace = source.colorSpace ?? LinearSRGBColorSpace;
     sourceTexture.minFilter = LinearFilter;
     sourceTexture.magFilter = LinearFilter;
     sourceTexture.wrapS = RepeatWrapping;
     sourceTexture.wrapT = ClampToEdgeWrapping;
     sourceTexture.generateMipmaps = false;
-    sourceTexture.flipY = false; // Matches EXRLoader.load(), whose parse flips scanlines.
+    sourceTexture.flipY = source.flipY; // EXR parse flips scanlines; RGBE load flips at upload.
     sourceTexture.needsUpdate = true;
   }
 
@@ -273,7 +279,7 @@ export function createLionHdriEnvironment({
     notify();
     loading = (async () => {
       if (!lease) {
-        const acquired = await acquireSource(media.lionHdri, controller.signal);
+        const acquired = await acquireSource(sourceUrl, controller.signal, sourceFormat);
         if (disposed) { acquired.release(); throw abortError(); }
         lease = acquired;
       }

@@ -71,7 +71,7 @@ test('migration snapshot preserves the size and SHA256 of every archived binary 
 });
 
 test('public assets include configured media and exclude private creative or review files', () => {
-  const runtimeMedia = new Set(Object.values(assetPaths));
+  const runtimeMedia = new Set([...Object.values(assetPaths), 'assets/environments/blender-studiolights-LICENSE.txt']);
   assert.ok(runtimeMedia.size > 0);
   for (const [name, path] of Object.entries(assetPaths)) {
     const file = containedPath(publicRoot, path);

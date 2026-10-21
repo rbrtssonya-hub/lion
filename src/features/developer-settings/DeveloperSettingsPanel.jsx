@@ -1,6 +1,8 @@
 import { useLayoutEffect, useId, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
+import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import HdriSourceControls from './HdriSourceControls.jsx';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
@@ -11,6 +13,7 @@ const pages = [
   { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
   { id:'chapters', label:'章节', title:'章节专属设置', note:'结构、动作与神态各有独立子页，不混入全局导航。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
+  { id:'view', label:'视角', title:'结构与动作观看视角', note:'分别调整结构模型缩放边界和动作场景的观察范围。', icon:'M2 10q8-11 16 0-8 11-16 0M7 10a3 3 0 1 0 6 0 3 3 0 1 0-6 0' },
   { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时生效并自动保存。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
   { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
   { id:'animation', label:'动画', title:'全局过渡与粒子', note:'导航变速与两套首页导航的粒子开关；书册时长在首页。', icon:'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
@@ -48,6 +51,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   };
   const range = (name,label,min,max,step=1,unit='px') => <RangeControl name={name} label={label} value={settings[name]} min={min} max={max} step={step} unit={unit} onChange={onChange} />;
   const hdriRange = (name,label,unit) => range(name,label,...hdriRanges[name],unit);
+  const viewRange = (name,label,unit) => range(name,label,...viewRanges[name],unit);
   const surfaces = prefixes => surfaceDefinitions.filter(surface => prefixes.includes(surface.prefix)).map(surface => {
     const {prefix,label,heightStep=10} = surface;
     return <SettingsGroup key={prefix} title={label} note="独立设置">
@@ -116,9 +120,28 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup>}
       </>}</SettingsSubpages>;
       case 'sources': return surfaces(['cultureSources','cultureSourceCard']);
+      case 'view': return <>
+        <SettingsGroup title="结构模型视角" note="缩放阈值">
+          {viewRange('structureMinDistanceRatio','结构最近观看距离','×')}
+          {viewRange('structureMaxDistanceRatio','结构最远观看距离','×')}
+          {viewRange('structureFov','结构镜头视野','°')}
+          <p className="developer-settings-note">距离以整体标准观看距离为基准；聚焦部件时，最近距离按该部件的标准观看距离计算。最近距离限制放大，最远距离限制缩小；窗口变化时同步适配。</p>
+        </SettingsGroup>
+        <SettingsGroup title="动作场景视角" note="自由观察">
+          {viewRange('actionMinDistance','动作最近观看距离','m')}
+          {viewRange('actionMaxDistance','动作最远观看距离','m')}
+          {viewRange('actionMinPolarAngle','动作俯视角度下限','°')}
+          {viewRange('actionMaxPolarAngle','动作仰视角度上限','°')}
+          {viewRange('actionFov','动作镜头视野','°')}
+          <p className="developer-settings-note">默认开放接近完整的俯仰范围；极角0°为正上方，90°为水平，180°为正下方。</p>
+        </SettingsGroup>
+        <button type="button" className="developer-settings-reset" onClick={() => {
+          for (const [name,value] of Object.entries(viewDefaults)) onChange(name,value);
+        }}>恢复视角默认参数</button>
+      </>;
       case 'hdri': return <>
         <SettingsGroup title="环境贴图" note="结构 · 动作">
-          <p className="developer-settings-note">citrus_orchard_road_puresky_4k.exr</p>
+          <HdriSourceControls settings={settings} onChange={onChange} />
           <ToggleControl name="hdriEnabled" label="HDRI环境照明" value={settings.hdriEnabled} onChange={onChange}/>
           <p className="developer-settings-note">贴图只用于照明与反射，保留结构页背景与动作剧场场景。</p>
         </SettingsGroup>
@@ -134,6 +157,10 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           <button type="button" className="developer-settings-reset" onClick={() => {
             for (const [name,value] of Object.entries(hdriDefaults)) onChange(name,value);
           }}>恢复HDRI默认参数</button>
+        </SettingsGroup>
+        <SettingsGroup title="材质对照" note="Blender与网页">
+          <p className="developer-settings-note">同一HDRI可以统一环境光方向与色彩。网页实时发丝、毛发自遮挡和Blender的渲染方式仍有差异，更换forest.exr不能完全消除质感差别。</p>
+          <p className="developer-settings-note">可先用森林环境、HDRI强度1、曝光0 EV、辅助灯光0.35倍进行对照，再按画面调整。两张对照图的取景、显示变换也需要一致。</p>
         </SettingsGroup>
       </>;
       case 'animation': return <>
@@ -180,7 +207,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     <div className="developer-settings-header"><div className="developer-settings-heading"><div>
       <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
     </div><button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
-    <p className="developer-settings-intro">公共模板统一应用，页面参数独立微调。</p></div>
+    <p className="developer-settings-intro">选择分类后展开所需参数，公共模板按范围应用。</p></div>
     <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
     <div className="developer-settings-scroll" ref={scrollRef} onScroll={() => { scrollPositions.current[activePage] = scrollRef.current.scrollTop; }}>
       {pages.map(page => <div key={page.id} className="developer-settings-page" id={`${panelId}-page-${page.id}`} role="tabpanel" aria-labelledby={`${panelId}-tab-${page.id}`} tabIndex={0} hidden={activePage !== page.id}>

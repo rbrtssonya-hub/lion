@@ -1,0 +1,223 @@
+{
+  "date": "2026-10-21",
+  "blender_version": "5.1.2",
+  "source_filename": "gu(1).blend",
+  "source_archive": "source/models/action-drum/gu.blend",
+  "source_bytes": 43214735,
+  "source_sha256": "de6fc54cb1d0943e839a1579bc950d4137f12e09bd74fd891defa8abf8af5ac2",
+  "source_meshes": 359,
+  "source_evaluated_vertices": 151108,
+  "source_evaluated_triangles": 295280,
+  "source_bounds_blender_xyz": [
+    [
+      -1.25,
+      -1.149999976158142,
+      0.015000000596046448
+    ],
+    [
+      1.25,
+      1.149999976158142,
+      3.3092000484466553
+    ]
+  ],
+  "source_images": [
+    {
+      "name": "Brass_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Brass_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Brass_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Brass_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Brass_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Ebony_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Ebony_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Ebony_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Ebony_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Ebony_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Shell_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Shell_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Shell_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Shell_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Shell_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Skin_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Skin_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Skin_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Skin_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Skin_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ],
+  "output": "source/public/assets/models/lion-action-drum.glb",
+  "output_bytes": 32673864,
+  "output_sha256": "2cf218fc63031a6fc5769a451166d82616315d43b5dc353a8e9e7837c8349d52",
+  "output_meshes": 7,
+  "output_materials": 7,
+  "output_embedded_images": 12,
+  "output_triangles": 295280,
+  "policy": {
+    "source_saved": false,
+    "decimation": false,
+    "texture_resize": false,
+    "batch_by_material": true,
+    "all_source_triangles_preserved": true
+  },
+  "material_limit": "glTF exports source PBR textures, coat and authored tangent normals; the additional Blender Height/Bump microrelief is not exported. Source packed images remain intact in the archived blend.",
+  "placements": {
+    "count": 4,
+    "height_m": 2.0,
+    "floor_y": 0.015,
+    "xz": [
+      [
+        -6,
+        -6
+      ],
+      [
+        6,
+        -6
+      ],
+      [
+        -6,
+        6
+      ],
+      [
+        6,
+        6
+      ]
+    ]
+  }
+}
