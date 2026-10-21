@@ -262,15 +262,27 @@
     },
     {
       "from": "F:/数媒竞赛/醒狮素材/入场视频.mp4",
-      "path": "source/public/assets/intro/entry-intro.mp4",
+      "path": "source/video/intro/entry-intro-before-2026-10-21.mp4",
       "bytes": 17701673,
       "sha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e"
     },
     {
       "from": "F:/数媒竞赛/醒狮素材/循环视频.mp4",
-      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "path": "source/video/entry/home-lion-loop-before-2026-10-21.mp4",
       "bytes": 33463217,
       "sha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/醒狮动作/入场视频.mp4",
+      "path": "source/public/assets/intro/entry-intro.mp4",
+      "bytes": 7367184,
+      "sha256": "2bec8c98794c8f78a4115b9dabed460245be215b5ff2efb42d428809b10cbdfd"
+    },
+    {
+      "from": "F:/数媒竞赛/醒狮素材/醒狮动作/真正循环视频.mp4",
+      "path": "source/public/assets/entry/home-lion-loop.mp4",
+      "bytes": 23125289,
+      "sha256": "cd9f5b069475365707986f0fba828854e0beb420d038a1cfe54442c9f7e47745"
     },
     {
       "from": "site/assets/entry/final-home.png",

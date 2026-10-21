@@ -24,7 +24,7 @@ test('合并后首页媒体与四面巨幕往返保持独立播放实例，离�
   const home = page.locator('#entryLionVideo');
   await expect.poll(() => home.evaluate(video => video.readyState)).toBeGreaterThanOrEqual(2);
   expect(await home.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, loop: video.loop, muted: video.muted }))).toEqual({ width: 2560, height: 1440, loop: true, muted: true });
-  expect(await home.evaluate(video => video.duration)).toBeCloseTo(14.000998, 2);
+  expect(await home.evaluate(video => video.duration)).toBeCloseTo(10.356009, 2);
   await expect(home).toHaveAttribute('src', new RegExp(`${assetPaths.home.replaceAll('.', '\\.')}$`));
   await expect.poll(() => runningMedia(page)).toEqual(['entryLionVideo']);
   await home.evaluate(video => { video.currentTime = 2; });

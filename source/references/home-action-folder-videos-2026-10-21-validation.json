@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-21",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "base": "7930d1cfb7946b087fc9056839b23e6ef02a9b95",
+  "videos": [
+    {
+      "role": "entry",
+      "original": "F:/数媒竞赛/醒狮素材/醒狮动作/入场视频.mp4",
+      "runtime": "assets/intro/entry-intro.mp4",
+      "bytes": 7367184,
+      "sha256": "2bec8c98794c8f78a4115b9dabed460245be215b5ff2efb42d428809b10cbdfd",
+      "width": 2560,
+      "height": 1440,
+      "durationSeconds": 6.584,
+      "sampleEntry": "avc1",
+      "audioSampleEntry": "mp4a",
+      "archive": "source/video/intro/entry-intro-before-2026-10-21.mp4",
+      "archiveBytes": 17701673,
+      "archiveSha256": "e6f0ec2828ccc9f8d637d15ab3f648c0d6161a9c6a228bce206761cfd2a4eb4e",
+      "sourcePublicDistByteExact": true,
+      "archiveMatchesBaselineBlob": true
+    },
+    {
+      "role": "loop",
+      "original": "F:/数媒竞赛/醒狮素材/醒狮动作/真正循环视频.mp4",
+      "runtime": "assets/entry/home-lion-loop.mp4",
+      "bytes": 23125289,
+      "sha256": "cd9f5b069475365707986f0fba828854e0beb420d038a1cfe54442c9f7e47745",
+      "width": 2560,
+      "height": 1440,
+      "durationSeconds": 10.356009,
+      "sampleEntry": "hvc1",
+      "audioSampleEntry": "mp4a",
+      "archive": "source/video/entry/home-lion-loop-before-2026-10-21.mp4",
+      "archiveBytes": 33463217,
+      "archiveSha256": "93353de8e2da20d96e54654dea3735f6cc60c5cbe092cc3fb3dd658cbc0944f9",
+      "sourcePublicDistByteExact": true,
+      "archiveMatchesBaselineBlob": true
+    }
+  ],
+  "red": {
+    "command": "node --test --test-name-pattern=action-folder tests/assets/home-video-replacement.test.mjs",
+    "failed": 1,
+    "reason": "old entry hash did not match newly specified action-folder entry"
+  },
+  "core": {
+    "passed": 59,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 8671.9598
+  },
+  "build": {
+    "exitCode": 0,
+    "modules": 328,
+    "durationSeconds": 4.6,
+    "knownWarning": "Three538.04kB chunk"
+  },
+  "browsers": {
+    "development": {
+      "stats": {
+        "startTime": "2026-10-21T01:33:33.732Z",
+        "duration": 71930.90000000001,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": [
+        "home-video-replacement.spec.js"
+      ],
+      "rawReport": "tmp/action-folder-home-videos-2026-10-21/development.json"
+    },
+    "production": {
+      "stats": {
+        "startTime": "2026-10-21T01:35:57.060Z",
+        "duration": 92986.574,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": [
+        "action-theater-integrated.spec.js",
+        "home-video-replacement.spec.js"
+      ],
+      "rawReport": "tmp/action-folder-home-videos-2026-10-21/production.json"
+    }
+  },
+  "review": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "independentlyChecked": "source/runtime hashes, old archives vs baseline blobs, all manifest records, unchanged application code",
+    "independentFocusedCorePassed": 2
+  },
+  "preservation": {
+    "oldManifestEntries": 528,
+    "movedRuntimeEntriesToArchive": 2,
+    "newRuntimeEntries": 2,
+    "totalManifestEntries": 530,
+    "publicDistByteExactFiles": 124,
+    "srcAndDependenciesUnchanged": true
+  },
+  "productionScreenshots": [
+    {
+      "path": "tmp/action-folder-home-videos-2026-10-21/production-entry-1920.png",
+      "sha256": "27a46aec7bd0c92d0f0461a8aa5615dda35be10ceafa09f0a3e314f5c77ccb5a"
+    },
+    {
+      "path": "tmp/action-folder-home-videos-2026-10-21/production-loop-1920.png",
+      "sha256": "026920ef2beeb3a3d59ed2db1fbb1587b03acec868a16b801bd798d542dcbc0a"
+    }
+  ],
+  "git": {
+    "branch": "main",
+    "remoteBeforePublication": "7930d1cfb7946b087fc9056839b23e6ef02a9b95",
+    "strategy": "ordinary task-only commit and push; final HEAD verified separately"
+  },
+  "notVerified": [
+    "other browsers/hardware",
+    "universal HEVC decode support",
+    "full project E2E",
+    "EXE repackaging"
+  ]
+}
