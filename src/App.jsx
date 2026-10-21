@@ -158,7 +158,7 @@ export default function App() {
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
+        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} spatialSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}

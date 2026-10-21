@@ -24,6 +24,7 @@ import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEAT
 import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
 import { createTheaterReflection } from './actionTheaterReflection.js';
 import { createTheaterSpatialUI } from './actionTheaterSpatialUI.js';
+import { getActionSpatialConfig } from '../config/actionSpatialSettings.js';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
 import { createLionLightingControls } from './lionLightingSettings.js';
@@ -229,6 +230,7 @@ export function createActionTheater({
   onError = () => {},
   onAnchorUpdate,
   lightingSettings,
+  spatialSettings,
   onLightingStatus = () => {},
 }) {
   mountedScenes.get(container)?.();
@@ -249,6 +251,8 @@ export function createActionTheater({
   let observer;
   let lighting;
   let currentLightingSettings = lightingSettings;
+  let currentSpatialSettings = spatialSettings;
+  let spatialConfig = getActionSpatialConfig(spatialSettings);
   let lionRoot;
   let fullLion;
   let architecture;
@@ -366,6 +370,7 @@ export function createActionTheater({
     fullHairPoints: fullLion?.statistics.points ?? 0,
     sourceModel: fullLion?.statistics.sourceModel ?? '',
     fullHairDraws: renderer && fullLion ? fullLion.getDrawStatistics(renderer) : { groups: 0, strands: 0, points: 0 },
+    spatial: spatialUI?.diagnostics() ?? null,
   });
   const publishDiagnostics = () => {
     if (!renderer) return;
@@ -408,7 +413,7 @@ export function createActionTheater({
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
-    spatialUI?.resize(frameWidth, frameHeight);
+    spatialUI?.resize(frameWidth, frameHeight, camera);
     if (ready) { updateAnchor(); requestFrame(); }
   };
   const commitActive = (nextId, now) => {
@@ -419,7 +424,7 @@ export function createActionTheater({
   const updateScreenDirection = (now) => {
     if (spatialUI) forward.copy(spatialUI.updateCamera(camera));
     else camera.getWorldDirection(forward);
-    const selection = chooseScreen({ forward: forward.toArray(), definitions: screenDefinitions, activeId, scores: spatialUI?.scores });
+    const selection = chooseScreen({ forward: forward.toArray(), definitions: screenDefinitions, activeId, scores: spatialUI?.scores, hysteresis: spatialConfig.hysteresisDegrees * Math.PI / 180 });
     commitActive(selection.activeId, now);
   };
   const onControlStart = () => {
@@ -463,7 +468,8 @@ export function createActionTheater({
     animationFrame = 0;
     if (!canRender()) return;
     try {
-      const dt = lastFrameTime ? Math.min(0.08, Math.max(0, (now - lastFrameTime) / 1000)) : 0;
+      const uiDt = lastFrameTime ? Math.max(0, (now - lastFrameTime) / 1000) : 0;
+      const dt = Math.min(0.08, uiDt);
       lastFrameTime = now;
       if (!qualityReduced && dt > 0 && !interacting && !focusTween) {
         sampleTime += dt;
@@ -500,7 +506,7 @@ export function createActionTheater({
         record.brightness = target;
         record.material.color.setScalar(record.brightness);
       });
-      spatialUI?.updatePanels(camera, activeId, frameWidth, frameHeight, renderedFrames + 1);
+      spatialUI?.updatePanels(camera, activeId, frameWidth, frameHeight, renderedFrames + 1, uiDt);
       renderer.render(scene, camera);
       renderedFrames += 1;
       // These small diagnostics describe the exact camera/UI pair submitted in
@@ -633,6 +639,12 @@ export function createActionTheater({
 
   const api = {
     setLightingSettings(value) { currentLightingSettings = value; lighting?.update(value); },
+    setSpatialSettings(value) {
+      currentSpatialSettings = value;
+      spatialConfig = getActionSpatialConfig(value);
+      spatialUI?.setSpatialSettings(value);
+      requestFrame();
+    },
     retryHdri: () => lighting?.retry(),
     setVideo,
     setAutoRotate(value) { autoRotating = Boolean(value); requestFrame(); },
@@ -830,8 +842,8 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
-      spatialUI = createTheaterSpatialUI({ layer: spatialLayer, screenRecords });
-      spatialUI.resize(frameWidth, frameHeight);
+      spatialUI = createTheaterSpatialUI({ layer: spatialLayer, screenRecords, scene, renderer, spatialSettings: currentSpatialSettings });
+      spatialUI.resize(frameWidth, frameHeight, camera);
       spatialUI.setVisible(visible);
       lighting.refresh();
       await lighting.ready.catch(error => { if (error.name === 'AbortError') throw error; });

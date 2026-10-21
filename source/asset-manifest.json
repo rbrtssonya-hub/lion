@@ -3230,6 +3230,90 @@
       "path": "source/reviews/action-theater/2026-10-21-floating-ui/settings-push-900.png",
       "bytes": 1238938,
       "sha256": "2482c99eaac90e9fdad74941cace9a77f3fde04a3c66f81f83b982aded846b6e"
+    },
+    {
+      "from": "actual Chrome GPU depth comparison, frozen video textures, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-depth.png",
+      "bytes": 3240950,
+      "sha256": "51d073f8c050acf00a9eddfa253efa15fb390decb13b51025332af44dd688286"
+    },
+    {
+      "from": "actual Chrome GPU depth comparison, frozen video textures, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-hidden.png",
+      "bytes": 3252371,
+      "sha256": "7448b9a3acb34f3808065b711dd9a3ed70b55d3a4dc37dc567bbcf134d88a512"
+    },
+    {
+      "from": "actual Chrome GPU depth comparison, frozen video textures, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/actual-gpu-ui-no-depth.png",
+      "bytes": 3222211,
+      "sha256": "ae2c0ca8d8ccc7e034f5115bc7ad8156b7ae1b204fdbf2820b63486f73b8eb62"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1366.png",
+      "bytes": 1346300,
+      "sha256": "f2a9da0a987004492372ac6d577901344af6cbfe3c901357d3aa0dec2e19e0ef"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1920.png",
+      "bytes": 2384387,
+      "sha256": "a3b31f0147f680c877b32263622baa2ee0df80c8f45eb10a819fe2b73db4123e"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-900.png",
+      "bytes": 965507,
+      "sha256": "855d5ea54d86463090c0b7ab34c45fa5b30f252ff822aecd93e2f9cc2a3e47ac"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/drag-left-90.png",
+      "bytes": 2348736,
+      "sha256": "50732c9ad3af1321b1c1a8b1a54d8e37648fc3af8d57455182465389297b18bf"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/drag-next-180.png",
+      "bytes": 2367771,
+      "sha256": "5fd8925c9dcbd2f8822ee95660c94aa12dd0e9dbd6dda38d2fab9c7e709de51a"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/flat-video.png",
+      "bytes": 2450393,
+      "sha256": "ad63f283818c0ccbba2065a885e059ef53de5bbbf20ec908ed22c315a3b23f97"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/public-parameters.png",
+      "bytes": 1245875,
+      "sha256": "fe33b3af4df7a16825f286a946a6e356e9743490e566c3ef9461e8dfbae4da80"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-900.png",
+      "bytes": 1244775,
+      "sha256": "62afbdfe107361a81ee04118a21af54b7c1dd599163e077d373b79eadb97b3bc"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-scale-125.png",
+      "bytes": 1228454,
+      "sha256": "9f87d1c595a70e7e94066818669f12f8ea36905fe29abef019e0b0a3e903b7e8"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/slow-edge-fade.png",
+      "bytes": 2490716,
+      "sha256": "081d27ea1dbcf1d3279c287ffccb17915bb60cf8cc09178dc20c91bfe605ab84"
+    },
+    {
+      "from": "actual Chrome production desktop review, 2026-10-21 soft spatial UI",
+      "path": "source/reviews/action-theater/2026-10-21-soft-ui/slow-return.png",
+      "bytes": 2374162,
+      "sha256": "80be60cd0789b3086bbf7eed28fb219c5207cc18ba3e76309f61dd959d2bda0a"
     }
   ]
 }

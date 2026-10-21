@@ -1,0 +1,36 @@
+{
+  "point": {
+    "x": 628.2415466308594,
+    "y": 273.5581359863281
+  },
+  "hit": {
+    "canvas": true,
+    "inert": true,
+    "alpha": 0.39999,
+    "buttonPointerEvents": "none"
+  },
+  "camera": {
+    "before": "[0,1.6000000000000008,8.6]",
+    "during": "[-0.5039549057138468,1.6687667900887277,8.583744552615782]",
+    "after": "[-0.503954905713846,1.6687667900887273,8.58374455261577]"
+  },
+  "input": {
+    "events": [
+      {
+        "where": "document",
+        "type": "pointerdown",
+        "trusted": true,
+        "pointerId": 1,
+        "target": "canvas"
+      },
+      {
+        "where": "canvas",
+        "type": "pointerdown",
+        "trusted": true,
+        "pointerId": 1,
+        "target": "canvas"
+      }
+    ],
+    "playCalls": []
+  }
+}

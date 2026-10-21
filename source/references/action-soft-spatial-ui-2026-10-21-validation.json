@@ -1,0 +1,217 @@
+{
+  "verifiedOn": "2026-10-21",
+  "workspace": "E:/数字媒体竞赛/张钧儒/lion",
+  "branch": "codex/huangzhi_ARUI",
+  "baseline": "ce97297aec6da22fd2f74f45d4697600c814245d",
+  "scope": "Desktop action page: soft world panels, public settings, real depth and native pointer handoff.",
+  "checks": {
+    "core": {
+      "command": "npm test",
+      "passed": 65,
+      "failed": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "modules": 333,
+      "result": "passed",
+      "retainedWarning": "Three.js module exceeds 500kB; no new dependency or model reduction."
+    },
+    "development": {
+      "command": "$env:PLAYWRIGHT_CHANNEL = 'chrome'\nnpx playwright test tests/e2e/action-spatial-soft.spec.js tests/e2e/action-spatial-ui.spec.js --reporter=line",
+      "passed": 10,
+      "failed": 0,
+      "evidence": "source/reviews/action-theater/2026-10-21-soft-ui/soft-test-evidence.json"
+    },
+    "finalDepthAndNativeHit": {
+      "command": "PLAYWRIGHT_CHANNEL=chrome npx playwright test tests/e2e/action-spatial-soft.spec.js tests/e2e/action-spatial-hit.spec.js --grep '真实WebGL|低alpha空间按钮|已有醒狮实体' --reporter=line,json",
+      "stats": {
+        "startTime": "2026-10-21T08:24:52.627Z",
+        "duration": 42902.11,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "production": {
+      "command": "PLAYWRIGHT_CHANNEL=chrome npx playwright test --config playwright.preview.config.js tests/e2e/action.spec.js tests/e2e/action-player.spec.js tests/e2e/action-theater.spec.js tests/e2e/action-theater-ornate.spec.js tests/e2e/action-theater-integrated.spec.js tests/e2e/action-spatial-ui.spec.js --reporter=line,json",
+      "initialStats": {
+        "startTime": "2026-10-21T08:06:27.065Z",
+        "duration": 550861.097,
+        "expected": 29,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "finalDistinctCasesPassed": 30,
+      "correctedCase": {
+        "reason": "A fixed 8-frame read sampled stale 180ms heavy lion-rotation diagnostics on a high-refresh display. The product stops the lion immediately; test now qualifies two real diagnostic samples after pause.",
+        "command": "PLAYWRIGHT_CHANNEL=chrome npx playwright test --config playwright.preview.config.js tests/e2e/action-spatial-ui.spec.js --grep '空间按钮实际透视命中' --repeat-each=2 --reporter=line,json",
+        "stats": {
+          "startTime": "2026-10-21T08:17:24.424Z",
+          "duration": 32005.508,
+          "expected": 2,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        }
+      }
+    },
+    "visualAudit": {
+      "command": "PLAYWRIGHT_CHANNEL=chrome node scripts/audit_action_soft_ui.mjs",
+      "screenshotsReviewed": 11,
+      "additionalDepthImagesReviewed": 3,
+      "actualDrags": [
+        {
+          "requestedDegrees": 90,
+          "actualDegrees": 89.99998127603168,
+          "before": 0,
+          "after": 1.570796
+        },
+        {
+          "requestedDegrees": 180,
+          "actualDegrees": 179.99996255206335,
+          "before": 1.570796,
+          "after": -1.570796
+        }
+      ],
+      "edgeCaptured": true,
+      "errors": []
+    },
+    "memory": {
+      "command": "python wiki_memory/工具/memory.py index --project . --memory-dir wiki_memory --apply; python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready",
+      "pages": 98,
+      "errors": 0,
+      "historicalSourceWarnings": 4
+    },
+    "diff": {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  },
+  "measuredFadeDurations": [
+    {
+      "duration": 150,
+      "fadeIn": 111.20000000000073,
+      "fadeOut": 111.5
+    },
+    {
+      "duration": 800,
+      "fadeIn": 611.4000000000015,
+      "fadeOut": 611.4000000000015
+    }
+  ],
+  "depthPixels": {
+    "frozenBackground": {
+      "frozenVideoTextures": 4,
+      "videos": [
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.453798
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.686013
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.687126
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.147127
+        }
+      ]
+    },
+    "setup": {
+      "lionBounds": {
+        "min": [
+          -1.733178465742757,
+          0.4,
+          -2.182229058845024
+        ],
+        "max": [
+          1.6748253218811318,
+          3.0855970539442468,
+          2.3677298351564033
+        ]
+      },
+      "plane": [
+        -0.04477887947736976,
+        1.8191607034573423,
+        -4.4565409108385134
+      ],
+      "material": {
+        "depthTest": true,
+        "depthWrite": false,
+        "transparent": true
+      },
+      "camera": [
+        0,
+        1.6000000000000008,
+        8.6
+      ],
+      "projectedPlaneBounds": {
+        "left": 0.38800291499366796,
+        "right": 0.6084678844477588,
+        "top": 0.3851917149468126,
+        "bottom": 0.5498994593857445
+      }
+    },
+    "pixels": {
+      "width": 1905,
+      "height": 990,
+      "roi": {
+        "left": 737,
+        "right": 1162,
+        "top": 379,
+        "bottom": 547,
+        "pixels": 71400,
+        "antiAliasPaddingPx": 2
+      },
+      "changed": 64023,
+      "occluded": 42283,
+      "clear": 21420,
+      "outsideChanged": 0,
+      "outsideChangedOver1": 0,
+      "outsideMaxDelta": 0,
+      "outsideQuantizationTolerance": 1
+    }
+  },
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "WebKit"
+  },
+  "browser": "156.0.8078.47",
+  "localFrameTiming": {
+    "samples": 343,
+    "fps": 130.6240928882438,
+    "renderedFps": 130.6240928882438,
+    "repeatedFrameSamples": 0,
+    "intervalMedianMs": 7,
+    "intervalP95Ms": 13.899999999997817,
+    "mismatchedFramePairs": 0,
+    "note": "Browser RAF wall-clock intervals include real input and screenshots; this is a local hardware observation, not a GPU timing or cross-device guarantee."
+  },
+  "idleFrameTiming": {
+    "samples": 120,
+    "renderedFps": 131.85595567867037,
+    "note": "First 120 sampled frames before mouse input and screenshots."
+  },
+  "assets": {
+    "originalRecordsPreserved": 538,
+    "addedReviewImages": 14,
+    "totalRecords": 552,
+    "publicDistIdenticalFiles": 124
+  },
+  "limitations": [
+    "Local Chrome on RTX 5070 Ti and high-refresh display; frame IDs prove same-render synchronization, not a universal end-to-end hardware latency or all-device 60FPS guarantee.",
+    "65 core/asset tests and affected action suites; not the entire repository browser suite, other browsers, mobile, hosting, or EXE packaging.",
+    "The first depth counts were superseded because live video/HTML clock contaminated screenshot comparisons. Final evidence freezes VideoTextures and reads raw GPU pixels within the actual panel ROI with an outside control allowing at most one 8-bit level of quantization noise.",
+    "Legacy ornate tests overwrote their historical review output paths; all nine historical PNGs were restored byte-for-byte. Only the 14 new PNGs are appended to the asset manifest."
+  ]
+}

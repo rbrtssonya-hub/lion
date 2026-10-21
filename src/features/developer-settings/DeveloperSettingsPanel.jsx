@@ -1,6 +1,7 @@
 import { useLayoutEffect, useId, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
+import { actionSpatialDefaults, actionSpatialRanges } from '../../config/actionSpatialSettings.js';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
@@ -48,6 +49,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   };
   const range = (name,label,min,max,step=1,unit='px') => <RangeControl name={name} label={label} value={settings[name]} min={min} max={max} step={step} unit={unit} onChange={onChange} />;
   const hdriRange = (name,label,unit) => range(name,label,...hdriRanges[name],unit);
+  const actionUiRange = (name,label,unit) => range(name,label,...actionSpatialRanges[name],unit);
   const surfaces = prefixes => surfaceDefinitions.filter(surface => prefixes.includes(surface.prefix)).map(surface => {
     const {prefix,label,heightStep=10} = surface;
     return <SettingsGroup key={prefix} title={label} note="独立设置">
@@ -110,6 +112,20 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup>
       </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
       case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
+        {value === 'action' && <SettingsGroup title="空间悬浮UI" note="动作空间">
+          <p className="developer-settings-note">视角与选幕逐帧响应；渐变只影响视觉。</p>
+          {actionUiRange('actionUiFadeInMs','悬浮面板渐显时间','ms')}
+          {actionUiRange('actionUiFadeOutMs','悬浮面板渐隐时间','ms')}
+          {actionUiRange('actionUiEdgeZone','视口边缘渐隐区域','%')}
+          {actionUiRange('actionUiInteractionOpacity','悬浮面板交互透明度阈值','%')}
+          {actionUiRange('actionUiHysteresis','巨幕切换角度迟滞','°')}
+          {actionUiRange('actionUiOpacity','悬浮面板不透明度','%')}
+          {actionUiRange('actionUiScale','悬浮面板尺寸','%')}
+          <p className="developer-settings-note">面板接近边缘时提前淡出；低于交互阈值时，鼠标操作交给场景。这里只恢复本组参数。</p>
+          <button type="button" className="developer-settings-reset" onClick={() => {
+            for (const [name,value] of Object.entries(actionSpatialDefaults)) onChange(name,value);
+          }}>恢复悬浮UI默认参数</button>
+        </SettingsGroup>}
         {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}

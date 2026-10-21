@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { media } from '../../config/media.js';
 import { theaterActions } from './actionClips.js';
@@ -47,13 +47,15 @@ function ActionCaption({ clip, index, active, flat = false }) {
   </article>;
 }
 
-export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings }) {
+export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings, spatialSettings }) {
   const stageRef = useRef(null);
   const containerRef = useRef(null);
   const spatialRef = useRef(null);
   const sceneRef = useRef(null);
   const lightingSettingsRef = useRef(lightingSettings);
   lightingSettingsRef.current = lightingSettings;
+  const spatialSettingsRef = useRef(spatialSettings);
+  spatialSettingsRef.current = spatialSettings;
   const requestedScreen = useRef(clips[0].id);
   const activeRef = useRef(clips[0].id);
   const visibleRef = useRef(true);
@@ -94,6 +96,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       if (cancelled) return;
       handle = createActionTheater({
         lightingSettings: lightingSettingsRef.current,
+        spatialSettings: spatialSettingsRef.current,
         onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
         spatialLayer: spatialRef.current,
@@ -136,6 +139,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   }, [assets.actionTheaterScene, clips, playback.getVideo, sceneVersion]);
 
   useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
+  useLayoutEffect(() => { sceneRef.current?.setSpatialSettings(spatialSettingsRef.current); },
+    [spatialSettings?.actionUiFadeInMs, spatialSettings?.actionUiFadeOutMs,
+      spatialSettings?.actionUiEdgeZone, spatialSettings?.actionUiInteractionOpacity,
+      spatialSettings?.actionUiHysteresis, spatialSettings?.actionUiOpacity, spatialSettings?.actionUiScale]);
   useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
     [lightingSettings?.hdriEnabled, lightingSettings?.hdriIntensity, lightingSettings?.hdriRotation,
       lightingSettings?.hdriExposure, lightingSettings?.hdriLightIntensity]);

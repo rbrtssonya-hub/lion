@@ -1,0 +1,604 @@
+{
+  "generatedAt": "2026-10-21T08:27:23.210Z",
+  "environment": {
+    "platform": "Windows",
+    "browserChannel": "chrome",
+    "server": "Vite development server http://127.0.0.1:5173",
+    "workers": 1
+  },
+  "finalRun": {
+    "command": "$env:PLAYWRIGHT_CHANNEL = 'chrome'\nnpx playwright test tests/e2e/action-spatial-soft.spec.js tests/e2e/action-spatial-ui.spec.js --reporter=line",
+    "result": {
+      "passed": 10,
+      "failed": 0,
+      "durationDisplay": "3.0m"
+    },
+    "note": "This complete functional run preceded the video-background evidence correction. Product code remained unchanged; the refined GPU depth test and two additional real-input tests passed in the final targeted 3/3 run below."
+  },
+  "unitRun": {
+    "command": "node --test tests/assets/action-spatial-settings.test.mjs tests/assets/action-spatial-fade.test.mjs",
+    "result": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "abortedEarlierRun": {
+    "command": "$env:PLAYWRIGHT_CHANNEL = 'chrome'\nnpx playwright test tests/e2e/action-spatial-soft.spec.js tests/e2e/action-spatial-ui.spec.js --reporter=line",
+    "status": "manually interrupted",
+    "reason": "Initial per-sample Playwright expect calls produced tens of thousands of assertions and excessive assertion/trace CPU overhead. Replaced them with pure-JavaScript mismatch collection covering every frame/plane and one final assertion. The subsequent complete run passed 10/10.",
+    "productFailureClaimed": false
+  },
+  "sampling": {
+    "slowMouse180DegreesOutAndBack": {
+      "source": "test-results/action-spatial-soft-真实慢转与转回按投影边缘连续渐隐渐显，世界坐标和首帧选中保持同步-chromium/slow-mouse-edge-exit-and-reentry.json",
+      "samples": 1712,
+      "uniqueRenderedFrames": 1712,
+      "firstRenderedFrame": 269,
+      "lastRenderedFrame": 1980,
+      "renderedFrameIdSpan": 1712,
+      "repeatedFrameSamples": 0,
+      "elapsedSampleMs": 12757.1,
+      "mismatches": {
+        "cameraUiFrame": 0,
+        "discreteSelectionOrHeading": 0,
+        "panelFrame": 0,
+        "invalidAlpha": 0,
+        "invalidMatrix": 0,
+        "weakAlphaHit": 0
+      },
+      "weakAlphaPanelSamples": 10532,
+      "interactionThreshold": 0.35,
+      "allWorldAnchorsUnchanged": true,
+      "titleWorldAnchorUnchanged": true,
+      "activeScreens": [
+        "tanqing",
+        "meihuazhuang",
+        "tuqiu"
+      ],
+      "activeSwitches": [
+        {
+          "frame": 513,
+          "from": "tanqing",
+          "to": "meihuazhuang"
+        },
+        {
+          "frame": 936,
+          "from": "meihuazhuang",
+          "to": "tuqiu"
+        },
+        {
+          "frame": 1356,
+          "from": "tuqiu",
+          "to": "meihuazhuang"
+        },
+        {
+          "frame": 1791,
+          "from": "meihuazhuang",
+          "to": "tanqing"
+        }
+      ],
+      "panels": {
+        "title/tanqing": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 1,
+          "intermediateAlphaSamples": 321,
+          "edgeFadeSamplesWhileIntersectingViewport": 161,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -7.6,
+            5.65,
+            -4.799999999999957
+          ]
+        },
+        "screen/tanqing": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 1,
+          "intermediateAlphaSamples": 357,
+          "edgeFadeSamplesWhileIntersectingViewport": 235,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -5.7,
+            7.55,
+            -9.41000084237506
+          ]
+        },
+        "screen/doumao": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 0.59961,
+          "intermediateAlphaSamples": 149,
+          "edgeFadeSamplesWhileIntersectingViewport": 120,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            9.410000190734863,
+            7.55,
+            -5.7
+          ]
+        },
+        "screen/tuqiu": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 0.99929,
+          "intermediateAlphaSamples": 317,
+          "edgeFadeSamplesWhileIntersectingViewport": 192,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            5.6999999938804295,
+            7.55,
+            9.410000593220131
+          ]
+        },
+        "screen/meihuazhuang": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 1,
+          "intermediateAlphaSamples": 535,
+          "edgeFadeSamplesWhileIntersectingViewport": 311,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -9.410000190734863,
+            7.55,
+            5.7
+          ]
+        },
+        "caption/tanqing": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 0.92858,
+          "intermediateAlphaSamples": 381,
+          "edgeFadeSamplesWhileIntersectingViewport": 371,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            5.012377645144999,
+            1.62,
+            1.1999999999999893
+          ]
+        },
+        "caption/doumao": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 0,
+          "intermediateAlphaSamples": 0,
+          "edgeFadeSamplesWhileIntersectingViewport": 0,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -1.2,
+            1.62,
+            5.012377645144994
+          ]
+        },
+        "caption/tuqiu": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 1,
+          "intermediateAlphaSamples": 225,
+          "edgeFadeSamplesWhileIntersectingViewport": 4,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -5.012377697598665,
+            1.62,
+            -1.199999780901988
+          ]
+        },
+        "caption/meihuazhuang": {
+          "samples": 1712,
+          "minAlpha": 0,
+          "maxAlpha": 1,
+          "intermediateAlphaSamples": 606,
+          "edgeFadeSamplesWhileIntersectingViewport": 370,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            1.2,
+            1.62,
+            -5.012377645144994
+          ]
+        }
+      }
+    },
+    "reverseCurrentAlphaAndQuick90Degrees": {
+      "source": "test-results/action-spatial-soft-快速反向沿当前透明度续接，低透明度不命中且90度转幕即时更新独立于渐变-chromium/reverse-current-alpha-and-fast-90.json",
+      "samples": 381,
+      "uniqueRenderedFrames": 381,
+      "firstRenderedFrame": 270,
+      "lastRenderedFrame": 650,
+      "renderedFrameIdSpan": 381,
+      "repeatedFrameSamples": 0,
+      "elapsedSampleMs": 2839.9,
+      "mismatches": {
+        "cameraUiFrame": 0,
+        "discreteSelectionOrHeading": 0,
+        "panelFrame": 0,
+        "invalidAlpha": 0,
+        "invalidMatrix": 0,
+        "weakAlphaHit": 0
+      },
+      "weakAlphaPanelSamples": 2566,
+      "interactionThreshold": 0.7,
+      "allWorldAnchorsUnchanged": true,
+      "titleWorldAnchorUnchanged": true,
+      "activeScreens": [
+        "tanqing",
+        "meihuazhuang"
+      ],
+      "activeSwitches": [
+        {
+          "frame": 399,
+          "from": "tanqing",
+          "to": "meihuazhuang"
+        },
+        {
+          "frame": 612,
+          "from": "meihuazhuang",
+          "to": "tanqing"
+        },
+        {
+          "frame": 632,
+          "from": "tanqing",
+          "to": "meihuazhuang"
+        }
+      ],
+      "panels": {
+        "title/tanqing": {
+          "samples": 381,
+          "minAlpha": 0.77942,
+          "maxAlpha": 0.99345,
+          "intermediateAlphaSamples": 316,
+          "edgeFadeSamplesWhileIntersectingViewport": 116,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -7.6,
+            5.65,
+            -4.799999999999957
+          ]
+        },
+        "screen/tanqing": {
+          "samples": 381,
+          "minAlpha": 0.05823,
+          "maxAlpha": 0.92242,
+          "intermediateAlphaSamples": 381,
+          "edgeFadeSamplesWhileIntersectingViewport": 336,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -5.7,
+            7.55,
+            -9.41000084237506
+          ]
+        },
+        "screen/doumao": {
+          "samples": 381,
+          "minAlpha": 0.00007,
+          "maxAlpha": 0.4773,
+          "intermediateAlphaSamples": 205,
+          "edgeFadeSamplesWhileIntersectingViewport": 68,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            9.410000190734863,
+            7.55,
+            -5.7
+          ]
+        },
+        "screen/tuqiu": {
+          "samples": 381,
+          "minAlpha": 0,
+          "maxAlpha": 0,
+          "intermediateAlphaSamples": 0,
+          "edgeFadeSamplesWhileIntersectingViewport": 0,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            5.6999999938804295,
+            7.55,
+            9.410000593220131
+          ]
+        },
+        "screen/meihuazhuang": {
+          "samples": 381,
+          "minAlpha": 0,
+          "maxAlpha": 0.9171,
+          "intermediateAlphaSamples": 269,
+          "edgeFadeSamplesWhileIntersectingViewport": 252,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -9.410000190734863,
+            7.55,
+            5.7
+          ]
+        },
+        "caption/tanqing": {
+          "samples": 381,
+          "minAlpha": 0.00101,
+          "maxAlpha": 0.78783,
+          "intermediateAlphaSamples": 299,
+          "edgeFadeSamplesWhileIntersectingViewport": 216,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            5.012377645144999,
+            1.62,
+            1.1999999999999893
+          ]
+        },
+        "caption/doumao": {
+          "samples": 381,
+          "minAlpha": 0,
+          "maxAlpha": 0,
+          "intermediateAlphaSamples": 0,
+          "edgeFadeSamplesWhileIntersectingViewport": 0,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -1.2,
+            1.62,
+            5.012377645144994
+          ]
+        },
+        "caption/tuqiu": {
+          "samples": 381,
+          "minAlpha": 0,
+          "maxAlpha": 0,
+          "intermediateAlphaSamples": 0,
+          "edgeFadeSamplesWhileIntersectingViewport": 0,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            -5.012377697598665,
+            1.62,
+            -1.199999780901988
+          ]
+        },
+        "caption/meihuazhuang": {
+          "samples": 381,
+          "minAlpha": 0,
+          "maxAlpha": 0.836,
+          "intermediateAlphaSamples": 252,
+          "edgeFadeSamplesWhileIntersectingViewport": 167,
+          "distinctWorldPositions": 1,
+          "firstWorldPosition": [
+            1.2,
+            1.62,
+            -5.012377645144994
+          ]
+        }
+      }
+    }
+  },
+  "legacySuite": {
+    "passed": 5,
+    "includedInFinalRun": true,
+    "currentRawFrameJsonRetained": false,
+    "note": "The current legacy suite attached sample arrays as body-only attachments. The line reporter did not retain those arrays on disk. Its every-frame synchronization, real hysteresis, UI input, lion-only rotation, late video, disposal/reentry and desktop layout assertions passed in the final 10/10 run. Earlier morning tmp JSON reports belong to the preceding baseline and are deliberately not mixed into this evidence."
+  },
+  "gpuPixels": {
+    "frozenBackground": {
+      "frozenVideoTextures": 4,
+      "videos": [
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.453798
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.686013
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.687126
+        },
+        {
+          "width": 2560,
+          "height": 1440,
+          "currentTime": 1.147127
+        }
+      ]
+    },
+    "setup": {
+      "lionBounds": {
+        "min": [
+          -1.733178465742757,
+          0.4,
+          -2.182229058845024
+        ],
+        "max": [
+          1.6748253218811318,
+          3.0855970539442468,
+          2.3677298351564033
+        ]
+      },
+      "plane": [
+        -0.04477887947736976,
+        1.8191607034573423,
+        -4.4565409108385134
+      ],
+      "material": {
+        "depthTest": true,
+        "depthWrite": false,
+        "transparent": true
+      },
+      "camera": [
+        0,
+        1.6000000000000008,
+        8.6
+      ],
+      "projectedPlaneBounds": {
+        "left": 0.38800291499366796,
+        "right": 0.6084678844477588,
+        "top": 0.3851917149468126,
+        "bottom": 0.5498994593857445
+      }
+    },
+    "pixels": {
+      "width": 1905,
+      "height": 990,
+      "roi": {
+        "left": 737,
+        "right": 1162,
+        "top": 379,
+        "bottom": 547,
+        "pixels": 71400,
+        "antiAliasPaddingPx": 2
+      },
+      "changed": 64023,
+      "occluded": 42283,
+      "clear": 21420,
+      "outsideChanged": 0,
+      "outsideChangedOver1": 0,
+      "outsideMaxDelta": 0,
+      "outsideQuantizationTolerance": 1
+    }
+  },
+  "measuredFadeDurationResponse": [
+    {
+      "duration": 150,
+      "fadeIn": 111.20000000000073,
+      "fadeOut": 111.5
+    },
+    {
+      "duration": 800,
+      "fadeIn": 611.4000000000015,
+      "fadeOut": 611.4000000000015
+    }
+  ],
+  "copiedEvidence": [
+    {
+      "name": "measured-fade-duration-response.json",
+      "source": "test-results/action-spatial-soft-真实设置改变逐帧透明度的渐显-渐隐用时，画布和相机保持不变-chromium/measured-fade-duration-response.json",
+      "bytes": 183
+    },
+    {
+      "name": "public-spatial-settings.json",
+      "source": "test-results/action-spatial-soft-七个空间参数真实修改-保存-独立复原，修改渐变只更新既有画布-chromium/public-spatial-settings.json",
+      "bytes": 3834
+    },
+    {
+      "name": "actual-gpu-ui-hidden.png",
+      "source": "tmp/e2e-soft-depth-hit-final/action-spatial-soft-真实WebGL面板被醒狮深度遮挡：同相机同姿态的GPU像素三态对照-chromium/actual-gpu-ui-hidden.png",
+      "bytes": 3252371,
+      "sha256": "7448b9a3acb34f3808065b711dd9a3ed70b55d3a4dc37dc567bbcf134d88a512"
+    },
+    {
+      "name": "actual-gpu-ui-depth.png",
+      "source": "tmp/e2e-soft-depth-hit-final/action-spatial-soft-真实WebGL面板被醒狮深度遮挡：同相机同姿态的GPU像素三态对照-chromium/actual-gpu-ui-depth.png",
+      "bytes": 3240950,
+      "sha256": "51d073f8c050acf00a9eddfa253efa15fb390decb13b51025332af44dd688286"
+    },
+    {
+      "name": "actual-gpu-ui-no-depth.png",
+      "source": "tmp/e2e-soft-depth-hit-final/action-spatial-soft-真实WebGL面板被醒狮深度遮挡：同相机同姿态的GPU像素三态对照-chromium/actual-gpu-ui-no-depth.png",
+      "bytes": 3222211,
+      "sha256": "ae2c0ca8d8ccc7e034f5115bc7ad8156b7ae1b204fdbf2820b63486f73b8eb62"
+    },
+    {
+      "name": "gpu-depth-pixel-counts.json",
+      "source": "tmp/e2e-soft-depth-hit-final/action-spatial-soft-真实WebGL面板被醒狮深度遮挡：同相机同姿态的GPU像素三态对照-chromium/gpu-depth-pixel-counts.json",
+      "bytes": 1549,
+      "sha256": "d6f5065ae11627d17c6e0e5770c04ecd2c7f6612055f9795f0e8783624bdfc15"
+    },
+    {
+      "name": "low-alpha-real-pointer-pass-through.json",
+      "source": "tmp/soft-ui-depth-hit-results.json (application/json attachment)",
+      "bytes": 762
+    },
+    {
+      "name": "opaque-lion-native-pointer-guard-and-camera-handoff.json",
+      "source": "tmp/soft-ui-depth-hit-results.json (application/json attachment)",
+      "bytes": 1199
+    }
+  ],
+  "note": "This compact evidence summarizes actual passing samples. Complete slow/reverse sample arrays remain temporary output and are not copied into source/reviews. Final isolated depth evidence uses frozen video frames, camera and full-lion pose, native GPU PNG readbacks and the actual plane projection ROI. Test-only dev-response instrumentation is not shipped in product code.",
+  "finalTargetedRun": {
+    "command": "$env:PLAYWRIGHT_CHANNEL = 'chrome'\n$env:PLAYWRIGHT_JSON_OUTPUT_NAME = 'tmp/soft-ui-depth-hit-results.json'\nnpx playwright test tests/e2e/action-spatial-soft.spec.js tests/e2e/action-spatial-hit.spec.js --grep '真实WebGL|低alpha空间按钮|已有醒狮实体' --output=tmp/e2e-soft-depth-hit-final --reporter=line,json",
+    "report": "tmp/soft-ui-depth-hit-results.json",
+    "result": {
+      "passed": 3,
+      "failed": 0,
+      "flaky": 0,
+      "durationMs": 42902.11
+    },
+    "cases": [
+      {
+        "title": "低alpha空间按钮的真实投影位置直接命中canvas并接管拖动，不选幕或恢复播放",
+        "status": "expected",
+        "durationMs": 16038
+      },
+      {
+        "title": "已有醒狮实体遮住空间按钮时原生pointerdown由guard截住，canvas仍能拖动且不选幕或播放",
+        "status": "expected",
+        "durationMs": 12833
+      },
+      {
+        "title": "真实WebGL面板被醒狮深度遮挡：同相机同姿态的GPU像素三态对照",
+        "status": "expected",
+        "durationMs": 13158
+      }
+    ]
+  },
+  "depthEvidenceCorrection": {
+    "supersedesEarlierFullFramePixelCounts": true,
+    "reason": "The earlier depth comparison included independently advancing video backgrounds and HTML player timer pixels. Those full-frame counts were contaminated and are not used as isolated depth evidence.",
+    "finalMethod": "Freeze all four scene VideoTextures as static current-frame CanvasTextures with the same sampling/color/UV settings; freeze camera and full-lion pose; prewarm two hidden GPU renders; read the native WebGL canvas PNG synchronously after each manual render, excluding HTML overlays; compare only the actual title-plane projected rectangle plus two antialias pixels. Record and check background differences separately outside that ROI.",
+    "thresholds": {
+      "uiChangedChannelDeltaGreaterThan": 24,
+      "occludedPixelBackgroundDeltaLessThan": 4,
+      "outsideMaxAllowed8BitChannelDelta": 1
+    },
+    "initialCorrectedAttempt": {
+      "result": "1 passed, 2 test-assumption failures",
+      "details": [
+        "The positive native click on the already-paused current clip kept it paused; the helper incorrectly required a pause button. The helper is now idempotent and verifies every video is paused.",
+        "The first un-warmed frozen render differed at one outside-ROI pixel by one red-channel quantization level (132 to 133). Added fixed prewarming and explicit raw/greater-than-one-level background counters."
+      ]
+    },
+    "intermediateRestart": "After the idempotent pause fix, both hit cases passed. That attempt was deliberately interrupted before its depth result to include the explicitly approved one-level quantization counters/tolerance in one complete final run.",
+    "finalObservedBackground": "The final passing run had zero changed pixels outside the ROI and maximum channel delta zero; the one-level allowance was not used."
+  },
+  "hitEvidence": [
+    {
+      "name": "low-alpha-real-pointer-pass-through.json",
+      "test": "低alpha空间按钮的真实投影位置直接命中canvas并接管拖动，不选幕或恢复播放",
+      "result": "passed",
+      "bytes": 762,
+      "cameraMovement": 0.5088847197370145,
+      "trustedCanvasPointerDown": 1,
+      "nativeButtonPointerDown": 0,
+      "buttonTargetDeliveries": 0,
+      "guardForwardedCanvasPointerDown": 0,
+      "playCalls": [],
+      "arrangement": null
+    },
+    {
+      "name": "opaque-lion-native-pointer-guard-and-camera-handoff.json",
+      "test": "已有醒狮实体遮住空间按钮时原生pointerdown由guard截住，canvas仍能拖动且不选幕或播放",
+      "result": "passed",
+      "bytes": 1199,
+      "cameraMovement": 0.5088847197370149,
+      "trustedCanvasPointerDown": 0,
+      "nativeButtonPointerDown": 1,
+      "buttonTargetDeliveries": 0,
+      "guardForwardedCanvasPointerDown": 1,
+      "playCalls": [],
+      "arrangement": {
+        "point": {
+          "x": 628.2415466308594,
+          "y": 273.5581359863281
+        },
+        "existingMeshes": 69,
+        "triangleMesh": "Lion_Hindpaw_R001",
+        "blockingMesh": "Lion_Hindpaw_R001",
+        "planeDistance": 19.887289231555048,
+        "occluderDistance": 9.943644615777524,
+        "before": [
+          0,
+          0.4,
+          0
+        ],
+        "after": [
+          -1.9974641304347078,
+          4.378654824465839,
+          0.5270618843509176
+        ],
+        "frame": 277
+      }
+    }
+  ]
+}

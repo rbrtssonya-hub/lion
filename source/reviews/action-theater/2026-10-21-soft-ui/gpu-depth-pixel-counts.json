@@ -1,0 +1,81 @@
+{
+  "frozenBackground": {
+    "frozenVideoTextures": 4,
+    "videos": [
+      {
+        "width": 2560,
+        "height": 1440,
+        "currentTime": 1.453798
+      },
+      {
+        "width": 2560,
+        "height": 1440,
+        "currentTime": 1.686013
+      },
+      {
+        "width": 2560,
+        "height": 1440,
+        "currentTime": 1.687126
+      },
+      {
+        "width": 2560,
+        "height": 1440,
+        "currentTime": 1.147127
+      }
+    ]
+  },
+  "setup": {
+    "lionBounds": {
+      "min": [
+        -1.733178465742757,
+        0.4,
+        -2.182229058845024
+      ],
+      "max": [
+        1.6748253218811318,
+        3.0855970539442468,
+        2.3677298351564033
+      ]
+    },
+    "plane": [
+      -0.04477887947736976,
+      1.8191607034573423,
+      -4.4565409108385134
+    ],
+    "material": {
+      "depthTest": true,
+      "depthWrite": false,
+      "transparent": true
+    },
+    "camera": [
+      0,
+      1.6000000000000008,
+      8.6
+    ],
+    "projectedPlaneBounds": {
+      "left": 0.38800291499366796,
+      "right": 0.6084678844477588,
+      "top": 0.3851917149468126,
+      "bottom": 0.5498994593857445
+    }
+  },
+  "pixels": {
+    "width": 1905,
+    "height": 990,
+    "roi": {
+      "left": 737,
+      "right": 1162,
+      "top": 379,
+      "bottom": 547,
+      "pixels": 71400,
+      "antiAliasPaddingPx": 2
+    },
+    "changed": 64023,
+    "occluded": 42283,
+    "clear": 21420,
+    "outsideChanged": 0,
+    "outsideChangedOver1": 0,
+    "outsideMaxDelta": 0,
+    "outsideQuantizationTolerance": 1
+  }
+}

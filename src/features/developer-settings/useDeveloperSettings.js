@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
+import { actionSpatialDefaults, actionSpatialRanges } from '../../config/actionSpatialSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -46,6 +47,7 @@ export const defaultDeveloperSettings = Object.freeze({
   pushPage: true,
   ...surfaceDefaults,
   ...hdriDefaults,
+  ...actionSpatialDefaults,
 });
 
 const ranges = {
@@ -69,6 +71,7 @@ const ranges = {
   carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
   ...surfaceRanges,
   ...hdriRanges,
+  ...actionSpatialRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {

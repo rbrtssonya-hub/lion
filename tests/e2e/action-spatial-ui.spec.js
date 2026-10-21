@@ -80,14 +80,12 @@ async function dragDegrees(page, degrees, { steps = 12, release = true } = {}) {
 function assertFrameSynchronization(samples) {
   const frames = samples.filter(sample => sample.frame > 0);
   expect(frames.length).toBeGreaterThan(4);
+  const failures = [];
   for (const sample of frames) {
-    expect(sample.spatialFrame, `camera/UI frame at ${sample.time}`).toBe(sample.frame);
-    expect(sample.appActive, `React selection at frame ${sample.frame}`).toBe(sample.active);
-    expect(sample.pressed).toBe(sample.active);
-    expect(sample.heading).toBe(actions.find(action => action.id === sample.active)?.name);
-    for (const current of sample.panels.filter(item => item.visible === 'true')) {
-      expect(current.frame).toBe(sample.frame);
-      expect(current.transform).toMatch(/matrix3d\(/);
+    if (sample.spatialFrame !== sample.frame || sample.appActive !== sample.active || sample.pressed !== sample.active
+      || sample.heading !== actions.find(action => action.id === sample.active)?.name) failures.push({ frame: sample.frame, spatialFrame: sample.spatialFrame, active: sample.active, appActive: sample.appActive, pressed: sample.pressed, heading: sample.heading });
+    for (const current of sample.panels) {
+      if (current.frame !== sample.frame || !/matrix3d\(/.test(current.transform)) failures.push({ frame: sample.frame, panel: current });
     }
   }
   let movingFrames = 0;
@@ -95,14 +93,14 @@ function assertFrameSynchronization(samples) {
     const before = frames[index - 1], current = frames[index];
     if (positionDistance(before.position, current.position) < 1e-7) continue;
     movingFrames += 1;
-    const commonVisible = current.panels.filter(item => item.visible === 'true'
-      && before.panels.some(previous => previous.kind === item.kind && previous.id === item.id && previous.visible === 'true'));
-    expect(commonVisible.length, 'world panels remain visible during an ordinary orbit step').toBeGreaterThan(0);
-    for (const item of commonVisible) {
+    // Fading/occluded planes may be visually absent between walls. Their
+    // interaction projection still follows this camera, ready for re-entry.
+    for (const item of current.panels) {
       const previous = before.panels.find(candidate => candidate.kind === item.kind && candidate.id === item.id);
-      expect(item.transform, `world panel ${item.kind}/${item.id} follows this camera frame`).not.toBe(previous.transform);
+      if (item.transform === previous.transform) failures.push({ frame: current.frame, cameraMoved: true, panel: item });
     }
   }
+  expect(failures.slice(0, 20), 'every sampled frame synchronizes camera, world projections and discrete selection').toEqual([]);
   expect(movingFrames).toBeGreaterThan(2);
 }
 
@@ -180,6 +178,7 @@ test('真实边界往返使用角度迟滞，快速反向即时切换且没有�
 test('空间按钮实际透视命中不误拖相机，醒狮自转不触发观察切换', async ({ page }) => {
   await openTheater(page);
   const screenPanel = panel(page, 'screen');
+  await expect(screenPanel).toHaveAttribute('data-interactive', 'true');
   const button = screenPanel.locator('button').first();
   await expect(button).toBeVisible();
   const before = await scene(page).getAttribute('data-camera-position');
@@ -198,12 +197,15 @@ test('空间按钮实际透视命中不误拖相机，醒狮自转不触发观�
   const autoRotate = page.getByRole('button', { name: '醒狮自动旋转', exact: true });
   await autoRotate.click();
   await expect(autoRotate).toHaveAttribute('aria-pressed', 'false');
-  // Full lion diagnostics publish at 180ms; wait enough rendered frames for
-  // that snapshot without confusing its cadence with camera/UI synchronization.
-  await nextFrames(page, 16);
-  const pausedRotation = await scene(page).getAttribute('data-lion-rotation');
-  await nextFrames(page, 8);
-  expect(await scene(page).getAttribute('data-lion-rotation')).toBe(pausedRotation);
+  await expect(scene(page)).toHaveAttribute('data-auto-rotating', 'false');
+  // The model stops in the rendering frame, while heavy lion diagnostics
+  // publish separately. Qualify two actual diagnostic snapshots after pause;
+  // a fixed frame count would read stale data on high-refresh displays.
+  const pausedFrame = Number(await scene(page).getAttribute('data-frame-id'));
+  await expect.poll(async () => Number(await scene(page).getAttribute('data-rendered-frames'))).toBeGreaterThan(pausedFrame);
+  const paused = await scene(page).evaluate(node => ({ rotation: node.dataset.lionRotation, diagnosticFrame: Number(node.dataset.renderedFrames) }));
+  await expect.poll(async () => Number(await scene(page).getAttribute('data-rendered-frames'))).toBeGreaterThan(paused.diagnosticFrame);
+  expect(await scene(page).getAttribute('data-lion-rotation')).toBe(paused.rotation);
   expect(positionDistance(await scene(page).getAttribute('data-camera-position'), before)).toBeLessThan(1e-7);
 });
 

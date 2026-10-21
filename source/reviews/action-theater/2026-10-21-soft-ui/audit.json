@@ -1,0 +1,5720 @@
+{
+  "testedOn": "2026-10-21",
+  "baseURL": "http://127.0.0.1:4173",
+  "browser": "156.0.8078.47",
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "WebKit"
+  },
+  "frameTiming": {
+    "samples": 343,
+    "fps": 130.6240928882438,
+    "renderedFps": 130.6240928882438,
+    "repeatedFrameSamples": 0,
+    "intervalMedianMs": 7,
+    "intervalP95Ms": 13.899999999997817,
+    "mismatchedFramePairs": 0,
+    "note": "Browser RAF wall-clock intervals include real input and screenshots; this is a local hardware observation, not a GPU timing or cross-device guarantee."
+  },
+  "idleFrameTiming": {
+    "samples": 120,
+    "renderedFps": 131.85595567867037,
+    "note": "First 120 sampled frames before mouse input and screenshots."
+  },
+  "drags": [
+    {
+      "requestedDegrees": 90,
+      "actualDegrees": 89.99998127603168,
+      "before": 0,
+      "after": 1.570796
+    },
+    {
+      "requestedDegrees": 180,
+      "actualDegrees": 179.99996255206335,
+      "before": 1.570796,
+      "after": -1.570796
+    }
+  ],
+  "sweep": [
+    {
+      "angle": 2,
+      "alpha": 0.95126,
+      "target": 0.98634,
+      "bounds": {
+        "left": 0.10978873164136627,
+        "right": 0.3240667567769746,
+        "top": 0.06885234769524834,
+        "bottom": 0.3028950827289505
+      }
+    },
+    {
+      "angle": 4,
+      "alpha": 0.96785,
+      "target": 0.99453,
+      "bounds": {
+        "left": 0.12492313226874524,
+        "right": 0.3339355302876609,
+        "top": 0.08003177779298026,
+        "bottom": 0.3050883512580236
+      }
+    },
+    {
+      "angle": 6,
+      "alpha": 0.9796,
+      "target": 0.99827,
+      "bounds": {
+        "left": 0.13958646262356522,
+        "right": 0.3436809993668585,
+        "top": 0.09049179126601137,
+        "bottom": 0.30713143430809664
+      }
+    },
+    {
+      "angle": 8,
+      "alpha": 0.98672,
+      "target": 0.99963,
+      "bounds": {
+        "left": 0.15381249833338173,
+        "right": 0.35331196198876685,
+        "top": 0.10028554281736879,
+        "bottom": 0.3090303994951594
+      }
+    },
+    {
+      "angle": 10,
+      "alpha": 0.99141,
+      "target": 0.99997,
+      "bounds": {
+        "left": 0.16763202751565726,
+        "right": 0.3628367563683111,
+        "top": 0.10946086030600771,
+        "bottom": 0.31079077344051786
+      }
+    },
+    {
+      "angle": 12,
+      "alpha": 0.99529,
+      "target": 1,
+      "bounds": {
+        "left": 0.18107330838543523,
+        "right": 0.372263386394062,
+        "top": 0.11806094899934222,
+        "bottom": 0.3124175992138524
+      }
+    },
+    {
+      "angle": 14,
+      "alpha": 0.99698,
+      "target": 1,
+      "bounds": {
+        "left": 0.19416246354868644,
+        "right": 0.3815996386750627,
+        "top": 0.12612498082728668,
+        "bottom": 0.31391548214391546
+      }
+    },
+    {
+      "angle": 16,
+      "alpha": 0.99815,
+      "target": 1,
+      "bounds": {
+        "left": 0.20692323474027097,
+        "right": 0.39085276353922455,
+        "top": 0.13368824726919182,
+        "bottom": 0.31528856414383455
+      }
+    },
+    {
+      "angle": 18,
+      "alpha": 0.99887,
+      "target": 1,
+      "bounds": {
+        "left": 0.21937792468731449,
+        "right": 0.4000300234563121,
+        "top": 0.14078300054503418,
+        "bottom": 0.3165406332634897
+      }
+    },
+    {
+      "angle": 20,
+      "alpha": 0.99931,
+      "target": 1,
+      "bounds": {
+        "left": 0.2315470910024448,
+        "right": 0.4091383688136058,
+        "top": 0.1474384895286337,
+        "bottom": 0.31767508966905833
+      }
+    },
+    {
+      "angle": 22,
+      "alpha": 0.99958,
+      "target": 1,
+      "bounds": {
+        "left": 0.24344983311041596,
+        "right": 0.41818454850866404,
+        "top": 0.15368133609614476,
+        "bottom": 0.31869498058592866
+      }
+    },
+    {
+      "angle": 24,
+      "alpha": 0.99974,
+      "target": 1,
+      "bounds": {
+        "left": 0.2551039368872262,
+        "right": 0.4271751317794645,
+        "top": 0.15953579732708273,
+        "bottom": 0.3196030183035044
+      }
+    },
+    {
+      "angle": 26,
+      "alpha": 0.99983,
+      "target": 1,
+      "bounds": {
+        "left": 0.2665261085852916,
+        "right": 0.43611661201269847,
+        "top": 0.16502404567206003,
+        "bottom": 0.32040160292849207
+      }
+    },
+    {
+      "angle": 28,
+      "alpha": 0.99989,
+      "target": 1,
+      "bounds": {
+        "left": 0.27773166558773765,
+        "right": 0.4450150934684397,
+        "top": 0.17016617107017806,
+        "bottom": 0.3210928074137133
+      }
+    },
+    {
+      "angle": 30,
+      "alpha": 0.99993,
+      "target": 1,
+      "bounds": {
+        "left": 0.28873527730999016,
+        "right": 0.45387681006763214,
+        "top": 0.1749806672004512,
+        "bottom": 0.32167843408850005
+      }
+    },
+    {
+      "angle": 32,
+      "alpha": 0.99996,
+      "target": 1,
+      "bounds": {
+        "left": 0.2995506289636839,
+        "right": 0.46270780963304936,
+        "top": 0.17948438253999227,
+        "bottom": 0.32215999401139994
+      }
+    },
+    {
+      "angle": 34,
+      "alpha": 0.99997,
+      "target": 1,
+      "bounds": {
+        "left": 0.3101906114439418,
+        "right": 0.4715140548549842,
+        "top": 0.1836927139879092,
+        "bottom": 0.3225387233767024
+      }
+    },
+    {
+      "angle": 36,
+      "alpha": 0.99998,
+      "target": 1,
+      "bounds": {
+        "left": 0.3206674924905244,
+        "right": 0.48030152201232174,
+        "top": 0.18761976713291867,
+        "bottom": 0.3228155924921663
+      }
+    },
+    {
+      "angle": 38,
+      "alpha": 0.99999,
+      "target": 1,
+      "bounds": {
+        "left": 0.3309925946644306,
+        "right": 0.48907588996510887,
+        "top": 0.1912783234490545,
+        "bottom": 0.32299130175400304
+      }
+    },
+    {
+      "angle": 40,
+      "alpha": 0.99999,
+      "target": 1,
+      "bounds": {
+        "left": 0.3411769419798095,
+        "right": 0.4978430477067033,
+        "top": 0.1946801584465983,
+        "bottom": 0.32306630100366074
+      }
+    },
+    {
+      "angle": 42,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.3512309231706079,
+        "right": 0.5066225838738518,
+        "top": 0.19783598058246854,
+        "bottom": 0.32304078071447373
+      }
+    },
+    {
+      "angle": 44,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.361164440545353,
+        "right": 0.515411019355838,
+        "top": 0.2007555473173802,
+        "bottom": 0.3229146760889131
+      }
+    },
+    {
+      "angle": 46,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.3709870472325359,
+        "right": 0.5242097745859998,
+        "top": 0.2034477587456125,
+        "bottom": 0.32268766411589056
+      }
+    },
+    {
+      "angle": 48,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.3807076243739922,
+        "right": 0.5330245558650843,
+        "top": 0.20592062123209148,
+        "bottom": 0.32235917121775537
+      }
+    },
+    {
+      "angle": 50,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.39033496945067975,
+        "right": 0.5418613599706686,
+        "top": 0.2081814462741789,
+        "bottom": 0.32192836126313346
+      }
+    },
+    {
+      "angle": 52,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.39987746524236745,
+        "right": 0.5507261628054656,
+        "top": 0.2072694112074009,
+        "bottom": 0.3231323566247497
+      }
+    },
+    {
+      "angle": 54,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4093432054632993,
+        "right": 0.5596250182977124,
+        "top": 0.20617844938254082,
+        "bottom": 0.3242194918767795
+      }
+    },
+    {
+      "angle": 56,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.41874011336845557,
+        "right": 0.5685641593530241,
+        "top": 0.2049057157482913,
+        "bottom": 0.3251928526218093
+      }
+    },
+    {
+      "angle": 58,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4280756213584054,
+        "right": 0.5775496821879309,
+        "top": 0.2034479078411961,
+        "bottom": 0.32605514716227263
+      }
+    },
+    {
+      "angle": 60,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4373572240508375,
+        "right": 0.5865880649258948,
+        "top": 0.201801175709586,
+        "bottom": 0.3268087779307547
+      }
+    },
+    {
+      "angle": 62,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.44659215346175923,
+        "right": 0.5956858542814429,
+        "top": 0.19996114555707084,
+        "bottom": 0.32745581892132714
+      }
+    },
+    {
+      "angle": 64,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4557874917504974,
+        "right": 0.6048497692140085,
+        "top": 0.1979228832746226,
+        "bottom": 0.3279980379305031
+      }
+    },
+    {
+      "angle": 66,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4649501949783671,
+        "right": 0.6140867225682042,
+        "top": 0.19568086535181894,
+        "bottom": 0.32843690722482943
+      }
+    },
+    {
+      "angle": 68,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.47408720103965185,
+        "right": 0.6234039312389278,
+        "top": 0.19322892199568564,
+        "bottom": 0.32877361501442215
+      }
+    },
+    {
+      "angle": 70,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.4832051113510755,
+        "right": 0.6328085923977145,
+        "top": 0.19056029318231493,
+        "bottom": 0.32900906089230486
+      }
+    },
+    {
+      "angle": 72,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.49231072334753756,
+        "right": 0.6423084305126484,
+        "top": 0.18766744960589038,
+        "bottom": 0.32914388000396677
+      }
+    },
+    {
+      "angle": 74,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.501407883258454,
+        "right": 0.6519113786342189,
+        "top": 0.18454213490950822,
+        "bottom": 0.3291784332660427
+      }
+    },
+    {
+      "angle": 76,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5104906520316472,
+        "right": 0.6616256948215635,
+        "top": 0.18117529095786206,
+        "bottom": 0.32911281309633644
+      }
+    },
+    {
+      "angle": 78,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.519581140158203,
+        "right": 0.6714600867163881,
+        "top": 0.17755696374063484,
+        "bottom": 0.3289468419391621
+      }
+    },
+    {
+      "angle": 80,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5286858123749737,
+        "right": 0.6814233787128758,
+        "top": 0.1736763744420039,
+        "bottom": 0.3286800783584174
+      }
+    },
+    {
+      "angle": 82,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5378114318474382,
+        "right": 0.6915250998122574,
+        "top": 0.16952164324478192,
+        "bottom": 0.32831180515203584
+      }
+    },
+    {
+      "angle": 84,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5469647423165055,
+        "right": 0.7017751594400296,
+        "top": 0.16507983908699653,
+        "bottom": 0.32784103038539786
+      }
+    },
+    {
+      "angle": 86,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.556152574201877,
+        "right": 0.7121839836133292,
+        "top": 0.16033685463142372,
+        "bottom": 0.32726648044447937
+      }
+    },
+    {
+      "angle": 88,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5653819528668418,
+        "right": 0.7227626636953937,
+        "top": 0.15527725408147264,
+        "bottom": 0.32658658562081366
+      }
+    },
+    {
+      "angle": 90,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.574659776893429,
+        "right": 0.7335226144999787,
+        "top": 0.1498843488529576,
+        "bottom": 0.3257994970659873
+      }
+    },
+    {
+      "angle": 92,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5839933579004504,
+        "right": 0.7444762253125764,
+        "top": 0.1441397849019736,
+        "bottom": 0.32490303752463817
+      }
+    },
+    {
+      "angle": 94,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.5933901017081588,
+        "right": 0.7556365327857695,
+        "top": 0.13802358244085788,
+        "bottom": 0.32389471240439827
+      }
+    },
+    {
+      "angle": 96,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.6028576203148486,
+        "right": 0.7670173913023297,
+        "top": 0.13151392640161597,
+        "bottom": 0.3227716884915571
+      }
+    },
+    {
+      "angle": 98,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.6124038489483793,
+        "right": 0.7786336628229427,
+        "top": 0.1245869153951003,
+        "bottom": 0.32153076405234976
+      }
+    },
+    {
+      "angle": 100,
+      "alpha": 1,
+      "target": 1,
+      "bounds": {
+        "left": 0.6220366737206521,
+        "right": 0.7905008150238522,
+        "top": 0.11721665131515924,
+        "bottom": 0.3201684025303909
+      }
+    },
+    {
+      "angle": 102,
+      "alpha": 0.99999,
+      "target": 0.99997,
+      "bounds": {
+        "left": 0.6317647224469507,
+        "right": 0.8026359499195324,
+        "top": 0.10937444027435866,
+        "bottom": 0.3186806069302007
+      }
+    },
+    {
+      "angle": 104,
+      "alpha": 0.99988,
+      "target": 0.99968,
+      "bounds": {
+        "left": 0.6415965921423753,
+        "right": 0.8150569250211857,
+        "top": 0.10102913525185314,
+        "bottom": 0.3170630052384566
+      }
+    },
+    {
+      "angle": 106,
+      "alpha": 0.9994,
+      "target": 0.99861,
+      "bounds": {
+        "left": 0.651541471755619,
+        "right": 0.8277832042392432,
+        "top": 0.09214637515349666,
+        "bottom": 0.3153107350838279
+      }
+    },
+    {
+      "angle": 108,
+      "alpha": 0.99823,
+      "target": 0.99578,
+      "bounds": {
+        "left": 0.6616087700267387,
+        "right": 0.840835479334126,
+        "top": 0.08268858756159225,
+        "bottom": 0.3134184770632778
+      }
+    },
+    {
+      "angle": 110,
+      "alpha": 0.99501,
+      "target": 0.98969,
+      "bounds": {
+        "left": 0.6718084813644586,
+        "right": 0.8542362388785756,
+        "top": 0.0726143150845221,
+        "bottom": 0.31138036185495127
+      }
+    },
+    {
+      "angle": 112,
+      "alpha": 0.98863,
+      "target": 0.97823,
+      "bounds": {
+        "left": 0.6821510961211129,
+        "right": 0.8680097751992708,
+        "top": 0.06187788120631954,
+        "bottom": 0.30918994976885344
+      }
+    },
+    {
+      "angle": 114,
+      "alpha": 0.975,
+      "target": 0.95864,
+      "bounds": {
+        "left": 0.6926475040871113,
+        "right": 0.8821821855034953,
+        "top": 0.05042904348760918,
+        "bottom": 0.30684021739015177
+      }
+    },
+    {
+      "angle": 116,
+      "alpha": 0.95338,
+      "target": 0.92751,
+      "bounds": {
+        "left": 0.703309339461864,
+        "right": 0.8967819851600117,
+        "top": 0.03821210840200473,
+        "bottom": 0.30432344352816987
+      }
+    },
+    {
+      "angle": 118,
+      "alpha": 0.91962,
+      "target": 0.88096,
+      "bounds": {
+        "left": 0.7141489011176827,
+        "right": 0.9118401841250254,
+        "top": 0.02516539157919684,
+        "bottom": 0.30163117695253994
+      }
+    },
+    {
+      "angle": 120,
+      "alpha": 0.88591,
+      "target": 0.81504,
+      "bounds": {
+        "left": 0.7251790653227594,
+        "right": 0.9273903645713351,
+        "top": 0.0112206384769582,
+        "bottom": 0.2987542107668011
+      }
+    },
+    {
+      "angle": 122,
+      "alpha": 0.82733,
+      "target": 0.72636,
+      "bounds": {
+        "left": 0.7364137166355561,
+        "right": 0.9434695187181112,
+        "top": -0.003698312931080028,
+        "bottom": 0.2956824172271594
+      }
+    },
+    {
+      "angle": 124,
+      "alpha": 0.745,
+      "target": 0.61327,
+      "bounds": {
+        "left": 0.7478674195622034,
+        "right": 0.9601178602632183,
+        "top": -0.019676057612388553,
+        "bottom": 0.292404770521298
+      }
+    },
+    {
+      "angle": 126,
+      "alpha": 0.56938,
+      "target": 0.47751,
+      "bounds": {
+        "left": 0.7595558753849201,
+        "right": 0.9773797956171517,
+        "top": -0.03680731997805631,
+        "bottom": 0.288909153203207
+      }
+    },
+    {
+      "angle": 128,
+      "alpha": 0.4808,
+      "target": 0.32652,
+      "bounds": {
+        "left": 0.7714958734343509,
+        "right": 0.9953042368812326,
+        "top": -0.05519819876005094,
+        "bottom": 0.28518228649205385
+      }
+    },
+    {
+      "angle": 130,
+      "alpha": 0.35659,
+      "target": 0.17628,
+      "bounds": {
+        "left": 0.7837052349996647,
+        "right": 1.0139449493309676,
+        "top": -0.07496756496562818,
+        "bottom": 0.2812096645769161
+      }
+    },
+    {
+      "angle": 132,
+      "alpha": 0.24644,
+      "target": 0.05413,
+      "bounds": {
+        "left": 0.7962033360657488,
+        "right": 1.0333618589659586,
+        "top": -0.0962496596665412,
+        "bottom": 0.27697529126318765
+      }
+    },
+    {
+      "angle": 134,
+      "alpha": 0.13923,
+      "target": 0.00007,
+      "bounds": {
+        "left": 0.809010798029832,
+        "right": 1.053621194872011,
+        "top": -0.11919570177506678,
+        "bottom": 0.27246167055785453
+      }
+    },
+    {
+      "angle": 136,
+      "alpha": 0.08267,
+      "target": 0,
+      "bounds": {
+        "left": 0.8221500574412315,
+        "right": 1.0747971032429677,
+        "top": -0.14397735962392832,
+        "bottom": 0.26764949162521673
+      }
+    },
+    {
+      "angle": 138,
+      "alpha": 0.04601,
+      "target": 0,
+      "bounds": {
+        "left": 0.835645385494437,
+        "right": 1.0969725684927278,
+        "top": -0.17078983502073908,
+        "bottom": 0.26251747616998744
+      }
+    },
+    {
+      "angle": 140,
+      "alpha": 0.0225,
+      "target": 0,
+      "bounds": {
+        "left": 0.8495229051726534,
+        "right": 1.1202404825952326,
+        "top": -0.19985546901020568,
+        "bottom": 0.2570422210445321
+      }
+    },
+    {
+      "angle": 142,
+      "alpha": 0.01431,
+      "target": 0,
+      "bounds": {
+        "left": 0.8638112110676543,
+        "right": 1.1447059413161091,
+        "top": -0.2314293489895065,
+        "bottom": 0.25119778451552455
+      }
+    },
+    {
+      "angle": 144,
+      "alpha": 0.00847,
+      "target": 0,
+      "bounds": {
+        "left": 0.8785414668010928,
+        "right": 1.1704879815344222,
+        "top": -0.26580489465450996,
+        "bottom": 0.2449554388334783
+      }
+    },
+    {
+      "angle": 146,
+      "alpha": 0.00472,
+      "target": 0,
+      "bounds": {
+        "left": 0.8937475089115272,
+        "right": 1.1977216500110488,
+        "top": -0.30332055285466475,
+        "bottom": 0.23828340546215504
+      }
+    },
+    {
+      "angle": 148,
+      "alpha": 0.003,
+      "target": 0,
+      "bounds": {
+        "left": 0.9094666999176793,
+        "right": 1.226561861448522,
+        "top": -0.34436985923656815,
+        "bottom": 0.23114622925963801
+      }
+    },
+    {
+      "angle": 150,
+      "alpha": 0.0019,
+      "target": 0,
+      "bounds": {
+        "left": 0.9257397846527229,
+        "right": 1.2571860724012158,
+        "top": -0.38941107328218727,
+        "bottom": 0.22350454293989847
+      }
+    },
+    {
+      "angle": 152,
+      "alpha": 0.00112,
+      "target": 0,
+      "bounds": {
+        "left": 0.9426118894430433,
+        "right": 1.289799785481481,
+        "top": -0.43898227797492195,
+        "bottom": 0.2153142733647121
+      }
+    },
+    {
+      "angle": 154,
+      "alpha": 0.00052,
+      "target": 0,
+      "bounds": {
+        "left": 0.9601328886137523,
+        "right": 1.3246419216407048,
+        "top": -0.49371829356387575,
+        "bottom": 0.20652606627876874
+      }
+    },
+    {
+      "angle": 156,
+      "alpha": 0.00031,
+      "target": 0,
+      "bounds": {
+        "left": 0.9783578183906476,
+        "right": 1.3619915317115958,
+        "top": -0.5543719287365922,
+        "bottom": 0.1970846400681472
+      }
+    },
+    {
+      "angle": 158,
+      "alpha": 0.00017,
+      "target": 0,
+      "bounds": {
+        "left": 0.997348155955468,
+        "right": 1.4021780035128923,
+        "top": -0.6218438902207712,
+        "bottom": 0.18692761797487267
+      }
+    },
+    {
+      "angle": 160,
+      "alpha": 0.0001,
+      "target": 0,
+      "bounds": {
+        "left": 1.0171725231534756,
+        "right": 1.4455925398021692,
+        "top": -0.6972189795528787,
+        "bottom": 0.17598454106832945
+      }
+    },
+    {
+      "angle": 162,
+      "alpha": 0.00006,
+      "target": 0,
+      "bounds": {
+        "left": 1.0379075004258422,
+        "right": 1.4927030204242218,
+        "top": -0.7818132001905318,
+        "bottom": 0.1641757305200912
+      }
+    },
+    {
+      "angle": 164,
+      "alpha": 0.00004,
+      "target": 0,
+      "bounds": {
+        "left": 1.0596396059533397,
+        "right": 1.5440759808127535,
+        "top": -0.8772405014772522,
+        "bottom": 0.1514103549216118
+      }
+    },
+    {
+      "angle": 166,
+      "alpha": 0.00002,
+      "target": 0,
+      "bounds": {
+        "left": 1.0824661068575416,
+        "right": 1.6004023360408832,
+        "top": -0.9854960215148407,
+        "bottom": 0.13758498588831442
+      }
+    },
+    {
+      "angle": 168,
+      "alpha": 0.00001,
+      "target": 0,
+      "bounds": {
+        "left": 1.1064976319881197,
+        "right": 1.6625364252524333,
+        "top": -1.1090772697177036,
+        "bottom": 0.1225809055172698
+      }
+    },
+    {
+      "angle": 170,
+      "alpha": 0.00001,
+      "target": 0,
+      "bounds": {
+        "left": 1.1318602209107598,
+        "right": 1.7315472311592854,
+        "top": -1.2511475079144503,
+        "bottom": 0.1062614702173092
+      }
+    },
+    {
+      "angle": 172,
+      "alpha": 0,
+      "target": 0,
+      "bounds": {
+        "left": 1.1586977915236645,
+        "right": 1.8087904411330589,
+        "top": -1.4157664427433778,
+        "bottom": 0.08846893823118746
+      }
+    },
+    {
+      "angle": 174,
+      "alpha": 0,
+      "target": 0,
+      "bounds": {
+        "left": 1.1871764945104302,
+        "right": 1.896016334420037,
+        "top": -1.6082325122771102,
+        "bottom": 0.06901968372639306
+      }
+    },
+    {
+      "angle": 176,
+      "alpha": 0,
+      "target": 0,
+      "bounds": {
+        "left": 1.2174880677410154,
+        "right": 1.9955229118573312,
+        "top": -1.8355770820478088,
+        "bottom": 0.04769958643103628
+      }
+    },
+    {
+      "angle": 178,
+      "alpha": 0,
+      "target": 0,
+      "bounds": {
+        "left": 1.2498562834683518,
+        "right": 2.110396229149255,
+        "top": -2.107334298492841,
+        "bottom": 0.02425672897965786
+      }
+    },
+    {
+      "angle": 180,
+      "alpha": 0,
+      "target": 0,
+      "bounds": {
+        "left": 1.2845430189761828,
+        "right": 2.2448805392130584,
+        "top": -2.4367368869748702,
+        "bottom": -0.0016064286958179519
+      }
+    }
+  ],
+  "edgeCaptured": true,
+  "errors": [],
+  "captures": [
+    {
+      "name": "desktop-1920",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          0,
+          1.6000000000000008,
+          8.6
+        ],
+        "frame": "437",
+        "spatialFrame": "437",
+        "composition": {
+          "lion": {
+            "left": 0.3911648851154934,
+            "top": 0.2665851415169745,
+            "right": 0.6387594484143393,
+            "bottom": 0.6509982811931992,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.24759456329884588,
+            "heightRatio": 0.38441313967622476,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145468552,
+            "right": 0.8169743485453145,
+            "top": 0.5694309627861958,
+            "bottom": 0.8667639310381577,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090629,
+            "heightRatio": 0.297332968251962,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836375,
+              "top": 0.10259267563937219,
+              "right": 0.6952608488616363,
+              "bottom": 0.5250276184405398,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772327255,
+              "heightRatio": 0.4224349428011676,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448654,
+              "top": -4.91192142769144,
+              "right": 4.1676507255278,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829343,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255278,
+              "top": -4.91192142769144,
+              "right": 0.20483502065513454,
+              "bottom": 1.0158077929218772,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461829347,
+              "heightRatio": 5.927729220613317,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 67,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.97074,
+            "target": 0.97074,
+            "bounds": {
+              "left": 0.09414670438287592,
+              "right": 0.3140657546471591,
+              "top": 0.05689475166026592,
+              "bottom": 0.30054506272309883
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.99998,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.31691662041842145,
+              "right": 0.37184954468317166,
+              "top": 0.1115268221165896,
+              "bottom": 0.2304089569357729
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.59961,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.8022703285752568,
+              "right": 0.8490504588483896,
+              "top": -0.02147085580437269,
+              "bottom": 0.1853149470601676
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.1623738205204472,
+              "right": -1.961110586042973,
+              "top": 5.559474027547067,
+              "bottom": 7.613533659068491
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -2.0888218397202647,
+              "right": -0.7053163199215622,
+              "top": -3.262376137662485,
+              "bottom": -0.7058198249613177
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92858,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.7160271848754195,
+              "right": 0.9614295166586,
+              "top": 0.3242282373263942,
+              "bottom": 0.6366563808237686
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.10471319508299082,
+              "right": 0.42790432090454744,
+              "top": -0.06136528803941921,
+              "bottom": 0.999764580129791
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.18674595794649496,
+              "right": 0.3189368996445893,
+              "top": 0.36518654311491183,
+              "bottom": 0.5974893370242003
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5306730155482666,
+              "right": 0.553012694177113,
+              "top": 0.3918612311497622,
+              "bottom": 0.5719185541384887
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "drag-left-90",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/drag-left-90.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "meihuazhuang",
+        "camera": [
+          8.600000000000046,
+          1.6000000000000032,
+          -0.0000011992940697044213
+        ],
+        "frame": "672",
+        "spatialFrame": "672",
+        "composition": {
+          "lion": {
+            "left": 0.3689434679636876,
+            "top": 0.2646646470071293,
+            "right": 0.5981057256553278,
+            "bottom": 0.649469272928521,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.22916225769164023,
+            "heightRatio": 0.3848046259213917,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565460053166,
+            "right": 0.8169743516911396,
+            "top": 0.5694309627861953,
+            "bottom": 0.8667639310381412,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.633948697090608,
+            "heightRatio": 0.2973329682519459,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.7951650518762208,
+              "top": -4.91192751619882,
+              "right": 4.167653996262407,
+              "bottom": 1.015808652632065,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724889443861867,
+              "heightRatio": 5.927736168830885,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": -3.167653458689841,
+              "top": -4.911924921157144,
+              "right": 0.20483512312749275,
+              "bottom": 1.0158085189918777,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724885818173336,
+              "heightRatio": 5.927733440149022,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": 0.3047392041319441,
+              "top": 0.10259269451817876,
+              "right": 0.695260889858654,
+              "bottom": 0.5250275938135831,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052168572670987,
+              "heightRatio": 0.42243489929540434,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 98,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.99996,
+            "target": 1,
+            "bounds": {
+              "left": 0.5746597768934286,
+              "right": 0.733522614499978,
+              "top": 0.14988434885295837,
+              "bottom": 0.32579949706598765
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.60126,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.8022704055888237,
+              "right": 0.8490505420939802,
+              "top": -0.021470906103963183,
+              "bottom": 0.18531492133549066
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.00028,
+            "target": 0,
+            "bounds": {
+              "left": -3.1623707491301043,
+              "right": -1.961109350417563,
+              "top": 5.559471256535896,
+              "bottom": 7.613531393030676
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -2.0888202743717166,
+              "right": -0.705316044591715,
+              "top": -3.2623733578682406,
+              "bottom": -0.7058194140184553
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0.99381,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.31691665917041967,
+              "right": 0.3718495804901564,
+              "top": 0.1115268221953864,
+              "bottom": 0.23040896092861207
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.00062,
+            "target": 0,
+            "bounds": {
+              "left": 0.10471301962828422,
+              "right": 0.42790427636395034,
+              "top": -0.06136522657759258,
+              "bottom": 0.9997645230497262
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.18674600909394035,
+              "right": 0.3189369191750529,
+              "top": 0.36518655118418086,
+              "bottom": 0.5974893292963598
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5306730291756929,
+              "right": 0.5530127149873332,
+              "top": 0.3918612305967325,
+              "bottom": 0.5719185546691459
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0.92415,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.7160271916094509,
+              "right": 0.9614295612866519,
+              "top": 0.3242282163448487,
+              "bottom": 0.636656400857928
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "drag-next-180",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/drag-next-180.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "doumao",
+        "camera": [
+          -8.599999999999847,
+          1.600000000000003,
+          0.0000021987057943587967
+        ],
+        "frame": "781",
+        "spatialFrame": "781",
+        "composition": {
+          "lion": {
+            "left": 0.384597030307366,
+            "top": 0.324460413532845,
+            "right": 0.5835737672926607,
+            "bottom": 0.6544096017273925,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.19897673698529478,
+            "heightRatio": 0.3299491881945475,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565722207081,
+            "right": 0.8169743543126604,
+            "top": 0.569430962786196,
+            "bottom": 0.8667639310381309,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6339486970905897,
+            "heightRatio": 0.2973329682519349,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": -3.167644214582445,
+              "top": -4.9119115190011255,
+              "right": 0.2048351064792744,
+              "bottom": 1.0158072323462195,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372479321061719,
+              "heightRatio": 5.927718751347345,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.30473924329468927,
+              "top": 0.1025926768296877,
+              "right": 0.6952609290214073,
+              "bottom": 0.5250275957220104,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.3905216857267181,
+              "heightRatio": 0.4224349188923227,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": 0.7951650221771637,
+              "top": -4.91193992914941,
+              "right": 4.167662493438327,
+              "bottom": 1.0158096579390086,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372497471261163,
+              "heightRatio": 5.927749587088419,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 110,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.00084,
+            "target": 0,
+            "bounds": {
+              "left": -0.7684353750788651,
+              "right": 2.194680299574853,
+              "top": -1.3290507916288214,
+              "bottom": 6.3021934743914025
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.00036,
+            "target": 0,
+            "bounds": {
+              "left": -2.0888189845831233,
+              "right": -0.7053157973818143,
+              "top": -3.2623710650317994,
+              "bottom": -0.7058190750633664
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.9928,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.31691669702212233,
+              "right": 0.3718496142114123,
+              "top": 0.111526833557059,
+              "bottom": 0.2304089719259223
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0.59989,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.8022704430373903,
+              "right": 0.8490505838637383,
+              "top": -0.02147094825486895,
+              "bottom": 0.18531489977828863
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0.00145,
+            "target": 0,
+            "bounds": {
+              "left": -3.162366962274459,
+              "right": -1.9611073376518795,
+              "top": 5.559466836592355,
+              "bottom": 7.613527220878439
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5306730519383221,
+              "right": 0.5530127497477726,
+              "top": 0.3918612296729746,
+              "bottom": 0.5719185555555333
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0.92283,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.7160271972211442,
+              "right": 0.9614295984767028,
+              "top": 0.32422819886022114,
+              "bottom": 0.6366564175530663
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0.0006,
+            "target": 0,
+            "bounds": {
+              "left": 0.10471292841220858,
+              "right": 0.4279042532080082,
+              "top": -0.061365194624585784,
+              "bottom": 0.999764493374725
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0.00063,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867460415450316,
+              "right": 0.31893693156638386,
+              "top": 0.365186556303821,
+              "bottom": 0.5974893243933426
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "slow-edge-fade",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/slow-edge-fade.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "meihuazhuang",
+        "camera": [
+          7.129722825912647,
+          1.6000000000000025,
+          -4.809059411741741
+        ],
+        "frame": "1403",
+        "spatialFrame": "1403",
+        "composition": {
+          "lion": {
+            "left": 0.4023259589806642,
+            "top": 0.26452825541685554,
+            "right": 0.5734218878573594,
+            "bottom": 0.6452219511734864,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.17109592887669517,
+            "heightRatio": 0.3806936957566308,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.1824382401019765,
+            "right": 0.8175104773272991,
+            "top": 0.569431244959145,
+            "bottom": 0.8659106661764409,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6350722372253226,
+            "heightRatio": 0.29647942121729587,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 1.1315869719404952,
+              "top": -0.2708681521776303,
+              "right": 1.1413908147702068,
+              "bottom": 0.5650158088659396,
+              "inFront": true,
+              "visible": false,
+              "widthRatio": 0.009803842829711584,
+              "heightRatio": 0.8358839610435699,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": -0.7064994928349309,
+              "top": -1.0151810026218042,
+              "right": -0.6704082133714111,
+              "bottom": 0.6429347285502092,
+              "inFront": true,
+              "visible": false,
+              "widthRatio": 0.036091279463519754,
+              "heightRatio": 1.6581157311720134,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": -0.2442206264897655,
+              "top": -0.3918264402923921,
+              "right": 0.4045414936613636,
+              "bottom": 0.5778379958442508,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.6487621201511291,
+              "heightRatio": 0.9696644361366429,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": 0.4849469488196968,
+              "top": -0.07179269694088497,
+              "right": 0.9470831475267336,
+              "bottom": 0.5437754498504007,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.4621361987070368,
+              "heightRatio": 0.6155681467912857,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 189,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.61363,
+            "target": 0.61327,
+            "bounds": {
+              "left": 0.7478674195622034,
+              "right": 0.9601178602632183,
+              "top": -0.019676057612388553,
+              "bottom": 0.292404770521298
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 1.140775777090288,
+              "right": 1.2168502603760971,
+              "top": -0.4522797885094805,
+              "bottom": -0.03166426502460695
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.45284069518337045,
+              "right": 0.8487788538315468,
+              "top": 1.9805122823043866,
+              "bottom": 3.891483688148518
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -0.18965847706406003,
+              "right": -0.015876874372706573,
+              "top": -0.3295798947434556,
+              "bottom": 0.024286328471860963
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 1,
+            "target": 1,
+            "bounds": {
+              "left": 0.49285938955839287,
+              "right": 0.535302232676136,
+              "top": 0.13158961110462697,
+              "bottom": 0.25738691817878206
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -0.1037629587142449,
+              "right": 0.296046548457234,
+              "top": 0.21168061265028004,
+              "bottom": 0.7436855238110313
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.3378473630898528,
+              "right": 0.39274433231897976,
+              "top": 0.38443856666340753,
+              "bottom": 0.579039014844358
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.6135035164888027,
+              "right": 0.6875346218493196,
+              "top": 0.38339532095761775,
+              "bottom": 0.5800394784787611
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0.00005,
+            "target": 0,
+            "bounds": {
+              "left": 0.6984856977341909,
+              "right": 1.1202721588734974,
+              "top": 0.17264319681168466,
+              "bottom": 0.7806060023282639
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "slow-return",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/slow-return.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2310",
+        "spatialFrame": "2310",
+        "composition": {
+          "lion": {
+            "left": 0.4189848576513556,
+            "top": 0.33079543913652165,
+            "right": 0.5908942435034593,
+            "bottom": 0.6460722906410459,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.1719093858521037,
+            "heightRatio": 0.3152768515045242,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145469923,
+            "right": 0.8169743485453007,
+            "top": 0.5694309627861943,
+            "bottom": 0.8667639310381323,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6339486970906014,
+            "heightRatio": 0.297332968251938,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836675,
+              "top": 0.10259267563937807,
+              "right": 0.6952608488616334,
+              "bottom": 0.5250276184405394,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772326667,
+              "heightRatio": 0.4224349428011613,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448605,
+              "top": -4.911921427690295,
+              "right": 4.167650725527023,
+              "bottom": 1.015807792921779,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372485746182163,
+              "heightRatio": 5.927729220612074,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255270097,
+              "top": -4.911921427690273,
+              "right": 0.20483502065513975,
+              "bottom": 1.0158077929217773,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461821496,
+              "heightRatio": 5.927729220612051,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 305,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.97074,
+            "target": 0.97074,
+            "bounds": {
+              "left": 0.09414670438288586,
+              "right": 0.31406575464716247,
+              "top": 0.0568947516602768,
+              "bottom": 0.3005450627231024
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.99998,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.31691662041842433,
+              "right": 0.3718495446831737,
+              "top": 0.11152682211659559,
+              "bottom": 0.23040895693577707
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.59949,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.8022703285752515,
+              "right": 0.8490504588483826,
+              "top": -0.021470855804362032,
+              "bottom": 0.1853149470601731
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.162373820521545,
+              "right": -1.9611105860436835,
+              "top": 5.559474027548593,
+              "bottom": 7.613533659070549
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -2.0888218397198655,
+              "right": -0.705316319921476,
+              "top": -3.2623761376619043,
+              "bottom": -0.7058198249612311
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92851,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.7160271848754121,
+              "right": 0.961429516658582,
+              "top": 0.32422823732640105,
+              "bottom": 0.6366563808237633
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.10471319508304344,
+              "right": 0.42790432090455116,
+              "top": -0.06136528803934371,
+              "bottom": 0.9997645801297252
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867459579465034,
+              "right": 0.3189368996445946,
+              "top": 0.36518654311491583,
+              "bottom": 0.5974893370241975
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.530673015548266,
+              "right": 0.553012694177112,
+              "top": 0.3918612311497646,
+              "bottom": 0.5719185541384871
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop-1366",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2372",
+        "spatialFrame": "2372",
+        "composition": {
+          "lion": {
+            "left": 0.43136646449390614,
+            "top": 0.32915771832545754,
+            "right": 0.5959370815438265,
+            "bottom": 0.6476616328524331,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.16457061704992038,
+            "heightRatio": 0.3185039145269755,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.19390358145659026,
+            "right": 0.8060964185434097,
+            "top": 0.5694309627861943,
+            "bottom": 0.8667639310381323,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6121928370868195,
+            "heightRatio": 0.297332968251938,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.3114401156037077,
+              "top": 0.10259267563937807,
+              "right": 0.6885598843962925,
+              "bottom": 0.5250276184405394,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.37711976879258474,
+              "heightRatio": 0.4224349428011613,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7850355035716368,
+              "top": -4.911921427690295,
+              "right": 4.041784238075388,
+              "bottom": 1.015807792921779,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.256748734503751,
+              "heightRatio": 5.927729220612074,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.041784238075374,
+              "top": -4.911921427690273,
+              "right": 0.2149644964283634,
+              "bottom": 1.0158077929217773,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.2567487345037374,
+              "heightRatio": 5.927729220612051,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 314,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1351,
+            "height": 678
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.97074,
+            "target": 0.97074,
+            "bounds": {
+              "left": 0.10807478329848558,
+              "right": 0.3204466486065155,
+              "top": 0.0568947516602768,
+              "bottom": 0.3005450627231024
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.99998,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.3231996783274885,
+              "right": 0.37624741375063764,
+              "top": 0.11152682211659559,
+              "bottom": 0.23040895693577707
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.59961,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.7918970113305589,
+              "right": 0.8370717404571119,
+              "top": -0.021470855804362032,
+              "bottom": 0.1853149470601731
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.0366884259676135,
+              "right": -1.876650159498884,
+              "top": 5.559474027548593,
+              "bottom": 7.613533659070549
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -1.9999786166354752,
+              "right": -0.6639522580709982,
+              "top": -3.2623761376619043,
+              "bottom": -0.7058198249612311
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.95387,
+            "target": 0.95427,
+            "bounds": {
+              "left": 0.7138889738480112,
+              "right": 0.9515887851629454,
+              "top": 0.32014881070395984,
+              "bottom": 0.6326239461014013
+            },
+            "world": [
+              5.1,
+              1.65,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1009433331008614,
+              "right": 0.4291650421435159,
+              "top": -0.1006529902843184,
+              "bottom": 1.008485431718365
+            },
+            "world": [
+              -1.2,
+              1.65,
+              5.1
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.19343403215775917,
+              "right": 0.3207309718443526,
+              "top": 0.3621578879556071,
+              "bottom": 0.5944866610895028
+            },
+            "world": [
+              -5.100000052453666,
+              1.65,
+              -1.199999777071893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.529408585436613,
+              "right": 0.5509003827350168,
+              "top": 0.3901950308177897,
+              "bottom": 0.5689704124869739
+            },
+            "world": [
+              1.2,
+              1.65,
+              -5.1
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop-900",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/desktop-900.png",
+      "viewport": {
+        "width": 900,
+        "height": 900
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2407",
+        "spatialFrame": "2407",
+        "composition": {
+          "lion": {
+            "left": 0.4050068590690427,
+            "top": 0.36302670190751174,
+            "right": 0.6415164644294414,
+            "bottom": 0.6187458288004328,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.23650960536039872,
+            "heightRatio": 0.2557191268929211,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798533645,
+            "right": 0.9303718520146637,
+            "top": 0.555301938038978,
+            "bottom": 0.792128401728513,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293272,
+            "heightRatio": 0.23682646368953497,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833482,
+              "top": 0.18346405773308455,
+              "right": 0.7651153745916655,
+              "bottom": 0.5199345615950051,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833307,
+              "heightRatio": 0.3364705038619205,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800264,
+              "top": -3.810609149805095,
+              "right": 5.4797519658358205,
+              "bottom": 0.9108422159148597,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780055794,
+              "heightRatio": 4.721451365719955,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965835802,
+              "top": -3.810609149805077,
+              "right": 0.09923981421997397,
+              "bottom": 0.9108422159148581,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780055776,
+              "heightRatio": 4.721451365719935,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 320,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 67.45059790817311,
+            "width": 885,
+            "height": 784
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.92616,
+            "target": 0.92305,
+            "bounds": {
+              "left": 0.03676804070409917,
+              "right": 0.28429458099562177,
+              "top": 0.19170681939617712,
+              "bottom": 0.3556150647007761
+            },
+            "world": [
+              -7.298942680479497,
+              5.65,
+              -6.499999999999942
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 1,
+            "target": 1,
+            "bounds": {
+              "left": 0.25141858164473696,
+              "right": 0.326003747481974,
+              "top": 0.19058012807241853,
+              "bottom": 0.28527005011709833
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.66286,
+            "target": 0.6699,
+            "bounds": {
+              "left": 0.9104074721346738,
+              "right": 0.9739231837231064,
+              "top": 0.0846471401292464,
+              "bottom": 0.24935255682597002
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -4.4725872492253576,
+              "right": -2.841572356846846,
+              "top": 4.52988390126352,
+              "bottom": 6.165947609908795
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.0149722834338952,
+              "right": -1.1365179682480486,
+              "top": -2.4967421406070462,
+              "bottom": -0.4604385503269566
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.93014,
+            "target": 0.92848,
+            "bounds": {
+              "left": 0.6476136007847215,
+              "right": 0.9614643173662084,
+              "top": 0.3567480713566626,
+              "bottom": 0.605635309600558
+            },
+            "world": [
+              3.286431604928622,
+              1.65,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.20994474233318577,
+              "right": 0.4266938561059377,
+              "top": 0.24636272214269234,
+              "bottom": 0.7052104402672763
+            },
+            "world": [
+              -1.2,
+              1.65,
+              3.2864316049286195
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867299206637359,
+              "right": 0.3762790511772389,
+              "top": 0.39020840880600954,
+              "bottom": 0.5752588645693458
+            },
+            "world": [
+              -3.286431657382289,
+              1.65,
+              -1.1999998563454906
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5485813817061578,
+              "right": 0.5812493189560223,
+              "top": 0.3994755616176497,
+              "bottom": 0.5668298444329719
+            },
+            "world": [
+              1.2,
+              1.65,
+              -3.2864316049286195
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "settings-push-900",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-900.png",
+      "viewport": {
+        "width": 1675,
+        "height": 1000
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2482",
+        "spatialFrame": "2482",
+        "composition": {
+          "lion": {
+            "left": 0.39050612529772466,
+            "top": 0.3743257858440751,
+            "right": 0.6546403774589324,
+            "bottom": 0.6091874142667228,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2641342521612078,
+            "heightRatio": 0.23486162842264774,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798533651,
+            "right": 0.9303718520146635,
+            "top": 0.549877351893426,
+            "bottom": 0.763473426208092,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293271,
+            "heightRatio": 0.21359607431466598,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833488,
+              "top": 0.21451317730969205,
+              "right": 0.7651153745916653,
+              "bottom": 0.5179791735836536,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833305,
+              "heightRatio": 0.3034659962739616,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800263,
+              "top": -3.3877800139357244,
+              "right": 5.47975196583582,
+              "bottom": 0.8705425614816129,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.5789917800557935,
+              "heightRatio": 4.2583225754173375,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965835801,
+              "top": -3.387780013935708,
+              "right": 0.09923981421997402,
+              "bottom": 0.8705425614816115,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780055775,
+              "heightRatio": 4.25832257541732,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 333,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 73.01454589282741,
+            "width": 900,
+            "height": 884
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.92315,
+            "target": 0.92305,
+            "bounds": {
+              "left": 0.03676804070409917,
+              "right": 0.28429458099562177,
+              "top": 0.2219474036428441,
+              "bottom": 0.36977783272345477
+            },
+            "world": [
+              -7.298942680479499,
+              5.65,
+              -6.499999999999942
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 1,
+            "target": 1,
+            "bounds": {
+              "left": 0.25141858164473696,
+              "right": 0.3260037474819741,
+              "top": 0.2209312298590108,
+              "bottom": 0.3063329848437056
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.6695,
+            "target": 0.6699,
+            "bounds": {
+              "left": 0.9104074721346738,
+              "right": 0.9739231837231064,
+              "top": 0.12538924518137423,
+              "bottom": 0.27393865083774893
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -4.472587249225357,
+              "right": -2.8415723568468456,
+              "top": 4.134591201691769,
+              "bottom": 5.610172857774938
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.014972283433895,
+              "right": -1.1365179682480484,
+              "top": -2.2027906721020676,
+              "bottom": -0.3662288021968714
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92859,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.6476037748866397,
+              "right": 0.961429516658582,
+              "top": 0.3737302536507229,
+              "bottom": 0.5981702992628555
+            },
+            "world": [
+              3.286431604928623,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.2099851607748771,
+              "right": 0.42669943836040336,
+              "top": 0.276670959900331,
+              "bottom": 0.6903954329618635
+            },
+            "world": [
+              -1.2,
+              1.62,
+              3.2864316049286195
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867459590316073,
+              "right": 0.3762859537447272,
+              "top": 0.4031536088298378,
+              "bottom": 0.5700337389514729
+            },
+            "world": [
+              -3.28643165738229,
+              1.62,
+              -1.1999998563454906
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5485789299359743,
+              "right": 0.5812461471902512,
+              "top": 0.4113028834159912,
+              "bottom": 0.5622260627507526
+            },
+            "world": [
+              1.2,
+              1.62,
+              -3.2864316049286195
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "public-parameters",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/public-parameters.png",
+      "viewport": {
+        "width": 1675,
+        "height": 1000
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2559",
+        "spatialFrame": "2559",
+        "composition": {
+          "lion": {
+            "left": 0.3788533510141445,
+            "top": 0.37303623601380953,
+            "right": 0.6598403503384997,
+            "bottom": 0.6100262977263181,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2809869993243552,
+            "heightRatio": 0.23699006171250858,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798533651,
+            "right": 0.9303718520146635,
+            "top": 0.549877351893426,
+            "bottom": 0.763473426208092,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293271,
+            "heightRatio": 0.21359607431466598,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833488,
+              "top": 0.21451317730969205,
+              "right": 0.7651153745916653,
+              "bottom": 0.5179791735836536,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833305,
+              "heightRatio": 0.3034659962739616,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800263,
+              "top": -3.3877800139357244,
+              "right": 5.47975196583582,
+              "bottom": 0.8705425614816129,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.5789917800557935,
+              "heightRatio": 4.2583225754173375,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965835801,
+              "top": -3.387780013935708,
+              "right": 0.09923981421997402,
+              "bottom": 0.8705425614816115,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780055775,
+              "heightRatio": 4.25832257541732,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 342,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 73.01454589282741,
+            "width": 900,
+            "height": 884
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.92305,
+            "target": 0.92305,
+            "bounds": {
+              "left": 0.03676804070409917,
+              "right": 0.28429458099562177,
+              "top": 0.2219474036428441,
+              "bottom": 0.36977783272345477
+            },
+            "world": [
+              -7.298942680479499,
+              5.65,
+              -6.499999999999942
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 1,
+            "target": 1,
+            "bounds": {
+              "left": 0.25141858164473696,
+              "right": 0.3260037474819741,
+              "top": 0.2209312298590108,
+              "bottom": 0.3063329848437056
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.6699,
+            "target": 0.6699,
+            "bounds": {
+              "left": 0.9104074721346738,
+              "right": 0.9739231837231064,
+              "top": 0.12538924518137423,
+              "bottom": 0.27393865083774893
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -4.472587249225357,
+              "right": -2.8415723568468456,
+              "top": 4.134591201691769,
+              "bottom": 5.610172857774938
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.014972283433895,
+              "right": -1.1365179682480484,
+              "top": -2.2027906721020676,
+              "bottom": -0.3662288021968714
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92858,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.6476037748866397,
+              "right": 0.961429516658582,
+              "top": 0.3737302536507229,
+              "bottom": 0.5981702992628555
+            },
+            "world": [
+              3.286431604928623,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.2099851607748771,
+              "right": 0.42669943836040336,
+              "top": 0.276670959900331,
+              "bottom": 0.6903954329618635
+            },
+            "world": [
+              -1.2,
+              1.62,
+              3.2864316049286195
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867459590316073,
+              "right": 0.3762859537447272,
+              "top": 0.4031536088298378,
+              "bottom": 0.5700337389514729
+            },
+            "world": [
+              -3.28643165738229,
+              1.62,
+              -1.1999998563454906
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5485789299359743,
+              "right": 0.5812461471902512,
+              "top": 0.4113028834159912,
+              "bottom": 0.5622260627507526
+            },
+            "world": [
+              1.2,
+              1.62,
+              -3.2864316049286195
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "settings-push-scale-125",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/settings-push-scale-125.png",
+      "viewport": {
+        "width": 1675,
+        "height": 1000
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2627",
+        "spatialFrame": "2627",
+        "composition": {
+          "lion": {
+            "left": 0.36758463182598144,
+            "top": 0.37171858796226054,
+            "right": 0.6632735728554647,
+            "bottom": 0.6105549938252814,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2956889410294833,
+            "heightRatio": 0.2388364058630209,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.06962814798533651,
+            "right": 0.9303718520146635,
+            "top": 0.549877351893426,
+            "bottom": 0.763473426208092,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.8607437040293271,
+            "heightRatio": 0.21359607431466598,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.23488462540833488,
+              "top": 0.21451317730969205,
+              "right": 0.7651153745916653,
+              "bottom": 0.5179791735836536,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.5302307491833305,
+              "heightRatio": 0.3034659962739616,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.9007601857800263,
+              "top": -3.3877800139357244,
+              "right": 5.47975196583582,
+              "bottom": 0.8705425614816129,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.5789917800557935,
+              "heightRatio": 4.2583225754173375,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -4.479751965835801,
+              "top": -3.387780013935708,
+              "right": 0.09923981421997402,
+              "bottom": 0.8705425614816115,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 4.578991780055775,
+              "heightRatio": 4.25832257541732,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 351,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 73.01454589282741,
+            "width": 900,
+            "height": 884
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1.25
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.92211,
+            "target": 0.9221,
+            "bounds": {
+              "left": 0.036465658801597134,
+              "right": 0.3368120842382617,
+              "top": 0.196483965304994,
+              "bottom": 0.3833378059862837
+            },
+            "world": [
+              -6.506585134592369,
+              5.65,
+              -6.499999999999942
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 1,
+            "target": 1,
+            "bounds": {
+              "left": 0.242124295802856,
+              "right": 0.33533697320964484,
+              "top": 0.21807805015307113,
+              "bottom": 0.3247874354901583
+            },
+            "world": [
+              -5.7,
+              7.34375,
+              -9.41000084237506
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.64984,
+            "target": 0.64972,
+            "bounds": {
+              "left": 0.9035515103337608,
+              "right": 0.9831377349753523,
+              "top": 0.11441370954433672,
+              "bottom": 0.2988064978723227
+            },
+            "world": [
+              9.410000190734863,
+              7.34375,
+              -5.7
+            ],
+            "interactive": "true"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -4.707653303134907,
+              "right": -2.6594012864000023,
+              "top": 3.7976458574187992,
+              "bottom": 5.657225028264198
+            },
+            "world": [
+              5.6999999938804295,
+              7.34375,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.594101984030054,
+              "right": -1.0326866639464958,
+              "top": -2.6793900202096887,
+              "bottom": -0.23116446928613843
+            },
+            "world": [
+              -9.410000190734863,
+              7.34375,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92647,
+            "target": 0.92646,
+            "bounds": {
+              "left": 0.5751755069583997,
+              "right": 0.9621335150295347,
+              "top": 0.3144468806698386,
+              "bottom": 0.5999352825271835
+            },
+            "world": [
+              2.825490512885823,
+              1.9088888888888889,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1958744626765932,
+              "right": 0.44421171255537956,
+              "top": 0.1781762762945222,
+              "bottom": 0.6864040621904652
+            },
+            "world": [
+              -1.2,
+              1.9088888888888889,
+              2.8254905128858203
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1947014293653554,
+              "right": 0.43534789511402505,
+              "top": 0.3596891125159792,
+              "bottom": 0.5710069940265046
+            },
+            "world": [
+              -2.8254905653394893,
+              1.9088888888888889,
+              -1.199999876493867
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.5452083885866772,
+              "right": 0.5872680794036234,
+              "top": 0.3631388548010176,
+              "bottom": 0.568796654295079
+            },
+            "world": [
+              1.2,
+              1.9088888888888889,
+              -2.8254905128858203
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "name": "flat-video",
+      "file": "source/reviews/action-theater/2026-10-21-soft-ui/flat-video.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": {
+        "active": "tanqing",
+        "camera": [
+          2.50632847809137e-15,
+          1.6000000000000056,
+          8.600000000000271
+        ],
+        "frame": "2653",
+        "spatialFrame": "2653",
+        "composition": {
+          "lion": {
+            "left": 0.3961829532711303,
+            "top": 0.31996502786812653,
+            "right": 0.6213350890198326,
+            "bottom": 0.6541477333709473,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.2251521357487023,
+            "heightRatio": 0.3341827055028208,
+            "worldMinY": 0.4,
+            "worldHeight": 2.685597053944247
+          },
+          "stage": {
+            "left": 0.18302565145469923,
+            "right": 0.8169743485453007,
+            "top": 0.5694309627861943,
+            "bottom": 0.8667639310381323,
+            "inFront": true,
+            "visible": true,
+            "widthRatio": 0.6339486970906014,
+            "heightRatio": 0.297332968251938,
+            "worldTopY": 0.39999999880790715,
+            "radius": 4.7
+          },
+          "screens": {
+            "tanqing": {
+              "left": 0.30473915113836675,
+              "top": 0.10259267563937807,
+              "right": 0.6952608488616334,
+              "bottom": 0.5250276184405394,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 0.39052169772326667,
+              "heightRatio": 0.4224349428011613,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "doumao": {
+              "left": 0.7951649793448605,
+              "top": -4.911921427690295,
+              "right": 4.167650725527023,
+              "bottom": 1.015807792921779,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.372485746182163,
+              "heightRatio": 5.927729220612074,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "tuqiu": {
+              "left": null,
+              "top": null,
+              "right": null,
+              "bottom": null,
+              "inFront": false,
+              "visible": false,
+              "widthRatio": null,
+              "heightRatio": null,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            },
+            "meihuazhuang": {
+              "left": -3.1676507255270097,
+              "top": -4.911921427690273,
+              "right": 0.20483502065513975,
+              "bottom": 1.0158077929217773,
+              "inFront": true,
+              "visible": true,
+              "widthRatio": 3.3724857461821496,
+              "heightRatio": 5.927729220612051,
+              "worldWidth": 14.4,
+              "worldHeight": 8.1
+            }
+          },
+          "architecture": {
+            "meshBatches": 29,
+            "instancedDraws": 19,
+            "instances": 1445,
+            "groups": {
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Column_Stone_Foot": 20,
+              "Theater_Column_Lotus_Foot": 12,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Cuff_Carving": 80,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 60,
+              "Theater_Dougong_Brass_Edge": 80,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 108,
+              "Theater_Screen_Brass_Upright_Fillet": 16,
+              "Theater_Screen_Raised_Vertical_Keys": 296,
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Stage_Low_Base": 2,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Continuous_Raised_Clouds": 72
+            },
+            "components": {
+              "Theater_Polished_Stone_Floor": 1,
+              "Theater_Floor_Inlay_Outer": 1,
+              "Theater_Floor_Inlay_Inner": 1,
+              "Theater_Floor_Inlaid_Clouds": 64,
+              "Theater_Floor_Perimeter_Inlay": 72,
+              "Theater_Stage_Low_Base": 1,
+              "Theater_Stage_Bronze_Plinth": 1,
+              "Theater_Stage_Carved_Fascia": 1,
+              "Theater_Stage_Polished_Stone_Top": 1,
+              "Theater_Stage_Lower_Gold_Bevel": 1,
+              "Theater_Stage_Upper_Gold_Bevel": 1,
+              "Theater_Stage_Warm_Recess": 1,
+              "Theater_Stage_Concentric_Brass_Inlay": 3,
+              "Theater_Stage_Continuous_Raised_Clouds": 72,
+              "Theater_Column_Stone_Foot": 4,
+              "Theater_Column_Lotus_Foot": 4,
+              "Theater_Column_Red_Lacquer": 4,
+              "Theater_Column_Brass_Collars": 28,
+              "Theater_Column_Layered_Lotus_Petals": 256,
+              "Theater_Column_Embossed_Cuff": 8,
+              "Theater_Column_Cuff_Carving": 64,
+              "Theater_Column_Carved_Capital": 4,
+              "Theater_Dougong_Stepped_Arms": 48,
+              "Theater_Dougong_Brass_Edge": 48,
+              "Theater_Capital_Raised_Scroll": 16,
+              "Theater_Continuous_RedGold_Beam": 12,
+              "Theater_Beam_Raised_Brass_Fillet": 24,
+              "Theater_Continuous_Carved_Lintel": 216,
+              "Theater_Ceiling_Rafter": 44,
+              "Theater_Ceiling_Inner_Purlin": 4,
+              "Theater_Ceiling_Inner_Purlin_Inlay": 4,
+              "Theater_Screen_Thick_Black_Upright": 8,
+              "Theater_Screen_Brass_Upright_Fillet": 8,
+              "Theater_Screen_Raised_Vertical_Keys": 128,
+              "Theater_Screen_Thick_Black_Crossbar": 8,
+              "Theater_Screen_Brass_Crossbar_Fillet": 8,
+              "Theater_Screen_Continuous_Raised_Keys": 168,
+              "Theater_Low_Wall_Red_Pilasters": 104,
+              "Theater_Low_Wall_Bronze_Rail": 4
+            },
+            "gridVisibleCount": 0,
+            "stoneRoughness": 0.54
+          },
+          "reflection": {
+            "enabled": true,
+            "size": 768,
+            "passes": 357,
+            "maxHz": 18,
+            "blurTaps": 9
+          },
+          "lighting": {
+            "exposure": 1,
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "name": "",
+                "color": "#fff4e8",
+                "intensity": 0.35,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Warm_Front_Key",
+                "color": "#ffedda",
+                "intensity": 2.2,
+                "shadow": true
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Neutral_Front_Fill",
+                "color": "#eaf2ff",
+                "intensity": 1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Soft_Contour",
+                "color": "#ffe9cd",
+                "intensity": 1.1,
+                "shadow": false
+              },
+              {
+                "type": "DirectionalLight",
+                "name": "Theater_Gold_Bounce",
+                "color": "#ffdfbb",
+                "intensity": 0.4,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              },
+              {
+                "type": "SpotLight",
+                "name": "Theater_Architectural_Warm_Wash",
+                "color": "#ffb66d",
+                "intensity": 75,
+                "shadow": false
+              }
+            ]
+          },
+          "quality": {
+            "pixelRatio": 1,
+            "reduced": false,
+            "fov": 56,
+            "width": 1905,
+            "height": 990
+          }
+        },
+        "settings": {
+          "fadeInMs": 380,
+          "fadeOutMs": 320,
+          "edgeZone": 0.12,
+          "interactionOpacity": 0.35,
+          "hysteresisDegrees": 7,
+          "opacity": 1,
+          "scale": 1
+        },
+        "panels": [
+          {
+            "kind": "title",
+            "id": "tanqing",
+            "alpha": 0.95608,
+            "target": 0.97074,
+            "bounds": {
+              "left": 0.09414670438288586,
+              "right": 0.31406575464716247,
+              "top": 0.0568947516602768,
+              "bottom": 0.3005450627231024
+            },
+            "world": [
+              -7.6,
+              5.65,
+              -4.799999999999957
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tanqing",
+            "alpha": 0.99998,
+            "target": 0.99998,
+            "bounds": {
+              "left": 0.31691662041842433,
+              "right": 0.3718495446831737,
+              "top": 0.11152682211659559,
+              "bottom": 0.23040895693577707
+            },
+            "world": [
+              -5.7,
+              7.55,
+              -9.41000084237506
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "doumao",
+            "alpha": 0.6099,
+            "target": 0.59961,
+            "bounds": {
+              "left": 0.8022703285752515,
+              "right": 0.8490504588483826,
+              "top": -0.021470855804362032,
+              "bottom": 0.1853149470601731
+            },
+            "world": [
+              9.410000190734863,
+              7.55,
+              -5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -3.162373820521545,
+              "right": -1.9611105860436835,
+              "top": 5.559474027548593,
+              "bottom": 7.613533659070549
+            },
+            "world": [
+              5.6999999938804295,
+              7.55,
+              9.410000593220131
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "screen",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": -2.0888218397198655,
+              "right": -0.705316319921476,
+              "top": -3.2623761376619043,
+              "bottom": -0.7058198249612311
+            },
+            "world": [
+              -9.410000190734863,
+              7.55,
+              5.7
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tanqing",
+            "alpha": 0.92843,
+            "target": 0.92858,
+            "bounds": {
+              "left": 0.7160271848754121,
+              "right": 0.961429516658582,
+              "top": 0.32422823732640105,
+              "bottom": 0.6366563808237633
+            },
+            "world": [
+              5.012377645144999,
+              1.62,
+              1.1999999999999893
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "doumao",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.10471319508304344,
+              "right": 0.42790432090455116,
+              "top": -0.06136528803934371,
+              "bottom": 0.9997645801297252
+            },
+            "world": [
+              -1.2,
+              1.62,
+              5.012377645144994
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "tuqiu",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.1867459579465034,
+              "right": 0.3189368996445946,
+              "top": 0.36518654311491583,
+              "bottom": 0.5974893370241975
+            },
+            "world": [
+              -5.012377697598665,
+              1.62,
+              -1.199999780901988
+            ],
+            "interactive": "false"
+          },
+          {
+            "kind": "caption",
+            "id": "meihuazhuang",
+            "alpha": 0,
+            "target": 0,
+            "bounds": {
+              "left": 0.530673015548266,
+              "right": 0.553012694177112,
+              "top": 0.3918612311497646,
+              "bottom": 0.5719185541384871
+            },
+            "world": [
+              1.2,
+              1.62,
+              -5.012377645144994
+            ],
+            "interactive": "false"
+          }
+        ]
+      }
+    }
+  ]
+}

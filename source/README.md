@@ -2,7 +2,7 @@
 
 `source/` 统一管理媒体、模型、创作源文件、设计文档、审查截图与参考资料。应用代码位于根 `src/`。
 
-2026-10-21动作悬浮UI参考与完整提示词归档 `design/action-theater/2026-10-21-floating-ui-*`，真实电脑浏览器图集位于 `reviews/action-theater/2026-10-21-floating-ui/`。面板采用React/CSS/SVG与真实相机投影，没有新增运行贴图；参考与审查图不部署。实现与验收入口见[空间UI说明](references/action-spatial-ui-2026-10-21.md)。
+2026-10-21动作悬浮UI原参考与提示词保留于 `design/action-theater/2026-10-21-floating-ui-*`，后续柔和过渡要求另存 `2026-10-21-soft-spatial-ui-brief.md`。当前面板由Three.js真实世界平面绘制，Canvas2D在初始化时生成纹理，不新增磁盘运行资产；透明DOM负责语义与命中。新图集独立存 `reviews/action-theater/2026-10-21-soft-ui/`，原图集保持历史原字节，参考/提示词/审查图均不部署。当前实现、七参数与验证入口见[柔和空间UI说明](references/action-soft-spatial-ui-2026-10-21.md)。
 
 | 分类 | 存放内容 | 网页构建 |
 | --- | --- | --- |

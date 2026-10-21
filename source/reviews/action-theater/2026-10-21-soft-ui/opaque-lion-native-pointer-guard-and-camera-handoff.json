@@ -1,0 +1,55 @@
+{
+  "arrangement": {
+    "point": {
+      "x": 628.2415466308594,
+      "y": 273.5581359863281
+    },
+    "existingMeshes": 69,
+    "triangleMesh": "Lion_Hindpaw_R001",
+    "blockingMesh": "Lion_Hindpaw_R001",
+    "planeDistance": 19.887289231555048,
+    "occluderDistance": 9.943644615777524,
+    "before": [
+      0,
+      0.4,
+      0
+    ],
+    "after": [
+      -1.9974641304347078,
+      4.378654824465839,
+      0.5270618843509176
+    ],
+    "frame": 277
+  },
+  "camera": {
+    "before": "[0,1.6000000000000008,8.6]",
+    "during": "[-0.5039549057138468,1.6687667900887277,8.583744552615782]",
+    "after": "[-0.5039549057138465,1.6687667900887275,8.583744552615773]"
+  },
+  "input": {
+    "events": [
+      {
+        "where": "document",
+        "type": "pointerdown",
+        "trusted": true,
+        "pointerId": 1,
+        "target": "button"
+      },
+      {
+        "where": "document",
+        "type": "pointerdown",
+        "trusted": false,
+        "pointerId": 1,
+        "target": "canvas"
+      },
+      {
+        "where": "canvas",
+        "type": "pointerdown",
+        "trusted": false,
+        "pointerId": 1,
+        "target": "canvas"
+      }
+    ],
+    "playCalls": []
+  }
+}

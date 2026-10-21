@@ -1,5 +1,7 @@
 # 四面观狮：实时空间悬浮界面
 
+> 本页记录前阶段CSS可见面板与瞬时显隐。2026-10-21后续要求已改为真实WebGL深度与连续柔和渐变，七参数公开；当前行为见[后续说明](action-soft-spatial-ui-2026-10-21.md)。下方测试仅证明当时版本。
+
 本轮在 E:/数字媒体竞赛/张钧儒/lion 的 `codex/huangzhi_ARUI`、基线 `a3898e5` 上按用户[参考图](../design/action-theater/2026-10-21-floating-ui-reference.png)与[提示词](../design/action-theater/2026-10-21-floating-ui-brief.md)修改动作页。沿用完整醒狮、四个真实视频、红金建筑与 HDRI；新增界面用 React/CSS/SVG 绘制，参考图不进入网页运行资产，也不作为背景。
 
 ## 界面与坐标
