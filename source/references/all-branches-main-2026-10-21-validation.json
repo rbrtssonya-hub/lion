@@ -1,0 +1,274 @@
+{
+  "date": "2026-10-21",
+  "workspace": "F:/数媒竞赛/信息可视化codex",
+  "git": {
+    "parentMain": "45f4cbdfe3a40816c332aba3b44c0b8b39c111c1",
+    "incoming": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+    "remoteMainBeforeMerge": "45f4cbdfe3a40816c332aba3b44c0b8b39c111c1",
+    "strategy": "ordinary no-ff merge; preserve all branches and other worktrees",
+    "branches": [
+      {
+        "ref": "refs/heads/codex/content-responsive-2026-10-20",
+        "commit": "4017f3f6e7a65d89479dda6faeddedc14023d819",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/codex/home-chapters-2026-10-13",
+        "commit": "8b2b7f5cbf97ebd64f061b9afb32dfe05e8daf14",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/codex/home-lion-types-inheritors-2026-10-19",
+        "commit": "2aefef90e79a25c8a53ea8b5bb81ab59ca04766f",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/codex/lion-next-2026-10-14",
+        "commit": "d77b8160d556b124aa2f6fe67750b7dd48da4e8b",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/codex/reading-paper-material-2026-10-20",
+        "commit": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/codex/replace-home-videos-2026-10-19",
+        "commit": "b9eac7dca5a2707b8c2c71a434658e45824f46b4",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/heads/main",
+        "commit": "45f4cbdfe3a40816c332aba3b44c0b8b39c111c1",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/content-responsive-2026-10-20",
+        "commit": "4017f3f6e7a65d89479dda6faeddedc14023d819",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/home-chapters-2026-10-13",
+        "commit": "8b2b7f5cbf97ebd64f061b9afb32dfe05e8daf14",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/home-lion-types-inheritors-2026-10-19",
+        "commit": "2aefef90e79a25c8a53ea8b5bb81ab59ca04766f",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/huangzhi10.15",
+        "commit": "8df6ee0979324cc1facc66263bf2c857ab9dbe72",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/lion-next-2026-10-14",
+        "commit": "d77b8160d556b124aa2f6fe67750b7dd48da4e8b",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/navigation-image-icons",
+        "commit": "c45502c31c5580d716bdf2952cf6d219816e51e1",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/navigation-stable-background",
+        "commit": "8748cc798bb89dc1f0f78961fa077e1a91881e2e",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/reading-paper-material-2026-10-20",
+        "commit": "516b10cbe56ec0852a2940c3f14adf5f3db46768",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/replace-home-videos-2026-10-19",
+        "commit": "b9eac7dca5a2707b8c2c71a434658e45824f46b4",
+        "containedByMergeParents": true
+      },
+      {
+        "ref": "refs/remotes/origin/main",
+        "commit": "45f4cbdfe3a40816c332aba3b44c0b8b39c111c1",
+        "containedByMergeParents": true
+      }
+    ],
+    "conflictsResolved": [
+      "src/features/developer-settings/useDeveloperSettings.js",
+      "wiki_memory/当前状态/项目概览.md",
+      "wiki_memory/当前状态/当前约束.md",
+      "wiki_memory/当前状态/当前待办.md",
+      "wiki_memory/当前状态/已知问题.md"
+    ],
+    "publication": "pending merge commit and ordinary push"
+  },
+  "environment": {
+    "node": "v24.20.0",
+    "npm": "11.19.0",
+    "browser": "Chrome 155.0.8059.85",
+    "workers": 1,
+    "trace": "off",
+    "wholeTestTimeoutMs": 180000
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 59,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 7850.6628
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "modules": 328,
+    "durationSeconds": 3.7,
+    "knownWarning": "Three module chunk 538.04 kB exceeds 500 kB"
+  },
+  "browsers": {
+    "development": {
+      "stats": {
+        "startTime": "2026-10-21T00:11:48.898Z",
+        "duration": 461306.68100000004,
+        "expected": 18,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": [
+        "hdri-settings.spec.js",
+        "home-video-replacement.spec.js",
+        "reading-paper.spec.js",
+        "settings-modules.spec.js"
+      ],
+      "rawReport": "tmp/all-branches-main-2026-10-21/tmp/all-branches-main-2026-10-21/development.json"
+    },
+    "production": {
+      "stats": {
+        "startTime": "2026-10-21T00:21:00.319Z",
+        "duration": 655864.6,
+        "expected": 31,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": [
+        "desktop-responsive-content.spec.js",
+        "hdri-settings.spec.js",
+        "home-reading.spec.js",
+        "home-video-replacement.spec.js",
+        "reading-paper.spec.js",
+        "settings-modules.spec.js"
+      ],
+      "rawReport": "tmp/all-branches-main-2026-10-21/tmp/all-branches-main-2026-10-21/production.json"
+    },
+    "migration-confirm": {
+      "stats": {
+        "startTime": "2026-10-21T00:34:38.318Z",
+        "duration": 24746.279,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": [
+        "reading-paper.spec.js"
+      ],
+      "rawReport": "tmp/all-branches-main-2026-10-21/migration-confirm.json"
+    }
+  },
+  "visual": {
+    "browser": "155.0.8059.85",
+    "samples": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "overflow": -15
+      },
+      {
+        "width": 2560,
+        "height": 1440,
+        "overflow": -15
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "overflow": -15
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "overflow": -15
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "tmp/all-branches-main-2026-10-21/home-1920.png",
+        "sha256": "77d45dee12a2bfd273dd26bd0e04f9164669bc55e1ed9ef83a108d52ea4ba79f"
+      },
+      {
+        "path": "tmp/all-branches-main-2026-10-21/home-1024.png",
+        "sha256": "50442d17df7b80eeac842927241470ace84b4c6ca576cacf3edceaae68ed5829"
+      },
+      {
+        "path": "tmp/all-branches-main-2026-10-21/state-1920.png",
+        "sha256": "54e811cfbd637177b847b20984455e6d53e696e775b3e54a00c4801e4e0f83d5"
+      },
+      {
+        "path": "tmp/all-branches-main-2026-10-21/hdri-paper-settings.png",
+        "sha256": "8894f959ead59955431b34abd31525b690ac0a2266dc495a0972aad9402feba5"
+      }
+    ],
+    "errors": []
+  },
+  "sourceFingerprint": [
+    {
+      "path": "src/features/developer-settings/DeveloperSettingsPanel.jsx",
+      "sha256": "51d59bc96e642da1b361269890d94b4c440c7d109406e2bcaee9736c5c6767e8"
+    },
+    {
+      "path": "src/features/developer-settings/surface-settings.css",
+      "sha256": "5fd545e3cd78f455f639ae1ee8faa066cca3d1f938cef230f80aaa900950caab"
+    },
+    {
+      "path": "src/features/developer-settings/surfaceSettings.js",
+      "sha256": "881bdc0afaaab98596e21d8fd0a4269d614ca0cddee74a0a6e618b699c0dc015"
+    },
+    {
+      "path": "src/features/developer-settings/useDeveloperSettings.js",
+      "sha256": "aa9dfc431c7194294feb6a894b7ae81dd5abdc0b10b8db711c8a4b6596ed1d70"
+    },
+    {
+      "path": "src/styles/chapters.css",
+      "sha256": "ffcc8065322043da14ddcfd7c4bfd382761820fda497b3a352df8f8987fff329"
+    },
+    {
+      "path": "src/styles/home-archive.css",
+      "sha256": "4cc5bc924d2f7b97969f00a3426c79e60c2c27e6e3a1aa938baeffbbd5b7cee1"
+    }
+  ],
+  "preservation": {
+    "originalManifestRecords": 516,
+    "totalManifestRecords": 528,
+    "addedHistoricalPaperScreenshots": 12,
+    "publicDistByteExactFiles": 124,
+    "mainServicesConfigActionRuntimeAssetsDependenciesUnchanged": true
+  },
+  "review": {
+    "critical": 0,
+    "important": 0,
+    "minor": 3,
+    "handled": [
+      "combined HDRI and old-paper migration asserted before and after reload",
+      "historic content branch boundary labelled as history",
+      "old RoomEnvironment lighting heading distinguished from current HDRI"
+    ],
+    "reviewerRanTests": false
+  },
+  "notVerified": [
+    "full project E2E",
+    "mobile",
+    "other browsers or hardware",
+    "public hosting",
+    "EXE rebuilding"
+  ]
+}

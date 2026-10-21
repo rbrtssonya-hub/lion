@@ -13,8 +13,10 @@ sources: []
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
 | 2026-10-21 | maintenance | completed | [首页视频目标核实与F盘主线同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E9%A6%96%E9%A1%B5%E8%A7%86%E9%A2%91%E7%9B%AE%E6%A0%87%E6%A0%B8%E5%AE%9E%E4%B8%8EF%E7%9B%98%E4%B8%BB%E7%BA%BF%E5%90%8C%E6%AD%A5.md) |
+| 2026-10-21 | maintenance | in_progress | [全部支线合入主线与F盘同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E5%85%A8%E9%83%A8%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5%E4%B8%BB%E7%BA%BF%E4%B8%8EF%E7%9B%98%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-21 | feature | completed | [结构动作HDRI与参数设置](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-21-%E7%BB%93%E6%9E%84%E5%8A%A8%E4%BD%9CHDRI%E4%B8%8E%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.md) |
 | 2026-10-20 | maintenance | completed | [独立单文件EXE临时展示](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E7%8B%AC%E7%AB%8B%E5%8D%95%E6%96%87%E4%BB%B6EXE%E4%B8%B4%E6%97%B6%E5%B1%95%E7%A4%BA.md) |
+| 2026-10-20 | maintenance | completed | [材质支线推送后远程新增模型审查](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E6%9D%90%E8%B4%A8%E6%94%AF%E7%BA%BF%E6%8E%A8%E9%80%81%E5%90%8E%E8%BF%9C%E7%A8%8B%E6%96%B0%E5%A2%9E%E6%A8%A1%E5%9E%8B%E5%AE%A1%E6%9F%A5.md) |
 | 2026-10-20 | maintenance | completed | [同步GitHub最新主线并推送](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E5%B9%B6%E6%8E%A8%E9%80%81.md) |
 | 2026-10-20 | maintenance | completed | [内置Chromium单文件展示包](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%86%85%E7%BD%AEChromium%E5%8D%95%E6%96%87%E4%BB%B6%E5%B1%95%E7%A4%BA%E5%8C%85.md) |
 | 2026-10-20 | maintenance | completed | [全部开发分支归并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E5%85%A8%E9%83%A8%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF%E5%BD%92%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
@@ -23,6 +25,7 @@ sources: []
 | 2026-10-20 | feature | completed | [内容对照与电脑端自适应](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-20-%E5%86%85%E5%AE%B9%E5%AF%B9%E7%85%A7%E4%B8%8E%E7%94%B5%E8%84%91%E7%AB%AF%E8%87%AA%E9%80%82%E5%BA%94.md) |
 | 2026-10-20 | ui | completed | [首页背景、双导览与人物研究预览](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E9%A6%96%E9%A1%B5%E8%83%8C%E6%99%AF%E5%8F%8C%E5%AF%BC%E8%A7%88%E4%B8%8E%E4%BA%BA%E7%89%A9%E7%A0%94%E7%A9%B6%E9%A2%84%E8%A7%88.md) |
 | 2026-10-20 | ui | completed | [自适应侧轨与公共设置分页](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E8%87%AA%E9%80%82%E5%BA%94%E4%BE%A7%E8%BD%A8%E4%B8%8E%E5%85%AC%E5%85%B1%E8%AE%BE%E7%BD%AE%E5%88%86%E9%A1%B5.md) |
+| 2026-10-20 | ui | completed | [无框题签与暖灰宣纸](UI%E4%BF%AE%E6%94%B9/2026-10-20-%E6%97%A0%E6%A1%86%E9%A2%98%E7%AD%BE%E4%B8%8E%E6%9A%96%E7%81%B0%E5%AE%A3%E7%BA%B8.md) |
 | 2026-10-20 | ui | completed | [红金中式巨幕厅重构](UI%E4%BF%AE%E6%94%B9/2026-10-19-%E7%BA%A2%E9%87%91%E4%B8%AD%E5%BC%8F%E5%B7%A8%E5%B9%95%E5%8E%85%E9%87%8D%E6%9E%84.md) |
 | 2026-10-20 | bug | completed | [醒狮环境光与暗面修复](Bug%E5%A4%84%E7%90%86/2026-10-20-%E9%86%92%E7%8B%AE%E7%8E%AF%E5%A2%83%E5%85%89%E4%B8%8E%E6%9A%97%E9%9D%A2%E4%BF%AE%E5%A4%8D.md) |
 | 2026-10-19 | maintenance | completed | [首页支线合并主线并同步F盘](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-19-%E9%A6%96%E9%A1%B5%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF%E5%B9%B6%E5%90%8C%E6%AD%A5F%E7%9B%98.md) |

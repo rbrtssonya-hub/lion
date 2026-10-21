@@ -1,13 +1,13 @@
 // Surface dimensions describe the paper, while opacity never affects its text.
 export const surfaceDefinitions = Object.freeze([
-  { prefix: 'bookTitle', label: '书册标题底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14, width: 69 },
-  { prefix: 'bookDetails', label: '书册详情底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
-  { prefix: 'cultureTitle', label: '文化标题底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
-  { prefix: 'cultureBody', label: '文化正文底板', color: '#fff9ee', transparency: 40, blur: 5, radius: 14 },
-  { prefix: 'cultureSources', label: '参考资料区域', color: '#f8edda', transparency: 0, blur: 0, radius: 18 },
-  { prefix: 'cultureSourceCard', label: '参考资料卡片', color: '#fff8eb', transparency: 0, blur: 0, radius: 9, height: 186, heightStep: 1 },
+  { prefix: 'bookTitle', label: '书册标题底板', color: '#f7f5f0', transparency: 35, blur: 0, radius: 0, width: 69 },
+  { prefix: 'bookDetails', label: '书册详情底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
+  { prefix: 'cultureTitle', label: '文化标题底板', color: '#f7f5f0', transparency: 35, blur: 0, radius: 0 },
+  { prefix: 'cultureBody', label: '文化正文底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
+  { prefix: 'cultureSources', label: '参考资料区域', color: '#f7f5f0', transparency: 5, blur: 0, radius: 10 },
+  { prefix: 'cultureSourceCard', label: '参考资料卡片', color: '#f7f5f0', transparency: 5, blur: 0, radius: 10, height: 186, heightStep: 1 },
   { prefix: 'modelOverlay', label: '结构资料底板', color: '#68170f', transparency: 20, blur: 12, radius: 24, height: 620 },
-  { prefix: 'expressionOverlay', label: '神态文字底板', color: '#fff8ea', transparency: 22, blur: 6, radius: 24 },
+  { prefix: 'expressionOverlay', label: '神态文字底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
   { prefix: 'actionOverlay', label: '动作目录底板', color: '#faf7f1', transparency: 9, blur: 10, radius: 0 },
   { prefix: 'videoOverlay', label: '视频提示底板', color: '#080b0a', transparency: 12, blur: 0, radius: 8, width: 80 },
 ]);
@@ -36,6 +36,27 @@ export const surfaceRanges = Object.freeze(Object.fromEntries(surfaceDefinitions
   [`${prefix}Blur`, [0, 40, 1]],
   [`${prefix}Radius`, [0, 100, 1]],
 ])));
+
+export const readingPaperVersion = 1;
+// Fixed historical values: only untouched material fields migrate, never dimensions.
+const previousPaper = {
+  bookTitle: ['#fff9ee', 40, 5, 14], bookDetails: ['#fff9ee', 40, 5, 14],
+  cultureTitle: ['#fff9ee', 40, 5, 14], cultureBody: ['#fff9ee', 40, 5, 14],
+  cultureSources: ['#f8edda', 0, 0, 18], cultureSourceCard: ['#fff8eb', 0, 0, 9],
+  expressionOverlay: ['#fff8ea', 22, 6, 24],
+};
+export function migrateReadingPaper(saved) {
+  if (saved.readingPaperVersion >= readingPaperVersion) return saved;
+  const next = { ...saved, readingPaperVersion };
+  for (const [prefix, values] of Object.entries(previousPaper)) {
+    ['Color', 'Transparency', 'Blur', 'Radius'].forEach((suffix, index) => {
+      const name = `${prefix}${suffix}`;
+      if (saved[name] === values[index]) next[name] = surfaceDefaults[name];
+    });
+  }
+  if (saved.archivePanelTransparency === 40) next.archivePanelTransparency = surfaceDefaults.bookTitleTransparency;
+  return next;
+}
 
 export function colorChannels(color) {
   return [1, 3, 5].map(offset => parseInt(color.slice(offset, offset + 2), 16)).join(' ');

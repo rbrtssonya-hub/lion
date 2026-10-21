@@ -46,7 +46,7 @@ test('common material applies only on command to selected surfaces, preserving d
   await number(page, '公共透明度', 65); await number(page, '公共模糊强度', 9); await number(page, '公共圆角', 20);
   const color = panel(page).getByLabel('公共底色',{exact:true});
   await color.fill('#e6d4b8');
-  expect((await stored(page)).bookTitleTransparency).toBe(40);
+  expect((await stored(page)).bookTitleTransparency).toBe(35);
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('home');
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
   await expect.poll(() => stored(page)).toMatchObject({archivePanelTransparency:65,bookTitleTransparency:65,bookDetailsTransparency:65,cultureTitleTransparency:65,cultureBodyTransparency:65,bookTitleBlur:9,bookTitleRadius:20,bookTitleColor:'#e6d4b8',bookTitleWidth:57,cultureBodyHeight:250,headerBlur:23,modelOverlayTransparency:27,expressionOverviewFontSize:25});
@@ -76,9 +76,9 @@ test('shared material and independent panels reset correctly, with scoped keyboa
   await expect(panel(page).getByRole('tab',{name:'图鉴',exact:true})).toBeFocused();
   await expect(panel(page).getByRole('tab',{name:'首页',exact:true})).toHaveAttribute('aria-selected','true');
   await panel(page).getByRole('button',{name:'恢复默认参数',exact:true}).click();
-  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:40,cultureSourceCardTransparency:0,videoOverlayTransparency:12});
+  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:35,cultureSourceCardTransparency:5,videoOverlayTransparency:12});
   await tab(page,'公共模块');
-  await expect(panel(page).getByRole('spinbutton',{name:'公共透明度数值',exact:true})).toHaveValue('40');
+  await expect(panel(page).getByRole('spinbutton',{name:'公共透明度数值',exact:true})).toHaveValue('10');
 });
 
 test('settings navigation and active controls remain usable at 280-760px panel widths', async ({page}) => {

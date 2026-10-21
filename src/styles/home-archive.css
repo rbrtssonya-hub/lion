@@ -65,11 +65,11 @@
 /* Existing paper controls also govern the user's faint lion texture; never text. */
 .home-archive-scene :is(.archive-reading-panel[data-surface], .home-culture-sources[data-surface], a.home-culture-source-card[data-surface]) { position: relative; isolation: isolate; }
 .home-archive-scene :is(.archive-reading-panel[data-surface], .home-culture-sources[data-surface], a.home-culture-source-card[data-surface])::after {
-  content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
+  content: ''; position: absolute; z-index: -1; left: 0; bottom: 0; width: min(220px, 38%); height: min(160px, 45%); border-radius: inherit; pointer-events: none;
   background-image: var(--archive-background-image); background-repeat: no-repeat; background-size: 380px auto; background-position: left 38%;
-  opacity: calc(var(--surface-opacity, .6) * .08); mask-image: linear-gradient(90deg, #000, transparent 72%);
+  opacity: calc(var(--surface-opacity, .9) * .025); mask-image: radial-gradient(ellipse at bottom left, #000, transparent 72%);
 }
-.home-archive-scene :is([data-surface='bookDetails'], [data-surface='cultureBody'])::after { background-position: right 38%; mask-image: linear-gradient(270deg, #000, transparent 72%); }
+.home-archive-scene :is([data-surface='bookDetails'], [data-surface='cultureBody'])::after { left: auto; right: 0; background-position: right 38%; mask-image: radial-gradient(ellipse at bottom right, #000, transparent 72%); }
 .home-archive-scene :is(h2, .heritage-copy h3, .lion-book-reading-title h3, .home-culture-copy h3) { text-shadow: .012em .018em .01em #6e241313; }
 .home-archive-scene h2 { text-rendering: optimizeLegibility; }
 .home-archive-scene .lion-book-heading { padding-block: calc(44px * var(--book-title-spacing, 1)); }

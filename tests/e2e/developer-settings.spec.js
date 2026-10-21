@@ -103,7 +103,7 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expectPageWidth(page, 340);
   await selectSettingsFor(page, '首页阅读底板透明度数值');
-  await expect(panel(page).getByRole('spinbutton', { name: '首页阅读底板透明度数值' })).toHaveValue('40');
+  await expect(panel(page).getByRole('spinbutton', { name: '首页阅读底板透明度数值' })).toHaveValue('35');
   const bounds = await panel(page).boundingBox();
   const viewport = await page.evaluate(() => ({ width: document.querySelector('.site-shell').getBoundingClientRect().right, height: innerHeight }));
   expect(bounds.y).toBe(0);
@@ -841,8 +841,17 @@ test('七类底板独立参数可保存刷新，完全透明时文字与按钮�
   for (const surface of await page.locator('.archive-reading-panel[data-surface]').all()) {
     await expect(surface).toHaveCSS('border-radius', '27px');
     await expect(surface).toHaveCSS('min-height', '230px');
-    await expect(surface).toHaveCSS('backdrop-filter', 'blur(17px)');
-    await expect(surface).toHaveCSS('background-color', 'rgba(242, 230, 207, 0.64)');
+    if (['bookTitle', 'cultureTitle'].includes(await surface.getAttribute('data-surface'))) {
+      await expect(surface).toHaveCSS('backdrop-filter', 'none');
+      await expect(surface).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      expect(await surface.evaluate(node => {
+        const paper = getComputedStyle(node, '::before');
+        return [paper.borderRadius, paper.backdropFilter, paper.backgroundColor];
+      })).toEqual(['27px', 'blur(17px)', 'rgba(242, 230, 207, 0.64)']);
+    } else {
+      await expect(surface).toHaveCSS('backdrop-filter', 'blur(17px)');
+      await expect(surface).toHaveCSS('background-color', 'rgba(242, 230, 207, 0.64)');
+    }
   }
   await reloadPage(page);
   await expectSaved(page, saved);
@@ -856,7 +865,7 @@ test('七类底板独立参数可保存刷新，完全透明时文字与按钮�
   await expect(body).toHaveCSS('background-color', 'rgba(242, 230, 207, 0)');
   await expect(body).toHaveCSS('opacity', '1');
   await expect(body.locator('h3')).toHaveCSS('opacity', '1');
-  await expect(page.locator('[data-surface="bookTitle"]')).toHaveCSS('backdrop-filter', 'blur(17px)');
+  expect(await page.locator('[data-surface="bookTitle"]').evaluate(node => getComputedStyle(node, '::before').backdropFilter)).toBe('blur(17px)');
 });
 
 test('旧统一底板透明度迁移，书册尺寸与页面命中可单独保存并恢复', async ({ page }) => {
@@ -893,7 +902,7 @@ test('旧统一底板透明度迁移，书册尺寸与页面命中可单独保�
   await expectSaved(page, { bookScale: 128, bookStageHeight: 760, bookInkEnabled: false, pageHitEnabled: true });
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
-  await expectSaved(page, { bookScale: 116, bookStageHeight: 680, bookInkEnabled: true, pageHitEnabled: false, bookTitleTransparency: 40, cultureTitleTransparency: 40 });
+  await expectSaved(page, { bookScale: 116, bookStageHeight: 680, bookInkEnabled: true, pageHitEnabled: false, bookTitleTransparency: 35, cultureTitleTransparency: 35 });
 });
 
 test('缩短设置背板后纵向分类与内容分别滚动，底部恢复入口始终可见', async ({ page }) => {
@@ -959,19 +968,19 @@ test('参考资料区域与卡片分别公开六参数，旧偏好补齐默认�
   const sources = page.locator('.home-culture-sources');
   const cards = sources.locator('.home-culture-source-card');
   const defaults = {
-    cultureSourcesWidth: 100, cultureSourcesHeight: 0, cultureSourcesTransparency: 0,
-    cultureSourcesBlur: 0, cultureSourcesRadius: 18, cultureSourcesColor: '#f8edda',
-    cultureSourceCardWidth: 100, cultureSourceCardHeight: 186, cultureSourceCardTransparency: 0,
-    cultureSourceCardBlur: 0, cultureSourceCardRadius: 9, cultureSourceCardColor: '#fff8eb',
+    cultureSourcesWidth: 100, cultureSourcesHeight: 0, cultureSourcesTransparency: 5,
+    cultureSourcesBlur: 0, cultureSourcesRadius: 10, cultureSourcesColor: '#f7f5f0',
+    cultureSourceCardWidth: 100, cultureSourceCardHeight: 186, cultureSourceCardTransparency: 5,
+    cultureSourceCardBlur: 0, cultureSourceCardRadius: 10, cultureSourceCardColor: '#f7f5f0',
   };
   await expectSaved(page, { ...defaults, archivePanelTransparency: 67, headerTransparency: 34, navFontSize: 23 });
-  await expect(sources).toHaveCSS('background-color', 'rgb(248, 237, 218)');
-  await expect(sources).toHaveCSS('border-radius', '18px');
+  await expect(sources).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
+  await expect(sources).toHaveCSS('border-radius', '10px');
   await expect(sources).toHaveCSS('backdrop-filter', 'none');
   await expect(cards).toHaveCount(3);
   for (const card of await cards.all()) {
-    await expect(card).toHaveCSS('background-color', 'rgb(255, 248, 235)');
-    await expect(card).toHaveCSS('border-radius', '9px');
+    await expect(card).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
+    await expect(card).toHaveCSS('border-radius', '10px');
     await expect(card).toHaveCSS('min-height', '186px');
   }
   await openSettings(page);
@@ -1015,8 +1024,8 @@ test('参考资料区域与卡片分别公开六参数，旧偏好补齐默认�
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
   await expectSaved(page, defaults);
-  await expect(sources).toHaveCSS('background-color', 'rgb(248, 237, 218)');
-  await expect(cards.first()).toHaveCSS('background-color', 'rgb(255, 248, 235)');
+  await expect(sources).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
+  await expect(cards.first()).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
   await expect(cards.first()).toHaveCSS('min-height', '186px');
 });
 
@@ -1032,21 +1041,21 @@ test('参考资料外区与卡片完全透明时移除材质，文字和链接�
   const sources = page.locator('.home-culture-sources');
   const cards = sources.locator('.home-culture-source-card');
   await sources.scrollIntoViewIfNeeded();
-  await expect(sources).toHaveCSS('background-color', 'rgba(248, 237, 218, 0)');
+  await expect(sources).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
   await expect(sources).toHaveCSS('backdrop-filter', 'none');
-  await expect(sources).toHaveCSS('border-color', 'rgba(203, 164, 110, 0)');
+  await expect(sources).toHaveCSS('border-color', 'rgba(183, 170, 151, 0)');
   await expect(sources).toHaveCSS('opacity', '1');
   expect(await sources.evaluate(element => getComputedStyle(element, '::before').backgroundColor)).toBe('rgba(165, 57, 37, 0)');
   await expect(sources.getByRole('heading', { name: '参考资料', exact: true })).toHaveCSS('opacity', '1');
   for (const card of await cards.all()) {
-    await expect(card).toHaveCSS('background-color', 'rgba(255, 248, 235, 0)');
+    await expect(card).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
     await expect(card).toHaveCSS('backdrop-filter', 'none');
     await expect(card.locator('strong')).toHaveCSS('opacity', '1');
     await expect(card).toHaveAttribute('href', /^https:\/\//);
   }
   await cards.first().hover();
-  await expect(cards.first()).toHaveCSS('border-color', 'rgba(169, 93, 56, 0)');
-  expect(await cards.first().evaluate(element => getComputedStyle(element).boxShadow)).toContain('rgba(123, 74, 40, 0)');
+  await expect(cards.first()).toHaveCSS('border-color', 'rgba(183, 170, 151, 0)');
+  expect(await cards.first().evaluate(element => getComputedStyle(element).boxShadow)).toMatch(/rgba\([^)]*, 0\)/);
   await cards.first().focus();
   await expect(cards.first()).toBeFocused();
 });
@@ -1104,7 +1113,7 @@ test('参考资料在900/1920px桌面余宽与两层40/100%宽度极值均无溢
         expect(geometry.cardsFit, context).toBe(true);
         expect(geometry.noOverlap, context).toBe(true);
         await expect(sources.locator('.home-culture-source-cards').getByRole('link')).toHaveCount(3);
-        await expect(sources.locator('.heritage-source-group')).toHaveCount(1);
+        await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
       }
     }
   }
@@ -1122,8 +1131,8 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   await page.locator('.site-navigation [data-route="state"]').click();
   const copy = page.locator('#expressionStateCopy');
   const defaults = {
-    expressionOverlayWidth: 100, expressionOverlayHeight: 0, expressionOverlayTransparency: 22,
-    expressionOverlayBlur: 6, expressionOverlayRadius: 24, expressionOverlayColor: '#fff8ea',
+    expressionOverlayWidth: 100, expressionOverlayHeight: 0, expressionOverlayTransparency: 10,
+    expressionOverlayBlur: 0, expressionOverlayRadius: 10, expressionOverlayColor: '#f7f5f0',
     expressionOverviewFontSize: 22, expressionDetailFontSize: 18,
   };
   await expectSaved(page, { ...defaults, headerTransparency: 34, cultureSourcesWidth: 82, navFontSize: 23 });
@@ -1170,9 +1179,9 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
   await expectSaved(page, defaults);
-  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0.78)');
-  await expect(copy).toHaveCSS('backdrop-filter', 'blur(6px)');
-  await expect(copy).toHaveCSS('border-radius', '24px');
+  await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.9)');
+  await expect(copy).toHaveCSS('backdrop-filter', 'none');
+  await expect(copy).toHaveCSS('border-radius', '10px');
 });
 
 test('神态两种字号校验16至32边界，透明底板仍保留前后文字', async ({ page }) => {
@@ -1185,7 +1194,7 @@ test('神态两种字号校验16至32边界，透明底板仍保留前后文字'
   await transparency.press('Tab');
   const copy = page.locator('#expressionStateCopy');
   await expect(copy).toHaveCSS('backdrop-filter', 'none');
-  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0)');
+  await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
   await expect(copy).toHaveCSS('opacity', '1');
   for (const [label, key] of [['神态简介字号', 'expressionOverviewFontSize'], ['神态解读字号', 'expressionDetailFontSize']]) {
     await selectSettingsFor(page, label);
@@ -1200,6 +1209,6 @@ test('神态两种字号校验16至32边界，透明底板仍保留前后文字'
   await page.locator('#expressionLionTrigger').click();
   await expect(copy).toHaveAttribute('data-view', 'details');
   await expect(copy).toHaveCSS('backdrop-filter', 'none');
-  await expect(copy).toHaveCSS('background-color', 'rgba(255, 248, 234, 0)');
+  await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
   for (const paragraph of await copy.locator('.expression-cues p').all()) await expect(paragraph).toHaveCSS('opacity', '1');
 });

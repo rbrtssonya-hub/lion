@@ -3,6 +3,78 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/chrome-125-home.png",
+      "bytes": 1965541,
+      "sha256": "643aa370843e6e321200cee2d722dfc358e77e31a3fee880c28a868b473be7fb"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/chrome-125-state.png",
+      "bytes": 1824219,
+      "sha256": "c94cd81fa7148ead6d200001147b67333e4842d95af88d299a0a6b5f4df2270c"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/chrome-150-home.png",
+      "bytes": 1733795,
+      "sha256": "78a2c1e28b20bb62b17af662b651e8e7f6a3a2e901ae61dc8076668089e2ed74"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/chrome-150-state.png",
+      "bytes": 1761884,
+      "sha256": "5c248193ec9bb791717a7daf8b89ff6ff9c6f951104657fa8bab9b96a4228527"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/home-1024x768.png",
+      "bytes": 966215,
+      "sha256": "f07d351cfdea070335f1511503fb143935c6f7e8f8f55a3738fe4cfe2f082a4e"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/home-1255x900-push900.png",
+      "bytes": 1207035,
+      "sha256": "fe288d48073eceefd9822368d2a8fbb5bcc84398450458e354ceac5244a29df8"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/home-1920x1080.png",
+      "bytes": 2469486,
+      "sha256": "1fbbba9abf283753f77302619656bf174e8f0bf668a641cb3bc02e1dc98e44f1"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/sources-1920.png",
+      "bytes": 1022354,
+      "sha256": "25d1ac0d6521d6c29cc9b3347df6e42b77b15cd1d21cef23c3d539c4f0c9dc86"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/state-comparison-1366.png",
+      "bytes": 874434,
+      "sha256": "f49ea25f4cc772f15c50761b21848950545e7d481c736fc8aca090ec4a43b8da"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/state-details-1920.png",
+      "bytes": 2173401,
+      "sha256": "106ba36bf7040a5ed4196ba803570b2e0540f021760f4d86d15c9fd375ad8704"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/state-overview-1920.png",
+      "bytes": 2139337,
+      "sha256": "78d385a1c044b9e7230cb242e7d7ee2498139ad48e6e841411ede35f6dc32a75"
+    },
+    {
+      "from": "actual Chrome production review, reading-paper 2026-10-20",
+      "path": "source/reviews/reading-paper/2026-10-20/type-expanded-1920.png",
+      "bytes": 1666059,
+      "sha256": "8f272f0059242984d1df18b1560c2b0fa36031706ce55548b243a4fcbfe3d19a"
+    },
+    {
       "from": "actual Chrome production review, content-responsive 2026-10-20",
       "path": "source/reviews/content-responsive/2026-10-20/01-home-1920.png",
       "bytes": 2349934,

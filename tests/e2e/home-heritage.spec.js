@@ -123,15 +123,15 @@ test('new sections share existing reading surfaces and persist previews without 
   }
   await page.locator('#homeLionTypes .heritage-type-image').click();
   for(const selector of ['#homeLionTypes .heritage-heading','#homeLionTypes .heritage-copy']) {
-    await expect(page.locator(selector)).toHaveCSS('background-color','rgba(255, 249, 238, 0)');
+    await expect(page.locator(selector)).toHaveCSS('background-color',selector.includes('heading') ? 'rgba(0, 0, 0, 0)' : 'rgba(247, 245, 240, 0)');
     await expect(page.locator(selector)).toHaveCSS('backdrop-filter','none');
     await expect(page.locator(selector)).toHaveCSS('opacity','1');
   }
   await page.reload();await expect(page.locator('#startupLoading')).toHaveCount(0,{timeout:45000});
-  await expect(page.locator('#homeLionTypes .heritage-heading')).toHaveCSS('background-color','rgba(255, 249, 238, 0)');
+  await expect(page.locator('#homeLionTypes .heritage-heading')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
   await page.locator('.site-header [data-action="settings"]').click();
   await panel.getByRole('button',{name:'恢复默认参数',exact:true}).click();
-  await expect(page.locator('#homeLionTypes .heritage-copy')).toHaveCSS('background-color','rgba(255, 249, 238, 0.6)');
+  await expect(page.locator('#homeLionTypes .heritage-copy')).toHaveCSS('background-color','rgba(247, 245, 240, 0.9)');
 });
 
 test('unified sources preserve references, the approved paw and book emblem, and collapsed image and engineering licences without person entries', async ({ page }) => {

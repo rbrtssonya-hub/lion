@@ -24,7 +24,7 @@ const easingOptions = [
   {value:'swift',label:'快速收拢',note:'快速响应，接近终点时逐渐减速。'},
   {value:'soft',label:'柔和缓出',note:'柔和启动，以更长的减速过程落位。'},
 ];
-const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`bookTitle${suffix}`]]));
+const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`cultureBody${suffix}`]]));
 
 export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle }) {
   const panelId = useId(), scopeId = useId(), easingId = useId();
