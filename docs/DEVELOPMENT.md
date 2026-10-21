@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-22红白绒毛修复新增 `src/services/lionDiffuseProbe.js`：当前HDRI的线性像素一次积分L1漫反射，并限制过强方向能量；仅醒狮材质采用，高光仍由PMREM计算，原造型、配色、发丝数据与动画保留。正式前后/Blender参考及弃用实验见[修复说明](../source/references/lion-fur-balance-2026-10-22.md)，结果与适用范围见[验证JSON](../source/references/lion-fur-balance-2026-10-22-validation.json)。固定视角原生比较运行 `node scripts/audit_lion_fur.mjs --url=http://127.0.0.1:5198 --output=tmp/lion-fur-final`（先启动Vite，默认基线5b2a307）；Blender只读参考和图像统计分别由 `render_lion_material_reference.py`、`analyze_lion_fur_comparison.py` 提供，脚本头部列参数。常规验证仍为 `npm test`、`npm run build` 及HDRI/视角/动作/结构相关生产Chrome回归。细毛层次尚未达到EEVEE，不能把颜色误差下降等同于完整材质还原。
+
 2026-10-21新增独立“视角”设置页，结构缩放按整体/聚焦部件标准观看距离设置有限阈值，动作取消旧室内高度夹取并开放1–179°极角。HDRI默认采用Blender真实forest.exr与0.35倍补光，可改预设、URL或当前会话本地EXR/HDR；源File/blob不持久化。参数组默认折叠，动作四角使用用户原鼓模型，进度手柄复用已有狮头。配置入口为 `src/config/viewSettings.js`、`src/config/hdri.js`，场景鼓独立为 `src/services/actionTheaterDrums.js`；回归为 `view-scene-settings.spec.js`、`settings-view-source.spec.js` 及原结构/动作/HDRI相关用例。来源、实时渲染与Blender的差异及本轮验证入口见[实施说明](../source/references/view-scene-settings-2026-10-21.md)。
 
 本页说明日常开发方式；当前进度和验证结果由 [工程记忆](../wiki_memory/README.md) 维护。
@@ -22,7 +24,7 @@
 
 2026-10-21结构与动作环境改用用户指定的 `citrus_orchard_road_puresky_4k.exr`（4096×2048原字节），由 `lionHdriEnvironment.js` 以线性半浮点EXR和PMREM生成照明与反射，不显示为网页背景。设置→HDRI为两章共用参数：开关、强度、水平旋转、曝光补偿和辅助灯倍率，保存到原有偏好；HDRI专用复原不重置其他字段。r160没有`scene.environmentRotation`或`environmentIntensity`，因此保留完整分辨率GPU旋转后重新预过滤，140ms合并拖动；强度作用于实例材质原环境倍率，EV作用于renderer的`2 ** EV`曝光，辅助灯按各灯初始强度缩放。只共享解码CPU数据，各renderer独立持有并回收纹理和PMREM；失败保留完整模型并提供“重新载入 HDRI”，不重建模型。修改后运行 `tests/e2e/hdri-settings.spec.js`，真实像素验证参数，不能仅以dataset值变化宣称生效。来源、默认值和验收见[HDRI说明](../source/references/lion-hdri-2026-10-21.md)。
 
-2026-10-20曾修复 `RoomEnvironment` 未传renderer导致的暗面欠照；本轮已由指定EXR替换该环境，原主/辅/轮廓灯作为可调辅助光保留。旧固定相机照明对照工具 `scripts/audit_lion_lighting.mjs` 和[当日证据](../source/references/lion-lighting-2026-10-20.md)只追溯该阶段，不代替当前HDRI回归。模型、全部毛发数据与着色器均未改。
+2026-10-20曾修复 `RoomEnvironment` 未传renderer导致的暗面欠照；本轮已由指定EXR替换该环境，原主/辅/轮廓灯作为可调辅助光保留。旧固定相机照明对照工具 `scripts/audit_lion_lighting.mjs` 和[当日证据](../source/references/lion-lighting-2026-10-20.md)只追溯该阶段，不代替当前HDRI回归。该段记录2026-10-21阶段，当时模型、全部毛发数据与着色器均未改；2026-10-22局部环境漫反射改进见页首。
 
 在根目录运行 `npm ci` 安装锁定版本，再运行 `npm run dev`。Vite 使用根 `index.html`，生产构建输出到独立 `dist/`，不会覆盖源码或创作资源。
 

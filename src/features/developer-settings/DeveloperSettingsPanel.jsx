@@ -159,7 +159,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           }}>恢复HDRI默认参数</button>
         </SettingsGroup>
         <SettingsGroup title="材质对照" note="Blender与网页">
-          <p className="developer-settings-note">同一HDRI可以统一环境光方向与色彩。网页实时发丝、毛发自遮挡和Blender的渲染方式仍有差异，更换forest.exr不能完全消除质感差别。</p>
+          <p className="developer-settings-note">醒狮使用接近Blender的均衡环境照明，保留原有造型、配色与材质。实时发丝采样和毛发自遮挡仍有差异，同一HDRI不保证两端画面完全一致。</p>
           <p className="developer-settings-note">可先用森林环境、HDRI强度1、曝光0 EV、辅助灯光0.35倍进行对照，再按画面调整。两张对照图的取景、显示变换也需要一致。</p>
         </SettingsGroup>
       </>;

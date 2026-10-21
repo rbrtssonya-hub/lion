@@ -20,6 +20,7 @@ import {
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { media } from '../config/media.js';
+import { projectLionIrradiance, rotateLionIrradiance } from './lionDiffuseProbe.js';
 
 // Only decoded CPU pixels are shared. Every scene/renderer owns its own GPU
 // texture, PMREM target and generator, including during simultaneous chapters.
@@ -52,6 +53,9 @@ async function acquireSource(url, signal, format) {
         if (!source.data || !source.width || !source.height || source.width !== source.height * 2) {
           throw new Error('HDRI 必须是完整的 2:1 经纬度 EXR 或 HDR 图像');
         }
+        // Cache linear diffuse integration alongside the decoded pixels. The
+        // chapter instances and later yaw changes never reintegrate the image.
+        source.diffuseIrradiance = projectLionIrradiance(source);
         return source;
       } finally {
         clearTimeout(timeout);
@@ -114,6 +118,7 @@ export function createLionHdriEnvironment({
   settings = {},
   onUpdate = () => {},
   onError = () => {},
+  onIrradiance = () => {},
 }) {
   const controller = new AbortController();
   let disposed = false;
@@ -166,6 +171,7 @@ export function createLionHdriEnvironment({
     if (!enabled || !lease) { notify(); return snapshot(); }
     if (environmentTarget && appliedRotation === requestedRotation) {
       scene.environment = environmentTarget.texture;
+      onIrradiance(rotateLionIrradiance(lease.source.diffuseIrradiance, appliedRotation));
       phase = 'ready';
       lastError = null;
       notify();
@@ -239,6 +245,7 @@ export function createLionHdriEnvironment({
       environmentTarget = nextTarget;
       appliedRotation = requestedRotation;
       scene.environment = environmentTarget.texture;
+      onIrradiance(rotateLionIrradiance(lease.source.diffuseIrradiance, appliedRotation));
       previousEnvironment?.dispose();
       phase = 'ready';
       lastError = null;
@@ -302,6 +309,7 @@ export function createLionHdriEnvironment({
       clearTimeout(rotationTimer);
       rotationTimer = 0;
       scene.environment = null;
+      onIrradiance(null);
       phase = 'disabled';
       notify();
       return;
@@ -335,6 +343,7 @@ export function createLionHdriEnvironment({
     renderer.domElement.removeEventListener('webglcontextlost', dispose);
     controller.abort();
     if (scene.environment === environmentTarget?.texture) scene.environment = null;
+    onIrradiance(null);
     environmentTarget?.dispose();
     environmentTarget = null;
     pmrem?.dispose();

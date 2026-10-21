@@ -3416,6 +3416,60 @@
       "path": "source/reviews/view-scene-settings/2026-10-21/structure-production.png",
       "bytes": 2400241,
       "sha256": "445c6ab4f5399daa96f569db8bb2d4483070715a00613eed1a2ed3d69c81f6d3"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/action-after-canvas.png",
+      "bytes": 2392683,
+      "sha256": "fd5b614cfa1d36ed0088d10820e1493a1ea488ac17352d9137dc45781a08dce2"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/action-after.png",
+      "bytes": 1872493,
+      "sha256": "4f451f597d224bd4d1b4842fa7ddec01a382848b197a962a7c39f8ee0c8c5258"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/action-before-canvas.png",
+      "bytes": 2473253,
+      "sha256": "4c4993165c8764ac4b3590c7c60a6ff18396b8b5efba079ad782e2cefe7375d9"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/action-before.png",
+      "bytes": 1944601,
+      "sha256": "b7b67a4631df2d02221de512281c5bff16f7f81770632c5022a142d4956f5350"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/action-fur-mask.png",
+      "bytes": 198253,
+      "sha256": "07d9d865ba7d04aa61e668a40695c1ed4f2069af6d398cea33b401198feb8f95"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/blender-reference.png",
+      "bytes": 1662175,
+      "sha256": "5247622ba79f7e7854bf0b7ba1b10ca31fbf4caf7182d22a8df84250de6dc801"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/comparison.png",
+      "bytes": 1617037,
+      "sha256": "f3b8647287aef94d1f689be97b7a09f2c67909536bc74aa9bc8b5e78d1f4555e"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/structure-after.png",
+      "bytes": 2303711,
+      "sha256": "8fa976ed75e141a6ad51f144b8284c4378b132d66df6414e62da8641118a8986"
+    },
+    {
+      "from": "native Chrome before/after or untouched Blender matched-camera reference, lion fur balance 2026-10-22",
+      "path": "source/reviews/lion-fur-balance/2026-10-22/structure-before.png",
+      "bytes": 2296808,
+      "sha256": "86430b5ca9bef18a499e6ba24d0a207236babd1e02702ebdfa3a0b2aed840f67"
     }
   ]
 }

@@ -1,6 +1,8 @@
 import { resolveHdriSettings } from '../config/hdri.js';
 import { media } from '../config/media.js';
 import { createLionHdriEnvironment } from './lionHdriEnvironment.js';
+import { Vector3 } from 'three';
+import { installLionDiffuseProbe } from './lionDiffuseProbe.js';
 
 // Share a local file's URL between the two mounted chapter renderers. Revoke
 // only after the last owner releases its independently allocated GPU resources.
@@ -33,6 +35,9 @@ export function createLionLightingControls({ renderer, scene, signal, settings, 
   let source;
   const lightIntensities = new WeakMap();
   const materialIntensities = new WeakMap();
+  // A stable uniform array belongs to this scene. Source swaps update vectors
+  // in place so cached r160 programs never keep a stale environment binding.
+  const diffuseIrradiance = Array.from({ length: 9 }, () => new Vector3());
   const canvas = renderer.domElement;
   const publish = status => {
     if (disposed) return;
@@ -59,6 +64,15 @@ export function createLionLightingControls({ renderer, scene, signal, settings, 
         sourceUrl: source.url,
         sourceFormat: /\.hdr(?:$|[?#])/i.test(source.name) ? 'hdr' : 'exr',
         onUpdate: publish,
+        onIrradiance(coefficients) {
+          if (disposed) return;
+          diffuseIrradiance.forEach((coefficient, index) => {
+            if (coefficients) coefficient.copy(coefficients[index]);
+            else coefficient.set(0, 0, 0);
+          });
+          canvas.dataset.hdriDiffuse = JSON.stringify({ model: 'SH_L1', ready: Boolean(coefficients), coefficients: diffuseIrradiance.slice(0, 4).map(value => value.toArray()) });
+          requestDraw();
+        },
         onError: error => publish({ phase: 'error', source: source?.url, error: error.message }),
       });
     } catch (error) { publish({ phase: 'error', error: error.message }); }
@@ -75,6 +89,9 @@ export function createLionLightingControls({ renderer, scene, signal, settings, 
         if (!material || !('envMapIntensity' in material)) continue;
         if (!materialIntensities.has(material)) materialIntensities.set(material, material.envMapIntensity);
         material.envMapIntensity = materialIntensities.get(material) * current.hdriIntensity;
+        // Only the two complete-lion instances use the source EEVEE-style
+        // diffuse model. Room, drum and video materials retain their shading.
+        if (object.userData.sharedLionResources) installLionDiffuseProbe(material, diffuseIrradiance);
       }
     });
     canvas.dataset.hdriSettings = JSON.stringify(current);

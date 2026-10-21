@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>醒狮毛发明暗 · 修改前后对照</title>
+<style>
+  :root{color-scheme:dark;font-family:"Microsoft YaHei UI","Microsoft YaHei",system-ui,sans-serif;background:#191714;color:#eee8df}
+  *{box-sizing:border-box}body{margin:0;padding:38px 42px 30px;min-width:1100px}main{max-width:1760px;margin:auto}
+  h1,h2,p{margin:0}h1{font-size:34px;font-weight:600;letter-spacing:2px}h2{font-size:20px;font-weight:500;letter-spacing:1px}
+  .eyebrow{font-size:12px;letter-spacing:3px;color:#c49b66;margin-bottom:10px}.intro{color:#c4bbb0;font-size:15px;line-height:1.9;margin-top:13px}
+  .context{display:flex;gap:12px;margin-top:18px;align-items:center;justify-content:space-between}.conditions{font-size:13px;color:#d1c1aa;letter-spacing:1px}
+  .switch{display:flex;border:1px solid #665542;border-radius:5px;overflow:hidden}button{font:inherit;font-size:13px;color:#d0c3b3;background:transparent;border:0;padding:10px 20px;cursor:pointer}
+  button+button{border-left:1px solid #665542}button[aria-pressed=true]{background:#59412b;color:#fff1dc}button:focus-visible,a:focus-visible{outline:2px solid #e5bb7d;outline-offset:3px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}.main-pair{margin-top:22px}.card{min-width:0;background:#24201b;border:1px solid #453a2e;border-radius:6px;overflow:hidden}
+  .label{font-size:17px;font-weight:500;padding:12px 16px;border-bottom:1px solid #453a2e;display:flex;justify-content:space-between;align-items:center}.tag{font-size:11px;letter-spacing:1px;font-weight:400;color:#bfae98}
+  .label.after{color:#edd0a7}.frame{height:auto;aspect-ratio:16/9;overflow:hidden;position:relative;background:#1d1915}.frame>img{display:block;width:100%;height:100%;object-fit:contain}
+  .frame.crop-view{aspect-ratio:auto;height:415px;background:#221e19}.frame.crop-view>img{position:absolute;width:1905px;height:990px;max-width:none;object-fit:fill;left:calc(50% - var(--crop-center));top:var(--crop-top)}
+  .section{margin-top:29px}.section-head{display:flex;gap:20px;justify-content:space-between;align-items:baseline;margin-bottom:13px}.note{font-size:12px;color:#a79b8b;line-height:1.7}
+  .details{display:grid;grid-template-columns:1.35fr 1fr;gap:24px}.detail-block .pair{gap:14px}.detail-block .label{font-size:14px;padding:10px 13px}.crop-wrap{background:#211d19;display:flex;justify-content:center;overflow:hidden}
+  .crop{overflow:hidden;position:relative;flex-shrink:0}.crop img{position:absolute;max-width:none;width:1905px;height:990px}.red-crop{width:510px;height:295px}.red-crop img{left:-555px;top:-310px}
+  .white-crop{width:185px;height:375px}.white-crop img{left:-408px;top:-225px}.detail-block.red .crop-wrap{padding:40px 0}.detail-block .caption{margin-top:9px;font-size:12px;line-height:1.7;color:#b4a796}
+  .reference-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px}.reference{background:#656565;line-height:0;border-radius:5px;overflow:hidden}.reference img{width:100%;height:auto}
+  .explanation{padding:23px 25px;background:#24201b;border:1px solid #453a2e;border-radius:5px;display:flex;flex-direction:column;gap:16px}.explanation p{font-size:14px;line-height:1.95;color:#c5b9aa}.explanation strong{font-weight:500;color:#ead5b7}
+  .links{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-top:5px}a{color:#dfb982;text-decoration:none}a:hover{text-decoration:underline}.footer{margin-top:24px;border-top:1px solid #453a2e;padding-top:15px;font-size:12px;color:#a89a89;line-height:1.8}
+  @media print{body{padding:20px}button{display:none}}
+</style>
+<main>
+  <header>
+    <p class="eyebrow">南风有狮 / 材质对照 · 2026.10.22</p>
+    <h1>保留原貌，让绒毛明暗更均衡</h1>
+    <p class="intro">左侧为修改前，右侧为修改后。两张网页画面保持同一相机、姿态、forest 环境与灯光参数；原有造型、配色、毛发数据和动画保留。</p>
+    <div class="context"><p class="conditions">同相机 · 同姿态 · 同 HDRI · 同灯光</p><div class="switch" aria-label="查看范围"><button type="button" data-mode="full" aria-pressed="true">全身</button><button type="button" data-mode="red" aria-pressed="false">红毛</button><button type="button" data-mode="white" aria-pressed="false">白毛</button></div></div>
+  </header>
+  <section class="pair main-pair" aria-label="动作页修改前后">
+    <article class="card"><div class="label">修改前<span class="tag">BEFORE</span></div><div class="frame" data-frame><img src="action-before.png" alt="修改前动作页醒狮全身"></div></article>
+    <article class="card"><div class="label after">修改后<span class="tag">AFTER</span></div><div class="frame" data-frame><img src="action-after.png" alt="修改后动作页醒狮全身"></div></article>
+  </section>
+  <section class="section">
+    <div class="section-head"><h2>原图局部</h2><p class="note">以下通过 CSS 裁切原始画布像素，不调色、不修图。</p></div>
+    <div class="details">
+      <div class="detail-block red"><div class="pair">
+        <article class="card"><div class="label">红毛 · 修改前</div><div class="crop-wrap"><div class="crop red-crop"><img src="action-before-canvas.png" alt="修改前红绒局部原始像素"></div></div></article>
+        <article class="card"><div class="label after">红毛 · 修改后</div><div class="crop-wrap"><div class="crop red-crop"><img src="action-after-canvas.png" alt="修改后红绒局部原始像素"></div></div></article>
+      </div><p class="caption">观察红绒暗面是否保留层次，以及亮暗交界是否仍形成突兀黑带。</p></div>
+      <div class="detail-block"><div class="pair">
+        <article class="card"><div class="label">白毛 · 修改前</div><div class="crop-wrap"><div class="crop white-crop"><img src="action-before-canvas.png" alt="修改前白尾局部原始像素"></div></div></article>
+        <article class="card"><div class="label after">白毛 · 修改后</div><div class="crop-wrap"><div class="crop white-crop"><img src="action-after-canvas.png" alt="修改后白尾局部原始像素"></div></div></article>
+      </div><p class="caption">白尾沿用原生长毛束造型；观察束间层次，不将源模型的片状轮廓改造成另一种毛发。</p></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head"><h2>Blender 原生参考</h2><p class="note">同投影与模型姿态 · 原生 EEVEE · forest · AgX · 64 采样</p></div>
+    <div class="reference-grid"><div class="reference"><img src="blender-reference.png" alt="同投影Blender原生醒狮参考，透明底显示在灰色之上"></div><div class="explanation">
+      <p><strong>原生材质与毛发作为基准。</strong><br>参考 PNG 保持渲染原字节。灰色仅是透明图像背后的 HTML 底色。</p>
+      <p><strong>当前仍存在渲染差异。</strong><br>网页发丝采样、环境积分与原生 EEVEE 并非完全相同；本次改善明暗分布，不声称像素级一致。</p>
+      <p>也保留了结构页前后原图，可进一步检查浅色背景下的白毛层次。</p>
+      <div class="links"><a href="structure-before.png">结构页 · 修改前</a><a href="structure-after.png">结构页 · 修改后</a><a href="action-fur-mask.png">网页毛发投影选区</a></div>
+    </div></div>
+  </section>
+  <p class="footer">对照资料：网页与 Blender 均为本地真实渲染；所有截图直接复制原 PNG，不使用 AI 修图。网页选区图用于限定比较范围，不能视为 Blender 原生材质分类。</p>
+</main>
+<script>
+  const frames = [...document.querySelectorAll('[data-frame]')];
+  const controls = [...document.querySelectorAll('button[data-mode]')];
+  const modes = { full: null, red: {center:'810px', top:'-280px'}, white: {center:'502px', top:'-205px'} };
+  controls.forEach(button => button.addEventListener('click', () => {
+    const mode = button.dataset.mode;
+    controls.forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+    frames.forEach((frame, index) => {
+      const side = index === 0 ? 'before' : 'after';
+      const image = frame.querySelector('img');
+      frame.classList.toggle('crop-view', mode !== 'full');
+      image.src = `action-${side}${mode === 'full' ? '' : '-canvas'}.png`;
+      if (modes[mode]) { frame.style.setProperty('--crop-center', modes[mode].center); frame.style.setProperty('--crop-top', modes[mode].top); }
+    });
+  }));
+</script>
+</html>
