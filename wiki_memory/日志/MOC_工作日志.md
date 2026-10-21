@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-21 | maintenance | completed | [首页视频目标核实与F盘主线同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E9%A6%96%E9%A1%B5%E8%A7%86%E9%A2%91%E7%9B%AE%E6%A0%87%E6%A0%B8%E5%AE%9E%E4%B8%8EF%E7%9B%98%E4%B8%BB%E7%BA%BF%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-21 | maintenance | completed | [全部支线合入主线与F盘同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E5%85%A8%E9%83%A8%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5%E4%B8%BB%E7%BA%BF%E4%B8%8EF%E7%9B%98%E5%90%8C%E6%AD%A5.md) |
+| 2026-10-21 | feature | completed | [首页动作低音量有声](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-21-%E9%A6%96%E9%A1%B5%E5%8A%A8%E4%BD%9C%E4%BD%8E%E9%9F%B3%E9%87%8F%E6%9C%89%E5%A3%B0.md) |
 | 2026-10-21 | feature | completed | [结构动作HDRI与参数设置](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-21-%E7%BB%93%E6%9E%84%E5%8A%A8%E4%BD%9CHDRI%E4%B8%8E%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.md) |
 | 2026-10-21 | ui | completed | [首页换用醒狮动作目录两视频](UI%E4%BF%AE%E6%94%B9/2026-10-21-%E9%A6%96%E9%A1%B5%E6%8D%A2%E7%94%A8%E9%86%92%E7%8B%AE%E5%8A%A8%E4%BD%9C%E7%9B%AE%E5%BD%95%E4%B8%A4%E8%A7%86%E9%A2%91.md) |
 | 2026-10-20 | maintenance | completed | [独立单文件EXE临时展示](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-20-%E7%8B%AC%E7%AB%8B%E5%8D%95%E6%96%87%E4%BB%B6EXE%E4%B8%B4%E6%97%B6%E5%B1%95%E7%A4%BA.md) |

@@ -18,15 +18,15 @@ test('new entry plays to its natural end, then the new home clip really loops', 
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
   const intro = page.locator('#introVideo');
   await expect(intro).toHaveAttribute('src', /assets\/intro\/entry-intro\.mp4$/);
-  const metadata = await intro.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, duration: video.duration, loop: video.loop, muted: video.muted }));
-  expect(metadata).toMatchObject({ width: 2560, height: 1440, loop: false, muted: true });
+  const metadata = await intro.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, duration: video.duration, loop: video.loop, muted: video.muted, volume: video.volume }));
+  expect(metadata).toMatchObject({ width: 2560, height: 1440, loop: false, muted: false, volume: .25 });
   expect(metadata.duration).toBeCloseTo(6.584, 2);
   await testInfo.attach('entry-1920', { body: await page.screenshot(), contentType: 'image/png' });
   await expect(page.locator('#entryLionVideo')).toBeVisible({ timeout: 20000 });
   expect(await page.evaluate(() => homeMediaEvents.some(e => e.id === 'introVideo' && e.type === 'ended' && e.time > 6.5))).toBe(true);
   const loop = page.locator('#entryLionVideo');
   await expect.poll(() => loop.evaluate(video => video.readyState)).toBeGreaterThanOrEqual(2);
-  expect(await loop.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, loop: video.loop, muted: video.muted }))).toEqual({ width: 2560, height: 1440, loop: true, muted: true });
+  expect(await loop.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, loop: video.loop, muted: video.muted, volume: video.volume }))).toEqual({ width: 2560, height: 1440, loop: true, muted: false, volume: .25 });
   expect(await loop.evaluate(video => video.duration)).toBeCloseTo(10.356009, 2);
   await testInfo.attach('loop-1920', { body: await page.screenshot(), contentType: 'image/png' });
   const wrapped = await loop.evaluate(video => new Promise(resolve => {

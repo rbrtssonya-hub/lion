@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
+import { DEFAULT_VIDEO_VOLUME } from '../../config/playback.js';
 
 const initialView = { status: 'idle', currentTime: 0, duration: 0, error: '' };
 const visibleDocument = () => typeof document === 'undefined' || !document.hidden;
@@ -160,6 +161,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
         record.error = '';
         if (node) {
           node.muted = true;
+          node.volume = DEFAULT_VIDEO_VOLUME;
           node.loop = true;
           if (mounted) reconcile();
         }
@@ -294,7 +296,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
 export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false }) {
   const [view, setView] = useState(initialView);
   const [playingIntent, setPlayingIntent] = useState(true);
-  const [audioEnabled, setAudioEnabled] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(true);
   const controllerRef = useRef(null);
   const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, playingIntent, audioEnabled };
   if (!controllerRef.current) controllerRef.current = createPlaybackController(setView, setPlayingIntent, setAudioEnabled, config);

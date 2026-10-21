@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
+import { recordVideoAudio, expectLowVolumeWithoutOverlap } from './video-audio.helpers.js';
 
 const play = page => page.getByRole('button', { name: '播放动作视频', exact: true });
 const pause = page => page.getByRole('button', { name: '暂停动作视频', exact: true });
@@ -22,12 +23,14 @@ test('用户四段真实视频推进，暂停、拖动进度和继续观看保�
   await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && video.currentTime >= 3.2)).toBe(true);
 });
 
-test('四屏保持独立播放实例，只有当前主屏可开启声音且切屏不重载视频', async ({ page }) => {
+test('四屏默认低音量有声，只有当前主屏发声且切屏不重载视频', async ({ page }) => {
   test.setTimeout(120_000);
+  await recordVideoAudio(page);
   await openTheater(page);
   const retained = await actionVideo(page, 'tanqing').elementHandle();
   await ensurePlaying(page);
-  await page.getByRole('button', { name: '开启声音', exact: true }).click();
+  await expect(page.getByRole('button', { name: '关闭声音', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  expect(await videos(page).evaluateAll(elements => elements.map(element => element.volume))).toEqual([.25, .25, .25, .25]);
   await expect.poll(() => audio(page)).toEqual(['tanqing']);
   for (const { id } of actions.slice(1)) {
     await selectAction(page, id);
@@ -38,12 +41,15 @@ test('四屏保持独立播放实例，只有当前主屏可开启声音且切�
   expect(await retained.evaluate(video => video.currentTime)).toBeGreaterThan(.1);
   await page.getByRole('button', { name: '关闭声音', exact: true }).click();
   await expect.poll(() => audio(page)).toEqual([]);
+  await page.getByRole('button', { name: '开启声音', exact: true }).click();
+  await expect.poll(() => audio(page)).toEqual(['meihuazhuang']);
+  expect(await actionVideo(page, 'meihuazhuang').evaluate(video => video.volume)).toBe(.25);
+  await expectLowVolumeWithoutOverlap(page);
 });
 
 test('快速选择最终动作不会恢复旧主屏声音或重置已播放进度', async ({ page }) => {
   await openTheater(page);
   await ensurePlaying(page);
-  await page.getByRole('button', { name: '开启声音', exact: true }).click();
   await actionVideo(page, 'tanqing').evaluate(video => { video.currentTime = 3; });
   for (const id of ['doumao', 'tuqiu', 'meihuazhuang', 'doumao']) await actionButton(page, id).click();
   await expect(scene(page)).toHaveAttribute('data-active-screen', 'doumao');

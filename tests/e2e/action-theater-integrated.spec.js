@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { actions, stage, scene, actionVideo, prepare, jsonAttribute } from './action-theater.helpers.js';
 import { assetPaths } from '../../src/config/assetPaths.js';
+import { recordVideoAudio, expectLowVolumeWithoutOverlap } from './video-audio.helpers.js';
 
 const runningMedia = page => page.locator('video').evaluateAll(videos => videos.filter(video => !video.paused).map(video => video.dataset.actionId || video.id).sort());
 const waitForTheater = async page => {
@@ -18,12 +19,13 @@ test('合并后首页媒体与四面巨幕往返保持独立播放实例，离�
   test.setTimeout(120_000);
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
+  await recordVideoAudio(page);
   await prepare(page);
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   const home = page.locator('#entryLionVideo');
   await expect.poll(() => home.evaluate(video => video.readyState)).toBeGreaterThanOrEqual(2);
-  expect(await home.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, loop: video.loop, muted: video.muted }))).toEqual({ width: 2560, height: 1440, loop: true, muted: true });
+  expect(await home.evaluate(video => ({ width: video.videoWidth, height: video.videoHeight, loop: video.loop, muted: video.muted, volume: video.volume }))).toEqual({ width: 2560, height: 1440, loop: true, muted: false, volume: .25 });
   expect(await home.evaluate(video => video.duration)).toBeCloseTo(10.356009, 2);
   await expect(home).toHaveAttribute('src', new RegExp(`${assetPaths.home.replaceAll('.', '\\.')}$`));
   await expect.poll(() => runningMedia(page)).toEqual(['entryLionVideo']);
@@ -59,5 +61,6 @@ test('合并后首页媒体与四面巨幕往返保持独立播放实例，离�
   expect(await oldCanvas.evaluate(canvas => canvas === document.querySelector('#chapterStage canvas'))).toBe(false);
   await expect.poll(() => runningMedia(page)).toEqual(actions.map(action => action.id).sort());
   expect(errors).toEqual([]);
+  await expectLowVolumeWithoutOverlap(page);
   await testInfo.attach('integrated-home-theater-lifecycle', { body: JSON.stringify({ homeAsset: assetPaths.home, homeDuration: await home.evaluate(video => video.duration), pausedHomeTime, sameHomeElement: await homeElement.evaluate(video => video.isConnected && video === document.querySelector('#entryLionVideo')), actionCanvasCount: await stage(page).locator('canvas').count(), actionVideoCount: await stage(page).locator('video[data-action-id]').count(), activeDecodersByMediaState: await runningMedia(page), previousCanvasDisposed: await oldCanvas.evaluate(canvas => !canvas.isConnected && (canvas.getContext('webgl2') || canvas.getContext('webgl')).isContextLost()), composition: await jsonAttribute(scene(page), 'data-composition') }, null, 2), contentType: 'application/json' });
 });
