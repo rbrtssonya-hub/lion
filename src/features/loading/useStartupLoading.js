@@ -23,7 +23,7 @@ export function reportStartupTask(name, success = true) {
 function prepareMedia() {
   if (preparing) return preparing;
   // Below-fold type plates are lazy content, not a condition for entering the site.
-  const images = Object.entries(media).filter(([key, src]) => !key.startsWith('lionType') && /\.(png|jpe?g|webp|svg)$/i.test(src)).map(([, src]) => src);
+  const images = Object.entries(media).filter(([key, src]) => !key.startsWith('lionType') && !key.startsWith('calligraphy') && /\.(png|jpe?g|webp|svg)$/i.test(src)).map(([, src]) => src);
   preparing = withStartupTimeout(Promise.allSettled([
     ...images.map(src => new Promise((resolve, reject) => {
       const image = new Image();

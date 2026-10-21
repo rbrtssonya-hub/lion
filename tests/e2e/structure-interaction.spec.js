@@ -70,7 +70,7 @@ test('结构视口静止时停止GPU绘制，拖动、聚焦、自动旋转和�
   await expectSettledCanvas(page);
 
   before = await drawCount(page);
-  await page.locator('#hotspotList [data-id="mouth"]').click();
+  await page.locator('#modelHotspots [data-id="mouth"]').click();
   await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focused-part', 'mouth');
   await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focus-state', 'idle');
   expect(await drawCount(page)).toBeGreaterThan(before);
@@ -137,7 +137,7 @@ test('视口部件标注随模型转动并连接结构锚点，点击同步右�
     await expect(label).toBeVisible();
     await label.click();
     await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', id);
-    await expect(page.locator(`#hotspotList [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#panelTitle')).toHaveText({ eyes: '鼓眼与狮眉', mouth: '狮嘴', lion_cloth: '狮被与狮尾' }[id]);
     await expect(label).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focused-part', id);
     await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focus-state', 'idle');

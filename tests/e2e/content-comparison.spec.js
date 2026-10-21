@@ -102,12 +102,13 @@ test('神态三组对照保持原详情，退出恢复焦点，滚轮不驱动�
   await expect(page.locator('#expressionStateTitle')).toHaveText('疑');
 });
 
-test('结构观察跳转与浏览器返回保留部位、相机、标签和详情位置', async ({ page }) => {
+test('结构观察跳转与浏览器返回保留部位、相机、展开资料和详情位置', async ({ page }) => {
   await open(page, '#/model');
   const stage = page.locator('#modelStage');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入');
-  await page.locator('#hotspotList button[data-id="eyes"]').click();
-  await page.locator('#cultureDetailTab').click();
+  await page.locator('#modelHotspots button[data-id="eyes"]').click();
+  const cultureReading = page.locator('.structure-more-reading').last();
+  await cultureReading.locator('summary').click();
   const canvas = page.locator('#sceneContainer canvas');
   await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
   const before = await canvas.getAttribute('data-camera-distance');
@@ -119,35 +120,39 @@ test('结构观察跳转与浏览器返回保留部位、相机、标签和详�
   await expect(page).toHaveURL(/#\/model$/);
   await expect(page.locator('#modelExpressionLink')).toBeFocused();
   await expect(stage).toHaveAttribute('data-selected-id', 'eyes');
-  await expect(page.locator('#cultureDetailTab')).toHaveAttribute('aria-pressed', 'true');
+  await expect(cultureReading).toHaveAttribute('open', '');
   expect(await canvas.getAttribute('data-camera-distance')).toBe(before);
   await page.getByRole('button', { name: '去神态页观察惊态', exact: true }).click();
   await page.goBack();
   await expect(stage).toHaveAttribute('data-selected-id', 'eyes');
-  await expect(page.locator('#cultureDetailTab')).toHaveAttribute('aria-pressed', 'true');
+  await expect(cultureReading).toHaveAttribute('open', '');
   await page.locator('.site-header [data-route="entry"]').click();
   await page.locator('.site-header [data-route="state"]').click();
   await expect(page.getByRole('button', { name: '返回眉眼部位', exact: true })).toHaveCount(0);
 });
 
-test('结构资料切换标签后选中的标签与新内容仍在阅读区可见', async ({ page }) => {
+test('结构图鉴展开文化原资料后标题与正文仍在阅读区可达', async ({ page }) => {
   await open(page, '#/model');
   await page.setViewportSize({ width: 1366, height: 768 });
-  await page.locator('#hotspotList button[data-id="eyes"]').click();
-  await page.locator('#cultureDetailTab').click();
-  await expect.poll(() => page.locator('#modelDetailContent').evaluate(pane => {
-    const box = pane.getBoundingClientRect(), tab = pane.querySelector('#cultureDetailTab').getBoundingClientRect(), content = pane.querySelector('.culture-panel').getBoundingClientRect();
-    return tab.top >= box.top && tab.bottom <= box.bottom && content.top < box.bottom && content.top >= box.top;
-  })).toBe(true);
+  await page.locator('#modelHotspots button[data-id="eyes"]').click();
+  const culture = page.locator('.structure-culture-section').last();
+  await culture.getByRole('heading', { name: '狮韵之意', exact: true }).scrollIntoViewIfNeeded();
+  await expect(culture.getByRole('heading', { name: '狮韵之意', exact: true })).toBeInViewport();
+  const reading = culture.locator('.structure-more-reading');
+  await reading.locator('summary').click();
+  await expect(reading).toHaveAttribute('open', '');
+  await reading.locator('dd').last().scrollIntoViewIfNeeded();
+  await expect(reading.locator('dd').last()).toBeInViewport();
 });
 
 test('后退修改模型部位使旧观察上下文失效，前进后不承诺错误返回目标', async ({ page }) => {
   await open(page, '#/model');
-  await page.locator('#hotspotList button[data-id="eyes"]').click();
+  await page.locator('#modelHotspots button[data-id="eyes"]').click();
   await page.getByRole('button', { name: '去神态页观察惊态', exact: true }).click();
   await expect(page.locator('#expressionStateTitle')).toHaveText('惊');
   await page.goBack();
-  await page.locator('#hotspotList button[data-id="mouth"]').click();
+  await page.locator('#nextStructurePart').click();
+  await page.locator('#nextStructurePart').click();
   await page.goForward();
   await expect(page).toHaveURL(/#\/state$/);
   await expect(page.getByRole('button', { name: '返回眉眼部位', exact: true })).toHaveCount(0);
@@ -156,7 +161,7 @@ test('后退修改模型部位使旧观察上下文失效，前进后不承诺�
 test('结构观察往返保留非零资料滚动和转动后的实际投影', async ({ page }) => {
   await open(page, '#/model');
   await page.setViewportSize({ width: 1366, height: 768 });
-  await page.locator('#hotspotList button[data-id="eyes"]').click();
+  await page.locator('#modelHotspots button[data-id="eyes"]').click();
   const canvas = page.locator('#sceneContainer canvas');
   await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
   const scene = await page.locator('#sceneInteraction').boundingBox();

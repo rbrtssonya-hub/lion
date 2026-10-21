@@ -7,6 +7,12 @@ const modelRequestPattern = `**/${assetPaths.model}`;
 
 const routeButton = (page, route) => page.locator(`.site-header .site-navigation .site-nav-item[data-route="${route}"]`);
 
+async function selectProjectedPart(page, id) {
+  await page.locator('#resetView').click();
+  await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focus-state', 'idle');
+  await page.locator(`#modelHotspots [data-id="${id}"]`).click();
+}
+
 async function expectDecodedBackground(page, locator, assetPath, property = 'background-image') {
   const decoded = await locator.evaluate(async (element, property) => {
     const background = getComputedStyle(element).getPropertyValue(property).trim();
@@ -131,10 +137,10 @@ test('首页入场结束后原地循环背景，整体与章节交互由当前�
   await page.locator('#toggleRotate').click();
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
   for (const { id, name } of structureParts) {
-    await page.locator(`#hotspotList [data-id="${id}"]`).click();
+    await selectProjectedPart(page, id);
     await expect(page.locator('#panelTitle')).toHaveText(name);
     await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', id);
-    await expect(page.locator(`#hotspotList [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator(`#modelHotspots [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
   }
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   for (const [route, label] of [['action', '动作'], ['state', '神态']]) {
@@ -187,7 +193,7 @@ test('手机视口保持章节导航与结构交互，页面可正常滚动', as
   await page.screenshot({ path: test.info().outputPath('home-mobile.png'), fullPage: true });
   await routeButton(page, 'model').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-  await page.locator('#hotspotList [data-id="mouth"]').click();
+  await page.locator('#modelHotspots [data-id="mouth"]').click();
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('structure-mobile.png'), fullPage: true });
@@ -293,18 +299,18 @@ for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
     const columns = await page.locator('.model-layout').evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
     const available = await page.locator('.site-page').evaluate(node => node.clientWidth);
-    expect(columns).toBe(available >= 1000 ? 2 : 1);
+    expect(columns).toBe(available >= 850 ? 2 : 1);
     const scene = await page.locator('.scene-column').boundingBox();
     const panel = await page.locator('#structurePanel').boundingBox();
     const header = await page.locator('.site-header').boundingBox();
-    if (available >= 1000) expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
+    if (available >= 850) expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
     else expect(scene.y + scene.height).toBeLessThanOrEqual(panel.y + 2);
     expect(scene.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
     expect(panel.y).toBeGreaterThanOrEqual(header.y + header.height - 2);
     expect(scene.width).toBeGreaterThan(300);
     expect(panel.width).toBeGreaterThan(260);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
-    await page.locator('#hotspotList [data-id="mouth"]').click();
+    await page.locator('#modelHotspots [data-id="mouth"]').click();
     await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mouth');
     await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
     await page.locator('#resetView').click();
@@ -373,7 +379,7 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   await expect(settings).toHaveAttribute('aria-controls', 'developerSettingsPanel');
 });
 
-test('结构页右侧部件目录驱动局部聚焦，离页暂停并复用预热场景', async ({ page }) => {
+test('结构页图鉴导航驱动局部聚焦，离页暂停并复用预热场景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await openPrepared(page, '/#/model');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -381,11 +387,11 @@ test('结构页右侧部件目录驱动局部聚焦，离页暂停并复用预�
   await expect(page.locator('#culturePanel, .structure-diagram, #hotspots, #viewStructure, #structureLayer')).toHaveCount(0);
   await expect(page.locator('#resetView')).toBeVisible();
   const canvas = await page.locator('#sceneContainer canvas').elementHandle();
-  await page.locator('#hotspotList [data-id="eyes"]').click();
+  await page.locator('#nextStructurePart').click();
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'eyes');
   await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'eyes');
   await expect(page.locator('#panelTitle')).toHaveText('鼓眼与狮眉');
-  await expect(page.locator('#hotspotList [data-id="eyes"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#modelHotspots [data-id="eyes"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
   expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('#resetView').click();
@@ -427,7 +433,7 @@ test('点击醒狮真实表面同步右侧部件，镜头在左侧放大聚焦�
     await page.mouse.click(projection.x, projection.y);
     await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', id);
     await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', id);
-    await expect(page.locator(`#hotspotList [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator(`#modelHotspots [data-id="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#panelTitle')).toHaveText(structureParts.find(part => part.id === id).name);
     await expect(canvas).toHaveAttribute('data-focused-part', id);
     await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
@@ -451,7 +457,7 @@ test('聚焦后缩窄电脑窗口再复原，完整醒狮按当前左侧展示�
   await openPrepared(page, '/#/model');
   const canvas = page.locator('#sceneContainer canvas');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入');
-  await page.locator('#hotspotList [data-id="eyes"]').click();
+  await page.locator('#modelHotspots [data-id="eyes"]').click();
   await expect(canvas).toHaveAttribute('data-focused-part', 'eyes');
   await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
   await page.locator('#resetView').click();

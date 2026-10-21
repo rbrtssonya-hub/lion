@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-21",
+  "mode": "built-in imagegen, six sequential independent calls",
+  "generations": [
+    {
+      "character": "神",
+      "filename": "shen.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG calligraphy artwork for a refined Lingnan lion-dance cultural atlas, desired 1024 × 1024 pixels. Create exactly ONE Chinese character: \"神\". The exact glyph 神 (示字旁 礻 on the left, 申 on the right) must be correct and immediately recognizable. Authentic traditional expressive hand-painted Chinese brush calligraphy, strong semi-cursive but legible, NOT ordinary printed Kaishu/SimSun/digital typography. Deep cinnabar-red ink close to #A12D23 with natural dark red wet ink, dry-brush flying-white texture and organic brush tips. Powerful but elegant, hand-crafted and culturally poetic, like a premium Chinese art exhibition title. Isolated single character centered with generous TRANSPARENT margin and all brush tips completely within frame. Fully transparent background with a clean true alpha channel, no paper, no scenery. No other characters, no English/pinyin, no decorative stamp, seal, watermark, border, 3D, metallic, neon or embossing. This is the first of six coordinated individual artworks: same red brush language will be used in separate images for 威 冠 启 灵 势, but THIS image must show ONLY 神.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/shen.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-b00dfed3-b7ff-4d19-8ef9-ef27c591a341.png"
+    },
+    {
+      "character": "威",
+      "filename": "wei.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Create a premium transparent PNG of exactly ONE Chinese calligraphy character: \"威\" (威严的威). Desired 1024 × 1024. It must be the correct recognizable Chinese glyph 威, not a similar or invented character. Traditional Chinese expressive hand-painted brush calligraphy for a Lingnan Cantonese lion-dance cultural atlas. Match the same coordinated series as the already generated 神: deep cinnabar-red ink near #A12D23, strong organic semi-cursive but legible strokes, subtle dry-brush flying-white grain, natural wet/dry ink variation, handcrafted tapered brush tips, refined Chinese exhibition title. Isolated single character centered with ample truly transparent margin, complete brush tips inside frame, clean true alpha channel. Exactly 威 and nothing else. No paper background, no second character, no English or pinyin, no seals, no decorative stamp or watermark, no borders, no printed font, no modern typography, no metallic/3D/neon/embossing. Maintain an elegant powerful traditional silhouette and the same ink hue and visual weight as 神.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/wei.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-800e5fea-a0aa-4790-b5b7-284b886190f9.png"
+    },
+    {
+      "character": "冠",
+      "filename": "guan.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Create exactly ONE accurate Chinese character \"冠\" as traditional expressive cinnabar-red brush calligraphy, transparent PNG, intended 1024 × 1024. 冠 (crown; with 冖 roof over 元 and 寸) must be completely correct and recognizable, no invented forms. Same coordinated artwork series as 神 and 威 for a premium Lingnan lion-dance cultural atlas: organic powerful hand-painted semi-cursive strokes, fine flying-white dry-brush grain, natural ink pooling and tapered brush tips, color near #A12D23 with deep cinnabar and darker red variations. Refined ancient book / Chinese exhibition artistic feeling, not a typeset font. Centered single character on a fully TRANSPARENT background with genuine clean alpha, generous clear margins and every brush tip inside the frame. ONLY 冠. No paper texture or paper background, no other character, no English/pinyin, no seal/stamp, no watermark, no border, no modern digital typography, no 3D, metallic, neon or embossing. Match brush weight and cinnabar hue of the other individual calligraphy assets while retaining natural handwritten variation.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/guan.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-da573fd9-d22c-47b9-a291-7e6b5fb74f02.png"
+    },
+    {
+      "character": "启",
+      "filename": "qi.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Create exactly ONE Chinese character \"启\" as an individual transparent PNG artwork, intended 1024 × 1024. Use the correct simplified Chinese character 启: 户 above 口. Do NOT use 啓/啟 or invented strokes. Powerful, elegant authentic hand-painted Chinese brush calligraphy for a premium Lingnan lion-dance cultural atlas. Same coordinated series as the individual 神 威 冠 artworks: cinnabar-red ink near #A12D23, organic strong semi-cursive but immediately legible silhouette, subtle flying-white dry-brush grain, natural wet/dry ink and brush-tip variation. Traditional artistic book/exhibition character, not regular typeset KaiTi/SimSun or modern digital font. Exactly one centered character with generous genuinely transparent margins, clean alpha channel and every brush tip fully inside frame. NO paper background, no second character, no English/pinyin, no seals or stamps, no watermark/border, no 3D/metallic/neon/embossing. ONLY the accurate character 启 in expressive red brush ink.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/qi.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-e3ea72fa-c5d0-4d8d-bd94-b55c7b2f0107.png"
+    },
+    {
+      "character": "灵",
+      "filename": "ling.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Generate one premium traditional Chinese brush-calligraphy PNG artwork showing exactly the simplified Chinese character \"灵\" (灵动的灵). It must be the correct simplified glyph 灵: the upper 彐-like three-stroke component over 火, not 靈 or any other glyph. Desired 1024 × 1024 transparent PNG. For the same coordinated Lingnan Cantonese lion-dance cultural atlas series as 神 威 冠 启: authentic expressive hand-painted Chinese brush strokes, strong yet flowing and immediately recognizable, refined ancient book / Chinese exhibition mood. Cinnabar red near #A12D23, with natural darker-red wet ink variation, delicate dry-brush flying-white textures and intact tapered brush tips. Only one large centered character, generous true transparent margins, fully transparent clean alpha background. NO paper or background texture, no other characters, no English/pinyin, no stamp/seal/watermark/border, no printed typography, no 3D, neon, metallic or embossing. Same brush weight and red ink family as the other individual assets; natural handmade variation allowed.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/ling.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-e2be9741-1aae-4e5a-aadb-76d4332b9950.png"
+    },
+    {
+      "character": "势",
+      "filename": "shi.png",
+      "tool": "image_gen.imagegen",
+      "transparentBackground": true,
+      "prompt": "Create exactly ONE simplified Chinese character \"势\" (气势的势, simplified form, 执 above 力) as a premium transparent PNG artwork, intended 1024 × 1024. The character must be correctly written and immediately recognizable; do not use the traditional 勢 or invent strokes. Authentic powerful expressive hand-painted Chinese brush calligraphy for the same coordinated Lingnan lion-dance cultural atlas series as 神 威 冠 启 灵. Deep cinnabar-red ink close to #A12D23, organic semi-cursive yet legible strokes, natural wet/dry ink variation, subtle flying-white brush grain, intact tapered sweeping tips, traditional Chinese exhibition/book poetic feeling. One large centered character with generous TRANSPARENT margins and a clean true alpha channel. ONLY 势, nothing else. No paper/background texture, no extra character, no English/pinyin, no stamp/seal/watermark/border, no ordinary printed typography, no 3D/metallic/neon/embossing. Maintain the same red brush family and balanced visual weight as the other five independent calligraphy assets.",
+      "original": "source/design/structure-atlas/2026-10-21/originals/shi.png",
+      "generatedPath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a15d46-4413-7be1-9009-c177850c943c\\exec-310455bc-b392-4beb-945e-fd93ede15033.png"
+    }
+  ]
+}

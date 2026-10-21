@@ -1,0 +1,212 @@
+[
+  {
+    "character": "神",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      33,
+      17,
+      1248,
+      1254
+    ],
+    "output": "source/public/assets/structure/calligraphy/shen.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      80,
+      72,
+      944,
+      952
+    ],
+    "opaqueInkMedianRGB": [
+      152,
+      13,
+      4
+    ],
+    "bytes": 660185,
+    "sha256": "95fe040d4f86373027776a48c83b9ed0a25276410b02c290252b689f61b47e13"
+  },
+  {
+    "character": "威",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      23,
+      47,
+      1210,
+      1224
+    ],
+    "output": "source/public/assets/structure/calligraphy/wei.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      72,
+      75,
+      952,
+      948
+    ],
+    "opaqueInkMedianRGB": [
+      155,
+      26,
+      15
+    ],
+    "bytes": 646034,
+    "sha256": "a7da93f6b9267011774818ce79fb649800ae32fee8e488e67924aaf51b6e1de0"
+  },
+  {
+    "character": "冠",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      27,
+      19,
+      1226,
+      1238
+    ],
+    "output": "source/public/assets/structure/calligraphy/guan.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      79,
+      73,
+      942,
+      952
+    ],
+    "opaqueInkMedianRGB": [
+      143,
+      14,
+      3
+    ],
+    "bytes": 709168,
+    "sha256": "09d163d4449ce9cc2a3005588d631754b29680ef1060716065bd1e1ecab4f646"
+  },
+  {
+    "character": "启",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      95,
+      27,
+      1238,
+      1254
+    ],
+    "output": "source/public/assets/structure/calligraphy/qi.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      102,
+      72,
+      922,
+      952
+    ],
+    "opaqueInkMedianRGB": [
+      167,
+      15,
+      7
+    ],
+    "bytes": 556384,
+    "sha256": "50587ba9daf5be51787fe18d9cf9a9d81ec6cf1af80a3f53e55118b531ada353"
+  },
+  {
+    "character": "灵",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      107,
+      61,
+      1237,
+      1175
+    ],
+    "output": "source/public/assets/structure/calligraphy/ling.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      72,
+      78,
+      952,
+      946
+    ],
+    "opaqueInkMedianRGB": [
+      153,
+      16,
+      7
+    ],
+    "bytes": 645783,
+    "sha256": "91d09f2797850908a15f25509040b78e4cd6020afd4b87d143dd0421dc4bdce1"
+  },
+  {
+    "character": "势",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "originalCrop": [
+      0,
+      14,
+      1254,
+      1218
+    ],
+    "output": "source/public/assets/structure/calligraphy/shi.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      72,
+      89,
+      952,
+      934
+    ],
+    "opaqueInkMedianRGB": [
+      160,
+      24,
+      16
+    ],
+    "bytes": 639788,
+    "sha256": "e8c6e62a61b7c7d6a612ee671a414eba0e5f13ce80714d371b39829ec17bf514"
+  }
+]

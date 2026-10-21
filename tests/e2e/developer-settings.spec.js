@@ -791,13 +791,33 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
   const canvas = await page.locator('#sceneContainer canvas').elementHandle();
+  const rendererEnvironment = await canvas.evaluate(element => {
+    const gl = element.getContext('webgl2') ?? element.getContext('webgl');
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    return {
+      userAgent: navigator.userAgent, devicePixelRatio,
+      renderer: gl.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : gl.RENDERER),
+      vendor: gl.getParameter(debug ? debug.UNMASKED_VENDOR_WEBGL : gl.VENDOR),
+      webgl: gl.getParameter(gl.VERSION),
+    };
+  });
+  await test.info().attach('browser-and-webgl-environment', {
+    body: JSON.stringify({ chrome: page.context().browser().version(), ...rendererEnvironment }, null, 2),
+    contentType: 'application/json',
+  });
   await editNumber(page, '设置面板宽度', 520);
   await editNumber(page, '顶栏高度', 100);
   await editNumber(page, '侧栏模糊强度', 22);
   expect(await canvas.evaluate(element => element.isConnected && element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await page.locator('#toggleRotate').click();
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('#hotspotList [data-id="mouth"]').click();
+  const movingMouth = page.locator('#modelHotspots [data-id="mouth"]');
+  await expect(movingMouth).toBeVisible();
+  const mouthBounds = await movingMouth.boundingBox();
+  expect(mouthBounds?.width).toBeGreaterThan(0);
+  // Projected labels move with the rotating lion, so a locator's stable-layout
+  // auto-wait would never finish. Send an actual pointer click at its center.
+  await page.mouse.click(mouthBounds.x + mouthBounds.width / 2, mouthBounds.y + mouthBounds.height / 2);
   await expect(page.locator('#panelTitle')).toHaveText('狮嘴');
   await expect(page.locator('#modelStage')).toHaveAttribute('data-focus-state', 'mouth');
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
@@ -806,7 +826,13 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await page.locator('.site-navigation [data-route="state"]').click();
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
   await expect(panel(page)).toBeVisible();
+  await page.locator('.site-navigation [data-route="model"]').click();
+  expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-full-hair-groups', '33');
+  await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-full-hair-strands', '2295421');
   expect(errors).toEqual([]);
+  await canvas.dispose();
+  await video.dispose();
 });
 
 test('七类底板独立参数可保存刷新，完全透明时文字与按钮保留', async ({ page }) => {

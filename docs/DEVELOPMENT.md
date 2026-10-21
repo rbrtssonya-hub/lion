@@ -4,6 +4,8 @@
 
 自2026-10-14起，后续开发与验收仅以电脑端为目标，不考虑手机端适配或专项手机回归；既有手机相关代码与历史验证不作为本轮验收范围。
 
+2026-10-21结构右栏使用 `StructureReadingPanel.jsx` 的宣纸图鉴，六部件通过 `structure-atlas.js` 映射真实ImageGen书法PNG；原资料仍从 `lion-structure.json` 读取。模型点选、投影标签和前后翻阅共用 `ModelPage` 的选择与聚焦入口，复原/自转位于左侧工具栏。宽380–420px，中部独立滚动，窄电脑余宽使用上下布局；首次进入结构才请求字图，不增加首页预热。旧深红默认通过独立 `structureAtlasVersion` 逐字段升级，保留自定义值与原readingPaper迁移边界。提示词、图片再处理和实际验收见[结构图鉴说明](../source/references/structure-atlas-2026-10-21.md)。
+
 2026-10-21动作页新增参考图式世界悬浮标题、四幕编号/播放牌与逐幕解说，底部为近身操作牌与实时罗盘。`actionTheaterSpatialUI.js` 复用场景唯一RAF，将真实相机矩阵逐帧写入CSS `matrix3d`；7°角优势迟滞取消原180ms停留，相机无惯性、文字/高亮无延迟，视频异步保持独立。只有激活ID变化才同步提交React，自转开关只影响醒狮。修改后运行 `tests/e2e/action-spatial-ui.spec.js` 的真实鼠标拖动验收；三电脑窗口、设置推开、播放和重入沿用动作回归。参考、实现边界、实际结果与截图入口见[空间UI说明](../source/references/action-spatial-ui-2026-10-21.md)。
 
 2026-10-15新增最前置水墨加载屏、模型/书册/图鉴预热及跨章节实例复用。设置左侧纵排分类，外观页分别调节所有透明模糊底板；动画页调书册尺寸和水墨时间线，布局页调页面选中命中。运行机制、参数范围和原加载HTML来源见 [本轮实现说明](../source/references/2026-10-15-desktop-iteration.md)。该日工作按当时要求在支线交付；后续分支同步及本轮交付按当前根 `AGENTS.md` 执行。
@@ -52,7 +54,7 @@ npm run preview
 | `src/main.jsx` | 挂载 React 与加载全局样式 |
 | `src/App.jsx` | 页面组合、章节切换与延迟加载边界 |
 | `src/features/home/` | 首页入场/循环视频、岭南醒狮史册、文化图鉴、探索更多跳转与向下文化入口 |
-| `src/features/model/` | 结构页：左侧三维模型、右侧部件目录与工艺/文化资料 |
+| `src/features/model/` | 结构页：左侧三维模型与工具栏、右侧书法部件图鉴及完整工艺/文化资料 |
 | `src/features/action/` | 四面视频巨幕、当前动作解说、共享媒体控制与平面观看 |
 | `src/features/chapters/` | 动作/神态挂载入口与神态八态交互图鉴 |
 | `src/features/developer-settings/` | 顶栏/侧栏参数、浏览器持久化与推开布局 |
@@ -181,6 +183,8 @@ Live2D 创作源与运行包分开放置。当前运行包为重制参考，首�
 2026-10-12首页循环视频已按用户指定文件替换，运行路径仍为 `assets/entry/home-lion-loop.mp4`；旧运行视频原字节保留在 `source/video/entry/home-lion-loop-v1.mp4`，原资产清单记录迁到该归档路径。新运行视频、dist拷贝与用户源视频SHA-256一致，最终资产清单83条。文化摄影从具体Commons文件许可核对后接入，更新时需同步图注、来源说明和资产清单；不要批量重写已有快照。
 
 ## 验证与辅助工具
+
+结构图鉴改动运行 `tests/e2e/structure-atlas.spec.js`，覆盖六图真实解码/alpha、真实模型射线点选、前后循环、全部原资料、900/1366/1920电脑窗、电脑缩放余宽、设置迁移和首页请求隔离。原GPU按需绘制/投影、滚轮真实像素、观察往返和全量毛发检查继续运行相应结构子集；局部聚焦允许视锥裁剪，完整毛发绘制在「复原整体」后核对。六字源文件位于 `source/design/structure-atlas/2026-10-21/`，按用户要求的透明裁剪可用 `python scripts/prepare_structure_calligraphy.py` 复现；该脚本只后处理已有六张真实原输出，不替代ImageGen生成。最终命令、环境、结果与范围记录于本轮说明和工程日志。
 
 结构材质与转动性能新增 `tests/e2e/structure-interaction.spec.js`，核对六个真实投影标签/点击聚焦、旋转后锚点移动和稳定后停止模型绘制。可在开发服务器运行时通过 `node scripts/benchmark_lion_scene.mjs --dpr=1 --output=tmp/structure-after-dpr1` 复现性能采样；加 `--baseline-ref=1f8f206` 读取修复前同一场景与 GLB，`--dpr=2` 核对高分屏预算。该工具只在浏览器请求中注入计时，默认每阶段6秒，分别输出 JSON 和 CPUProfile，不改产品源码。2026-10-19同机 RTX5070Ti/Chrome155 的实际前后结果、源码/模型hash及限制见[性能报告](../source/references/2026-10-19-structure-performance.json)；约180FPS是高刷新率同机对照，不能推广为所有电脑保证，JS提交耗时也不等于GPU计时。本轮最终门禁与生产QA见[材质/性能修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
 

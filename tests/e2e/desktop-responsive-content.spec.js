@@ -53,7 +53,7 @@ test('类型展开按内容余宽重排，侧轨透明且首页左右留白对�
   }
 });
 
-test('结构模型在紧凑电脑堆叠，画布与热点随容器更新，末尾资料可达', async ({ page }) => {
+test('结构图鉴按电脑余宽保留模型阅读双栏，画布热点与末尾资料可达', async ({ page }) => {
   await open(page, '#/model');
   for (const [width, height] of sizes) {
     await page.setViewportSize({ width, height });
@@ -61,10 +61,12 @@ test('结构模型在紧凑电脑堆叠，画布与热点随容器更新，末�
       const a = stage.querySelector('.scene-column').getBoundingClientRect();
       const b = stage.querySelector('.structure-panel').getBoundingClientRect();
       const w = stage.closest('.site-page').clientWidth;
-      return w >= 1000 ? a.right <= b.left + 2 : a.bottom <= b.top + 2;
+      return w >= 850 ? a.right <= b.left + 2 : a.bottom <= b.top + 2;
     }), { message: `${width}x${height}: model layout follows available width` }).toBe(true);
     await noHorizontalOverflow(page);
-    await page.locator('#hotspotList button[data-id="mouth"]').click();
+    await page.locator('#resetView').click();
+    await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focus-state', 'idle');
+    await page.locator('#modelHotspots button[data-id="mouth"]').click();
     await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'mouth');
     await page.locator('#structureBoundary summary').click();
     await expect(page.locator('#structureBoundary p')).toBeVisible();
