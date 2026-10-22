@@ -366,9 +366,7 @@ export function adaptLionSketchbookDocument(original, {
 body{font-family:"Noto Serif CJK SC","Songti SC",SimSun,serif;-webkit-font-smoothing:antialiased}
 button{font:inherit}.page,.hero{width:100%;height:100%;min-height:0;margin:0;padding:0;display:grid;align-content:center;justify-items:center}
 .sb-wrap{gap:0}.sb-3d{max-width:min(calc(${maxWidth}px * var(--archive-book-scale,1.16)),100%,calc(100vh * 2.48))}.sb-arrow,.sb-captions,.sb-hint{display:none!important}
-.sb-cast.ambient{top:65%;bottom:19.2%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(58,44,26,.28) 0%,rgba(58,44,26,.13) 38%,rgba(58,44,26,0) 100%);filter:none}
-.sb-cast.contact{top:73%;bottom:19.7%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(44,32,14,.30) 0%,rgba(44,32,14,.10) 40%,rgba(44,32,14,0) 100%);filter:none}
-.sb-cast.hair{top:76.3%;bottom:20.8%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(40,28,10,.25) 0%,rgba(40,28,10,0) 100%);filter:none}
+.sb-cast{display:none!important}
 .sb-zone{top:21.8%;bottom:21.8%}.sb-prev{left:5.1%;width:44.9%}.sb-next{left:50%;right:auto;width:44.9%}
 .sb-zone:focus-visible{outline:2px solid #a33024;outline-offset:-2px}
 @media(prefers-reduced-motion:reduce){.sb-caption{animation:none}}
