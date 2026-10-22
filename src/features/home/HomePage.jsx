@@ -34,7 +34,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
     <VideoStage key={introActive ? `intro-${playbackId}` : 'home-loop'}
       id={introActive ? 'introVideo' : 'entryLionVideo'} src={introActive ? media.intro : media.home}
       poster={media.cover} loop={!introActive} playing={playbackEnabled && !entryAnimationActive} audioEnabled={audioEnabled} volume={volume} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
-      onEnded={introActive ? finishVideo : undefined} onContinue={introActive ? finishVideo : undefined} continueLabel="继续入场动画"
+      onEnded={introActive ? finishVideo : undefined} onContinue={introActive ? finishVideo : undefined} continueLabel="继续浏览首页"
       label={introActive ? 'AI辅助创作的醒狮入场视频' : '循环播放的醒狮首页视频'} className="entry-visual entry-visual-video" />
     <div className="entry-vignette" aria-hidden="true" />
     <div className="entry-ornaments" aria-hidden="true">

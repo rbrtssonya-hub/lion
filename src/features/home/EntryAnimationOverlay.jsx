@@ -36,7 +36,7 @@ export default function EntryAnimationOverlay({ onComplete, onSkip }) {
 
   return <div className="entry-transition-stage">
     <iframe ref={frameRef} id="entryTransitionFrame" title="醒狮入场动画" src={media.entryTransition} />
-    <button className="entry-transition-skip" type="button" onClick={onSkip}>
+    <button id="skipIntro" className="entry-transition-skip" type="button" onClick={onSkip}>
       跳过动画 <span aria-hidden="true">→</span>
     </button>
   </div>;
