@@ -3908,6 +3908,66 @@
       "path": "source/reviews/desktop-responsive/2026-10-22/structure-900x600.png",
       "bytes": 559215,
       "sha256": "decae8c70b565928e24b5dacf97bf9a221bfd54b207f6a959e8bbc7a3c6234ac"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-1920.png",
+      "bytes": 2314083,
+      "sha256": "9cbe0c4398b1669dbe8a8facb7dfc823b8b7cc15e9b72c271d064d5dc473ae3d"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-900.png",
+      "bytes": 777188,
+      "sha256": "49abb556ac5efdf9dc465b3414a09f438c121e489c0d1ddca70272bcd1d667de"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-control.png",
+      "bytes": 7497,
+      "sha256": "b7acbc83bc26b16ab18909e74f90d3242c3947ca95488ff87b01dcca03dfc66f"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/capture.json",
+      "bytes": 3362,
+      "sha256": "f1e0cdd0cc72da5d57dfbef0867e4ce2232ba24f235f546b77234d1920ab128e"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/control-enabled.png",
+      "bytes": 13898,
+      "sha256": "3102eec2d9afb101691dc91cef993bef14a9acd4629d3135f3871d819a7a4b1e"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/control-muted.png",
+      "bytes": 13786,
+      "sha256": "31d1c40aadc9010ce986f58327740014c42fef7b7c3baac99b2a73e03c9a54dc"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/home-enabled-1920.png",
+      "bytes": 2831744,
+      "sha256": "4cda5c830215e660a044991ef520384ba4950ca601c5d2bea3579769f12437d0"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/home-short-640.png",
+      "bytes": 360970,
+      "sha256": "50724c9f708fc58c0651758f827f853d31b7de8ed96a83eb081c6501a5594d58"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/view-settings-1920.png",
+      "bytes": 2006574,
+      "sha256": "914073cb20b1c5edf770fc1a3a852c417c5527fcc52048d9138dcb6e9ba5c70b"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/view-settings-900.png",
+      "bytes": 534772,
+      "sha256": "3b7644adb5594f4f3dbf40c1908a917b8b8589d414739b323f9c9b8d8c71aa62"
     }
   ]
 }

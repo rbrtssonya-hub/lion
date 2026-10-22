@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { hdriDefaults, hdriRanges } from '../../src/config/hdri.js';
 import { defaultDeveloperSettings, normalizeDeveloperSetting, restoreDeveloperSettings } from '../../src/features/developer-settings/useDeveloperSettings.js';
-import { viewDefaults, viewRanges } from '../../src/config/viewSettings.js';
+import { resolveViewSettings, viewDefaults, viewRanges } from '../../src/config/viewSettings.js';
 import { snapSettingsRange } from '../../src/features/developer-settings/rangeSettings.js';
 
 test('HDRI settings default missing saved fields while preserving existing controls', () => {
@@ -28,11 +28,51 @@ test('view boundaries migrate missing fields, clamp extremes and preserve saved 
   assert.equal(restored.headerBlur, 23);
   assert.equal(restored.hdriLightIntensity, 1);
   assert.equal(restored.structureMinDistanceRatio, .7);
-  assert.equal(restored.actionMaxPolarAngle, 165);
+  assert.equal(restored.actionMaxPolarAngle, 90);
   for (const [name, [min, max]] of Object.entries(viewRanges)) {
     assert.equal(normalizeDeveloperSetting(name, undefined), viewDefaults[name]);
     assert.equal(normalizeDeveloperSetting(name, -1000), min);
     assert.equal(normalizeDeveloperSetting(name, 1000), max);
+  }
+});
+
+test('动作四项视角阈值采用指定范围，旧保存值限幅且保持初始取景', () => {
+  assert.deepEqual(viewRanges.actionMaxDistance, [3, 9, .5]);
+  assert.deepEqual(viewRanges.actionMinDistance, [3, 6, .1]);
+  assert.deepEqual(viewRanges.actionMinPolarAngle, [0, 20, 1]);
+  assert.deepEqual(viewRanges.actionMaxPolarAngle, [60, 90, 1]);
+  assert.deepEqual(resolveViewSettings({ actionMinDistance: 1, actionMaxDistance: 30, actionMinPolarAngle: 89, actionMaxPolarAngle: 179 }), {
+    ...viewDefaults, actionMinDistance: 3, actionMaxDistance: 9, actionMinPolarAngle: 20, actionMaxPolarAngle: 90,
+  });
+  assert.ok(viewDefaults.actionMaxDistance > Math.hypot(8.6, 1.6 - 1.45), 'the authored initial camera remains inside the default far limit');
+  assert.deepEqual(resolveViewSettings({ actionMinDistance: 4.2, actionMaxDistance: 7.5, actionMinPolarAngle: 10, actionMaxPolarAngle: 75 }), {
+    ...viewDefaults, actionMinDistance: 4.2, actionMaxDistance: 7.5, actionMinPolarAngle: 10, actionMaxPolarAngle: 75,
+  });
+});
+
+test('动作远近距离交叉时保留最新调整并遵守各自步长', () => {
+  const nearChanged = resolveViewSettings({ actionMinDistance: 5.1, actionMaxDistance: 4 }, 'actionMinDistance');
+  assert.equal(nearChanged.actionMinDistance, 5.1);
+  assert.equal(nearChanged.actionMaxDistance, 5.5);
+  const farChanged = resolveViewSettings({ actionMinDistance: 6, actionMaxDistance: 3.5 }, 'actionMaxDistance');
+  assert.equal(farChanged.actionMinDistance, 3.5);
+  assert.equal(farChanged.actionMaxDistance, 3.5);
+  const restored = restoreDeveloperSettings({ actionMinDistance: 8, actionMaxDistance: 2, actionMinPolarAngle: 80, actionMaxPolarAngle: 179, headerBlur: 23 });
+  assert.equal(restored.actionMinDistance, 6);
+  assert.equal(restored.actionMaxDistance, 6);
+  assert.equal(restored.actionMinPolarAngle, 20);
+  assert.equal(restored.actionMaxPolarAngle, 90);
+  assert.equal(restored.headerBlur, 23);
+  for (let near = 3; near <= 6; near = Number((near + .1).toFixed(1))) {
+    for (let far = 3; far <= 9; far += .5) {
+      for (const name of [undefined, 'actionMinDistance', 'actionMaxDistance']) {
+        const resolved = resolveViewSettings({ actionMinDistance: near, actionMaxDistance: far }, name);
+        assert.ok(resolved.actionMinDistance <= resolved.actionMaxDistance, `${near}/${far}/${name}`);
+        assert.ok(resolved.actionMinDistance >= 3 && resolved.actionMinDistance <= 6);
+        assert.ok(resolved.actionMaxDistance >= 3 && resolved.actionMaxDistance <= 9);
+        assert.equal(resolved.actionMaxDistance * 2 % 1, 0);
+      }
+    }
   }
 });
 

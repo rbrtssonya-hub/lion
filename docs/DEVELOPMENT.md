@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-22四项动作视角范围改为最近3–6m/最远3–9m/俯视下限0–20°/仰视上限60–90°，resolveSettings和场景统一限幅/联动最新编辑项。右下角音量控件参考只读Verminoble的SVG、hover双描线与静音3s滑线，新增固定窗内持续右行、音量文字与细滑杆；共享会话音量默认25%，纯非零调音不play/load，保留原生自动播放策略、主屏独占和资源释放。修改时跑 `media-volume.spec.js`、`home-audio-wave.spec.js`、`home-audio-line.spec.js`、`home-audio-line-policy.spec.js` 及原video-audio/action-player/视角回归，音频trace关闭；动作通用SVG/hover与声控需检查CSS优先级，解读底距只限>1100容器并检查实际内容高度。实际命令/阶段恢复与验收边界见[说明](../source/references/view-volume-2026-10-22.md)和[验证](../source/references/view-volume-2026-10-22-validation.json)。
+
 2026-10-22动作页“视角”设置允许主视口拖动/滚轮测试，只有“取消”退出，保留未保存确认；保存后继续编辑并将取消基线更新为最新保存值。App持有分类并仅在action+view移除外部点击guard，Escape/导航设置不会收起、顶部X隐藏；其他设置分类和章节保持原规则。改动需运行 `action-view-editing.spec.js`、`settings-transaction.spec.js`、`view-scene-settings.spec.js` 和 `settings-view-source.spec.js`；用真实pointer命中及相机位置/距离确认场景可交互，不能只以面板仍存在代替证明。实施与实际验证见[本轮说明](../source/references/action-view-editing-2026-10-22.md)。
 
 2026-10-22全站按实际电脑余宽和高度自适应：窄首页导航整项换排，过高顶栏局部滚动；低窗设置/确认框保留内容滚动；首页书册、图鉴和资料使用实际容器宽度，极窄纸面保留可读下限；动作在窄低窗口保留场景并把解读/控件纵排。自适应只派生渲染尺寸，不改保存偏好，也不整页缩放。电脑有效CSS窗口包含640×360至3840×2160和超宽，配合Chrome原生125%/150%/200%缩放检查；手机仍不在范围。修改相关布局应运行 `desktop-window-contract.spec.js`、`home-desktop-layout.spec.js`、`chapters-desktop-layout.spec.js`、`navigation-settings-desktop-layout.spec.js` 以及受影响模块原回归。原生缩放测试使用独立临时profile，不改变用户浏览器设置；新专项覆盖的是实际文本/图片边界、交叠、可点击、实例保留与保存偏好，不能仅检查document无横向滚动。实施和逐阶段实际结果见[本轮说明](../source/references/desktop-responsive-2026-10-22.md)。

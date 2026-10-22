@@ -68,7 +68,10 @@
 .theater-controls input[type='range']:disabled { opacity: .45; cursor: default; }
 .theater-drum-notice { position: absolute; z-index: 5; top: calc(var(--theater-nav-inset) + 80px); left: 20px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: #e5c99d; background: #271309e8; font-size: 13px; }
 .theater-drum-notice button { color: inherit; border: 1px solid #ac8458; background: transparent; padding: 4px 8px; }
-.action-theater .sound-control { right: var(--theater-edge); color: #f6dfb5; }
+.action-theater .sound-control-widget { right: var(--theater-edge); color: #f6dfb5; }
+@container lion-page (width > 1100px) {
+  .action-theater[data-compact-layout='false'] .theater-observation { bottom: calc(clamp(20px, 2.8vh, 32px) + 76px); }
+}
 .theater-source-note { margin: 7px 0 0; color: #b19876; font: 10px/1.5 var(--theater-serif); letter-spacing: .035em; }
 .theater-source-note > span { color: #a58a68; margin-left: 4px; }
 .theater-loading { position: absolute; z-index: 6; inset: var(--theater-nav-inset) 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #e9cfaa; background: #120a07ed; font: 13px/1.8 var(--theater-serif); letter-spacing: .12em; }
@@ -129,7 +132,7 @@
 .action-theater[data-compact-layout='true'] .theater-action-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .action-theater[data-compact-layout='true'] .theater-action-nav button { min-width: 0; flex-wrap: wrap; gap: 4px; padding-inline: 4px; }
 .action-theater[data-compact-layout='true'] .theater-action-nav button > strong { white-space: normal; overflow-wrap: anywhere; text-align: center; }
-.action-theater[data-compact-layout='true'] .sound-control { position: relative; inset: auto; align-self: flex-end; flex: 0 0 auto; }
+.action-theater[data-compact-layout='true'] .sound-control-widget { position: relative; inset: auto; align-self: flex-end; flex: 0 0 auto; }
 .action-theater[data-compact-layout='true'] :is(.theater-scene-error, .theater-hdri-notice, .theater-drum-notice, .theater-playback-notice) {
   position: relative; inset: auto; flex: 0 0 auto; width: 100%; max-width: none; overflow-wrap: anywhere;
 }

@@ -1,0 +1,175 @@
+{
+  "captures": [
+    {
+      "name": "home-enabled-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1749,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "control-enabled",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1749,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "control-muted",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1749,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "home-short-640",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "route": "",
+      "widget": {
+        "x": 489,
+        "y": 280,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "geometry": {
+        ".sound-control-widget": {
+          "x": 489,
+          "y": 280,
+          "width": 112,
+          "height": 60,
+          "top": 280,
+          "right": 601,
+          "bottom": 340,
+          "left": 489
+        },
+        ".entry-english": {
+          "x": 235.109375,
+          "y": 314.625,
+          "width": 233.890625,
+          "height": 22.375,
+          "top": 314.625,
+          "right": 469,
+          "bottom": 337,
+          "left": 235.109375
+        },
+        ".entry-motto": {
+          "x": 254.640625,
+          "y": 282.9375,
+          "width": 194.8125,
+          "height": 21.6875,
+          "top": 282.9375,
+          "right": 449.453125,
+          "bottom": 304.625,
+          "left": 254.640625
+        },
+        "#enterWork": {
+          "x": 242.046875,
+          "y": 223,
+          "width": 220,
+          "height": 49.9375,
+          "top": 223,
+          "right": 462.046875,
+          "bottom": 272.9375,
+          "left": 242.046875
+        }
+      }
+    },
+    {
+      "name": "action-900",
+      "viewport": {
+        "width": 900,
+        "height": 600
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 753,
+        "y": 895.28125,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "action-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 1767,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "action-control",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 1767,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "view-settings-900",
+      "viewport": {
+        "width": 900,
+        "height": 600
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 753,
+        "y": 895.28125,
+        "width": 112,
+        "height": 60
+      }
+    },
+    {
+      "name": "view-settings-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 1767,
+        "y": 989.765625,
+        "width": 112,
+        "height": 60
+      }
+    }
+  ],
+  "errors": []
+}

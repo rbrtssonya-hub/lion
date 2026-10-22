@@ -150,7 +150,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           {viewRange('actionMinPolarAngle','动作俯视角度下限','°')}
           {viewRange('actionMaxPolarAngle','动作仰视角度上限','°')}
           {viewRange('actionFov','动作镜头视野','°')}
-          <p className="developer-settings-note">默认开放接近完整的俯仰范围；极角0°为正上方，90°为水平，180°为正下方。</p>
+          <p className="developer-settings-note">最近距离3–6米，最远距离3–9米，交叉时按最后调整项联动。俯视下限0–20°，仰视上限60–90°；极角0°为正上方，90°为水平。</p>
         </SettingsGroup>
         <button type="button" className="developer-settings-reset" onClick={() => {
           for (const [name,value] of Object.entries(viewDefaults)) onChange(name,value);

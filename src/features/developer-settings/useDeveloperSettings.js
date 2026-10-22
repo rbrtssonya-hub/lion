@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion, migrateStructureAtlas, structureAtlasVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
-import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import { resolveViewSettings, viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -107,8 +107,9 @@ export function normalizeDeveloperSetting(name, value) {
   return snapSettingsRange(value, min, max, step);
 }
 
-function resolveSettings(settings) {
+function resolveSettings(settings, changedName) {
   const resolved = { ...defaultDeveloperSettings, ...settings };
+  Object.assign(resolved, resolveViewSettings(resolved, changedName));
   resolved.readingPaperVersion ??= readingPaperVersion;
   resolved.structureAtlasVersion ??= structureAtlasVersion;
   // Upgrade the previous default once, preserving the other saved controls.
@@ -204,13 +205,13 @@ export function useDeveloperSettings() {
       if (name === 'archivePanelTransparency') {
         for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) next[`${prefix}Transparency`] = normalized;
       }
-      return next;
+      return resolveSettings(next, name);
     });
   }, []);
   const previewSettings = useCallback((name, value) => {
     if (!Object.hasOwn(defaultDeveloperSettings, name)) return;
     shouldPersist.current = false;
-    setSettings(current => ({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }));
+    setSettings(current => resolveSettings({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }, name));
   }, []);
   const applySurfaceSettings = useCallback((scope, material) => {
     const prefixes = surfaceScopes[scope]?.prefixes;

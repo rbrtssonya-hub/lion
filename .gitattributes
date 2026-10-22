@@ -15,3 +15,6 @@ source/reviews/entry-book-settings/2026-10-22/capture.json -text
 
 # Preserve the authenticated desktop layout capture record.
 source/reviews/desktop-responsive/2026-10-22/capture.json -text
+
+# Preserve authenticated native screenshots' companion capture geometry.
+source/reviews/audio-volume/2026-10-22/capture.json -text

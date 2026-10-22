@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import VideoStage from '../../components/VideoStage.jsx';
 import SoundControl from '../../components/SoundControl.jsx';
-import { useMediaAudioPreference } from '../../hooks/useMediaAudioPreference.js';
+import { getMediaVolumePreference, useMediaAudioPreference, useMediaVolumePreference } from '../../hooks/useMediaAudioPreference.js';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
@@ -15,6 +15,7 @@ import '../../styles/home-archive.css';
 export default function HomePage({ settings, playbackEnabled = true, onBookReady, onGalleryReady, onVideoReady }) {
   const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback(playbackEnabled);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
+  const [volume, setVolume] = useMediaVolumePreference();
   const [audioState, setAudioState] = useState({ enabled: false, pending: false });
   const resumeAudioRef = useRef(null);
   const exploreCulture = () => {
@@ -31,7 +32,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
     <VideoStage key={introActive ? `intro-${playbackId}` : 'home-loop'}
       id={introActive ? 'introVideo' : 'entryLionVideo'} src={introActive ? media.intro : media.home}
-      poster={media.cover} loop={!introActive} playing={playbackEnabled} audioEnabled={audioEnabled} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
+      poster={media.cover} loop={!introActive} playing={playbackEnabled} audioEnabled={audioEnabled} volume={volume} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
       onEnded={introActive ? finishIntro : undefined} onContinue={introActive ? finishIntro : undefined} continueLabel="继续浏览首页"
       label={introActive ? 'AI辅助创作的醒狮入场视频' : '循环播放的醒狮首页视频'} className="entry-visual entry-visual-video" />
     <div className="entry-vignette" aria-hidden="true" />
@@ -63,7 +64,16 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
     {playbackEnabled && <SoundControl id="toggleHomeAudio" variant="line" enabled={audioState.enabled} pending={audioState.pending}
-      onToggle={() => { if (audioState.enabled) setAudioEnabled(false); else if (audioState.pending) resumeAudioRef.current?.(); else setAudioEnabled(true); }} />}
+      volume={volume} onVolumeChange={value => {
+        const nextVolume = setVolume(value);
+        resumeAudioRef.current?.(nextVolume, nextVolume > 0 && !audioState.enabled);
+      }} onToggle={() => {
+        if (audioState.enabled) setAudioEnabled(false);
+        else {
+          setAudioEnabled(true);
+          resumeAudioRef.current?.(getMediaVolumePreference());
+        }
+      }} />}
   </section>
   <div className="home-archive-scene" style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
     {['top', 'side', 'bottom'].map(position => <div key={position} className={`archive-background-layer is-${position}`} aria-hidden="true" />)}

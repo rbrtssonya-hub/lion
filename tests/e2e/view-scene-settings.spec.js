@@ -116,7 +116,7 @@ test('结构真实滚轮到达有限远近边界，视角参数原位生效并�
   await expect.poll(async () => Math.abs(Number(await canvas.getAttribute('data-camera-distance')) - changed.min)).toBeLessThan(.015);
 });
 
-test('动作真实拖拽可俯视和仰视，设置限幅生效，四鼓和狮头进度标记可用', async ({ page }, testInfo) => {
+test('动作真实拖拽遵守新的俯仰与距离限幅，四鼓和狮头进度标记可用', async ({ page }, testInfo) => {
   const canvas = await prepare(page, 'action');
   await expect(canvas).toHaveAttribute('data-drum-state', 'ready', { timeout: 45_000 });
   await expect(canvas).toHaveAttribute('data-drum-count', '4');
@@ -124,23 +124,24 @@ test('动作真实拖拽可俯视和仰视，设置限幅生效，四鼓和狮�
   await expect.poll(() => polarAngle(canvas)).toBeLessThan(50);
   const overhead = await polarAngle(canvas);
   await dragVertically(page, canvas, .92, .03);
-  await expect.poll(() => polarAngle(canvas)).toBeGreaterThan(110);
+  await expect.poll(() => polarAngle(canvas)).toBeGreaterThan(89);
+  expect(await polarAngle(canvas)).toBeLessThanOrEqual(90.01);
   const underside = await polarAngle(canvas);
   await openSettings(page, '视角');
-  await edit(page, '动作俯视角度下限', 30);
-  await edit(page, '动作仰视角度上限', 140);
+  await edit(page, '动作俯视角度下限', 20);
+  await edit(page, '动作仰视角度上限', 75);
   await edit(page, '动作最近观看距离', 4);
-  await edit(page, '动作最远观看距离', 18);
+  await edit(page, '动作最远观看距离', 8);
   await edit(page, '动作镜头视野', 62);
-  await expect.poll(() => json(canvas, 'data-camera-limits')).toMatchObject({ min: 4, max: 18, minPolar: 30, maxPolar: 140, fov: 62 });
+  await expect.poll(() => json(canvas, 'data-camera-limits')).toMatchObject({ min: 4, max: 8, minPolar: 20, maxPolar: 75, fov: 62 });
   await closeSettings(page);
-  await expect.poll(() => saved(page)).toMatchObject({ actionMinPolarAngle: 30, actionMaxPolarAngle: 140, actionMinDistance: 4, actionMaxDistance: 18, actionFov: 62 });
+  await expect.poll(() => saved(page)).toMatchObject({ actionMinPolarAngle: 20, actionMaxPolarAngle: 75, actionMinDistance: 4, actionMaxDistance: 8, actionFov: 62 });
   await dragVertically(page, canvas, .15, .88);
-  await expect.poll(() => polarAngle(canvas)).toBeLessThan(31);
-  expect(await polarAngle(canvas)).toBeGreaterThanOrEqual(29.99);
+  await expect.poll(() => polarAngle(canvas)).toBeLessThan(21);
+  expect(await polarAngle(canvas)).toBeGreaterThanOrEqual(19.99);
   await dragVertically(page, canvas, .88, .12);
-  await expect.poll(() => polarAngle(canvas)).toBeGreaterThan(139);
-  expect(await polarAngle(canvas)).toBeLessThanOrEqual(140.01);
+  await expect.poll(() => polarAngle(canvas)).toBeGreaterThan(74);
+  expect(await polarAngle(canvas)).toBeLessThanOrEqual(75.01);
   // Return to the authored screen with an actual UI action before using media.
   await page.locator('#chapterStage button[data-action-id="tanqing"]').click();
   await expect(canvas).toHaveAttribute('data-camera-state', 'idle');
