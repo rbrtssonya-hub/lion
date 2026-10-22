@@ -14,7 +14,7 @@ const pages = [
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
   { id:'chapters', label:'章节', title:'章节专属设置', note:'结构、动作与神态各有独立子页，不混入全局导航。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
   { id:'view', label:'视角', title:'结构与动作观看视角', note:'分别调整结构模型缩放边界和动作场景的观察范围。', icon:'M2 10q8-11 16 0-8 11-16 0M7 10a3 3 0 1 0 6 0 3 3 0 1 0-6 0' },
-  { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时生效并自动保存。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
+  { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时预览，保存设置后记住。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
   { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
   { id:'animation', label:'动画', title:'全局过渡与粒子', note:'导航变速与两套首页导航的粒子开关；书册时长在首页。', icon:'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
   { id:'carousel', label:'轮播', title:'文化照片轮播', note:'只影响首页文化图鉴的照片与文字切换。', icon:'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
@@ -29,7 +29,8 @@ const easingOptions = [
 ];
 const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`cultureBody${suffix}`]]));
 
-export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle }) {
+export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle,
+  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard }) {
   const panelId = useId(), scopeId = useId(), easingId = useId();
   const [activePage, setActivePage] = useState('common');
   const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
@@ -37,9 +38,17 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   const [material, setMaterial] = useState(defaultMaterial);
   const [message, setMessage] = useState('尚未应用。编辑模板后，点击下方按钮生效。');
   const scrollRef = useRef(null), scrollPositions = useRef({});
+  const discardDialogRef = useRef(null);
+  const discardTitleId = useId(), discardDescriptionId = useId();
   useLayoutEffect(() => {
     if (open && scrollRef.current) scrollRef.current.scrollTop = scrollPositions.current[activePage] ?? 0;
   }, [activePage, open, subpages]);
+  useLayoutEffect(() => {
+    const dialog = discardDialogRef.current;
+    if (!dialog) return;
+    if (open && discardPromptOpen && !dialog.open) dialog.showModal();
+    else if ((!open || !discardPromptOpen) && dialog.open) dialog.close();
+  }, [open, discardPromptOpen]);
   if (!open) return null;
   const selectPage = id => {
     if (scrollRef.current) scrollPositions.current[activePage] = scrollRef.current.scrollTop;
@@ -65,7 +74,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   const content = id => {
     switch (id) {
       case 'common': return <>
-        <SettingsGroup title="公共材质" note="应用后统一保存">
+        <SettingsGroup title="公共材质" note="应用到当前预览">
           <div className="developer-settings-select-control"><label htmlFor={scopeId}>应用范围</label>
             <select id={scopeId} value={scope} onChange={event => {setScope(event.target.value);setMessage('范围已更改，点击应用后生效。');}}>
               {Object.entries(surfaceScopes).map(([value,item]) => <option key={value} value={value}>{item.label}</option>)}
@@ -107,10 +116,11 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
       </>;
       case 'home': return <SettingsSubpages label="首页设置分区" items={homePages} value={subpages.home} onChange={id => selectSubpage('home',id)}>{value => value === 'book' ? <>
         {surfaces(['bookTitle','bookDetails'])}
-        <SettingsGroup title="画册首次翻阅" note="自动开卷节奏">
+        <SettingsGroup title="画册循环播放" note="按页码顺序阅读">
           {range('bookScale','书册放大比例',90,145,1,'%')}{range('bookStageHeight','书册展示区高度',480,960,10)}
-          {range('bookIntroDuration','画册首次翻阅时长',3,30,1,'秒')}
-          <p className="developer-settings-note">默认12秒完成七次翻页；调整不会重播已完成的首次翻阅，也不改变手动翻页物理。</p>
+          <ToggleControl name="bookAutoplay" label="按页码循环播放" value={settings.bookAutoplay} onChange={onChange}/>
+          {range('bookPageInterval','每页停留时间',3,30,1,'秒')}
+          <p className="developer-settings-note">封面、各页依次播放，末页回到封面；默认每页停留8秒。悬停、操作和离开可视区时暂停，减少动态时保留手动翻页。</p>
         </SettingsGroup>
       </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
       case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
@@ -119,7 +129,15 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
         </SettingsGroup>}
       </>}</SettingsSubpages>;
-      case 'sources': return surfaces(['cultureSources','cultureSourceCard']);
+      case 'sources': return <>
+        <SettingsGroup title="资料文字" note="首页底部资料区">
+          {range('sourcesTitleFontSize','资料标题字号',24,48)}
+          {range('sourcesBodyFontSize','资料正文字号',16,28)}
+          {range('sourcesMetaFontSize','资料辅助字号',14,22)}
+          <p className="developer-settings-note">标题、资料正文与来源说明分别调整，所有参数即时预览并随设置保存。</p>
+        </SettingsGroup>
+        {surfaces(['cultureSources','cultureSourceCard'])}
+      </>;
       case 'view': return <>
         <SettingsGroup title="结构模型视角" note="缩放阈值">
           {viewRange('structureMinDistanceRatio','结构最近观看距离','×')}
@@ -197,7 +215,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           <ToggleControl name="pushPage" label="设置面板推开页面" value={settings.pushPage} onChange={onChange}/>
           <p className="developer-settings-note" aria-live="polite">{settings.pushPage && !canPush ? '窗口空间不足，暂时覆盖显示；加宽窗口后自动推开页面。' : settings.pushPage ? '页面为侧栏留出空间，关闭面板后恢复。' : '面板覆盖在页面右侧，页面保持原有宽度。'}</p>
           {range('panelWidth','设置面板宽度',280,760)}
-          <p className="developer-settings-note">顶栏底边与面板左边仍可拖动，参数会自动保存。</p>
+          <p className="developer-settings-note">顶栏底边与面板左边可拖动预览，点击“保存设置”后记住本次调整。</p>
         </SettingsGroup>
       </>;
     }
@@ -207,7 +225,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     <div className="developer-settings-header"><div className="developer-settings-heading"><div>
       <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
     </div><button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
-    <p className="developer-settings-intro">选择分类后展开所需参数，公共模板按范围应用。</p></div>
+    <p className="developer-settings-intro">调整即时预览，保存后记住；取消可恢复进入设置前的参数。</p></div>
     <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
     <div className="developer-settings-scroll" ref={scrollRef} onScroll={() => { scrollPositions.current[activePage] = scrollRef.current.scrollTop; }}>
       {pages.map(page => <div key={page.id} className="developer-settings-page" id={`${panelId}-page-${page.id}`} role="tabpanel" aria-labelledby={`${panelId}-tab-${page.id}`} tabIndex={0} hidden={activePage !== page.id}>
@@ -215,8 +233,36 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         {content(page.id)}
       </div>)}
     </div>
-    <div className="developer-settings-footer"><p className="developer-settings-note">独立参数与应用结果自动保存 · 模板草稿仅本次会话</p>
-      <button className="developer-settings-reset" type="button" onClick={() => {onReset();setMaterial(defaultMaterial);setScope('home');setMessage('已恢复默认参数与公共模板。');}}>恢复默认参数</button>
+    <div className="developer-settings-footer"><p className="developer-settings-note" aria-live="polite">{hasUnsavedChanges ? '当前预览有未保存的更改' : '当前参数与进入设置时一致'}</p>
+      <div className="developer-settings-footer-tools">
+        <button className="developer-settings-reset" type="button" onClick={() => {onReset();setMaterial(defaultMaterial);setScope('home');setMessage('已预览默认参数与公共模板，点击保存后记住。');}}>恢复默认参数</button>
+        <button className="developer-settings-reset" type="button" onClick={onExport}>导出当前参数</button>
+      </div>
+      <div className="developer-settings-footer-actions">
+        <button className="developer-settings-reset" type="button" onClick={onClose}>取消</button>
+        <button className="developer-settings-apply" type="button" onClick={onSave}>保存设置</button>
+      </div>
     </div>
+    <dialog className="developer-settings-discard" ref={discardDialogRef} role="alertdialog" aria-labelledby={discardTitleId} aria-describedby={discardDescriptionId}
+      onCancel={event => { event.preventDefault(); onContinueEditing(); }}
+      onKeyDown={event => {
+        event.stopPropagation();
+        if (event.key !== 'Tab') return;
+        const buttons = [...event.currentTarget.querySelectorAll('button')];
+        const first = buttons[0], last = buttons.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }}
+      onClick={event => { if (event.target === event.currentTarget) onContinueEditing(); }}>
+      <div className="developer-settings-discard-content">
+        <span className="developer-settings-discard-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m10.3 4.6-7.7 13A2 2 0 0 0 4.3 21h15.4a2 2 0 0 0 1.7-3.4l-7.7-13a2 2 0 0 0-3.4 0Z"/><path d="M12 9v5m0 3h.01"/></svg></span>
+        <h2 id={discardTitleId}>放弃未保存的设置？</h2>
+        <p id={discardDescriptionId}>当前预览还没有保存。放弃后会恢复进入设置前的参数。</p>
+        <div className="developer-settings-discard-actions">
+          <button className="developer-settings-reset" type="button" autoFocus onClick={onContinueEditing}>继续编辑</button>
+          <button className="developer-settings-apply" type="button" onClick={onDiscard}>放弃更改</button>
+        </div>
+      </div>
+    </dialog>
   </aside>;
 }

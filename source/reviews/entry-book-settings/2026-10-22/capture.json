@@ -1,0 +1,12 @@
+{
+  "baseURL": "http://127.0.0.1:4196",
+  "errors": [],
+  "viewport": [
+    1920,
+    1080
+  ],
+  "narrowDesktop": [
+    900,
+    1080
+  ]
+}

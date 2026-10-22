@@ -49,6 +49,7 @@ test('视角独立页保存缩放与俯仰边界，重置不覆盖其他参数',
     const input = panel.getByRole('spinbutton', { name: `${label}数值`, exact: true });
     await input.fill(String(value)); await input.press('Tab');
   }
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => saved(page)).toMatchObject({ structureMinDistanceRatio: .7, actionMinPolarAngle: 0, actionMaxPolarAngle: 180 });
   await page.reload();
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 70_000 });
@@ -56,6 +57,7 @@ test('视角独立页保存缩放与俯仰边界，重置不覆盖其他参数',
   await selectSettingsPage(page, '视角');
   await expect(panel.getByRole('spinbutton', { name: '结构最近观看距离数值', exact: true })).toHaveValue('0.7');
   await panel.getByRole('button', { name: '恢复视角默认参数', exact: true }).click();
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => saved(page)).toMatchObject({ ...viewDefaults, hdriSource: hdriDefaults.hdriSource, headerBlur: 23 });
 });
 
@@ -68,10 +70,15 @@ test('HDRI保留森林与链接选择，本地文件不会写入持久化存储'
   await url.fill('/assets/environments/forest.exr');
   await expect.poll(() => saved(page)).toMatchObject({ hdriUrl: '' });
   await panel.getByRole('button', { name: '应用HDRI链接', exact: true }).click();
+  await expect.poll(() => saved(page)).toMatchObject({ hdriSource: 'forest', hdriUrl: '' });
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => saved(page)).toMatchObject({ hdriSource: 'url', hdriUrl: '/assets/environments/forest.exr' });
+  await page.locator('.site-navigation [data-action="settings"]').click();
+  await selectSettingsPage(page, 'HDRI');
   await source.selectOption('local');
   await panel.getByLabel('选择本地HDRI文件', { exact: true }).setInputFiles(`${process.cwd()}/source/public/assets/environments/forest.exr`);
   await expect(panel.getByRole('status')).toContainText('当前文件：forest.exr');
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => saved(page)).toMatchObject({ hdriSource: 'forest' });
   expect(await saved(page)).not.toHaveProperty('hdriFile');
   await page.reload();

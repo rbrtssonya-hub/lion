@@ -25,6 +25,14 @@ async function number(page, name, value) {
   await input.fill(String(value)); await input.press('Tab');
 }
 const stored = page => page.evaluate(key => JSON.parse(localStorage.getItem(key)), key);
+async function save(page, reopen = true) {
+  await panel(page).getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect(panel(page)).toHaveCount(0);
+  if (reopen) {
+    await page.locator('.site-navigation [data-action="settings"]').click();
+    await expandSettingsGroups(page);
+  }
+}
 
 test('settings separate common, home, chapter and source controls into focused pages', async ({page}) => {
   await open(page);
@@ -51,12 +59,16 @@ test('common material applies only on command to selected surfaces, preserving d
   expect((await stored(page)).bookTitleTransparency).toBe(35);
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('home');
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
+  expect((await stored(page)).bookTitleTransparency).toBe(35);
+  await expect(page.locator('[data-surface="bookTitle"]')).toHaveCSS('--surface-opacity','0.35');
+  await save(page);
   await expect.poll(() => stored(page)).toMatchObject({archivePanelTransparency:65,bookTitleTransparency:65,bookDetailsTransparency:65,cultureTitleTransparency:65,cultureBodyTransparency:65,bookTitleBlur:9,bookTitleRadius:20,bookTitleColor:'#e6d4b8',bookTitleWidth:57,cultureBodyHeight:250,headerBlur:23,modelOverlayTransparency:27,expressionOverviewFontSize:25});
   await expect(page.locator('[data-surface="bookTitle"]')).toHaveCSS('--surface-opacity','0.35');
   await expect(panel(page).locator('.developer-settings-feedback')).toContainText('已应用到4处底板');
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('chapters');
   await number(page, '公共透明度', 80);
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
+  await save(page);
   await expect.poll(() => stored(page)).toMatchObject({modelOverlayTransparency:80,expressionOverlayTransparency:80,actionOverlayTransparency:80,videoOverlayTransparency:80,bookTitleTransparency:65,bookTitleWidth:57});
   await page.reload(); await expect(page.locator('#startupLoading')).toHaveCount(0,{timeout:60000});
   await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:65,modelOverlayTransparency:80,bookTitleWidth:57,headerBlur:23});
@@ -67,6 +79,7 @@ test('shared material and independent panels reset correctly, with scoped keyboa
   await number(page, '公共透明度', 100);
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('all');
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
+  await save(page);
   await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:100,cultureSourceCardTransparency:100,videoOverlayTransparency:100});
   const common = panel(page).getByRole('tab',{name:'公共模块',exact:true});
   await common.focus(); await common.press('ArrowDown');
@@ -78,6 +91,7 @@ test('shared material and independent panels reset correctly, with scoped keyboa
   await expect(panel(page).getByRole('tab',{name:'图鉴',exact:true})).toBeFocused();
   await expect(panel(page).getByRole('tab',{name:'首页',exact:true})).toHaveAttribute('aria-selected','true');
   await panel(page).getByRole('button',{name:'恢复默认参数',exact:true}).click();
+  await save(page);
   await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:35,cultureSourceCardTransparency:5,videoOverlayTransparency:12});
   await tab(page,'公共模块');
   await expect(panel(page).getByRole('spinbutton',{name:'公共透明度数值',exact:true})).toHaveValue('10');
@@ -103,7 +117,7 @@ test('changing a subpage starts at its heading and reopening retains that subpag
   await open(page);
   await page.setViewportSize({width:1366,height:768});
   await tab(page,'首页');
-  await panel(page).getByRole('spinbutton',{name:'画册首次翻阅时长数值',exact:true}).scrollIntoViewIfNeeded();
+  await panel(page).getByRole('spinbutton',{name:'每页停留时间数值',exact:true}).scrollIntoViewIfNeeded();
   await tab(page,'图鉴');
   await expect.poll(() => panel(page).locator('.developer-settings-scroll').evaluate(el=>el.scrollTop)).toBe(0);
   await expect(panel(page).getByRole('heading',{name:'文化标题底板',exact:true})).toBeInViewport();

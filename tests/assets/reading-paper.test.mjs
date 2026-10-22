@@ -20,10 +20,10 @@ test('paper defaults distinguish feathered headings, reading and reference surfa
 });
 
 test('legacy defaults migrate field by field without changing unrelated preferences or mutating input', () => {
-  const saved = { ...old, bookTitleWidth: 61, cultureBodyHeight: 320, bookTitleSpacing: 77, navFontSize: 27, bookIntroDuration: 19, modelOverlayColor: '#68170f', actionOverlayBlur: 10, videoOverlayTransparency: 12 };
+  const saved = { ...old, bookTitleWidth: 61, cultureBodyHeight: 320, bookTitleSpacing: 77, navFontSize: 27, bookPageInterval: 19, modelOverlayColor: '#68170f', actionOverlayBlur: 10, videoOverlayTransparency: 12 };
   const copy = structuredClone(saved), migrated = migrateReadingPaper(saved);
   for (const name of Object.keys(old)) assert.equal(migrated[name], surfaceDefaults[name], name);
-  for (const name of ['bookTitleWidth', 'cultureBodyHeight', 'bookTitleSpacing', 'navFontSize', 'bookIntroDuration', 'modelOverlayColor', 'actionOverlayBlur', 'videoOverlayTransparency']) assert.equal(migrated[name], saved[name]);
+  for (const name of ['bookTitleWidth', 'cultureBodyHeight', 'bookTitleSpacing', 'navFontSize', 'bookPageInterval', 'modelOverlayColor', 'actionOverlayBlur', 'videoOverlayTransparency']) assert.equal(migrated[name], saved[name]);
   assert.equal(migrated.readingPaperVersion, readingPaperVersion);
   assert.deepEqual(saved, copy);
 });

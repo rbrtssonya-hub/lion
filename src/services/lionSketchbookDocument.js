@@ -75,19 +75,17 @@ function bridgeSource(channelId, pages) {
   const files=${scriptJson(pages.map((page) => page.file))};
   let disposed=false, imagesReady=false, ready=false, failure='', lastState='';
   let bookObserver=null, readyObserver=null;
-  let intro='pending', introTimer=null, hostVisible=false, windowFocused=true, paused=false;
-  let introAllowed=null, introConsumed=false;
-  let introDuration=12, bookScale=1.16;
+  let autoTimer=null, hostVisible=false, windowFocused=true, paused=false;
+  let autoplayEnabled=true, pageInterval=8, hovered=false, bookScale=1.16;
   let pointerId=null;
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
-  const coarse=matchMedia('(max-width: 640px), (pointer: coarse)');
   const pendingImages=new Set();
   const post=(value)=>parent.postMessage({channelId,...value},'*');
   const report=(force=false)=>{
     if(disposed)return;
-    if(intro==='playing'&&!introOn)intro='done';
+    scheduleAutoplay();
     const state={type:'lion-book:state',index:typeof idx==='number'?idx:0,
-      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure,intro,introConsumed};
+      turning:typeof turn!=='undefined'&&!!turn,ready:ready&&!failure,playback:playbackState()};
     if(failure)state.error=failure;
     const signature=JSON.stringify(state);
     if(force||signature!==lastState){lastState=signature;post(state);}
@@ -100,8 +98,8 @@ function bridgeSource(channelId, pages) {
     ready=imagesReady&&document.body.dataset.ready==='1'&&!failure;
     updatePlayback();report();
   };
-  const clearIntroTimer=()=>{
-    if(introTimer!==null){clearTimeout(introTimer);introTimer=null;}
+  const clearAutoTimer=()=>{
+    if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null;}
   };
   const stopFrame=()=>{
     if(raf!==null){cancelAnimationFrame(raf);raf=null;}
@@ -118,53 +116,32 @@ function bridgeSource(channelId, pages) {
     drag=null;spring=null;viewActive=false;stopFrame();releasePointer();
     if(turn){idx=next;turn=null;paint();}
   };
-  const cancelIntro=(manual=false)=>{
-    clearIntroTimer();
-    if(introOn)endIntro();
-    if(manual)introConsumed=true;
-    intro='done';paused=false;
-  };
   const canPlay=()=>ready&&!disposed&&!failure&&hostVisible&&!document.hidden&&windowFocused;
-  const setIntroDuration=(seconds)=>{
-    if(typeof seconds!=='number'||!Number.isFinite(seconds))return;
-    introDuration=Math.max(3,Math.min(30,Math.round(seconds)));
-    if(!introOn||!riffle||!riffle.length)return;
-    const duration=introDuration/riffle.length;
-    riffle.forEach(leaf=>{leaf.dur=duration;});
-    if(spring&&spring.kind==='tween'){
-      const progress=spring.e/spring.dur;
-      spring.dur=duration;spring.e=progress*duration;
-    }
-  };
+  const playbackState=()=>!autoplayEnabled?'disabled':REDUCED?'reduced':!canPlay()?'hidden':hovered||drag?'interacting':turn?'turning':'playing';
+  function scheduleAutoplay(){
+    if(playbackState()!=='playing'){clearAutoTimer();return;}
+    if(autoTimer!==null)return;
+    // Every committed spread gets a complete reading interval. The original
+    // step function wraps the final page to the cover with the same paper turn.
+    autoTimer=setTimeout(()=>{
+      autoTimer=null;
+      if(playbackState()!=='playing')return;
+      step('next');report();
+    },pageInterval*1000);
+  }
   function updatePlayback(){
-    if(!ready||disposed||failure){clearIntroTimer();stopFrame();return;}
-    // A prewarmed iframe can initially report a zero-width viewport. Decide
-    // input/motion policy only after the host confirms real visible exposure.
-    if(intro==='pending'&&hostVisible&&(REDUCED||coarse.matches))intro='done';
     if(!canPlay()){
-      clearIntroTimer();stopFrame();paused=true;return;
+      clearAutoTimer();stopFrame();paused=true;return;
     }
     if(paused){paused=false;if(spring||viewActive)kick();}
-    if(intro==='pending'&&introAllowed===true&&introTimer===null){
-      introTimer=setTimeout(()=>{
-        introTimer=null;
-        if(!canPlay()||intro!=='pending')return;
-        if(introAllowed!==true)return;
-        startIntro();
-        // Change only the first-exposure sequence, including its active leaf.
-        setIntroDuration(introDuration);
-        if(introOn){intro='playing';introConsumed=true;}
-        else intro='done';
-        report();
-      },220);
-    }
+    scheduleAutoplay();
   }
   const navigate=(action,index)=>{
     // The opaque iframe also blurs when focus moves to the host timeline.
     // A validated host command is fresh user input there, so it can take over
     // the book without requiring the user to refocus the iframe first.
     windowFocused=true;
-    cancelIntro(true);settleFlight(true);
+    clearAutoTimer();settleFlight(true);
     if(action==='goTo')goTo(index);
     else step(action==='next'?'next':'prev');
     // Timeline controls can remain visible after the paper leaves its exposure
@@ -176,11 +153,16 @@ function bridgeSource(channelId, pages) {
     if(!drag)return;
     settleFlight(false);report();
   };
-  const onBlur=()=>{windowFocused=false;cancelGesture();updatePlayback();};
-  const onFocus=()=>{windowFocused=true;updatePlayback();};
-  const onVisibility=()=>{if(document.hidden)cancelGesture();updatePlayback();};
+  const onBlur=()=>{windowFocused=false;cancelGesture();updatePlayback();report();};
+  const onFocus=()=>{windowFocused=true;updatePlayback();report();};
+  const onVisibility=()=>{if(document.hidden)cancelGesture();updatePlayback();report();};
   const onResize=()=>{cancelGesture();updatePlayback();report();};
   const onLostPointer=()=>cancelGesture();
+  const onPointerMove=(event)=>{
+    const next=Boolean(event.target.closest?.('.sb-zone'));
+    if(next!==hovered){hovered=next;updatePlayback();report();}
+  };
+  const onPointerLeave=()=>{hovered=false;updatePlayback();report();};
   const onPointerCancel=(event)=>{
     if(!drag)return;
     cancelGesture();event.stopImmediatePropagation();
@@ -190,7 +172,7 @@ function bridgeSource(channelId, pages) {
     // The original full-image zones include transparent image margins. The
     // archive limits their CSS boxes to real paper, and ignores blank space.
     if(!ready||!event.target.closest?.('.sb-zone')){event.stopImmediatePropagation();return;}
-    cancelIntro(true);settleFlight(true);pointerId=event.pointerId;report();
+    clearAutoTimer();settleFlight(true);pointerId=event.pointerId;report();
   };
   const onPointerUp=(event)=>{
     if(!REDUCED||!drag)return;
@@ -202,17 +184,19 @@ function bridgeSource(channelId, pages) {
   };
   const onMotion=()=>{
     REDUCED=motion.matches;
-    if(REDUCED){cancelIntro();settleFlight(true);}
+    if(REDUCED){clearAutoTimer();settleFlight(true);}
     updatePlayback();report();
   };
   const dispose=()=>{
     disposed=true;
-    clearIntroTimer();
+    clearAutoTimer();
     bookObserver?.disconnect();readyObserver?.disconnect();
     removeEventListener('message',onCommand);
     removeEventListener('wheel',onWheel);
     removeEventListener('keydown',onArchiveKey,true);
     removeEventListener('pointerdown',onPointerDown,true);
+    stage.removeEventListener('pointermove',onPointerMove);
+    stage.removeEventListener('pointerleave',onPointerLeave);
     removeEventListener('pointerup',onPointerUp,true);
     removeEventListener('pointercancel',onPointerCancel,true);
     removeEventListener('lostpointercapture',onLostPointer,true);
@@ -239,7 +223,12 @@ function bridgeSource(channelId, pages) {
     if(!data||data.type!=='lion-book:command'||data.channelId!==channelId)return;
     if(data.action==='dispose'){dispose();return;}
     if(data.action==='sync'){report(true);return;}
-    if(data.action==='intro-duration'){setIntroDuration(data.seconds);return;}
+    if(data.action==='pointer-release'){hovered=false;updatePlayback();report();return;}
+    if(data.action==='page-interval'&&typeof data.seconds==='number'&&Number.isFinite(data.seconds)){
+      const next=Math.max(3,Math.min(30,Math.round(data.seconds)));
+      if(next!==pageInterval){pageInterval=next;clearAutoTimer();updatePlayback();}
+      return;
+    }
     if(data.action==='book-scale'&&typeof data.scale==='number'&&Number.isFinite(data.scale)){
       const next=Math.max(.9,Math.min(1.45,data.scale));
       if(next!==bookScale){
@@ -250,12 +239,8 @@ function bridgeSource(channelId, pages) {
       }
       return;
     }
-    if(data.action==='intro-policy'&&typeof data.enabled==='boolean'){
-      introAllowed=data.enabled;
-      // Replayed host effects can publish a consumed session while this same
-      // iframe is still playing. Preserve that sequence and its paused spring.
-      if(!introAllowed&&intro==='pending'){clearIntroTimer();intro='done';}
-      updatePlayback();report();return;
+    if(data.action==='autoplay-policy'&&typeof data.enabled==='boolean'){
+      autoplayEnabled=data.enabled;updatePlayback();report();return;
     }
     if(data.action==='visibility'&&typeof data.visible==='boolean'){
       hostVisible=data.visible;
@@ -263,7 +248,7 @@ function bridgeSource(channelId, pages) {
       // this opaque iframe and its own controls. Its positive exposure report
       // is authoritative for resuming after either kind of iframe blur.
       if(hostVisible)windowFocused=true;
-      if(!hostVisible)cancelGesture();
+      if(!hostVisible){hovered=false;cancelGesture();}
       updatePlayback();report();return;
     }
     if(!ready)return;
@@ -293,6 +278,8 @@ function bridgeSource(channelId, pages) {
   addEventListener('wheel',onWheel,{passive:false});
   addEventListener('keydown',onArchiveKey,true);
   addEventListener('pointerdown',onPointerDown,true);
+  stage.addEventListener('pointermove',onPointerMove);
+  stage.addEventListener('pointerleave',onPointerLeave);
   addEventListener('pointerup',onPointerUp,true);
   addEventListener('pointercancel',onPointerCancel,true);
   addEventListener('lostpointercapture',onLostPointer,true);
@@ -369,7 +356,7 @@ export function adaptLionSketchbookDocument(original, {
   // optional magnifier and view toolbar are completely absent.
   engine = engine.replace(between(engine, LOUPE_SCRIPT_START, INDEX_SCRIPT_START),
     '/* Optional lens and toolbar removed for the archive. */\nfunction loupeEase(){return false;}\nfunction syncZoom(){}\nfunction restLoupe(){}\n\n');
-  engine = replaceOne(engine, '  setTimeout(startIntro,220);', '  /* The archive bridge starts the original riffle once the book is visible. */');
+  engine = replaceOne(engine, '  setTimeout(startIntro,220);', '  /* The archive bridge advances readable spreads in page order. */');
   // A zoom reset belongs to the removed optional view controls, not page turns.
   engine = replaceOne(engine, "stage.addEventListener('dblclick',()=>setView(view.trx,view.try_,1));", '');
 

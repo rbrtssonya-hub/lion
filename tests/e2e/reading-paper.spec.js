@@ -52,16 +52,17 @@ test('old defaults migrate once and mixed custom material, dimensions and playba
   await open(page, { bookTitleColor: '#fff9ee', bookTitleTransparency: 40, bookTitleBlur: 5, bookTitleRadius: 14,
     cultureBodyColor: '#aabbcc', cultureBodyTransparency: 63, cultureBodyBlur: 5, cultureBodyRadius: 27,
     expressionOverlayColor: '#fff8ea', expressionOverlayTransparency: 22, expressionOverlayBlur: 6, expressionOverlayRadius: 24,
-    bookTitleWidth: 61, bookTitleLayoutVersion: 1, bookTitleSpacing: 77, bookIntroDuration: 19, navFontSize: 27, modelOverlayColor: '#68170f', structureAtlasVersion: 1,
+    bookTitleWidth: 61, bookTitleLayoutVersion: 1, bookTitleSpacing: 77, bookPageInterval: 19, navFontSize: 27, modelOverlayColor: '#68170f', structureAtlasVersion: 1,
     hdriEnabled: false, hdriIntensity: 1.35, hdriRotation: 47, hdriExposure: -.4, hdriLightIntensity: .65 });
   await expect.poll(() => stored(page)).toMatchObject({ readingPaperVersion: 1, bookTitleColor: '#f7f5f0', bookTitleTransparency: 35, bookTitleBlur: 0, bookTitleRadius: 0,
     cultureBodyColor: '#aabbcc', cultureBodyTransparency: 63, cultureBodyBlur: 0, cultureBodyRadius: 27, expressionOverlayTransparency: 10,
-    bookTitleWidth: 61, bookTitleSpacing: 77, bookIntroDuration: 19, navFontSize: 27, modelOverlayColor: '#68170f',
+    bookTitleWidth: 61, bookTitleSpacing: 77, bookPageInterval: 19, navFontSize: 27, modelOverlayColor: '#68170f',
     hdriEnabled: false, hdriIntensity: 1.35, hdriRotation: 47, hdriExposure: -.4, hdriLightIntensity: .65 });
   await page.locator('.site-header [data-action="settings"]').click();
   await number(page, '书册标题底板透明度', 40);
   await selectSettingsFor(page, '书册标题');
   await settingsPanel(page).getByLabel('书册标题底板底色', { exact: true }).fill('#fff9ee');
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await page.reload(); await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60000 });
   await expect.poll(() => stored(page)).toMatchObject({ readingPaperVersion: 1, bookTitleTransparency: 40, bookTitleColor: '#fff9ee', cultureBodyTransparency: 63,
     hdriEnabled: false, hdriIntensity: 1.35, hdriRotation: 47, hdriExposure: -.4, hdriLightIntensity: .65 });
@@ -72,6 +73,7 @@ test('legacy shared opacity, unavailable storage and reset keep live controls us
   await expect.poll(() => stored(page)).toMatchObject({ bookTitleTransparency: 71, bookDetailsTransparency: 71, cultureTitleTransparency: 71, cultureBodyTransparency: 71 });
   await page.locator('.site-header [data-action="settings"]').click();
   await settingsPanel(page).getByRole('button', { name: '恢复默认参数', exact: true }).click();
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => stored(page)).toMatchObject({ bookTitleTransparency: 35, bookDetailsTransparency: 10, cultureSourceCardTransparency: 5, expressionOverlayTransparency: 10 });
   await page.addInitScript(() => {
     Storage.prototype.getItem = () => { throw new Error('storage unavailable'); };
@@ -91,6 +93,7 @@ test('invalid legacy shared opacity falls back per surface, not to the heading o
 test('common draft stays unapplied and opacity endpoints remove every material layer without fading text', async ({ page }) => {
   await open(page);
   await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'archivePanelTransparency');
   const p = settingsPanel(page);
   await expect(p.getByRole('spinbutton', { name: '公共透明度数值', exact: true })).toHaveValue('10');
   await expect(p.getByRole('spinbutton', { name: '公共模糊强度数值', exact: true })).toHaveValue('0');
@@ -117,7 +120,7 @@ test('common draft stays unapplied and opacity endpoints remove every material l
   await number(page, '书册标题底板模糊强度', 12);
   expect((await material(page.locator('[data-surface="bookTitle"]'))).paper.blur).toBe('none');
   await number(page, '书册标题底板透明度', 35);
-  expect((await material(page.locator('[data-surface="bookTitle"]'))).paper.blur).toBe('blur(12px)');
+  await expect.poll(async () => (await material(page.locator('[data-surface="bookTitle"]'))).paper.blur).toBe('blur(12px)');
 });
 
 test('expression overview, details and comparisons share neutral paper and full transparency preserves content', async ({ page }) => {

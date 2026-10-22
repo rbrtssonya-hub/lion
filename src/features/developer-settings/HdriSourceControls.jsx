@@ -30,7 +30,7 @@ export default function HdriSourceControls({ settings, onChange }) {
       <label htmlFor={`${id}-url`}>HDRI文件链接</label>
       <input id={`${id}-url`} type="text" value={url} placeholder="https://…/forest.exr" onChange={event => setUrl(event.target.value)} spellCheck={false} />
       <button type="submit" className="developer-settings-apply">应用HDRI链接</button>
-      <p className="developer-settings-note">链接自动保存；外部服务器需要允许跨域读取。</p>
+      <p className="developer-settings-note">应用后即时预览，点击“保存设置”后记住链接；外部服务器需要允许跨域读取。</p>
     </form>}
     {settings.hdriSource === 'local' && <div className="developer-settings-source-control">
       <label htmlFor={`${id}-file`}>选择本地HDRI文件</label>

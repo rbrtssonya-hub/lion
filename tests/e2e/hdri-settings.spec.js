@@ -104,7 +104,7 @@ function difference(first, second) {
   };
 }
 
-test('HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数', async ({ page }) => {
+test('HDRI独立设置页补齐旧偏好，显式保存并只重置HDRI参数', async ({ page }) => {
   await prepare(page, { panelWidth: 372, headerTransparency: 37 });
   await page.goto('/#/state'); await waitStartup(page); await openSettings(page);
   const ranges = {
@@ -121,11 +121,13 @@ test('HDRI独立设置页补齐旧偏好，自动保存并只重置HDRI参数', 
   const chosen = { hdriEnabled: false, hdriIntensity: 1.65, hdriRotation: -83, hdriExposure: 0.7, hdriLightIntensity: 0.45 };
   await toggle.uncheck();
   for (const name of Object.keys(labels)) await edit(page, name, chosen[name]);
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey)).toMatchObject(chosen);
   await page.reload(); await waitStartup(page); await openSettings(page);
   await expect(settingsPanel(page).getByRole('checkbox', { name: 'HDRI环境照明', exact: true })).not.toBeChecked();
   for (const name of Object.keys(labels)) await expect(settingsPanel(page).getByRole('spinbutton', { name: `${labels[name]}数值`, exact: true })).toHaveValue(String(chosen[name]));
   await settingsPanel(page).getByRole('button', { name: '恢复HDRI默认参数', exact: true }).click();
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey)).toMatchObject({ ...Object.fromEntries(Object.entries(hdriDefaults).filter(([name]) => name !== 'hdriFile')), panelWidth: 372, headerTransparency: 37 });
 });
 
@@ -230,7 +232,7 @@ test('动作共享HDRI并实时改变实际模型照明，跨章请求复用且�
   expect(await original.evaluate(node => node === document.querySelector('#chapterStage canvas'))).toBe(true);
   await expectCompleteHair(canvas);
   await page.clock.resume();
-  await settingsPanel(page).getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await page.locator('.site-header [data-route="model"]').click();
   await expect(theaterCanvas(page)).toHaveCount(0);
   await expect.poll(() => original.evaluate(node => !node.isConnected && (node.getContext('webgl2') || node.getContext('webgl')).isContextLost())).toBe(true);

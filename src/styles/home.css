@@ -1,10 +1,17 @@
 .home-page { width: 100%; margin-top: calc(-1 * var(--site-header-height)); background: #68170f; }
+.is-intro-playing .entry-playback-tools { top: 24px; }
 .final-home { position: relative; width: 100%; height: 100svh; min-height: 620px; overflow: hidden; isolation: isolate; background: #68170f; }
 .entry-visual-video { position: absolute; inset: 0; z-index: 0; }
 .entry-vignette { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(48, 5, 2, .1), transparent 44%, rgba(44, 4, 2, .2)); }
 .entry-copy { --entry-title-width: min(max(330px, 30vw), 52svh, 750px); --entry-cta-width: clamp(280px, 19.5vw, 480px); position: absolute; left: clamp(56px, 8vw, 150px); top: 50%; z-index: 3; display: flex; flex-direction: column; align-items: center; width: calc((var(--entry-title-width) + var(--entry-cta-width)) / 2); transform: translateY(-50%); transition: opacity 500ms ease; }
 .is-intro-playing .entry-copy { opacity: 0; visibility: hidden; pointer-events: none; }
 .is-intro-playing .entry-visual-video { object-fit: contain; background: #240b07; }
+/* Keep the shared header measured and mounted, but let the entry film occupy
+   the first visible frame without waiting for an effect to hide navigation. */
+.site-shell:has(.prewarmed-page[data-active='true'] .home-page[data-intro-active='true']) :is(.site-header, .site-header *, .lion-topbar-resize-handle) {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 .entry-playback-tools { position: absolute; top: calc(var(--site-header-height) + 24px); left: clamp(24px, 3vw, 64px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: #ffe6b9; font-size: 11px; }
 .entry-playback-tools button { padding: 8px 13px; border: 1px solid rgba(242, 205, 142, .6); border-radius: 999px; color: #fff0d2; background: rgba(86, 18, 11, .58); cursor: pointer; transition: background 180ms ease, transform 180ms ease; }
 .entry-playback-tools button:hover { background: #aa2516; transform: translateY(-2px); }

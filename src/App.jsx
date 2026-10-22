@@ -10,7 +10,7 @@ import ResizeHandle from './components/ResizeHandle.jsx';
 import { defaultDeveloperSettings } from './features/developer-settings/useDeveloperSettings.js';
 import { media } from './config/media.js';
 import { useNavigationMotion } from './features/navigation/useNavigationMotion.js';
-import { useStartupLoading, reportStartupTask, withStartupTimeout } from './features/loading/useStartupLoading.js';
+import { withStartupTimeout } from './features/loading/useStartupLoading.js';
 import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSettings.js';
 import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
 
@@ -22,12 +22,13 @@ const chapterBackgrounds = {
 };
 
 export default function App() {
-  const startupReady = useStartupLoading();
   const navigationCaptureRef = useRef(null);
   const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
   const [route, navigate] = useChapterRoute(beforeRouteChange);
-  const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings } = useDeveloperSettings();
+  const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings,
+    beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [discardPromptOpen, setDiscardPromptOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
   const wasSettingsOpen = useRef(false);
@@ -65,25 +66,43 @@ export default function App() {
   // Resolve media at the document first so './assets' cannot become assets/assets.
   const chapterBackground = chapterBackgrounds[route]
     ? new URL(chapterBackgrounds[route], window.location.href).href : undefined;
-  const closeSettings = useCallback(() => {
+  const finishClosingSettings = useCallback(() => {
+    setDiscardPromptOpen(false);
     setSettingsOpen(false);
     triggerRef.current?.focus({ preventScroll: true });
   }, []);
+  const closeSettings = useCallback(() => {
+    if (hasUnsavedChanges) { setDiscardPromptOpen(true); return; }
+    discardSettings();
+    finishClosingSettings();
+  }, [hasUnsavedChanges, discardSettings, finishClosingSettings]);
+  const openSettings = useCallback(() => {
+    beginSettingsEditing();
+    setSettingsOpen(true);
+  }, [beginSettingsEditing]);
+  const saveAndCloseSettings = useCallback(() => {
+    if (saveSettings()) finishClosingSettings();
+  }, [saveSettings, finishClosingSettings]);
+  const discardAndCloseSettings = useCallback(() => {
+    discardSettings();
+    finishClosingSettings();
+  }, [discardSettings, finishClosingSettings]);
   const handleSettingsKey = useCallback(event => {
     if (event.key !== 'Escape' || event.defaultPrevented || event.isComposing || event.nativeEvent?.isComposing) return;
     if (document.documentElement.classList.contains('lion-resizing-x') || document.documentElement.classList.contains('lion-resizing-y')) return;
     event.preventDefault();
     event.stopPropagation();
-    closeSettings();
-  }, [closeSettings]);
+    if (discardPromptOpen) setDiscardPromptOpen(false);
+    else closeSettings();
+  }, [closeSettings, discardPromptOpen]);
   useEffect(() => {
     if (!settingsOpen) {
       if (wasSettingsOpen.current) triggerRef.current?.focus({ preventScroll: true });
       wasSettingsOpen.current = false;
       return;
     }
+    if (!wasSettingsOpen.current) panelRef.current?.querySelector('button')?.focus({ preventScroll: true });
     wasSettingsOpen.current = true;
-    panelRef.current?.querySelector('button')?.focus({ preventScroll: true });
     document.addEventListener('keydown', handleSettingsKey);
     return () => document.removeEventListener('keydown', handleSettingsKey);
   }, [settingsOpen, handleSettingsKey]);
@@ -140,32 +159,34 @@ export default function App() {
 
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}
     data-settings-layout={pushing ? 'push' : 'overlay'}>
-    <div className="site-page" inert={!startupReady} data-page-hit-enabled={settings.pageHitEnabled}>
+    <div className="site-page" data-page-hit-enabled={settings.pageHitEnabled}>
       <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen}
         headerRef={headerRef} settings={settings}
-        onToggleSettings={() => settingsOpen ? closeSettings() : setSettingsOpen(true)}
+        onToggleSettings={() => settingsOpen ? closeSettings() : openSettings()}
         settingsTriggerRef={triggerRef} />
       <main id="react-app" data-route={route}>
         <div className="prewarmed-page" data-active={route === 'entry'} inert={route !== 'entry'} aria-hidden={route !== 'entry'}>
-          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={startupReady && route === 'entry'}
-            onBookReady={success => reportStartupTask('book', success)} onGalleryReady={success => reportStartupTask('gallery', success)}
-            onVideoReady={success => reportStartupTask('video', success)} />
+          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={route === 'entry'} />
         </div>
         <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
-          <ModelPreparationBoundary onReady={success => reportStartupTask('model', success)}>
+          <ModelPreparationBoundary>
           <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
-            <ModelPage lightingSettings={settings} active={startupReady && route === 'model'} onReady={success => reportStartupTask('model', success)} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
+            <ModelPage lightingSettings={settings} active={route === 'model'} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
           </Suspense>
           </ModelPreparationBoundary>
         </div>
         {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
+    {settingsOpen && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
+    {settingsFeedback && <div className="settings-status" role="status">{settingsFeedback}</div>}
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
     <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings} onApplyMaterial={applySurfaceSettings}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
+      hasUnsavedChanges={hasUnsavedChanges} onSave={saveAndCloseSettings} onExport={exportSettings}
+      discardPromptOpen={discardPromptOpen} onContinueEditing={() => setDiscardPromptOpen(false)} onDiscard={discardAndCloseSettings}
       onKeyDown={handleSettingsKey} resizeHandle={<ResizeHandle label="调整侧栏宽度" axis="x"
         value={settings.panelWidth} min={280} max={760} direction={-1}
         defaultValue={defaultDeveloperSettings.panelWidth} className="lion-sidebar-resize-handle"

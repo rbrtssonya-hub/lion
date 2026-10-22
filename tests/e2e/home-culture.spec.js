@@ -85,9 +85,18 @@ async function openCulture(page, settings = {}, { waitForStartup = true } = {}) 
   }, settings);
   await page.goto('/');
   if (waitForStartup) await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
+  // The page is usable before background modules finish. Resolve the preceding
+  // book before measuring a stationary pointer against the gallery below it.
+  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
+  await page.evaluate(() => document.fonts.ready);
   const carousel = page.locator('#homeCulture');
   const gallery = carousel.locator('.culture-depth-gallery');
   await gallery.scrollIntoViewIfNeeded();
+  await expect(carousel).not.toHaveAttribute('data-culture-status', 'offscreen');
+  // Preloaded textures can be ready before the scroll's IntersectionObserver
+  // has committed its active state. Allow that observer and React layout to
+  // complete before sending the first real pointer event (also when disabled).
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   return { carousel, gallery, action: gallery.getByRole('button', { name: '下一张文化照片', exact: true }) };
 }
 
@@ -333,7 +342,7 @@ test('自动切图经过静止指针时不会自行获取悬停并停播', async
   await expect(carousel).toHaveAttribute('data-culture-index', '4', { timeout: 3000 });
 });
 
-test('启动预热期间照片不接受悬停，入场后聚焦与移开恢复正常', async ({ page }) => {
+test('图鉴后台加载时静态照片可悬停，画布就绪后移开恢复播放', async ({ page }) => {
   let releaseModule;
   const moduleGate = new Promise(resolve => { releaseModule = resolve; });
   await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
@@ -345,8 +354,8 @@ test('启动预热期间照片不接受悬停，入场后聚焦与移开恢复�
     await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
     const point = await photoPoint(gallery);
     await page.mouse.move(point.x, point.y);
-    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
-    await expect(page.locator('#startupLoading')).toBeVisible();
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
     releaseModule();
     await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
     await expect(page.locator('#startupLoading')).toHaveCount(0);
@@ -365,7 +374,7 @@ test('启动预热期间照片不接受悬停，入场后聚焦与移开恢复�
   }
 });
 
-test('启动预热期间指针取消与失焦不会残留照片暂停', async ({ page }) => {
+test('图鉴后台加载期间指针取消与失焦不会残留照片暂停', async ({ page }) => {
   let releaseModule;
   const moduleGate = new Promise(resolve => { releaseModule = resolve; });
   await page.route(/\/(?:src\/services\/cultureDepthGallery\.js|assets\/cultureDepthGallery-[^/]+\.js)(?:\?|$)/, async route => {
@@ -377,7 +386,7 @@ test('启动预热期间指针取消与失焦不会残留照片暂停', async ({
     await expect(gallery).toHaveAttribute('data-depth-state', 'loading');
     const point = await photoPoint(gallery);
     await page.mouse.move(point.x, point.y);
-    await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+    await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
     await page.evaluate(() => { window.dispatchEvent(new Event('pointercancel')); window.dispatchEvent(new Event('blur')); });
     await page.mouse.move(1800, point.y);
     releaseModule();
@@ -412,10 +421,11 @@ test('窗口高度变化使静止指针移出视口后释放照片暂停', async
 test('窗口失焦和指针取消事件清理悬停，返回后仍可再次聚焦和自动恢复', async ({ page }) => {
   const { carousel, gallery } = await openCulture(page, { carouselInterval: 2, carouselResumeDelay: 1 });
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
-  const point = await photoPoint(gallery);
   // Dispatch lifecycle events explicitly: headless bringToFront does not
   // reliably change OS window focus or document visibility.
   for (const [index, type] of ['blur', 'pointercancel'].entries()) {
+    await gallery.scrollIntoViewIfNeeded();
+    const point = await photoPoint(gallery);
     await page.mouse.move(point.x + index, point.y);
     await expect(carousel).toHaveAttribute('data-culture-focused', 'true');
     await page.evaluate(eventType => window.dispatchEvent(new Event(eventType)), type);
@@ -492,7 +502,7 @@ test('轮播自动开关即时生效，关闭时点击再离开也不会自动�
   const panel = page.getByRole('region', { name: '开发者参数设置' });
   await selectSettingsFor(page, 'carousel');
   await panel.getByRole('checkbox', { name: '照片自动播放', exact: true }).check();
-  await panel.getByRole('button', { name: '关闭开发者参数' }).click();
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect(carousel).toHaveAttribute('data-culture-playing', 'true');
   await expect(carousel).toHaveAttribute('data-culture-index', '2', { timeout: 3000 });
 });
@@ -538,7 +548,7 @@ test('电脑窗口和参数变化保持同一画布，减少动态释放引擎�
   await duration.press('Tab');
   await expect.poll(() => canvas.evaluate(element => element.isConnected && element === document.querySelector('.culture-depth-canvas'))).toBe(true);
   await expect(gallery).toHaveCSS('--culture-focus-scale', '1.1');
-  await panel.getByRole('button', { name: '关闭开发者参数' }).click();
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(gallery).toHaveAttribute('data-depth-state', 'static');
   await expect.poll(() => canvas.evaluate(element => (element.getContext('webgl2') || element.getContext('webgl')).isContextLost())).toBe(true);

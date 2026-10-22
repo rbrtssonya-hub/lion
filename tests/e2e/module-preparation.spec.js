@@ -14,18 +14,22 @@ for (const moduleName of ['ModelPage', 'LionBookExperience']) {
     let release;
     const gate = new Promise(resolve => { release = resolve; });
     await page.route(pattern, async route => { await gate; await route.continue().catch(() => {}); });
-    await page.goto('/');
-    await expect(page.locator('#startupLoading')).toBeVisible();
-    await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', moduleName === 'ModelPage' ? /醒狮模型/ : /翻页史册/, { timeout: 40_000 });
-    await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 40_000 });
-    release();
-    if (moduleName === 'ModelPage') {
-      await page.locator('.site-nav-item[data-route="model"]').click();
-      await expect(page.locator('#modelStatus')).toContainText('模型组件未能准备');
-      await expect(page.getByRole('button', { name: '重新载入', exact: true })).toBeVisible();
-    } else {
-      await page.locator('#enterWork').click();
-      await expect(page.getByRole('button', { name: '重新展开', exact: true })).toBeVisible();
+    try {
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await expect(page.locator('#startupLoading')).toHaveCount(0);
+      await expect.poll(() => page.locator('#introVideo').evaluate(video => !video.paused && video.currentTime > .1)).toBe(true);
+      await expect(page.locator('.site-page')).not.toHaveAttribute('inert');
+      await page.locator('#skipIntro').click();
+      if (moduleName === 'ModelPage') {
+        await page.locator('.site-nav-item[data-route="model"]').click();
+        await expect(page.locator('#modelStatus')).toContainText('模型组件未能准备', { timeout: 40_000 });
+        await expect(page.getByRole('button', { name: '重新载入', exact: true })).toBeVisible();
+      } else {
+        await page.locator('#enterWork').click();
+        await expect(page.getByRole('button', { name: '重新展开', exact: true })).toBeVisible({ timeout: 40_000 });
+      }
+    } finally {
+      release();
     }
   });
 }

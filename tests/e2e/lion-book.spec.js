@@ -13,10 +13,10 @@ async function openBook(page, { reduced = false, ready = true, url = '/' } = {})
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(() => { if (window === window.top) {
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
-    // These lifecycle tests use the supported fast setting; home-reading tests measure the 12s default.
+    // Manual paper regressions pause automatic reading explicitly.
     const key = 'nanfeng-lion:developer-settings:v1';
     const saved = JSON.parse(localStorage.getItem(key) || '{}');
-    localStorage.setItem(key, JSON.stringify({ ...saved, bookIntroDuration: 3 }));
+    localStorage.setItem(key, JSON.stringify({ ...saved, bookAutoplay: false }));
   } });
   await page.emulateMedia({ reducedMotion: reduced ? 'reduce' : 'no-preference' });
   await page.goto(url);
@@ -26,7 +26,7 @@ async function openBook(page, { reduced = false, ready = true, url = '/' } = {})
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   if (ready) {
     await view(page, page.locator('.lion-book-stage'));
-    await expect(book).toHaveAttribute('data-book-intro', 'done');
+    await expect(book).toHaveAttribute('data-book-playback', 'disabled');
   }
   return { book, frame: page.frameLocator('#homeLionBook iframe') };
 }
@@ -165,7 +165,7 @@ test('翻页中离开首页暂停预热文档，返回复用并可继续翻阅',
   frame = page.frameLocator('#homeLionBook iframe');
   await expect(book).toHaveAttribute('data-book-ready', 'true');
   await view(page, page.locator('.lion-book-stage'));
-  await expect(book).toHaveAttribute('data-book-intro', 'done');
+  await expect(book).toHaveAttribute('data-book-playback', 'disabled');
   await book.locator('[data-book-page="formation"]').click();
   await settled(book, frame, 2);
   await drag(page, frame, 'next');
@@ -232,6 +232,7 @@ test('电脑宽度变化与设置推开保持同一本书，照片图鉴和章�
   await selectSettingsFor(page, 'pushPage');
   await page.getByRole('checkbox', { name: '设置面板推开页面' }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await view(page, book.locator('.lion-book-timeline'));
   await book.locator('[data-book-page="formation"]').click();
   await settled(book, frame, 2);

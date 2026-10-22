@@ -21,10 +21,10 @@ class BookBoundary extends Component {
   render() { return this.state.failed ? <BookPlaceholder failed onRetry={() => window.location.reload()} /> : this.props.children; }
 }
 
-export default function HomeLionBook({ settings = {}, introDuration = 12, preload = false, playbackEnabled = true, onReady }) {
+export default function HomeLionBook({ settings = {}, preload = false, playbackEnabled = true, onReady }) {
   const sectionRef = useRef(null);
   const [entered, setEntered] = useState(preload);
-  const { bookScale = 116, bookStageHeight = 680, bookInkEnabled = true } = settings;
+  const { bookScale = 116, bookStageHeight = 680, bookInkEnabled = true, bookAutoplay = true, bookPageInterval = 8 } = settings;
   useEffect(() => { if (preload) setEntered(true); }, [preload]);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -44,7 +44,7 @@ export default function HomeLionBook({ settings = {}, introDuration = 12, preloa
         <div className="lion-book-preface"><p>一狮一鼓，百年传承</p><span>翻一页纸，循一脉鼓声。<br />从瑞兽的想象，读到今日岭南。</span></div>
       </header>
       <BookBoundary onReady={onReady}><Suspense fallback={<BookPlaceholder />}>
-        {entered || preload ? <LionBookExperience introDuration={introDuration} scale={bookScale / 100} inkEnabled={bookInkEnabled} playbackEnabled={playbackEnabled} onReady={onReady} /> : <BookPlaceholder />}
+        {entered || preload ? <LionBookExperience autoplay={bookAutoplay} pageInterval={bookPageInterval} scale={bookScale / 100} inkEnabled={bookInkEnabled} playbackEnabled={playbackEnabled} onReady={onReady} /> : <BookPlaceholder />}
       </Suspense></BookBoundary>
     </div>
   </section>;

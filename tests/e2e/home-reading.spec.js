@@ -104,12 +104,17 @@ test('旧设置补默认而不覆盖偏好，底板透明度刷新保存并可�
   await selectSettingsFor(page, 'archivePanelTransparency');
   const control = page.getByRole('spinbutton', { name: '首页阅读底板透明度数值', exact: true });
   await expect(control).toHaveValue('35');
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ navFontSize: 22, helperFontSize: 16, archivePanelTransparency: 35 });
+  await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'archivePanelTransparency');
   await control.fill('68'); await control.press('Tab');
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).archivePanelTransparency, settingsKey)).toBe(68);
   // The initializer only seeds empty storage; reload must retain the saved value.
   await page.reload();
   await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'archivePanelTransparency');
   await expect(control).toHaveValue('68');
   await page.getByRole('button', { name: '恢复默认参数' }).click();
   await expect(control).toHaveValue('35');
@@ -131,81 +136,48 @@ test('存储被禁用时阅读底板仍可调节', async ({ page }) => {
   for (const fill of await fills(page)) expect(fill.alpha).toBeCloseTo(.2, 2);
 });
 
-test('首次翻阅时长可在首页书册设置调节并保存，旧设置补12秒且可恢复默认', async ({ page }) => {
-  await openReading(page, { navFontSize: 22, navigationTypographyVersion: 2 });
+test('每页停留时间和循环开关可预览保存，旧设置补默认且可恢复', async ({ page }) => {
+  await openReading(page, { navFontSize: 22, navigationTypographyVersion: 2, bookIntroDuration: 24 });
   await page.locator('.site-header [data-action="settings"]').click();
-  await selectSettingsFor(page, 'bookIntroDuration');
-  const duration = page.getByRole('spinbutton', { name: '画册首次翻阅时长数值', exact: true });
-  await expect(duration).toHaveValue('12');
+  await selectSettingsFor(page, 'bookPageInterval');
+  const duration = page.getByRole('spinbutton', { name: '每页停留时间数值', exact: true });
+  const autoplay = page.getByRole('checkbox', { name: '按页码循环播放', exact: true });
+  await expect(duration).toHaveValue('8');
+  await expect(autoplay).toBeChecked();
+  await expect(page.getByText('画册首次翻阅时长', { exact: true })).toHaveCount(0);
   await duration.fill('24'); await duration.press('Tab');
-  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).bookIntroDuration, settingsKey)).toBe(24);
+  await autoplay.uncheck();
+  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-playback', 'disabled');
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).bookPageInterval, settingsKey)).toBe(24);
   await page.reload();
   await page.locator('.site-header [data-action="settings"]').click();
-  await selectSettingsFor(page, 'bookIntroDuration');
+  await selectSettingsFor(page, 'bookPageInterval');
   await expect(duration).toHaveValue('24');
-  const slider = page.getByRole('slider', { name: '画册首次翻阅时长', exact: true });
+  await expect(autoplay).not.toBeChecked();
+  const slider = page.getByRole('slider', { name: '每页停留时间', exact: true });
   await slider.focus(); await slider.press('Home'); await expect(duration).toHaveValue('3');
   await slider.press('End'); await expect(duration).toHaveValue('30');
   await page.getByRole('button', { name: '恢复默认参数' }).click();
-  await expect(duration).toHaveValue('12');
+  await expect(duration).toHaveValue('8');
+  await expect(autoplay).toBeChecked();
 });
 
-async function prepareIntro(page, seconds) {
-  await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(({ key, seconds }) => {
-    if (window !== window.top) return;
-    sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
-    const settings = { carouselAutoplay: false, pushPage: false };
-    if (seconds !== undefined) settings.bookIntroDuration = seconds;
-    localStorage.setItem(key, JSON.stringify(settings));
-  }, { key: settingsKey, seconds });
-  await page.goto('/');
-  await page.locator('#homeLionBook').evaluate(element => window.scrollTo({ top: scrollY + element.getBoundingClientRect().top - innerHeight + 150, behavior: 'instant' }));
+test('调整循环参数不重建画册，停用后保留当前页且手动翻页仍可用', async ({ page }) => {
+  await openReading(page, { bookAutoplay: true, bookPageInterval: 30, pushPage: false });
   const book = page.locator('.lion-book-experience');
-  await expect(book).toHaveAttribute('data-book-ready', 'true');
-  await expect(book).toHaveAttribute('data-book-intro', 'pending');
-  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
-  return { book, frame: page.frameLocator('#homeLionBook iframe') };
-}
-
-test('真实浏览器默认首次翻阅约12秒完成七页并回到序卷', async ({ page }) => {
-  test.setTimeout(45000);
-  const { book, frame } = await prepareIntro(page);
-  await frame.locator('body').evaluate(() => {
-    window.introTiming = {};
-    function sample() {
-      if (introOn && !window.introTiming.start) window.introTiming.start = performance.now();
-      if (!introOn && window.introTiming.start) { window.introTiming.seconds = (performance.now() - window.introTiming.start) / 1000; return; }
-      requestAnimationFrame(sample);
-    }
-    requestAnimationFrame(sample);
-  });
-  await page.locator('.lion-book-stage').scrollIntoViewIfNeeded();
-  await expect(book).toHaveAttribute('data-book-intro', 'playing');
-  expect(await frame.locator('body').evaluate(() => riffle.reduce((sum, leaf) => sum + leaf.dur, 0))).toBeCloseTo(12, 6);
-  await expect(book).toHaveAttribute('data-book-intro', 'done', { timeout: 20000 });
-  await expect.poll(() => frame.locator('body').evaluate(() => window.introTiming.seconds)).toBeGreaterThan(11.6);
-  expect(await frame.locator('body').evaluate(() => window.introTiming.seconds)).toBeLessThan(15);
-  await expect(book).toHaveAttribute('data-book-index', '0');
-});
-
-test('进行中调整时长不重建画册，结束后调整不重播且手动翻页仍可用', async ({ page }) => {
-  const { book, frame } = await prepareIntro(page, 30);
-  await page.locator('.lion-book-stage').scrollIntoViewIfNeeded();
-  await expect(book).toHaveAttribute('data-book-intro', 'playing');
+  const frame = page.frameLocator('#homeLionBook iframe');
   await frame.locator('body').evaluate(() => { window.sameBookInstance = true; });
   await page.locator('.site-header [data-action="settings"]').click();
-  await selectSettingsFor(page, 'bookIntroDuration');
-  const duration = page.getByRole('spinbutton', { name: '画册首次翻阅时长数值', exact: true });
+  await selectSettingsFor(page, 'bookPageInterval');
+  const duration = page.getByRole('spinbutton', { name: '每页停留时间数值', exact: true });
   await duration.fill('3'); await duration.press('Tab');
-  await expect.poll(() => frame.locator('body').evaluate(() => spring?.dur)).toBeCloseTo(3 / 7, 6);
   expect(await frame.locator('body').evaluate(() => window.sameBookInstance)).toBe(true);
-  await expect(book).toHaveAttribute('data-book-intro', 'done');
-  await duration.fill('24'); await duration.press('Tab');
-  await expect(book).toHaveAttribute('data-book-intro', 'done');
-  expect(await frame.locator('body').evaluate(() => ({ at: riffleAt, active: introOn }))).toEqual({ at: 7, active: false });
+  await page.getByRole('checkbox', { name: '按页码循环播放', exact: true }).uncheck();
+  await expect(book).toHaveAttribute('data-book-playback', 'disabled');
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await book.locator('[data-book-page="origin"]').click();
   await expect(book).toHaveAttribute('data-book-index', '1');
   await expect(book).toHaveAttribute('data-book-turning', 'false');
+  expect(await frame.locator('body').evaluate(() => ({ sequence: riffle, active: introOn }))).toEqual({ sequence: null, active: false });
 });

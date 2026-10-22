@@ -3806,6 +3806,42 @@
       "path": "source/reviews/action-navigation/2026-10-22/before-default.png",
       "bytes": 2298942,
       "sha256": "bd6279eb322dc5b1fc0fd47250549a19b43aa97275c438c9d075e656c47f466f"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/book-settings.png",
+      "bytes": 2106740,
+      "sha256": "c30895b8fb26eb46f00c4f4516e32c0895d9469dc9f0768f1ead678d95a96827"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/capture.json",
+      "bytes": 141,
+      "sha256": "fd0874d4435813267f2b95746a0c470788ad12fbc279a8d8e4e3e6970e791c51"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/discard-settings.png",
+      "bytes": 46960,
+      "sha256": "50d6d87aac3e6373549132e22763d9831fc6372e4c340872106b66bafb303ec9"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/entry-video.png",
+      "bytes": 2239172,
+      "sha256": "d45b3a8782fe67421eff0134fbec7f0d9265333984a95e960b81396256635f00"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/sources-desktop-900.png",
+      "bytes": 452955,
+      "sha256": "08de4ea54c01f35c6b9c64d825e06e1487c04d7c0c5f8ca2dcadaef9f58ed2c1"
+    },
+    {
+      "from": "native Chromium production QA, entry/book/source settings 2026-10-22",
+      "path": "source/reviews/entry-book-settings/2026-10-22/sources-settings.png",
+      "bytes": 1108291,
+      "sha256": "a943f91a4f45b7554a0412a6711c1ddaa926e4959d30a85b0a19f516a14065ab"
     }
   ]
 }

@@ -399,6 +399,110 @@
   background: rgb(var(--sidebar-rgb, 255 246 228) / var(--sidebar-fill-opacity, .86));
 }
 
+.developer-settings-footer-tools,
+.developer-settings-footer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.developer-settings-footer-tools .developer-settings-reset {
+  min-height: 32px;
+  padding: 5px 6px;
+  font-size: 12px;
+}
+
+.developer-settings-footer-actions > button {
+  min-height: 40px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.settings-outside-guard {
+  position: fixed;
+  inset: 0;
+  z-index: 34;
+  background: transparent;
+}
+
+.settings-status {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 46;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(540px, calc(100vw - 32px));
+  padding: 12px 20px;
+  border: 1px solid #b18b65;
+  border-radius: 8px;
+  color: #613022;
+  background: #fff6e9;
+  box-shadow: 0 6px 28px #2c10092b;
+  font: 14px/1.7 var(--sans);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.developer-settings-discard {
+  box-sizing: border-box;
+  width: 440px;
+  max-width: calc(100vw - 48px);
+  padding: 0;
+  overflow: visible;
+  border: 1px solid #d3b68b;
+  border-radius: 18px;
+  color: #613022;
+  background: rgb(255 246 228 / .96);
+  box-shadow: 0 24px 80px #21080566;
+  font: 14px/1.8 var(--sans);
+}
+
+.developer-settings-discard::backdrop {
+  background: rgb(28 11 7 / .42);
+  backdrop-filter: blur(5px);
+}
+
+.developer-settings-discard-content { padding: 24px; }
+.developer-settings-discard-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 18px;
+  place-items: center;
+  border-radius: 16px;
+  color: #a63221;
+  background: #f0d9c8;
+}
+.developer-settings-discard-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.developer-settings-discard h2 {
+  margin: 0 0 6px;
+  color: #7e251b;
+  font-size: 22px;
+  line-height: 1.5;
+}
+.developer-settings-discard p { margin: 0; color: #77523b; }
+.developer-settings-discard-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 26px;
+}
+.developer-settings-discard-actions button {
+  width: auto;
+  min-height: 40px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
 .developer-settings-reset {
   width: 100%;
   min-height: 36px;

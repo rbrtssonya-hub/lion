@@ -5,25 +5,33 @@ const modelRequestPattern = `**/${assetPaths.model}`;
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 
-test('冷启动等待真实模型准备，书册不提前快翻，章节复用已编译画布', async ({ page }) => {
+test('冷启动直接播放入场，模型下载不挡屏，章节复用预热画布', async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
   let modelRequests = 0;
+  const loadingAnimationRequests = [];
+  page.on('request', request => { if (/\/assets\/loading\//.test(request.url())) loadingAnimationRequests.push(request.url()); });
   await page.route(modelRequestPattern, async route => {
     modelRequests++;
     await gate;
     await route.continue();
   });
-  await page.goto('/');
-  await expect(page.locator('#startupLoading')).toBeVisible();
-  await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
-  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:book-intro-seen:v1'))).toBeNull();
-  expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:intro-seen:v1'))).toBeNull();
-  expect(await page.locator('#introVideo').evaluate(video => video.paused)).toBe(true);
-  await expect(page.locator('.site-page')).toHaveAttribute('inert', '');
-  release();
-  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
-  await expect(page.locator('#modelStatus')).toContainText('模型已载入');
+  try {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
+    await expect(page.locator('#introVideo')).toBeVisible();
+    await expect(page.locator('.site-header')).toBeHidden();
+    await expect(page.locator('.lion-topbar-resize-handle')).toBeHidden();
+    await expect.poll(() => page.locator('#introVideo').evaluate(video => !video.paused && video.currentTime > .1)).toBe(true);
+    await expect.poll(() => modelRequests).toBe(1);
+    expect(loadingAnimationRequests).toEqual([]);
+    expect(await page.evaluate(() => sessionStorage.getItem('nanfeng-lion:intro-seen:v1'))).toBe('1');
+    await expect(page.locator('.site-page')).not.toHaveAttribute('inert');
+    await page.locator('#skipIntro').click();
+  } finally {
+    release();
+  }
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 60_000 });
   const canvas = await page.locator('#sceneContainer canvas').elementHandle();
   const warmedRequests = modelRequests;
   await page.locator('.site-nav-item[data-route="model"]').click();
@@ -36,18 +44,19 @@ test('冷启动等待真实模型准备，书册不提前快翻，章节复用�
   expect(modelRequests).toBe(warmedRequests);
 });
 
-test('模型网络失败展示预览状态并完成加载，无永久挡屏', async ({ page }) => {
+test('模型网络失败只影响结构预览，不阻挡首页入场', async ({ page }) => {
   await page.route(modelRequestPattern, route => route.abort());
   await page.goto('/');
-  await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', /醒狮模型/, { timeout: 60_000 });
-  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
+  await expect(page.locator('#startupLoading')).toHaveCount(0);
+  await expect.poll(() => page.locator('#introVideo').evaluate(video => !video.paused && video.currentTime > .1)).toBe(true);
+  await page.locator('#skipIntro').click();
   await page.locator('.site-nav-item[data-route="model"]').click();
   await expect(page.locator('#modelStatus')).toContainText('模型载入失败');
   await expect(page.locator('#modelFallback')).toBeVisible();
   await expect(page.getByRole('button', { name: '重新载入', exact: true })).toBeVisible();
 });
 
-test('模型下载途中丢失WebGL上下文仍结束加载并保留重试', async ({ page }) => {
+test('模型下载途中丢失WebGL上下文仍保留章节重试，首页不被挡住', async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
   await page.route(modelRequestPattern, async route => { await gate; await route.continue().catch(() => {}); });
@@ -58,9 +67,10 @@ test('模型下载途中丢失WebGL上下文仍结束加载并保留重试', asy
     const gl = node.getContext('webgl2') || node.getContext('webgl');
     gl.getExtension('WEBGL_lose_context').loseContext();
   });
-  await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', /醒狮模型/, { timeout: 60_000 });
+  await expect(page.locator('#startupLoading')).toHaveCount(0);
+  await expect(page.locator('.site-page')).not.toHaveAttribute('inert');
   release();
-  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
+  await page.locator('#skipIntro').click();
   await page.locator('.site-nav-item[data-route="model"]').click();
   await expect(page.locator('#modelFallback')).toBeVisible();
   await expect(page.getByRole('button', { name: '重新载入', exact: true })).toBeVisible();
@@ -132,17 +142,14 @@ test('加载后同一完整导航底板往返不变，只有图标和品牌移�
   expect(await surface.boundingBox()).toEqual(full);
 });
 
-test('导航字体请求悬挂时总准备预算到期，保留字体回退并结束加载', async ({ page }) => {
+test('导航字体请求悬挂时入场仍立即播放，导航保留文字回退', async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
   await page.route('**/*.woff', async route => { await gate; await route.continue().catch(() => {}); });
   try {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#startupLoading')).toBeVisible();
-    await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-    await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
-    await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', /图像与章节/, { timeout: 40_000 });
-    await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 15_000 });
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
+    await expect.poll(() => page.locator('#introVideo').evaluate(video => !video.paused && video.currentTime > .1)).toBe(true);
     await expect(page.locator('.site-page')).not.toHaveAttribute('inert');
     await expect(page.locator('.site-nav-heading strong')).toHaveText(['首页', '结构', '动作', '神态', '设置']);
   } finally {
@@ -150,25 +157,23 @@ test('导航字体请求悬挂时总准备预算到期，保留字体回退并�
   }
 });
 
-test('当前首页视频首帧纳入准备，超时保留封面与重试且复用同一video', async ({ page }) => {
+test('入场视频网络悬挂时直接显示封面，超时保留重试且复用同一video', async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
   await page.route('**/*.mp4', async route => { await gate; await route.continue().catch(() => {}); });
   try {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
     const video = page.locator('#introVideo');
     const original = await video.elementHandle();
     expect(await video.evaluate(node => node.readyState)).toBe(0);
-    await expect(page.locator('#startupLoading')).toBeVisible();
-    await expect(page.locator('#startupLoading')).toHaveAttribute('data-ready', 'false');
-    await expect(page.locator('#startupLoading')).toHaveAttribute('data-failures', /首页影像/, { timeout: 40_000 });
-    await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 15_000 });
-    await expect(page.locator('.video-status')).toContainText('视频准备较慢，请重试');
+    await expect(video).toBeVisible();
+    await expect(page.locator('#startupLoading')).toHaveCount(0);
+    await expect(page.locator('.site-page')).not.toHaveAttribute('inert');
+    await expect(page.locator('.video-status')).toContainText('视频准备较慢，请重试', { timeout: 40_000 });
     expect(await video.evaluate(node => Boolean(node.poster) && node.paused)).toBe(true);
     release();
     await expect.poll(() => video.evaluate(node => node.readyState)).toBeGreaterThanOrEqual(2);
-    // Delayed data and startupReady must not silently retire the failure UI.
+    // Delayed data must not silently retire the failure UI.
     await expect(page.locator('.video-status')).toContainText('视频准备较慢，请重试');
     await expect(page.getByRole('button', { name: '重试', exact: true })).toBeVisible();
     await page.getByRole('button', { name: '重试', exact: true }).click();

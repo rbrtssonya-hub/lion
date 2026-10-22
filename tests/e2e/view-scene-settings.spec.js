@@ -38,7 +38,7 @@ async function openSettings(page, name) {
 }
 
 async function closeSettings(page) {
-  await settingsPanel(page).getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
 }
 
 async function edit(page, label, value) {
@@ -108,9 +108,9 @@ test('结构真实滚轮到达有限远近边界，视角参数原位生效并�
   await edit(page, '结构镜头视野', 42);
   await expect.poll(() => json(canvas, 'data-view-settings')).toMatchObject({ structureMinDistanceRatio: .75, structureMaxDistanceRatio: 3.1, structureFov: 42 });
   await expect.poll(() => json(canvas, 'data-camera-limits')).toMatchObject({ fov: 42 });
+  await closeSettings(page);
   await expect.poll(() => saved(page)).toMatchObject({ structureMinDistanceRatio: .75, structureMaxDistanceRatio: 3.1, structureFov: 42 });
   expect(await original.evaluate(node => node === document.querySelector('#sceneContainer canvas'))).toBe(true);
-  await closeSettings(page);
   const changed = await json(canvas, 'data-camera-limits');
   await zoom(page, canvas, -2000);
   await expect.poll(async () => Math.abs(Number(await canvas.getAttribute('data-camera-distance')) - changed.min)).toBeLessThan(.015);
@@ -133,8 +133,8 @@ test('动作真实拖拽可俯视和仰视，设置限幅生效，四鼓和狮�
   await edit(page, '动作最远观看距离', 18);
   await edit(page, '动作镜头视野', 62);
   await expect.poll(() => json(canvas, 'data-camera-limits')).toMatchObject({ min: 4, max: 18, minPolar: 30, maxPolar: 140, fov: 62 });
-  await expect.poll(() => saved(page)).toMatchObject({ actionMinPolarAngle: 30, actionMaxPolarAngle: 140, actionMinDistance: 4, actionMaxDistance: 18, actionFov: 62 });
   await closeSettings(page);
+  await expect.poll(() => saved(page)).toMatchObject({ actionMinPolarAngle: 30, actionMaxPolarAngle: 140, actionMinDistance: 4, actionMaxDistance: 18, actionFov: 62 });
   await dragVertically(page, canvas, .15, .88);
   await expect.poll(() => polarAngle(canvas)).toBeLessThan(31);
   expect(await polarAngle(canvas)).toBeGreaterThanOrEqual(29.99);
@@ -178,6 +178,7 @@ test('真实森林、内置4K和URL环境原位切换，保持相机及完整模
   await expectSource(canvas, /\/forest\.exr$/, '1024x512');
   await chooseUrl(page, '/assets/environments/forest.exr?view-scene-url=1');
   await expectSource(canvas, /\/forest\.exr\?view-scene-url=1$/, '1024x512');
+  await closeSettings(page);
   await expect.poll(() => saved(page)).toMatchObject({ hdriSource: 'url', hdriUrl: '/assets/environments/forest.exr?view-scene-url=1' });
   expect(await original.evaluate(node => node === document.querySelector('#sceneContainer canvas'))).toBe(true);
   expect(Math.abs(Number(await canvas.getAttribute('data-camera-distance')) - distance)).toBeLessThan(.002);
@@ -208,11 +209,14 @@ test('本地真实EXR和有效RGBE文件能解码，替换后撤销旧URL且刷�
   const oldHdr = await canvas.getAttribute('data-hdri-source');
   expect(oldHdr).not.toBe(oldExr);
   await expect.poll(() => page.evaluate(url => fetch(url).then(() => false, () => true), oldExr)).toBe(true);
+  await closeSettings(page);
   expect(await saved(page)).not.toHaveProperty('hdriFile');
   expect((await saved(page)).hdriSource).toBe('forest');
+  await openSettings(page, 'HDRI');
   await settingsPanel(page).getByLabel('HDRI来源', { exact: true }).selectOption('forest');
   await expectSource(canvas, /\/forest\.exr$/, '1024x512');
   await expect.poll(() => page.evaluate(url => fetch(url).then(() => false, () => true), oldHdr)).toBe(true);
+  await closeSettings(page);
   await page.reload();
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 70_000 });
   await expectSource(model(page), /\/forest\.exr$/, '1024x512');

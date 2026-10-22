@@ -6,24 +6,12 @@ import { lionBookPages } from '../../data/lion-book.js';
 import BookTimeline from './BookTimeline.jsx';
 
 const fileBase = media.lionBookCover.slice(0, media.lionBookCover.lastIndexOf('/') + 1);
-const introSessionKey = 'nanfeng-lion:book-intro-seen:v1';
-let introConsumedInThisPage = false;
-
-function hasConsumedIntro() {
-  try { return introConsumedInThisPage || sessionStorage.getItem(introSessionKey) === '1'; }
-  catch { return introConsumedInThisPage; }
-}
-
-function consumeIntro() {
-  introConsumedInThisPage = true;
-  try { sessionStorage.setItem(introSessionKey, '1'); }
-  catch { /* Preserve once-per-page-session behavior when storage is unavailable. */ }
-}
-
-export default function LionBookExperience({ introDuration = 12, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady }) {
+export default function LionBookExperience({ autoplay = true, pageInterval = 8, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady }) {
   const hostRef = useRef(null);
-  const introDurationRef = useRef(introDuration);
-  introDurationRef.current = introDuration;
+  const autoplayRef = useRef(autoplay);
+  autoplayRef.current = autoplay;
+  const pageIntervalRef = useRef(pageInterval);
+  pageIntervalRef.current = pageInterval;
   const scaleRef = useRef(scale);
   scaleRef.current = scale;
   const frameRef = useRef(null);
@@ -40,7 +28,7 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     url.hash = `lion-book=${channelId}`;
     return url.href;
   }, [channelId]);
-  const [book, setBook] = useState({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
+  const [book, setBook] = useState({ index: 0, turning: false, ready: false, playback: 'hidden', error: null });
   const bookRef = useRef(book);
   bookRef.current = book;
   const [timelineTarget, setTimelineTarget] = useState(null);
@@ -60,8 +48,8 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     }
     const command = { type: 'lion-book:command', channelId: channelRef.current, action };
     if (action === 'visibility') command.visible = value;
-    else if (action === 'intro-policy') command.enabled = value;
-    else if (action === 'intro-duration') command.seconds = value;
+    else if (action === 'autoplay-policy') command.enabled = value;
+    else if (action === 'page-interval') command.seconds = value;
     else if (action === 'book-scale') command.scale = value;
     else if (Number.isInteger(value)) command.index = value;
     frameRef.current?.contentWindow?.postMessage(command, '*');
@@ -104,22 +92,24 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     document.addEventListener('visibilitychange', publishVisibility);
     window.addEventListener('focus', publishVisibility);
     window.addEventListener('blur', onWindowBlur);
+    // Opaque Chrome iframes may omit pointerleave when the pointer crosses
+    // their browsing-context boundary. Fresh host input releases that hover.
+    const onHostPointerMove = (event) => {
+      if (event.target !== frame && bookRef.current.playback === 'interacting') send('pointer-release');
+    };
+    window.addEventListener('pointermove', onHostPointerMove);
     const receive = (event) => {
       if (!active || event.source !== frame.contentWindow || event.data?.channelId !== channelId) return;
       const data = event.data;
       if (data.type === 'lion-book:state') {
         if (!Number.isInteger(data.index) || data.index < 0 || data.index >= lionBookPages.length) return;
         if (typeof data.ready !== 'boolean' || typeof data.turning !== 'boolean') return;
-        if (!['pending', 'playing', 'done'].includes(data.intro)) return;
-        if (typeof data.introConsumed !== 'boolean') return;
-        // Only the real engine start or deliberate paper input consumes the
-        // visit. Lazy mounting, loading and visibility alone do not.
-        if (data.introConsumed) consumeIntro();
+        if (!['disabled', 'reduced', 'hidden', 'interacting', 'turning', 'playing'].includes(data.playback)) return;
         if (data.ready || data.error) clearTimeout(loadTimeout);
-        const nextBook = { index: data.index, turning: data.turning, ready: data.ready, intro: data.intro, error: data.error ? '书页加载失败' : null };
+        const nextBook = { index: data.index, turning: data.turning, ready: data.ready, playback: data.playback, error: data.error ? '书页加载失败' : null };
         bookRef.current = nextBook;
         // Old messages from an interrupted turn must not pull the marker away
-        // from the latest requested node. Paper gestures and the intro remain
+        // from the latest requested node. Paper gestures and automatic turns remain
         // authoritative whenever there is no outstanding host selection.
         if (data.error || (!data.turning && data.index === pendingTimelineRef.current)) {
           pendingTimelineRef.current = null;
@@ -144,9 +134,9 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     }, 25_000);
     const sync = () => {
       frame.title = '岭南醒狮志 · 拖动书页翻阅文化史册';
-      send('intro-duration', introDurationRef.current);
+      send('page-interval', pageIntervalRef.current);
       send('book-scale', scaleRef.current);
-      send('intro-policy', !hasConsumedIntro());
+      send('autoplay-policy', autoplayRef.current);
       send('sync');
       publishVisibility();
     };
@@ -164,6 +154,7 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
       document.removeEventListener('visibilitychange', publishVisibility);
       window.removeEventListener('focus', publishVisibility);
       window.removeEventListener('blur', onWindowBlur);
+      window.removeEventListener('pointermove', onHostPointerMove);
       clearTimeout(focusTimer);
       clearTimeout(loadTimeout);
       if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
@@ -172,9 +163,8 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     };
   }, [channelId, send]);
 
-  useLayoutEffect(() => {
-    send('intro-duration', introDuration);
-  }, [introDuration, send]);
+  useLayoutEffect(() => { send('page-interval', pageInterval); }, [pageInterval, send]);
+  useLayoutEffect(() => { send('autoplay-policy', autoplay); }, [autoplay, send]);
   useLayoutEffect(() => { send('book-scale', scale); }, [scale, send]);
 
   useLayoutEffect(() => { visibilityPublisher.current?.(); }, [playbackEnabled]);
@@ -185,10 +175,10 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
   const retry = () => {
     pendingTimelineRef.current = null;
     setTimelineTarget(null);
-    setBook({ index: 0, turning: false, ready: false, intro: 'pending', error: null });
+    setBook({ index: 0, turning: false, ready: false, playback: 'hidden', error: null });
     setAttempt((value) => value + 1);
   };
-  return <div className="lion-book-experience" data-book-ready={book.ready} data-book-index={book.index} data-book-turning={book.turning} data-book-intro={book.intro} data-book-error={Boolean(book.error)}
+  return <div className="lion-book-experience" data-book-ready={book.ready} data-book-index={book.index} data-book-turning={book.turning} data-book-playback={book.playback} data-book-error={Boolean(book.error)}
     onKeyDown={(event) => {
       if (event.metaKey || event.ctrlKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
       const action = { ArrowRight: 'next', ArrowLeft: 'previous', Home: 'goTo', End: 'goTo' }[event.key];
@@ -203,7 +193,7 @@ export default function LionBookExperience({ introDuration = 12, scale = 1.16, i
     </div>
     <p className="sr-only" id="lion-book-instructions">拖动左右书页，或点选年代；左右方向键翻页。</p>
     <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
-    <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={book.intro === 'playing' ? 'off' : 'polite'} aria-atomic="true">
+    <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={autoplay ? 'off' : 'polite'} aria-atomic="true">
       <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
       <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
         {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}

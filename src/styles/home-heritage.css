@@ -86,6 +86,25 @@
 .home-culture-photo-licenses summary .heritage-motif { width: 25px; height: 25px; transform: none; }
 .heritage-source-cloud { margin-top: 20px; text-align: center; color: #b58e55; pointer-events: none; }
 .heritage-source-cloud svg { width: 220px; max-width: 100%; height: 28px; stroke: currentColor; opacity: .6; }
+/* Source typography stays readable at its requested size, including publishers
+   and licensing details. Cards and lists grow with the text. */
+.heritage-sources-wrap .home-culture-sources h2 { font-size: var(--sources-title-size, 32px); line-height: 1.4; }
+.heritage-sources-wrap .home-culture-sources-intro,
+.heritage-sources-wrap .home-culture-source-description,
+.heritage-sources-wrap .heritage-source-group a,
+.heritage-sources-wrap .home-culture-photo-license p,
+.heritage-sources-wrap .archive-provenance p { font-size: var(--sources-body-size, 18px); line-height: 1.85; }
+.heritage-sources-wrap .home-culture-source-card strong,
+.heritage-sources-wrap .heritage-source-group h3,
+.heritage-sources-wrap .home-culture-photo-licenses summary,
+.heritage-sources-wrap .archive-provenance summary { font-size: calc(var(--sources-body-size, 18px) + 4px); line-height: 1.6; }
+.heritage-sources-wrap .home-culture-source-publisher,
+.heritage-sources-wrap .heritage-source-group small,
+.heritage-sources-wrap .home-culture-photo-license .home-culture-credit { font-size: var(--sources-meta-size, 16px); line-height: 1.8; color: #785537; }
+.heritage-sources-wrap .home-culture-source-description { color: #785537; }
+.heritage-sources-wrap .home-culture-source-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(240px / var(--cultureSourceCard-surface-width-ratio, 1))), 1fr)); }
+.heritage-sources-wrap .home-culture-source-card,
+.heritage-sources-wrap .home-culture-sources-intro { min-width: 0; overflow-wrap: anywhere; }
 .home-heritage-section button:focus-visible, .home-heritage-section a:focus-visible, .heritage-sources-wrap a:focus-visible { outline: 2px solid #a13725; outline-offset: 5px; }
 @keyframes heritage-reveal { from { opacity: .15; } to { opacity: 1; } }
 @container heritage-title (max-width: 1050px) {

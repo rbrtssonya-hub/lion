@@ -10,7 +10,7 @@ async function configure(page, { seen = true, height = 1080, settings = {} } = {
     if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
     if (seen) sessionStorage.setItem(introKey, '1');
-    localStorage.setItem(settingsKey, JSON.stringify({ pushPage: false, bookIntroDuration: 3, ...settings }));
+    localStorage.setItem(settingsKey, JSON.stringify({ pushPage: false, bookAutoplay: false, bookPageInterval: 3, ...settings }));
   }, { settingsKey, introKey, seen, settings });
 }
 
@@ -99,7 +99,7 @@ test('七个年代台阶水平排列，角色与书页同步且粒子拖尾可�
   await page.getByRole('checkbox', { name: '书册导航粒子拖尾' }).uncheck();
   await expect(timeline).toHaveAttribute('data-particles-enabled', 'false');
   await expect(particles).toHaveCSS('display', 'none');
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await timeline.locator('[data-book-page="formation"]').click();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '2');
   await expect(timeline.locator('[data-book-page="formation"]')).toHaveAttribute('aria-current', 'step');
@@ -116,23 +116,15 @@ test('七个年代台阶水平排列，角色与书页同步且粒子拖尾可�
   }).toBeLessThan(2);
 });
 
-test('加载遮罩期间书册已预热且不消费首翻资格，短桌面大舞台可启动首翻', async ({ page }) => {
-  await configure(page, { seen: false, height: 650, settings: { bookStageHeight: 960 } });
-  let releaseModel;
-  const modelGate = new Promise(resolve => { releaseModel = resolve; });
-  await page.route('**/assets/models/lion-structure-optimized.glb', async route => { await modelGate; await route.continue(); });
-  try {
-    await page.goto('/');
-    const book = page.locator('.lion-book-experience');
-    await expect(book).toHaveAttribute('data-book-ready', 'true');
-    await page.locator('.lion-book-stage').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
-    await expect(page.locator('#startupLoading')).toHaveCount(1);
-    await expect(book).toHaveAttribute('data-book-intro', 'pending');
-    expect(await page.evaluate(key => sessionStorage.getItem(key), introKey)).toBeNull();
-    releaseModel();
-    await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
-    await expect(book).toHaveAttribute('data-book-intro', 'playing');
-    expect(await page.evaluate(key => sessionStorage.getItem(key), introKey)).toBe('1');
-    await expect(book).toHaveAttribute('data-book-intro', 'done');
-  } finally { releaseModel(); }
+test('短桌面大书册舞台按页码循环且不播放首次快翻', async ({ page }) => {
+  await configure(page, { seen: false, height: 650, settings: { bookStageHeight: 960, bookAutoplay: true } });
+  await page.goto('/');
+  const book = page.locator('.lion-book-experience');
+  const frame = page.frameLocator('#homeLionBook iframe');
+  await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await page.mouse.move(10, 150);
+  await page.locator('.lion-book-stage').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await expect(book).toHaveAttribute('data-book-playback', 'playing');
+  await expect(book).toHaveAttribute('data-book-index', '1');
+  expect(await frame.locator('body').evaluate(() => ({ sequence: riffle, running: introOn }))).toEqual({ sequence: null, running: false });
 });

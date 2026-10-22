@@ -67,14 +67,14 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
   </section>
   <div className="home-archive-scene" style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
     {['top', 'side', 'bottom'].map(position => <div key={position} className={`archive-background-layer is-${position}`} aria-hidden="true" />)}
-    <HomeLionBook settings={settings} introDuration={settings.bookIntroDuration} preload={true} playbackEnabled={playbackEnabled} onReady={onBookReady} />
+    <HomeLionBook settings={settings} preload={true} playbackEnabled={playbackEnabled} onReady={onBookReady} />
     <div className="home-archive-next">
       <div className="home-archive-peek" aria-hidden="true">
         <img src={media.homeArchivePeek} alt="" draggable="false" loading="lazy" width="1536" height="1024" />
       </div>
       <HomeCulture settings={settings} preload={true} playbackEnabled={playbackEnabled} onReady={onGalleryReady} />
       <HomeLionTypes />
-      <HomeCultureSources />
+      <HomeCultureSources settings={settings} />
     </div>
   </div>
   <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />

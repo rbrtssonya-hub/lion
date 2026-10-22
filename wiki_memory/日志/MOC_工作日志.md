@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | completed | [E盘同步GitHub首页声波更新](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-E%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E9%A6%96%E9%A1%B5%E5%A3%B0%E6%B3%A2%E6%9B%B4%E6%96%B0.md) |
+| 2026-10-22 | feature | completed | [入场、史册循环与设置保存导出](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-22-%E5%85%A5%E5%9C%BA%E5%8F%B2%E5%86%8C%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%AE%BE%E7%BD%AE%E4%BF%9D%E5%AD%98%E5%AF%BC%E5%87%BA.md) |
 | 2026-10-22 | ui | completed | [默认播放、神态书法动效与结构目录](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%BB%98%E8%AE%A4%E6%92%AD%E6%94%BE%E7%A5%9E%E6%80%81%E4%B9%A6%E6%B3%95%E5%8A%A8%E6%95%88%E4%B8%8E%E7%BB%93%E6%9E%84%E7%9B%AE%E5%BD%95.md) |
 | 2026-10-22 | ui | completed | [首页白线声音开关](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%A6%96%E9%A1%B5%E7%99%BD%E7%BA%BF%E5%A3%B0%E9%9F%B3%E5%BC%80%E5%85%B3.md) |
 | 2026-10-22 | ui | completed | [首页声波动效与最新主线接续](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%A6%96%E9%A1%B5%E5%A3%B0%E6%B3%A2%E5%8A%A8%E6%95%88%E4%B8%8E%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E6%8E%A5%E7%BB%AD.md) |

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { selectSettingsFor, selectSettingsPage as selectSettingsTab, settingsPages } from './settings-navigation.helpers.js';
+import { expandSettingsGroups, selectSettingsFor, selectSettingsPage as selectSettingsTab, settingsPages } from './settings-navigation.helpers.js';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
 const headerSurfaces = page => page.locator('.site-header > .navigation-surface');
@@ -46,6 +46,15 @@ async function openSettings(page) {
   await waitForStartup(page);
   await trigger(page).click();
   await expect(panel(page)).toBeVisible();
+}
+
+async function saveSettings(page, reopen = true) {
+  await panel(page).getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect(panel(page)).toHaveCount(0);
+  if (reopen) {
+    await openSettings(page);
+    await expandSettingsGroups(page);
+  }
 }
 
 async function editNumber(page, name, value) {
@@ -102,6 +111,7 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expectPageWidth(page, 340);
+  await expect(panel(page).getByRole('button', { name: '关闭开发者参数' })).toBeFocused();
   await selectSettingsFor(page, '首页阅读底板透明度数值');
   await expect(panel(page).getByRole('spinbutton', { name: '首页阅读底板透明度数值' })).toHaveValue('35');
   const bounds = await panel(page).boundingBox();
@@ -109,7 +119,6 @@ test('第五项设置默认关闭，展开为贴右全高侧栏，关闭和 Esca
   expect(bounds.y).toBe(0);
   expect(bounds.x + bounds.width).toBeCloseTo(viewport.width, 1);
   expect(bounds.height).toBe(viewport.height);
-  await expect(panel(page).getByRole('button', { name: '关闭开发者参数' })).toBeFocused();
   await expect(panel(page).getByRole('tablist', { name: '设置分类', exact: true }).getByRole('tab', { name: '公共模块', exact: true })).toHaveAttribute('aria-selected', 'true');
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', includeHidden: true })).toBeHidden();
   await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
@@ -183,6 +192,7 @@ test('设置主分类纵向排列，主子页面键盘切换并保留已调参�
     await expect(subtabs.first()).toBeFocused();
   }
   await editNumber(page, '导航标题字号', 24);
+  await saveSettings(page);
   await expectSaved(page, { navFontSize: 24 });
   await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
   await openSettings(page);
@@ -214,6 +224,7 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
     await brandOffset.fill(draft);
     await brandOffset.press('Tab');
     await expect(brandOffset).toHaveValue(String(expected));
+    await saveSettings(page);
     await expectSaved(page, { homeBrandOffset: expected });
   }
   const brandOffsetSlider = panel(page).getByRole('slider', { name: '首页品牌右移距离', exact: true });
@@ -222,33 +233,41 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   await expect(brandOffsetSlider).toHaveAttribute('step', '1');
   await brandOffsetSlider.focus();
   await brandOffsetSlider.press('Home');
+  await saveSettings(page);
   await expectSaved(page, { homeBrandOffset: 0 });
   await brandOffsetSlider.press('ArrowRight');
+  await saveSettings(page);
   await expectSaved(page, { homeBrandOffset: 1 });
   await brandOffsetSlider.press('End');
+  await saveSettings(page);
   await expectSaved(page, { homeBrandOffset: 160 });
   await selectSettingsFor(page, 'navigationDuration');
   for (const [draft, expected] of [['99', 200], ['1800', 1600], ['755', 760], ['', 760]]) {
     await duration.fill(draft);
     await duration.press('Tab');
     await expect(duration).toHaveValue(String(expected));
+    await saveSettings(page);
     await expectSaved(page, { navigationDuration: expected });
   }
   const slider = panel(page).getByRole('slider', { name: '导航动画时长', exact: true });
   await slider.focus();
   await slider.press('Home');
+  await saveSettings(page);
   await expectSaved(page, { navigationDuration: 200 });
   await slider.press('End');
+  await saveSettings(page);
   await expectSaved(page, { navigationDuration: 1600 });
   await editNumber(page, '导航动画时长', 1300);
   for (const curve of ['soft', 'smooth', 'swift']) {
     await easing.selectOption(curve);
+    await saveSettings(page);
     await expectSaved(page, { navigationEasing: curve });
   }
   await editNumber(page, '紧凑导航图标间距', 28);
   await editNumber(page, '紧凑导航右侧留白', 96);
   await editNumber(page, '首页品牌右移距离', 64);
   await editNumber(page, '导航辅助文字字号', 16);
+  await saveSettings(page);
   await expectSaved(page, { navigationDuration: 1300, navigationEasing: 'swift', compactNavGap: 28, compactNavInset: 96, homeBrandOffset: 64, helperFontSize: 16 });
 
   await reloadPage(page);
@@ -265,6 +284,7 @@ test('动画参数与紧凑布局可保存刷新和恢复默认，时长数值�
   await selectSettingsFor(page, 'homeBrandOffset');
   await expect(brandOffset).toHaveValue('64');
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, { navigationDuration: 720, navigationEasing: 'smooth', compactNavGap: 14, compactNavInset: 48, homeBrandOffset: 24, helperFontSize: 18, headerTransparency: 20, pushPage: true });
   await selectSettingsFor(page, 'navigationDuration');
   await expect(duration).toHaveValue('720');
@@ -297,6 +317,7 @@ test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢
     carouselAutoplay: false, carouselInterval: 9, carouselResumeDelay: 5,
     carouselTransitionDuration: 1050, carouselFocusScale: 107,
   };
+  await saveSettings(page);
   await expectSaved(page, { ...navigationSettings, ...changed });
 
   await reloadPage(page);
@@ -312,6 +333,7 @@ test('旧v2设置补齐轮播默认值，轮播参数独立保存刷新并可恢
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值', exact: true })).toHaveValue('20');
   await selectSettingsTab(page, '轮播');
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, { ...carouselDefaults, navFontSize: 26, navigationTypographyVersion: 2, pushPage: true, headerTransparency: 20, homeBrandOffset: 24 });
   await expect(autoplay).toBeChecked();
   for (const [label, value] of [['自动播放间隔', 6], ['离开后恢复等待', 3], ['照片过渡时长', 800], ['照片聚焦比例', 104]]) {
@@ -351,16 +373,20 @@ test('280px侧栏完整显示设置主分类，轮播滑块及数值校验范围
     await expect(slider).toHaveAttribute('step', String(step));
     await slider.focus();
     await slider.press('Home');
+    await saveSettings(page);
     await expectSaved(page, { [key]: min });
     await slider.press('ArrowRight');
+    await saveSettings(page);
     await expectSaved(page, { [key]: min + step });
     await slider.press('End');
+    await saveSettings(page);
     await expectSaved(page, { [key]: max });
     const input = panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true });
     for (const [draft, expected] of [[min - 1, min], [max + 1, max]]) {
       await input.fill(String(draft));
       await input.press('Tab');
       await expect(input).toHaveValue(String(expected));
+      await saveSettings(page);
       await expectSaved(page, { [key]: expected });
     }
   }
@@ -369,6 +395,7 @@ test('280px侧栏完整显示设置主分类，轮播滑块及数值校验范围
   await duration.fill('1025');
   await duration.press('Tab');
   await expect(duration).toHaveValue('1050');
+  await saveSettings(page);
   await expectSaved(page, { carouselTransitionDuration: 1050 });
 });
 
@@ -438,6 +465,7 @@ test('推开页面按侧栏宽度留空，窄窗口自动覆盖并在加宽后�
   await expect(panel(page)).toContainText('窗口空间不足');
   await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).toBeChecked();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await saveSettings(page);
   await expectSaved(page, { pushPage: true, panelWidth: 480 });
 
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -457,6 +485,7 @@ test('导航标题与辅助文字可独立调整，滑块和数值输入校验�
   await expectNavigationSizes(page, 26, 12);
   await editNumber(page, '导航标题字号', 28);
   await expectNavigationSizes(page, 28, 12);
+  await saveSettings(page);
   await expectSaved(page, { navFontSize: 28, helperFontSize: 12 });
 
   const helperSlider = panel(page).getByRole('slider', { name: '导航辅助文字字号', exact: true });
@@ -472,6 +501,7 @@ test('导航标题与辅助文字可独立调整，滑块和数值输入校验�
     await helperInput.press('Tab');
     await expect(helperInput).toHaveValue(String(expected));
     await expectNavigationSizes(page, 28, expected);
+    await saveSettings(page);
     await expectSaved(page, { navFontSize: 28, helperFontSize: expected });
   }
 
@@ -501,6 +531,7 @@ test('章节原毛笔标题继承导航字号设置，刷新与返回首页后�
     expect(await label.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Nanfeng Navigation Brush');
   }
   for (const helper of await page.locator('.site-nav-description').all()) await expect(helper).toBeHidden();
+  await saveSettings(page, false);
   await reloadPage(page);
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
   await expectNavigationSizes(page, 28, 15);
@@ -525,6 +556,7 @@ test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默�
   await editNumber(page, '顶栏高度', 123);
   await editNumber(page, '导航标题字号', 23);
   await editNumber(page, '导航辅助文字字号', 15);
+  await saveSettings(page);
   await expectSaved(page, { headerTransparency: 42, sidebarBlur: 9, panelWidth: 430, headerHeight: 123, navFontSize: 23, helperFontSize: 15 });
   await expectNavigationSizes(page, 23, 15);
 
@@ -543,6 +575,7 @@ test('参数与独立字号持久保存，刷新保持侧栏关闭，恢复默�
   await expect(panel(page).getByRole('spinbutton', { name: '导航辅助文字字号数值' })).toHaveValue('15');
   await expectNavigationSizes(page, 23, 15);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, { headerTransparency: 20, sidebarTransparency: 14, sidebarBlur: 18, headerHeight: 90, navFontSize: 26, helperFontSize: 18, panelWidth: 340, pushPage: true, homeBrandOffset: 24 });
   await expectNavigationSizes(page, 26, 18);
   await expect.poll(() => headerHeight(page)).toBe(90);
@@ -559,6 +592,7 @@ test('旧默认字号 20 只迁移一次至 26，其他参数保留，随后手�
   await selectSettingsFor(page, '导航标题字号数值');
   await expect(panel(page).getByRole('spinbutton', { name: '导航标题字号数值' })).toHaveValue('26');
   await editNumber(page, '导航标题字号', 20);
+  await saveSettings(page);
   await expectSaved(page, { navFontSize: 20 });
   await reloadPage(page);
   await expect(panel(page)).toHaveCount(0);
@@ -609,6 +643,7 @@ test('已有透明度、覆盖偏好和零品牌位移保留，恢复默认采�
   await selectSettingsTab(page, '布局');
   await expect(panel(page).getByRole('checkbox', { name: '设置面板推开页面' })).not.toBeChecked();
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, { navigationTypographyVersion: 2, navFontSize: 26, headerTransparency: 20,
     pushPage: true, homeBrandOffset: 24, brandPadding: 24 });
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
@@ -666,7 +701,7 @@ test('损坏或不合法的保存参数可恢复，浏览器存储不可用时�
   expect(errors).toEqual([]);
 });
 
-test('整条边界可悬停显示中央握柄，拖动实时预览并仅在松手后保存', async ({ page }) => {
+test('整条边界可悬停显示中央握柄，拖动实时预览，设置内拖动需显式保存', async ({ page }) => {
   await loadPage(page);
   const top = topEdge(page);
   await expect(top.locator('span')).toHaveCSS('opacity', '0');
@@ -699,6 +734,8 @@ test('整条边界可悬停显示中央握柄，拖动实时预览并仅在松�
   await expect.poll(() => sidebarWidth(page)).toBe(453);
   await expectSaved(page, { panelWidth: 340 });
   await page.mouse.up();
+  await expectSaved(page, { panelWidth: 340 });
+  await saveSettings(page);
   await expectSaved(page, { panelWidth: 453, headerHeight: 127 });
   await expectNoDrag(page);
 });
@@ -732,6 +769,8 @@ test('Escape、pointercancel 和拖动中关闭侧栏均撤销预览并清理全
   await expect.poll(() => sidebarWidth(page)).toBe(440);
   // Activate the close control while the pointer remains captured to exercise unmount cleanup.
   await panel(page).getByRole('button', { name: '关闭开发者参数' }).evaluate(button => button.click());
+  await expect(page.getByRole('alertdialog', { name: '放弃未保存的设置？' })).toBeVisible();
+  await page.getByRole('button', { name: '放弃更改', exact: true }).evaluate(button => button.click());
   await page.mouse.up();
   await expect(panel(page)).toHaveCount(0);
   await expect(trigger(page)).toBeFocused();
@@ -762,14 +801,16 @@ test('尺寸边界支持方向键、加速与上下限，双击仅恢复对应�
   const side = sideEdge(page);
   await side.focus();
   await page.keyboard.press('ArrowLeft');
-  await expectSaved(page, { panelWidth: 341 });
+  await expect(side).toHaveAttribute('aria-valuenow', '341');
   await page.keyboard.press('Shift+ArrowLeft');
-  await expectSaved(page, { panelWidth: 351 });
+  await expect(side).toHaveAttribute('aria-valuenow', '351');
   await page.keyboard.press('Home');
-  await expectSaved(page, { panelWidth: 280 });
+  await expect(side).toHaveAttribute('aria-valuenow', '280');
   await page.keyboard.press('End');
-  await expectSaved(page, { panelWidth: 760 });
+  await expect(side).toHaveAttribute('aria-valuenow', '760');
   await side.dblclick({ position: { x: 6, y: 120 } });
+  await expectSaved(page, { panelWidth: 340, headerTransparency: 20 });
+  await saveSettings(page);
   await expectSaved(page, { panelWidth: 340, headerHeight: 90, headerTransparency: 45 });
 });
 
@@ -786,7 +827,7 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await selectSettingsTab(page, '导航');
   await editNumber(page, '顶栏高度', 115);
   expect(await video.evaluate(element => element.isConnected && element === document.querySelector('#entryLionVideo'))).toBe(true);
-
+  await saveSettings(page, false);
   await page.locator('.site-navigation [data-route="model"]').click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
   await expect(page.locator('#sceneContainer canvas')).toHaveCount(1);
@@ -805,10 +846,12 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
     body: JSON.stringify({ chrome: page.context().browser().version(), ...rendererEnvironment }, null, 2),
     contentType: 'application/json',
   });
+  await openSettings(page);
   await editNumber(page, '设置面板宽度', 520);
   await editNumber(page, '顶栏高度', 100);
   await editNumber(page, '侧栏模糊强度', 22);
   expect(await canvas.evaluate(element => element.isConnected && element === document.querySelector('#sceneContainer canvas'))).toBe(true);
+  await saveSettings(page, false);
   await page.locator('#toggleRotate').click();
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'true');
   const movingMouth = page.locator('#modelHotspots [data-id="mouth"]');
@@ -825,7 +868,9 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
   await page.locator('.site-navigation [data-route="state"]').click();
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
-  await expect(panel(page)).toBeVisible();
+  await expect(panel(page)).toHaveCount(0);
+  await openSettings(page);
+  await panel(page).getByRole('button', { name: '关闭开发者参数' }).click();
   await page.locator('.site-navigation [data-route="model"]').click();
   expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-full-hair-groups', '33');
@@ -860,6 +905,7 @@ test('七类底板独立参数可保存刷新，完全透明时文字与按钮�
     });
     saved[`${prefix}Color`] = '#f2e6cf';
   }
+  await saveSettings(page);
   await expectSaved(page, saved);
   for (const [prefix, count] of [['bookTitle', 1], ['bookDetails', 1], ['cultureTitle', 2], ['cultureBody', 9]]) {
     await expect(page.locator('.archive-reading-panel[data-surface="' + prefix + '"]')).toHaveCount(count);
@@ -923,11 +969,13 @@ test('旧统一底板透明度迁移，书册尺寸与页面命中可单独保�
   await selectSettingsTab(page, '布局');
   await panel(page).getByRole('checkbox', { name: '网页页面是否能被命中', exact: true }).check();
   await expect(page.locator('.home-page')).toHaveCSS('user-select', 'auto');
+  await saveSettings(page);
   await expectSaved(page, { bookScale: 128, bookStageHeight: 760, bookInkEnabled: false, pageHitEnabled: true });
   await reloadPage(page);
   await expectSaved(page, { bookScale: 128, bookStageHeight: 760, bookInkEnabled: false, pageHitEnabled: true });
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, { bookScale: 116, bookStageHeight: 680, bookInkEnabled: true, pageHitEnabled: false, bookTitleTransparency: 35, cultureTitleTransparency: 35 });
 });
 
@@ -970,6 +1018,7 @@ test('顶栏与设置背板宽高圆角和颜色同步到实际材质并持久�
       input.dispatchEvent(new Event('change', { bubbles: true }));
     }, value);
   }
+  await saveSettings(page);
   await expectSaved(page, { headerWidth: 84, headerRadius: 33, headerColor: '#6d3125', sidebarHeight: 70, sidebarRadius: 26, sidebarColor: '#f6eddc' });
   await expect(headerSurfaces(page)).toHaveCount(1);
   for (const surface of await headerSurfaces(page).all()) {
@@ -1030,6 +1079,7 @@ test('参考资料区域与卡片分别公开六参数，旧偏好补齐默认�
     }, color);
     changed[`${prefix}Color`] = color;
   }
+  await saveSettings(page);
   await expectSaved(page, { ...changed, archivePanelTransparency: 67, headerTransparency: 34, navFontSize: 23 });
   await expect(sources).toHaveCSS('background-color', 'rgba(237, 224, 202, 0.75)');
   await expect(sources).toHaveCSS('backdrop-filter', 'blur(14px)');
@@ -1049,6 +1099,7 @@ test('参考资料区域与卡片分别公开六参数，旧偏好补齐默认�
   await expect(cards.first()).toHaveCSS('min-height', '260px');
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, defaults);
   await expect(sources).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
   await expect(cards.first()).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.95)');
@@ -1193,6 +1244,7 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   await editNumber(page, '神态简介字号', 28);
   await editNumber(page, '神态解读字号', 20);
   for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
+  await saveSettings(page, false);
   await page.locator('#expressionLionTrigger').click();
   await expect(copy).toHaveAttribute('data-view', 'details');
   await expect(copy.locator('.expression-cues p')).toHaveCount(2);
@@ -1204,6 +1256,7 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
+  await saveSettings(page);
   await expectSaved(page, defaults);
   await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0.9)');
   await expect(copy).toHaveCSS('backdrop-filter', 'none');
@@ -1229,9 +1282,11 @@ test('神态两种字号校验16至32边界，透明底板仍保留前后文字'
       await input.fill(draft);
       await input.press('Tab');
       await expect(input).toHaveValue(String(expected));
+      await saveSettings(page);
       await expectSaved(page, { [key]: expected });
     }
   }
+  await saveSettings(page, false);
   await page.locator('#expressionLionTrigger').click();
   await expect(copy).toHaveAttribute('data-view', 'details');
   await expect(copy).toHaveCSS('backdrop-filter', 'none');

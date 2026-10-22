@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "47441a4",
+  "environment": {
+    "os": "Windows",
+    "node": "24.16.0",
+    "npm": "12.0.1",
+    "python": "3.14.2",
+    "browser": "Playwright Chromium"
+  },
+  "scope": "desktop only; entry, book, sources typography and settings with related media/model regressions",
+  "status": "completed",
+  "development": {
+    "settingsTransaction": "5/5 passed",
+    "hdriViewSource": "14/14 passed",
+    "legacySettings": "32/32 passed",
+    "book": "30/30 passed",
+    "sourcesTypography": "2/2 passed"
+  },
+  "core": {
+    "command": "npm test",
+    "result": "73/73 passed after registering all new QA assets",
+    "durationMs": 5372.4509
+  },
+  "build": {
+    "command": "npm run build",
+    "result": "341 modules, passed in 1.89s; existing Three.js chunk 538.05kB notice"
+  },
+  "production": {
+    "environment": "PLAYWRIGHT_PREVIEW_PORT=4196; existing Vite preview; one Chromium worker; trace off",
+    "command": "npx playwright test --config playwright.preview.config.js tests/e2e/startup-loading.spec.js tests/e2e/module-preparation.spec.js tests/e2e/home-video-replacement.spec.js tests/e2e/settings-transaction.spec.js tests/e2e/sources-typography.spec.js tests/e2e/lion-book.spec.js tests/e2e/lion-book-stability.spec.js tests/e2e/home-reading.spec.js tests/e2e/book-wave-settings.spec.js tests/e2e/developer-settings.spec.js tests/e2e/settings-modules.spec.js tests/e2e/home-culture.spec.js tests/e2e/reading-paper.spec.js tests/e2e/hdri-settings.spec.js tests/e2e/view-scene-settings.spec.js tests/e2e/settings-view-source.spec.js tests/e2e/video-audio.spec.js --grep-invert 手机 --trace off --output=tmp/task-ui-production",
+    "initial": {
+      "passed": 116,
+      "failed": 5,
+      "total": 121,
+      "duration": "11.7m",
+      "output": "tmp/task-ui-production"
+    },
+    "initialFailures": [
+      "four gallery first-pointer tests ran before scroll IntersectionObserver and React active state committed",
+      "one paper blur assertion read before style commit"
+    ],
+    "fixes": "Only test synchronization changed: wait preceding book/fonts, actual gallery exposure and two RAFs; poll computed final blur. All original interaction, geometry and material expectations retained; production assets unchanged.",
+    "followup": [
+      {
+        "command": "npx playwright test --config playwright.preview.config.js tests/e2e/home-culture.spec.js --grep-invert 手机 --trace off --output=tmp/task-ui-culture-production-final",
+        "passed": 18,
+        "failed": 0,
+        "duration": "2.2m"
+      },
+      {
+        "command": "npx playwright test --config playwright.preview.config.js tests/e2e/reading-paper.spec.js --grep \"common draft\" --trace off --output=tmp/task-ui-paper-production-final",
+        "passed": 1,
+        "failed": 0,
+        "duration": "3.1s"
+      }
+    ],
+    "coverage": "All 121 distinct scoped production cases have passing records. The initial combined run itself was 116/121; do not describe it as a single 121/121 run.",
+    "firstPointerEvidence": "3/4 independent contexts sent first pointer while status=offscreen, despite a stable rectangle and elementFromPoint=CANVAS. Two RAFs before a single first move succeeded 10/10 (five autoplay enabled, five disabled)."
+  },
+  "limitations": [
+    "No phone-specific regression",
+    "No other browsers, OS-level app switching, physical audio or hosted deployment verification"
+  ],
+  "assets": {
+    "baselineRecordsPreserved": 634,
+    "newQaRecords": 6,
+    "totalRecords": 640,
+    "runtimeCopiesSha256Matched": 141,
+    "runtimeAssetsChanged": false
+  },
+  "visualQa": {
+    "directory": "source/reviews/entry-book-settings/2026-10-22",
+    "pngs": 5,
+    "reviewed": [
+      "entry film without navigation",
+      "book playback settings",
+      "sources typography/settings",
+      "unsaved confirmation",
+      "900px desktop sources"
+    ],
+    "pageErrors": []
+  },
+  "memory": {
+    "command": "python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready",
+    "pages": 108,
+    "errors": 0,
+    "historicalMissingSourceWarnings": 4
+  },
+  "git": "Delivery is verified against the containing main commit and its configured origin/main; no pre-recorded push claim."
+}

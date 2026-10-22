@@ -17,8 +17,13 @@ const additionalSources = [
   return true;
 });
 
-export default function HomeCultureSources() {
-  return <div className="heritage-sources-wrap"><div className="heritage-inner">
+export default function HomeCultureSources({ settings }) {
+  const typography = {
+    '--sources-title-size': `${settings?.sourcesTitleFontSize ?? 32}px`,
+    '--sources-body-size': `${settings?.sourcesBodyFontSize ?? 18}px`,
+    '--sources-meta-size': `${settings?.sourcesMetaFontSize ?? 16}px`,
+  };
+  return <div className="heritage-sources-wrap" style={typography}><div className="heritage-inner">
     <footer id="homeCultureSources" className="home-culture-sources" data-surface="cultureSources" aria-labelledby="culture-sources-title">
       <div className="home-culture-sources-heading">
         <span className="home-culture-sources-emblem" aria-hidden="true"><img src={media.archiveOrnamentPaw} alt="" width="40" height="40" loading="lazy" decoding="async" /><svg viewBox="0 0 56 56" fill="none"><path d="M8 13c8-3 15-2 20 3 5-5 12-6 20-3v31c-8-3-15-2-20 2-5-4-12-5-20-2ZM28 16v30M14 22l9 2m-9 5 9 2m10-7 9-2m-9 9 9-2" /></svg></span>
