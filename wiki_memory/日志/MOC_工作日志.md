@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-22
+updated: 2026-10-23
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-23 | maintenance | in_progress | [F盘同步 GitHub 最新主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-F%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | completed | [F盘安全同步GitHub最新主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-F%E7%9B%98%E5%AE%89%E5%85%A8%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | in_progress | [F盘再次同步最新交互主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-F%E7%9B%98%E5%86%8D%E6%AC%A1%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E4%BA%A4%E4%BA%92%E4%B8%BB%E7%BA%BF.md) |
@@ -23,7 +24,10 @@ sources: []
 | 2026-10-22 | ui | completed | [默认播放、神态书法动效与结构目录](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%BB%98%E8%AE%A4%E6%92%AD%E6%94%BE%E7%A5%9E%E6%80%81%E4%B9%A6%E6%B3%95%E5%8A%A8%E6%95%88%E4%B8%8E%E7%BB%93%E6%9E%84%E7%9B%AE%E5%BD%95.md) |
 | 2026-10-22 | ui | completed | [首页白线声音开关](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%A6%96%E9%A1%B5%E7%99%BD%E7%BA%BF%E5%A3%B0%E9%9F%B3%E5%BC%80%E5%85%B3.md) |
 | 2026-10-22 | ui | completed | [首页声波动效与最新主线接续](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%A6%96%E9%A1%B5%E5%A3%B0%E6%B3%A2%E5%8A%A8%E6%95%88%E4%B8%8E%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF%E6%8E%A5%E7%BB%AD.md) |
+| 2026-10-22 | ui | completed | [神态狮头悬停放大反馈](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E7%A5%9E%E6%80%81%E7%8B%AE%E5%A4%B4%E6%82%AC%E5%81%9C%E6%94%BE%E5%A4%A7%E5%8F%8D%E9%A6%88.md) |
 | 2026-10-22 | ui | completed | [全站电脑自适应](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E5%85%A8%E7%AB%99%E7%94%B5%E8%84%91%E8%87%AA%E9%80%82%E5%BA%94.md) |
+| 2026-10-22 | ui | completed | [书籍下方投影清理](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E4%B9%A6%E7%B1%8D%E4%B8%8B%E6%96%B9%E6%8A%95%E5%BD%B1%E6%B8%85%E7%90%86.md) |
+| 2026-10-22 | ui | completed | [书册引导小人加快响应](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E4%B9%A6%E5%86%8C%E5%BC%95%E5%AF%BC%E5%B0%8F%E4%BA%BA%E5%8A%A0%E5%BF%AB%E5%93%8D%E5%BA%94.md) |
 | 2026-10-22 | bug | completed | [醒狮红白绒毛明暗均衡](Bug%E5%A4%84%E7%90%86/2026-10-22-%E9%86%92%E7%8B%AE%E7%BA%A2%E7%99%BD%E7%BB%92%E6%AF%9B%E6%98%8E%E6%9A%97%E5%9D%87%E8%A1%A1.md) |
 | 2026-10-22 | bug | completed | [连续声线与交互整改](Bug%E5%A4%84%E7%90%86/2026-10-22-%E8%BF%9E%E7%BB%AD%E5%A3%B0%E7%BA%BF%E4%B8%8E%E4%BA%A4%E4%BA%92%E6%95%B4%E6%94%B9.md) |
 | 2026-10-22 | bug | completed | [动作导航实时背景透出修复](Bug%E5%A4%84%E7%90%86/2026-10-22-%E5%8A%A8%E4%BD%9C%E5%AF%BC%E8%88%AA%E5%AE%9E%E6%97%B6%E8%83%8C%E6%99%AF%E9%80%8F%E5%87%BA%E4%BF%AE%E5%A4%8D.md) |

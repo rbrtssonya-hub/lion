@@ -5,10 +5,10 @@ import '../../styles/home-navigation.css';
 
 // Generalize the original ink loop to a vertical rail. Every retarget starts
 // from the last painted position; no game/physics runtime is involved.
-export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false }) {
+export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false, markerDuration = 650 }) {
   const navRef = useRef(null), markerRef = useRef(null), canvasRef = useRef(null), spriteRef = useRef(null);
   const updateRef = useRef(null), latest = useRef(null);
-  latest.current = { index, playbackEnabled, particlesEnabled, visible };
+  latest.current = { index, playbackEnabled, particlesEnabled, visible, markerDuration };
 
   useLayoutEffect(() => {
     const nav = navRef.current, marker = markerRef.current, canvas = canvasRef.current;
@@ -27,7 +27,8 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       const animation = reduced.matches ? 'poster' : move ? 'mov' : 'idle';
       marker.dataset.animation = animation;
       if (!ready || !spriteCtx) return;
-      const cell = animation === 'poster' ? 0 : Math.floor(clock / (1000 / 24)) % (animation === 'mov' ? 12 : 20);
+      const fps = animation === 'mov' ? 30 : 24;
+      const cell = animation === 'poster' ? 0 : Math.floor(clock / (1000 / fps)) % (animation === 'mov' ? 12 : 20);
       const direction = move?.direction || 1;
       const signature = `${animation}:${cell}:${direction}`;
       if (signature === painted) return;
@@ -87,8 +88,8 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       particles = particles.filter(p => p.age < p.life);
       if (move) {
         const previous = position;
-        move.elapsed = Math.min(650, move.elapsed + delta);
-        position = move.from + (target() - move.from) * (1 - (1 - move.elapsed / 650) ** 3);
+        move.elapsed = Math.min(options.markerDuration, move.elapsed + delta);
+        position = move.from + (target() - move.from) * (1 - (1 - move.elapsed / options.markerDuration) ** 3);
         const distance = Math.abs(position - previous);
         if (options.particlesEnabled && ctx && distance > .2) {
           const count = Math.min(12, Math.ceil(distance / 4));
@@ -99,7 +100,7 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
           });
           particles = particles.slice(-80);
         }
-        if (move.elapsed === 650) { move = null; clock = 0; }
+        if (move.elapsed === options.markerDuration) { move = null; clock = 0; }
       }
       paintMarker(); paintParticles();
       if (!move && !particles.length && !sprite) previousTime = null;
@@ -142,7 +143,7 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       if (becomingVisible) measure();
       if (changed && !becomingVisible) {
         move = { from: position, direction: Math.sign(target() - position) || 1, elapsed: 0 };
-        previousTime = null; clock = 0;
+        previousTime = performance.now(); clock = 0;
       }
       paintMarker(); visibility();
     };
@@ -169,14 +170,14 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       window.removeEventListener('scroll', visibility); window.removeEventListener('resize', resize);
       reduced.removeEventListener('change', visibility); updateRef.current = null;
     };
-  }, [vertical, sprite]);
-  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible]);
+  }, [vertical, sprite, markerDuration]);
+  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible, markerDuration]);
   return { navRef, markerRef, canvasRef, spriteRef };
 }
 
 export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled = true, playbackEnabled = true }) {
   const { navRef, markerRef, canvasRef, spriteRef } = useHomeNavigationMotion({
-    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true,
+    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true, markerDuration: 400,
   });
   const buttons = useRef([]);
   const onKeyDown = event => {
