@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-22动作场景延伸至共享导航后方，透明和模糊直接采用本页实时画面；原导航默认值不迁移。`action-theater.css` 用双类动作根选择器覆盖通用章节padding，HUD按导航安全距离布局，全屏归零；`actionTheaterScene.js` 只向上扩展视野以保留下方原构图，并观察真实顶栏和全屏变化。修改该区域须运行 `tests/e2e/action-navigation-backdrop.spec.js`，其中截图隐藏画布对照能证明实际背景来源，等尺寸全屏覆盖仅依赖ResizeObserver会漏掉的情形。实际原生截图、79核心/11相关生产结果及范围见[本轮验证](../source/references/action-navigation-2026-10-22-validation.json)。
+
 2026-10-22红白绒毛修复新增 `src/services/lionDiffuseProbe.js`：当前HDRI的线性像素一次积分L1漫反射，并限制过强方向能量；仅醒狮材质采用，高光仍由PMREM计算，原造型、配色、发丝数据与动画保留。正式前后/Blender参考及弃用实验见[修复说明](../source/references/lion-fur-balance-2026-10-22.md)，结果与适用范围见[验证JSON](../source/references/lion-fur-balance-2026-10-22-validation.json)。固定视角原生比较运行 `node scripts/audit_lion_fur.mjs --url=http://127.0.0.1:5198 --output=tmp/lion-fur-final`（先启动Vite，默认基线5b2a307）；Blender只读参考和图像统计分别由 `render_lion_material_reference.py`、`analyze_lion_fur_comparison.py` 提供，脚本头部列参数。常规验证仍为 `npm test`、`npm run build` 及HDRI/视角/动作/结构相关生产Chrome回归。细毛层次尚未达到EEVEE，不能把颜色误差下降等同于完整材质还原。
 
 2026-10-21新增独立“视角”设置页，结构缩放按整体/聚焦部件标准观看距离设置有限阈值，动作取消旧室内高度夹取并开放1–179°极角。HDRI默认采用Blender真实forest.exr与0.35倍补光，可改预设、URL或当前会话本地EXR/HDR；源File/blob不持久化。参数组默认折叠，动作四角使用用户原鼓模型，进度手柄复用已有狮头。配置入口为 `src/config/viewSettings.js`、`src/config/hdri.js`，场景鼓独立为 `src/services/actionTheaterDrums.js`；回归为 `view-scene-settings.spec.js`、`settings-view-source.spec.js` 及原结构/动作/HDRI相关用例。来源、实时渲染与Blender的差异及本轮验证入口见[实施说明](../source/references/view-scene-settings-2026-10-21.md)。
@@ -77,6 +79,8 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
 首页声音开关使用 `SoundControl` 的 `line` 变体：hero右下角透明白线，有声波浪、静音直线；不影响动作页的standard变体。没有声音提示弹框，原生自动播放受限时沿用静音推进与真实手势恢复，音量保持25%。相关布局/键盘及原生策略回归为 `home-audio-line.spec.js` 和 `home-audio-line-policy.spec.js`；后者文件内关闭trace，不能用快照引入的激活证明自动播放成功。真实故障仍保留重试。详情见[白线交付记录](../source/references/home-audio-line-2026-10-22.md)。
+
+2026-10-22续改：有声波浪通过CSS `d: path(...)` 在1.1秒内连续形变，不是实时音频振幅分析；静音/等待手势时取消动画并恢复直线，后台暂停沿用原声音状态，离页移除按钮，减少动态模式保留静态波浪。`home-audio-wave.spec.js` 采样真实计算几何与动画资源，不能只检查keyframes声明；[本轮证据](../source/references/home-audio-wave-2026-10-22.md)另记最新main整合与逐帧数据。
 
 2026-10-19视频资源先在独立分支替换，现随远端9cb0097合入E盘红金组合树：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。2026-10-20组合树已在本机Chrome与Edge实际验证HEVC自然结束和循环回绕，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`，新结果保存于独立组合树验收。
 

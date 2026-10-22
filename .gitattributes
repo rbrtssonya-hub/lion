@@ -6,3 +6,6 @@ source/public/assets/loading/index.html text eol=lf
 
 # This generated runtime manifest is authenticated byte for byte.
 source/public/assets/models/lion-user-hair.json -text
+
+# Keep recorded browser wave samples identical to their manifest hash.
+source/reviews/home-audio-wave/2026-10-22/actual-wave-frames.json -text

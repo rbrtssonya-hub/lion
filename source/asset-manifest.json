@@ -3,6 +3,30 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "actual Chrome rendered CSS wave frames, home audio animation 2026-10-22",
+      "path": "source/reviews/home-audio-wave/2026-10-22/actual-wave-frames.json",
+      "bytes": 11462,
+      "sha256": "29b44790a856a23736db588d18d7ad593d37977016b8ce559cfb5234bd331413"
+    },
+    {
+      "from": "native Chrome production screenshot, home audio animation 2026-10-22",
+      "path": "source/reviews/home-audio-wave/2026-10-22/home-animated-wave.png",
+      "bytes": 3051960,
+      "sha256": "f0a5c4a19a7cd13fb9cf5c22e43e2427f2ad674a5b646cbbd9b37b1e5b20064a"
+    },
+    {
+      "from": "native Chrome production screenshot, home audio animation phase A 2026-10-22",
+      "path": "source/reviews/home-audio-wave/2026-10-22/wave-phase-a.png",
+      "bytes": 6949,
+      "sha256": "77680e1d20a9d498c3173c34c9f90804efe3dbd3c3e157b89b9a3eacf87e912f"
+    },
+    {
+      "from": "native Chrome production screenshot, home audio animation phase B 2026-10-22",
+      "path": "source/reviews/home-audio-wave/2026-10-22/wave-phase-b.png",
+      "bytes": 6960,
+      "sha256": "4be519891a9a078a0932c35be278355eeed505ec0e186dd264e1991f4dc98323"
+    },
+    {
       "from": "native Chrome 156 production screenshot, approved home audio line control 2026-10-22",
       "path": "source/reviews/home-audio-line/2026-10-22/audible-1920.png",
       "bytes": 2920228,
@@ -3764,6 +3788,24 @@
       "path": "source/reviews/interface-main-merge/2026-10-22/structure-atlas-width40-1920.png",
       "bytes": 112442,
       "sha256": "6eb8a28d6b662fc40d98ee196845104c7471e3adfe199435829a25c58e17b6e6"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/after-default.png",
+      "bytes": 2326422,
+      "sha256": "f5b4b4778e34ea2210fe4e8d8d42bcb91ebc375ed4e6d7d2311405a2e64044bb"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/after-transparent.png",
+      "bytes": 2399861,
+      "sha256": "b338fb272365ae76c336be8cde20a8b6c1f138671107a8f4f18dac3e6bf91ed6"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/before-default.png",
+      "bytes": 2298942,
+      "sha256": "bd6279eb322dc5b1fc0fd47250549a19b43aa97275c438c9d075e656c47f466f"
     }
   ]
 }
