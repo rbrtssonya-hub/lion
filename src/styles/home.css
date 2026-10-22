@@ -104,7 +104,7 @@
     row-gap: 10px;
     justify-items: center;
     /* Leave a separate right-hand lane for the labelled volume control. */
-    width: min(600px, calc(100% - 180px));
+    width: min(600px, calc(100% - var(--sound-control-width, 180px) - 68px));
     top: calc(var(--site-header-height) + 68px + (100svh - var(--site-header-height) - 68px) / 2);
   }
   .entry-title-live2d { grid-column: 1; grid-row: 1 / 4; max-width: 100%; }

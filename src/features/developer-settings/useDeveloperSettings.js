@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion, migrateStructureAtlas, structureAtlasVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { resolveViewSettings, viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import { soundControlDefaults, soundControlRanges } from '../../config/soundControlSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -52,6 +53,7 @@ export const defaultDeveloperSettings = Object.freeze({
   ...surfaceDefaults,
   ...hdriDefaults,
   ...viewDefaults,
+  ...soundControlDefaults,
 });
 
 const ranges = {
@@ -77,6 +79,7 @@ const ranges = {
   ...surfaceRanges,
   ...hdriRanges,
   ...viewRanges,
+  ...soundControlRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {

@@ -1,22 +1,24 @@
 .sound-control-widget {
   position: fixed;
-  right: clamp(24px, 2.3vw, 44px);
+  right: var(--sound-control-edge, clamp(24px, 2.3vw, 44px));
   bottom: clamp(20px, 2.8vh, 32px);
   z-index: 30;
   display: grid;
-  width: 112px;
+  width: var(--sound-control-width, 180px);
   color: #fff;
-  font: 12px/1.4 var(--sans);
+  font: var(--sound-control-font-size, 16px)/1.4 var(--sans);
   -webkit-tap-highlight-color: transparent;
 }
 .sound-control-widget-home { position: absolute; z-index: 4; }
 .sound-control-widget .sound-control {
   display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 36px;
-  padding: 0 2px;
+  height: 3.5em;
+  padding: 4px 2px;
   border: 0;
   border-radius: 0;
   color: inherit;
@@ -33,31 +35,33 @@
   opacity: 1; color: inherit; border-color: transparent; background: transparent;
 }
 .sound-control:focus-visible, .sound-volume-slider:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+.sound-control-label { white-space: nowrap; }
 .sound-wave-window {
   position: relative;
   display: block;
-  flex: 0 0 26px;
-  width: 26px;
-  height: 22px;
+  flex: 0 0 var(--sound-wave-width, 64px);
+  width: var(--sound-wave-width, 64px);
+  height: 1.5em;
   overflow: hidden;
   pointer-events: none;
 }
 .sound-control-widget .sound-wave-window svg {
   position: absolute;
   display: block;
-  width: 212px;
+  /* Eight periods cover even the longest window at the smallest font size.
+     The far straight tail remains long enough to fill that same window. */
+  width: 42.1666667em;
   max-width: none;
-  height: 22px;
+  height: 1.5em;
   fill: none;
   stroke: currentColor;
   stroke-width: 8;
   transform: translateX(0);
   transition: transform 3s cubic-bezier(.19, 1, .22, 1);
 }
-.sound-control-widget:not([data-audio-state='enabled']) .sound-wave-window svg { transform: translateX(-70%) translateX(23px); }
+.sound-control-widget:not([data-audio-state='enabled']) .sound-wave-window svg { transform: translateX(-28.75em); }
 .sound-wave-flow { animation: sound-wave-right 1.4s linear infinite; animation-play-state: paused; }
 .sound-control-widget[data-wave-playing='true'] .sound-wave-flow { animation-play-state: running; }
-.sound-wave-repeat { transform: translateX(75.4px); }
 .sound-wave-traces path { stroke-dasharray: 176.6; transition: stroke-dashoffset .7s cubic-bezier(.165, .84, .44, 1); }
 .sound-wave-traces path:first-child { stroke-dashoffset: -176.6; transition-delay: 0s; }
 .sound-wave-traces path:nth-child(2) { stroke-dashoffset: 0; transition-delay: .2s; }
@@ -69,14 +73,15 @@
   from { transform: translateX(-75.4px); }
   to { transform: translateX(0); }
 }
-.sound-volume-row { display: flex; align-items: center; gap: 9px; height: 24px; }
+.sound-volume-row { display: flex; align-items: center; gap: 9px; height: 2em; }
 .sound-volume-slider {
   appearance: none;
   -webkit-appearance: none;
   flex: 1 1 0;
   min-width: 0;
   width: 0;
-  height: 24px;
+  height: 2em;
+  font: inherit;
   margin: 0;
   padding: 0;
   border: 0;
@@ -86,24 +91,24 @@
   cursor: pointer;
 }
 .sound-volume-slider::-webkit-slider-runnable-track {
-  height: 1px;
+  height: max(1px, .083333em);
   background: linear-gradient(to right, currentColor 0 var(--sound-volume), rgb(255 255 255 / .3) var(--sound-volume) 100%);
 }
 .sound-volume-slider::-webkit-slider-thumb {
   appearance: none;
-  width: 5px;
-  height: 5px;
-  margin-top: -2px;
+  width: .5em;
+  height: .5em;
+  margin-top: -.208333em;
   border: 0;
   border-radius: 50%;
   background: currentColor;
   transition: transform .18s ease;
 }
-.sound-volume-slider::-moz-range-track { height: 1px; background: rgb(255 255 255 / .3); }
-.sound-volume-slider::-moz-range-progress { height: 1px; background: currentColor; }
-.sound-volume-slider::-moz-range-thumb { width: 5px; height: 5px; border: 0; border-radius: 50%; background: currentColor; }
+.sound-volume-slider::-moz-range-track { height: max(1px, .083333em); background: rgb(255 255 255 / .3); }
+.sound-volume-slider::-moz-range-progress { height: max(1px, .083333em); background: currentColor; }
+.sound-volume-slider::-moz-range-thumb { width: .5em; height: .5em; border: 0; border-radius: 50%; background: currentColor; }
 .sound-volume-slider:hover::-webkit-slider-thumb, .sound-volume-slider:focus-visible::-webkit-slider-thumb { transform: scale(1.4); }
-.sound-volume-value { min-width: 20px; opacity: .6; font-size: 10px; letter-spacing: .03em; text-align: right; font-variant-numeric: tabular-nums; }
+.sound-volume-value { min-width: 2em; opacity: .72; font-size: .75em; letter-spacing: .03em; text-align: right; font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) {
   .sound-wave-flow { animation: none; }
   .sound-control-widget .sound-control, .sound-control-widget .sound-wave-window svg,

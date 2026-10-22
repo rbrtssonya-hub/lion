@@ -70,7 +70,7 @@
 .theater-drum-notice button { color: inherit; border: 1px solid #ac8458; background: transparent; padding: 4px 8px; }
 .action-theater .sound-control-widget { right: var(--theater-edge); color: #f6dfb5; }
 @container lion-page (width > 1100px) {
-  .action-theater[data-compact-layout='false'] .theater-observation { bottom: calc(clamp(20px, 2.8vh, 32px) + 76px); }
+  .action-theater[data-compact-layout='false'] .theater-observation { bottom: calc(clamp(20px, 2.8vh, 32px) + var(--sound-control-height, 88px) + 16px); }
 }
 .theater-source-note { margin: 7px 0 0; color: #b19876; font: 10px/1.5 var(--theater-serif); letter-spacing: .035em; }
 .theater-source-note > span { color: #a58a68; margin-left: 4px; }

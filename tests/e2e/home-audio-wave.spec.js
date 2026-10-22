@@ -53,7 +53,7 @@ test('有声波浪在固定裁剪窗内持续右行，静音滑到直线，减�
   await expect(toggle).toHaveAttribute('aria-pressed', 'false');
   await expect(widget).toHaveAttribute('data-wave-playing', 'false');
   await expect.poll(() => svg.evaluate(element => {
-    const expected = -element.getBoundingClientRect().width * .7 + 23;
+    const expected = -Number.parseFloat(getComputedStyle(element).fontSize) * 28.75;
     return Math.abs(new DOMMatrixReadOnly(getComputedStyle(element).transform).m41 - expected);
   })).toBeLessThan(.02);
   // The sampled viewport now lies in the straight tail, not the source wave.
@@ -62,7 +62,8 @@ test('有声波浪在固定裁剪窗内持续右行，静音滑到直线，减�
     const scale = element.getBoundingClientRect().width / element.viewBox.baseVal.width;
     const tail = element.querySelector('.sound-wave-tail');
     const length = tail.getTotalLength();
-    return [0, 13, 26].map(x => {
+    const width = element.closest('.sound-wave-window').getBoundingClientRect().width;
+    return [0, width / 2, width].map(x => {
       const sourceX = (x - matrix.m41) / scale;
       let low = 0, high = length;
       for (let index = 0; index < 24; index++) {

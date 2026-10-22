@@ -6,6 +6,7 @@ export const settingsPanel = page => page.getByRole('region', { name: '开发者
 // Route by the unchanged accessible label or storage/surface prefix. Keep main
 // and nested tablists scoped so the heritage tabs cannot satisfy these clicks.
 const routes = [
+  [['soundControl', 'soundWaveWidth', '音量文字', '音量控件', '波浪线长度'], ['公共模块']],
   [['archivePanelTransparency', '首页阅读底板', '公共', '应用范围'], ['公共模块']],
   [['header', 'sidebar', '顶栏', '侧栏'], ['外观']],
   [['navFontSize', 'helperFontSize', 'navIconSize', 'helperTransparency', 'brandPadding', 'compactNav', 'homeBrandOffset', '导航标题', '导航辅助', '导航图标', '辅助文字', '品牌左侧', '紧凑导航', '首页品牌'], ['导航']],

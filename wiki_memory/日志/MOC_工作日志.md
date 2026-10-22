@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | completed | [E盘同步GitHub首页声波更新](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-E%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E9%A6%96%E9%A1%B5%E5%A3%B0%E6%B3%A2%E6%9B%B4%E6%96%B0.md) |
+| 2026-10-22 | feature | completed | [音量控件放大与像素设置](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-22-%E9%9F%B3%E9%87%8F%E6%8E%A7%E4%BB%B6%E6%94%BE%E5%A4%A7%E4%B8%8E%E5%83%8F%E7%B4%A0%E8%AE%BE%E7%BD%AE.md) |
 | 2026-10-22 | feature | completed | [视角阈值与音量控件](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-22-%E8%A7%86%E8%A7%92%E9%98%88%E5%80%BC%E4%B8%8E%E9%9F%B3%E9%87%8F%E6%8E%A7%E4%BB%B6.md) |
 | 2026-10-22 | feature | completed | [动作视角现场调参](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-22-%E5%8A%A8%E4%BD%9C%E8%A7%86%E8%A7%92%E7%8E%B0%E5%9C%BA%E8%B0%83%E5%8F%82.md) |
 | 2026-10-22 | feature | completed | [入场、史册循环与设置保存导出](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-22-%E5%85%A5%E5%9C%BA%E5%8F%B2%E5%86%8C%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%AE%BE%E7%BD%AE%E4%BF%9D%E5%AD%98%E5%AF%BC%E5%87%BA.md) |

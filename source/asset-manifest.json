@@ -3968,6 +3968,54 @@
       "path": "source/reviews/audio-volume/2026-10-22/view-settings-900.png",
       "bytes": 534772,
       "sha256": "3b7644adb5594f4f3dbf40c1908a917b8b8589d414739b323f9c9b8d8c71aa62"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/action-custom-1920.png",
+      "bytes": 2235796,
+      "sha256": "0e123229d0320ef012f5044479a91aa7f215bb65ea715dfc1a3c4c647bfab52c"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/action-max-900.png",
+      "bytes": 163553,
+      "sha256": "d5a9b4d9dde252cee360c344a91b89732871e75e3ae046ff9ec92d82e4ad6dad"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/capture.json",
+      "bytes": 2315,
+      "sha256": "6b7928237c56da995d93e03bb0e00d51d190cd40af75b9c131fcff99423f25c5"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/control-enabled.png",
+      "bytes": 32391,
+      "sha256": "f8ceab2357c4aa4566eb2723bf95bbfa7cab3ab090f231904f38aeae10ea030e"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/control-muted.png",
+      "bytes": 31539,
+      "sha256": "c21212b32aeaceb3cd0b48ff3ac868b857b07226f5290af3a62664df3b6acc77"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/home-default-1920.png",
+      "bytes": 2832765,
+      "sha256": "6a60343929fec6c29daf2f374523bb1b91a99e8d279ab30ca68829ebdf5d36e0"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/home-max-640.png",
+      "bytes": 359918,
+      "sha256": "6186b1639c2dd480d7f0bce9f4e9efe7c068cff10dc6ab0da90480036e6249eb"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/settings-preview-1920.png",
+      "bytes": 2641236,
+      "sha256": "16a9bdbece580b19777d8f74f571789b5d972c57c93d8e6a0eef162b5e945052"
     }
   ]
 }

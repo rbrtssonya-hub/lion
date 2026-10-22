@@ -1,0 +1,131 @@
+{
+  "captures": [
+    {
+      "name": "home-default-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1681,
+        "y": 961.765625,
+        "width": 180,
+        "height": 88
+      },
+      "sizes": {
+        "font": "16px",
+        "wave": 64
+      }
+    },
+    {
+      "name": "control-enabled",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1681,
+        "y": 961.765625,
+        "width": 180,
+        "height": 88
+      },
+      "sizes": {
+        "font": "16px",
+        "wave": 64
+      }
+    },
+    {
+      "name": "control-muted",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1681,
+        "y": 961.765625,
+        "width": 180,
+        "height": 88
+      },
+      "sizes": {
+        "font": "16px",
+        "wave": 64
+      }
+    },
+    {
+      "name": "settings-preview-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "",
+      "widget": {
+        "x": 1281,
+        "y": 928.765625,
+        "width": 240,
+        "height": 121
+      },
+      "sizes": {
+        "font": "22px",
+        "wave": 104
+      }
+    },
+    {
+      "name": "action-custom-1920",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 1639,
+        "y": 928.765625,
+        "width": 240,
+        "height": 121
+      },
+      "sizes": {
+        "font": "22px",
+        "wave": 104
+      }
+    },
+    {
+      "name": "home-max-640",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "route": "#/entry",
+      "widget": {
+        "x": 301,
+        "y": 186,
+        "width": 300,
+        "height": 154
+      },
+      "sizes": {
+        "font": "28px",
+        "wave": 120
+      }
+    },
+    {
+      "name": "action-max-900",
+      "viewport": {
+        "width": 900,
+        "height": 600
+      },
+      "route": "#/action",
+      "widget": {
+        "x": 565,
+        "y": 426.28125,
+        "width": 300,
+        "height": 154
+      },
+      "sizes": {
+        "font": "28px",
+        "wave": 120
+      }
+    }
+  ],
+  "errors": []
+}

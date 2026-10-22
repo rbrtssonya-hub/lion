@@ -18,3 +18,6 @@ source/reviews/desktop-responsive/2026-10-22/capture.json -text
 
 # Preserve authenticated native screenshots' companion capture geometry.
 source/reviews/audio-volume/2026-10-22/capture.json -text
+
+# Preserve the authenticated sound-control sizing capture record.
+source/reviews/sound-control-settings/2026-10-22/capture.json -text

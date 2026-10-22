@@ -2,13 +2,14 @@ import { useLayoutEffect, useId, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import { soundControlRanges } from '../../config/soundControlSettings.js';
 import HdriSourceControls from './HdriSourceControls.jsx';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
 
 const pages = [
-  { id:'common', label:'公共模块', title:'公共材质模板', note:'同一套材质应用到所选范围，各区域尺寸与文字不受影响。', icon:'M3 3h6v6H3zM11 3h6v6h-6zM3 11h6v6H3zM11 11h6v6h-6z' },
+  { id:'common', label:'公共模块', title:'公共控件与材质', note:'统一调整声音控件，或将公共材质应用到所选范围。', icon:'M3 3h6v6H3zM11 3h6v6h-6zM3 11h6v6H3zM11 11h6v6h-6z' },
   { id:'appearance', label:'外观', title:'顶栏与设置面板', note:'全局界面材质；内容底板在首页、章节和资料中分别管理。', icon:'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
@@ -73,6 +74,12 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   const content = id => {
     switch (id) {
       case 'common': return <>
+        <SettingsGroup title="声音控件" note="首页 · 动作">
+          {range('soundControlFontSize','音量文字字号',...soundControlRanges.soundControlFontSize)}
+          {range('soundControlWidth','音量控件宽度',...soundControlRanges.soundControlWidth)}
+          {range('soundWaveWidth','波浪线长度',...soundControlRanges.soundWaveWidth)}
+          <p className="developer-settings-note">以像素调整音量文字、控件宽度和波浪线长度，首页与动作页同步预览。保存后记住，取消可恢复。</p>
+        </SettingsGroup>
         <SettingsGroup title="公共材质" note="应用到当前预览">
           <div className="developer-settings-select-control"><label htmlFor={scopeId}>应用范围</label>
             <select id={scopeId} value={scope} onChange={event => {setScope(event.target.value);setMessage('范围已更改，点击应用后生效。');}}>

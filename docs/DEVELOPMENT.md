@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-22音量显示参数在“公共模块→声音控件”开放：默认字号16px/控件180px/波浪64px，范围12–28/140–300/40–120。三参数统一预览、保存取消、重置、导出；首页与动作共用CSS变量，不触及native音量链路。窄控件内部换行，首页短窗按宽度留区，动作宽窗按5.5倍字号的控件高度避让。修改须跑 `sound-control-settings.spec.js`、原media-volume/home-audio-wave/video-audio及受影响布局，检查全窗波形连续覆盖和静音过渡。实际分批验证及限制见[说明](../source/references/sound-control-settings-2026-10-22.md)和[验证](../source/references/sound-control-settings-2026-10-22-validation.json)。
+
 2026-10-22四项动作视角范围改为最近3–6m/最远3–9m/俯视下限0–20°/仰视上限60–90°，resolveSettings和场景统一限幅/联动最新编辑项。右下角音量控件参考只读Verminoble的SVG、hover双描线与静音3s滑线，新增固定窗内持续右行、音量文字与细滑杆；共享会话音量默认25%，纯非零调音不play/load，保留原生自动播放策略、主屏独占和资源释放。修改时跑 `media-volume.spec.js`、`home-audio-wave.spec.js`、`home-audio-line.spec.js`、`home-audio-line-policy.spec.js` 及原video-audio/action-player/视角回归，音频trace关闭；动作通用SVG/hover与声控需检查CSS优先级，解读底距只限>1100容器并检查实际内容高度。实际命令/阶段恢复与验收边界见[说明](../source/references/view-volume-2026-10-22.md)和[验证](../source/references/view-volume-2026-10-22-validation.json)。
 
 2026-10-22动作页“视角”设置允许主视口拖动/滚轮测试，只有“取消”退出，保留未保存确认；保存后继续编辑并将取消基线更新为最新保存值。App持有分类并仅在action+view移除外部点击guard，Escape/导航设置不会收起、顶部X隐藏；其他设置分类和章节保持原规则。改动需运行 `action-view-editing.spec.js`、`settings-transaction.spec.js`、`view-scene-settings.spec.js` 和 `settings-view-source.spec.js`；用真实pointer命中及相机位置/距离确认场景可交互，不能只以面板仍存在代替证明。实施与实际验证见[本轮说明](../source/references/action-view-editing-2026-10-22.md)。
