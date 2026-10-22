@@ -1,5 +1,5 @@
-/* HomePage reserves 184px at >1250px available page width, 96px for the
-   compact rail. These styles do not change the hero or archive padding. */
+/* Archive gutters accompany the 184px wide, 140px compact and 96px narrow
+   desktop rails. The seven book stops retain their own horizontal layout. */
 .lion-book-timeline.lion-book-game-nav {
   position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
   box-sizing: border-box; width: min(100%, 1280px); height: 176px; margin: 12px auto 0;
@@ -52,6 +52,16 @@
   .home-archive-nav { width: 140px; }
   .home-archive-nav button { font-size: 18px; }
   .home-archive-nav button span { width: 72px; white-space: normal; text-wrap: balance; }
+}
+@container lion-page (max-width: 760px) {
+  .home-archive-nav { --archive-nav-node-x: 16px; width: 96px; }
+  .home-archive-nav button { gap: 20px; }
+  .home-archive-nav button span { width: 54px; }
+}
+.lion-book-game-nav .lion-book-game-platform { max-width: calc(100% - 8px); }
+@media (max-height: 520px) {
+  .home-archive-nav { --archive-nav-available: calc(100dvh - var(--archive-nav-top) - 16px); --archive-nav-padding: 4px; }
+  .home-archive-nav button { font-size: 16px; line-height: 1.2; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lion-book-game-nav .lion-book-particles, .home-archive-nav-particles { display: none; }

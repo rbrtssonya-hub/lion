@@ -100,7 +100,7 @@ test('动作导航透出当前三维场景，顶栏调整、等尺寸全屏与�
   await expectRoomUnderNavigation(page, retained);
   await expect.poll(() => stageWidth(page)).toBeLessThan(shortHeaderWidth * .95);
   await expect.poll(() => frameCount(page)).toBeGreaterThan(previousFrames);
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
 
   // Lock only the fullscreen test box to the normal box. Entering fullscreen
   // must clear the camera's header crop even when ResizeObserver sees no size
@@ -136,7 +136,7 @@ test('动作导航透出当前三维场景，顶栏调整、等尺寸全屏与�
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expect.poll(() => scene(page).evaluate(canvas => canvas.getBoundingClientRect().width)).toBeLessThan(normalBox.width - 300);
   await expectRoomUnderNavigation(page, retained);
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => scene(page).evaluate(canvas => canvas.getBoundingClientRect().width)).toBeCloseTo(normalBox.width, 0);
   await expectRoomUnderNavigation(page, retained);
   await expect(theater(page).locator('canvas')).toHaveCount(1);

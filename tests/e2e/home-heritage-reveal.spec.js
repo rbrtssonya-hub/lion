@@ -147,11 +147,18 @@ test('the mounted sidebar leaves readable type descriptions at narrow desktop wi
       await panelWidth.fill(String(shellWidth - 900));
       await panelWidth.press('Tab');
       await expect.poll(() => page.locator('.site-page').evaluate(node => node.getBoundingClientRect().width)).toBe(900);
+      await settings.getByRole('button', { name: '保存设置', exact: true }).click();
     }
     for (const name of ['佛山狮', '鹤山狮', '佛鹤狮']) {
       await types.getByRole('tab', { name: new RegExp(name) }).click();
       await expectCentered(types);
       await types.getByRole('button', { name: `展开${name}介绍`, exact: true }).click();
+      if (pushed) {
+        // Select the content before opening the guarded settings panel. Measure
+        // the real pushed layout while the panel is mounted, then save/close.
+        await page.locator('.site-header [data-action="settings"]').click();
+        await expect.poll(() => page.locator('.site-page').evaluate(node => node.getBoundingClientRect().width)).toBe(900);
+      }
       await expect(page.getByRole('navigation', { name: '首页章节导航' })).toBeVisible();
       const geometry = await types.evaluate(section => {
         const article = section.querySelector('[data-type-id]');
@@ -175,6 +182,10 @@ test('the mounted sidebar leaves readable type descriptions at narrow desktop wi
       expect(geometry).toMatchObject({ imageOutsideRail: true, columnsSeparate: true, withinPage: true, fits: true });
       await expect(types.getByRole('list', { name: '观察重点' }).getByRole('listitem')).toHaveCount(3);
       await expect(types.locator('.heritage-figure figcaption')).toContainText('AI辅助');
+      if (pushed) {
+        await types.locator('[data-type-id]').screenshot({ path: test.info().outputPath(`type-sidebar-${width}-pushed-${name}.png`) });
+        await page.getByRole('button', { name: '保存设置', exact: true }).click();
+      }
     }
     await types.locator('[data-type-id]').screenshot({ path: test.info().outputPath(`type-sidebar-${width}${pushed ? '-pushed' : ''}.png`) });
     await types.getByRole('button', { name: '收起介绍', exact: true }).click();
@@ -266,7 +277,7 @@ test('retained type descriptions share paper controls and texture without shrink
   await transparency.press('Tab');
   await expect(copy).toHaveCSS('background-color', 'rgb(247, 245, 240)');
   expect((await texture()).opacity).toBeGreaterThan(0);
-  await settings.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await settings.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(fonts).toEqual(initialFonts);
   for (const name of ['佛山狮', '鹤山狮', '佛鹤狮']) {
     await types.getByRole('tab', { name: new RegExp(name) }).click();

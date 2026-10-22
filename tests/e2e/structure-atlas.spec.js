@@ -305,7 +305,7 @@ test('合法40%资料底板宽度在900与1920电脑窗仍完整呈现题签图�
   const width = settingsPanel(page).getByRole('spinbutton', { name: '结构资料底板宽度数值', exact: true });
   await width.fill('40');
   await width.press('Tab');
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   for (const viewport of [{ width: 900, height: 900 }, { width: 1920, height: 1080 }]) {
     await page.setViewportSize(viewport);
     const panel = page.locator('#structurePanel');
@@ -379,9 +379,12 @@ test('设置推开页面后图鉴和实际热点仍同步，跨章保留首页�
   const settings = await page.locator('#developerSettingsPanel').boundingBox();
   expect(scene.x + scene.width).toBeLessThanOrEqual(panel.x + 2);
   expect(panel.x + panel.width).toBeLessThanOrEqual(settings.x + 2);
+  await expect(page.locator('#modelHotspots [data-id="eyes"]')).toHaveAttribute('data-visible', 'true');
+  // Settings deliberately guard the rest of the page. Restore page input
+  // before exercising the real hotspot instead of bypassing that guard.
+  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
   await page.locator('#modelHotspots [data-id="eyes"]').click();
   await expectSelection(page, 1);
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
   await page.locator('.site-header [data-route="action"]').click();
   await expect(page.locator('#chapterStage canvas')).toHaveAttribute('data-scene-ready', 'true', { timeout: 45_000 });
   await expect(page.locator('#chapterStage video')).toHaveCount(4);

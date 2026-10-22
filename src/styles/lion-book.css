@@ -66,3 +66,12 @@
   .lion-book-preface p { font-size: 21px; }
   .lion-book-preface>span { font-size: 16px; }
 }
+
+.lion-book-stage, .lion-book-placeholder {
+  height: min(var(--book-stage-height, 680px), max(240px, 65cqw), max(200px, calc(100dvh - var(--site-header-height, 90px) - 40px)));
+}
+.lion-book-reading { container: book-reading / inline-size; }
+.lion-book-reading-title, .lion-book-reading-copy { min-width: 0; overflow-wrap: anywhere; }
+@container book-reading (max-width: 600px) {
+  .lion-book-reading-title, .lion-book-reading-copy { grid-column: 1 / -1; }
+}

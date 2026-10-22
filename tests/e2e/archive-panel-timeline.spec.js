@@ -10,7 +10,7 @@ async function openArchive(page, { reduced = false, saved = {} } = {}) {
     if (window !== window.top) return;
     sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1');
     sessionStorage.setItem('nanfeng-lion:book-intro-seen:v1', '1');
-    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify({ carouselAutoplay: false, ...saved }));
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify({ carouselAutoplay: false, bookAutoplay: false, ...saved }));
   }, { key: settingsKey, saved });
   await page.goto('/');
   await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
@@ -47,6 +47,7 @@ test('标题底板留白能缩小实际高度，不改变文字大小且能保�
   expect(compact.height).toBeLessThanOrEqual(normal.height - (normal.padding + normal.gap) / 2 + 1);
   expect(compact.font).toBe(normal.font);
   expect(compact.otherHeight).toBe(normal.otherHeight);
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)), settingsKey)).toMatchObject({ bookTitleSpacing: 50, navFontSize: 22 });
   await page.reload();
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });

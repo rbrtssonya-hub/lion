@@ -48,6 +48,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const [flatMode, setFlatMode] = useState(false);
   const [visible, setVisible] = useState(!document.hidden);
   const [fullscreen, setFullscreen] = useState(false);
+  const [compactLayout, setCompactLayout] = useState(false);
   const [notice, setNotice] = useState('');
   const [caption, setCaption] = useState({ current: clips[0].id, previous: null });
   const previousCaption = useRef(clips[0].id);
@@ -56,6 +57,29 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   activeRef.current = activeId;
   visibleRef.current = visible;
   flatRef.current = flatMode;
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    const header = document.querySelector('.site-header');
+    if (!stage) return undefined;
+    const measure = () => {
+      const headerHeight = document.fullscreenElement === stage ? 0 : header?.getBoundingClientRect().height ?? 0;
+      // A short desktop window needs room for the scene, its reading and its
+      // controls. Measure the real navigation and settings-adjusted width.
+      setCompactLayout(stage.getBoundingClientRect().width < 780 || window.innerHeight - headerHeight < 500);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage);
+    if (header) observer.observe(header);
+    window.addEventListener('resize', measure);
+    document.addEventListener('fullscreenchange', measure);
+    measure();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+      document.removeEventListener('fullscreenchange', measure);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const previous = previousCaption.current;
@@ -163,10 +187,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const previous = clips.find(clip => clip.id === caption.previous);
   const duration = Number.isFinite(playback.view.duration) && playback.view.duration > 0 ? playback.view.duration : 0;
 
-  return <section className="chapter-stage action-page action-theater-page" id="chapterStage" data-chapter="action" data-active-action={activeId} aria-label="醒狮动作巨幕厅">
+  return <section className="chapter-stage action-page action-theater-page" id="chapterStage" data-chapter="action" data-compact-layout={compactLayout} data-active-action={activeId} aria-label="醒狮动作巨幕厅">
     <h1 className="sr-only" id="chapterTitle">动作</h1>
     <div id="actionTheater" ref={stageRef} className="action-theater" tabIndex={0} onKeyDown={onKeyDown}
-      data-scene-state={sceneState} data-active-action={activeId} data-view={flatMode ? 'flat' : 'theater'} data-playing={playing}>
+      data-scene-state={sceneState} data-compact-layout={compactLayout} data-active-action={activeId} data-view={flatMode ? 'flat' : 'theater'} data-playing={playing}>
       <div id="theaterSceneContainer" className="theater-scene" ref={containerRef} aria-label="拖拽环绕的四面巨幕与醒狮" />
       <div className="theater-video-bank" aria-hidden={!flatMode}>
         {clips.map(clip => <video key={clip.id} data-action-id={clip.id} data-current={clip.id === activeId}

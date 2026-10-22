@@ -90,12 +90,15 @@ test('电脑窗口、低高度与设置推开时侧边目录保持独立可用',
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
   }
   await page.setViewportSize({ width: 1920, height: 1080 });
+  await directory.getByRole('button', { name: `查看${parts[2].name}`, exact: true }).click();
+  await expectCurrent(page, 2);
   await page.getByRole('button', { name: '打开开发者参数设置', exact: true }).click();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   const panel = await page.locator('#structurePanel').boundingBox();
   const settings = await page.locator('#developerSettingsPanel').boundingBox();
   expect(panel.x + panel.width).toBeLessThanOrEqual(settings.x + 1);
-  await directory.getByRole('button', { name: `查看${parts[2].name}`, exact: true }).click();
+  // The settings guard intentionally owns input; retain the actual selection
+  // made before opening it while verifying the pushed reading layout.
   await expectCurrent(page, 2);
   await page.screenshot({ path: test.info().outputPath('structure-directory-settings-push.png'), fullPage: true });
 });

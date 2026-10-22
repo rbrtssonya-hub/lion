@@ -67,13 +67,6 @@ export function useNavigationLayout(headerRef, current, settings) {
       const requestedHeight = readPixels(requested, '--header-height', 90);
       const font = readPixels(requested, '--nav-font-size', 26);
       const helperFont = readPixels(requested, '--nav-helper-font-size', 18);
-      if (page.clientWidth < 700) {
-        header.dataset.navLayout = 'mobile';
-        write(header, '--site-nav-font-size', `${Math.min(16, Math.max(12, font * .58))}px`);
-        write(shell, '--site-header-height', `${Math.max(116, requestedHeight)}px`);
-        return;
-      }
-
       const requestedIcon = readPixels(requested, '--requested-nav-icon-size', 40);
       const requestedPadding = readPixels(requested, '--brand-padding', 24);
       const density = Math.min(1, width / 1600);
@@ -107,8 +100,26 @@ export function useNavigationLayout(headerRef, current, settings) {
       }
       // Leave a subpixel margin for the browser's grid-track rounding.
       if (scale < 1) scale = Math.max(0, Math.floor((scale - .08 / Math.max(font, helperFont)) * 10000) / 10000);
+      // Zoomed desktop windows retain readable, single-line labels. When the
+      // expanded row cannot fit, wrap whole items instead of hiding helpers.
+      const minimumScale = Math.max(Math.min(14, font) / font, Math.min(11, helperFont) / helperFont);
+      const wrapped = scale < minimumScale;
+      let wrappedRows = 1, rowHeight = 0;
+      let columns;
+      if (wrapped) {
+        scale = minimumScale;
+        const widestItem = Math.max(...textWidths.map(value => value * scale + fixedWidth));
+        // Reserve the local scrollbar gutter even before it becomes necessary.
+        const wrappedWidth = width - 2 * sidePadding - 16;
+        const count = Math.max(1, Math.min(items.length, Math.floor(wrappedWidth / widestItem)));
+        wrappedRows = Math.ceil(items.length / count);
+        rowHeight = Math.ceil(Math.max(44, icon + 20, Math.max(font, helperFont) * scale * 1.45 + 20));
+        columns = `repeat(${count}, minmax(0, 1fr))`;
+        header.dataset.navLayout = 'wrapped';
+        write(header, '--navigation-wrapped-row-height', `${rowHeight}px`);
+      }
       const extra = Math.max(0, (available - totalTextWidth * scale - fixedWidth * items.length) / items.length);
-      const columns = textWidths.map(value => `${value * scale + fixedWidth + extra}px`).join(' ');
+      columns ??= textWidths.map(value => `${value * scale + fixedWidth + extra}px`).join(' ');
       write(header, '--site-nav-font-size', `${font * scale}px`);
       write(header, '--site-nav-helper-font-size', `${helperFont * scale}px`);
       write(header, '--navigation-icon-size', `${icon}px`);
@@ -119,19 +130,26 @@ export function useNavigationLayout(headerRef, current, settings) {
       write(header, '--navigation-side-padding', `${sidePadding}px`);
       write(header, '--navigation-header-gap', `${headerGap}px`);
       write(header, '--navigation-columns', columns);
-      const headerHeight = Math.max(stacked ? 116 : 0, requestedHeight);
+      // Large preferences remain stored as entered; the rendered header leaves
+      // useful space for the chapter in short desktop windows. Extra nav rows
+      // scroll inside the header rather than consuming the full viewport.
+      const heightLimit = Math.max(116, Math.floor(window.innerHeight * .45));
+      const headerHeight = Math.min(heightLimit, Math.max(wrapped ? 44 + wrappedRows * rowHeight : stacked ? 116 : 0, requestedHeight));
       write(shell, '--site-header-height', `${headerHeight}px`);
       if (current !== 'entry') {
         const inset = Math.min(readPixels(requested, '--compact-nav-inset', 48), Math.max(16, width * .1));
-        const gap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
-        const compactAvailable = width - sidePadding - inset - measureBrand(false) - headerGap - 28 - 4 * gap;
+        const requestedGap = Math.min(readPixels(requested, '--compact-nav-gap', 14), width * .025);
+        const compactAvailable = width - sidePadding - inset - measureBrand(false) - headerGap - 28 - 4 * requestedGap;
         const labelWidth = Math.max(...copies.map(({ heading }) => heading * scale));
         // Reuse the original brush title under each icon, fitting the two within
         // the requested header instead of substituting a separate small label.
         const compactIcon = Math.max(18, Math.min(icon, compactAvailable / items.length - 24,
           headerHeight - 10 - font * scale - 8));
         const itemWidth = Math.max(compactIcon, labelWidth) + 24;
-        header.dataset.navLayout = 'compact';
+        const compactStacked = itemWidth * items.length > compactAvailable;
+        const navBudget = compactStacked ? width - 2 * sidePadding - 28 : compactAvailable + 4 * requestedGap;
+        const gap = Math.max(0, Math.min(requestedGap, (navBudget - itemWidth * items.length) / 4));
+        header.dataset.navLayout = compactStacked ? 'compact-stacked' : 'compact';
         write(header, '--navigation-icon-size', `${compactIcon}px`);
         write(header, '--navigation-compact-item-width', `${itemWidth}px`);
         write(header, '--navigation-compact-gap', `${gap}px`);

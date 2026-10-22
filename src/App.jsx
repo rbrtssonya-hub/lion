@@ -59,8 +59,7 @@ export default function App() {
       setObservation(null);
     }
   }, []);
-  // The action exhibition's existing layout contract is frozen for this task.
-  const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth, route !== 'action');
+  const canPush = useSettingsPanelLayout(settingsOpen, panelRef, settings.panelWidth);
   const pushing = settingsOpen && settings.pushPage && canPush;
   // CSS variables are consumed by the built stylesheet in dist/assets.
   // Resolve media at the document first so './assets' cannot become assets/assets.

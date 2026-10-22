@@ -988,7 +988,8 @@ test('缩短设置背板后纵向分类与内容分别滚动，底部恢复入�
   const height = panel(page).getByRole('spinbutton', { name: '侧栏高度数值', exact: true });
   await height.fill('55');
   await height.press('Tab');
-  await expect.poll(async () => (await panel(page).boundingBox()).height).toBe(396);
+  await expect.poll(async () => (await panel(page).boundingBox()).height).toBe(480);
+  await expect(height).toHaveValue('55');
   const tabs = panel(page).getByRole('tablist', { name: '设置分类', exact: true });
   const before = await page.evaluate(() => scrollY);
   await tabs.getByRole('tab', { name: '外观', exact: true }).focus();

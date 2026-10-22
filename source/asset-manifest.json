@@ -3842,6 +3842,72 @@
       "path": "source/reviews/entry-book-settings/2026-10-22/sources-settings.png",
       "bytes": 1108291,
       "sha256": "a943f91a4f45b7554a0412a6711c1ddaa926e4959d30a85b0a19f516a14065ab"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/action-4k-3840x2160.png",
+      "bytes": 7209892,
+      "sha256": "a16542f693f8e07c87aeefb0e39f9fa4bc5ca21c90758b32297454b5f3630c23"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/action-compact-675x403.png",
+      "bytes": 425299,
+      "sha256": "5248781e05b54c21b9a25198ced536a3e9d624b475beaa0229b979bb6930b7c4"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/book-640x480.png",
+      "bytes": 361592,
+      "sha256": "730ee08fbdf516c23f64ef400576438f85188edaa9d1b46e2c8bf12250ceada7"
+    },
+    {
+      "from": "native Chrome production capture metrics, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/capture.json",
+      "bytes": 3040,
+      "sha256": "ba157e243d8a43ea0bbe18ba6b8b4b66a15fedabf3faed71a6657c3db38a694b"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/culture-1024x640.png",
+      "bytes": 630821,
+      "sha256": "312c0ead17da115b4178edaf3882716e386e9a67149590f64c12ad396f5bcb25"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/entry-film-640x360.png",
+      "bytes": 367860,
+      "sha256": "d4eb4a40f09beebb60b102a9a3646f6ab6d5e3b73a3390ebeebb51648be81a60"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/expression-detail-900x600.png",
+      "bytes": 694542,
+      "sha256": "f9af1e27503ba95756f06087336c96da273a9f89aca44652bbed51e94bd9ae8f"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/home-loop-675x403.png",
+      "bytes": 446622,
+      "sha256": "e466603f0e9fc936e43ed58d2703b74b4723f1c1dec454fb86f12d5396eb2c1a"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/settings-640x360.png",
+      "bytes": 253432,
+      "sha256": "f48d187b47b0a4c617b9f2676434bc41806b900669ace14367a487d40f591d92"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/sources-large-text-640x480.png",
+      "bytes": 96641,
+      "sha256": "041fd93701a8c1c11946543b97210424d417f1ec286da312d97dce87db732c56"
+    },
+    {
+      "from": "native Chrome production screenshot, desktop responsive review 2026-10-22",
+      "path": "source/reviews/desktop-responsive/2026-10-22/structure-900x600.png",
+      "bytes": 559215,
+      "sha256": "decae8c70b565928e24b5dacf97bf9a221bfd54b207f6a959e8bbc7a3c6234ac"
     }
   ]
 }

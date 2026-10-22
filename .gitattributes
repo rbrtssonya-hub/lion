@@ -12,3 +12,6 @@ source/reviews/home-audio-wave/2026-10-22/actual-wave-frames.json -text
 
 # Preserve production capture evidence registered in the asset manifest.
 source/reviews/entry-book-settings/2026-10-22/capture.json -text
+
+# Preserve the authenticated desktop layout capture record.
+source/reviews/desktop-responsive/2026-10-22/capture.json -text

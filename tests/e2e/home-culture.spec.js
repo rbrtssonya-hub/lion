@@ -414,6 +414,9 @@ test('窗口高度变化使静止指针移出视口后释放照片暂停', async
   expect(after.width).toBeCloseTo(before.width, 1);
   expect(after.height).toBeCloseTo(before.height, 1);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
+  // The responsive book above this section also changes height. Bring the
+  // gallery back into view before requiring automatic playback to resume.
+  await gallery.scrollIntoViewIfNeeded();
   await expect(carousel).toHaveAttribute('data-culture-status', 'playing', { timeout: 2000 });
   await expect(carousel).toHaveAttribute('data-culture-index', '1', { timeout: 3000 });
 });

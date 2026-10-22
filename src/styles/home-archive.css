@@ -140,3 +140,19 @@
   .home-archive-scene .lion-book-heading .lion-archive-title-line h2 { grid-column: 1; justify-self: center; white-space: normal; overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
   .home-archive-scene .lion-book-heading .lion-archive-title-line .lion-archive-ornament { grid-column: 1; justify-self: center; margin-left: 0; }
 }
+
+@container lion-page (max-width: 760px) {
+  .home-archive-scene { padding-inline: 112px; }
+  .home-archive-scene :is(.lion-book-section, .home-culture, .home-heritage-section, .heritage-sources-wrap) { padding-inline: 16px; }
+  .home-archive-scene { --archive-peek-width: clamp(120px, 24cqw, 220px); }
+}
+/* Saved percentages remain preferences; a narrow desktop keeps enough paper
+   for continuous reading instead of reducing a paragraph to one glyph per row. */
+@container lion-page (max-width: 1100px) {
+  .site-shell .home-archive-scene :is(.archive-reading-panel[data-surface], .home-culture-sources[data-surface]) {
+    width: min(100%, max(var(--surface-width, 100%), 280px));
+  }
+  .site-shell .home-archive-scene a.home-culture-source-card[data-surface] {
+    width: min(100%, max(var(--surface-width, 100%), 220px));
+  }
+}

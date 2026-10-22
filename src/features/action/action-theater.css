@@ -110,6 +110,31 @@
   .theater-source-note { font-size: 9px; }
   .theater-playback-notice { top: calc(var(--theater-nav-inset) + 324px); width: 208px; }
 }
+/* Compact desktop windows keep a full scene above readable, reachable controls. */
+.chapter-stage.action-theater-page[data-compact-layout='true'] { height: auto; min-height: 100svh; }
+.action-theater[data-compact-layout='true'] {
+  display: flex; flex-direction: column; gap: 16px; height: auto; min-height: 100svh;
+  padding: calc(var(--theater-nav-inset) + 16px) var(--theater-edge) 20px; overflow: visible;
+}
+.action-theater[data-compact-layout='true'] :is(.theater-scene, .theater-video-bank, .theater-vignette) { bottom: auto; height: max(360px, 100svh); }
+.action-theater[data-compact-layout='true'] .theater-topline {
+  position: relative; inset: auto; align-self: flex-start; max-width: calc(100% - 140px);
+  margin-bottom: max(150px, calc(100svh - var(--theater-nav-inset) - 130px));
+}
+.action-theater[data-compact-layout='true'] .theater-observation {
+  position: relative; inset: auto; flex: 0 0 auto; width: 100%; max-width: none; padding: 15px 17px 13px; pointer-events: auto;
+}
+.action-theater[data-compact-layout='true'] .theater-caption.is-leaving { inset: 15px 17px 13px; }
+.action-theater[data-compact-layout='true'] .theater-bottom { position: relative; inset: auto; flex: 0 0 auto; width: 100%; }
+.action-theater[data-compact-layout='true'] .theater-action-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.action-theater[data-compact-layout='true'] .theater-action-nav button { min-width: 0; flex-wrap: wrap; gap: 4px; padding-inline: 4px; }
+.action-theater[data-compact-layout='true'] .theater-action-nav button > strong { white-space: normal; overflow-wrap: anywhere; text-align: center; }
+.action-theater[data-compact-layout='true'] .sound-control { position: relative; inset: auto; align-self: flex-end; flex: 0 0 auto; }
+.action-theater[data-compact-layout='true'] :is(.theater-scene-error, .theater-hdri-notice, .theater-drum-notice, .theater-playback-notice) {
+  position: relative; inset: auto; flex: 0 0 auto; width: 100%; max-width: none; overflow-wrap: anywhere;
+}
+.action-theater[data-compact-layout='true'] .theater-loading { bottom: auto; height: calc(max(360px, 100svh) - var(--theater-nav-inset)); }
+.action-theater[data-compact-layout='true']:fullscreen { height: 100vh; overflow-y: auto; }
 @media (prefers-reduced-motion: reduce) {
   .theater-caption.is-current, .theater-caption.is-leaving, .theater-playback-notice { animation-duration: 1ms; }
   .theater-loading-ring { animation: none; }

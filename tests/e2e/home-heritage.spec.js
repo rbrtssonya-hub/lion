@@ -94,16 +94,12 @@ test('local keyboard, rapid selection and reduced motion do not change the cultu
 });
 
 test('deferred type artwork cannot hold startup and unavailable images retain usable observations', async ({ page }) => {
-  await page.addInitScript(() => {
-    if (window !== top) return;
-    new MutationObserver(() => {
-      const loader=document.getElementById('startupLoading');
-      if(loader) window.heritageStartupFailures=loader.dataset.failures||'';
-    }).observe(document,{subtree:true,childList:true,attributes:true,attributeFilter:['data-failures']});
-  });
+  const loadingAnimationRequests = [];
+  page.on('request', request => { if (/\/assets\/loading\//.test(request.url())) loadingAnimationRequests.push(request.url()); });
   await page.route('**/assets/lion-types/**', route => route.abort());
   await open(page);
-  expect(await page.evaluate(()=>window.heritageStartupFailures)).not.toContain('图像与章节');
+  await expect(page.locator('#entryLionVideo')).toBeVisible();
+  expect(loadingAnimationRequests).toEqual([]);
   const types = page.locator('#homeLionTypes');
   await types.scrollIntoViewIfNeeded();
   await expect(types.locator('.heritage-image-fallback')).toBeVisible();
@@ -121,6 +117,7 @@ test('new sections share existing reading surfaces and persist previews without 
   for(const [name,value] of [['文化标题底板透明度数值','100'],['文化正文底板透明度数值','100']]) {
     const input=panel.getByRole('spinbutton',{name,exact:true});await input.fill(value);await input.press('Tab');
   }
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   await page.locator('#homeLionTypes .heritage-type-image').click();
   for(const selector of ['#homeLionTypes .heritage-heading','#homeLionTypes .heritage-copy']) {
     await expect(page.locator(selector)).toHaveCSS('background-color',selector.includes('heading') ? 'rgba(0, 0, 0, 0)' : 'rgba(247, 245, 240, 0)');
@@ -174,7 +171,7 @@ test('heritage title paper contains its text and lion ornament at 40 percent wid
   await selectSettingsFor(page, 'cultureTitle');
   const width = panel.getByRole('spinbutton', { name: '文化标题底板宽度数值', exact: true });
   await width.fill('40'); await width.press('Tab');
-  await page.locator('.site-header [data-action="settings"]').click();
+  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
   for (const [w,h] of [[1920,1080],[2560,1440],[1366,768],[1024,768]]) {
     await page.setViewportSize({ width:w, height:h });
     for (const heading of await page.locator('.heritage-heading').all()) {

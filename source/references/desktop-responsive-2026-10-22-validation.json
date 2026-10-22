@@ -1,0 +1,558 @@
+{
+  "date": "2026-10-22",
+  "status": "passed",
+  "objective": "本工程所有现用组件和显示自适应不同电脑",
+  "baseline": "main@8e1072b plus this task worktree",
+  "preservedPreexistingUntrackedPath": "model/",
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node": "24.16.0",
+    "npm": "12.0.1",
+    "python": "3.14.2",
+    "browser": "156.0.8078.4",
+    "devURL": "http://127.0.0.1:4173",
+    "productionURL": "http://127.0.0.1:4196",
+    "workers": 1,
+    "trace": "off"
+  },
+  "desktopWindows": [
+    [
+      640,
+      360
+    ],
+    [
+      675,
+      403
+    ],
+    [
+      640,
+      480
+    ],
+    [
+      800,
+      600
+    ],
+    [
+      900,
+      600
+    ],
+    [
+      1024,
+      576
+    ],
+    [
+      1024,
+      640
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      2560,
+      1080
+    ],
+    [
+      3840,
+      2160
+    ]
+  ],
+  "requirements": [
+    {
+      "module": "全局导航",
+      "evidence": [
+        "tests/e2e/navigation-settings-desktop-layout.spec.js",
+        "tests/e2e/navigation-transitions.spec.js"
+      ],
+      "verified": "完整单行项目、空间不足整项换排、短窗局部滚动、原图/字体/动画保留"
+    },
+    {
+      "module": "设置与确认",
+      "evidence": [
+        "tests/e2e/navigation-settings-desktop-layout.spec.js",
+        "tests/e2e/settings-transaction.spec.js",
+        "tests/e2e/desktop-window-contract.spec.js"
+      ],
+      "verified": "11分类及保存/取消/导出可达、弹框限高、实际侧栏/推开预算、尺寸往返不写偏好"
+    },
+    {
+      "module": "首页视频/书册/时间线/图鉴/传承/资料",
+      "evidence": [
+        "tests/e2e/home-desktop-layout.spec.js",
+        "tests/e2e/home-video-replacement.spec.js",
+        "tests/e2e/home-culture.spec.js",
+        "tests/e2e/lion-book-stability.spec.js",
+        "tests/e2e/home-heritage.spec.js",
+        "tests/e2e/home-heritage-reveal.spec.js"
+      ],
+      "verified": "首屏PNG及装饰和正文边界、极端字号/窄纸面可读、真实书面与图鉴命中、实例保留、许可/来源和交互保留"
+    },
+    {
+      "module": "结构/动作/神态",
+      "evidence": [
+        "tests/e2e/chapters-desktop-layout.spec.js",
+        "tests/e2e/structure-directory.spec.js",
+        "tests/e2e/structure-atlas.spec.js",
+        "tests/e2e/action-navigation-backdrop.spec.js",
+        "tests/e2e/expression-motion.spec.js"
+      ],
+      "verified": "实际画布与独立目录/正文、解读/播放器互不遮挡、八态及对照、平面/全屏/失败回退、实例保留"
+    },
+    {
+      "module": "浏览器原生缩放",
+      "evidence": [
+        "tests/e2e/desktop-window-contract.spec.js"
+      ],
+      "verified": "临时独立Chrome profile中使用settingsPrivate原生125/150/200%，12条四路由观察，CSS zoom均为1"
+    }
+  ],
+  "finalCore": {
+    "command": "npm test",
+    "passed": 73,
+    "failed": 0,
+    "elapsedMs": 4456.8442
+  },
+  "finalBuild": {
+    "command": "npm run build",
+    "modules": 341,
+    "elapsedSeconds": 1.92,
+    "result": "passed",
+    "existingWarning": "three.module 538.05kB exceeds 500kB chunk guidance"
+  },
+  "finalProduction": {
+    "command": "npx playwright test --config tmp/desktop-layout.preview.config.mjs tests/e2e/desktop-window-contract.spec.js tests/e2e/navigation-settings-desktop-layout.spec.js tests/e2e/home-desktop-layout.spec.js tests/e2e/chapters-desktop-layout.spec.js tests/e2e/settings-transaction.spec.js tests/e2e/sources-typography.spec.js tests/e2e/navigation-transitions.spec.js tests/e2e/action-navigation-backdrop.spec.js tests/e2e/structure-directory.spec.js tests/e2e/expression-motion.spec.js tests/e2e/home-video-replacement.spec.js --grep-invert 手机 --reporter=list",
+    "specs": 11,
+    "passed": 55,
+    "failed": 0,
+    "elapsedLabel": "3.3m",
+    "includesAllNewAdaptiveCases": 30,
+    "runState": {
+      "status": "passed",
+      "failedTests": []
+    }
+  },
+  "development": {
+    "global": {
+      "finalCommand": "npx playwright test --config tmp/desktop-layout.config.mjs tests/e2e/desktop-window-contract.spec.js --reporter=list",
+      "passed": 3,
+      "elapsedSeconds": 37.5
+    },
+    "navigationAndSettings": {
+      "scope": "电脑导航、设置面板、拖动句柄、事务交互与动画回归；无手机专项",
+      "baseline": "8e1072b + 当前协作工作区",
+      "server": "http://127.0.0.1:4173 (开发Vite，由root启动)",
+      "config": "tmp/playwright-navigation-settings-desktop.config.js",
+      "runs": [
+        {
+          "session": 95672,
+          "command": "npx playwright test --config tmp/playwright-navigation-settings-desktop.config.js navigation-settings-desktop-layout.spec.js navigation-transitions.spec.js settings-transaction.spec.js home-navigation.spec.js developer-settings.spec.js --grep '电脑有效|窄低电脑|低窗最窄|设置最大|1366px电脑紧凑|经典滚动条|紧凑图标间距|缩短设置背板|实时预览不写|保存提交并可刷新|导出JSON|Escape先取消|存储失败保留' --trace off",
+          "passed": 13,
+          "failed": 0,
+          "elapsedSeconds": 57.6
+        },
+        {
+          "session": 38759,
+          "command": "npx playwright test --config tmp/playwright-navigation-settings-desktop.config.js home-navigation.spec.js navigation-transitions.spec.js developer-settings.spec.js --grep-invert '手机|1366px电脑紧凑|经典滚动条|紧凑图标间距|缩短设置背板' --trace off --max-failures 3",
+          "passed": 34,
+          "failed": 3,
+          "didNotRun": 8,
+          "elapsedMinutes": 4.8,
+          "note": "home-navigation旧夹具在测试运行中完成适配，旧worker仍使用旧调用；另键盘夹具没有跳过已由独立spec覆盖的入场。已在下一次运行前完成全部测试编辑。产品文件没有因这些失败而修改。"
+        },
+        {
+          "session": 55830,
+          "command": "npx playwright test --config tmp/playwright-navigation-settings-desktop.config.js home-navigation.spec.js navigation-transitions.spec.js --grep '最小顶栏高度与最大|独立字号的正反|导航可用键盘|返回首页恢复原文字|快速中断|直接打开章节|首页原版红底|窄顶栏与125|短顶栏飞行|设置推开至实测|减少动态在飞行' --trace off",
+          "passed": 11,
+          "failed": 0,
+          "elapsedSeconds": 46.8,
+          "note": "仅覆盖上次3个失败及8个未运行用例；夹具在本次启动前已完成，运行中无文件编辑。"
+        }
+      ],
+      "finalDistinctPassed": 58,
+      "finalUnresolvedFailures": 0,
+      "note": "58个不同用例的实际通过证据来自上述三次执行中的13+34+11，不声称同一次完整58项运行；正式生产验证由root另行执行。"
+    },
+    "chapters": {
+      "runs": [
+        {
+          "command": "npx playwright test --config tmp/playwright.chapters.config.js tests/e2e/chapters-desktop-layout.spec.js --output tmp/chapters-desktop-first",
+          "passed": 6,
+          "failed": 0,
+          "elapsedSeconds": 29.4
+        },
+        {
+          "command": "npx playwright test --config tmp/playwright.chapters.config.js tests/e2e/action-theater.spec.js tests/e2e/action-navigation-backdrop.spec.js tests/e2e/expression-motion.spec.js tests/e2e/content-comparison.spec.js tests/e2e/structure-atlas.spec.js tests/e2e/structure-directory.spec.js --output tmp/chapters-desktop-related",
+          "passed": 31,
+          "failed": 1,
+          "elapsedLabel": "3.7m",
+          "failure": "旧目录夹具在设置防护层打开时点击页面，60s超时；改为打开前真实选择，推开时验证保留与布局"
+        },
+        {
+          "command": "npx playwright test --config tmp/playwright.chapters.config.js tests/e2e/chapters-desktop-layout.spec.js tests/e2e/structure-directory.spec.js --output tmp/chapters-desktop-final",
+          "passed": 8,
+          "failed": 1,
+          "elapsedSeconds": 49.7,
+          "directoryPassed": 3,
+          "failure": "resize后原投影渲染尚未提交即读scrollWidth；保持<=1px阈值并等待真实渲染更新"
+        },
+        {
+          "command": "npx playwright test --config tmp/playwright.chapters.config.js tests/e2e/chapters-desktop-layout.spec.js --output tmp/chapters-desktop-verified",
+          "passed": 6,
+          "failed": 0,
+          "elapsedSeconds": 28.9
+        }
+      ],
+      "distinctOldCasesWithPassingRecords": 32,
+      "note": "此前同一旧组曾为修复dirty-close夹具中止，不计为完成的一轮。"
+    },
+    "home": {
+      "runs": [
+        {
+          "command": "npx playwright test tests/e2e/home-desktop-layout.spec.js tests/e2e/home-culture.spec.js tests/e2e/lion-book.spec.js tests/e2e/lion-book-stability.spec.js tests/e2e/home-heritage.spec.js tests/e2e/home-heritage-reveal.spec.js tests/e2e/home-reading.spec.js tests/e2e/archive-panel-timeline.spec.js tests/e2e/sources-typography.spec.js --config tmp/home-desktop-audit/playwright.config.js --trace off --output tmp/e2e-home-desktop-regression --reporter list",
+          "passed": 84,
+          "failed": 8,
+          "elapsedLabel": "10.2m",
+          "note": "含原有1个手机用例，未计入电脑交付。初次组在短屏PNG组合补修前运行，新增当时15项。"
+        },
+        {
+          "command": "npx playwright test tests/e2e/home-desktop-layout.spec.js tests/e2e/archive-panel-timeline.spec.js tests/e2e/home-culture.spec.js tests/e2e/home-heritage.spec.js tests/e2e/home-heritage-reveal.spec.js --grep 首页在电脑余窗|纸面40%|首页设置推开|入场失败提示|窄电脑书页|最短电脑余窗|标题底板留白能|快速相邻往返|窗口高度变化|mounted sidebar leaves|retained type descriptions|deferred type artwork|new sections share|heritage title paper --grep-invert 手机 --config tmp/home-desktop-audit/playwright.config.js --trace off --output tmp/e2e-home-desktop-recovery --reporter list",
+          "passed": 25,
+          "failed": 0,
+          "elapsedLabel": "1.1m",
+          "newCases": 17,
+          "recoveredOldCases": 8
+        }
+      ],
+      "distinctOldDesktopCasesWithPassingRecords": 76,
+      "failures": [
+        "旧即时保存预期改显式保存",
+        "设置防护层打开时点击正文或关闭后的继续操作",
+        "已移除的startupLoading.dataset不再是入口证据，改实际视频可见与零加载动画请求",
+        "缩高使图鉴真实离屏，应先验证释放hover，再滚回可视区要求播放",
+        "旧手动快速翻页夹具需显式关闭新版默认自动按页循环，保留140ms原选择阈值"
+      ]
+    }
+  },
+  "earlierProduction": [
+    {
+      "passed": 28,
+      "failed": 0,
+      "elapsedLabel": "1.6m",
+      "note": "P2交叉审查前的新专项，不能代替最终55项"
+    },
+    {
+      "passed": 3,
+      "failed": 0,
+      "elapsedSeconds": 34.4,
+      "note": "持久化原生缩放JSON的专项复验，不能代替最终55项"
+    }
+  ],
+  "rootHarnessCorrections": [
+    "首跑全局3项1过2失败：Hash同文档跳转保留settingsOpen，新增每路由保存关闭；persistent上下文继承deviceScaleFactor与viewport:null冲突，显式清除默认DPR模拟。旧在途重跑中止，修正完成后3/3。",
+    "首轮QA脚本把仅动作具备的data-scene-ready当结构完成标记，5图后超时；改为真实#resetView可用，最终10图完整重采集。"
+  ],
+  "independentReview": {
+    "initialFinding": "P2: 640x360 CTA PNG横裁；180px顶栏组合英文下裁。原文本/纵向断言未覆盖PNG本体。",
+    "fix": "短屏父宽取图/按钮较大值，<=440px高左题图右按钮/标语并预留重播区域；新增两组合，PNG/两朵云/文字四边与互不遮挡断言。",
+    "finalProductionCombinations": [
+      "640x360 default",
+      "900x360 default",
+      "640x360 header180/nav14/helper28/icon56/homeOffset160/headerWidth60",
+      "675x403 header180"
+    ],
+    "final": "通过；CTA真实elementFromPoint命中，最紧英文bottom346.41<360；无剩余阻塞。另独立审查布局观察器/监听退出清理、全屏、原生缩放证据，无新增缺陷。"
+  },
+  "nativeZoomObservations": [
+    {
+      "scale": 1.25,
+      "route": "entry",
+      "width": 1080,
+      "height": 644,
+      "dpr": 1.25,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.25,
+      "route": "model",
+      "width": 1080,
+      "height": 644,
+      "dpr": 1.25,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.25,
+      "route": "action",
+      "width": 1080,
+      "height": 644,
+      "dpr": 1.25,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.25,
+      "route": "state",
+      "width": 1080,
+      "height": 644,
+      "dpr": 1.25,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.5,
+      "route": "entry",
+      "width": 900,
+      "height": 537,
+      "dpr": 1.5,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.5,
+      "route": "model",
+      "width": 900,
+      "height": 537,
+      "dpr": 1.5,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.5,
+      "route": "action",
+      "width": 900,
+      "height": 537,
+      "dpr": 1.5,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 1.5,
+      "route": "state",
+      "width": 900,
+      "height": 537,
+      "dpr": 1.5,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 2,
+      "route": "entry",
+      "width": 675,
+      "height": 402,
+      "dpr": 2,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 2,
+      "route": "model",
+      "width": 675,
+      "height": 402,
+      "dpr": 2,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 2,
+      "route": "action",
+      "width": 675,
+      "height": 402,
+      "dpr": 2,
+      "cssZoom": "1"
+    },
+    {
+      "scale": 2,
+      "route": "state",
+      "width": 675,
+      "height": 402,
+      "dpr": 2,
+      "cssZoom": "1"
+    }
+  ],
+  "qa": {
+    "directory": "source/reviews/desktop-responsive/2026-10-22",
+    "screenshots": 10,
+    "allViewed": true,
+    "errors": [],
+    "records": [
+      {
+        "name": "entry-film-640x360.png",
+        "viewport": [
+          640,
+          360
+        ],
+        "dpr": 1,
+        "pageWidth": 625,
+        "scrollWidth": 625,
+        "clientWidth": 640,
+        "headerHeight": 132,
+        "route": "entry",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "home-loop-675x403.png",
+        "viewport": [
+          675,
+          403
+        ],
+        "dpr": 1,
+        "pageWidth": 660,
+        "scrollWidth": 660,
+        "clientWidth": 675,
+        "headerHeight": 132,
+        "route": "entry",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "book-640x480.png",
+        "viewport": [
+          640,
+          480
+        ],
+        "dpr": 1,
+        "pageWidth": 625,
+        "scrollWidth": 625,
+        "clientWidth": 640,
+        "headerHeight": 132,
+        "route": "entry",
+        "scrollY": 819,
+        "cssZoom": "1"
+      },
+      {
+        "name": "culture-1024x640.png",
+        "viewport": [
+          1024,
+          640
+        ],
+        "dpr": 1,
+        "pageWidth": 1009,
+        "scrollWidth": 1009,
+        "clientWidth": 1024,
+        "headerHeight": 90,
+        "route": "entry",
+        "scrollY": 2342,
+        "cssZoom": "1"
+      },
+      {
+        "name": "sources-large-text-640x480.png",
+        "viewport": [
+          640,
+          480
+        ],
+        "dpr": 1,
+        "pageWidth": 625,
+        "scrollWidth": 625,
+        "clientWidth": 640,
+        "headerHeight": 132,
+        "route": "entry",
+        "scrollY": 4553,
+        "cssZoom": "1"
+      },
+      {
+        "name": "structure-900x600.png",
+        "viewport": [
+          900,
+          600
+        ],
+        "dpr": 1,
+        "pageWidth": 885,
+        "scrollWidth": 885,
+        "clientWidth": 900,
+        "headerHeight": 116,
+        "route": "model",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "action-compact-675x403.png",
+        "viewport": [
+          675,
+          403
+        ],
+        "dpr": 1,
+        "pageWidth": 660,
+        "scrollWidth": 660,
+        "clientWidth": 675,
+        "headerHeight": 132,
+        "route": "action",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "action-4k-3840x2160.png",
+        "viewport": [
+          3840,
+          2160
+        ],
+        "dpr": 1,
+        "pageWidth": 3825,
+        "scrollWidth": 3825,
+        "clientWidth": 3840,
+        "headerHeight": 90,
+        "route": "action",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "expression-detail-900x600.png",
+        "viewport": [
+          900,
+          600
+        ],
+        "dpr": 1,
+        "pageWidth": 885,
+        "scrollWidth": 885,
+        "clientWidth": 900,
+        "headerHeight": 116,
+        "route": "state",
+        "scrollY": 0,
+        "cssZoom": "1"
+      },
+      {
+        "name": "settings-640x360.png",
+        "viewport": [
+          640,
+          360
+        ],
+        "dpr": 1,
+        "pageWidth": 625,
+        "scrollWidth": 625,
+        "clientWidth": 640,
+        "headerHeight": 132,
+        "route": "entry",
+        "scrollY": 0,
+        "cssZoom": "1"
+      }
+    ]
+  },
+  "assets": {
+    "existingRecordsPreserved": 640,
+    "addedQARecords": 11,
+    "manifestRecords": 651,
+    "runtimeAssetCopiesSha256Matched": 141
+  },
+  "limitations": [
+    "本机Windows/Chrome156电脑布局，未声称异机帧率/实体显示器与系统DPI实机矩阵/其他浏览器",
+    "手机不属于目标，原组误纳入的一个旧手机用例不计交付",
+    "未重新打包EXE、公开托管或物理音量验收",
+    "HEVC支持和完整模型加载量沿用原平台边界",
+    "没有重跑全仓所有E2E；验证为新全组件自适应与受影响原交互子集"
+  ],
+  "memoryCheck": {
+    "pages": 109,
+    "errors": [],
+    "warnings": [
+      "日志/UI修改/2026-10-09-首页参考图视觉重构.md: historical source no longer exists: src/components/EntryNavTools.jsx; trace its recorded revision",
+      "日志/UI修改/2026-10-10-标题动效层缩放与首页验收.md: historical source no longer exists: src/components/EntryNavTools.jsx; trace its recorded revision",
+      "日志/UI修改/2026-10-11-首页标题探索框与红金导航.md: historical source no longer exists: src/components/EntryNavTools.jsx; trace its recorded revision",
+      "日志/工程维护/2026-10-09-标准记忆位置与导航整改.md: historical source no longer exists: source/public/assets/models/lion-overall.glb; trace its recorded revision"
+    ]
+  },
+  "diffReview": {
+    "result": "passed",
+    "unresolvedProductFindings": 0,
+    "reviewed": "Product diff and relevant test changes reviewed by root; independent navigation/home and chapter/global reviewers; P2 findings fixed and rechecked."
+  }
+}

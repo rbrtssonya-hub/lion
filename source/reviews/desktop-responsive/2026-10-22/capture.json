@@ -1,0 +1,157 @@
+{
+  "browser": "156.0.8078.4",
+  "baseURL": "http://127.0.0.1:4196",
+  "records": [
+    {
+      "name": "entry-film-640x360.png",
+      "viewport": [
+        640,
+        360
+      ],
+      "dpr": 1,
+      "pageWidth": 625,
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "headerHeight": 132,
+      "route": "entry",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "home-loop-675x403.png",
+      "viewport": [
+        675,
+        403
+      ],
+      "dpr": 1,
+      "pageWidth": 660,
+      "scrollWidth": 660,
+      "clientWidth": 675,
+      "headerHeight": 132,
+      "route": "entry",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "book-640x480.png",
+      "viewport": [
+        640,
+        480
+      ],
+      "dpr": 1,
+      "pageWidth": 625,
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "headerHeight": 132,
+      "route": "entry",
+      "scrollY": 819,
+      "cssZoom": "1"
+    },
+    {
+      "name": "culture-1024x640.png",
+      "viewport": [
+        1024,
+        640
+      ],
+      "dpr": 1,
+      "pageWidth": 1009,
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "headerHeight": 90,
+      "route": "entry",
+      "scrollY": 2342,
+      "cssZoom": "1"
+    },
+    {
+      "name": "sources-large-text-640x480.png",
+      "viewport": [
+        640,
+        480
+      ],
+      "dpr": 1,
+      "pageWidth": 625,
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "headerHeight": 132,
+      "route": "entry",
+      "scrollY": 4553,
+      "cssZoom": "1"
+    },
+    {
+      "name": "structure-900x600.png",
+      "viewport": [
+        900,
+        600
+      ],
+      "dpr": 1,
+      "pageWidth": 885,
+      "scrollWidth": 885,
+      "clientWidth": 900,
+      "headerHeight": 116,
+      "route": "model",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "action-compact-675x403.png",
+      "viewport": [
+        675,
+        403
+      ],
+      "dpr": 1,
+      "pageWidth": 660,
+      "scrollWidth": 660,
+      "clientWidth": 675,
+      "headerHeight": 132,
+      "route": "action",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "action-4k-3840x2160.png",
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "pageWidth": 3825,
+      "scrollWidth": 3825,
+      "clientWidth": 3840,
+      "headerHeight": 90,
+      "route": "action",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "expression-detail-900x600.png",
+      "viewport": [
+        900,
+        600
+      ],
+      "dpr": 1,
+      "pageWidth": 885,
+      "scrollWidth": 885,
+      "clientWidth": 900,
+      "headerHeight": 116,
+      "route": "state",
+      "scrollY": 0,
+      "cssZoom": "1"
+    },
+    {
+      "name": "settings-640x360.png",
+      "viewport": [
+        640,
+        360
+      ],
+      "dpr": 1,
+      "pageWidth": 625,
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "headerHeight": 132,
+      "route": "entry",
+      "scrollY": 0,
+      "cssZoom": "1"
+    }
+  ],
+  "errors": []
+}

@@ -69,6 +69,10 @@
   height: 12px;
 }
 
+.site-shell[data-settings-open='true'] .lion-topbar-resize-handle {
+  width: max(0px, calc(100% - var(--settings-rendered-panel-width, var(--settings-panel-width, 340px))));
+}
+
 .lion-sidebar-resize-handle {
   position: absolute;
   z-index: 43;

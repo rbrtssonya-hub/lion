@@ -91,6 +91,11 @@
   box-shadow: 0 2px 8px rgb(60 53 45 / calc(var(--surface-opacity, .9) * .025));
   scrollbar-width: thin; scrollbar-color: #b98c5b transparent; overscroll-behavior: contain;
 }
+/* Keep a narrow saved paper preference readable within its available column. */
+.expression-page .expression-copy { width: min(100%, max(var(--surface-width, 100%), 220px)); max-width: 100%; overflow-wrap: anywhere; }
+.expression-copy-content { min-width: 0; }
+.expression-state-count { flex-wrap: wrap; }
+.expression-return { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .expression-copy-content { animation: expression-copy-arrive 200ms ease-out both; }
 .expression-motif { display: block; flex: 0 0 auto; width: 28px; height: 28px; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 .expression-copy-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 18px; color: #685d51; font: 12px/1.5 var(--sans); letter-spacing: .06em; }

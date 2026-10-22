@@ -68,3 +68,44 @@
   .entry-video-note { flex-basis: 100%; font-size: 9px; }
   .entry-cta { width: min(280px, 100%); margin-top: 24px; padding-inline: 38px; font-size: 20px; }
 }
+
+/* Desktop windows can be narrow after zooming or opening the settings panel. */
+.entry-copy {
+  --entry-title-width: min(max(330px, 30cqw), 52svh, 750px);
+  --entry-cta-width: clamp(280px, 19.5cqw, 480px);
+  left: clamp(56px, 8cqw, 150px);
+  max-width: calc(100% - 48px);
+}
+@container lion-page (max-width: 900px) {
+  .entry-copy { --entry-title-width: min(330px, 44cqw, 48svh); left: 24px; }
+}
+@media (max-height: 700px) {
+  .final-home { min-height: 100svh; }
+  .entry-copy {
+    --entry-title-width: min(30cqw, max(100px, calc((100svh - var(--site-header-height) - 140px) * 1.15)));
+    --entry-cta-width: clamp(220px, 19.5cqw, 360px);
+    top: calc(var(--site-header-height) + (100svh - var(--site-header-height)) / 2);
+    width: max(var(--entry-title-width), var(--entry-cta-width));
+  }
+  .entry-cta { min-height: 48px; margin-top: 14px; }
+  .entry-motto { margin-top: 14px; font-size: 14px; letter-spacing: .22em; gap: 24px; }
+  .entry-english { max-width: 100%; font-size: 8px; text-align: center; white-space: normal; }
+  .entry-playback-tools { left: auto; right: 20px; top: calc(var(--site-header-height) + 12px); }
+  .entry-playback-tools .entry-replay { min-height: 44px; padding: 7px 10px; gap: 8px; }
+  .entry-replay-icon { width: 30px; height: 30px; }
+  .entry-replay strong { font-size: 14px; }
+  .is-intro-playing .entry-playback-tools { top: 20px; left: 20px; right: 20px; }
+}
+@media (max-height: 440px) {
+  .entry-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 1.25fr);
+    column-gap: 24px;
+    row-gap: 10px;
+    justify-items: center;
+    width: min(600px, calc(100% - 48px));
+    top: calc(var(--site-header-height) + 68px + (100svh - var(--site-header-height) - 68px) / 2);
+  }
+  .entry-title-live2d { grid-column: 1; grid-row: 1 / 4; max-width: 100%; }
+  .entry-cta, .entry-motto, .entry-english { grid-column: 2; margin: 0; max-width: 100%; }
+}

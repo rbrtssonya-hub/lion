@@ -132,8 +132,11 @@
 }
 .site-shell .video-status {
   box-sizing: border-box;
-  width: calc(min(90vw, 680px) * var(--videoOverlay-surface-width-ratio, .8));
-  min-height: var(--videoOverlay-surface-height, 0px);
+  width: calc(min(90%, 680px) * var(--videoOverlay-surface-width-ratio, .8));
+  min-height: min(var(--videoOverlay-surface-height, 0px), 65svh, 70%);
+  max-height: min(65svh, 70%);
+  overflow: auto;
+  overflow-wrap: anywhere;
   border-radius: var(--videoOverlay-surface-radius, 8px);
   border-color: rgb(213 166 91 / calc(var(--videoOverlay-surface-opacity, .88) * .6));
   background: rgb(var(--videoOverlay-surface-rgb, 8 11 10) / var(--videoOverlay-surface-opacity, .88));
