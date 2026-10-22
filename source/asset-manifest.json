@@ -3,6 +3,30 @@
   "migratedOn": "2026-10-09",
   "files": [
     {
+      "from": "native Chrome 156 production screenshot, approved home audio line control 2026-10-22",
+      "path": "source/reviews/home-audio-line/2026-10-22/audible-1920.png",
+      "bytes": 2920228,
+      "sha256": "82a327e6d9befc574901f02b56fa0cd6e5fef4753c7ee16fdb1be94f3328190c"
+    },
+    {
+      "from": "native Chrome 156 production screenshot, approved home audio line control 2026-10-22",
+      "path": "source/reviews/home-audio-line/2026-10-22/audible-detail.png",
+      "bytes": 6971,
+      "sha256": "3b3c504ebf53b4a1f61251b21b3ba5e06659b526ab740b3a1330d201d314a19b"
+    },
+    {
+      "from": "native Chrome 156 production screenshot, approved home audio line control 2026-10-22",
+      "path": "source/reviews/home-audio-line/2026-10-22/muted-900.png",
+      "bytes": 1130209,
+      "sha256": "2e9dfcd80404558e3e6bb7bae141d1d9de75f54631abca26dfd026856d937416"
+    },
+    {
+      "from": "native Chrome 156 production screenshot, approved home audio line control 2026-10-22",
+      "path": "source/reviews/home-audio-line/2026-10-22/pushed-settings-1366.png",
+      "bytes": 1375267,
+      "sha256": "73fd90e2807419e0bfd7467ecdc8b4d32247be917f81cfba9bfa4f1d597a7cc5"
+    },
+    {
       "from": "actual Chrome production review, reading-paper 2026-10-20",
       "path": "source/reviews/reading-paper/2026-10-20/chrome-125-home.png",
       "bytes": 1965541,

@@ -62,6 +62,8 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <p className="entry-motto"><span>醒狮传文化</span><span>南风载未来</span></p>
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
+    {playbackEnabled && <SoundControl id="toggleHomeAudio" variant="line" enabled={audioState.enabled} pending={audioState.pending}
+      onToggle={() => { if (audioState.enabled) setAudioEnabled(false); else if (audioState.pending) resumeAudioRef.current?.(); else setAudioEnabled(true); }} />}
   </section>
   <div className="home-archive-scene" style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
     {['top', 'side', 'bottom'].map(position => <div key={position} className={`archive-background-layer is-${position}`} aria-hidden="true" />)}
@@ -76,7 +78,5 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
     </div>
   </div>
   <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />
-  {playbackEnabled && <SoundControl id="toggleHomeAudio" enabled={audioState.enabled} pending={audioState.pending}
-    onToggle={() => { if (audioState.enabled) setAudioEnabled(false); else if (audioState.pending) resumeAudioRef.current?.(); else setAudioEnabled(true); }} />}
   </div>;
 }

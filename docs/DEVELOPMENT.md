@@ -76,6 +76,8 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
+首页声音开关使用 `SoundControl` 的 `line` 变体：hero右下角透明白线，有声波浪、静音直线；不影响动作页的standard变体。没有声音提示弹框，原生自动播放受限时沿用静音推进与真实手势恢复，音量保持25%。相关布局/键盘及原生策略回归为 `home-audio-line.spec.js` 和 `home-audio-line-policy.spec.js`；后者文件内关闭trace，不能用快照引入的激活证明自动播放成功。真实故障仍保留重试。详情见[白线交付记录](../source/references/home-audio-line-2026-10-22.md)。
+
 2026-10-19视频资源先在独立分支替换，现随远端9cb0097合入E盘红金组合树：`media.intro`为用户入场视频.mp4（7.407秒），`media.home`为用户循环视频.mp4（14.001秒），均2560×1440、HEVC/AAC，保留原字节及默认静音，不更改上述播放逻辑。旧运行文件归档在source/video，路径/哈希及兼容性边界见[替换记录](../source/references/home-video-replacement-2026-10-19.md)。2026-10-20组合树已在本机Chrome与Edge实际验证HEVC自然结束和循环回绕，不据此宣称所有浏览器/设备均支持；回归入口为`home-video-replacement.spec.js`及`startup-loading.spec.js`，新结果保存于独立组合树验收。
 
 首屏与原照片图鉴之间新增《岭南醒狮志》，向下文化入口先抵达史册。`HomeLionBook` 在实际进入视口后加载官方 `@designcodeio/threeui@1.2.0` 的 `Sketchbook` 和共享样式；`LionBookExperience` 负责七页时间线、正文、来源、加载失败重试及宿主通信。`lionSketchbookDocument` 只更换上游文档的内容与可选功能，原18层曲面纸条、光影、拖拽和弹簧翻页保留，未另写翻页引擎。书页与内置imagegen完整提示词见 [史册来源](../source/references/lion-book.md) 和 [插画记录](../source/references/lion-book-art-prompts.md)。
