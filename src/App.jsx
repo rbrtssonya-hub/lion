@@ -13,6 +13,7 @@ import { useNavigationMotion } from './features/navigation/useNavigationMotion.j
 import { withStartupTimeout } from './features/loading/useStartupLoading.js';
 import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSettings.js';
 import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
+import { getSoundControlLayout } from './features/sound-control/soundWaveGeometry.js';
 
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
@@ -29,7 +30,7 @@ export default function App() {
     beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsPage, setSettingsPage] = useState('common');
-  const actionViewEditing = settingsOpen && route === 'action' && settingsPage === 'view';
+  const sceneViewEditing = settingsOpen && (route === 'model' || route === 'action') && settingsPage === 'view';
   const [discardPromptOpen, setDiscardPromptOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
@@ -82,8 +83,8 @@ export default function App() {
     setSettingsOpen(true);
   }, [beginSettingsEditing]);
   const handleSaveSettings = useCallback(() => {
-    if (saveSettings({ keepEditing: actionViewEditing }) && !actionViewEditing) finishClosingSettings();
-  }, [saveSettings, finishClosingSettings, actionViewEditing]);
+    if (saveSettings({ keepEditing: sceneViewEditing }) && !sceneViewEditing) finishClosingSettings();
+  }, [saveSettings, finishClosingSettings, sceneViewEditing]);
   const discardAndCloseSettings = useCallback(() => {
     discardSettings();
     finishClosingSettings();
@@ -94,8 +95,8 @@ export default function App() {
     event.preventDefault();
     event.stopPropagation();
     if (discardPromptOpen) setDiscardPromptOpen(false);
-    else if (!actionViewEditing) closeSettings();
-  }, [closeSettings, discardPromptOpen, actionViewEditing]);
+    else if (!sceneViewEditing) closeSettings();
+  }, [closeSettings, discardPromptOpen, sceneViewEditing]);
   useEffect(() => {
     if (!settingsOpen) {
       if (wasSettingsOpen.current) triggerRef.current?.focus({ preventScroll: true });
@@ -132,6 +133,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route]);
 
+  const soundLayout = getSoundControlLayout(settings);
   const variables = {
     ...getGlobalSurfaceStyles(settings),
     '--page-background-color': chapterBackground ? '#f8f2e9' : '#68170f',
@@ -148,7 +150,9 @@ export default function App() {
     '--sound-control-font-size': `${settings.soundControlFontSize}px`,
     '--sound-control-width': `${settings.soundControlWidth}px`,
     '--sound-wave-width': `${settings.soundWaveWidth}px`,
-    '--sound-control-height': `${settings.soundControlFontSize * 5.5}px`,
+    '--sound-wave-stroke-width': `${settings.soundWaveStrokeWidth}px`,
+    '--sound-control-button-height': `${soundLayout.buttonHeight}px`,
+    '--sound-control-height': `${soundLayout.controlHeight}px`,
     '--requested-nav-icon-size': `${settings.navIconSize}px`,
     '--compact-nav-gap': `${settings.compactNavGap}px`,
     '--compact-nav-inset': `${settings.compactNavInset}px`,
@@ -165,11 +169,11 @@ export default function App() {
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}
     data-settings-layout={pushing ? 'push' : 'overlay'}>
     <div className="site-page" data-page-hit-enabled={settings.pageHitEnabled}>
-      <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen} settingsCancelOnly={actionViewEditing}
+      <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen} settingsCancelOnly={sceneViewEditing}
         headerRef={headerRef} settings={settings}
         onToggleSettings={() => {
           if (!settingsOpen) openSettings();
-          else if (actionViewEditing) panelRef.current?.focus({ preventScroll: true });
+          else if (sceneViewEditing) panelRef.current?.focus({ preventScroll: true });
           else closeSettings();
         }}
         settingsTriggerRef={triggerRef} />
@@ -187,13 +191,13 @@ export default function App() {
         {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
-    {settingsOpen && !actionViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
+    {settingsOpen && !sceneViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
     {settingsFeedback && <div className="settings-status" role="status">{settingsFeedback}</div>}
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
     <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings} onApplyMaterial={applySurfaceSettings}
-      activePage={settingsPage} onPageChange={setSettingsPage} actionViewEditing={actionViewEditing}
+      activePage={settingsPage} onPageChange={setSettingsPage} sceneViewEditing={sceneViewEditing}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
       hasUnsavedChanges={hasUnsavedChanges} onSave={handleSaveSettings} onExport={exportSettings}
       discardPromptOpen={discardPromptOpen} onContinueEditing={() => setDiscardPromptOpen(false)} onDiscard={discardAndCloseSettings}

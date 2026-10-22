@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { cultureGalleryPointerBounds, cultureGalleryRightSide } from '../features/home/cultureGalleryHitArea.js';
 
 /**
  * Embedded adaptation of Codrops Depth Gallery's Gallery / Engine / Scroll.
@@ -186,32 +187,33 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     requestDraw();
   }
 
-  function hitsFront(event) {
+  function hitsPhoto(event, frontOnly = false) {
     if (!ready || !active || document.hidden || disposed || failed) return false;
     // Pointer coordinates can outlive scrolling, resizing, or a covering panel.
     // The visible canvas must still be the actual target at that screen point.
-    if (event.clientX < 0 || event.clientX >= window.innerWidth ||
-      event.clientY < 0 || event.clientY >= window.innerHeight ||
-      document.elementFromPoint(event.clientX, event.clientY) !== canvas) return false;
-    const bounds = canvas.getBoundingClientRect();
-    if (!bounds.width || !bounds.height || event.clientX < bounds.left || event.clientX > bounds.right ||
-      event.clientY < bounds.top || event.clientY > bounds.bottom) return false;
-    // Decorations can ignore pointer events in CSS and still visually cover a
-    // moving photograph. Their text / axis must never act as image controls.
-    const decorations = container.querySelectorAll('.culture-depth-label, .culture-depth-axis, [data-depth-decoration]');
-    for (const decoration of decorations) {
-      const box = decoration.getBoundingClientRect();
-      if (event.clientX >= box.left && event.clientX <= box.right &&
-        event.clientY >= box.top && event.clientY <= box.bottom) return false;
-    }
-    const front = planes.find((plane) => plane.userData.sequence === Math.round(position));
-    if (!front?.visible) return false;
+    const bounds = cultureGalleryPointerBounds(container, canvas, event);
+    if (!bounds) return false;
+    const candidates = planes.filter(plane => plane.visible &&
+      (!frontOnly || plane.userData.sequence === Math.round(position)));
+    if (!candidates.length) return false;
     pointer.set((event.clientX - bounds.left) / bounds.width * 2 - 1,
       1 - (event.clientY - bounds.top) / bounds.height * 2);
     camera.updateMatrixWorld();
-    front.updateWorldMatrix(true, false);
+    candidates.forEach(plane => plane.updateWorldMatrix(true, false));
     raycaster.setFromCamera(pointer, camera);
-    return raycaster.intersectObject(front, false).length > 0;
+    return raycaster.intersectObjects(candidates, false).length > 0;
+  }
+
+  function hitsFront(event) { return hitsPhoto(event, true); }
+
+  function hitsAdvanceArea(event) {
+    if (!ready || !active || document.hidden || disposed || failed) return false;
+    const bounds = cultureGalleryPointerBounds(container, canvas, event);
+    return cultureGalleryRightSide(container, event, bounds) || hitsPhoto(event);
+  }
+
+  function updateCursor(event) {
+    canvas.style.cursor = event && hitsAdvanceArea(event) ? 'pointer' : originalCursor;
   }
 
   function onPointerMove(event) {
@@ -220,15 +222,18 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     // repeatedly blur / refocus a stationary pointer as images pass beneath it.
     lastPointer = { clientX: event.clientX, clientY: event.clientY };
     setFocused(hitsFront(event));
+    updateCursor(event);
   }
 
   function onPointerLeave() {
     lastPointer = null;
     setFocused(false);
+    canvas.style.cursor = originalCursor;
   }
 
   function releaseInvalidFocus() {
     if (focused && (!lastPointer || !hitsFront(lastPointer))) setFocused(false);
+    updateCursor(lastPointer);
   }
 
   function onPointerOut(event) {
@@ -236,17 +241,19 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
   }
 
   function onClick(event) {
-    if (event.button !== 0 || !hitsFront(event)) return;
+    if (event.button !== 0 || !hitsAdvanceArea(event)) return;
     lastPointer = { clientX: event.clientX, clientY: event.clientY };
-    setFocused(true);
+    // Rear images and their gaps advance without taking the front-photo hover
+    // pause. Only an actual front-photo hit may focus and slightly enlarge it.
+    setFocused(hitsFront(event));
+    updateCursor(event);
     onNext?.();
   }
 
   function onVisibilityChange() {
     if (document.hidden) {
       stop();
-      lastPointer = null;
-      setFocused(false);
+      onPointerLeave();
       focusScale = 1;
     } else requestDraw();
   }
@@ -290,9 +297,8 @@ export function createCultureDepthGallery({ canvas, items, onReady, onError, onF
     if (active) requestDraw();
     else {
       stop();
-      lastPointer = null;
       const wasFocused = focused;
-      setFocused(false);
+      onPointerLeave();
       focusScale = 1;
       if (wasFocused && ready && !disposed && !failed && !document.hidden) render();
     }

@@ -69,6 +69,26 @@ async function expectCopyTextFits(page) {
   }), { timeout: 5000, message: 'Reading text and return controls must fit inside the visible panel' }).toEqual([]);
 }
 
+async function savePushedPreviewAndContinueAtWidth(page, width, height) {
+  // Settings deliberately guard outside input during preview. Inspect the
+  // actual pushed layout first, then save and keep the same reading width for
+  // real chapter interactions instead of bypassing that transaction guard.
+  await expectLoadedLion(page);
+  await expectCopyTextFits(page);
+  expect(await page.locator('#chapterStage').evaluate(element => {
+    const page = element.closest('.site-page').getBoundingClientRect();
+    return ['#expressionObservation', '#expressionLion', '#expressionStateTitle', '#expressionStateCopy'].every(selector => {
+      const box = element.querySelector(selector).getBoundingClientRect();
+      return box.left >= page.left - 1 && box.right <= page.right + 1 && box.width > 0;
+    });
+  })).toBe(true);
+  const settings = page.getByRole('region', { name: '开发者参数设置', exact: true });
+  await settings.getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect(settings).toHaveCount(0);
+  await setAvailableWidth(page, width, height);
+  await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(width);
+}
+
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.addInitScript(() => { if (window === window.top) sessionStorage.setItem('nanfeng-lion:intro-seen:v1', '1'); });
@@ -310,7 +330,7 @@ test('减弱动态效果下键盘可切态，离页重入没有残留交互', as
   await previousObservation.dispose();
 });
 
-test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', async ({ page }) => {
+test('电脑侧栏900px推开预览可读，保存后同宽八态可切换且无横向溢出', async ({ page }) => {
   await page.addInitScript(() => {
     if (window !== window.top) return;
     localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ pushPage: false }));
@@ -328,7 +348,7 @@ test('电脑侧栏推开后900px余宽仍可读可切换且没有横向溢出', 
   await settings.getByRole('checkbox', { name: '设置面板推开页面', exact: true }).check();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
   await expect.poll(() => page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width)).toBe(900);
-  await expectLoadedLion(page);
+  await savePushedPreviewAndContinueAtWidth(page, 900, 900);
   await stateButton(page, '惊').click();
   await expectState(page, '惊');
   await page.locator('#expressionLionTrigger').click();
@@ -373,7 +393,7 @@ test('神态简介与解读按电脑宽高自适应，常规三栏、短窗口�
   }
 });
 
-test('900px推开与64或180px顶栏下八态解读可完整阅读，快速切换无旧内容', async ({ page }) => {
+test('900px推开预览保存后64或180px顶栏下八态解读完整，快速切换无旧内容', async ({ page }) => {
   test.setTimeout(150_000);
   await page.addInitScript(() => {
     if (window !== window.top) return;
@@ -386,6 +406,7 @@ test('900px推开与64或180px顶栏下八态解读可完整阅读，快速切�
     await page.locator('.site-navigation [data-action="settings"]').click();
     await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
     await expect.poll(() => page.locator('.site-page').evaluate(el => el.getBoundingClientRect().width)).toBe(900);
+    await savePushedPreviewAndContinueAtWidth(page, 900, 768);
     for (const state of states) {
       await stateButton(page, state).click();
       await expectCopyTextFits(page);
@@ -407,7 +428,7 @@ test('900px推开与64或180px顶栏下八态解读可完整阅读，快速切�
     await page.locator('#expressionLionTrigger').click();
     await page.keyboard.press('Escape');
     await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'overview');
-    await expect(page.getByRole('region', { name: '开发者参数设置', exact: true })).toBeVisible();
+    await expect(page.getByRole('region', { name: '开发者参数设置', exact: true })).toHaveCount(0);
   }
 });
 
@@ -426,6 +447,7 @@ test('短高桌面与180px顶栏仍完整显示解读文字、返回及上下箭
       await page.locator('.site-navigation [data-action="settings"]').click();
       await expect(page.locator('.site-shell')).toHaveAttribute('data-settings-layout', 'push');
       await expect.poll(() => page.locator('.site-page').evaluate(el => el.getBoundingClientRect().width)).toBe(900);
+      await savePushedPreviewAndContinueAtWidth(page, 900, height);
     }
     for (const state of states) {
       await stateButton(page, state).click();

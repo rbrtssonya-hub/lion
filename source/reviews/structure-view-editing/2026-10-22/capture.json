@@ -1,0 +1,19 @@
+{
+  "captures": [
+    {
+      "name": "view-open",
+      "limits": "{\"min\":1.77747360630415,\"max\":8.079425483200682,\"fov\":34}",
+      "distance": "3.2318",
+      "outsideGuards": 0,
+      "panelOpen": true
+    },
+    {
+      "name": "view-saved-still-editing",
+      "limits": "{\"min\":1.431570771009747,\"max\":6.507139868226122,\"fov\":44}",
+      "distance": "3.5444",
+      "outsideGuards": 0,
+      "panelOpen": true
+    }
+  ],
+  "errors": []
+}

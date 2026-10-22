@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
+import { cultureGalleryPointerBounds, cultureGalleryRightSide } from './cultureGalleryHitArea.js';
 
 export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext, preload = false, onReady }) {
   const hostRef = useRef(null);
@@ -91,10 +92,16 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
   useEffect(() => {
     const clearPointer = () => {
       fallbackPointerRef.current = null;
+      if (hostRef.current) hostRef.current.style.cursor = '';
       onPhotoHover(false);
     };
+    const clearHiddenPointer = () => { if (document.hidden) clearPointer(); };
     window.addEventListener('blur', clearPointer);
-    return () => window.removeEventListener('blur', clearPointer);
+    document.addEventListener('visibilitychange', clearHiddenPointer);
+    return () => {
+      window.removeEventListener('blur', clearPointer);
+      document.removeEventListener('visibilitychange', clearHiddenPointer);
+    };
   }, [onPhotoHover]);
 
   useEffect(() => {
@@ -103,10 +110,16 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
 
   useLayoutEffect(() => {
     engineRef.current?.setActive(isInView && isPageVisible && !reducedMotion);
-  }, [isInView, isPageVisible, reducedMotion, status]);
+    if (!isInView || !isPageVisible) {
+      fallbackPointerRef.current = null;
+      if (hostRef.current) hostRef.current.style.cursor = '';
+      onPhotoHover(false);
+    }
+  }, [isInView, isPageVisible, reducedMotion, status, onPhotoHover]);
 
   useLayoutEffect(() => {
     if (status !== 'ready') return;
+    hostRef.current.style.cursor = '';
     // Complete the handoff within this DOM commit, before a newer leave/move
     // can arrive and then be overwritten by the loading pointer snapshot.
     const pointer = fallbackPointerRef.current;
@@ -125,9 +138,21 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
     onPhotoHover(false);
   };
 
+  const isFallbackRightSide = event => cultureGalleryRightSide(hostRef.current, event,
+    cultureGalleryPointerBounds(hostRef.current, canvasRef.current, event));
+
   return (
     <div className="culture-depth-gallery" ref={hostRef} data-depth-state={status}
-      style={{ '--culture-photo-aspect': photo.width / photo.height, '--culture-focus-scale': settings.carouselFocusScale / 100 }}>
+      style={{ '--culture-photo-aspect': photo.width / photo.height, '--culture-focus-scale': settings.carouselFocusScale / 100 }}
+      onClick={event => {
+        if (status === 'ready' || event.button !== 0 || !isPageVisible ||
+          event.target.closest('.culture-depth-photo-action') || !isFallbackRightSide(event)) return;
+        onNext();
+      }} onPointerMove={event => {
+        if (status !== 'ready') event.currentTarget.style.cursor = isFallbackRightSide(event) ? 'pointer' : '';
+      }} onPointerLeave={event => {
+        if (status !== 'ready') event.currentTarget.style.cursor = '';
+      }}>
       <div className="culture-depth-atmosphere" aria-hidden="true" />
       <span className="culture-depth-label" aria-hidden="true">风土入画 <i /> 狮影成章</span>
       <canvas key={reducedMotion ? 'static' : 'animated'} ref={canvasRef} className="culture-depth-canvas" aria-hidden="true" />

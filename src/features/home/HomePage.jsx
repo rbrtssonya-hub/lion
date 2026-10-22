@@ -63,7 +63,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <p className="entry-motto"><span>醒狮传文化</span><span>南风载未来</span></p>
       <p className="entry-english">WHERE THE SOUTHERN WIND AWAKENS THE LION</p>
     </div>
-    {playbackEnabled && <SoundControl id="toggleHomeAudio" variant="line" enabled={audioState.enabled} pending={audioState.pending}
+    {playbackEnabled && <SoundControl id="toggleHomeAudio" variant="line" enabled={audioState.enabled} pending={audioState.pending} settings={settings}
       volume={volume} onVolumeChange={value => {
         const nextVolume = setVolume(value);
         resumeAudioRef.current?.(nextVolume, nextVolume > 0 && !audioState.enabled);

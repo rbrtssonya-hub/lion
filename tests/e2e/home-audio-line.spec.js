@@ -45,11 +45,11 @@ test('音量文字、裁剪波按钮与简约横线贴合首页右下角，电�
   await toggle.focus();
   await page.keyboard.press('Space');
   await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  expect(await toggle.locator('svg').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m41)).toBeLessThan(-100);
+  expect(await toggle.locator('.sound-wave-amplitude').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22)).toBeCloseTo(.0001, 5);
   expect(await toggle.evaluate(button => getComputedStyle(button).outlineStyle)).toBe('solid');
   await page.keyboard.press('Enter');
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-  expect(await toggle.locator('svg').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m41)).toBe(0);
+  expect(await toggle.locator('.sound-wave-amplitude').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22)).toBe(1);
   await slider.focus();
   await slider.press('ArrowRight');
   await expect(slider).toHaveValue('26');

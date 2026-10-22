@@ -247,7 +247,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         </div>
         <p className="theater-source-note" id="chapterEvidence">{active.sourceNote} <span>· 广府醒狮 / 动作空间</span></p>
       </div>
-      <SoundControl enabled={playback.audioEnabled} pending={playback.audioPending} onToggle={playback.toggleAudio}
+      <SoundControl enabled={playback.audioEnabled} pending={playback.audioPending} onToggle={playback.toggleAudio} settings={lightingSettings}
         volume={playback.volume} onVolumeChange={playback.changeVolume} playing={visible && playback.view.status === 'playing'} />
       {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
         <span>{notice || playback.view.error}</span>

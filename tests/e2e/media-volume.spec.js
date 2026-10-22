@@ -112,10 +112,10 @@ test('共享音量同步四屏且仅主屏发声，调整不重播或重载，�
   await page.locator('.site-navigation [data-route="action"]').click();
   const scene = page.locator('#chapterStage canvas');
   await expect(scene).toHaveAttribute('data-scene-ready', 'true', { timeout: 70_000 });
-  const shape = widget(page).locator('.sound-wave-window svg');
-  const soundShape = await shape.evaluate(element => ({ width: element.getBoundingClientRect().width, stroke: getComputedStyle(element).strokeWidth }));
-  expect(soundShape.width).toBeCloseTo(674.667, 1);
-  expect(soundShape.stroke).toBe('8px');
+  const shape = widget(page).locator('.sound-wave-window path');
+  await expect(shape).toHaveCount(1);
+  expect(await shape.evaluate(element => ({ stroke: getComputedStyle(element).strokeWidth,
+    dash: getComputedStyle(element).strokeDasharray }))).toEqual({ stroke: '2px', dash: 'none' });
   await toggle(page).hover();
   expect(await toggle(page).evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
   await expect.poll(() => videos(page).evaluateAll(elements => elements.length === 4 && elements.every(video => !video.paused))).toBe(true);

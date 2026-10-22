@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { selectSettingsFor, settingsPanel } from './settings-navigation.helpers.js';
+import { sampleWave, waveMetrics, expectContinuousWave } from './sound-wave.helpers.js';
 
 test.use({ trace: 'off', viewport: { width: 1920, height: 1080 } });
 test.setTimeout(120_000);
@@ -12,6 +13,10 @@ const fields = [
   ['soundControlFontSize', '音量文字字号'],
   ['soundControlWidth', '音量控件宽度'],
   ['soundWaveWidth', '波浪线长度'],
+  ['soundWaveStrokeWidth', '波浪线粗细'],
+  ['soundWavePeakHeight', '波峰高度'],
+  ['soundWaveTroughDepth', '波谷深度'],
+  ['soundWavePeriod', '波长'],
 ];
 
 async function prepare(page, settings = {}) {
@@ -26,6 +31,18 @@ async function prepare(page, settings = {}) {
   await page.goto('/');
   await expect(widget(page)).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
+  await enableSound(page);
+}
+
+async function enableSound(page) {
+  await expect(widget(page)).toBeVisible();
+  // A new document can legitimately reject audible autoplay. Wait for its
+  // native muted fallback, then use the real control before measuring peaks.
+  const video = page.locator('.prewarmed-page[data-active="true"] video, .action-theater video').first();
+  await expect.poll(() => video.evaluate(element => !element.paused && element.currentTime > .05)).toBe(true);
+  const toggle = widget(page).getByRole('button');
+  if (await toggle.getAttribute('aria-pressed') !== 'true') await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
 }
 
 async function open(page) {
@@ -45,12 +62,19 @@ async function change(page, settings) {
   }
 }
 
-async function expectDimensions(page, { soundControlWidth: width, soundControlFontSize: font, soundWaveWidth: wave }) {
+async function expectDimensions(page, values) {
+  const { soundControlWidth: width, soundControlFontSize: font, soundWaveWidth: wave } = values;
   await expect.poll(() => widget(page).evaluate(element => ({
     width: element.getBoundingClientRect().width,
     font: Number.parseFloat(getComputedStyle(element.querySelector('.sound-control-label')).fontSize),
     wave: element.querySelector('.sound-wave-window').getBoundingClientRect().width,
   }))).toEqual({ width, font, wave });
+  if (Object.hasOwn(values, 'soundWaveStrokeWidth')) {
+    await expect.poll(() => waveMetrics(widget(page).locator('.sound-wave-window'))).toEqual({
+      paths: 1, peak: values.soundWavePeakHeight, trough: values.soundWaveTroughDepth, stroke: values.soundWaveStrokeWidth, dash: 'none',
+    });
+    await expect(widget(page).locator('svg')).toHaveAttribute('data-wave-period', String(values.soundWavePeriod));
+  }
 }
 
 async function cancelDraft(page) {
@@ -59,8 +83,10 @@ async function cancelDraft(page) {
   await expect(settingsPanel(page)).toHaveCount(0);
 }
 
-const defaults = { soundControlWidth: 180, soundControlFontSize: 16, soundWaveWidth: 64 };
-const custom = { soundControlWidth: 240, soundControlFontSize: 22, soundWaveWidth: 104 };
+const defaults = { soundControlWidth: 180, soundControlFontSize: 16, soundWaveWidth: 64,
+  soundWaveStrokeWidth: 2, soundWavePeakHeight: 10, soundWaveTroughDepth: 10, soundWavePeriod: 32 };
+const custom = { soundControlWidth: 240, soundControlFontSize: 22, soundWaveWidth: 104,
+  soundWaveStrokeWidth: 4.5, soundWavePeakHeight: 18, soundWaveTroughDepth: 5, soundWavePeriod: 48 };
 
 test('声音显示参数以px实时预览，导出当前草稿，取消恢复原尺寸和已存参数', async ({ page }) => {
   await prepare(page);
@@ -89,9 +115,11 @@ test('声音尺寸保存后刷新和动作页保持一致，恢复默认仅预�
   await expect(settingsPanel(page)).toHaveCount(0);
   expect(await stored(page)).toMatchObject(custom);
   await page.reload();
+  await enableSound(page);
   await expectDimensions(page, custom);
   await page.locator('.site-navigation [data-route="action"]').click();
   await expect(page.locator('#chapterStage canvas')).toHaveAttribute('data-scene-ready', 'true', { timeout: 70_000 });
+  await enableSound(page);
   await expectDimensions(page, custom);
   await open(page);
   await selectSettingsFor(page, '音量文字字号');
@@ -106,6 +134,7 @@ test('声音尺寸保存后刷新和动作页保持一致，恢复默认仅预�
   await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
   await expect(settingsPanel(page)).toHaveCount(0);
   await page.reload();
+  await enableSound(page);
   await expectDimensions(page, defaults);
   expect(await stored(page)).toMatchObject(defaults);
 });
@@ -164,77 +193,47 @@ for (const width of [140, 300]) {
   });
 }
 
-test('12px最小字号配120px最长波浪，整个裁剪窗持续有波并右行，静音后全长成为直线', async ({ page }, testInfo) => {
+test('12px最小字号配120px最长波浪，整个裁剪窗持续有实绘波线，静音后全长直线且保留粗细', async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await prepare(page, { soundControlWidth: 300, soundControlFontSize: 12, soundWaveWidth: 120 });
   const toggle = widget(page).getByRole('button');
-  if (await toggle.getAttribute('aria-pressed') !== 'true') await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(() => page.locator('#entryLionVideo').evaluate(video => !video.paused && !video.muted && video.currentTime > .1)).toBe(true);
   await page.mouse.move(700, 300);
-  await expect.poll(() => widget(page).locator('.sound-wave-traces').first().locator('path').nth(1)
-    .evaluate(element => Math.abs(Number.parseFloat(getComputedStyle(element).strokeDashoffset)))).toBeLessThan(.02);
-  const samples = await widget(page).locator('.sound-wave-window').evaluate(element => new Promise(resolve => {
-    const frames = [], flow = element.querySelector('.sound-wave-flow');
-    const paths = [...element.querySelectorAll('.sound-wave-traces path:nth-child(2)')];
-    let started;
-    function sample(time) {
-      started ??= time;
-      const box = element.getBoundingClientRect();
-      const ys = [];
-      for (let column = 0; column <= 12; column++) {
-        const x = box.x + 1 + (box.width - 2) * column / 12;
-        const candidates = [];
-        for (const path of paths) {
-          const length = path.getTotalLength(), matrix = path.getScreenCTM();
-          const at = distance => path.getPointAtLength(distance).matrixTransform(matrix);
-          if (x < at(0).x || x > at(length).x) continue;
-          let low = 0, high = length;
-          for (let index = 0; index < 16; index++) {
-            const middle = (low + high) / 2;
-            if (at(middle).x < x) low = middle; else high = middle;
-          }
-          const point = at((low + high) / 2);
-          if (point.y >= box.top - 1 && point.y <= box.bottom + 1) candidates.push(point.y);
-        }
-        ys.push(candidates.length ? candidates[0] : null);
-      }
-      frames.push({ time: time - started, x: new DOMMatrixReadOnly(getComputedStyle(flow).transform).m41,
-        box: { x: box.x, y: box.y, width: box.width, height: box.height }, covered: ys.every(y => y !== null),
-        spread: Math.max(...ys.filter(y => y !== null)) - Math.min(...ys.filter(y => y !== null)) });
-      if (time - started >= 1650) resolve(frames);
-      else requestAnimationFrame(sample);
-    }
-    requestAnimationFrame(sample);
-  }));
-  expect(samples.length).toBeGreaterThan(5);
-  expect(samples.every(frame => frame.covered)).toBe(true);
-  expect(samples.every(frame => frame.spread > 2)).toBe(true);
-  expect(new Set(samples.map(frame => JSON.stringify(frame.box))).size).toBe(1);
+  const window = widget(page).locator('.sound-wave-window');
+  await expect.poll(() => window.locator('.sound-wave-amplitude').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22)).toBe(1);
+  const samples = await sampleWave(window, 1650);
+  expectContinuousWave(expect, samples);
+  expect(samples.every(frame => frame.spread > 2 && frame.stroke === '2px')).toBe(true);
   const deltas = samples.slice(1).map((frame, index) => frame.x - samples[index].x);
   expect(deltas.filter(delta => delta > .01).length).toBeGreaterThan(3);
   expect(deltas.some(delta => delta < -25)).toBe(true);
-  await testInfo.attach('longest-wave-smallest-font-actual-frames', { body: JSON.stringify(samples, null, 2), contentType: 'application/json' });
+  await testInfo.attach('longest-wave-smallest-font-painted-stroke-frames', { body: JSON.stringify(samples, null, 2), contentType: 'application/json' });
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  await expect.poll(() => widget(page).locator('.sound-wave-window').evaluate(element => {
-    const rect = element.getBoundingClientRect(), path = element.querySelector('.sound-wave-tail');
-    const matrix = path.getScreenCTM(), length = path.getTotalLength();
-    const at = distance => path.getPointAtLength(distance).matrixTransform(matrix);
-    const ys = [];
-    for (let column = 0; column <= 12; column++) {
-      const x = rect.x + rect.width * column / 12;
-      if (x < at(0).x || x > at(length).x) return false;
-      let low = 0, high = length;
-      for (let index = 0; index < 20; index++) {
-        const middle = (low + high) / 2;
-        if (at(middle).x < x) low = middle; else high = middle;
-      }
-      const point = at((low + high) / 2);
-      if (point.y < rect.top - 1 || point.y > rect.bottom + 1) return false;
-      ys.push(point.y);
-    }
-    return Math.max(...ys) - Math.min(...ys) < .02;
-  })).toBe(true);
+  await expect.poll(() => window.locator('.sound-wave-amplitude').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22)).toBeCloseTo(.0001, 5);
+  const flat = await sampleWave(window);
+  expectContinuousWave(expect, flat);
+  expect(flat.every(frame => frame.spread < .02 && frame.stroke === '2px')).toBe(true);
   await expect.poll(() => page.locator('#entryLionVideo').evaluate(video => !video.paused && video.muted)).toBe(true);
+});
+
+test('波峰波谷独立像素与0值、最细和最粗线条、16和80px波长都真实绘制且不裁切', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await prepare(page, { soundControlFontSize: 12, soundWaveWidth: 120, soundControlWidth: 300 });
+  const window = widget(page).locator('.sound-wave-window');
+  for (const shape of [
+    { soundWaveStrokeWidth: .5, soundWavePeakHeight: 24, soundWaveTroughDepth: 0, soundWavePeriod: 16 },
+    { soundWaveStrokeWidth: 6, soundWavePeakHeight: 0, soundWaveTroughDepth: 24, soundWavePeriod: 80 },
+    { soundWaveStrokeWidth: 6, soundWavePeakHeight: 24, soundWaveTroughDepth: 24, soundWavePeriod: 16 },
+  ]) {
+    await open(page);
+    await change(page, shape);
+    await settingsPanel(page).getByRole('button', { name: '保存设置', exact: true }).click();
+    await expect(settingsPanel(page)).toHaveCount(0);
+    await expectDimensions(page, { soundControlFontSize: 12, soundWaveWidth: 120, soundControlWidth: 300, ...shape });
+    const samples = await sampleWave(window, 500);
+    expectContinuousWave(expect, samples);
+    expect(samples.every(frame => frame.stroke === `${shape.soundWaveStrokeWidth}px`)).toBe(true);
+    await testInfo.attach(`painted-extreme-wave-${shape.soundWaveStrokeWidth}-${shape.soundWavePeriod}`, { body: JSON.stringify(samples, null, 2), contentType: 'application/json' });
+  }
 });

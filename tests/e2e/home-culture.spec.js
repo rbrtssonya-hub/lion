@@ -220,7 +220,7 @@ test('轮播按设置间隔同步照片与文字，鼠标在解读文字内不�
   await expect(carousel.locator('.is-active .home-culture-credit a')).toHaveCount(2);
 });
 
-test('只有最前照片悬停微放大且左右移动稳定，点击一次切下一张', async ({ page }, testInfo) => {
+test('仅前景悬停微放大且移动稳定，前景与右侧后排点击都只切下一张', async ({ page }, testInfo) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   const { carousel, gallery } = await openCulture(page, { carouselAutoplay: false });
@@ -259,12 +259,12 @@ test('只有最前照片悬停微放大且左右移动稳定，点击一次切�
   const box = await gallery.boundingBox();
   await page.mouse.click(box.x + box.width * .94, box.y + box.height * .5);
   await expect(carousel).toHaveAttribute('data-culture-focused', 'false');
-  await expect(carousel).toHaveAttribute('data-culture-index', '1');
+  await expect(carousel).toHaveAttribute('data-culture-index', '2');
   await page.mouse.click(box.x + box.width * .42, box.y + 8);
-  await expect(carousel).toHaveAttribute('data-culture-index', '1');
+  await expect(carousel).toHaveAttribute('data-culture-index', '2');
   await page.mouse.move(point.x, point.y);
   for (let index = 0; index < 3; index += 1) await page.mouse.click(point.x, point.y);
-  await expect(carousel).toHaveAttribute('data-culture-index', '4');
+  await expect(carousel).toHaveAttribute('data-culture-index', '5');
   expect(errors).toEqual([]);
 });
 

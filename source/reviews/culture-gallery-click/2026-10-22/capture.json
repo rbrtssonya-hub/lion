@@ -1,0 +1,47 @@
+{
+  "captures": [
+    {
+      "name": "before",
+      "clickedRatio": null,
+      "selected": "0",
+      "title": "一声锣鼓，唤醒岭南",
+      "gallery": {
+        "x": 320,
+        "y": 250.078125,
+        "width": 771.90625,
+        "height": 580
+      }
+    },
+    {
+      "name": "after-rear-photo",
+      "clickedRatio": [
+        0.88,
+        0.5
+      ],
+      "selected": "1",
+      "title": "一扎一画，狮有了神采",
+      "gallery": {
+        "x": 320,
+        "y": 250.078125,
+        "width": 771.90625,
+        "height": 580
+      }
+    },
+    {
+      "name": "after-right-gap",
+      "clickedRatio": [
+        0.98,
+        0.05
+      ],
+      "selected": "2",
+      "title": "采青，让狮子讲一个故事",
+      "gallery": {
+        "x": 320,
+        "y": 250.078125,
+        "width": 771.90625,
+        "height": 580
+      }
+    }
+  ],
+  "errors": []
+}

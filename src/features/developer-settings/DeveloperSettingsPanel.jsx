@@ -3,6 +3,7 @@ import { surfaceDefaults, surfaceDefinitions, surfaceScopes } from './surfaceSet
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { soundControlRanges } from '../../config/soundControlSettings.js';
+import { expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
 import HdriSourceControls from './HdriSourceControls.jsx';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
@@ -31,7 +32,7 @@ const easingOptions = [
 const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`cultureBody${suffix}`]]));
 
 export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle,
-  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, actionViewEditing }) {
+  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, sceneViewEditing }) {
   const panelId = useId(), scopeId = useId(), easingId = useId();
   const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
   const [scope, setScope] = useState('home');
@@ -78,7 +79,11 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           {range('soundControlFontSize','音量文字字号',...soundControlRanges.soundControlFontSize)}
           {range('soundControlWidth','音量控件宽度',...soundControlRanges.soundControlWidth)}
           {range('soundWaveWidth','波浪线长度',...soundControlRanges.soundWaveWidth)}
-          <p className="developer-settings-note">以像素调整音量文字、控件宽度和波浪线长度，首页与动作页同步预览。保存后记住，取消可恢复。</p>
+          {range('soundWaveStrokeWidth','波浪线粗细',...soundControlRanges.soundWaveStrokeWidth)}
+          {range('soundWavePeakHeight','波峰高度',...soundControlRanges.soundWavePeakHeight)}
+          {range('soundWaveTroughDepth','波谷深度',...soundControlRanges.soundWaveTroughDepth)}
+          {range('soundWavePeriod','波长',...soundControlRanges.soundWavePeriod)}
+          <p className="developer-settings-note">以像素调整声音控件，首页与动作页同步预览。粗细同时影响静音直线和启声波浪；波峰、波谷相对中线独立调整，波长控制相邻波峰的间距。保存后记住，取消可恢复。</p>
         </SettingsGroup>
         <SettingsGroup title="公共材质" note="应用到当前预览">
           <div className="developer-settings-select-control"><label htmlFor={scopeId}>应用范围</label>
@@ -133,6 +138,11 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
+        </SettingsGroup>}
+        {value === 'expression' && <SettingsGroup title="狮头点击反馈" note="点击查看解读">
+          {range('expressionClickScale','狮头点击放大',...expressionFeedbackRanges.expressionClickScale,'%')}
+          {range('expressionClickDuration','点击反馈时长',...expressionFeedbackRanges.expressionClickDuration,'ms')}
+          <p className="developer-settings-note">点击狮头时先放大再回落，100%关闭放大反馈；仍可正常查看解读。尺寸会预留放大空间，减少动态时不播放此反馈。</p>
         </SettingsGroup>}
       </>}</SettingsSubpages>;
       case 'sources': return <>
@@ -230,8 +240,8 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     {resizeHandle}
     <div className="developer-settings-header"><div className="developer-settings-heading"><div>
       <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
-    </div>{!actionViewEditing && <button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>}</div>
-    <p className="developer-settings-intro">{actionViewEditing
+    </div>{!sceneViewEditing && <button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>}</div>
+    <p className="developer-settings-intro">{sceneViewEditing
       ? '可在主视口拖动、滚轮测试视角；保存后继续调整，点击“取消”退出。'
       : '调整即时预览，保存后记住；取消可恢复进入设置前的参数。'}</p></div>
     <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
@@ -241,7 +251,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         {content(page.id)}
       </div>)}
     </div>
-    <div className="developer-settings-footer"><p className="developer-settings-note" aria-live="polite">{hasUnsavedChanges ? '当前预览有未保存的更改' : actionViewEditing ? '当前参数已保存，可继续调整' : '当前参数与进入设置时一致'}</p>
+    <div className="developer-settings-footer"><p className="developer-settings-note" aria-live="polite">{hasUnsavedChanges ? '当前预览有未保存的更改' : sceneViewEditing ? '当前参数已保存，可继续调整' : '当前参数与进入设置时一致'}</p>
       <div className="developer-settings-footer-tools">
         <button className="developer-settings-reset" type="button" onClick={() => {onReset();setMaterial(defaultMaterial);setScope('home');setMessage('已预览默认参数与公共模板，点击保存后记住。');}}>恢复默认参数</button>
         <button className="developer-settings-reset" type="button" onClick={onExport}>导出当前参数</button>

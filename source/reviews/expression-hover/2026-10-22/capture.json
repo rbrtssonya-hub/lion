@@ -1,0 +1,53 @@
+{
+  "captures": [
+    {
+      "name": "rest",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "style": {
+        "hover": false,
+        "focusVisible": false,
+        "outline": "rgb(52, 40, 33) none 3px",
+        "afterContent": "none",
+        "afterBorder": "0px",
+        "afterShadow": "none",
+        "originalBrushCircles": 3
+      }
+    },
+    {
+      "name": "hover-without-inner-frame",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "style": {
+        "hover": true,
+        "focusVisible": false,
+        "outline": "rgb(52, 40, 33) none 3px",
+        "afterContent": "none",
+        "afterBorder": "0px",
+        "afterShadow": "none",
+        "originalBrushCircles": 3
+      }
+    },
+    {
+      "name": "keyboard-focus",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "style": {
+        "hover": false,
+        "focusVisible": true,
+        "outline": "rgb(196, 156, 99) solid 2px",
+        "afterContent": "none",
+        "afterBorder": "0px",
+        "afterShadow": "none",
+        "originalBrushCircles": 3
+      }
+    }
+  ],
+  "errors": []
+}
