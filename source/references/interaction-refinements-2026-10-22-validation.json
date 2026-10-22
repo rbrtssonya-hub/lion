@@ -1,0 +1,359 @@
+{
+  "date": "2026-10-22",
+  "status": "passed",
+  "baseline": "main@b2009f0 plus this task worktree",
+  "preservedUntracked": "model/",
+  "orderedScope": [
+    "wave thickness, peaks/troughs/wavelength and continuous animation",
+    "expression mouse-hover fake frame",
+    "gallery right-side click advance",
+    "structure view live editing with Cancel-only exit",
+    "larger configurable expression click feedback"
+  ],
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node": "24.16.0",
+    "npm": "12.0.1",
+    "python": "3.14.2",
+    "productionURL": "http://127.0.0.1:4198",
+    "channel": "chromium",
+    "strictPolicyChannel": "chrome",
+    "workers": 1,
+    "trace": "off"
+  },
+  "settings": {
+    "waveDefaults": {
+      "soundWaveStrokeWidth": 2,
+      "soundWavePeakHeight": 10,
+      "soundWaveTroughDepth": 10,
+      "soundWavePeriod": 32
+    },
+    "waveRanges": {
+      "soundWaveStrokeWidth": [
+        0.5,
+        6,
+        0.5
+      ],
+      "soundWavePeakHeight": [
+        0,
+        24,
+        1
+      ],
+      "soundWaveTroughDepth": [
+        0,
+        24,
+        1
+      ],
+      "soundWavePeriod": [
+        16,
+        80,
+        1
+      ]
+    },
+    "feedbackDefaults": {
+      "expressionClickScale": 108,
+      "expressionClickDuration": 280
+    },
+    "feedbackRanges": {
+      "expressionClickScale": [
+        100,
+        120,
+        1
+      ],
+      "expressionClickDuration": [
+        120,
+        800,
+        20
+      ]
+    }
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 78,
+    "failed": 0,
+    "finalLog": "tmp/interaction-core-final.log",
+    "durationMs": 5181.9339
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 345,
+    "seconds": 1.94,
+    "log": "tmp/interaction-build-final.log",
+    "warning": "existing Three chunk 538.05 kB exceeds 500 kB advisory"
+  },
+  "productionRuns": [
+    {
+      "specs": [
+        "sound-control-settings",
+        "home-audio-wave",
+        "home-audio-line",
+        "media-volume"
+      ],
+      "passed": 14,
+      "failed": 1,
+      "duration": "1.6m",
+      "log": "tmp/wave-stable-focused.log"
+    },
+    {
+      "specs": [
+        "sound-control-settings",
+        "home-audio-line-policy",
+        "video-audio",
+        "settings-transaction",
+        "home-desktop-layout",
+        "chapters-desktop-layout"
+      ],
+      "passed": 41,
+      "failed": 0,
+      "duration": "2.3m",
+      "log": "tmp/wave-stable-regression-final.log"
+    },
+    {
+      "specs": [
+        "expression-hover",
+        "expression",
+        "expression-motion"
+      ],
+      "passed": 13,
+      "failed": 3,
+      "duration": "7.2m",
+      "log": "tmp/wave-expression-final.log"
+    },
+    {
+      "specs": [
+        "expression"
+      ],
+      "grep": "推开预览|短高桌面",
+      "passed": 3,
+      "failed": 0,
+      "duration": "1.0m",
+      "log": "tmp/wave-expression-recovery.log"
+    },
+    {
+      "specs": [
+        "culture-gallery-hitarea",
+        "home-culture"
+      ],
+      "passed": 21,
+      "failed": 1,
+      "duration": "2.6m",
+      "log": "tmp/gallery-click-final.log"
+    },
+    {
+      "specs": [
+        "culture-gallery-hitarea",
+        "home-culture cleanup/handoff subset"
+      ],
+      "passed": 10,
+      "failed": 0,
+      "duration": "45.6s",
+      "log": "tmp/gallery-click-recovery.log"
+    },
+    {
+      "specs": [
+        "structure-view-editing",
+        "action-view-editing",
+        "view-scene-settings",
+        "settings-transaction"
+      ],
+      "passed": 21,
+      "failed": 0,
+      "duration": "2.6m",
+      "log": "tmp/structure-view-live-final.log"
+    },
+    {
+      "specs": [
+        "expression-click-feedback",
+        "expression-hover",
+        "expression",
+        "expression-motion",
+        "chapters-desktop-layout"
+      ],
+      "passed": 27,
+      "failed": 0,
+      "duration": "2.0m",
+      "log": "tmp/expression-feedback-final.log"
+    }
+  ],
+  "browserCommand": "PLAYWRIGHT_PREVIEW_PORT=4198 npx playwright test --config tmp/action-view-preview.config.mjs <listed specs>.spec.js --grep-invert 手机",
+  "temporaryConfig": "inherits playwright.preview.config.js, uses ../tests/e2e, trace off, one worker, ignored tmp output",
+  "distinctBrowserCasesAfterRecovery": 109,
+  "distinctCounts": {
+    "waveAndLayout": 50,
+    "expressionHoverAndExistingExpression": 16,
+    "gallery": 22,
+    "structureNew": 5,
+    "actionAndViewAdditional": 11,
+    "feedbackNew": 5
+  },
+  "failuresAndRecovery": [
+    "Wave first run 14/15: a freshly reloaded document legitimately entered muted autoplay fallback, so rendered peak/trough measured .0001 amplitude. The fixture now waits for real media time and clicks the actual sound button before asserting the enabled wave. Playback policy unchanged; all six settings cases passed in the next 41-case run.",
+    "Expression first run 13/16: three historical layout fixtures attempted main-viewport mouse input while the existing unsaved-settings guard was active. Fixtures now measure actual 900px pushed preview, save/close, restore the same effective width, then use real pointer/keyboard input. Three recovered, then all expression cases repeated successfully with new feedback.",
+    "Gallery first run 21/22: in 640px width, changing story moved the gallery down 12px. A cached blank-area click landed outside the new top bound after native integer event coordinates. The fixture now measures immediately before each input, rounds and verifies canvas/viewport/decoration exclusions; all four new cases and six related lifecycle cases passed.",
+    "Independent review found static/fallback hand cursor could survive blur/hidden/offscreen. Product cleanup now clears cursor and pointer snapshots on those paths; visible loading handoff remains intact. Two fallback modes times three lifecycle checks passed."
+  ],
+  "originalWaveDefect": {
+    "rootCause": "staggered paired hover stroke-dashoffset erased both paths during redraw, not video reloading",
+    "windowCssPx": 64,
+    "atHoverMs": 200,
+    "blankColumnsCssPx": 41.5,
+    "longestBlankCssPx": 14,
+    "baselineScreenshot": "source/reviews/sound-wave-stability/2026-10-22/baseline-hover-gap.png"
+  },
+  "nativeWaveReview": {
+    "productionURL": "http://127.0.0.1:4198",
+    "deviceScaleFactor": 4,
+    "nativeScreenshotSamples": 168,
+    "parameterCombinations": 12,
+    "pageErrors": [],
+    "rasterCoverageFailures": 0,
+    "maxLoopBoundaryMeanAbsoluteGrayDifference": 0.027181603773584907,
+    "mutedStrokeSamples": [
+      {
+        "stroke": 0.5,
+        "peak": 24,
+        "trough": 0,
+        "measuredIntegratedCssPx": 0.5049019607843137
+      },
+      {
+        "stroke": 0.5,
+        "peak": 0,
+        "trough": 24,
+        "measuredIntegratedCssPx": 0.5088235294117647
+      },
+      {
+        "stroke": 0.5,
+        "peak": 24,
+        "trough": 24,
+        "measuredIntegratedCssPx": 0.5049019607843137
+      },
+      {
+        "stroke": 0.5,
+        "peak": 0,
+        "trough": 0,
+        "measuredIntegratedCssPx": 0.5098039215686274
+      },
+      {
+        "stroke": 2,
+        "peak": 24,
+        "trough": 0,
+        "measuredIntegratedCssPx": 2.006862745098039
+      },
+      {
+        "stroke": 2,
+        "peak": 0,
+        "trough": 24,
+        "measuredIntegratedCssPx": 2.006862745098039
+      },
+      {
+        "stroke": 2,
+        "peak": 24,
+        "trough": 24,
+        "measuredIntegratedCssPx": 2.006862745098039
+      },
+      {
+        "stroke": 2,
+        "peak": 0,
+        "trough": 0,
+        "measuredIntegratedCssPx": 2.006862745098039
+      },
+      {
+        "stroke": 6,
+        "peak": 24,
+        "trough": 0,
+        "measuredIntegratedCssPx": 6.0058823529411764
+      },
+      {
+        "stroke": 6,
+        "peak": 0,
+        "trough": 24,
+        "measuredIntegratedCssPx": 6.007843137254902
+      },
+      {
+        "stroke": 6,
+        "peak": 24,
+        "trough": 24,
+        "measuredIntegratedCssPx": 6.0058823529411764
+      },
+      {
+        "stroke": 6,
+        "peak": 0,
+        "trough": 0,
+        "measuredIntegratedCssPx": 6.006862745098039
+      }
+    ],
+    "nativeRasterIsolation": "temporary black window/outline and white stroke, opacity1 with opacity transition removed; shape, clip, amplitude, flow and native playback unmodified"
+  },
+  "independentReviews": {
+    "sourceDiff": "completed after wave, gallery cleanup, scene view scope and expression feedback; no remaining blocking finding",
+    "galleryNative": "WebGL/static/fallback right photo, right blank, foreground and Enter advance one step; left/decorations do not advance",
+    "galleryCursor": "static and unavailable-WebGL fallback blur, hidden and offscreen clear host cursor, six checks",
+    "structureNative": {
+      "sameCanvas": true,
+      "actualDragChangesProjectedSurfaces": true,
+      "actualWheelDistanceBefore": 3.2318,
+      "actualWheelDistanceAfter": 2.5346,
+      "save44KeepsEditingCancel49Restores44": true
+    },
+    "expressionNativeGeometry": {
+      "parameterViewportCombinations": 8,
+      "minimumArrowClearancePx": 11.992,
+      "minimumHorizontalClearancePx": 4.606,
+      "measurement": "real application-created WAAPI held at peak; independent geometry check uses linearized sampling only for locating exact geometric maximum; committed E2E preserves original easing"
+    }
+  },
+  "qa": {
+    "screenshots": 20,
+    "ordinaryStageScreenshots": 19,
+    "originalDefectScreenshot": 1,
+    "jsonRecords": 6,
+    "directories": [
+      "source/reviews/sound-wave-stability/2026-10-22",
+      "source/reviews/expression-hover/2026-10-22",
+      "source/reviews/culture-gallery-click/2026-10-22",
+      "source/reviews/structure-view-editing/2026-10-22",
+      "source/reviews/expression-click-feedback/2026-10-22"
+    ],
+    "reviewedIndividually": true,
+    "pageErrors": [],
+    "feedbackCapturedActualPeaks": {
+      "scale": 1.07975,
+      "time": 96.25,
+      "duration": 280
+    }
+  },
+  "assets": {
+    "originalManifestRecords": 669,
+    "originalRecordsUnchanged": true,
+    "addedReviewRecords": 26,
+    "finalManifestRecords": 695,
+    "runtimeFilesMatchingDistSha256": 141,
+    "runtimeAssetsChanged": false
+  },
+  "git": {
+    "fetchAtStart": true,
+    "fetchedBeforeDelivery": true,
+    "baselineUpstreamIdentical": true,
+    "delivery": "task paths only; normal commit and push; verify final revision against upstream"
+  },
+  "limits": [
+    "targeted desktop Chromium/Chrome browser regression; not full repository E2E",
+    "native raster isolates paint contrast but not geometry/playback",
+    "no other browser/device/physical OS-DPI matrix",
+    "no hosted deployment, EXE rebuild or hardware FPS benchmark",
+    "wave indicates enabled/playback state rather than live audio amplitude"
+  ],
+  "memory": {
+    "indexApplied": true,
+    "requireReadyCheck": {
+      "pages": 113,
+      "errors": 0,
+      "preexistingHistoricalSourceWarnings": 4
+    }
+  },
+  "cleanup": {
+    "taskPreview4198Stopped": true,
+    "user5173Retained": true
+  }
+}

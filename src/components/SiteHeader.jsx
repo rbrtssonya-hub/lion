@@ -12,7 +12,7 @@ const navigationFontFace = `@font-face {
   font-display: swap;
 }`;
 
-export default function SiteHeader({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef, headerRef, settings }) {
+export default function SiteHeader({ current, onNavigate, settingsOpen, settingsCancelOnly, onToggleSettings, settingsTriggerRef, headerRef, settings }) {
   useNavigationLayout(headerRef, current, settings);
   const navigate = (route) => {
     onNavigate(route);
@@ -26,7 +26,7 @@ export default function SiteHeader({ current, onNavigate, settingsOpen, onToggle
       <button type="button" className="site-brand-capsule" onClick={() => navigate('entry')} aria-label="南风有狮，返回首页">
         <BrandLockup />
       </button>
-      <ChapterNav current={current} onNavigate={navigate} settingsOpen={settingsOpen}
+      <ChapterNav current={current} onNavigate={navigate} settingsOpen={settingsOpen} settingsCancelOnly={settingsCancelOnly}
         onToggleSettings={onToggleSettings} settingsTriggerRef={settingsTriggerRef} />
     </div>
   </header>;

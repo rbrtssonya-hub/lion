@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-22",
+  "status": "passed",
+  "baseline": "main@a379ea0 plus this task worktree",
+  "preservedUntracked": "model/",
+  "environment": { "os": "Windows", "shell": "PowerShell", "node": "24.16.0", "npm": "12.0.1", "python": "3.14.2", "productionURL": "http://127.0.0.1:4196", "channel": "chromium", "nativePolicyChannel": "chrome", "workers": 1, "trace": "off" },
+  "viewRanges": { "actionMaxDistance": [3, 9, 0.5], "actionMinDistance": [3, 6, 0.1], "actionMinPolarAngle": [0, 20, 1], "actionMaxPolarAngle": [60, 90, 1] },
+  "viewDefaults": { "actionMinDistance": 3, "actionMaxDistance": 9, "actionMinPolarAngle": 1, "actionMaxPolarAngle": 90 },
+  "soundReference": {
+    "root": "C:/Users/Administrator/Desktop/Verminoble",
+    "sources": ["src/features/experience/SourceSoundControl.tsx", "src/features/experience/r3f/r3f-runtime.css:124-196"],
+    "access": "read-only; no media, fonts or legacy engine imported",
+    "ported": ["long SVG geometry and clipped window", "3s eased wave-to-straight-tail transition", "0.7s staggered paired path redraw on hover", "0.5s hover opacity"],
+    "added": ["1.4s repeated complete 75.4-unit wave moving right inside a stationary window", "visible volume label", "0-100 thin horizontal range control", "shared native media volume and session persistence"]
+  },
+  "core": { "command": "npm test", "passed": 78, "failed": 0, "durationMs": 4472.5142 },
+  "build": { "command": "npm run build", "modules": 341, "seconds": 1.81, "warning": "existing Three chunk 538.05 kB exceeds 500 kB advisory" },
+  "productionRuns": [
+    { "specs": ["action-view-editing", "settings-transaction", "view-scene-settings", "settings-view-source"], "passed": 20, "failed": 0, "duration": "2.0m", "log": "tmp/threshold-volume-view-preview.log" },
+    { "specs": ["action-player", "chapters-desktop-layout", "home-audio-line-policy", "home-audio-line", "home-audio-wave", "home-desktop-layout", "media-volume", "video-audio"], "passed": 49, "failed": 0, "duration": "2.7m", "log": "tmp/threshold-volume-audio-preview-final.log" },
+    { "specs": ["chapters-desktop-layout", "media-volume"], "grep": "巨幕场景在小电脑|动作900和640", "passed": 2, "failed": 0, "duration": "20.8s", "log": "tmp/threshold-volume-layout-review-final.log", "reason": "final narrow-container anchor correction; adds 900x700 and 1100x800 content-height verification" }
+  ],
+  "browserCommand": "PLAYWRIGHT_PREVIEW_PORT=4196 npx playwright test --config tmp/action-view-preview.config.mjs <listed specs>.spec.js --grep-invert 手机",
+  "temporaryConfig": "inherits playwright.preview.config.js, uses ../tests/e2e, trace off, ignored tmp output",
+  "distinctProductionCases": 69,
+  "earlierFailuresAndRecovery": [
+    "First audio/layout run: 46/49 in 3.3m; positive player fixture lacked explicit autoplay permission, action observation overlapped new 60px control, reduce-motion fixture expected exactly 0s despite global important 0.01ms. Updated approved-playback fixture, raised wide action caption, and asserted transition-property none plus negligible duration. Strict native refusal specs retained.",
+    "Native QA exposed action generic svg width/stroke and hover background overriding the imported waveform; scoped control selectors and added actual computed width/stroke/transparent hover assertions.",
+    "A test collection attempt rejected worker launchOptions inside describe; moved this positive player fixture setting to top level. No tests ran in the rejected collection.",
+    "Independent review caught top+bottom stretch for <=1100 noncompact action captions. Scoped added bottom spacing to containers >1100; final targeted run checks actual content height. Its first 1/2 result was a fixture expecting CSSOM auto rather than used pixels; geometry assertion kept and both cases passed.",
+    "QA script first init omitted top-window guard and raised sandbox sessionStorage errors; fixed guard and recaptured with zero pageerror. Short-home overlap fixed by reserving a separate right-side sound lane."
+  ],
+  "independentPlaybackAudit": {
+    "checks": ["native ArrowRight 0.25 to 0.26 without additional play or rewind", "zero, reload and toggle restore latest nonzero 0.26", "action inherits shared volume and only one primary is audible", "hidden media remain paused and muted through toggles; only one resumes; departing home stays stopped"],
+    "errors": []
+  },
+  "independentStrictNativeAudit": {
+    "policy": "document-user-activation-required with gesture-free CDP Runtime.evaluate",
+    "initial": { "volume": 0.25, "muted": true, "paused": false, "activated": false, "state": "awaiting-gesture" },
+    "sliderFromZero": { "volume": 0.01, "muted": false, "paused": false, "time": 0.273229, "activated": true, "state": "enabled" },
+    "buttonRestored": { "volume": 0.01, "muted": false, "paused": false, "time": 0.400408, "activated": true, "state": "enabled" },
+    "errors": []
+  },
+  "qa": { "directory": "source/reviews/audio-volume/2026-10-22", "screenshots": 9, "captureRecord": "capture.json", "pageErrors": [], "reviewedIndividually": true },
+  "assets": { "originalManifestRecords": 651, "originalRecordsUnchanged": true, "addedReviewRecords": 10, "finalManifestRecords": 661, "runtimeFilesMatchingDistSha256": 141, "runtimeAssetsChanged": false },
+  "review": "independent source and cross-review completed; narrow-container finding fixed and targeted production verification passed",
+  "memory": { "indexApplied": true, "requireReadyCheck": { "pages": 111, "errors": 0, "preexistingHistoricalSourceWarnings": 4 } },
+  "cleanup": { "taskPreview4196Stopped": true, "user5173Retained": true },
+  "git": { "fetchedAtStart": true, "fetchedBeforeDelivery": true, "mainUpstreamInitiallyIdentical": true, "extraUnmergedReference": "origin/codex/home-audio-line-2026-10-22 only adds F-drive sync documentation at 2a1f90d", "delivery": "commit this task only and normally push main; final revision and remote identity are verified after commit" },
+  "limits": ["targeted desktop browser coverage, not full repository E2E", "no physical OS-DPI/device matrix or hardware FPS benchmark", "wave is an enabled/playback indicator, not an audio amplitude analyzer", "reference project read-only", "no hosted deployment or portable EXE rebuild"]
+}

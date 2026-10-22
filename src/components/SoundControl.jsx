@@ -1,16 +1,34 @@
 import '../styles/sound-control.css';
+import { createSoundWave } from '../features/sound-control/soundWaveGeometry.js';
 
-export default function SoundControl({ id, enabled, pending = false, onToggle, className = '', variant = 'standard' }) {
-  const line = variant === 'line';
-  return <button id={id} type="button" className={`sound-control${line ? ' sound-control-line' : ''} ${className}`} data-sound-control
-    data-audio-state={enabled ? 'enabled' : pending ? 'awaiting-gesture' : 'muted'}
-    aria-label={enabled ? '关闭声音' : '开启声音'} aria-pressed={enabled} onClick={onToggle}
-    title={line ? undefined : pending ? '视频正在静音播放，点击开启声音' : enabled ? '关闭声音' : '开启声音'}>
-    {line ? <svg viewBox="0 0 60 24" aria-hidden="true" focusable="false">
-      <path d={enabled ? 'M 3 12 C 7.5 12 7.5 5 12 5 S 16.5 19 21 19 S 25.5 5 30 5 S 34.5 19 39 19 S 43.5 5 48 5 S 52.5 12 57 12' : 'M 3 12 H 57'} />
-    </svg> : <><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z" />
-      {enabled ? <><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14" /></> : <path d="m16 9 6 6m0-6-6 6" />}
-    </svg>
-    <span>{enabled ? '声音已开启' : pending ? '点击开启声音' : '声音已关闭'}</span></>}
-  </button>;
+function SoundWave({ settings }) {
+  const wave = createSoundWave(settings);
+  return <span className="sound-wave-window" aria-hidden="true" style={{ height: `${wave.height}px` }}>
+    <svg viewBox={`0 0 ${wave.width} ${wave.height}`} width={wave.width} height={wave.height} focusable="false"
+      data-wave-baseline={wave.baseline} data-wave-period={wave.period}>
+      <g className="sound-wave-amplitude" style={{ transformOrigin: `0px ${wave.baseline}px` }}>
+        <g className="sound-wave-flow" style={{ '--sound-wave-period': `${wave.period}px` }}>
+          <path className="sound-wave-path" d={wave.d} strokeWidth={wave.stroke} vectorEffect="non-scaling-stroke" />
+        </g>
+      </g>
+  </svg></span>;
+}
+
+export default function SoundControl({ id, enabled, pending = false, playing = true, volume = .25, onToggle, onVolumeChange, className = '', variant = 'standard', settings }) {
+  const percentage = Math.round(volume * 100);
+  const state = enabled && volume > 0 ? 'enabled' : pending && volume > 0 ? 'awaiting-gesture' : 'muted';
+  return <div className={`sound-control-widget${variant === 'line' ? ' sound-control-widget-home' : ''} ${className}`}
+    data-sound-control data-audio-state={state} data-wave-playing={state === 'enabled' && playing}
+    style={{ '--sound-volume': `${percentage}%` }}>
+    <button id={id} type="button" className="sound-control sound-control-line" data-sound-control data-audio-state={state}
+      aria-label={enabled ? '关闭声音' : '开启声音'} aria-pressed={enabled} onClick={onToggle}
+      title={pending ? '视频正在静音播放，点击开启声音' : enabled ? '关闭声音' : '开启声音'}>
+      <span className="sound-control-label">音量</span><SoundWave settings={settings} />
+    </button>
+    <div className="sound-volume-row">
+      <input className="sound-volume-slider" type="range" min="0" max="100" step="1" value={percentage}
+        aria-label="音量" aria-valuetext={`${percentage}%`} onChange={event => onVolumeChange?.(Number(event.target.value) / 100)} />
+      <span className="sound-volume-value" aria-hidden="true">{percentage}</span>
+    </div>
+  </div>;
 }

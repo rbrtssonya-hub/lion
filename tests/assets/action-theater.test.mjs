@@ -83,13 +83,12 @@ test('环绕约束保留合法视角和水平目标偏移，不因模型旋转�
   moved.forEach((value, index) => assert.ok(Math.abs(value - movedPoint[index]) < 1e-12));
 });
 
-test('自定义环绕边界允许俯视仰视且遵守保存的距离与角度', () => {
-  const settings = { actionMinDistance: 4, actionMaxDistance: 10, actionMinPolarAngle: 20, actionMaxPolarAngle: 160 };
-  for (const [inputY, expectedAngle] of [[100, 20], [-100, 160]]) {
+test('自定义环绕边界遵守新的观看距离和俯仰范围', () => {
+  const settings = { actionMinDistance: 4, actionMaxDistance: 8, actionMinPolarAngle: 20, actionMaxPolarAngle: 75 };
+  for (const [inputY, expectedAngle] of [[100, 20], [-100, 75]]) {
     const point = constrainOrbit([0, inputY, 0], [0, 0, 0], settings);
-    assert.ok(Math.abs(Math.hypot(...point) - 10) < 1e-9);
-    assert.ok(Math.abs(Math.acos(point[1] / 10) - rad(expectedAngle)) < 1e-9);
-    assert.ok(Math.abs(point[1]) > 3.75);
+    assert.ok(Math.abs(Math.hypot(...point) - 8) < 1e-9);
+    assert.ok(Math.abs(Math.acos(point[1] / 8) - rad(expectedAngle)) < 1e-9);
   }
 });
 

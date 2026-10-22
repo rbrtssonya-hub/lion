@@ -55,16 +55,22 @@
 .expression-state-button:hover:not(.is-active) { color: var(--expression-red); }
 .expression-state-button:focus-visible { outline: 2px solid var(--expression-red); outline-offset: 2px; border-radius: 3px; }
 .expression-nav-caption { position: absolute; right: 0; bottom: 0; left: 18px; margin: 0; color: var(--chapter-muted); font: 9px/1.6 var(--display); letter-spacing: .11em; }
-.expression-lion-stage { position: relative; width: 100%; min-width: 0; height: auto; min-height: 440px; align-self: stretch; isolation: isolate; touch-action: pan-y; }
+.expression-lion-stage { --expression-step-size: clamp(34px, 3.3cqw, 46px); position: relative; width: 100%; min-width: 0; height: auto; min-height: 440px; align-self: stretch; isolation: isolate; touch-action: pan-y; }
 .expression-lion-stage:focus-visible { outline: 2px solid rgba(196, 65, 42, .6); outline-offset: 4px; border-radius: 50%; }
 .expression-brush-ring { position: absolute; z-index: -1; top: 48%; left: 50%; width: min(97%, calc(var(--expression-available-height) - 80px), 790px); height: auto; aspect-ratio: 1; fill: none; stroke: #8e6650; opacity: .14; transform: translate(-50%, -50%); pointer-events: none; }
 .expression-brush-ring circle { stroke-width: 3; }
 .expression-brush-ring circle:nth-child(2) { stroke-width: 8; opacity: .35; }
 .expression-brush-ring circle:nth-child(3) { stroke-width: 1; opacity: .7; }
-.expression-lion-stack { position: absolute; inset: 10% 9% 17%; }
+.expression-lion-stack {
+  /* Reserve the requested animation's peak, including in short desktop windows.
+     Keep the photograph inside the arrows with a 12px gap at maximum scale. */
+  --expression-photo-height: min(73%, calc((100% - 2 * var(--expression-step-size) - 54px) / var(--expression-click-scale, 1.08)));
+  --expression-scale-extra: calc(var(--expression-click-scale, 1.08) - 1);
+  position: absolute; right: 9%; left: 9%; height: var(--expression-photo-height);
+  top: clamp(calc(var(--expression-step-size) + 12px + .55 * var(--expression-scale-extra) * var(--expression-photo-height)),
+    10%, calc(100% - var(--expression-step-size) - 42px - var(--expression-photo-height) - .45 * var(--expression-scale-extra) * var(--expression-photo-height)));
+}
 .expression-lion-trigger { z-index: 2; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; transform-origin: 50% 55%; }
-.expression-lion-trigger::after { position: absolute; inset: 0; content: ''; border: 1px solid #c49c63; border-radius: 50%; opacity: 0; box-shadow: 0 0 20px rgba(197, 154, 99, .12); transition: opacity 180ms ease; pointer-events: none; }
-.expression-lion-trigger:hover::after, .expression-lion-trigger:focus-visible::after { opacity: .45; }
 .expression-lion-trigger:focus-visible { outline: 2px solid #c49c63; outline-offset: 5px; border-radius: 50%; }
 .expression-lion-layer { position: absolute; inset: 0; display: block; min-width: 0; min-height: 0; transform-origin: 50% 70%; }
 .expression-lion-layer.is-current { z-index: 2; animation: expression-arrive 520ms cubic-bezier(.2, .75, .25, 1) both; }
@@ -73,7 +79,7 @@
 .expression-lion-layer.is-leaving[data-direction='previous'] { animation-name: expression-depart-previous; }
 .expression-lion-pose { min-width: 0; min-height: 0; width: 100%; height: 100%; transform-origin: 50% 58%; }
 .expression-lion-image { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 10px rgba(67, 27, 19, .12)); }
-.expression-step { position: absolute; z-index: 4; left: 50%; display: grid; width: clamp(34px, 3.3cqw, 46px); height: clamp(34px, 3.3cqw, 46px); place-items: center; padding: 9px; border: 1px solid rgba(98, 62, 43, .3); border-radius: 50%; color: #523427; background: rgba(255, 255, 255, .5); cursor: pointer; transform: translateX(-50%); transition: color 180ms ease, border-color 180ms ease, background 180ms ease; }
+.expression-step { position: absolute; z-index: 4; left: 50%; display: grid; width: var(--expression-step-size); height: var(--expression-step-size); place-items: center; padding: 9px; border: 1px solid rgba(98, 62, 43, .3); border-radius: 50%; color: #523427; background: rgba(255, 255, 255, .5); cursor: pointer; transform: translateX(-50%); transition: color 180ms ease, border-color 180ms ease, background 180ms ease; }
 .expression-step--previous { top: 0; }
 .expression-step--next { bottom: 30px; }
 .expression-step svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }

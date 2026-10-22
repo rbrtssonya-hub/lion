@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
+import { expressionFeedbackDefaults } from '../../config/expressionFeedbackSettings.js';
 import { lionExpressions, expressionComparisons } from '../../data/lion-expressions.js';
 import ExpressionMotif from './ExpressionMotif.jsx';
 import ExpressionComparison from './ExpressionComparison.jsx';
@@ -16,7 +17,7 @@ function Cloud({ className = '' }) {
   </svg>;
 }
 
-export default function ExpressionPage({ observation, onReturnToModel }) {
+export default function ExpressionPage({ observation, onReturnToModel, settings = expressionFeedbackDefaults }) {
   const initialIndex = Math.max(0, lionExpressions.findIndex(item => item.id === observation?.expressionId));
   const [selection, setSelection] = useState({ index: initialIndex, previous: null, direction: 'next', revision: 0 });
   const [viewMode, setViewMode] = useState(observation ? 'details' : 'overview');
@@ -32,6 +33,9 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
   const interactionRef = useRef(null);
   interactionRef.current = { index: selection.index, viewMode };
   const current = lionExpressions[selection.index];
+  const clickPercentage = settings.expressionClickScale ?? expressionFeedbackDefaults.expressionClickScale;
+  const clickScale = clickPercentage / 100;
+  const clickDuration = settings.expressionClickDuration ?? expressionFeedbackDefaults.expressionClickDuration;
   const { capture: captureMotion, reset: resetMotion } = useExpressionMotion(copyRef, characterRef, current.id, viewMode, comparing);
   const showComparison = () => {
     resetMotion();
@@ -69,10 +73,10 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
     interactionRef.current = { ...interactionRef.current, viewMode: 'details' };
     setViewMode('details');
     responseRef.current?.cancel();
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (clickScale > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       responseRef.current = triggerRef.current.animate([
-        { transform: 'scale(1)' }, { transform: 'scale(1.015)' }, { transform: 'scale(1)' },
-      ], { duration: 180, easing: 'ease-out' });
+        { transform: 'scale(1)', offset: 0 }, { transform: `scale(${clickScale})`, offset: .5 }, { transform: 'scale(1)', offset: 1 },
+      ], { duration: clickDuration, easing: 'ease-out' });
     }
   };
 
@@ -81,7 +85,7 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
     const stopResponse = () => responseRef.current?.cancel();
     preference.addEventListener('change', stopResponse);
     return () => { stopResponse(); preference.removeEventListener('change', stopResponse); };
-  }, []);
+  }, [clickScale, clickDuration]);
 
   useEffect(() => {
     if (comparing) return;
@@ -117,7 +121,8 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
   };
 
   return <>
-    <section className="chapter-stage chapter-stage--state expression-page" id="chapterStage" data-chapter="state" data-expression={current.name} data-comparing={comparing} aria-label="醒狮八态图鉴" onKeyDown={event => {
+    <section className="chapter-stage chapter-stage--state expression-page" id="chapterStage" data-chapter="state" data-expression={current.name} data-comparing={comparing}
+      style={{ '--expression-click-scale': clickScale }} aria-label="醒狮八态图鉴" onKeyDown={event => {
       if (event.key === 'Escape' && comparing && !event.isComposing) { event.preventDefault(); event.stopPropagation(); exitComparison(); return; }
       if (event.key === 'Escape' && viewMode === 'details' && !event.isComposing) {
         event.preventDefault(); event.stopPropagation(); returnToOverview();
@@ -142,6 +147,7 @@ export default function ExpressionPage({ observation, onReturnToModel }) {
           <svg className="expression-brush-ring" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="263" /><circle cx="300" cy="300" r="273" /><circle cx="300" cy="300" r="283" /></svg>
           <button type="button" className="expression-step expression-step--previous" id="expressionPrevious" aria-label="上一神态" onClick={() => step(-1)}><svg viewBox="0 0 40 24" aria-hidden="true"><path d="m4 20 16-16 16 16" /></svg></button>
           <button type="button" className="expression-lion-stack expression-lion-trigger" id="expressionLionTrigger" ref={triggerRef}
+            data-expression-click-scale={clickPercentage} data-expression-click-duration={clickDuration}
             aria-label={`查看${current.name}态详细解读`} aria-controls="expressionStateCopy" aria-pressed={viewMode === 'details'} onClick={showDetails}
             onKeyDown={event => { if (event.key === ' ' && !event.repeat) spaceActivation.current = true; }}
             onKeyUp={event => {

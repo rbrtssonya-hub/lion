@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { DEFAULT_VIDEO_VOLUME } from '../../config/playback.js';
-import { isAudioUnlockGesture, useMediaAudioPreference } from '../../hooks/useMediaAudioPreference.js';
+import { getMediaVolumePreference, isAudioUnlockGesture, useMediaAudioPreference, useMediaVolumePreference } from '../../hooks/useMediaAudioPreference.js';
 
 const initialView = { status: 'idle', currentTime: 0, duration: 0, error: '', audioEnabled: false, audioPending: false };
 const visibleDocument = () => typeof document === 'undefined' || !document.hidden;
@@ -10,7 +9,7 @@ const stopDiscardedPlayback = event => {
   event.currentTarget.pause();
 };
 
-function createPlaybackController(updateView, updateIntent, updateAudio, initialConfig) {
+function createPlaybackController(updateView, updateIntent, updateAudio, updateVolume, initialConfig) {
   const records = new Map();
   const bindings = new Map();
   let config = initialConfig;
@@ -36,7 +35,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
       currentTime: finiteTime(record.node?.currentTime),
       duration: finiteTime(record.node?.duration),
       error: record.error,
-      audioEnabled: Boolean(config.audioEnabled && !audioBlocked && record.status !== 'blocked'),
+      audioEnabled: Boolean(config.audioEnabled && config.volume > 0 && !audioBlocked && record.status !== 'blocked'),
       audioPending: config.audioEnabled && audioBlocked,
     };
     updateView(previous => Object.keys(next).every(key => previous[key] === next[key]) ? previous : next);
@@ -44,7 +43,10 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
 
   // Mute every element first: changing the primary screen never overlaps audio.
   const syncAudio = () => {
-    for (const record of records.values()) if (record.node) record.node.muted = true;
+    for (const record of records.values()) if (record.node) {
+      record.node.muted = true;
+      if (record.node.volume !== config.volume) record.node.volume = config.volume;
+    }
     const primary = records.get(config.activeId);
     if (config.audioEnabled && !audioBlocked && primary?.wanted && mayPlay(config.activeId, primary)
       && primary.status !== 'blocked' && primary.status !== 'error') primary.node.muted = false;
@@ -173,7 +175,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
         record.error = '';
         if (node) {
           node.muted = true;
-          node.volume = DEFAULT_VIDEO_VOLUME;
+          node.volume = config.volume;
           node.loop = true;
           if (mounted) reconcile();
         }
@@ -302,8 +304,8 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
     toggleAudio() {
       const next = audioBlocked || !config.audioEnabled;
       audioBlocked = false;
-      config = { ...config, audioEnabled: next };
       updateAudio(next);
+      config = { ...config, audioEnabled: next, volume: getMediaVolumePreference() };
       syncAudio();
       // A sound click can also authorize a previously blocked active video.
       if (next && config.playingIntent) {
@@ -311,6 +313,21 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
         if (active?.status === 'blocked') { active.status = 'paused'; active.error = ''; }
         if (active) requestPlay(config.activeId, active, true);
         reconcile();
+      }
+      publish(config.activeId);
+    },
+    changeVolume(value) {
+      const needsUnlock = audioBlocked || !config.audioEnabled;
+      const volume = updateVolume(value);
+      audioBlocked = false;
+      config = { ...config, volume, audioEnabled: volume > 0 };
+      syncAudio();
+      // Enabling from silence can authorize native playback in this same input
+      // stack. Changing an already audible volume never issues another play.
+      if (volume > 0 && needsUnlock && config.playingIntent) {
+        const active = records.get(config.activeId);
+        if (active?.status === 'blocked') { active.status = 'paused'; active.error = ''; }
+        if (active) requestPlay(config.activeId, active, true);
       }
       publish(config.activeId);
     },
@@ -330,9 +347,10 @@ export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false 
   const [view, setView] = useState(initialView);
   const [playingIntent, setPlayingIntent] = useState(true);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
+  const [volume, setVolume] = useMediaVolumePreference();
   const controllerRef = useRef(null);
-  const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, playingIntent, audioEnabled };
-  if (!controllerRef.current) controllerRef.current = createPlaybackController(setView, setPlayingIntent, setAudioEnabled, config);
+  const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, playingIntent, audioEnabled, volume };
+  if (!controllerRef.current) controllerRef.current = createPlaybackController(setView, setPlayingIntent, setAudioEnabled, setVolume, config);
   const controller = controllerRef.current;
 
   useLayoutEffect(() => {
@@ -350,6 +368,8 @@ export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false 
     playingIntent,
     audioEnabled: view.audioEnabled,
     audioPending: view.audioPending,
+    volume,
+    changeVolume: controller.changeVolume,
     togglePlayback: controller.togglePlayback,
     toggleAudio: controller.toggleAudio,
     seek: controller.seek,

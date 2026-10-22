@@ -27,13 +27,13 @@ test.describe('浏览器实际拦截有声自动播放', () => {
               advancing: video.currentTime > .1,
               overlay: !!document.querySelector('.video-status'),
               pressed: toggle?.getAttribute('aria-pressed'),
-              line: toggle?.querySelector('path')?.getAttribute('d'),
+              waveState: toggle?.dataset.audioState,
             };
           })()`,
           returnByValue: true, userGesture: false,
         });
         return result.value;
-      }, { timeout: 60_000 }).toEqual({ activation: false, muted: true, volume: .25, paused: false, advancing: true, overlay: false, pressed: 'false', line: 'M 3 12 H 57' });
+      }, { timeout: 60_000 }).toEqual({ activation: false, muted: true, volume: .25, paused: false, advancing: true, overlay: false, pressed: 'false', waveState: 'awaiting-gesture' });
       if (target === '页面') await page.mouse.click(1100, 350);
       else if (target === '线条开关') await page.locator('#toggleHomeAudio').click();
       else {
@@ -53,7 +53,8 @@ test.describe('浏览器实际拦截有声自动播放', () => {
       await expect.poll(() => current.evaluate(video => !video.paused && !video.muted && video.volume === .25)).toBe(true);
       const toggle = page.locator('#toggleHomeAudio');
       await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-      await expect(toggle.locator('path')).toHaveAttribute('d', /C/);
+      await expect(toggle).toHaveAttribute('data-audio-state', 'enabled');
+      await expect.poll(() => toggle.locator('.sound-wave-flow').evaluate(element => getComputedStyle(element).animationPlayState)).toBe('running');
       await toggle.click();
       await page.mouse.click(1100, 350);
       await expect.poll(() => soundState(current)).toEqual({ muted: true, volume: .25 });

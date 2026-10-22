@@ -6,6 +6,7 @@ export const settingsPanel = page => page.getByRole('region', { name: '开发者
 // Route by the unchanged accessible label or storage/surface prefix. Keep main
 // and nested tablists scoped so the heritage tabs cannot satisfy these clicks.
 const routes = [
+  [['soundControl', 'soundWave', '音量文字', '音量控件', '波浪线', '波峰', '波谷', '波长'], ['公共模块']],
   [['archivePanelTransparency', '首页阅读底板', '公共', '应用范围'], ['公共模块']],
   [['header', 'sidebar', '顶栏', '侧栏'], ['外观']],
   [['navFontSize', 'helperFontSize', 'navIconSize', 'helperTransparency', 'brandPadding', 'compactNav', 'homeBrandOffset', '导航标题', '导航辅助', '导航图标', '辅助文字', '品牌左侧', '紧凑导航', '首页品牌'], ['导航']],
@@ -13,7 +14,7 @@ const routes = [
   [['cultureTitle', 'cultureBody', '文化标题', '文化正文'], ['首页', '图鉴']],
   [['modelOverlay', '结构资料'], ['章节', '结构']],
   [['actionOverlay', 'videoOverlay', '动作目录', '视频提示'], ['章节', '动作']],
-  [['expressionOverlay', 'expressionOverviewFontSize', 'expressionDetailFontSize', '神态文字', '神态简介', '神态解读'], ['章节', '神态']],
+  [['expressionOverlay', 'expressionOverviewFontSize', 'expressionDetailFontSize', 'expressionClick', '神态文字', '神态简介', '神态解读', '狮头点击', '点击反馈时长'], ['章节', '神态']],
   [['structureMinDistance', 'structureMaxDistance', 'structureFov', 'actionMinDistance', 'actionMaxDistance', 'actionMinPolarAngle', 'actionMaxPolarAngle', 'actionFov', '结构最近', '结构最远', '结构镜头', '动作最近', '动作最远', '动作俯视', '动作仰视', '动作镜头'], ['视角']],
   [['hdri', 'HDRI', '辅助灯光'], ['HDRI']],
   [['cultureSources', 'cultureSourceCard', 'sourcesTitle', 'sourcesBody', 'sourcesMeta', '资料标题', '资料正文', '资料辅助', '参考资料'], ['资料']],

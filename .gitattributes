@@ -15,3 +15,16 @@ source/reviews/entry-book-settings/2026-10-22/capture.json -text
 
 # Preserve the authenticated desktop layout capture record.
 source/reviews/desktop-responsive/2026-10-22/capture.json -text
+
+# Preserve authenticated native screenshots' companion capture geometry.
+source/reviews/audio-volume/2026-10-22/capture.json -text
+
+# Preserve the authenticated sound-control sizing capture record.
+source/reviews/sound-control-settings/2026-10-22/capture.json -text
+
+# Preserve authenticated interaction-review JSON bytes.
+source/reviews/sound-wave-stability/2026-10-22/*.json -text
+source/reviews/expression-hover/2026-10-22/capture.json -text
+source/reviews/culture-gallery-click/2026-10-22/capture.json -text
+source/reviews/structure-view-editing/2026-10-22/capture.json -text
+source/reviews/expression-click-feedback/2026-10-22/capture.json -text

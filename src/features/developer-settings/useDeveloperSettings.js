@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { surfaceDefaults, surfaceRanges, surfaceScopes, migrateReadingPaper, readingPaperVersion, migrateStructureAtlas, structureAtlasVersion } from './surfaceSettings.js';
 import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
-import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import { resolveViewSettings, viewDefaults, viewRanges } from '../../config/viewSettings.js';
+import { soundControlDefaults, soundControlRanges } from '../../config/soundControlSettings.js';
+import { expressionFeedbackDefaults, expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -52,6 +54,8 @@ export const defaultDeveloperSettings = Object.freeze({
   ...surfaceDefaults,
   ...hdriDefaults,
   ...viewDefaults,
+  ...soundControlDefaults,
+  ...expressionFeedbackDefaults,
 });
 
 const ranges = {
@@ -77,6 +81,8 @@ const ranges = {
   ...surfaceRanges,
   ...hdriRanges,
   ...viewRanges,
+  ...soundControlRanges,
+  ...expressionFeedbackRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {
@@ -107,8 +113,9 @@ export function normalizeDeveloperSetting(name, value) {
   return snapSettingsRange(value, min, max, step);
 }
 
-function resolveSettings(settings) {
+function resolveSettings(settings, changedName) {
   const resolved = { ...defaultDeveloperSettings, ...settings };
+  Object.assign(resolved, resolveViewSettings(resolved, changedName));
   resolved.readingPaperVersion ??= readingPaperVersion;
   resolved.structureAtlasVersion ??= structureAtlasVersion;
   // Upgrade the previous default once, preserving the other saved controls.
@@ -204,13 +211,13 @@ export function useDeveloperSettings() {
       if (name === 'archivePanelTransparency') {
         for (const prefix of ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody']) next[`${prefix}Transparency`] = normalized;
       }
-      return next;
+      return resolveSettings(next, name);
     });
   }, []);
   const previewSettings = useCallback((name, value) => {
     if (!Object.hasOwn(defaultDeveloperSettings, name)) return;
     shouldPersist.current = false;
-    setSettings(current => ({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }));
+    setSettings(current => resolveSettings({ ...resolveSettings(current), [name]: normalizeDeveloperSetting(name, value) }, name));
   }, []);
   const applySurfaceSettings = useCallback((scope, material) => {
     const prefixes = surfaceScopes[scope]?.prefixes;
@@ -244,16 +251,21 @@ export function useDeveloperSettings() {
     setEditing(true);
     setSettingsFeedback('');
   }, []);
-  const saveSettings = useCallback(() => {
+  const saveSettings = useCallback(({ keepEditing = false } = {}) => {
     try {
       localStorage.setItem(storageKey, JSON.stringify(persistedSettings(currentSettings.current)));
     } catch {
       setSettingsFeedback('无法保存到浏览器。当前预览仍保留，可导出参数后重试。');
       return false;
     }
-    editSession.current = null;
+    // Live camera tuning stays open after saving. Subsequent cancellation must
+    // restore this newly saved baseline rather than the original opening state.
+    editSession.current = keepEditing ? { ...currentSettings.current } : null;
     shouldPersist.current = false;
-    setEditing(false);
+    setEditing(keepEditing);
+    // Recompute dirty state even when repeated saves keep editing and feedback
+    // unchanged; updating only the ref would leave the footer stale.
+    if (keepEditing) setSettings(current => resolveSettings(current));
     setSettingsFeedback(currentSettings.current.hdriSource === 'local'
       ? '设置已保存。本地HDRI仅当前会话有效，刷新后使用内置环境。' : '设置已保存。');
     return true;

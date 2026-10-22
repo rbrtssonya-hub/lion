@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-22",
+  "status": "passed",
+  "baseline": "main@3f51884 plus this task worktree",
+  "preservedUntracked": "model/",
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node": "24.16.0",
+    "npm": "12.0.1",
+    "python": "3.14.2",
+    "productionURL": "http://127.0.0.1:4197",
+    "channel": "chromium",
+    "strictPolicyChannel": "chrome",
+    "workers": 1,
+    "trace": "off"
+  },
+  "defaults": {
+    "soundControlFontSize": 16,
+    "soundControlWidth": 180,
+    "soundWaveWidth": 64
+  },
+  "ranges": {
+    "soundControlFontSize": [
+      12,
+      28,
+      1
+    ],
+    "soundControlWidth": [
+      140,
+      300,
+      1
+    ],
+    "soundWaveWidth": [
+      40,
+      120,
+      1
+    ]
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 78,
+    "failed": 0,
+    "durationMs": 4395.3325
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 342,
+    "seconds": 1.85,
+    "warning": "existing Three chunk 538.05 kB exceeds 500 kB advisory"
+  },
+  "productionRuns": [
+    {
+      "specs": [
+        "sound-control-settings before fifth case was added"
+      ],
+      "passed": 4,
+      "failed": 0,
+      "duration": "23.3s",
+      "log": "tmp/sound-size-settings-preview.log"
+    },
+    {
+      "specs": [
+        "sound-control-settings",
+        "media-volume",
+        "home-audio-wave",
+        "home-audio-line",
+        "home-audio-line-policy",
+        "video-audio",
+        "settings-transaction",
+        "home-desktop-layout",
+        "chapters-desktop-layout"
+      ],
+      "passed": 47,
+      "failed": 1,
+      "duration": "2.6m",
+      "log": "tmp/sound-size-preview-final.log"
+    },
+    {
+      "specs": [
+        "video-audio"
+      ],
+      "passed": 4,
+      "failed": 0,
+      "log": "tmp/sound-size-video-recheck.log",
+      "reason": "replace old fixed button corner limits with actual widget-to-hero right and bottom clearance",
+      "duration": "21.7s"
+    }
+  ],
+  "browserCommand": "PLAYWRIGHT_PREVIEW_PORT=4197 npx playwright test --config tmp/action-view-preview.config.mjs <listed specs>.spec.js --grep-invert 手机",
+  "distinctProductionCasesCoveredAfterRecovery": 48,
+  "newBehaviorCoverage": [
+    "actual 180/16/64 default pixels",
+    "240/22/104 live preview and unsaved JSON export",
+    "cancel and stored snapshot restoration",
+    "save, reload and action-route consistency",
+    "default preview cancellation and saving",
+    "28px font and 120px wave with 140/300px controls in 1920/900/640 desktop windows",
+    "whole 120px wave coverage at 12px font over real animation frames",
+    "fixed position, rightward motion and loop wrap",
+    "whole-window flat tail after muting while native video continues",
+    "existing playback volume/gesture/background/route cleanup"
+  ],
+  "independentReview": {
+    "diffReviewed": true,
+    "geometryCombinations": "12/28px font, 140/300px width, 120px wave at 640x360",
+    "transitionSamples": 96,
+    "columnsPerSample": 129,
+    "missingCoverage": 0,
+    "findingFixed": "tail moved from source x678 to x565.5 to cover every moving-wave phase during mute transition",
+    "temporaryEvidence": "tmp/review-sound-final.json"
+  },
+  "qa": {
+    "directory": "source/reviews/sound-control-settings/2026-10-22",
+    "screenshots": 7,
+    "captureRecord": "capture.json",
+    "reviewedIndividually": true,
+    "pageErrors": []
+  },
+  "assets": {
+    "originalManifestRecords": 661,
+    "originalRecordsUnchanged": true,
+    "addedReviewRecords": 8,
+    "finalManifestRecords": 669,
+    "runtimeFilesMatchingDistSha256": 141,
+    "runtimeAssetsChanged": false
+  },
+  "git": {
+    "fetchAtStart": true,
+    "baselineUpstreamIdentical": true,
+    "delivery": "task paths only; normal commit/push; final revision verified against upstream",
+    "fetchedBeforeDelivery": true
+  },
+  "limits": [
+    "targeted desktop Chromium/Chrome regression, not full repository E2E",
+    "no device or other browser matrix",
+    "no hosted deployment or EXE rebuild",
+    "wave remains an enabled/playback indicator rather than an audio amplitude analyzer"
+  ],
+  "memory": {
+    "indexApplied": true,
+    "requireReadyCheck": {
+      "pages": 112,
+      "errors": 0,
+      "preexistingHistoricalSourceWarnings": 4
+    }
+  },
+  "cleanup": {
+    "taskPreview4197Stopped": true,
+    "user5173Retained": true
+  }
+}

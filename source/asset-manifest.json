@@ -3908,6 +3908,270 @@
       "path": "source/reviews/desktop-responsive/2026-10-22/structure-900x600.png",
       "bytes": 559215,
       "sha256": "decae8c70b565928e24b5dacf97bf9a221bfd54b207f6a959e8bbc7a3c6234ac"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-1920.png",
+      "bytes": 2314083,
+      "sha256": "9cbe0c4398b1669dbe8a8facb7dfc823b8b7cc15e9b72c271d064d5dc473ae3d"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-900.png",
+      "bytes": 777188,
+      "sha256": "49abb556ac5efdf9dc465b3414a09f438c121e489c0d1ddca70272bcd1d667de"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/action-control.png",
+      "bytes": 7497,
+      "sha256": "b7acbc83bc26b16ab18909e74f90d3242c3947ca95488ff87b01dcca03dfc66f"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/capture.json",
+      "bytes": 3362,
+      "sha256": "f1e0cdd0cc72da5d57dfbef0867e4ce2232ba24f235f546b77234d1920ab128e"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/control-enabled.png",
+      "bytes": 13898,
+      "sha256": "3102eec2d9afb101691dc91cef993bef14a9acd4629d3135f3871d819a7a4b1e"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/control-muted.png",
+      "bytes": 13786,
+      "sha256": "31d1c40aadc9010ce986f58327740014c42fef7b7c3baac99b2a73e03c9a54dc"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/home-enabled-1920.png",
+      "bytes": 2831744,
+      "sha256": "4cda5c830215e660a044991ef520384ba4950ca601c5d2bea3579769f12437d0"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/home-short-640.png",
+      "bytes": 360970,
+      "sha256": "50724c9f708fc58c0651758f827f853d31b7de8ed96a83eb081c6501a5594d58"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/view-settings-1920.png",
+      "bytes": 2006574,
+      "sha256": "914073cb20b1c5edf770fc1a3a852c417c5527fcc52048d9138dcb6e9ba5c70b"
+    },
+    {
+      "from": "native Chromium production capture, view thresholds and audio volume 2026-10-22",
+      "path": "source/reviews/audio-volume/2026-10-22/view-settings-900.png",
+      "bytes": 534772,
+      "sha256": "3b7644adb5594f4f3dbf40c1908a917b8b8589d414739b323f9c9b8d8c71aa62"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/action-custom-1920.png",
+      "bytes": 2235796,
+      "sha256": "0e123229d0320ef012f5044479a91aa7f215bb65ea715dfc1a3c4c647bfab52c"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/action-max-900.png",
+      "bytes": 163553,
+      "sha256": "d5a9b4d9dde252cee360c344a91b89732871e75e3ae046ff9ec92d82e4ad6dad"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/capture.json",
+      "bytes": 2315,
+      "sha256": "6b7928237c56da995d93e03bb0e00d51d190cd40af75b9c131fcff99423f25c5"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/control-enabled.png",
+      "bytes": 32391,
+      "sha256": "f8ceab2357c4aa4566eb2723bf95bbfa7cab3ab090f231904f38aeae10ea030e"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/control-muted.png",
+      "bytes": 31539,
+      "sha256": "c21212b32aeaceb3cd0b48ff3ac868b857b07226f5290af3a62664df3b6acc77"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/home-default-1920.png",
+      "bytes": 2832765,
+      "sha256": "6a60343929fec6c29daf2f374523bb1b91a99e8d279ab30ca68829ebdf5d36e0"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/home-max-640.png",
+      "bytes": 359918,
+      "sha256": "6186b1639c2dd480d7f0bce9f4e9efe7c068cff10dc6ab0da90480036e6249eb"
+    },
+    {
+      "from": "native Chromium production capture, sound control pixel settings 2026-10-22",
+      "path": "source/reviews/sound-control-settings/2026-10-22/settings-preview-1920.png",
+      "bytes": 2641236,
+      "sha256": "16a9bdbece580b19777d8f74f571789b5d972c57c93d8e6a0eef162b5e945052"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/action-shape-1920.png",
+      "bytes": 2241035,
+      "sha256": "354ea62c1994ce4894152db2c7de480da7f374113bb9db30d4f576f9bdbb39a3"
+    },
+    {
+      "from": "native Chromium production capture of original hover-dash gap at main@b2009f0",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/baseline-hover-gap.png",
+      "bytes": 8962,
+      "sha256": "dd525559c49368e52974ce2109b00be7749cee834ba4113a142e895e3b2a8db3"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/capture.json",
+      "bytes": 2886,
+      "sha256": "ef806b32114efadb749181164ce0dfdf90a315a14f925eecd8e86989b9ba55d9"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/home-continuous-1920.png",
+      "bytes": 3037112,
+      "sha256": "11a621d65073ff23895adba6f2f5643bc3c376946dd16cbd8c5fe2c5723b7980"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/home-extreme-640.png",
+      "bytes": 357071,
+      "sha256": "eb012c2c359d1488cbda8d6b1454ab129cd09e1f0f5ab3d9cb315fc3f9b4144a"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/muted-thick-line.png",
+      "bytes": 34900,
+      "sha256": "5b96185d65fd6cb267b3c89faa69ba62d6ebfea6389e6134cf09a5d75840fbdc"
+    },
+    {
+      "from": "native Chromium DPR4 raster review summary, 168 states, 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/native-raster-summary.json",
+      "bytes": 1923,
+      "sha256": "45a42ff2ccca95442cb6b60f1f53f0e37465eaedb7c6c9766934b9e7785cbb7a"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/settings-shape-parameters.png",
+      "bytes": 2650866,
+      "sha256": "4f273e2017da0005fb1130f021474e36c6f6af25753ffc6ef7694105ba68665b"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/wave-asymmetric-thick.png",
+      "bytes": 36031,
+      "sha256": "99513a239db4fe073ee5316da3ea40413accedd49ad4178e16489aa30a0daba5"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/sound-wave-stability/2026-10-22/wave-hover-continuous.png",
+      "bytes": 32503,
+      "sha256": "54d0697551cb54b6839601e9e795aa4535a9d92b384fdd94f6e9aeff62fb6a68"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-hover/2026-10-22/capture.json",
+      "bytes": 1163,
+      "sha256": "354c60321e25bb3a4d431515dc954b7f188be998ee4622625fa03ce2980c3a00"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-hover/2026-10-22/hover-without-inner-frame.png",
+      "bytes": 1000506,
+      "sha256": "936633a838b9fffd9908f83cc3a27b0f3172d36d4ee55046afb23fd5535b81e1"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-hover/2026-10-22/keyboard-focus.png",
+      "bytes": 1003034,
+      "sha256": "a86a51fdcb4df3eb43e598802989044225e2465cde5abceee09ca311df1af9d7"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-hover/2026-10-22/rest.png",
+      "bytes": 1000506,
+      "sha256": "936633a838b9fffd9908f83cc3a27b0f3172d36d4ee55046afb23fd5535b81e1"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/culture-gallery-click/2026-10-22/after-rear-photo.png",
+      "bytes": 879587,
+      "sha256": "e8301648077dab40b99c86b934f23837498d08d409f64c9c249036e3e1c35029"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/culture-gallery-click/2026-10-22/after-right-gap.png",
+      "bytes": 863228,
+      "sha256": "9724395eacf1717bcc4cc27ac1239e8381cb9103b3f5bc984698bd4032608170"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/culture-gallery-click/2026-10-22/before.png",
+      "bytes": 789730,
+      "sha256": "04d1e879bfcacd84a960db03b12381c0fcc25db882e5ab41609915fc0d205931"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/culture-gallery-click/2026-10-22/capture.json",
+      "bytes": 892,
+      "sha256": "75a82d64052910ca3fad6c77f5c5f30207a94a1cb9df243cab95d9fc36c58b23"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/structure-view-editing/2026-10-22/capture.json",
+      "bytes": 457,
+      "sha256": "298ca680db43fbb0f1ccc1c877285942cd90571692637de85761adb753afdc29"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/structure-view-editing/2026-10-22/view-open.png",
+      "bytes": 2079804,
+      "sha256": "5480a70d5be02e81811cb251aedc1bfc62ed682067f2385c24226890edf2d5b0"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/structure-view-editing/2026-10-22/view-saved-still-editing.png",
+      "bytes": 2038198,
+      "sha256": "cac550c0a2549f666fb4ae5884c6975756f56b0a1b43d98969c1f1e30ef2c9d6"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-click-feedback/2026-10-22/capture.json",
+      "bytes": 1669,
+      "sha256": "c5f413de2b17f3e332a5a38c5de4e82ccbe8fdb1bf9443bb1a672b470f287124"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-click-feedback/2026-10-22/default-108-peak.png",
+      "bytes": 2194084,
+      "sha256": "f2fbcf76be0c8eeb856a426641fde79b24d15f07648461041c62bdf8c3a1ec51"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-click-feedback/2026-10-22/default-rest.png",
+      "bytes": 2144425,
+      "sha256": "7e99e40a67de4c34e7be63d943a7616a43095b623d578ca50090efbde0a32e79"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-click-feedback/2026-10-22/maximum-120-peak.png",
+      "bytes": 2179592,
+      "sha256": "73252804b7d29f620d3709144a6cfd91a08ae3fa8f2a24f1ad5fc7a7b4ddb9a3"
+    },
+    {
+      "from": "native Chromium production capture, ordered interaction refinements 2026-10-22",
+      "path": "source/reviews/expression-click-feedback/2026-10-22/settings-feedback-parameters.png",
+      "bytes": 1927611,
+      "sha256": "2b3fbfd04813372f526c7b462f0b75673dd41f9325d8cefb7f737434da72bdd0"
     }
   ]
 }

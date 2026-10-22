@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { DEFAULT_VIDEO_VOLUME } from '../config/playback.js';
+import { DEFAULT_VIDEO_VOLUME, normalizeMediaVolume } from '../config/playback.js';
 import { isAudioUnlockGesture } from '../hooks/useMediaAudioPreference.js';
 
-export default function VideoStage({ src, poster, loop = false, playing = true, audioEnabled = true, onAudioState, resumeAudioRef, hitEnabled = true, onReady, onEnded, onContinue, continueLabel = '浏览整体模型', label, className = '', id }) {
+export default function VideoStage({ src, poster, loop = false, playing = true, audioEnabled = true, volume = DEFAULT_VIDEO_VOLUME, onAudioState, resumeAudioRef, hitEnabled = true, onReady, onEnded, onContinue, continueLabel = '浏览整体模型', label, className = '', id }) {
   const ref = useRef(null);
   const failedRef = useRef(false);
   const onReadyRef = useRef(onReady);
@@ -10,6 +10,8 @@ export default function VideoStage({ src, poster, loop = false, playing = true, 
   const onAudioStateRef = useRef(onAudioState);
   onAudioStateRef.current = onAudioState;
   const replayRef = useRef(null);
+  const volumeRef = useRef(volume);
+  volumeRef.current = normalizeMediaVolume(volume);
   const [status, setStatus] = useState('playing');
   const [loadAttempt, setLoadAttempt] = useState(0);
 
@@ -18,6 +20,9 @@ export default function VideoStage({ src, poster, loop = false, playing = true, 
   useLayoutEffect(() => {
     if (!playing && ref.current) { ref.current.muted = true; ref.current.pause(); }
   }, [playing]);
+
+  // Volume updates must not pause/play the video or reset its timeline.
+  useLayoutEffect(() => { ref.current.volume = volumeRef.current; }, [volume, src]);
 
   useLayoutEffect(() => {
     const video = ref.current;
@@ -68,8 +73,8 @@ export default function VideoStage({ src, poster, loop = false, playing = true, 
     let revision = 0;
     let audioBlocked = false;
     // Set volume before the first play call, never after audible autoplay.
-    video.volume = DEFAULT_VIDEO_VOLUME;
-    const publishAudio = () => onAudioStateRef.current?.({ enabled: !video.muted, pending: audioEnabled && audioBlocked });
+    video.volume = volumeRef.current;
+    const publishAudio = () => onAudioStateRef.current?.({ enabled: !video.muted && video.volume > 0, pending: audioEnabled && audioBlocked });
     const mayPlay = () => active && playing && !document.hidden && !failedRef.current && video.isConnected;
     const requestPlay = (withAudio = audioEnabled && !audioBlocked) => {
       if (!mayPlay()) { video.muted = true; video.pause(); publishAudio(); return; }
@@ -105,7 +110,12 @@ export default function VideoStage({ src, poster, loop = false, playing = true, 
       if (audioEnabled && audioBlocked && mayPlay() && isAudioUnlockGesture(event)) requestPlay(true);
     };
     replayRef.current = () => requestPlay();
-    if (resumeAudioRef) resumeAudioRef.current = () => requestPlay(true);
+    if (resumeAudioRef) resumeAudioRef.current = (nextVolume = volumeRef.current, resume = true) => {
+      video.volume = normalizeMediaVolume(nextVolume);
+      if (video.volume === 0) { video.muted = true; publishAudio(); }
+      else if (resume) requestPlay(true);
+      else publishAudio();
+    };
     document.addEventListener('visibilitychange', updatePlayback);
     document.addEventListener('pointerdown', unlockAudio, true);
     document.addEventListener('keydown', unlockAudio, true);

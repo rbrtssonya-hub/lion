@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test';
 import { actions, stage, scene, actionButton, actionVideo, openTheater, selectAction } from './action-theater.helpers.js';
 import { recordVideoAudio, expectLowVolumeWithoutOverlap } from './video-audio.helpers.js';
 
+// This player suite exercises approved playback; native autoplay refusal is
+// covered separately in video-audio and home-audio-line-policy.
+test.use({ launchOptions: { args: ['--autoplay-policy=no-user-gesture-required'] } });
+
 const play = page => page.getByRole('button', { name: '播放动作视频', exact: true });
 const pause = page => page.getByRole('button', { name: '暂停动作视频', exact: true });
 const ensurePlaying = async page => { if (await play(page).isVisible()) await play(page).click(); };

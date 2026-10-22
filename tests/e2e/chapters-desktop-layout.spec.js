@@ -138,7 +138,7 @@ test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复�
   const scene = page.locator('#theaterSceneContainer canvas');
   await expect(scene).toHaveAttribute('data-scene-ready', 'true', { timeout: 60_000 });
   const canvas = await scene.elementHandle();
-  for (const [width, height] of windows) {
+  for (const [width, height] of [...windows, [900, 700], [1100, 800]]) {
     await resize(page, width, height);
     const header = await page.locator('.site-header').boundingBox();
     const bounds = await stage.boundingBox();
@@ -146,7 +146,19 @@ test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复�
     await expect(stage).toHaveAttribute('data-compact-layout', String(compact));
     await noHorizontalOverflow(page, '#actionTheater');
     await noOverlap(page, ['.theater-topline', '.theater-view-tools']);
-    await noOverlap(page, ['.theater-observation', '.theater-bottom', '.action-theater .sound-control']);
+    await noOverlap(page, ['.theater-observation', '.theater-bottom', '.action-theater .sound-control-widget']);
+    if (!compact && bounds.width <= 1100) {
+      const excess = await page.locator('.theater-observation').evaluate(element => {
+        const css = getComputedStyle(element);
+        const content = element.querySelector('.theater-caption.is-current').getBoundingClientRect().height;
+        const inset = ['paddingTop', 'paddingBottom', 'borderTopWidth', 'borderBottomWidth']
+          .reduce((sum, key) => sum + Number.parseFloat(css[key]), 0);
+        return element.getBoundingClientRect().height - content - inset;
+      });
+      // CSSOM resolves auto insets of positioned boxes to used pixels. The
+      // actual content height proves the panel is not stretched by two anchors.
+      expect(Math.abs(excess)).toBeLessThanOrEqual(1);
+    }
     expect((await scene.boundingBox()).height).toBeCloseTo(compact ? Math.max(360, height) : height, 0);
     expect(await canvas.evaluate(element => element === document.querySelector('#theaterSceneContainer canvas'))).toBe(true);
   }

@@ -21,9 +21,14 @@ test.describe('有声自动播放获准', () => {
     const intro = page.locator('#introVideo');
     await expect.poll(() => intro.evaluate(video => !video.paused)).toBe(true);
     expect(await soundState(intro)).toEqual({ muted: false, volume: .25 });
-    const controlBounds = await page.locator('#toggleHomeAudio').boundingBox();
-    expect(controlBounds.x).toBeGreaterThan(1920 - 220);
-    expect(controlBounds.y).toBeGreaterThan(1080 - 100);
+    const controlBounds = await page.locator('.sound-control-widget-home').boundingBox();
+    const heroBounds = await page.locator('.entry-gate').boundingBox();
+    const rightGap = heroBounds.x + heroBounds.width - controlBounds.x - controlBounds.width;
+    const bottomGap = heroBounds.y + heroBounds.height - controlBounds.y - controlBounds.height;
+    expect(rightGap).toBeGreaterThanOrEqual(20);
+    expect(rightGap).toBeLessThanOrEqual(48);
+    expect(bottomGap).toBeGreaterThanOrEqual(18);
+    expect(bottomGap).toBeLessThanOrEqual(48);
     await page.screenshot({ path: test.info().outputPath('home-sound-control.png') });
     await page.locator('#toggleHomeAudio').click();
     await expect.poll(() => soundState(intro)).toEqual({ muted: true, volume: .25 });
