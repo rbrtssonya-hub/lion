@@ -304,6 +304,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
           </div>
         </div>
         <StructureReadingPanel selected={selected} selectedIndex={selectedIndex} hotspots={hotspots}
+          onSelect={selectHotspot}
           artworkEnabled={atlasVisitedRef.current}
           focusState={focusState} detailScrollRef={detailScrollRef} expressionLink={expressionLink} onObserve={onObserve}
           onPrevious={() => selectHotspot(hotspots[(selectedIndex - 1 + hotspots.length) % hotspots.length].id)}

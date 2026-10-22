@@ -1,0 +1,214 @@
+{
+  "date": "2026-10-22",
+  "baseline": "5b2a30769a006d626f78680369689b237c6bb858",
+  "branch": "codex/expression-structure-audio-2026-10-22",
+  "environment": "Windows desktop Chrome, current C:/Users/Administrator/.codex/worktrees/e919/lion only",
+  "build": {
+    "command": "npm run build",
+    "modules": 340,
+    "status": "passed",
+    "existingWarning": "three.module 538.04 kB"
+  },
+  "production": {
+    "command": "PLAYWRIGHT_PREVIEW_PORT=4199 PLAYWRIGHT_JSON_OUTPUT_NAME=tmp/goal-interface-production.json npx playwright test --config playwright.preview.config.js tests/e2e/expression-motion.spec.js tests/e2e/structure-directory.spec.js tests/e2e/video-audio.spec.js tests/e2e/structure-atlas.spec.js:301 tests/e2e/structure-atlas.spec.js:369 tests/e2e/content-comparison.spec.js:105 tests/e2e/content-comparison.spec.js:161 tests/e2e/action-player.spec.js:26 tests/e2e/action-player.spec.js:166 --reporter=list,json --output=tmp/goal-interface-production",
+    "stats": {
+      "startTime": "2026-10-21T16:44:14.981Z",
+      "duration": 144407.048,
+      "expected": 15,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "scope": "3 expression motion, 3 structure directory, 3 audio, 2 narrow/push atlas, 2 observation return, 2 action playback",
+    "timing": "Before final HomePage pending-toggle race correction; the final 4-case audio production run is recorded separately"
+  },
+  "development": [
+    {
+      "scope": "structure directory3 + existing atlas12",
+      "passed": 15,
+      "duration": "2.9m"
+    },
+    {
+      "scope": "expression motion + existing expression/content comparison",
+      "passed": 22,
+      "timing": "Before ghost-opacity assertion and h2 timing correction"
+    },
+    {
+      "scope": "expression added old-title-opacity assertion",
+      "passed": 1
+    },
+    {
+      "scope": "final expression motion after h2 timing correction",
+      "passed": 3,
+      "durationSeconds": 40.1
+    },
+    {
+      "scope": "action player",
+      "passed": 11
+    },
+    {
+      "scope": "native strict browser autoplay",
+      "passed": 2,
+      "durationSeconds": 39.1
+    },
+    {
+      "scope": "audible-permitted home",
+      "passed": 1,
+      "durationSeconds": 13.2
+    },
+    {
+      "scope": "native strict action after gold button color correction",
+      "passed": 1,
+      "durationSeconds": 18.3
+    }
+  ],
+  "audioPolicyEvidence": {
+    "trace": "disabled; trace snapshot Runtime.callFunctionOn userGesture:true contaminated inherited policy test",
+    "observation": "Independent clean Chrome document-user-activation-required, Runtime.evaluate userGesture:false; verifies activation=false, native NotAllowedError, muted currentTime advancement, real key/pointer audio unlock",
+    "limitation": "Websites cannot force audible autoplay against browser policy; explicit user mute is respected within session"
+  },
+  "motionProductionObservation": "source/reviews/interface-production/2026-10-22/motion-render-observation.json",
+  "imageGeneration": {
+    "method": "8 separate built-in image_gen.imagegen calls",
+    "assets": "喜怒哀乐动静惊疑",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "postprocessing": "none",
+    "provenance": "source/design/expression-calligraphy/2026-10-22/prompts.json",
+    "pixelAndHashValidation": "source/design/expression-calligraphy/2026-10-22/validation.json",
+    "review": "All8 inspected individually by root; source/runtime byte-identical"
+  },
+  "screenshots": [
+    "source/reviews/audio-control/2026-10-22/action-sound-control.png",
+    "source/reviews/audio-control/2026-10-22/home-autoplay-fallback.png",
+    "source/reviews/audio-control/2026-10-22/home-sound-control.png",
+    "source/reviews/expression-motion/2026-10-22/details-doubt-1920.png",
+    "source/reviews/expression-motion/2026-10-22/details-joy-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-02-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-03-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-04-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-05-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-06-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-07-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-08-1920.png",
+    "source/reviews/expression-motion/2026-10-22/overview-joy-1920.png",
+    "source/reviews/expression-motion/2026-10-22/transition-joy-145ms-1920.png",
+    "source/reviews/structure-directory/2026-10-22/structure-atlas-width40-1920.png",
+    "source/reviews/structure-directory/2026-10-22/structure-atlas-width40-900.png",
+    "source/reviews/structure-directory/2026-10-22/structure-directory-1280x600.png",
+    "source/reviews/structure-directory/2026-10-22/structure-directory-1920x1080.png",
+    "source/reviews/structure-directory/2026-10-22/structure-directory-900x900.png",
+    "source/reviews/structure-directory/2026-10-22/structure-directory-settings-push.png",
+    "source/reviews/interface-production/2026-10-22/action-sound-control.png",
+    "source/reviews/interface-production/2026-10-22/details-joy-1920.png",
+    "source/reviews/interface-production/2026-10-22/home-autoplay-fallback.png",
+    "source/reviews/interface-production/2026-10-22/home-sound-control.png",
+    "source/reviews/interface-production/2026-10-22/overview-joy-1920.png",
+    "source/reviews/interface-production/2026-10-22/structure-directory-1920x1080.png",
+    "source/reviews/interface-production/2026-10-22/transition-joy-145ms-1920.png"
+  ],
+  "visualReview": "27 archived desktop screenshots reviewed by assigned agents/root; all7 production images reviewed by root",
+  "assetManifest": {
+    "baselineObjectsUnchanged": 569,
+    "addedGlyphCopies": 16,
+    "addedScreenshots": 27,
+    "finalRecords": 612
+  },
+  "publicDist": {
+    "matchingFiles": 141,
+    "status": "all byte-identical"
+  },
+  "unrelatedPreserved": {
+    "modelDirectory": "pre-existing, not edited or staged",
+    "sha256": {
+      "scripts/analyze_lion_fur_comparison.py": "c0fd4fd910040d2efc340fad65f2a312ce8177112855a86bd9321fa9b4aaac92",
+      "scripts/audit_lion_fur.mjs": "46c67ca6d48e548e8548aea7e53b3bd9441b761bc83a9379032fcc1cb185f022",
+      "scripts/render_lion_material_reference.py": "bcc71d835ea486a825fc40505c2b4c207e1cb40e2c0315d4e984411b77553a96",
+      "src/services/lionFurShading.js": "ea5f2cc666fbea72f74645f8af7f2120d07237805fc48a830d7dbf8f62286510",
+      "tests/assets/lion-fur-shading.test.mjs": "659224675fd8776518c768c4febc840e9176618fb2ad4aa7a543274d2e796247"
+    }
+  },
+  "notCovered": [
+    "full repository E2E suite",
+    "mobile",
+    "other browsers/hardware",
+    "physical speaker loudness",
+    "EXE packaging",
+    "other worktree synchronization"
+  ],
+  "delivery": "Commit/push result belongs to the containing Git commit and final remote HEAD check; no main merge",
+  "finalAudioRaceRegression": {
+    "task": "Home sound toggle while audible play confirmation is pending",
+    "reviewedAt": "2026-10-21T16:56:59.894Z",
+    "sourceChanges": [
+      "src/features/home/HomePage.jsx",
+      "tests/e2e/video-audio.spec.js"
+    ],
+    "productFix": "When enabled is true, always mute first; only resume pending audio while currently disabled.",
+    "reproduction": "Initial simulated NotAllowedError, native muted playback advances, real key unlocks native audible playback, its confirmation promise is held, then click Close sound before releasing the late confirmation.",
+    "red": {
+      "startTime": "2026-10-21T16:54:37.455Z",
+      "duration": 24673.222,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0,
+      "expectedFailure": true,
+      "failure": "At video-audio.spec.js:83 clicking Close sound left muted=false at volume 0.25.",
+      "rawReport": "tmp/audio-toggle-red-2026-10-22.json"
+    },
+    "green": {
+      "startTime": "2026-10-21T16:55:19.405Z",
+      "duration": 10582.379,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "rawReport": "tmp/audio-toggle-green-2026-10-22.json"
+    },
+    "build": {
+      "command": "npm run build",
+      "exitCode": 0,
+      "modules": 340,
+      "log": "tmp/audio-toggle-build-2026-10-22.txt",
+      "warning": "Existing chunk-size warning over 500kB"
+    },
+    "production": {
+      "startTime": "2026-10-21T16:55:43.148Z",
+      "duration": 47550.962999999996,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "port": 4199,
+      "command": "PLAYWRIGHT_PREVIEW_PORT=4199 CI=1 npx playwright test --config playwright.preview.config.js tests/e2e/video-audio.spec.js --reporter=json",
+      "rawReport": "tmp/audio-toggle-production-2026-10-22.json"
+    },
+    "serverCleanup": "Playwright child dev/preview servers exited; no listeners on 4199 or 5199 after completion."
+  },
+  "core": {
+    "command": "$goalTrackedTests = @(git ls-files 'tests/assets/*.test.mjs'); & node --test @goalTrackedTests",
+    "passed": 71,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 4473.3017,
+    "scope": "All tracked core/asset test files; excludes4 unrelated pre-existing untracked fur tests"
+  },
+  "memory": {
+    "commands": [
+      "python wiki_memory/工具/memory.py index --project . --memory-dir wiki_memory --apply",
+      "python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready"
+    ],
+    "pages": 101,
+    "errors": 0,
+    "historicalSourceWarnings": 4
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "status": "passed"
+  }
+}

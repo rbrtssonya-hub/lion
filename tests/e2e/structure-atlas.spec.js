@@ -320,6 +320,13 @@ test('合法40%资料底板宽度在900与1920电脑窗仍完整呈现题签图�
     expect(art.width).toBeGreaterThanOrEqual(box.width * .55);
     expect(art.x).toBeGreaterThanOrEqual(box.x);
     expect(art.x + art.width).toBeLessThanOrEqual(box.x + box.width + 1);
+    for (const [selector, minimum] of [['.structure-poetic-subtitle', 14], ['.structure-introduction p', 15], ['.structure-culture-section > p', 13]]) {
+      const fontSizes = await panel.locator(selector).evaluateAll(nodes => nodes.map(node => parseFloat(getComputedStyle(node).fontSize)));
+      expect(fontSizes.every(size => size >= minimum), `${viewport.width}: narrow paper preserves readable ${selector}`).toBe(true);
+    }
+    const directory = panel.getByRole('navigation', { name: '结构部件目录', exact: true });
+    await expect(directory.getByRole('button')).toHaveCount(parts.length);
+    expect(await directory.getByRole('button').evaluateAll(nodes => nodes.every(node => node.scrollWidth - node.clientWidth <= 1)), 'all six narrow-paper labels remain unclipped').toBe(true);
     for (const selector of ['.structure-atlas-masthead', '.structure-atlas-masthead > div', '.structure-atlas-footer', '.structure-folio-nav', '#previousStructurePart', '#nextStructurePart']) {
       const node = panel.locator(selector);
       const bounds = await node.boundingBox();

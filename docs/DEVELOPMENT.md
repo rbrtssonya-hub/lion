@@ -188,6 +188,8 @@ Live2D 创作源与运行包分开放置。当前运行包为重制参考，首�
 
 ## 验证与辅助工具
 
+2026-10-22声音、神态和结构目录改动分别运行 `tests/e2e/video-audio.spec.js`、`expression-motion.spec.js`、`structure-directory.spec.js`，同时按范围复核原 `structure-atlas.spec.js`、`content-comparison.spec.js` 和 `action-player.spec.js`。音频spec必须关闭trace：快照可能注入用户激活，严格策略需独立干净Chrome和`userGesture:false` CDP观察。默认有声若受阻则静音继续，右下角共用开关及首个真实手势启声，显式静音会话保留。神态测试检查实际中途矩形/旧字隐藏/反向中断/减少动态清理，目录测试核对真实模型焦点和独立滚动；不能以文字变化替代模型联动。八字为实际内置ImageGen输出，无图像后处理。来源、逐图提示词和各阶段实际验证见[本轮说明](../source/references/interface-audio-motion-2026-10-22.md)。
+
 结构图鉴改动运行 `tests/e2e/structure-atlas.spec.js`，覆盖六图真实解码/alpha、真实模型射线点选、前后循环、全部原资料、900/1366/1920电脑窗、电脑缩放余宽、设置迁移和首页请求隔离。原GPU按需绘制/投影、滚轮真实像素、观察往返和全量毛发检查继续运行相应结构子集；局部聚焦允许视锥裁剪，完整毛发绘制在「复原整体」后核对。六字源文件位于 `source/design/structure-atlas/2026-10-21/`，按用户要求的透明裁剪可用 `python scripts/prepare_structure_calligraphy.py` 复现；该脚本只后处理已有六张真实原输出，不替代ImageGen生成。最终命令、环境、结果与范围记录于本轮说明和工程日志。
 
 结构材质与转动性能新增 `tests/e2e/structure-interaction.spec.js`，核对六个真实投影标签/点击聚焦、旋转后锚点移动和稳定后停止模型绘制。可在开发服务器运行时通过 `node scripts/benchmark_lion_scene.mjs --dpr=1 --output=tmp/structure-after-dpr1` 复现性能采样；加 `--baseline-ref=1f8f206` 读取修复前同一场景与 GLB，`--dpr=2` 核对高分屏预算。该工具只在浏览器请求中注入计时，默认每阶段6秒，分别输出 JSON 和 CPUProfile，不改产品源码。2026-10-19同机 RTX5070Ti/Chrome155 的实际前后结果、源码/模型hash及限制见[性能报告](../source/references/2026-10-19-structure-performance.json)；约180FPS是高刷新率同机对照，不能推广为所有电脑保证，JS提交耗时也不等于GPU计时。本轮最终门禁与生产QA见[材质/性能修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。

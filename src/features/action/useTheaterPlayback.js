@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { DEFAULT_VIDEO_VOLUME } from '../../config/playback.js';
+import { isAudioUnlockGesture, useMediaAudioPreference } from '../../hooks/useMediaAudioPreference.js';
 
-const initialView = { status: 'idle', currentTime: 0, duration: 0, error: '' };
+const initialView = { status: 'idle', currentTime: 0, duration: 0, error: '', audioEnabled: false, audioPending: false };
 const visibleDocument = () => typeof document === 'undefined' || !document.hidden;
 const finiteTime = value => Number.isFinite(value) && value >= 0 ? value : 0;
 const stopDiscardedPlayback = event => {
@@ -14,6 +15,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
   const bindings = new Map();
   let config = initialConfig;
   let mounted = false;
+  let audioBlocked = false;
 
   const recordFor = id => {
     if (!records.has(id)) records.set(id, {
@@ -34,6 +36,8 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
       currentTime: finiteTime(record.node?.currentTime),
       duration: finiteTime(record.node?.duration),
       error: record.error,
+      audioEnabled: Boolean(config.audioEnabled && !audioBlocked && record.status !== 'blocked'),
+      audioPending: config.audioEnabled && audioBlocked,
     };
     updateView(previous => Object.keys(next).every(key => previous[key] === next[key]) ? previous : next);
   };
@@ -42,7 +46,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
   const syncAudio = () => {
     for (const record of records.values()) if (record.node) record.node.muted = true;
     const primary = records.get(config.activeId);
-    if (config.audioEnabled && primary?.wanted && mayPlay(config.activeId, primary)
+    if (config.audioEnabled && !audioBlocked && primary?.wanted && mayPlay(config.activeId, primary)
       && primary.status !== 'blocked' && primary.status !== 'error') primary.node.muted = false;
   };
 
@@ -58,10 +62,10 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
     publish(id);
   };
 
-  const requestPlay = (id, record) => {
+  const requestPlay = (id, record, force = false) => {
     const node = record.node;
     if (!mayPlay(id, record, node) || record.status === 'blocked' || record.status === 'error') return;
-    if (record.wanted && (record.pending || !node.paused)) return;
+    if (!force && record.wanted && (record.pending || !node.paused)) return;
     record.wanted = true;
     const revision = ++record.revision;
     if (node.paused) record.status = 'loading';
@@ -97,7 +101,15 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
       record.wanted = false;
       node.muted = true;
       node.pause();
-      if (error?.name === 'NotAllowedError') {
+      if (error?.name === 'NotAllowedError' && config.audioEnabled && !audioBlocked && id === config.activeId) {
+        audioBlocked = true;
+        record.status = 'idle';
+        record.error = '';
+        // Keep the moving picture when audible autoplay is denied. The first
+        // genuine input will retry audio directly in that gesture's stack.
+        requestPlay(id, record);
+        return;
+      } else if (error?.name === 'NotAllowedError') {
         record.status = 'blocked';
         record.error = '播放被浏览器阻止，请点击播放继续观看';
       } else {
@@ -222,18 +234,36 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
     reconcile();
   };
 
+  const unlockAudio = event => {
+    if (!mounted || !config.enabled || !config.audioEnabled || !audioBlocked || !isAudioUnlockGesture(event)) return;
+    audioBlocked = false;
+    const active = records.get(config.activeId);
+    if (active?.status === 'blocked') { active.status = 'paused'; active.error = ''; }
+    syncAudio();
+    if (active && config.playingIntent) requestPlay(config.activeId, active, true);
+    publish(config.activeId);
+  };
+
   return {
     bindVideo,
     getVideo: id => records.get(id)?.node || null,
-    configure(next) { config = next; reconcile(); },
+    configure(next) {
+      if (next.audioEnabled !== config.audioEnabled) audioBlocked = false;
+      config = next;
+      reconcile();
+    },
     mount() {
       mounted = true;
       document.addEventListener('visibilitychange', reconcile);
+      document.addEventListener('pointerdown', unlockAudio, true);
+      document.addEventListener('keydown', unlockAudio, true);
       reconcile();
     },
     unmount() {
       mounted = false;
       document.removeEventListener('visibilitychange', reconcile);
+      document.removeEventListener('pointerdown', unlockAudio, true);
+      document.removeEventListener('keydown', unlockAudio, true);
       const nodes = [...records.entries()].map(([id, record]) => {
         pauseRecord(id, record);
         return record.node;
@@ -270,7 +300,8 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
       reconcile();
     },
     toggleAudio() {
-      const next = !config.audioEnabled;
+      const next = audioBlocked || !config.audioEnabled;
+      audioBlocked = false;
       config = { ...config, audioEnabled: next };
       updateAudio(next);
       syncAudio();
@@ -278,8 +309,10 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
       if (next && config.playingIntent) {
         const active = records.get(config.activeId);
         if (active?.status === 'blocked') { active.status = 'paused'; active.error = ''; }
+        if (active) requestPlay(config.activeId, active, true);
         reconcile();
       }
+      publish(config.activeId);
     },
     seek(value) {
       const active = records.get(config.activeId);
@@ -296,7 +329,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, initial
 export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false }) {
   const [view, setView] = useState(initialView);
   const [playingIntent, setPlayingIntent] = useState(true);
-  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
   const controllerRef = useRef(null);
   const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, playingIntent, audioEnabled };
   if (!controllerRef.current) controllerRef.current = createPlaybackController(setView, setPlayingIntent, setAudioEnabled, config);
@@ -315,7 +348,8 @@ export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false 
     getVideo: controller.getVideo,
     view,
     playingIntent,
-    audioEnabled,
+    audioEnabled: view.audioEnabled,
+    audioPending: view.audioPending,
     togglePlayback: controller.togglePlayback,
     toggleAudio: controller.toggleAudio,
     seek: controller.seek,

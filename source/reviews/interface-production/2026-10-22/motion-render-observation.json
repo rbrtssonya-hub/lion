@@ -1,0 +1,89 @@
+{
+  "before": {
+    "x": 1248.046875,
+    "y": 388.0625,
+    "width": 180,
+    "height": 180,
+    "opacity": "1"
+  },
+  "during": {
+    "x": 1249.57666015625,
+    "y": 440.7545166015625,
+    "width": 85.144775390625,
+    "height": 85.14483642578125,
+    "oldTitleOpacity": "0",
+    "visibleOldGlyphs": 0,
+    "paragraphs": [
+      {
+        "text": "狮艺解读 · 观形识意",
+        "opacity": "0.609298"
+      },
+      {
+        "text": "喜态怎么看",
+        "opacity": "0"
+      },
+      {
+        "text": "从狮头到鼓点，寻找欢喜的线索。",
+        "opacity": "0"
+      },
+      {
+        "text": "壹看狮头 · 眉眼与狮口看狮眼是否明亮舒展，狮口轻开时有无迎人的笑意。",
+        "opacity": "0"
+      },
+      {
+        "text": "贰听锣鼓 · 身段与步法随锣鼓观察点头与小碎步，留意醒狮向观众靠近的回应。",
+        "opacity": "0"
+      },
+      {
+        "text": "返回神态简介 ↗",
+        "opacity": "0"
+      },
+      {
+        "text": "一狮一态 · 八面生辉01 / 08",
+        "opacity": "0"
+      }
+    ]
+  },
+  "after": {
+    "x": 1250.046875,
+    "y": 456.953125,
+    "width": 55.984375,
+    "height": 55.984375,
+    "opacity": "1"
+  },
+  "titles": [
+    {
+      "name": "喜",
+      "src": "./assets/expression/calligraphy/joy.png"
+    },
+    {
+      "name": "怒",
+      "src": "./assets/expression/calligraphy/anger.png"
+    },
+    {
+      "name": "哀",
+      "src": "./assets/expression/calligraphy/sorrow.png"
+    },
+    {
+      "name": "乐",
+      "src": "./assets/expression/calligraphy/delight.png"
+    },
+    {
+      "name": "动",
+      "src": "./assets/expression/calligraphy/motion.png"
+    },
+    {
+      "name": "静",
+      "src": "./assets/expression/calligraphy/stillness.png"
+    },
+    {
+      "name": "惊",
+      "src": "./assets/expression/calligraphy/surprise.png"
+    },
+    {
+      "name": "疑",
+      "src": "./assets/expression/calligraphy/doubt.png"
+    }
+  ],
+  "errors": []
+}

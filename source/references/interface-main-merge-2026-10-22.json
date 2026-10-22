@@ -1,0 +1,244 @@
+{
+  "date": "2026-10-22",
+  "status": "integration-verification-complete",
+  "mainParent": "53aca57a190c89488f2bfe56649357771760a349",
+  "mergedBranch": "codex/expression-structure-audio-2026-10-22",
+  "branchParent": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+  "mergeBase": "5b2a30769a006d626f78680369689b237c6bb858",
+  "worktree": "E:/数字媒体竞赛/张钧儒/lion",
+  "authorization": "User explicitly requested merge into main; supersedes branch-stage no-main-merge restriction",
+  "conflicts": {
+    "product": 0,
+    "manifest": "Preserved all578 main objects, appended43 branch objects relative to common569 baseline; 621 records, all sizes/SHA verified",
+    "memory": "Preserved both source lists and latest module/history sections; rewrote current work around combined facts; regenerated log MOC",
+    "docs": "Automatic merge retains both lighting and UI verification instructions"
+  },
+  "productAudit": {
+    "mainFiles": 5,
+    "branchFiles": 23,
+    "intersection": [],
+    "files": [
+      {
+        "path": "src/features/developer-settings/DeveloperSettingsPanel.jsx",
+        "source": "53aca57a190c89488f2bfe56649357771760a349",
+        "blob": "b073b5d6442ec7deb701dd3b17c529a745d2e239"
+      },
+      {
+        "path": "src/services/lionDiffuseProbe.js",
+        "source": "53aca57a190c89488f2bfe56649357771760a349",
+        "blob": "724ccd5b07107e098b8055110ab76c81c159071d"
+      },
+      {
+        "path": "src/services/lionHdriEnvironment.js",
+        "source": "53aca57a190c89488f2bfe56649357771760a349",
+        "blob": "47ce24fcb78047d355e76c1f5bf0a06a2940afee"
+      },
+      {
+        "path": "src/services/lionLightingSettings.js",
+        "source": "53aca57a190c89488f2bfe56649357771760a349",
+        "blob": "217935f1be356269fa06906051412dfcb2832e34"
+      },
+      {
+        "path": "tests/assets/lion-diffuse-probe.test.mjs",
+        "source": "53aca57a190c89488f2bfe56649357771760a349",
+        "blob": "71cf077a0fb40e8323b7095cc16fede7b242bd17"
+      },
+      {
+        "path": "src/components/SoundControl.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "c1316bcaa526a761af8eae2a0d8dda4d74c5ce35"
+      },
+      {
+        "path": "src/components/VideoStage.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "055d97a9d1f732203d79a2343a2050f82b1f174e"
+      },
+      {
+        "path": "src/config/assetPaths.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "567626cfe91a134149451b6e5e021ba36d52cd47"
+      },
+      {
+        "path": "src/features/action/ActionPage.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "82a8eeca01c0a9a8cd8fdc05061a3574c4e8d50f"
+      },
+      {
+        "path": "src/features/action/action-theater.css",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "4aeb1a84f4f61668e2b1b085eeef2f0a964276b7"
+      },
+      {
+        "path": "src/features/action/useTheaterPlayback.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "caa103d24220ea7d05074049f1fdf9b67769f859"
+      },
+      {
+        "path": "src/features/chapters/ExpressionPage.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "d8d852f90d0f0cc9775dcaba46823b19a0b66e87"
+      },
+      {
+        "path": "src/features/chapters/useExpressionMotion.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "da4a04be44ccc7693b1358211e076320c0afbf58"
+      },
+      {
+        "path": "src/features/home/HomePage.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "b63a9535368dc9a1a094bdb1950c75c862837c3c"
+      },
+      {
+        "path": "src/features/model/ModelPage.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "fd01a24cdb0b603df77b61c25e287168b4db4c44"
+      },
+      {
+        "path": "src/features/model/StructureReadingPanel.jsx",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "86a6c5c7edab4d605e564b6e10af0309558d53af"
+      },
+      {
+        "path": "src/hooks/useMediaAudioPreference.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "80896d760ff4fd023b07eef47206552ec17cc6ab"
+      },
+      {
+        "path": "src/styles/expression-motion.css",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "32c2d27aa43b818fda847314aeec304ecd262a91"
+      },
+      {
+        "path": "src/styles/model.css",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "811a5c2cb07240b0fd6cfd3cc586af5d29b1e920"
+      },
+      {
+        "path": "src/styles/sound-control.css",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "7d3cdfab073ab5f3d9a2066f806acfa0a24457a7"
+      },
+      {
+        "path": "tests/assets/lion-expressions.test.mjs",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "a3360c1b17eda2e2daf65a5180cfde4e1f9e92d5"
+      },
+      {
+        "path": "tests/e2e/action-player.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "849c346ec9edcdec7a4ebbfc02654e9ffd040f52"
+      },
+      {
+        "path": "tests/e2e/expression-motion.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "c0deed5062c4b5b322b35a4c05fb9a620948bc01"
+      },
+      {
+        "path": "tests/e2e/expression.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "3f7bf298bceeae78c33ba0bfa1fac9cc31e672b7"
+      },
+      {
+        "path": "tests/e2e/structure-atlas.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "2f667cc2dffad226b7abf8872ff088a758dca3da"
+      },
+      {
+        "path": "tests/e2e/structure-directory.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "5961e418daaa8ec315ba3cb48c7732979e1d6b37"
+      },
+      {
+        "path": "tests/e2e/video-audio.helpers.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "e49ed09d984c53a5f29d9656af193b1eafb787a4"
+      },
+      {
+        "path": "tests/e2e/video-audio.spec.js",
+        "source": "d2e82ae3806e8c1c358d9a6361392ffb819ac3fe",
+        "blob": "fbbb7a0f570d900054eecf3f65ec3b6d342ab6fa"
+      }
+    ]
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 79,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 4818.6262
+  },
+  "build": {
+    "command": "npm run build",
+    "status": "passed",
+    "modules": 341,
+    "durationSeconds": 4.53,
+    "warning": "Existing Three chunk warning, 538.05kB"
+  },
+  "publicDist": {
+    "files": 141,
+    "status": "all byte-identical"
+  },
+  "preserved": [
+    "E worktree pre-existing untracked model/",
+    "C worktree branch and untracked model/fur experiments",
+    "all original model/hair/video/HDRI media bytes",
+    "both parent commits and their task/source records"
+  ],
+  "notCovered": [
+    "full repository E2E suite",
+    "mobile",
+    "other hardware/browsers",
+    "EXE",
+    "F worktree"
+  ],
+  "delivery": "Final merge commit and normal origin/main push verified separately; no force push",
+  "production": {
+    "command": "PLAYWRIGHT_PREVIEW_PORT=4209 CI=1 npx playwright test --config playwright.preview.config.js tests/e2e/video-audio.spec.js tests/e2e/expression-motion.spec.js tests/e2e/structure-directory.spec.js:34 tests/e2e/structure-atlas.spec.js:301 tests/e2e/hdri-settings.spec.js:132 tests/e2e/hdri-settings.spec.js:188 tests/e2e/view-scene-settings.spec.js:168 tests/e2e/view-scene-settings.spec.js:189 --reporter=list,json --output tmp/interface-main-production",
+    "stats": {
+      "startTime": "2026-10-22T02:10:41.613Z",
+      "duration": 197259.57700000002,
+      "expected": 13,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "scope": "Audio4 including native strict policy and delayed confirmation race; expression3; structure directory1; narrow atlas1; actual HDRI lighting2; environment URL/local EXR/RGBE sources2"
+  },
+  "screenshots": {
+    "files": [
+      "source/reviews/interface-main-merge/2026-10-22/action-sound-control.png",
+      "source/reviews/interface-main-merge/2026-10-22/structure-atlas-width40-1920.png"
+    ],
+    "review": "Both inspected by root; action keeps latest main lighting and bottom-right audio, narrow structure rail retains readable text"
+  },
+  "assetManifest": {
+    "mainObjectsPreserved": 578,
+    "branchAddedObjects": 43,
+    "mergeReviewObjects": 2,
+    "finalRecords": 623
+  },
+  "memory": {
+    "commands": [
+      "python wiki_memory/工具/memory.py index --project . --memory-dir wiki_memory --apply",
+      "python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready"
+    ],
+    "pages": 103,
+    "errors": 0,
+    "historicalSourceWarnings": 4
+  },
+  "finalAssetCheck": {
+    "command": "node --test tests/assets/asset-integrity.test.mjs",
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 4727.0597
+  },
+  "diffCheck": {
+    "commands": [
+      "git diff --check",
+      "git diff --cached --check"
+    ],
+    "status": "passed"
+  }
+}

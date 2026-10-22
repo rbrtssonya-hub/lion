@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { media } from '../../config/media.js';
 import { theaterActions } from './actionClips.js';
 import { useTheaterPlayback } from './useTheaterPlayback.js';
+import SoundControl from '../../components/SoundControl.jsx';
 import './action-theater.css';
 
 const clock = value => {
@@ -219,13 +220,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           <input type="range" min="0" max={duration || 1} step=".01" value={duration ? Math.min(playback.view.currentTime || 0, duration) : 0}
             style={{ '--theater-seek-head': `url("${new URL(assets.navLion ?? media.navLion, document.baseURI).href}")` }}
             disabled={!duration} aria-label="当前动作播放进度" onChange={event => playback.seek(Number(event.target.value))} />
-          <button type="button" aria-label={playback.audioEnabled ? '关闭声音' : '开启声音'} aria-pressed={playback.audioEnabled} onClick={playback.toggleAudio}>
-            <Icon kind={playback.audioEnabled ? 'sound' : 'muted'} />
-          </button>
-          <span className="theater-audio-note">{playback.audioEnabled ? '仅当前巨幕发声' : '静音播放'}</span>
         </div>
         <p className="theater-source-note" id="chapterEvidence">{active.sourceNote} <span>· 广府醒狮 / 动作空间</span></p>
       </div>
+      <SoundControl enabled={playback.audioEnabled} pending={playback.audioPending} onToggle={playback.toggleAudio} />
       {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
         <span>{notice || playback.view.error}</span>
         {playback.view.error && <button type="button" onClick={playback.retry}>重试当前动作视频</button>}

@@ -12,6 +12,8 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
+| 2026-10-22 | ui | completed | [默认播放、神态书法动效与结构目录](UI%E4%BF%AE%E6%94%B9/2026-10-22-%E9%BB%98%E8%AE%A4%E6%92%AD%E6%94%BE%E7%A5%9E%E6%80%81%E4%B9%A6%E6%B3%95%E5%8A%A8%E6%95%88%E4%B8%8E%E7%BB%93%E6%9E%84%E7%9B%AE%E5%BD%95.md) |
 | 2026-10-22 | bug | completed | [醒狮红白绒毛明暗均衡](Bug%E5%A4%84%E7%90%86/2026-10-22-%E9%86%92%E7%8B%AE%E7%BA%A2%E7%99%BD%E7%BB%92%E6%AF%9B%E6%98%8E%E6%9A%97%E5%9D%87%E8%A1%A1.md) |
 | 2026-10-21 | maintenance | completed | [首页视频目标核实与F盘主线同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E9%A6%96%E9%A1%B5%E8%A7%86%E9%A2%91%E7%9B%AE%E6%A0%87%E6%A0%B8%E5%AE%9E%E4%B8%8EF%E7%9B%98%E4%B8%BB%E7%BA%BF%E5%90%8C%E6%AD%A5.md) |
 | 2026-10-21 | maintenance | completed | [全部支线合入主线与F盘同步](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-21-%E5%85%A8%E9%83%A8%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5%E4%B8%BB%E7%BA%BF%E4%B8%8EF%E7%9B%98%E5%90%8C%E6%AD%A5.md) |

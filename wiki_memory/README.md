@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-21
+updated: 2026-10-22
 topic: memory-navigation
 sources:
   - "AGENTS.md"
