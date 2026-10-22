@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const sessionKey = 'nanfeng-lion:intro-seen:v1';
 let startedInThisPage = false;
@@ -12,8 +12,10 @@ function hasPlayedIntro() {
 }
 
 export function useEntryPlayback(enabled = true) {
-  const [introActive, setIntroActive] = useState(() => !hasPlayedIntro());
+  const [phase, setPhase] = useState(() => hasPlayedIntro() ? 'home' : 'video');
   const [playbackId, setPlaybackId] = useState(0);
+  const introActive = phase === 'video';
+  const entryAnimationActive = phase === 'animation';
 
   useEffect(() => {
     if (!introActive || !enabled) return;
@@ -25,12 +27,18 @@ export function useEntryPlayback(enabled = true) {
     }
   }, [introActive, enabled]);
 
-  const finishIntro = () => setIntroActive(false);
-  const replayIntro = () => {
-    setPlaybackId((value) => value + 1);
-    setIntroActive(true);
-    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  };
+  useEffect(() => {
+    if (!enabled && entryAnimationActive) setPhase('home');
+  }, [enabled, entryAnimationActive]);
 
-  return { introActive, playbackId, finishIntro, replayIntro };
+  const finishIntro = useCallback(() => setPhase('home'), []);
+  const finishVideo = useCallback(() => setPhase('animation'), []);
+  const finishEntryAnimation = useCallback(() => setPhase('home'), []);
+  const replayIntro = useCallback(() => {
+    setPlaybackId((value) => value + 1);
+    setPhase('video');
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  }, []);
+
+  return { introActive, entryAnimationActive, playbackId, finishIntro, finishVideo, finishEntryAnimation, replayIntro };
 }
