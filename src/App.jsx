@@ -28,6 +28,8 @@ export default function App() {
   const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings,
     beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsPage, setSettingsPage] = useState('common');
+  const actionViewEditing = settingsOpen && route === 'action' && settingsPage === 'view';
   const [discardPromptOpen, setDiscardPromptOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
@@ -79,9 +81,9 @@ export default function App() {
     beginSettingsEditing();
     setSettingsOpen(true);
   }, [beginSettingsEditing]);
-  const saveAndCloseSettings = useCallback(() => {
-    if (saveSettings()) finishClosingSettings();
-  }, [saveSettings, finishClosingSettings]);
+  const handleSaveSettings = useCallback(() => {
+    if (saveSettings({ keepEditing: actionViewEditing }) && !actionViewEditing) finishClosingSettings();
+  }, [saveSettings, finishClosingSettings, actionViewEditing]);
   const discardAndCloseSettings = useCallback(() => {
     discardSettings();
     finishClosingSettings();
@@ -92,8 +94,8 @@ export default function App() {
     event.preventDefault();
     event.stopPropagation();
     if (discardPromptOpen) setDiscardPromptOpen(false);
-    else closeSettings();
-  }, [closeSettings, discardPromptOpen]);
+    else if (!actionViewEditing) closeSettings();
+  }, [closeSettings, discardPromptOpen, actionViewEditing]);
   useEffect(() => {
     if (!settingsOpen) {
       if (wasSettingsOpen.current) triggerRef.current?.focus({ preventScroll: true });
@@ -159,9 +161,13 @@ export default function App() {
   return <div className="site-shell" style={variables} data-settings-open={settingsOpen}
     data-settings-layout={pushing ? 'push' : 'overlay'}>
     <div className="site-page" data-page-hit-enabled={settings.pageHitEnabled}>
-      <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen}
+      <SiteHeader current={route} onNavigate={navigateTo} settingsOpen={settingsOpen} settingsCancelOnly={actionViewEditing}
         headerRef={headerRef} settings={settings}
-        onToggleSettings={() => settingsOpen ? closeSettings() : openSettings()}
+        onToggleSettings={() => {
+          if (!settingsOpen) openSettings();
+          else if (actionViewEditing) panelRef.current?.focus({ preventScroll: true });
+          else closeSettings();
+        }}
         settingsTriggerRef={triggerRef} />
       <main id="react-app" data-route={route}>
         <div className="prewarmed-page" data-active={route === 'entry'} inert={route !== 'entry'} aria-hidden={route !== 'entry'}>
@@ -177,14 +183,15 @@ export default function App() {
         {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
       </main>
     </div>
-    {settingsOpen && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
+    {settingsOpen && !actionViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
     {settingsFeedback && <div className="settings-status" role="status">{settingsFeedback}</div>}
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
     <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings} onApplyMaterial={applySurfaceSettings}
+      activePage={settingsPage} onPageChange={setSettingsPage} actionViewEditing={actionViewEditing}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
-      hasUnsavedChanges={hasUnsavedChanges} onSave={saveAndCloseSettings} onExport={exportSettings}
+      hasUnsavedChanges={hasUnsavedChanges} onSave={handleSaveSettings} onExport={exportSettings}
       discardPromptOpen={discardPromptOpen} onContinueEditing={() => setDiscardPromptOpen(false)} onDiscard={discardAndCloseSettings}
       onKeyDown={handleSettingsKey} resizeHandle={<ResizeHandle label="调整侧栏宽度" axis="x"
         value={settings.panelWidth} min={280} max={760} direction={-1}

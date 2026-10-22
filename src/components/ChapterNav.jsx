@@ -1,7 +1,7 @@
 import { chapters } from '../config/chapters.js';
 import NavigationIcon from './NavigationIcon.jsx';
 
-export default function ChapterNav({ current, onNavigate, settingsOpen, onToggleSettings, settingsTriggerRef }) {
+export default function ChapterNav({ current, onNavigate, settingsOpen, settingsCancelOnly, onToggleSettings, settingsTriggerRef }) {
   return <nav className="site-navigation" aria-label="作品章节导航">
     {chapters.map(({ route, label, description }) => (
       <button key={route} data-route={route} type="button"
@@ -19,7 +19,7 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, onToggle
     ))}
     <button type="button" className={`site-nav-item site-nav-settings${settingsOpen ? ' is-settings-open' : ''}`}
       ref={settingsTriggerRef} data-action="settings" onClick={onToggleSettings}
-      aria-label={settingsOpen ? '收起开发者参数设置' : '打开开发者参数设置'}
+      aria-label={settingsCancelOnly ? '返回视角设置，点击取消退出' : settingsOpen ? '收起开发者参数设置' : '打开开发者参数设置'}
       aria-expanded={settingsOpen} aria-controls="developerSettingsPanel">
       <span className="site-nav-symbol">
         <NavigationIcon name="settings" />

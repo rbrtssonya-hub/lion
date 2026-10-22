@@ -30,9 +30,8 @@ const easingOptions = [
 const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`cultureBody${suffix}`]]));
 
 export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle,
-  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard }) {
+  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, actionViewEditing }) {
   const panelId = useId(), scopeId = useId(), easingId = useId();
-  const [activePage, setActivePage] = useState('common');
   const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
   const [scope, setScope] = useState('home');
   const [material, setMaterial] = useState(defaultMaterial);
@@ -52,7 +51,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   if (!open) return null;
   const selectPage = id => {
     if (scrollRef.current) scrollPositions.current[activePage] = scrollRef.current.scrollTop;
-    setActivePage(id);
+    onPageChange(id);
   };
   const selectSubpage = (group,id) => {
     scrollPositions.current[activePage] = 0;
@@ -224,8 +223,10 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     {resizeHandle}
     <div className="developer-settings-header"><div className="developer-settings-heading"><div>
       <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
-    </div><button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
-    <p className="developer-settings-intro">调整即时预览，保存后记住；取消可恢复进入设置前的参数。</p></div>
+    </div>{!actionViewEditing && <button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>}</div>
+    <p className="developer-settings-intro">{actionViewEditing
+      ? '可在主视口拖动、滚轮测试视角；保存后继续调整，点击“取消”退出。'
+      : '调整即时预览，保存后记住；取消可恢复进入设置前的参数。'}</p></div>
     <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
     <div className="developer-settings-scroll" ref={scrollRef} onScroll={() => { scrollPositions.current[activePage] = scrollRef.current.scrollTop; }}>
       {pages.map(page => <div key={page.id} className="developer-settings-page" id={`${panelId}-page-${page.id}`} role="tabpanel" aria-labelledby={`${panelId}-tab-${page.id}`} tabIndex={0} hidden={activePage !== page.id}>
@@ -233,7 +234,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         {content(page.id)}
       </div>)}
     </div>
-    <div className="developer-settings-footer"><p className="developer-settings-note" aria-live="polite">{hasUnsavedChanges ? '当前预览有未保存的更改' : '当前参数与进入设置时一致'}</p>
+    <div className="developer-settings-footer"><p className="developer-settings-note" aria-live="polite">{hasUnsavedChanges ? '当前预览有未保存的更改' : actionViewEditing ? '当前参数已保存，可继续调整' : '当前参数与进入设置时一致'}</p>
       <div className="developer-settings-footer-tools">
         <button className="developer-settings-reset" type="button" onClick={() => {onReset();setMaterial(defaultMaterial);setScope('home');setMessage('已预览默认参数与公共模板，点击保存后记住。');}}>恢复默认参数</button>
         <button className="developer-settings-reset" type="button" onClick={onExport}>导出当前参数</button>
