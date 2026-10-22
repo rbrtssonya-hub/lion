@@ -3740,6 +3740,24 @@
       "path": "source/reviews/interface-main-merge/2026-10-22/structure-atlas-width40-1920.png",
       "bytes": 112442,
       "sha256": "6eb8a28d6b662fc40d98ee196845104c7471e3adfe199435829a25c58e17b6e6"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/after-default.png",
+      "bytes": 2326422,
+      "sha256": "f5b4b4778e34ea2210fe4e8d8d42bcb91ebc375ed4e6d7d2311405a2e64044bb"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/after-transparent.png",
+      "bytes": 2399861,
+      "sha256": "b338fb272365ae76c336be8cde20a8b6c1f138671107a8f4f18dac3e6bf91ed6"
+    },
+    {
+      "from": "native Chrome action-navigation before/after audit, fixed camera/pose/video, 2026-10-22",
+      "path": "source/reviews/action-navigation/2026-10-22/before-default.png",
+      "bytes": 2298942,
+      "sha256": "bd6279eb322dc5b1fc0fd47250549a19b43aa97275c438c9d075e656c47f466f"
     }
   ]
 }

@@ -1,15 +1,17 @@
-.action-theater-page {
-  width: 100%; height: calc(100svh - var(--site-header-height, 90px)); min-height: 0;
-  margin: 0; padding: 0; color: #f1dfbf; color-scheme: dark; background: #100b09;
+.chapter-stage.action-theater-page {
+  width: 100%; height: 100svh; min-height: 0;
+  /* The live room continues behind the shared translucent navigation. */
+  margin: calc(-1 * var(--site-header-height, 90px)) 0 0; padding: 0; color: #f1dfbf; color-scheme: dark; background: #100b09;
 }
 .action-theater {
   --theater-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
   --theater-edge: 26px;
+  --theater-nav-inset: var(--site-header-height, 90px);
   --theater-gold-line: rgb(189 134 65 / .44);
   --theater-panel: rgb(31 15 10 / .82);
   position: relative; width: 100%; height: 100%; overflow: hidden; isolation: isolate; background: #100b09;
 }
-.action-theater:fullscreen { width: 100vw; height: 100vh; }
+.action-theater:fullscreen { --theater-nav-inset: 0px; width: 100vw; height: 100vh; }
 .action-theater:focus-visible { outline: 1px solid #e4ba76; outline-offset: -3px; }
 .theater-scene, .theater-video-bank, .theater-vignette { position: absolute; inset: 0; }
 .theater-scene { z-index: 0; transition: opacity 450ms ease; }
@@ -20,12 +22,12 @@
 .action-theater[data-view='flat'] .theater-video-bank { background: #100b09; }
 .action-theater[data-view='flat'] .theater-video-bank video[data-current='true'] { opacity: 1; }
 .theater-vignette { z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgb(16 7 4 / .16), transparent 16%, transparent 76%, rgb(16 7 4 / .46)); }
-.theater-topline { position: absolute; z-index: 3; top: 22px; left: var(--theater-edge); padding: 10px 16px 10px 13px; border-left: 1px solid rgb(228 186 118 / .65); background: linear-gradient(90deg, rgb(25 11 6 / .7), rgb(25 11 6 / .12)); pointer-events: none; text-shadow: 0 2px 10px #100705; }
+.theater-topline { position: absolute; z-index: 3; top: calc(var(--theater-nav-inset) + 22px); left: var(--theater-edge); padding: 10px 16px 10px 13px; border-left: 1px solid rgb(228 186 118 / .65); background: linear-gradient(90deg, rgb(25 11 6 / .7), rgb(25 11 6 / .12)); pointer-events: none; text-shadow: 0 2px 10px #100705; }
 .theater-topline > p:first-child { margin: 0 0 5px; color: #d7b27c; font: 10px/1.5 var(--theater-serif); letter-spacing: .16em; }
 .theater-topline > p span { color: #bba17f; }
 .theater-topline h2 { margin: 0; color: #f3e3c7; font: 400 30px/1.3 var(--theater-serif); letter-spacing: .2em; }
 .theater-gesture-hint { margin: 8px 0 0; color: #cbb99d; font: 10px/1.6 var(--theater-serif); letter-spacing: .035em; }
-.theater-view-tools { position: absolute; z-index: 5; top: 22px; right: var(--theater-edge); display: flex; gap: 7px; }
+.theater-view-tools { position: absolute; z-index: 5; top: calc(var(--theater-nav-inset) + 22px); right: var(--theater-edge); display: flex; gap: 7px; }
 .action-theater button { cursor: pointer; color: inherit; font-family: var(--theater-serif); transition: color 300ms ease, border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease; }
 .theater-view-tools button { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 32px; padding: 5px 11px; border: 1px solid var(--theater-gold-line); border-radius: 2px; color: #e9d3ad; background: var(--theater-panel); font-size: 11px; letter-spacing: .04em; backdrop-filter: blur(8px); }
 .action-theater button:hover { color: #fff0d4; border-color: #d3a764; background-color: rgb(80 36 19 / .88); }
@@ -64,39 +66,39 @@
 .theater-controls input[type='range']::-moz-range-thumb { width: 36px; height: 36px; border: 0; background: var(--theater-seek-head) center / contain no-repeat; filter: drop-shadow(0 1px 2px #170700); }
 .theater-controls input[type='range']:focus-visible { outline: 2px solid #e7bd78; outline-offset: 3px; border-radius: 5px; }
 .theater-controls input[type='range']:disabled { opacity: .45; cursor: default; }
-.theater-drum-notice { position: absolute; z-index: 5; top: 80px; left: 20px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: #e5c99d; background: #271309e8; font-size: 13px; }
+.theater-drum-notice { position: absolute; z-index: 5; top: calc(var(--theater-nav-inset) + 80px); left: 20px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: #e5c99d; background: #271309e8; font-size: 13px; }
 .theater-drum-notice button { color: inherit; border: 1px solid #ac8458; background: transparent; padding: 4px 8px; }
 .action-theater .sound-control { right: var(--theater-edge); color: #f6dfb5; }
 .theater-source-note { margin: 7px 0 0; color: #b19876; font: 10px/1.5 var(--theater-serif); letter-spacing: .035em; }
 .theater-source-note > span { color: #a58a68; margin-left: 4px; }
-.theater-loading { position: absolute; z-index: 6; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #e9cfaa; background: #120a07ed; font: 13px/1.8 var(--theater-serif); letter-spacing: .12em; }
+.theater-loading { position: absolute; z-index: 6; inset: var(--theater-nav-inset) 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #e9cfaa; background: #120a07ed; font: 13px/1.8 var(--theater-serif); letter-spacing: .12em; }
 .theater-loading-ring { display: block; width: 36px; height: 36px; border: 1px solid #b68c5440; border-top-color: #c5a36e; border-radius: 50%; animation: theater-loading-spin 1.4s linear infinite; }
 .theater-loading button, .theater-scene-error button, .theater-playback-notice button, .theater-hdri-notice button { padding: 5px 0; border: 0; border-bottom: 1px solid #b58c57aa; background: none; color: #efce96; font-size: 12px; }
-.theater-hdri-notice { position: absolute; z-index: 6; top: 140px; right: var(--theater-edge); display: flex; align-items: center; flex-wrap: wrap; gap: 10px; max-width: min(300px, calc(100% - 52px)); padding: 10px 14px; border: 1px solid var(--theater-gold-line); background: #231008ee; color: #e9ceb3; font: 12px/1.7 var(--theater-serif); }
-.theater-scene-error { position: absolute; z-index: 6; top: 140px; left: var(--theater-edge); display: flex; align-items: center; flex-wrap: wrap; gap: 14px; max-width: min(580px, calc(100% - 52px)); padding: 13px 16px; border: 1px solid var(--theater-gold-line); border-radius: 2px; background: #231008ee; color: #e9ceb3; font: 12px/1.7 var(--theater-serif); }
+.theater-hdri-notice { position: absolute; z-index: 6; top: calc(var(--theater-nav-inset) + 140px); right: var(--theater-edge); display: flex; align-items: center; flex-wrap: wrap; gap: 10px; max-width: min(300px, calc(100% - 52px)); padding: 10px 14px; border: 1px solid var(--theater-gold-line); background: #231008ee; color: #e9ceb3; font: 12px/1.7 var(--theater-serif); }
+.theater-scene-error { position: absolute; z-index: 6; top: calc(var(--theater-nav-inset) + 140px); left: var(--theater-edge); display: flex; align-items: center; flex-wrap: wrap; gap: 14px; max-width: min(580px, calc(100% - 52px)); padding: 13px 16px; border: 1px solid var(--theater-gold-line); border-radius: 2px; background: #231008ee; color: #e9ceb3; font: 12px/1.7 var(--theater-serif); }
 .theater-playback-notice { position: absolute; z-index: 7; right: var(--theater-edge); bottom: 232px; display: flex; flex-direction: column; gap: 6px; width: min(274px, calc(100% - 52px)); padding: 12px 16px; border: 1px solid #b17f4a88; border-radius: 2px; color: #ead2b6; background: #2a100af2; font: 12px/1.7 var(--theater-serif); animation: theater-caption-arrive 450ms ease both; }
 @keyframes theater-caption-arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes theater-caption-depart { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
 @keyframes theater-loading-spin { to { transform: rotate(360deg); } }
 @container lion-page (max-width: 1100px) {
   .action-theater { --theater-edge: 20px; }
-  .theater-topline { top: 18px; padding: 9px 12px; }
+  .theater-topline { top: calc(var(--theater-nav-inset) + 18px); padding: 9px 12px; }
   .theater-topline h2 { font-size: 27px; }
-  .theater-view-tools { top: 18px; }
-  .theater-observation { top: 112px; bottom: auto; width: 224px; padding: 13px 15px 11px; }
+  .theater-view-tools { top: calc(var(--theater-nav-inset) + 18px); }
+  .theater-observation { top: calc(var(--theater-nav-inset) + 112px); bottom: auto; width: 224px; padding: 13px 15px 11px; }
   .theater-caption.is-leaving { inset: 13px 15px 11px; }
   .theater-caption h2 { font-size: 24px; margin-bottom: 7px; }
   .theater-description { line-height: 1.75; }
   .theater-bottom { bottom: 16px; width: min(570px, calc(100% - 40px)); }
-  .theater-playback-notice { top: 324px; bottom: auto; width: 224px; }
+  .theater-playback-notice { top: calc(var(--theater-nav-inset) + 324px); bottom: auto; width: 224px; }
 }
 @container lion-page (max-width: 760px) {
   .action-theater { --theater-edge: 16px; }
-  .theater-topline { top: 16px; }
+  .theater-topline { top: calc(var(--theater-nav-inset) + 16px); }
   .theater-topline h2 { font-size: 25px; }
   .theater-gesture-hint { max-width: 205px; font-size: 10px; }
-  .theater-view-tools { top: 16px; }
-  .theater-observation { top: 108px; width: 208px; padding: 11px 13px; }
+  .theater-view-tools { top: calc(var(--theater-nav-inset) + 16px); }
+  .theater-observation { top: calc(var(--theater-nav-inset) + 108px); width: 208px; padding: 11px 13px; }
   .theater-caption.is-leaving { inset: 11px 13px; }
   .theater-caption h2 { font-size: 23px; }
   .theater-keywords { margin-top: 8px; padding-top: 6px; letter-spacing: .04em; }
@@ -106,7 +108,7 @@
   .theater-action-nav button > strong { font-size: 15px; }
   .theater-controls { gap: 8px; }
   .theater-source-note { font-size: 9px; }
-  .theater-playback-notice { top: 324px; width: 208px; }
+  .theater-playback-notice { top: calc(var(--theater-nav-inset) + 324px); width: 208px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .theater-caption.is-current, .theater-caption.is-leaving, .theater-playback-notice { animation-duration: 1ms; }

@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-22动作场景延伸至共享导航后方，透明和模糊直接采用本页实时画面；原导航默认值不迁移。`action-theater.css` 用双类动作根选择器覆盖通用章节padding，HUD按导航安全距离布局，全屏归零；`actionTheaterScene.js` 只向上扩展视野以保留下方原构图，并观察真实顶栏和全屏变化。修改该区域须运行 `tests/e2e/action-navigation-backdrop.spec.js`，其中截图隐藏画布对照能证明实际背景来源，等尺寸全屏覆盖仅依赖ResizeObserver会漏掉的情形。实际原生截图、79核心/11相关生产结果及范围见[本轮验证](../source/references/action-navigation-2026-10-22-validation.json)。
+
 2026-10-22红白绒毛修复新增 `src/services/lionDiffuseProbe.js`：当前HDRI的线性像素一次积分L1漫反射，并限制过强方向能量；仅醒狮材质采用，高光仍由PMREM计算，原造型、配色、发丝数据与动画保留。正式前后/Blender参考及弃用实验见[修复说明](../source/references/lion-fur-balance-2026-10-22.md)，结果与适用范围见[验证JSON](../source/references/lion-fur-balance-2026-10-22-validation.json)。固定视角原生比较运行 `node scripts/audit_lion_fur.mjs --url=http://127.0.0.1:5198 --output=tmp/lion-fur-final`（先启动Vite，默认基线5b2a307）；Blender只读参考和图像统计分别由 `render_lion_material_reference.py`、`analyze_lion_fur_comparison.py` 提供，脚本头部列参数。常规验证仍为 `npm test`、`npm run build` 及HDRI/视角/动作/结构相关生产Chrome回归。细毛层次尚未达到EEVEE，不能把颜色误差下降等同于完整材质还原。
 
 2026-10-21新增独立“视角”设置页，结构缩放按整体/聚焦部件标准观看距离设置有限阈值，动作取消旧室内高度夹取并开放1–179°极角。HDRI默认采用Blender真实forest.exr与0.35倍补光，可改预设、URL或当前会话本地EXR/HDR；源File/blob不持久化。参数组默认折叠，动作四角使用用户原鼓模型，进度手柄复用已有狮头。配置入口为 `src/config/viewSettings.js`、`src/config/hdri.js`，场景鼓独立为 `src/services/actionTheaterDrums.js`；回归为 `view-scene-settings.spec.js`、`settings-view-source.spec.js` 及原结构/动作/HDRI相关用例。来源、实时渲染与Blender的差异及本轮验证入口见[实施说明](../source/references/view-scene-settings-2026-10-21.md)。

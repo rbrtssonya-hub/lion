@@ -401,12 +401,22 @@ export function createActionTheater({
     const bounds = container.getBoundingClientRect();
     frameWidth = Math.max(1, bounds.width);
     frameHeight = Math.max(1, bounds.height);
-    camera.aspect = frameWidth / frameHeight;
+    // Keep the existing view below the navigation, extending only its upper
+    // frustum into the header backdrop. Fullscreen has no navigation overlay.
+    const header = document.querySelector('.site-header');
+    const fullscreen = document.fullscreenElement?.contains(container);
+    const headerBounds = !fullscreen && header?.getBoundingClientRect();
+    const coveredTop = headerBounds && headerBounds.top <= bounds.top
+      ? Math.min(frameHeight - 1, Math.max(0, headerBounds.bottom - bounds.top)) : 0;
+    const visibleHeight = frameHeight - coveredTop;
+    camera.aspect = frameWidth / visibleHeight;
     // A pushed desktop navigation panel can leave only ~460 px for the room.
     // Preserve the full round dais on narrow desktop/pushed layouts. The
     // circular silhouette needs 74° horizontally at the initial orbit.
     const horizontalFitFov = 2 * Math.atan(Math.tan(37 * Math.PI / 180) / camera.aspect) * 180 / Math.PI;
     camera.fov = Math.min(110, viewSettings.actionFov + Math.max(0, horizontalFitFov - 56));
+    if (coveredTop > 0) camera.setViewOffset(frameWidth, visibleHeight, 0, -coveredTop, frameWidth, frameHeight);
+    else camera.clearViewOffset();
     camera.updateProjectionMatrix();
     if (controls) {
       controls.minDistance = viewSettings.actionMinDistance;
@@ -613,6 +623,7 @@ export function createActionTheater({
     animationFrame = 0;
     observer?.disconnect();
     window.removeEventListener('resize', resize);
+    document.removeEventListener('fullscreenchange', resize);
     document.removeEventListener('visibilitychange', onDocumentVisibility);
     controls?.removeEventListener('start', onControlStart);
     controls?.removeEventListener('end', onControlEnd);
@@ -720,7 +731,10 @@ export function createActionTheater({
       if (typeof ResizeObserver !== 'undefined') {
         observer = new ResizeObserver(resize);
         observer.observe(container);
+        const header = document.querySelector('.site-header');
+        if (header) observer.observe(header);
       } else window.addEventListener('resize', resize);
+      document.addEventListener('fullscreenchange', resize);
       resize();
 
       scene.add(new HemisphereLight(0xfff4e8, 0x665a50, 0.35));
