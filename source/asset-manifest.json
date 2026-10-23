@@ -4232,6 +4232,84 @@
       "path": "source/references/offline-exe-delivery-2026-10-23-validation.json",
       "bytes": 157245,
       "sha256": "eb7b25ae7ed474ca45c551b795a1ecfb7dcf630d828955c86bdee9cec0b1786e"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-1024x768.png",
+      "bytes": 912813,
+      "sha256": "31ec1a705247abc7aef18d655d6cbafb9e3e14c607aca6b8744dc4676371d720"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-1366x768.png",
+      "bytes": 1210859,
+      "sha256": "4a5692999aa29924ff27888906d0b3597d051ef8821422f86b33dc4dd2a85f1d"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-1920x1080.png",
+      "bytes": 2227090,
+      "sha256": "6cc61b3b953ffa132143c24ed4b1989096eb11fe96425c76dd98ae8afc0ad7ba"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-2560x1440.png",
+      "bytes": 3717461,
+      "sha256": "76ee318a37b0d073dc3f71524fc125fb15bb16e2f7f8e80ce5d11a53de702acf"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-3840x2160.png",
+      "bytes": 7285001,
+      "sha256": "9503b040d3a41dcf4f5319736019539078d5ae33067b0ef192708198b99a06bd"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-795x768.png",
+      "bytes": 671241,
+      "sha256": "1bde47545dbe0c6892d7e4ebed887c060f812b5b94e81b09888d94eecc063d1a"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-compact-640x480.png",
+      "bytes": 521382,
+      "sha256": "0027af426a354a28401cb98a260f9b463bd38ea4563f58c9180c95e58df1952c"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-compact-675x403.png",
+      "bytes": 470188,
+      "sha256": "eb675248ea6bc1742bd8130a51d3b1286424d6881465c722b8b21a08674e5d99"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-compact-900x600.png",
+      "bytes": 829496,
+      "sha256": "58387f2f8bcafff75d4d34b3a980d1291caa66bfeed6aaaf6688cff930c3fdea"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-settings-900.png",
+      "bytes": 1123956,
+      "sha256": "f99f2635e78d241815345b60f485fa9343cc9ab2762771b9a1c93379aba3a34a"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-zoom-equivalent-125.png",
+      "bytes": 2198829,
+      "sha256": "2f3bef3b942c51a2738230a403b8b33340d0007a4e4f58e198185fe4dde3ae90"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/action-zoom-equivalent-150.png",
+      "bytes": 2002381,
+      "sha256": "c966a2e20b77f72c1a3100632a56f41a23ec65dacdf63cf65970c1adf6aefe82"
+    },
+    {
+      "from": "Actual Chrome production browser screenshot, action reading path, 2026-10-23",
+      "path": "source/reviews/action-theater/2026-10-23-reading-path/home-solid-red-dots.png",
+      "bytes": 1835077,
+      "sha256": "531cf7a54a6e35870bd8a046720d5fb2778c4102b0b5933ff8add9f0c348f0e7"
     }
   ]
 }

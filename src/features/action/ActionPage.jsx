@@ -66,7 +66,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       const headerHeight = document.fullscreenElement === stage ? 0 : header?.getBoundingClientRect().height ?? 0;
       // A short desktop window needs room for the scene, its reading and its
       // controls. Measure the real navigation and settings-adjusted width.
-      setCompactLayout(stage.getBoundingClientRect().width < 780 || window.innerHeight - headerHeight < 500);
+      setCompactLayout(stage.getBoundingClientRect().width < 780 || window.innerHeight - headerHeight < 620);
     };
     const observer = new ResizeObserver(measure);
     observer.observe(stage);
@@ -198,10 +198,16 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
           muted playsInline loop preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
       </div>
       <div className="theater-vignette" aria-hidden="true" />
-      <header className="theater-topline">
-        <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
-        <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
-      </header>
+      <div className="theater-context">
+        <header className="theater-topline">
+          <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
+          <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
+        </header>
+        <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
+          {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
+          <ActionCaption key={currentCaption.id} clip={currentCaption} index={clips.indexOf(currentCaption)} />
+        </aside>
+      </div>
       <div className="theater-view-tools">
         <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
           {flatMode ? '返回巨幕' : '平面观看'}
@@ -215,21 +221,22 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         <span className="theater-loading-ring" aria-hidden="true" /><p>正在进入四面巨幕…</p>
         <button type="button" onClick={() => setFlatMode(true)}>先看视频</button>
       </div>}
-      {sceneError && <div className="theater-scene-error" role="status"><span>{sceneError}</span>
-        <button type="button" onClick={retryScene}>重新载入动作空间</button></div>}
-      {lightingStatus.phase === 'error' && <div className="theater-hdri-notice" role="status">
-        <span>HDRI 环境光载入失败</span>
-        <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
-      </div>}
-      {drumState === 'error' && <div className="theater-drum-notice" role="status">
-        <span>场景鼓暂未载入</span>
-        <button type="button" onClick={() => sceneRef.current?.retryDrums()?.catch(() => {})}>重新载入鼓</button>
-      </div>}
-
-      <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
-        {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
-        <ActionCaption key={currentCaption.id} clip={currentCaption} index={clips.indexOf(currentCaption)} />
-      </aside>
+      <div className="theater-notices">
+        {sceneError && <div className="theater-scene-error" role="status"><span>{sceneError}</span>
+          <button type="button" onClick={retryScene}>重新载入动作空间</button></div>}
+        {lightingStatus.phase === 'error' && <div className="theater-hdri-notice" role="status">
+          <span>HDRI 环境光载入失败</span>
+          <button type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
+        </div>}
+        {drumState === 'error' && <div className="theater-drum-notice" role="status">
+          <span>场景鼓暂未载入</span>
+          <button type="button" onClick={() => sceneRef.current?.retryDrums()?.catch(() => {})}>重新载入鼓</button>
+        </div>}
+        {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
+          <span>{notice || playback.view.error}</span>
+          {playback.view.error && <button type="button" onClick={playback.retry}>重试当前动作视频</button>}
+        </div>}
+      </div>
 
       <div className="theater-bottom">
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
@@ -249,10 +256,6 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       </div>
       <SoundControl enabled={playback.audioEnabled} pending={playback.audioPending} onToggle={playback.toggleAudio} settings={lightingSettings}
         volume={playback.volume} onVolumeChange={playback.changeVolume} playing={visible && playback.view.status === 'playing'} />
-      {(playback.view.error || notice) && <div className="theater-playback-notice" role="status">
-        <span>{notice || playback.view.error}</span>
-        {playback.view.error && <button type="button" onClick={playback.retry}>重试当前动作视频</button>}
-      </div>}
     </div>
   </section>;
 }

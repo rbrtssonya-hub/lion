@@ -77,7 +77,7 @@ test('电脑三种窗口与设置推开保持画布、说明及固定导航完�
   await expect.poll(() => scene(page).evaluate(element => element.getBoundingClientRect().right <= document.querySelector('.site-page').getBoundingClientRect().right + 1)).toBe(true);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= document.querySelector('.site-shell').getBoundingClientRect().width + 1)).toBe(true);
   await page.screenshot({ path: resolve(reviewDir, 'action-theater-settings-push.png'), fullPage: true });
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await selectAction(page, 'tuqiu');
   await expect(page.locator('#theaterActionName')).toHaveText('狮子吐球');
 });

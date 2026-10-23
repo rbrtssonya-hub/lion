@@ -131,7 +131,7 @@ test('神态40%纸张和32px正文在窄电脑保留可读宽度，900px高度�
   }
 });
 
-test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复四角布局并保留同一画布', async ({ page }) => {
+test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复左上阅读布局并保留同一画布', async ({ page }) => {
   test.setTimeout(90_000);
   await open(page, 'action');
   const stage = page.locator('#actionTheater');
@@ -142,7 +142,7 @@ test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复�
     await resize(page, width, height);
     const header = await page.locator('.site-header').boundingBox();
     const bounds = await stage.boundingBox();
-    const compact = bounds.width < 780 || height - header.height < 500;
+    const compact = bounds.width < 780 || height - header.height < 620;
     await expect(stage).toHaveAttribute('data-compact-layout', String(compact));
     await noHorizontalOverflow(page, '#actionTheater');
     await noOverlap(page, ['.theater-topline', '.theater-view-tools']);

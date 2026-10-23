@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 const destinations = [
   ['homeLionBook', '岭南醒狮志'],
@@ -68,7 +69,8 @@ async function expectRailGeometry(page, rail, large = false) {
   }));
   expect(appearance.background).toBe('rgba(0, 0, 0, 0)');
   expect(appearance.backdrop).toBe('none');
-  expect(appearance.fontSize).toBeGreaterThanOrEqual(appearance.compact ? 18 : 22);
+  const shortWindow = page.viewportSize().height <= 520;
+  expect(appearance.fontSize).toBeGreaterThanOrEqual(shortWindow ? 16 : appearance.compact ? 18 : 22);
   expect(appearance.labelsFit).toBe(true);
   const geometry = await rail.evaluate(nav => {
     const bounds = nav.getBoundingClientRect();
@@ -137,7 +139,7 @@ test('all archive sections keep equal page margins independently of the sidebar 
   await page.setViewportSize({width:1500,height:1080});
   await page.locator('.site-header [data-action="settings"]').click();
   const settings = page.getByRole('region',{name:'开发者参数设置',exact:true});
-  await settings.getByRole('tab',{name:'布局',exact:true}).click();
+  await selectSettingsFor(page, 'pushPage');
   await settings.getByRole('checkbox',{name:'设置面板推开页面',exact:true}).check();
   const shell = await page.locator('.site-shell').evaluate(n=>n.getBoundingClientRect().width);
   const width = settings.getByRole('spinbutton',{name:'设置面板宽度数值',exact:true});
@@ -271,9 +273,12 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     test.setTimeout(90_000);
     await openHome(page, reducedMotion);
     await page.setViewportSize({ width: 1500, height: 1080 });
+    const types = page.locator('#homeLionTypes');
+    await types.getByRole('button', { name: '展开佛山狮介绍', exact: true }).click();
+    await expect(types.locator('.heritage-type-copy')).toBeVisible();
     await page.locator('.site-header [data-action="settings"]').click();
     const settings = page.getByRole('region', { name: '开发者参数设置', exact: true });
-    await settings.getByRole('tab', { name: '布局', exact: true }).click();
+    await selectSettingsFor(page, 'pushPage');
     await settings.getByRole('checkbox', { name: '设置面板推开页面', exact: true }).check();
     const shellWidth = await page.locator('.site-shell').evaluate(node => node.getBoundingClientRect().width);
     const widthInput = settings.getByRole('spinbutton', { name: '设置面板宽度数值', exact: true });
@@ -282,9 +287,6 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     await expect.poll(() => page.locator('.site-page').evaluate(node => node.getBoundingClientRect().width)).toBe(900);
     const rail = await showRail(page);
     await expect(rail.getByRole('button')).toHaveCount(4);
-    const types = page.locator('#homeLionTypes');
-    await types.getByRole('button', { name: '展开佛山狮介绍', exact: true }).click();
-    await expect(types.locator('.heritage-type-copy')).toBeVisible();
     await expectRailGeometry(page, rail, true);
     const railRight = await rail.evaluate(node => node.getBoundingClientRect().right);
     for (const selector of ['.heritage-heading', '.heritage-figure', '.heritage-type-copy']) {

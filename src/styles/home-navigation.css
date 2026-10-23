@@ -39,7 +39,7 @@
 .home-archive-nav[hidden] { display: none; }
 .home-archive-nav-track { position: absolute; left: var(--archive-nav-node-x); top: var(--archive-nav-first); bottom: calc(var(--archive-nav-padding) + var(--archive-nav-step) / 2 - var(--archive-nav-node-offset)); width: 1px; background: #b68a5599; }
 .home-archive-nav button { position: relative; z-index: 2; display: flex; align-items: center; gap: 30px; box-sizing: border-box; min-height: 0; width: 100%; padding: 0 0 0 calc(var(--archive-nav-node-x) - 4px); border: 0; background: transparent; color: inherit; cursor: pointer; text-align: left; font: 22px/1.5 var(--archive-body, 'STKaiti', 'KaiTi', serif); }
-.home-archive-nav button i { display: block; flex: 0 0 8px; width: 8px; height: 8px; box-sizing: border-box; border: 1px solid #b28b62; border-radius: 50%; background: #f6ead4; }
+.home-archive-nav button i { display: block; flex: 0 0 8px; width: 8px; height: 8px; box-sizing: border-box; border: 1px solid #8f231b; border-radius: 50%; background: #b62d20; }
 .home-archive-nav button span { white-space: nowrap; text-shadow: -1px -1px 0 #fff4df, 1px -1px 0 #fff4df, -1px 1px 0 #fff4df, 1px 1px 0 #fff4df; }
 .home-archive-nav button[aria-current] { color: #992f22; font-weight: 600; }
 .home-archive-nav button[aria-current] i { opacity: 0; }

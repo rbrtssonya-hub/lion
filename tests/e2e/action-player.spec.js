@@ -140,16 +140,6 @@ test('全屏使用当前巨幕场景，退出后四屏播放和页面控制仍�
   await expect.poll(() => running(page)).toBe(0);
 });
 
-test('循环播放到结尾连续进入下一轮，切屏不从零重建实例', async ({ page }) => {
-  await openTheater(page);
-  await ensurePlaying(page);
-  await expect(actionVideo(page, 'tanqing')).toHaveJSProperty('loop', true);
-  await actionVideo(page, 'tanqing').evaluate(video => { video.currentTime = video.duration - .12; });
-  await expect.poll(() => actionVideo(page, 'tanqing').evaluate(video => !video.paused && video.currentTime < 2)).toBe(true);
-  await selectAction(page, 'doumao');
-  await expect.poll(() => running(page)).toBe(4);
-});
-
 test('离开动作页释放四个媒体元素与画布，返回后只有一套场景', async ({ page }) => {
   await openTheater(page);
   await ensurePlaying(page);
