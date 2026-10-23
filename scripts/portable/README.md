@@ -1,19 +1,22 @@
-# 临时 Windows 展示 EXE
+# Windows 离线展示 EXE
 
-## 推荐：内置 Chromium 版（2026-10-20 后续升级）
+## 当前：内置 Chromium、指定图标与 ZIP（2026-10-23）
 
 用户追加要求不依赖目标电脑的浏览器。新的 `build-bundled.mjs` 采用 Electron 44.9.1 自带 Chromium/Node 和 electron-builder 26.15.3 原生 portable 封装；运行不再需要已安装的 Edge、Chrome、Node、npm 或 .NET。旧 C# 方案保留为历史替代，不应再用它代表内置内核版。
 
 ```powershell
 node scripts/portable/build-bundled.mjs
 node --test scripts/portable/bundled-server.test.mjs
-node scripts/portable/verify-bundled.mjs '<exe>' '<build-info中的expectedSiteDir>' '<reviewDir>'
+node scripts/portable/verify-delivery.mjs '<exe>' '<build-info中的expectedSiteDir>' '<reviewDir>'
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-bundled-gui.ps1 -Executable '<exe>' -ReviewDirectory '<guiReviewDir>'
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/finalize-delivery.ps1 -DeliveryDirectory '<解压目录>'
 ```
 
-默认交付目录：`F:/数媒竞赛/南风有狮内置浏览器展示包`。构建依赖只安装到 ignored `tmp/portable-toolchain`；只复制网页生产输出与打包壳，不把工具链/FFmpeg编码工具放进最终程序，也不修改应用的 package.json/lock/入口/dist。
+默认输出在 `%USERPROFILE%/Desktop/南风有狮/`：构建先生成 `南风有狮-离线版/南风有狮.exe` 与说明/清单，验收后运行 finalize 脚本生成同内容的 `南风有狮-离线版.zip`。两个脚本均拒绝覆盖已有同名交付，需另选输出位置或自行归档。finalize 包含顶层目录，逐条解压读取 ZIP 并核对大小和 SHA256 后才命名为正式 ZIP。构建依赖只安装到 ignored `tmp/portable-toolchain`；不把工具链/FFmpeg编码工具放进最终程序，也不修改应用的 package.json/lock/入口/dist。npm 12 跳过 FFmpeg 安装脚本时，构建脚本仅执行该包声明的二进制下载，不改全局 npm 策略。
 
-- 网页完整100文件全量保留。仅发布副本的两段 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），四段原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；六段发布视频逐帧解码，随后在内置浏览器再次验收。
+EXE 使用 `source/public/assets/entry/nav-lion-head.png`：builder 转为多尺寸 ICO，设置外层 portable 图标；内部 EXE 在 `afterPack` 中编辑图标和版本后再生成运行清单，避免后续图标编辑导致启动 SHA 校验失败。窗口使用同一 PNG，源图保持原字节。
+
+- 网页生产输出全部保留，文件数以本次清单为准。仅发布副本中的 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；六段发布视频逐帧解码，随后在内置浏览器再次验收。
 - 完整 Electron 官方 ZIP 内核、所有语言包、软件图形库和两份 Electron/Chromium 许可由打包器全量携带。`runtime-manifest.json` 在内核组装后生成，启动逐SHA核对整个运行目录（清单自身除外），不依赖旧版本 DLL 名单。
 - 保留 loopback 白名单/Host/Range/令牌停服；渲染器沙盒、context isolation 开启，Node 集成关闭。正常运行无 CDP；仅明确 `--inspect-ui` 验收才开放本地调试端口。HTTP 公共状态不暴露私有路径或停服令牌。
 - 按锁定的 builder 26.15.3 实际源码，`portable.unpackDirName: true` 才省略 `UNPACK_DIR_NAME` 并使用每次启动唯一 `$PLUGINSDIR`；不能照其他版本文档把 false 当唯一目录。此选择必须用同 TEMP 多实例验收。
@@ -23,9 +26,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-bund
 
 支持范围为 **Windows 10/11 x64**。内核内置不等于任意 OS/硬件都能运行：Windows 7/8、32位 Windows、macOS/Linux、未经验证的 ARM 和特定安全策略不作保证。提供 `--software-rendering` 兼容模式降低 GPU 依赖，但不承诺任意旧 CPU/驱动、极低内存或实体扬声器已验收。源站外链需要网络；本地展示无组件下载/登录需求。单EXE未签名，可能有来源提示，不应关闭系统安全保护。
 
-新版独立验证只用 CDP 连接 EXE 自己的内置窗口，不启动系统浏览器；精确核对包装器/Electron PID、内核全部文件、100份网页、6视频、WebGL/交互、离线阻断、共TEMP实例及兼容模式重启，保存最终成品SHA及截图。适用结果见本轮交付记录，不继承旧 C# 的153项或缓存quarantine结果。
+当前 `verify-delivery.mjs` 只用 CDP 连接 EXE 自己的内置窗口，不启动系统浏览器；核对真实 Electron PID、内核/网页/HTTP 全文件 SHA、所有 public 资产、六视频 Range、动画→短片→首页自然顺序、七书页、模型/WebGL/毛发、八态、四视频及离线阻断和退出回收。旧 `verify-bundled.mjs` 留存2026-10-20的固定revision/文件数和旧UI验收，不适用于现行页面。共 TEMP 多实例与真实兼容模式快捷键重启属于旧版当时覆盖，本轮范围以新报告为准。HDRI 使用内置或本地文件；本壳拒绝网页的远程HDRI请求，资料原文外链仍可由用户明确打开。
 
-GUI脚本另外以无inspect/serve-only的普通模式打开实际窗口，检查默认独立profile、正常关闭后的main/包装器退出码、子进程和HTTP回收；高DPI截图使用物理窗口坐标。验证脚本使用开发机工具，不能据此把开发工具写成成品运行依赖。复现与最终结果见[本轮记录](../../source/references/bundled-browser-exe-2026-10-20.md)。
+GUI脚本另外以无inspect/serve-only的普通模式打开实际窗口，按EnumWindows/PID/可见尺寸选择真实窗口，经原生AttachThreadInput取得前台后核对有效像素截图，检查默认独立profile、正常关闭后的main/包装器退出码、子进程和HTTP回收；高DPI截图使用物理窗口坐标。验证脚本使用开发机工具，不能据此把开发工具写成成品运行依赖。2026-10-23最终结果与阶段失败边界见[本轮记录](../../source/references/offline-exe-delivery-2026-10-23.md)；2026-10-20的历史结果见[前次记录](../../source/references/bundled-browser-exe-2026-10-20.md)。
 
 ---
 

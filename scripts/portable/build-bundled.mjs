@@ -10,10 +10,13 @@ import { createRequire } from 'node:module';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const project = path.resolve(here, '../..');
-const output = path.resolve(process.argv.slice(2).find(arg => !arg.startsWith('--')) || 'F:/数媒竞赛/南风有狮内置浏览器展示包');
+const output = path.resolve(process.argv.slice(2).find(arg => !arg.startsWith('--')) || path.join(process.env.USERPROFILE, 'Desktop/南风有狮'));
+const delivery = path.join(output, '南风有狮-离线版');
+const sourceIcon = path.join(project, 'source/public/assets/entry/nav-lion-head.png');
 const reuseWork = process.argv.find(arg => arg.startsWith('--reuse-site='))?.slice('--reuse-site='.length);
 assert(!output.toLowerCase().startsWith(project.toLowerCase() + path.sep) && output.toLowerCase() !== project.toLowerCase(), 'Delivery belongs outside the development checkout');
 assert.equal(process.platform, 'win32', 'Build the Windows executable on Windows');
+assert(!existsSync(delivery), `Preserve the existing delivery; choose a new output directory: ${delivery}`);
 const ELECTRON = '44.9.1', BUILDER = '26.15.3', FFMPEG = '5.3.0';
 const hash = async file => { const h = createHash('sha256'); for await (const chunk of createReadStream(file)) h.update(chunk); return h.digest('hex'); };
 async function inventory(root) {
@@ -57,6 +60,10 @@ if (!existsSync(path.join(toolsRoot, 'node_modules/electron-builder/package.json
   assert(existsSync(npmCli), `npm CLI missing: ${npmCli}`);
   await run(process.execPath, [npmCli, 'install', '--prefix', toolsRoot, '--no-audit', '--no-fund', `electron-builder@${BUILDER}`, `ffmpeg-static@${FFMPEG}`]);
 }
+// npm 12 can skip dependency install scripts. Fetch only the build tool's
+// declared binary without changing the user's global npm script policy.
+if (!existsSync(path.join(toolsRoot, 'node_modules/ffmpeg-static/ffmpeg.exe')))
+  await run(process.execPath, [path.join(toolsRoot, 'node_modules/ffmpeg-static/install.js')]);
 const requireTools = createRequire(path.join(toolsRoot, 'package.json'));
 assert.equal(requireTools('electron-builder/package.json').version, BUILDER);
 assert.equal(requireTools('ffmpeg-static/package.json').version, FFMPEG);
@@ -111,18 +118,29 @@ await fs.copyFile(path.join(here, 'bundled-main.cjs'), path.join(appDir, 'main.c
 await fs.copyFile(path.join(here, 'bundled-server.cjs'), path.join(appDir, 'bundled-server.cjs'));
 const { build, Platform, Arch } = requireTools('electron-builder');
 const { getNsisElevatePath } = requireTools('app-builder-lib/out/toolsets/windows.js');
+const { editWindowsResources } = requireTools('app-builder-lib/out/util/resEdit.js');
 const buildOut = path.join(work, 'out');
+let windowsIcon;
 const artifacts = await build({ projectDir: appDir, targets: Platform.WINDOWS.createTarget(['portable'], Arch.x64), config: {
   appId: 'org.southwindlion.offline', productName: '南风有狮', electronVersion: ELECTRON,
   directories: { output: buildOut }, npmRebuild: false, buildDependenciesFromSource: false,
   asar: true, files: ['main.cjs', 'bundled-server.cjs', 'package.json'],
-  extraResources: [{ from: site, to: 'site' }, { from: manifestPath, to: 'site.manifest.json' }, { from: mediaPath, to: 'media-compatibility.json' }],
-  win: { artifactName: '南风有狮-内置内核-x64.exe', signAndEditExecutable: false },
+  extraResources: [{ from: site, to: 'site' }, { from: manifestPath, to: 'site.manifest.json' }, { from: mediaPath, to: 'media-compatibility.json' },
+    { from: sourceIcon, to: 'app-icon.png' }],
+  win: { artifactName: '南风有狮.exe', icon: sourceIcon, signAndEditExecutable: false, signExecutable: false },
   // Locked builder 26.15.3: true omits UNPACK_DIR_NAME and uses each launch's
   // unique $PLUGINSDIR. false unexpectedly embeds a fixed build-time directory.
   portable: { requestExecutionLevel: 'user', unpackDirName: true },
   publish: null,
   async afterPack(context) {
+    // Edit before hashing: builder's ordinary post-afterPack resource editing
+    // would otherwise invalidate the runtime manifest on every launch.
+    windowsIcon = await context.packager.getIconPath();
+    assert(windowsIcon, 'Windows icon conversion failed');
+    await editWindowsResources({ file: path.join(context.appOutDir, '南风有狮.exe'),
+      iconPath: windowsIcon, fileVersion: '1.0.0', productVersion: '1.0.0',
+      versionStrings: { FileDescription: '南风有狮', ProductName: '南风有狮', InternalName: 'SouthWindLion' },
+      requestedExecutionLevel: 'asInvoker' });
     // NSIS normally adds this byte-identical helper after afterPack. Stage it
     // first so the complete payload (not just Chromium/site) is in the manifest.
     await fs.copyFile(await getNsisElevatePath(), path.join(context.appOutDir, 'resources/elevate.exe'));
@@ -138,18 +156,30 @@ const artifacts = await build({ projectDir: appDir, targets: Platform.WINDOWS.cr
 assert.deepEqual(await protectedSnapshot(), before, 'Development files changed during packaging');
 const artifact = artifacts.find(file => file.endsWith('.exe'));
 assert(artifact, 'No real portable executable was produced');
-await fs.mkdir(output, { recursive: true });
-const target = path.join(output, '南风有狮-内置内核-x64.exe');
-if (existsSync(target)) await fs.rename(target, path.join(output, `previous-${Date.now()}.exe`));
+await fs.mkdir(delivery, { recursive: true });
+const target = path.join(delivery, '南风有狮.exe');
 await fs.copyFile(artifact, target);
 const info = { executable: target, bytes: (await fs.stat(target)).size, sha256: await hash(target),
   engine: `Electron ${ELECTRON}`, arch: 'x64', minimumOS: 'Windows 10/11 x64', needsInstalledBrowser: false, needsSystemNodeOrDotNet: false,
   buildId: manifest.buildId, sourceRevision: revision, expectedSiteDir: site, unpacked: path.join(buildOut, 'win-unpacked'),
+  icon: { source: path.relative(project, sourceIcon).replaceAll(path.sep, '/'), sha256: await hash(sourceIcon),
+    icoSha256: await hash(windowsIcon) },
   siteFileCount: files.length, runtimeFiles: (await inventory(path.join(buildOut, 'win-unpacked'))).length,
   developmentFilesUnchanged: before.length, media, builtAt: new Date().toISOString() };
-await fs.writeFile(path.join(output, 'build-info.json'), JSON.stringify(info, null, 2));
-await fs.writeFile(path.join(output, 'SHA256.txt'), `${info.sha256}  ${path.basename(target)}\r\n`);
-await fs.copyFile(manifestPath, path.join(output, '完整网页文件清单.json'));
-await fs.copyFile(mediaPath, path.join(output, '视频兼容转换记录.json'));
-await fs.copyFile(path.join(buildOut, 'win-unpacked/resources/runtime-manifest.json'), path.join(output, '完整内核文件清单.json'));
+await fs.writeFile(path.join(delivery, 'build-info.json'), JSON.stringify(info, null, 2));
+await fs.writeFile(path.join(delivery, 'SHA256.txt'), `${info.sha256}  ${path.basename(target)}\r\n`);
+await fs.copyFile(manifestPath, path.join(delivery, '完整网页文件清单.json'));
+await fs.copyFile(mediaPath, path.join(delivery, '视频兼容转换记录.json'));
+await fs.copyFile(path.join(buildOut, 'win-unpacked/resources/runtime-manifest.json'), path.join(delivery, '完整内核文件清单.json'));
+await fs.writeFile(path.join(delivery, '使用说明.txt'), [
+  '南风有狮 · Windows 离线展示版', '',
+  '双击“南风有狮.exe”运行。首次启动需要解包并校验文件，请稍候。',
+  '适用于 Windows 10 / 11 64位电脑。已内置 Chromium 浏览器内核、Node 运行环境、网页、字体、图片、模型和视频，无需安装浏览器、Node 或 npm。',
+  '程序可整体复制到其他电脑；单独复制 EXE 也可以运行。ZIP 解压后内容与本文件夹相同。', '',
+  'F11：进入或退出全屏。Alt：显示菜单。Ctrl+Shift+S：重新以软件渲染兼容模式启动。',
+  '关闭程序窗口即可退出。展示设置在本次独立会话内使用，不读取日常浏览器的数据。',
+  '默认展示内容可离线使用；HDRI 请选内置预设或本地文件。主动查阅资料原文链接时需要网络。', '',
+  '内核许可随 EXE 携带，原网页的摄影、字体、组件许可与 AI 辅助创作说明保留。',
+  'build-info.json、文件清单与 SHA256.txt 用于版本及完整性核对。', '',
+].join('\r\n'));
 console.log(JSON.stringify(info, null, 2));

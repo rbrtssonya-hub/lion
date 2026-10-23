@@ -71,6 +71,7 @@ app.whenReady().then(async () => {
   if (!flag('serve-only') || flag('inspect-ui')) {
     window = new BrowserWindow({ width: 1440, height: 900, minWidth: 900, minHeight: 600,
       show: !flag('serve-only') || flag('inspect-ui'), autoHideMenuBar: true, backgroundColor: '#faf4e8', title: '南风有狮',
+      icon: path.join(process.resourcesPath, 'app-icon.png'),
       webPreferences: { nodeIntegration: false, contextIsolation: true, sandbox: true, webSecurity: true } });
     window.webContents.on('will-navigate', (event, url) => { if (!url.startsWith(server.origin + '/')) event.preventDefault(); });
     window.webContents.on('will-attach-webview', event => event.preventDefault());

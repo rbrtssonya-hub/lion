@@ -4172,6 +4172,66 @@
       "path": "source/reviews/expression-click-feedback/2026-10-22/settings-feedback-parameters.png",
       "bytes": 1927611,
       "sha256": "2b3fbfd04813372f526c7b462f0b75673dd41f9325d8cefb7f737434da72bdd0"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/01-entry-animation.png",
+      "bytes": 4429065,
+      "sha256": "6dda794444f3b57cb4980557dd3aaf10c60fefed975b305ab63a0e6a29c94f7c"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/02-intro-video.png",
+      "bytes": 3533657,
+      "sha256": "02e690ffd28a0d92ce8e47e777dcf73d09e1c9d9d4f367b2c8ca315bd0c5b5ff"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/03-home-loop.png",
+      "bytes": 4794463,
+      "sha256": "c82b756a17a63b759037a448c374c49270bf095275cda8ebf84c716384403b11"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/04-seven-book-pages.png",
+      "bytes": 3409304,
+      "sha256": "96fce5c8ebbc3498d36683ae8f47da8aae43bd3f0f0937ac54a740e551698957"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/05-structure-model.png",
+      "bytes": 3956712,
+      "sha256": "4a4d21218eb7fcb694fcf5416f7ff43b72d8a3368087f865d27c1cb13b33830d"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/06-expression-eight-states.png",
+      "bytes": 3480516,
+      "sha256": "219b5dfb342698256f0f726e1e1fac71002047d4e8686b3b56bc58f8f7a3d27f"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/07-action-four-videos.png",
+      "bytes": 3726370,
+      "sha256": "5e16c3b5ed5ec833bfff8b3981df02b4e530ab60317c4dd5343f97987e88071a"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/08-ordinary-no-debug-window.png",
+      "bytes": 6995437,
+      "sha256": "43bcb0d099e88a0fdd0ea97260dd8e56f18457e8764373a97b14bba202e74405"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/reviews/offline-exe/2026-10-23/windows-icon-256.png",
+      "bytes": 129978,
+      "sha256": "4c14ba52b5bd9fc9a18297258ccb920a97019ec1df404d995f5e137c95a8dd85"
+    },
+    {
+      "from": "Actual bundled Electron EXE acceptance and Windows GUI capture, 2026-10-23",
+      "path": "source/references/offline-exe-delivery-2026-10-23-validation.json",
+      "bytes": 157245,
+      "sha256": "eb7b25ae7ed474ca45c551b795a1ecfb7dcf630d828955c86bdee9cec0b1786e"
     }
   ]
 }

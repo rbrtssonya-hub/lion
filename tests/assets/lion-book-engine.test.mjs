@@ -470,7 +470,7 @@ test('zero-size prewarming cannot start an automatic turn before host exposure',
   assert.equal(harness.context.idx, 1);
 });
 
-test('blank paper margins cannot start an interaction and the paper geometry stays bounded', async () => {
+test('blank paper margins cannot start an interaction and cast shadows hide while page lighting remains', async () => {
   const harness = bridgeHarness({ autoplay: true });
   await readyBridge(harness);
   let blocked = false;
@@ -478,7 +478,12 @@ test('blank paper margins cannot start an interaction and the paper geometry sta
   assert.equal(blocked, true);
   assert.equal(harness.state().playback, 'playing');
   assert.match(adapted, /\.sb-zone\{top:21\.8%;bottom:21\.8%\}/);
-  assert.match(adapted, /\.sb-cast\.ambient\{top:65%;bottom:19\.2%;[^}]*filter:none/);
+  assert.match(adapted, /\.sb-cast\{display:none!important\}/);
+  // The external shadow layers are hidden; preserve the upstream gutter shade,
+  // curved strips and face lighting rather than suppressing all paper shadows.
+  const pageLighting = original.slice(original.indexOf('.gutter-shade{'), original.indexOf('/* ---- the loupe:'));
+  assert.ok(pageLighting.length > 0);
+  assert.ok(adapted.includes(pageLighting), 'page lighting and curl geometry must keep their original rules');
 });
 
 test('disposing scheduled or turning autoplay clears timers, frames, image work and bridge listeners', async () => {

@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-23 | maintenance | completed | [桌面离线EXE与压缩包](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-%E6%A1%8C%E9%9D%A2%E7%A6%BB%E7%BA%BFEXE%E4%B8%8E%E5%8E%8B%E7%BC%A9%E5%8C%85.md) |
 | 2026-10-23 | feature | completed | [首页入场短片与动画串接](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-23-%E9%A6%96%E9%A1%B5%E5%85%A5%E5%9C%BA%E7%9F%AD%E7%89%87%E4%B8%8E%E5%8A%A8%E7%94%BB%E4%B8%B2%E6%8E%A5.md) |
 | 2026-10-23 | feature | completed | [首页入场动画与视频顺序调整](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-23-%E9%A6%96%E9%A1%B5%E5%85%A5%E5%9C%BA%E5%8A%A8%E7%94%BB%E4%B8%8E%E8%A7%86%E9%A2%91%E9%A1%BA%E5%BA%8F%E8%B0%83%E6%95%B4.md) |
 | 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
