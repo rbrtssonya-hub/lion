@@ -12,7 +12,10 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-23 | maintenance | completed | [F盘接续入场动画主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-F%E7%9B%98%E6%8E%A5%E7%BB%AD%E5%85%A5%E5%9C%BA%E5%8A%A8%E7%94%BB%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-23 | maintenance | completed | [F盘同步 GitHub 最新主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-F%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF.md) |
+| 2026-10-23 | feature | completed | [首页入场短片与动画串接](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-23-%E9%A6%96%E9%A1%B5%E5%85%A5%E5%9C%BA%E7%9F%AD%E7%89%87%E4%B8%8E%E5%8A%A8%E7%94%BB%E4%B8%B2%E6%8E%A5.md) |
+| 2026-10-23 | feature | completed | [首页入场动画与视频顺序调整](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-23-%E9%A6%96%E9%A1%B5%E5%85%A5%E5%9C%BA%E5%8A%A8%E7%94%BB%E4%B8%8E%E8%A7%86%E9%A2%91%E9%A1%BA%E5%BA%8F%E8%B0%83%E6%95%B4.md) |
 | 2026-10-22 | maintenance | completed | [声音、神态、结构支线合并主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-%E5%A3%B0%E9%9F%B3%E7%A5%9E%E6%80%81%E7%BB%93%E6%9E%84%E6%94%AF%E7%BA%BF%E5%90%88%E5%B9%B6%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | completed | [F盘安全同步GitHub最新主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-F%E7%9B%98%E5%AE%89%E5%85%A8%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E4%B8%BB%E7%BA%BF.md) |
 | 2026-10-22 | maintenance | in_progress | [F盘再次同步最新交互主线](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-22-F%E7%9B%98%E5%86%8D%E6%AC%A1%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E4%BA%A4%E4%BA%92%E4%B8%BB%E7%BA%BF.md) |

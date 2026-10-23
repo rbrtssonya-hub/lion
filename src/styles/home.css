@@ -1,4 +1,9 @@
 .home-page { width: 100%; margin-top: calc(-1 * var(--site-header-height)); background: #68170f; }
+.entry-transition-stage { position: fixed; inset: 0; z-index: 10000; overflow: hidden; background: #f9f6ee; }
+.entry-transition-stage iframe { display: block; width: 100%; height: 100%; border: 0; }
+.entry-transition-skip { position: absolute; top: clamp(20px, 4vh, 44px); right: clamp(24px, 4vw, 64px); z-index: 1; padding: 10px 17px; border: 1px solid rgba(116, 130, 114, .42); border-radius: 999px; color: #52604f; background: rgba(249, 246, 238, .82); font-size: 12px; letter-spacing: .12em; cursor: pointer; transition: background 160ms ease, transform 160ms ease; }
+.entry-transition-skip:hover { background: #fffdf8; transform: translateY(-1px); }
+.entry-transition-skip:focus-visible { outline: 2px solid #718472; outline-offset: 4px; }
 .is-intro-playing .entry-playback-tools { top: 24px; }
 .final-home { position: relative; width: 100%; height: 100svh; min-height: 620px; overflow: hidden; isolation: isolate; background: #68170f; }
 .entry-visual-video { position: absolute; inset: 0; z-index: 0; }

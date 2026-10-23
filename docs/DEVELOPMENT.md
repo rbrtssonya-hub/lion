@@ -88,7 +88,7 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 书册标题纸面在“设置→首页→书册→书册标题底板”分别调整宽度、最小高度（0自动）与标题底板留白；默认宽69%居中，旧100%默认只迁移一次，之后自选100%不再升级。留白50–150%不缩放文字，`bookTitleSpacing`默认100。按2026-10-17最新要求，历史导航由`BookTimeline`改为同高直线与Canvas离散红金粒子，移除旧波浪和SVG水墨层；650ms接续当前狮头位置，500–850ms粒子消散，最多80颗，静止后无RAF。2026-10-19追加修复：点击年代/宿主方向键立即更新狮头目标和节点选中，详情及书页仍跟随真实提交；实际焦点进入书纸时交回纸面控制，旧消息不回拉最后目标。开关在“动画→书册导航粒子拖尾”，兼容原`bookInkEnabled`偏好；组件退出清理RAF和观察器，跨路由预热保留时通过`playbackEnabled`暂停。加载页保留独立横排深墨透明字稿及文字失败回退；来源、提示词和确认历史见[前次记录](../source/references/2026-10-16-archive-panel-timeline.md)，当前导航/标题迁移见[本轮记录](../source/references/2026-10-17-straight-particles-game-guide.md)。
 
-首页由 `useEntryPlayback` 管理入场和循环视频：浏览会话首次进入首页播放入场短片，结束、跳过或错误时继续均回到首页循环视频。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；“重播入场”显式重播。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
+首页由 `useEntryPlayback` 按“水墨入场动画→入场短片→正式首页”管理首次访问流程。首先播放 `source/public/assets/loading/entry-transition.html`；动画以同源 `postMessage` 通知 React，随后开始入场短片，短片自然结束后进入正式首页和循环视频。动画阶段“跳过动画”和视频阶段“跳过入场”都直达正式首页；视频媒体失败后可继续浏览首页。“重播入场”重新播放完整流程。`sessionStorage` 的 `nanfeng-lion:intro-seen:v1` 防止返回或刷新自动重复，存储不可用时保留当前页面生命周期内的回退；首页循环视频仅在正式首页播放。`IntroPage` 已移除，视频切换、错误提示和离页暂停由 `VideoStage` 负责。
 
 首页声音开关使用 `SoundControl` 的 `line` 变体：hero右下角透明白线，有声波浪、静音直线；不影响动作页的standard变体。没有声音提示弹框，原生自动播放受限时沿用静音推进与真实手势恢复，音量保持25%。相关布局/键盘及原生策略回归为 `home-audio-line.spec.js` 和 `home-audio-line-policy.spec.js`；后者文件内关闭trace，不能用快照引入的激活证明自动播放成功。真实故障仍保留重试。详情见[白线交付记录](../source/references/home-audio-line-2026-10-22.md)。
 

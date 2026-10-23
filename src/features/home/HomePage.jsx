@@ -10,10 +10,11 @@ import { HomeLionTypes } from './HomeHeritage.jsx';
 import HomeCultureSources from './HomeCultureSources.jsx';
 import HomeArchiveNav from './HomeArchiveNav.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
+import EntryAnimationOverlay from './EntryAnimationOverlay.jsx';
 import '../../styles/home-archive.css';
 
 export default function HomePage({ settings, playbackEnabled = true, onBookReady, onGalleryReady, onVideoReady }) {
-  const { introActive, playbackId, finishIntro, replayIntro } = useEntryPlayback(playbackEnabled);
+  const { introActive, entryAnimationActive, playbackId, finishIntro, finishVideo, finishEntryAnimation, replayIntro } = useEntryPlayback(playbackEnabled);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
   const [volume, setVolume] = useMediaVolumePreference();
   const [audioState, setAudioState] = useState({ enabled: false, pending: false });
@@ -32,8 +33,8 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
     <VideoStage key={introActive ? `intro-${playbackId}` : 'home-loop'}
       id={introActive ? 'introVideo' : 'entryLionVideo'} src={introActive ? media.intro : media.home}
-      poster={media.cover} loop={!introActive} playing={playbackEnabled} audioEnabled={audioEnabled} volume={volume} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
-      onEnded={introActive ? finishIntro : undefined} onContinue={introActive ? finishIntro : undefined} continueLabel="继续浏览首页"
+      poster={media.cover} loop={!introActive} playing={playbackEnabled && !entryAnimationActive} audioEnabled={audioEnabled} volume={volume} onAudioState={setAudioState} resumeAudioRef={resumeAudioRef} hitEnabled={settings.pageHitEnabled} onReady={onVideoReady}
+      onEnded={introActive ? finishVideo : undefined} onContinue={introActive ? finishVideo : undefined} continueLabel="继续浏览首页"
       label={introActive ? 'AI辅助创作的醒狮入场视频' : '循环播放的醒狮首页视频'} className="entry-visual entry-visual-video" />
     <div className="entry-vignette" aria-hidden="true" />
     <div className="entry-ornaments" aria-hidden="true">
@@ -88,5 +89,6 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
     </div>
   </div>
   <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />
+  {playbackEnabled && entryAnimationActive && <EntryAnimationOverlay onComplete={finishEntryAnimation} onSkip={finishIntro} />}
   </div>;
 }
