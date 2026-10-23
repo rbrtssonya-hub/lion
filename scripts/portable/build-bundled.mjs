@@ -7,16 +7,18 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { resolveBundledIcon } from './build-options.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const project = path.resolve(here, '../..');
 const output = path.resolve(process.argv.slice(2).find(arg => !arg.startsWith('--')) || path.join(process.env.USERPROFILE, 'Desktop/南风有狮'));
 const delivery = path.join(output, '南风有狮-离线版');
-const sourceIcon = path.join(project, 'source/public/assets/entry/nav-lion-head.png');
+const sourceIcon = resolveBundledIcon(process.argv.slice(2), project, path.join(project, 'source/public/assets/entry/nav-lion-head.png'));
 const reuseWork = process.argv.find(arg => arg.startsWith('--reuse-site='))?.slice('--reuse-site='.length);
 assert(!output.toLowerCase().startsWith(project.toLowerCase() + path.sep) && output.toLowerCase() !== project.toLowerCase(), 'Delivery belongs outside the development checkout');
 assert.equal(process.platform, 'win32', 'Build the Windows executable on Windows');
 assert(!existsSync(delivery), `Preserve the existing delivery; choose a new output directory: ${delivery}`);
+assert(existsSync(sourceIcon), `Icon PNG does not exist: ${sourceIcon}`);
 const ELECTRON = '44.9.1', BUILDER = '26.15.3', FFMPEG = '5.3.0';
 const hash = async file => { const h = createHash('sha256'); for await (const chunk of createReadStream(file)) h.update(chunk); return h.digest('hex'); };
 async function inventory(root) {

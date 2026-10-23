@@ -12,9 +12,17 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/verify-bund
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/portable/finalize-delivery.ps1 -DeliveryDirectory '<解压目录>'
 ```
 
+可选的 `--icon=<png路径>` 会同时设置 EXE 图标和应用窗口图标；省略时继续使用工程内默认狮头图。例如：
+
+```powershell
+node scripts/portable/build-bundled.mjs 'F:/交付目录' '--icon=F:/素材/狮头图标.png'
+```
+
+每次构建会将图标源文件的路径标识和 SHA-256 写入 `build-info.json`，并将同一 PNG 随运行文件一并打包。
+
 默认输出在 `%USERPROFILE%/Desktop/南风有狮/`：构建先生成 `南风有狮-离线版/南风有狮.exe` 与说明/清单，验收后运行 finalize 脚本生成同内容的 `南风有狮-离线版.zip`。两个脚本均拒绝覆盖已有同名交付，需另选输出位置或自行归档。finalize 包含顶层目录，逐条解压读取 ZIP 并核对大小和 SHA256 后才命名为正式 ZIP。构建依赖只安装到 ignored `tmp/portable-toolchain`；不把工具链/FFmpeg编码工具放进最终程序，也不修改应用的 package.json/lock/入口/dist。npm 12 跳过 FFmpeg 安装脚本时，构建脚本仅执行该包声明的二进制下载，不改全局 npm 策略。
 
-EXE 使用 `source/public/assets/entry/nav-lion-head.png`：builder 转为多尺寸 ICO，设置外层 portable 图标；内部 EXE 在 `afterPack` 中编辑图标和版本后再生成运行清单，避免后续图标编辑导致启动 SHA 校验失败。窗口使用同一 PNG，源图保持原字节。
+默认图标为 `source/public/assets/entry/nav-lion-head.png`；也可用 `--icon=<png路径>` 指定外部图标。builder 会把所选 PNG 转为多尺寸 ICO，设置外层 portable 图标；内部 EXE 在 `afterPack` 中编辑图标和版本后再生成运行清单，避免后续图标编辑导致启动 SHA 校验失败。应用窗口使用同一 PNG，源图保持原字节。
 
 - 网页生产输出全部保留，文件数以本次清单为准。仅发布副本中的 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；六段发布视频逐帧解码，随后在内置浏览器再次验收。
 - 完整 Electron 官方 ZIP 内核、所有语言包、软件图形库和两份 Electron/Chromium 许可由打包器全量携带。`runtime-manifest.json` 在内核组装后生成，启动逐SHA核对整个运行目录（清单自身除外），不依赖旧版本 DLL 名单。
