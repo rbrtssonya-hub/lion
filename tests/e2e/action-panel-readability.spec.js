@@ -32,7 +32,7 @@ async function expectReadableLayout(page, compact = false) {
     const size = selector => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
     const button = document.querySelector('.theater-view-tools button').getBoundingClientRect();
     return {
-      kicker: size('.theater-topline > p:first-child'), hint: size('.theater-gesture-hint'),
+      kicker: size('.theater-topline .chapter-identity__phase'), hint: size('.theater-topline .chapter-identity__description'),
       tool: size('.theater-view-tools button'), label: size('.theater-caption.is-current .theater-caption-kicker'),
       name: size('.theater-caption.is-current h2'), body: size('.theater-caption.is-current .theater-description'),
       keyword: size('.theater-caption.is-current .theater-keywords'), buttonHeight: button.height,

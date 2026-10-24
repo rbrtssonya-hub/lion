@@ -4310,6 +4310,54 @@
       "path": "source/reviews/action-theater/2026-10-23-reading-path/home-solid-red-dots.png",
       "bytes": 1835077,
       "sha256": "531cf7a54a6e35870bd8a046720d5fb2778c4102b0b5933ff8add9f0c348f0e7"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1920.png",
+      "bytes": 2900415,
+      "sha256": "6f34c461b2d9053a5acae3814162b3643ffaab6f2ce4c8f25843f63f850c383e"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1920.png",
+      "bytes": 2374905,
+      "sha256": "69715d86ac1b5f3da191488994bf64549719259e6f8f2b8cf16998a636a37fb6"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1920.png",
+      "bytes": 2214229,
+      "sha256": "c6deb998124d825fdae5cc35d3806009571b4a15951a70d1b3bfd06788d27014"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1920.png",
+      "bytes": 2103202,
+      "sha256": "ec03cff801b21ebb4a400bef65b4e92b47aecf2297de330d0d9b886cfb068a88"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1440.png",
+      "bytes": 1842056,
+      "sha256": "79369da816da9f05eeb1055347575132e395f508b2c27bb6618fe87b3ac3830c"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1440.png",
+      "bytes": 1472621,
+      "sha256": "e043c13afb1ee58b746c22061da28e80459af72268d06e1827048b0e1ee3a5fa"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1440.png",
+      "bytes": 1496164,
+      "sha256": "5207c10e5f4e453dc7b50520545e6079259579692ddc8fe3acad2c5866a25d00"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1440.png",
+      "bytes": 1378694,
+      "sha256": "0f36f116a9d689fd2bd419fa54c24990a4956d7009484b8bf1a156dc2cf8ce63"
     }
   ]
 }

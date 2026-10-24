@@ -5,6 +5,8 @@ import { lionExpressions, expressionComparisons } from '../../data/lion-expressi
 import ExpressionMotif from './ExpressionMotif.jsx';
 import ExpressionComparison from './ExpressionComparison.jsx';
 import useExpressionMotion from './useExpressionMotion.js';
+import useExpressionReaction from './useExpressionReaction.js';
+import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import '../../styles/expression-motion.css';
 
 const glyphKeys = ['expressionGlyphJoy', 'expressionGlyphAnger', 'expressionGlyphSorrow', 'expressionGlyphDelight',
@@ -20,6 +22,7 @@ function Cloud({ className = '' }) {
 export default function ExpressionPage({ observation, onReturnToModel, settings = expressionFeedbackDefaults }) {
   const initialIndex = Math.max(0, lionExpressions.findIndex(item => item.id === observation?.expressionId));
   const [selection, setSelection] = useState({ index: initialIndex, previous: null, direction: 'next', revision: 0 });
+  const [reactionRevision, setReactionRevision] = useState(0);
   const [viewMode, setViewMode] = useState(observation ? 'details' : 'overview');
   const [comparing, setComparing] = useState(false);
   const [pairId, setPairId] = useState(expressionComparisons[0].id);
@@ -37,8 +40,10 @@ export default function ExpressionPage({ observation, onReturnToModel, settings 
   const clickScale = clickPercentage / 100;
   const clickDuration = settings.expressionClickDuration ?? expressionFeedbackDefaults.expressionClickDuration;
   const { capture: captureMotion, reset: resetMotion } = useExpressionMotion(copyRef, characterRef, current.id, viewMode, comparing);
+  const stopReaction = useExpressionReaction(triggerRef, current.id, reactionRevision, comparing);
   const showComparison = () => {
     resetMotion();
+    stopReaction();
     responseRef.current?.cancel();
     spaceActivation.current = null;
     setPairId((expressionComparisons.find(pair => pair.ids.includes(current.id)) ?? expressionComparisons[0]).id);
@@ -48,6 +53,8 @@ export default function ExpressionPage({ observation, onReturnToModel, settings 
   const select = useCallback((value) => {
     if (spaceActivation.current !== null) spaceActivation.current = false;
     responseRef.current?.cancel();
+    stopReaction();
+    setReactionRevision(previous => previous + 1);
     const previousInteraction = interactionRef.current;
     const target = typeof value === 'function' ? value(previousInteraction.index) : value;
     const index = (target + lionExpressions.length) % lionExpressions.length;
@@ -59,7 +66,7 @@ export default function ExpressionPage({ observation, onReturnToModel, settings 
       if (index === previous.index) return previous;
       return { index, previous: previous.index, direction: target > previous.index ? 'next' : 'previous', revision: previous.revision + 1 };
     });
-  }, [captureMotion]);
+  }, [captureMotion, stopReaction]);
   const step = useCallback(direction => select(index => index + direction), [select]);
   const returnToOverview = () => {
     if (interactionRef.current.viewMode !== 'overview') captureMotion();
@@ -130,6 +137,7 @@ export default function ExpressionPage({ observation, onReturnToModel, settings 
     }}>
       <h1 className="sr-only" id="chapterTitle">神态</h1>
       <div className="expression-toolbar">
+        <ChapterIdentity chapter="state" eyebrow="南风有狮 · 神态图鉴" title="醒狮八态" description="观眉眼，读神韵。" />
         {observation && <button type="button" className="expression-model-return" onClick={onReturnToModel}>返回{observation.partLabel}部位</button>}
         <div className="expression-reading-modes" role="group" aria-label="神态阅读方式"><button type="button" aria-pressed={!comparing} onClick={exitComparison}>八态浏览</button><button type="button" ref={compareButton} aria-pressed={comparing} onClick={showComparison}>神态对照</button></div>
       </div>

@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-25四章视觉统一：首页入境、结构观形、动作起舞、神态传神共用 `ChapterIdentity` 和 `chapter-identity.css`，场景背景与材质仍由各章维护。`useChapterTransition` 将实际导航与展示章节分开：旧内容轻收后换景，背景跟随展示章节；保留首页/模型预热，快速切换与减少动态会取消旧等待。剧场在真实 ready 后补入标题和光层动效，避免被加载遮罩错过。神态的 `useExpressionReaction` 只对整张插画演示一次短动作，与原标题 FLIP 和可调点击放大分层运行。修改这些行为时运行 `chapter-identity`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 和相关导航/布局回归；导航轨迹专测先等独立模型准备，冷等待由 `chapter-identity` 的后台预热用例单独覆盖。
+
 Windows 离线展示包使用 `node scripts/portable/build-bundled.mjs '<工程外输出目录>'`，将当前生产网页、Electron 自带 Chromium/Node、媒体解码及软件图形库封装为单 EXE；图标使用现有 `nav-lion-head.png`，不改变网页开发入口或 npm 应用依赖。默认输出桌面“南风有狮”中的离线版目录，成品验收后用 `scripts/portable/finalize-delivery.ps1` 生成同内容 ZIP 并逐文件校验。构建依赖与中间产物只在 ignored tmp，详细命令及当前/历史验证器区别见[打包说明](../scripts/portable/README.md)。
 
 2026-10-22交互整改现行规则：声音控件公开粗细/峰谷/波长，单条连续周期曲线取代hover双dash及横移尾部；神态去hover伪内框，点击反馈默认108%/280ms，可在章节→神态调整；图库前景右缘至canvas右界（后排/余白）可点下一张，hover仍仅前景，fallback失焦/隐藏/离屏清指针；结构与动作的视角分类共用现场操作、保存继续、仅取消退出。原尺寸/音量/播放/资料来源保持。下方旧机制描述仅追溯历史。修改时跑相应 `sound-control-settings`/`home-audio-wave`、`expression-hover`/`expression-click-feedback`、`culture-gallery-hitarea`/`home-culture`、`structure-view-editing`/`action-view-editing` 与受影响旧回归，严格音频trace关闭。相关109独立案例按阶段分批验证，实际失败与恢复、原生raster及资产证据见[说明](../source/references/interaction-refinements-2026-10-22.md)和[验证](../source/references/interaction-refinements-2026-10-22-validation.json)。

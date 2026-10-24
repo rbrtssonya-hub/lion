@@ -23,6 +23,9 @@ async function open(page, settings = {}, route = 'entry') {
   }, settings);
   await page.goto(route === 'entry' ? '/' : `/#/${route}`);
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
+  // Measure navigation separately from the independently prewarmed geometry,
+  // BVH and shader preparation. Cold-start behavior has its own regression.
+  await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 60_000 });
   await page.evaluate(() => document.fonts.ready);
   await doubleFrame(page);
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'false');

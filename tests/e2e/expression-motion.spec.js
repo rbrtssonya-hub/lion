@@ -18,41 +18,75 @@ test.beforeEach(async ({ page }) => {
 
 test('神态同一毛笔标题连续缩小平移到解读，反向中断保持当前位置并逐层进入文字', async ({ page }) => {
   await openExpression(page);
+  await page.evaluate(() => document.fonts.ready);
   const result = await page.evaluate(async () => {
     const title = document.querySelector('#expressionStateTitle');
     const panel = document.querySelector('#expressionStateCopy');
     const box = () => { const rect = title.getBoundingClientRect(); return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; };
     const nextFrame = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    const before = box();
-    document.querySelector('#expressionLionTrigger').click();
-    await nextFrame();
-    const first = box();
-    const outgoingTitleOpacity = Number(getComputedStyle(document.querySelector('[data-expression-ghost] strong')).opacity);
-    const sameNode = title === document.querySelector('#expressionStateTitle');
-    const entering = [...panel.querySelectorAll('[data-expression-reveal]')].map(element => ({
-      opacity: Number(getComputedStyle(element).opacity),
-      delay: element.getAnimations()[0]?.effect.getTiming().delay,
-    }));
-    await new Promise(resolve => setTimeout(resolve, 110));
-    const midway = box();
-    const headlineElement = document.querySelector('#expressionDetailTitle');
-    const headline = { left: headlineElement.getBoundingClientRect().left, opacity: Number(getComputedStyle(headlineElement).opacity) };
-    document.querySelector('.expression-return').click();
-    await nextFrame();
-    const reversed = box();
-    return { before, first, midway, reversed, sameNode, entering, outgoingTitleOpacity, headline };
+    const nativeAnimate = Element.prototype.animate;
+    let animations = [];
+    // Pause application-created native animations as they begin. Model
+    // prewarming can block the main thread past a 110ms wall-clock sample;
+    // explicit WAAPI time keeps both geometry samples inside the same flight.
+    Element.prototype.animate = function (...args) {
+      const animation = Reflect.apply(nativeAnimate, this, args);
+      if (panel.contains(this) || this.hasAttribute('data-expression-ghost')) {
+        animation.pause();
+        animation.currentTime = 0;
+        animations.push(animation);
+      }
+      return animation;
+    };
+    const sampleAt = async time => {
+      await Promise.all(animations.map(animation => animation.ready));
+      for (const animation of animations) animation.currentTime = time;
+      await nextFrame();
+      return box();
+    };
+    try {
+      const before = box();
+      document.querySelector('#expressionLionTrigger').click();
+      await nextFrame();
+      const first = await sampleAt(0);
+      const outgoingTitleOpacity = Number(getComputedStyle(document.querySelector('[data-expression-ghost] strong')).opacity);
+      const sameNode = title === document.querySelector('#expressionStateTitle');
+      const entering = [...panel.querySelectorAll('[data-expression-reveal]')].map(element => ({
+        opacity: Number(getComputedStyle(element).opacity),
+        delay: element.getAnimations()[0]?.effect.getTiming().delay,
+      }));
+      const titleAnimation = animations.find(animation => animation.effect.target === title);
+      const midway = await sampleAt(Number(titleAnimation.effect.getTiming().duration) * .3);
+      const fading = [...panel.querySelectorAll('[data-expression-reveal]')].map(element => Number(getComputedStyle(element).opacity));
+      const headlineElement = document.querySelector('#expressionDetailTitle');
+      const headline = { left: headlineElement.getBoundingClientRect().left, opacity: Number(getComputedStyle(headlineElement).opacity) };
+      animations = [];
+      document.querySelector('.expression-return').click();
+      await nextFrame();
+      const reversed = await sampleAt(0);
+      return { before, first, midway, reversed, sameNode, reverseSameNode: title === document.querySelector('#expressionStateTitle'),
+        entering, fading, outgoingTitleOpacity, headline };
+    } finally {
+      Element.prototype.animate = nativeAnimate;
+      for (const animation of animations) if (animation.playState === 'paused') animation.play();
+    }
   });
   expect(result.sameNode).toBe(true);
+  expect(result.reverseSameNode).toBe(true);
   expect(result.outgoingTitleOpacity).toBe(0);
-  // Sampling includes a few animation frames: this must still begin near the
-  // old large rectangle, rather than immediately appearing as a 56px stamp.
+  // Native frame-zero geometry must preserve the original large rectangle.
   expect(result.first.width).toBeGreaterThan(80);
   expect(result.first.width).toBeLessThanOrEqual(result.before.width + 2);
+  expect(Math.abs(result.first.width - result.before.width)).toBeLessThan(2);
+  expect(Math.hypot(result.first.x - result.before.x, result.first.y - result.before.y)).toBeLessThan(2);
   expect(result.midway.width).toBeLessThan(result.first.width);
   expect(Math.hypot(result.midway.x - result.first.x, result.midway.y - result.first.y)).toBeGreaterThan(3);
   expect(result.midway.x + result.midway.width <= result.headline.left + 1 || result.headline.opacity < .001).toBe(true);
   expect(Math.abs(result.reversed.width - result.midway.width)).toBeLessThan(38);
+  expect(Math.abs(result.reversed.width - result.midway.width)).toBeLessThan(2);
+  expect(Math.hypot(result.reversed.x - result.midway.x, result.reversed.y - result.midway.y)).toBeLessThan(2);
   expect(result.entering.some(item => item.opacity < .6)).toBe(true);
+  expect(result.fading.some(opacity => opacity > 0 && opacity < 1)).toBe(true);
   expect(new Set(result.entering.map(item => item.delay)).size).toBeGreaterThan(3);
   await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'overview');
   await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-motion', 'idle');

@@ -3,6 +3,7 @@ import VideoStage from '../../components/VideoStage.jsx';
 import SoundControl from '../../components/SoundControl.jsx';
 import { getMediaVolumePreference, useMediaAudioPreference, useMediaVolumePreference } from '../../hooks/useMediaAudioPreference.js';
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
+import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import { media } from '../../config/media.js';
 import HomeCulture from './HomeCulture.jsx';
 import HomeLionBook from './HomeLionBook.jsx';
@@ -52,6 +53,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
     <div className="entry-copy">
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
+      <ChapterIdentity chapter="entry" eyebrow="南风有狮 · 醒狮展览" className="chapter-identity--cinema" />
       <button className="entry-cta" id="enterWork" type="button" aria-label="探索更多" onClick={exploreCulture}>
         {['left', 'right'].map((side) => <svg key={side} className={`entry-cta-cloud entry-cta-cloud-${side}`} viewBox="0 0 72 76" aria-hidden="true" focusable="false">
           <path className="entry-cta-cloud-line" d="M26 5C11 9 5 20 7 33M27 9C16 12 11 20 12 28" />

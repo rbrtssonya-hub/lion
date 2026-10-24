@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
 import StructureReadingPanel from './StructureReadingPanel.jsx';
+import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 
 const initialStatus = { phase: 'loading', message: '正在载入醒狮模型' };
 const shortPartNames = { outer_shell: '狮头', eyes: '眉眼', mirror: '额饰', mouth: '狮嘴', fur_and_bells: '须毛', lion_cloth: '狮被' };
@@ -244,9 +245,8 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
         <div className="scene-column">
           <div className="scene-frame" id="sceneFrame">
             <header className="model-scene-heading" ref={headerRef}>
-              <p>一狮一世界 <span aria-hidden="true">／</span> 形中见艺</p>
-              <h1>解构一头醒狮</h1>
-              <span>从整体轮廓，走近每一处匠心。</span>
+              <ChapterIdentity chapter="model" eyebrow="一狮一世界 · 形中见艺" title="解构一头醒狮"
+                titleAs="h1" description="从整体轮廓，走近每一处匠心。" />
             </header>
             {status.phase !== 'ready' && (
               <img className="model-fallback" id="modelFallback" src={media.poster} alt="" />
