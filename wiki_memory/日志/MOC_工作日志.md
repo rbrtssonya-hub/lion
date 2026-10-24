@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-23
+updated: 2026-10-25
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-25 | discussion | completed | [四章视觉语言统一方案](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E7%BB%9F%E4%B8%80%E6%96%B9%E6%A1%88.md) |
 | 2026-10-23 | maintenance | completed | [桌面离线EXE与压缩包](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-%E6%A1%8C%E9%9D%A2%E7%A6%BB%E7%BA%BFEXE%E4%B8%8E%E5%8E%8B%E7%BC%A9%E5%8C%85.md) |
 | 2026-10-23 | maintenance | completed | [指定狮头图标内置浏览器EXE交付](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-%E6%8C%87%E5%AE%9A%E7%8B%AE%E5%A4%B4%E5%9B%BE%E6%A0%87%E5%86%85%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8EXE%E4%BA%A4%E4%BB%98.md) |
 | 2026-10-23 | maintenance | completed | [声波支线合入main并切换F盘](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-%E5%A3%B0%E6%B3%A2%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5main%E5%B9%B6%E5%88%87%E6%8D%A2F%E7%9B%98.md) |
