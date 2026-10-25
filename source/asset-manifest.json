@@ -4478,6 +4478,36 @@
       "path": "source/reviews/book-timeline-size/2026-10-25/capture.json",
       "bytes": 2988,
       "sha256": "9a7db8dd98cd4449babac4dedc5483f7a543aca7dd2fce90bac130c6fd0e2b14"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1366.png",
+      "bytes": 1203379,
+      "sha256": "f9c1b2708210db55baeced2c2c90f9eff70e263258e30ea3a5d63f6a689d5c1d"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1440.png",
+      "bytes": 1493702,
+      "sha256": "07e0cb896be821c4bfcad685d3a262722d1acb9aa6dcc09e94a007f2c753a858"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1920.png",
+      "bytes": 2323964,
+      "sha256": "dd915f369e449c95dc62ff4fe3d2d2ad625027d1b8e77120b4b66e16d774db06"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-2040.png",
+      "bytes": 2519898,
+      "sha256": "71e850ed4025ff1fe9f8bf9f43728500cee82f5d692129a8da6cb2b1e1e7c75a"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/capture.json",
+      "bytes": 5522,
+      "sha256": "9aca6c049907c886269bcd0428f7f82b6a79db2eb8f1b44e0f52cd852eb1adeb"
     }
   ]
 }
