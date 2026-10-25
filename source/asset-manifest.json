@@ -4676,6 +4676,102 @@
       "path": "source/reviews/surprise-ink/2026-10-26/capture.json",
       "bytes": 4889,
       "sha256": "8b30f94532ffeb2210b90b95458a277c792acb907e72a5937e27cbe92a9febb8"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/capture.json",
+      "bytes": 5726,
+      "sha256": "3896c4b07881438d227e3e2c17a9fd886941bae49da965d8b81bcc22ff3a0d37"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/natural-playback.json",
+      "bytes": 13574,
+      "sha256": "51870ba088c0a598a4acf61a68e7c8e6030b5ca63c59ea05b9cda92fcd6e302b"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-0ms.png",
+      "bytes": 337256,
+      "sha256": "848399a23ffd6ecff477cee13ffd5fb893812d225f4d8c6f4cae421e20ac87a7"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-1680ms.png",
+      "bytes": 337886,
+      "sha256": "22d040b58a05b615366b1e9ce9d864287041adabb6661994a292b39e30818f2f"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-2250ms.png",
+      "bytes": 340095,
+      "sha256": "b5250d2a94b47106c21df9d5180542dacc2a6108d0ff35ed4d1bb3d3cfbc0c79"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-2850ms.png",
+      "bytes": 335877,
+      "sha256": "1ba1e6b14e8924650f42dac69215710d84b5cc12358fcf43f26cdf19e75b9779"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-900ms.png",
+      "bytes": 340094,
+      "sha256": "cb9f27f5b57f0d56ddb841dd5fa0331ce9757754830d90d4c5f2e76edf460365"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-0ms.png",
+      "bytes": 593305,
+      "sha256": "5cbc327e719e275f626ca598da388778bdae0d48c0d752deed0bb63d7c42c6f1"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-1680ms.png",
+      "bytes": 596359,
+      "sha256": "75dc1e8072dd814de7dcea77baaf2922c43e56cc84f055e5dd39665e08147184"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-2250ms.png",
+      "bytes": 598469,
+      "sha256": "f05d9d3bf7ab811442fc61877d2a2cd7875799287287466042f8476f9acdb00a"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-2850ms.png",
+      "bytes": 591124,
+      "sha256": "d2e8fa118752d1895db77d9d9bb74de56d32c2cdf11ec05e85fcc321665355b9"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-900ms.png",
+      "bytes": 598482,
+      "sha256": "cf1f43c46f39b2980abd55f9f1ac64707eb868f5d306e15c6a3159ca1460a863"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-page-1440.png",
+      "bytes": 1326779,
+      "sha256": "3623db0cff837b5a6d6b4a05af964b9fc91d5b8eca6f02b5195808e4b382bc4b"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-page-1920.png",
+      "bytes": 2066310,
+      "sha256": "a57116bc3c107bfe3fea881b7ee8e43cf58fe2c39e7bce2f43c21f93200bd14c"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-rest-1440.png",
+      "bytes": 366938,
+      "sha256": "c2c195224a88aadc5b24be54232e90d0909566e50cc51672c917305179e00584"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-rest-1920.png",
+      "bytes": 654424,
+      "sha256": "e888ab73ff6a0d14f3b1c1a33084a3f8111021757a21da1855a75e9e0f4751db"
     }
   ]
 }

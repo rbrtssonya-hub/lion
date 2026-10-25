@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { writeFile } from 'node:fs/promises';
 
 test.use({ trace: 'off' });
 
@@ -47,6 +48,10 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1440, height: 90
     const before = await page.locator('#expressionLion').boundingBox();
     await page.locator('#expressionLionTrigger').click();
     await expect.poll(() => page.evaluate(() => window.faceAnimations.length)).toBe(5);
+    expect(await page.evaluate(() => window.faceAnimations.slice(-5).map(animation => {
+      const { delay, duration } = animation.effect.getTiming();
+      return delay + duration;
+    }))).toEqual([3000, 3000, 3000, 3000, 3000]);
     const early = await sample(page, 45);
     expect(early['brow-left'].y).toBeLessThan(-.1);
     expect(early['eye-left'].sy).toBeCloseTo(1, 4);
@@ -70,6 +75,42 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1440, height: 90
     expect(await page.locator('#expressionLion').evaluate(image => image.tagName === 'IMG' && image.naturalWidth === 1254 && getComputedStyle(image).opacity === '1')).toBe(true);
   });
 }
+
+test('惊态真实播放约三秒，先停留再轻回收回应后自然复位', async ({ page }, testInfo) => {
+  await openSurprise(page);
+  await expect(rig(page)).toHaveAttribute('data-ready', 'true');
+  await page.locator('#expressionLionTrigger').click();
+  const playback = await page.evaluate(async () => {
+    const animations = window.faceAnimations.slice(-5);
+    await Promise.all(animations.map(animation => animation.ready));
+    const finished = animations.map(animation => animation.finished.catch(() => {}));
+    const brow = animations.find(animation => animation.effect.target.dataset.facePart === 'brow-left');
+    const started = brow.startTime;
+    const frames = [];
+    await new Promise(resolve => {
+      const tick = () => {
+        const playing = document.querySelector('.surprise-lion-rig').dataset.playing;
+        frames.push({ time: document.timeline.currentTime - started, playing,
+          y: new DOMMatrixReadOnly(getComputedStyle(brow.effect.target).transform).f });
+        if (playing === 'false' || document.timeline.currentTime - started > 3800) resolve();
+        else requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    await Promise.all(finished);
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    return { frames, elapsed: document.timeline.currentTime - started, playing: document.querySelector('.surprise-lion-rig').dataset.playing };
+  });
+  await writeFile(testInfo.outputPath('natural-playback.json'), JSON.stringify(playback, null, 2));
+  await testInfo.attach('natural-three-second-playback', { body: JSON.stringify(playback, null, 2), contentType: 'application/json' });
+  expect(playback.frames.some(frame => frame.time >= 650 && frame.time <= 1200 && frame.y < -20 && frame.playing === 'true')).toBe(true);
+  expect(playback.frames.some(frame => frame.time >= 1500 && frame.time <= 1850 && frame.y > -17 && frame.y < -9 && frame.playing === 'true')).toBe(true);
+  expect(playback.frames.some(frame => frame.time >= 2100 && frame.time <= 2420 && frame.y < -20 && frame.playing === 'true')).toBe(true);
+  expect(playback.frames.some(frame => frame.time >= 2500 && frame.time < 3000 && frame.playing === 'true')).toBe(true);
+  expect(playback.elapsed).toBeGreaterThanOrEqual(2950);
+  expect(playback.elapsed).toBeLessThan(3800);
+  expect(playback.playing).toBe('false');
+});
 
 test('惊态快速重播、切态、对照和减少动态立即取消五官动作', async ({ page }) => {
   await openSurprise(page);
