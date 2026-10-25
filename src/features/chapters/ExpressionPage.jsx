@@ -6,7 +6,7 @@ import ExpressionMotif from './ExpressionMotif.jsx';
 import ExpressionComparison from './ExpressionComparison.jsx';
 import useExpressionMotion from './useExpressionMotion.js';
 import useExpressionReaction from './useExpressionReaction.js';
-import SurpriseLion from './SurpriseLion.jsx';
+import ExpressionLion from './ExpressionLion.jsx';
 import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import '../../styles/expression-motion.css';
 
@@ -78,7 +78,8 @@ export default function ExpressionPage({ active = true, observation, onReturnToM
     triggerRef.current?.focus({ preventScroll: true });
   };
   const showDetails = () => {
-    if (current.id === 'surprise') { stopReaction(); setFaceRevision(previous => previous + 1); }
+    stopReaction();
+    setFaceRevision(previous => previous + 1);
     if (interactionRef.current.viewMode !== 'details') captureMotion();
     interactionRef.current = { ...interactionRef.current, viewMode: 'details' };
     setViewMode('details');
@@ -167,12 +168,12 @@ export default function ExpressionPage({ active = true, observation, onReturnToM
               spaceActivation.current = null;
             }} onBlur={() => { spaceActivation.current = null; }}>
             {selection.previous !== null && <div className="expression-lion-layer is-leaving" key={`out-${selection.revision}`} data-direction={selection.direction} aria-hidden="true"><div className="expression-lion-pose" data-expression={lionExpressions[selection.previous].name}><img className="expression-lion-image" src={media[lionExpressions[selection.previous].imageKey]} alt="" draggable="false" /></div></div>}
-            <div className="expression-lion-layer is-current" key={`in-${selection.revision}`} data-direction={selection.direction}><div className="expression-lion-pose" data-expression={current.name}>{current.id === 'surprise'
-              ? <SurpriseLion src={media[current.imageKey]} alt={`${current.name}态醒狮，按用户八态参考图AI辅助提取`} revision={faceRevision} active={active && !comparing} />
-              : <img className="expression-lion-image" id="expressionLion" src={media[current.imageKey]} alt={`${current.name}态醒狮，按用户八态参考图AI辅助提取`} draggable="false" />}</div></div>
+            <div className="expression-lion-layer is-current" key={`in-${selection.revision}`} data-direction={selection.direction}><div className="expression-lion-pose" data-expression={current.name}>
+              <ExpressionLion expressionId={current.id} src={media[current.imageKey]} alt={`${current.name}态醒狮，按用户八态参考图AI辅助提取`} revision={faceRevision} active={active && !comparing} />
+            </div></div>
           </button>
           <button type="button" className="expression-step expression-step--next" id="expressionNext" aria-label="下一神态" onClick={() => step(1)}><svg viewBox="0 0 40 24" aria-hidden="true"><path d="m4 4 16 16 16-16" /></svg></button>
-          <button type="button" className="expression-interaction-hint interaction-cue" id="expressionInteractionHint" onClick={showDetails}>{current.id === 'surprise' ? '点击狮头，眉眼狮口分别响应' : '点击狮头，查看神态解读'} <span aria-hidden="true">↗</span><small>滚轮或箭头切态</small></button>
+          <button type="button" className="expression-interaction-hint interaction-cue" id="expressionInteractionHint" onClick={showDetails}>点击狮头，眉眼狮口分别响应 <span aria-hidden="true">↗</span><small>滚轮或箭头切态</small></button>
         </div>
 
         <div className="expression-copy" id="expressionStateCopy" ref={copyRef} data-view={viewMode} data-surface="expressionOverlay" aria-live="polite" aria-atomic="true">

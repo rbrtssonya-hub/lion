@@ -1,5 +1,7 @@
 # 工程开发说明
 
+2026-10-26神态点击已扩展到全部八态：`ExpressionLion.jsx` 共用3秒分层播放、原图回退与清理；`face-profiles/` 保存各图独立的1254坐标、五部位变换与时序。进入神态时的整图短动作仍由 `useExpressionReaction` 维护，点击狮头后取消该整图动作并启动眉眼狮口，同时保留点击放大与原解读。静止/结束仍是原IMG，补绘仅填露出窗口；窗口蒙版超出轮廓4px覆盖静态羽化边缘，哀态眉根单独保留原图固定遮挡。新八态全覆盖测试 `expression-eight-face` 与已有 `expression-surprise-face`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 为相关验收入口。素材/提示词见[八态源记录](../source/design/expression-eight/README.md)，实跑与边界见[八态补验](../source/references/eight-state-face-motion-2026-10-26.md)。布局及章节转场沿用原版，未新增依赖。
+
 2026-10-25十二项视觉批注后的首页：主视觉向下滚轮或“探索更多”进入书页，再通过左侧导航切换四个一屏展板，继续向下不跳展板，向上回主视觉。`useHomeExhibit`统一外页/书页iframe滚轮、键盘及resize落点；停用时清滚动意图，长资料列保留局部阅读。书册导航并入说明底卡，完整纸面/标题/底卡共用列宽；旧独立宽度偏好不再拆散边界。结构浅折叠直接呈现，真实操作使用`interaction-cue`，Logo固定左侧。修改这些部分时以`book-screen`、`exhibit-content`、`exhibit-panels`、`home-exhibit-navigation`为新验收入口；测试进入隐藏展板要用`home-exhibit.helpers.js`中的真实探索/侧栏流程。实际结果与边界见[本轮验收](../source/references/exhibit-screen-review-2026-10-25.md)。
 
 2026-10-25四章视觉统一：首页入境、结构观形、动作起舞、神态传神共用 `ChapterIdentity` 和 `chapter-identity.css`，场景背景与材质仍由各章维护。`useChapterTransition` 将实际导航与展示章节分开：旧内容轻收后换景，背景跟随展示章节；保留首页/模型预热，快速切换与减少动态会取消旧等待。剧场在真实 ready 后补入标题和光层动效，避免被加载遮罩错过。神态的 `useExpressionReaction` 只对整张插画演示一次短动作，与原标题 FLIP 和可调点击放大分层运行。修改这些行为时运行 `chapter-identity`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 和相关导航/布局回归；导航轨迹专测先等独立模型准备，冷等待由 `chapter-identity` 的后台预热用例单独覆盖。

@@ -4772,6 +4772,120 @@
       "path": "source/reviews/surprise-duration/2026-10-26/surprise-rest-1920.png",
       "bytes": 654424,
       "sha256": "e888ab73ff6a0d14f3b1c1a33084a3f8111021757a21da1855a75e9e0f4751db"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-anger-underpaint-v1.png",
+      "bytes": 2047820,
+      "sha256": "5229dd7a6b8b20779c79b95e9f309388462bc86d16e4321b2f361e93e8c175d6"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-delight-underpaint-v1.png",
+      "bytes": 1946657,
+      "sha256": "d7ed77a8bdf8f876ba2a79ba2965822d51706d9cace75fa91b3b4655a8358fc2"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-doubt-underpaint-v1.png",
+      "bytes": 1816450,
+      "sha256": "d1513155cbc52982c91c963179cb403e8da2e0adab116602e2201e2d0a050e25"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-joy-underpaint-v1.png",
+      "bytes": 1713559,
+      "sha256": "b831020f1d37f44848aa29fbecc26baad8cc929edb44e60be1699309c7e55f67"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-motion-underpaint-v1.png",
+      "bytes": 2117141,
+      "sha256": "bf27ef4f3c6d2e3f17ff4923e88e930f4704d1b79ffd6a44fb662db09737df0d"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-sorrow-underpaint-v1.png",
+      "bytes": 1996477,
+      "sha256": "266f21fa53b5a6701b0d27078690cbb2ca9950dcdb5ed50bab0de532f394a451"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-stillness-underpaint-v1.png",
+      "bytes": 1939047,
+      "sha256": "3222ceca66dcf12f08528b14e4f5d82e6eb584fc37852437397088ed838dc093"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/anger-peak-1920.png",
+      "bytes": 602293,
+      "sha256": "4a92503bf99ad96207f04c195c955b726436c8e291a0e7a4c5af3309adf8d64d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/capture.json",
+      "bytes": 40554,
+      "sha256": "fa2ae0f8c05ed953d9edf53ef79b7b1a2346f9ccda63e3c9244b17e931dbc5de"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/delight-peak-1920.png",
+      "bytes": 605739,
+      "sha256": "e84737c37ab090c2c3b38aa754175ddec2a97b9fe37d655f3fb456b2e4e52f0d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/doubt-page-1440.png",
+      "bytes": 1320017,
+      "sha256": "4f30c35e37c6619437ed1a3a326d0c1c6c0cff88241d498d509ce0ce864b4a93"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/doubt-peak-1920.png",
+      "bytes": 587127,
+      "sha256": "98258d2b1c78b09a37f18ab22436f29b772f360bad48db22b53491cf176a5066"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-natural-playback.json",
+      "bytes": 107875,
+      "sha256": "f7b433007d7704cfcfac8b9b4f4c2765915b644a670700d6d4497e2d641db07d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-page-1440.png",
+      "bytes": 1326725,
+      "sha256": "7fa8365fd033aa651f7a3f3394aa14b9adf6c7489175be1c173198e0c8b60f95"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-peak-1920.png",
+      "bytes": 596382,
+      "sha256": "54f08df026f7a0beef69c7949da05587ec4711cff63e6482d8fddf1514d2e8e0"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/motion-peak-1920.png",
+      "bytes": 619809,
+      "sha256": "1df2d5e51d73dd57426ff90788c1ae29f70d8ec6fc2b465e7c61631b04d4da5e"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/sorrow-peak-1920.png",
+      "bytes": 607308,
+      "sha256": "6b1b25924e609c8720740861460ccf0fc7c3ab04f2afd58e8143b050de8cd8f7"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/stillness-peak-1920.png",
+      "bytes": 599797,
+      "sha256": "b4fd845a9317bfb2a253fcb33e65a916bf28ce9a416372d5a35fcc1209c5e1de"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/surprise-peak-1920.png",
+      "bytes": 598004,
+      "sha256": "4cb01a5a1434e6334bcf13eaab07fd2a86900e0b90680075c3b8ff80bfe97983"
     }
   ]
 }
