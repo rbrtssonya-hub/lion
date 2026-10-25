@@ -75,3 +75,65 @@
 @container book-reading (max-width: 600px) {
   .lion-book-reading-title, .lion-book-reading-copy { grid-column: 1 / -1; }
 }
+
+/* One archive screen: paper, seven stops and its reading share one column.
+   The upstream artwork has transparent margins; 2.225 is its painted-paper
+   width per stage height, not a scale transform on the page or its lettering. */
+.home-archive-scene #homeLionBook {
+  box-sizing: border-box; height: calc(100dvh - var(--site-header-height, 100px));
+  min-height: 0; padding: 8px 0; border: 0; container-type: size;
+}
+.home-archive-panel #homeLionBook { height: 100%; }
+#homeLionBook .lion-book-inner {
+  display: grid; grid-template-rows: 44px minmax(0, 1fr); gap: 6px;
+  width: min(calc(100% * var(--book-layout-ratio, 1)), calc((100cqh - 224px) * 2.225 * var(--book-layout-ratio, 1)));
+  max-width: calc(1560px * var(--book-layout-ratio, 1));
+  height: 100%; min-height: 0; margin-inline: auto;
+}
+.home-archive-scene #homeLionBook .lion-book-heading[data-surface='bookTitle'] {
+  display: grid; grid-template-columns: 220px minmax(0, 1fr);
+  align-items: center; gap: 20px; width: 100% !important; height: 44px;
+  padding: 0 16px; font-size: 38px; text-align: left; container-type: normal;
+}
+#homeLionBook .lion-book-heading .lion-archive-title-line { display: block; }
+#homeLionBook .lion-book-heading .lion-archive-title-line h2 { font-size: 38px; line-height: 1.1; white-space: nowrap; }
+#homeLionBook .lion-book-heading .lion-book-preface { display: flex; align-items: center; gap: 18px; width: 100%; max-width: none; text-align: left; }
+#homeLionBook .lion-book-heading .lion-book-preface p { flex-shrink: 0; margin: 0; font-size: 16px; line-height: 1.35; }
+#homeLionBook .lion-book-heading .lion-book-preface>span { display: block; font-size: 14px; line-height: 1.45; }
+#homeLionBook .lion-book-experience {
+  display: grid; grid-template-rows: minmax(0, 1fr) 168px; gap: 6px;
+  min-width: 0; min-height: 0;
+}
+.home-archive-scene #homeLionBook .lion-book-stage {
+  width: 100%; height: 100%; min-height: 0; margin: 0; overflow: hidden;
+}
+#homeLionBook .lion-book-stage .sketchbook {
+  position: relative; left: -5.68%; width: 111.36%; height: 100%;
+}
+#homeLionBook .lion-book-placeholder { height: 100%; min-height: 0; margin: 0; overflow: hidden; }
+#homeLionBook .lion-book-placeholder img { width: 111.36%; max-width: none; height: 176%; object-fit: contain; }
+#homeLionBook .lion-book-timeline.lion-book-game-nav {
+  width: calc(100% + 32px); height: 44px; margin: 0 0 0 -16px; padding: 10px 0 0;
+}
+#homeLionBook .lion-book-game-track { top: 15px; }
+#homeLionBook .lion-book-game-nav .lion-book-guide-character { width: 32px; height: 32px; margin-top: 53px; }
+#homeLionBook .lion-book-timeline.lion-book-game-nav button {
+  min-height: 34px; gap: 4px; padding: 0 4px; font-size: 16px; line-height: 1.25;
+}
+#homeLionBook .lion-book-game-nav .lion-book-game-platform { width: 42px; height: 10px; }
+#homeLionBook .lion-book-game-platform::before { top: -13px; font-size: 9px; line-height: 13px; }
+.home-archive-scene #homeLionBook .lion-book-reading {
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 44px minmax(0, 1fr);
+  gap: 0; align-items: center; width: 100% !important; height: 168px;
+  min-height: 0; margin: 0; padding: 8px 16px; container-type: normal;
+}
+#homeLionBook .lion-book-reading-content { display: grid; grid-template-columns: minmax(170px, .45fr) minmax(0, 1.55fr); gap: 20px; align-items: center; min-height: 0; }
+#homeLionBook .lion-book-reading-title { padding-left: 12px; }
+.home-archive-scene #homeLionBook .lion-book-reading-title>p { margin: 0 0 4px; font-size: 14px; line-height: 1.45; }
+.home-archive-scene #homeLionBook .lion-book-reading-title h3 { font-size: 24px; line-height: 1.35; }
+.home-archive-scene #homeLionBook .lion-book-reading-copy>p { margin: 0 0 3px; font-size: 18px; line-height: 1.55; letter-spacing: .01em; }
+.home-archive-scene #homeLionBook .lion-book-reading-copy>a { font-size: 12px; line-height: 1.5; }
+#homeLionBook .lion-book-additional-source { margin-left: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  #homeLionBook .lion-book-game-nav .lion-book-guide-character { top: 6px !important; margin-top: 0; }
+}

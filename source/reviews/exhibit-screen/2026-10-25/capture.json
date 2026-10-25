@@ -1,0 +1,625 @@
+{
+  "browser": "156.0.8078.47",
+  "node": "v24.20.0",
+  "captures": [
+    {
+      "filename": "book-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 990,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 216.328125,
+        "height": 80,
+        "top": 5,
+        "right": 264.328125,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1673,
+        "height": 990,
+        "top": 90,
+        "right": 1881,
+        "bottom": 1080,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "culture-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 990,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 216.328125,
+        "height": 80,
+        "top": 5,
+        "right": 264.328125,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1673,
+        "height": 990,
+        "top": 90,
+        "right": 1881,
+        "bottom": 1080,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "types-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 990,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 216.328125,
+        "height": 80,
+        "top": 5,
+        "right": 264.328125,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1673,
+        "height": 990,
+        "top": 90,
+        "right": 1881,
+        "bottom": 1080,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "sources-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 990,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 216.328125,
+        "height": 80,
+        "top": 5,
+        "right": 264.328125,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1673,
+        "height": 990,
+        "top": 90,
+        "right": 1881,
+        "bottom": 1080,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "model-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 80,
+        "height": 80,
+        "top": 5,
+        "right": 128,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -3632,
+        "y": 1080,
+        "width": 1688,
+        "height": 990,
+        "top": 1080,
+        "right": -1944,
+        "bottom": 2070,
+        "left": -3632
+      },
+      "hint": null
+    },
+    {
+      "filename": "action-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 80,
+        "height": 80,
+        "top": 5,
+        "right": 128,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -3632,
+        "y": 1080,
+        "width": 1688,
+        "height": 990,
+        "top": 1080,
+        "right": -1944,
+        "bottom": 2070,
+        "left": -3632
+      },
+      "hint": null
+    },
+    {
+      "filename": "state-1920.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 90,
+        "top": 0,
+        "right": 1905,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 80,
+        "height": 80,
+        "top": 5,
+        "right": 128,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -3632,
+        "y": 1080,
+        "width": 1688,
+        "height": 990,
+        "top": 1080,
+        "right": -1944,
+        "bottom": 2070,
+        "left": -3632
+      },
+      "hint": {
+        "x": 565.65625,
+        "y": 1000.609375,
+        "width": 312.3125,
+        "height": 43,
+        "top": 1000.609375,
+        "right": 877.96875,
+        "bottom": 1043.609375,
+        "left": 565.65625
+      }
+    },
+    {
+      "filename": "book-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 678,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 186,
+        "height": 80,
+        "top": 5,
+        "right": 234,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1119,
+        "height": 678,
+        "top": 90,
+        "right": 1327,
+        "bottom": 768,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "culture-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 678,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 186,
+        "height": 80,
+        "top": 5,
+        "right": 234,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1119,
+        "height": 678,
+        "top": 90,
+        "right": 1327,
+        "bottom": 768,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "types-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 678,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 186,
+        "height": 80,
+        "top": 5,
+        "right": 234,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1119,
+        "height": 678,
+        "top": 90,
+        "right": 1327,
+        "bottom": 768,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "sources-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 678,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 186,
+        "height": 80,
+        "top": 5,
+        "right": 234,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1119,
+        "height": 678,
+        "top": 90,
+        "right": 1327,
+        "bottom": 768,
+        "left": 208
+      },
+      "hint": null
+    },
+    {
+      "filename": "model-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 72,
+        "height": 80,
+        "top": 5,
+        "right": 120,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -2524,
+        "y": 768,
+        "width": 1134,
+        "height": 678,
+        "top": 768,
+        "right": -1390,
+        "bottom": 1446,
+        "left": -2524
+      },
+      "hint": null
+    },
+    {
+      "filename": "action-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 72,
+        "height": 80,
+        "top": 5,
+        "right": 120,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -2524,
+        "y": 768,
+        "width": 1134,
+        "height": 678,
+        "top": 768,
+        "right": -1390,
+        "bottom": 1446,
+        "left": -2524
+      },
+      "hint": null
+    },
+    {
+      "filename": "state-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollY": 0,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1351,
+        "height": 90,
+        "top": 0,
+        "right": 1351,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 72,
+        "height": 80,
+        "top": 5,
+        "right": 120,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": -2524,
+        "y": 768,
+        "width": 1134,
+        "height": 678,
+        "top": 768,
+        "right": -1390,
+        "bottom": 1446,
+        "left": -2524
+      },
+      "hint": {
+        "x": 355.734375,
+        "y": 688.609375,
+        "width": 312.3125,
+        "height": 43,
+        "top": 688.609375,
+        "right": 668.046875,
+        "bottom": 731.609375,
+        "left": 355.734375
+      }
+    },
+    {
+      "filename": "book-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollY": 810,
+      "overflowX": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 90,
+        "top": 0,
+        "right": 1425,
+        "bottom": 90,
+        "left": 0
+      },
+      "logo": {
+        "x": 48,
+        "y": 5,
+        "width": 186.078125,
+        "height": 80,
+        "top": 5,
+        "right": 234.078125,
+        "bottom": 85,
+        "left": 48
+      },
+      "panel": {
+        "x": 208,
+        "y": 90,
+        "width": 1193,
+        "height": 810,
+        "top": 90,
+        "right": 1401,
+        "bottom": 900,
+        "left": 208
+      },
+      "hint": null
+    }
+  ],
+  "errors": []
+}

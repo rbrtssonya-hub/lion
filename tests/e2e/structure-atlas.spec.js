@@ -198,7 +198,7 @@ test('前后导航双向循环并复用模型，选择停止自动旋转且复�
   await canvas.dispose();
 });
 
-test('三段文化解说可展开阅读六部件的全部原结构、工艺和文化资料', async ({ page }) => {
+test('三段文化解说无需展开即可阅读六部件的全部原结构、工艺和文化资料', async ({ page }) => {
   await openModel(page);
   const panel = page.locator('#structurePanel');
   for (let index = 0; index < parts.length; index += 1) {
@@ -206,12 +206,8 @@ test('三段文化解说可展开阅读六部件的全部原结构、工艺和�
     for (const heading of ['形制之美', '匠心之艺', '狮韵之意']) {
       await expect(panel.getByRole('heading', { name: heading, exact: true })).toHaveCount(1);
     }
-    const details = panel.locator('.structure-more-reading');
-    expect(await details.count()).toBeGreaterThan(0);
-    for (const detail of await details.all()) {
-      if (!(await detail.getAttribute('open') === '')) await detail.locator('summary').click();
-      await expect(detail).toHaveAttribute('open', '');
-    }
+    await expect(panel.locator('details')).toHaveCount(0);
+    for (const reading of await panel.locator('.structure-more-reading').all()) await expect(reading).toBeVisible();
     const part = parts[index];
     const rendered = await panel.innerText();
     for (const text of [part.material, part.function, part.description, part.sourceTag,
@@ -219,7 +215,6 @@ test('三段文化解说可展开阅读六部件的全部原结构、工艺和�
       ...Object.values(part.culture)]) {
       expect(rendered, `${part.id}: retain original readable text`).toContain(text);
     }
-    await page.locator('#structureBoundary summary').click();
     await expect(page.locator('#structureBoundary p')).toBeVisible();
     await expect(page.locator('#structureBoundary p')).toContainText(/六幅朱砂书法由\s*AI\s*辅助生成/);
     if (index === 0) {
@@ -250,7 +245,6 @@ for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 
     expect(artBox.width).toBeGreaterThanOrEqual(150);
     expect(artBox.x).toBeGreaterThanOrEqual(box.x);
     expect(artBox.x + artBox.width).toBeLessThanOrEqual(box.x + box.width);
-    await page.locator('#structureBoundary summary').click();
     await page.locator('#structureBoundary p').scrollIntoViewIfNeeded();
     await expect(page.locator('#structureBoundary p')).toBeInViewport();
     const scroll = await page.locator('#modelDetailContent').evaluate(node => ({ top: node.scrollTop, overflow: getComputedStyle(node).overflowY }));
@@ -279,7 +273,6 @@ test('电脑缩放后的683px余宽将图鉴置于模型下方，正文滚动与
   await page.screenshot({ path: test.info().outputPath('structure-atlas-683-model-viewport.png') });
   await page.locator('#structureCalligraphy').scrollIntoViewIfNeeded();
   await expect(page.locator('#structureCalligraphy')).toBeInViewport();
-  await page.locator('#structureBoundary summary').click();
   await page.locator('#structureBoundary p').scrollIntoViewIfNeeded();
   await expect(page.locator('#structureBoundary p')).toBeInViewport();
   expect(await page.locator('#modelDetailContent').evaluate(node => node.scrollTop)).toBeGreaterThan(0);
@@ -338,12 +331,10 @@ test('合法40%资料底板宽度在900与1920电脑窗仍完整呈现题签图�
     await expectSelection(page, 1);
     await page.locator('#previousStructurePart').click();
     await expectSelection(page, 0);
-    await page.locator('#structureBoundary summary').click();
     await page.locator('#structureBoundary p').scrollIntoViewIfNeeded();
     await expect(page.locator('#structureBoundary p')).toBeInViewport();
     expect(await page.locator('#modelDetailContent').evaluate(node => node.scrollWidth - node.clientWidth)).toBeLessThanOrEqual(1);
     await panel.screenshot({ path: test.info().outputPath(`structure-atlas-width40-${viewport.width}.png`) });
-    await page.locator('#structureBoundary summary').click();
   }
 });
 

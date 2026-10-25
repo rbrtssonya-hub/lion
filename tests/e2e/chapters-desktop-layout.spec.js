@@ -68,7 +68,6 @@ test('结构在矮窄到4K电脑窗口重排，模型与独立滚动图鉴都保
   await resize(page, 675, 403);
   await page.locator('[data-part-id="lion_cloth"] button, button[data-part-id="lion_cloth"]').last().click();
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'lion_cloth');
-  await page.locator('#structureBoundary summary').click();
   await expect(page.locator('#structureBoundary p')).toBeVisible();
   await page.locator('#nextStructurePart').click();
   await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'outer_shell');

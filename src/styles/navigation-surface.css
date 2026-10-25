@@ -24,7 +24,7 @@
     rgb(var(--header-start-rgb, 104 23 15) / var(--header-fill-opacity, .8)),
     rgb(var(--header-middle-rgb, 139 32 20) / var(--header-fill-opacity, .8)) 48%,
     rgb(var(--header-end-rgb, 115 24 15) / var(--header-fill-opacity, .8)));
-  box-shadow: none;
+  box-shadow: 0 7px 25px #410d0a2b;
   transform: none;
   transition: none;
 }
@@ -35,3 +35,5 @@
 .site-header[data-nav-mode='compact'] .site-nav-symbol { gap: 12px; }
 .site-header[data-nav-mode='compact'] .site-nav-item:hover { background: #ffe4b614; }
 .site-header[data-nav-mode='compact'] .site-nav-item.is-current { background: #ffe4b60d; }
+.site-header[data-nav-mode='compact'] .site-brand-capsule { margin-left: var(--navigation-home-brand-offset, 24px); }
+.site-header[data-nav-mode='compact'] .site-navigation { margin-left: auto; }

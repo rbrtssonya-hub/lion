@@ -1,0 +1,37 @@
+/* An operation keeps its own layout; a quiet edge pulse distinguishes it
+   from the attribution and evidence text beside it. */
+.interaction-cue {
+  --cue-glow: #b23b2947;
+  animation: interaction-breathe 3.8s ease-in-out infinite;
+  text-underline-offset: .22em;
+}
+.interaction-cue--dark { --cue-glow: #ebbe714d; }
+.interaction-cue:hover, .interaction-cue:focus-visible { animation-play-state: paused; }
+@keyframes interaction-breathe {
+  0%, 56%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  76% { filter: drop-shadow(0 0 5px var(--cue-glow)); }
+}
+.expression-page { overflow-x: clip; }
+.expression-state-nav { border-radius: 14px; background: #fffaf2e8; box-shadow: 0 5px 22px #66351d0d; }
+.expression-active-badge { isolation: isolate; box-shadow: 0 6px 18px #8c241c2b; }
+.expression-active-badge::before {
+  content: ''; position: absolute; z-index: -1; top: 0; right: 0;
+  width: 100vw; height: 100%; border-radius: inherit;
+  background: var(--expression-red); box-shadow: 0 6px 20px #8c241c2b;
+}
+.expression-page .expression-interaction-hint {
+  position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 4px 10px; width: max-content; max-width: 100%; min-height: 40px;
+  margin: 0 auto; padding: 7px 14px; border: 1px solid #b43a2d80; border-radius: 999px;
+  color: #922c20; background: #fffaf2f5; box-shadow: 0 4px 14px #722f2015;
+  font: 500 14px/1.5 var(--sans); cursor: pointer; text-shadow: none;
+}
+.expression-interaction-hint small { color: #6e5544; font-size: 11px; }
+.expression-interaction-hint > span { font-size: 18px; }
+.expression-page .expression-step--next { bottom: 54px; }
+.expression-page .expression-lion-stack { --expression-photo-height: min(73%, calc((100% - 2 * var(--expression-step-size) - 78px) / var(--expression-click-scale, 1.08))); }
+.heritage-figure .heritage-image-action { padding: 4px 10px; border: 1px solid #b43a2d66; border-radius: 999px; color: #922c20; background: #fffaf2f5; font: 500 13px/1.5 var(--sans); cursor: pointer; }
+.home-archive-return.interaction-cue { border: 1px solid #bc775a80; border-radius: 999px; color: #8e3022; background: #fffaf1f2; }
+@media (prefers-reduced-motion: reduce) {
+  .interaction-cue { animation: none !important; }
+}

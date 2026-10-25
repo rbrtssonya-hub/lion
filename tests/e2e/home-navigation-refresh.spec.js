@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { expectExhibitFrame, returnToHomeHero, selectHomeExhibit } from './home-exhibit.helpers.js';
 import { selectSettingsFor } from './settings-navigation.helpers.js';
 import { buildSync } from 'esbuild';
 import { fileURLToPath } from 'node:url';
@@ -18,16 +19,10 @@ async function openBook(page, reducedMotion = 'reduce') {
   });
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
-  await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
+  await selectHomeExhibit(page);
 }
 
-async function showRealArchive(page, id = 'homeLionBook') {
-  await page.evaluate(id => {
-    const section = document.getElementById(id), header = document.querySelector('.site-header').getBoundingClientRect();
-    window.scrollTo({ top: scrollY + section.getBoundingClientRect().top - header.bottom, behavior: 'instant' });
-  }, id);
-  await expect(page.locator('.home-archive-nav')).toBeVisible();
-}
+async function showRealArchive(page, id = 'homeLionBook') { await selectHomeExhibit(page, id); }
 
 // Mount the actual components without editing the concurrently owned HomePage.
 // Removing a navigation command, its keyboard containment or lifecycle cleanup
@@ -56,6 +51,8 @@ async function openFixture(page, reducedMotion = 'reduce') {
       import { createRoot } from 'react-dom/client';
       import BookTimeline from './src/features/home/BookTimeline.jsx';
       import HomeArchiveNav from './src/features/home/HomeArchiveNav.jsx';
+      import useHomeExhibit from './src/features/home/useHomeExhibit.js';
+      import './src/styles/home-exhibit.css';
       import './src/styles/lion-book.css';
       import './src/styles/home-navigation.css';
       const h = React.createElement;
@@ -64,16 +61,26 @@ async function openFixture(page, reducedMotion = 'reduce') {
         const [enabled, setEnabled] = React.useState(true);
         const [ink, setInk] = React.useState(true);
         const [home, setHome] = React.useState(true);
+        const exhibit = useHomeExhibit(home && enabled);
         window.navigationFixture = { setEnabled, setInk, setHome, setIndex };
-        return h('div', {className:'site-page'}, h('header', {className:'site-header'}), home &&
-          h('div', {className:'home-page',onKeyDown:()=>{window.bubbledHomeKeys=(window.bubbledHomeKeys||0)+1}}, h('div',{className:'entry-gate'}),
-            h('div',{className:'home-archive-scene'},
-              ...${JSON.stringify(ids)}.map((id, i) => h('section',{id,key:id,'aria-labelledby':id+'-title'},
-                h('h2',{id:id+'-title'},id), i === 0 && h('div',{className:'lion-book-experience',
-                  onKeyDown:()=>{window.bubbledBookKeys=(window.bubbledBookKeys||0)+1}},
-                  h(BookTimeline,{book:{ready:true,index},index,inkEnabled:ink,playbackEnabled:enabled,
-                    send:(action,value)=>{window.lastBookCommand={action,value};window.bookCommandCount=(window.bookCommandCount||0)+1;setIndex(value)}}))))),
-            h(HomeArchiveNav,{playbackEnabled:enabled,particlesEnabled:ink})));
+        return <div className="site-page" style={{'--site-header-height':'88px'}}>
+          <header className="site-header" />
+          {home && <div className="home-page" onKeyDown={()=>{window.bubbledHomeKeys=(window.bubbledHomeKeys||0)+1}}>
+            <div className="entry-gate"><button id="enterWork" onClick={exhibit.enter}>探索更多</button></div>
+            <div className="home-archive-scene home-exhibit" ref={exhibit.archiveRef}>
+              {${JSON.stringify(ids)}.map((id, i) => <div className="home-archive-panel" hidden={exhibit.active!==i} key={id}>
+                <section id={id} aria-labelledby={id+'-title'}><h2 id={id+'-title'}>{id}</h2>
+                  {i===0 && <div className="lion-book-experience" onKeyDown={()=>{window.bubbledBookKeys=(window.bubbledBookKeys||0)+1}}>
+                    <BookTimeline book={{ready:true,index}} index={index} inkEnabled={ink} playbackEnabled={enabled}
+                      send={(action,value)=>{window.lastBookCommand={action,value};window.bookCommandCount=(window.bookCommandCount||0)+1;setIndex(value)}} />
+                  </div>}
+                </section>
+              </div>)}
+            </div>
+            <HomeArchiveNav playbackEnabled={enabled} particlesEnabled={ink} current={exhibit.active} visible={exhibit.visible}
+              onSelect={exhibit.select} onReturnHome={exhibit.returnHome} />
+          </div>}
+        </div>;
       }
       createRoot(document.getElementById('root')).render(h(React.StrictMode,null,h(Fixture)));
 ` },
@@ -91,8 +98,9 @@ async function openFixture(page, reducedMotion = 'reduce') {
       .site-header{position:fixed;inset:0 0 auto;height:88px;z-index:50;background:#eee}
       .site-page{container:lion-page / inline-size;width:100%}
       .entry-gate{height:1100px}.home-archive-scene{position:relative;padding-inline:208px;container-type:inline-size}
+      #enterWork{position:relative;top:150px}
       @container lion-page (max-width:1250px){.home-archive-scene{padding-inline:132px}}
-      section{min-height:1100px;padding:30px}h2{margin:0 0 24px}
+      section{height:100%;min-height:0;padding:30px}h2{margin:0 0 24px}
     </style><link rel="stylesheet" href="/__home-navigation-fixture.css"></head>
     <body><div id="root"></div><script type="module" src="/__home-navigation-fixture.js"></script></body></html>` }));
   await page.goto('/__home-navigation-refresh');
@@ -100,12 +108,7 @@ async function openFixture(page, reducedMotion = 'reduce') {
   expect(errors).toEqual([]);
 }
 
-async function alignSection(page, id) {
-  await page.evaluate(id => {
-    const section = document.getElementById(id);
-    window.scrollTo({ top: scrollY + section.getBoundingClientRect().top - 88, behavior: 'instant' });
-  }, id);
-}
+async function alignSection(page, id) { await selectHomeExhibit(page, id); }
 
 test('seven era selections command the real book and preserve its controlled current state', async ({ page }) => {
   await openBook(page);
@@ -142,33 +145,33 @@ test('book keys stay inside navigation and controlled updates never send extra c
   expect(await page.evaluate(() => window.lastBookCommand)).toBeNull();
 });
 
-test('four sidebar jumps align headers, manual scroll follows current, hero and other routes hide it', async ({ page }) => {
+test('four controlled sidebar selections align panels, hero and other routes hide the rail', async ({ page }) => {
   await openFixture(page);
   const nav = page.getByRole('navigation', { name: '首页章节导航', includeHidden: true });
   await expect(nav).toBeHidden();
   await alignSection(page, ids[0]);
   await expect(nav).toBeVisible();
-  await expect(nav.locator('button')).toHaveCount(4);
-  await expect(nav.locator('button')).toHaveText(['岭南醒狮志', '醒狮文化', '醒狮种类', '参考资料']);
+  await expect(nav.locator('[data-home-section]')).toHaveCount(4);
+  await expect(nav.locator('[data-home-section]')).toHaveText(['岭南醒狮志', '醒狮文化', '醒狮种类', '参考资料']);
   for (const id of ids) {
     const button = nav.locator(`[data-home-section="${id}"]`);
     await button.click();
     await expect(button).toHaveAttribute('aria-current', 'location');
     const top = await page.locator(`#${id} h2`).evaluate(el => el.getBoundingClientRect().top);
     expect(top).toBeGreaterThanOrEqual(88);
-    expect(top).toBeLessThan(113);
+    expect(top).toBeLessThan(150);
   }
   await alignSection(page, ids[1]);
   await expect(nav.locator(`[data-home-section="${ids[1]}"]`)).toHaveAttribute('aria-current', 'location');
   await expect(nav.locator('[aria-current]')).toHaveCount(1);
-  await nav.locator('button').first().focus();
+  await nav.locator('[data-home-section]').first().focus();
   await page.keyboard.press('End');
-  await expect(nav.locator('button').last()).toBeFocused();
+  await expect(nav.locator('[data-home-section]').last()).toBeFocused();
   await page.keyboard.press('Space');
-  await expect(nav.locator('button').last()).toHaveAttribute('aria-current', 'location');
+  await expect(nav.locator('[data-home-section]').last()).toHaveAttribute('aria-current', 'location');
   expect(await page.evaluate(() => window.bubbledHomeKeys || 0)).toBe(0);
   expect(new URL(page.url()).hash).toBe('');
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await returnToHomeHero(page);
   await expect(nav).toBeHidden();
   await page.evaluate(() => window.navigationFixture.setHome(false));
   await expect(nav).toHaveCount(0);
@@ -254,7 +257,7 @@ test('a settings push to 900px remaining switches the rail without a window resi
   const nav = page.locator('.home-archive-nav');
   await expect.poll(async () => (await nav.boundingBox()).width).toBe(184);
   await page.locator('.site-page').evaluate(element => { element.style.width = '900px'; });
-  await expect.poll(async () => (await nav.boundingBox()).width).toBe(140);
+  await expect.poll(async () => (await nav.boundingBox()).width).toBe(116);
   const rail = await nav.boundingBox(), content = await page.locator('#homeLionBook .lion-book-experience').boundingBox();
   expect(rail.x + rail.width).toBeLessThanOrEqual(content.x);
   const offset = await nav.evaluate(element => {
@@ -279,7 +282,7 @@ test('container resize repositions the visible sidebar without a window resize',
   expect(await page.evaluate(() => window.navigationResizeEvents)).toBe(0);
 });
 
-test('smooth sidebar selection stays on the requested section until arrival', async ({ page }) => {
+test('sidebar selection commits only the requested panel without an intermediate selection', async ({ page }) => {
   await openFixture(page, 'no-preference');
   await alignSection(page, ids[0]);
   const nav = page.locator('.home-archive-nav');
@@ -293,48 +296,44 @@ test('smooth sidebar selection stays on the requested section until arrival', as
     window.navigationSelectionObserver.observe(element, { subtree: true, attributes: true, attributeFilter: ['aria-current'] });
   });
   await nav.locator('[data-home-section="homeCultureSources"]').click();
-  await expect.poll(() => page.locator('#homeCultureSources h2').evaluate(heading => Math.abs(heading.getBoundingClientRect().top - 112))).toBeLessThan(2);
+  await expectExhibitFrame(page, 'homeCultureSources');
   const selections = await page.evaluate(() => { window.navigationSelectionObserver.disconnect(); return window.navigationSelections; });
   expect(selections.length).toBeGreaterThan(0);
   expect([...new Set(selections)]).toEqual(['homeCultureSources']);
 });
 
-test('PageUp from a focused sidebar cancels the smooth target and follows manual scrolling', async ({ page }) => {
+test('PageUp from a focused sidebar returns to the hero without changing the route', async ({ page }) => {
   await openFixture(page, 'no-preference');
   await alignSection(page, ids[1]);
   const nav = page.locator('.home-archive-nav');
   await expect(nav).toBeVisible();
   await nav.locator('[data-home-section="homeCultureSources"]').click();
   await page.keyboard.press('PageUp');
-  await expect(nav.locator('[data-home-section="homeLionBook"]')).toHaveAttribute('aria-current', 'location', { timeout: 2500 });
+  await expect(nav).toBeHidden();
+  await expect(page.locator('#enterWork')).toBeInViewport();
 });
 
-test('mounted HomePage sidebar jumps to all four real sections and tracks manual scrolling and routes', async ({ page }) => {
+test('mounted HomePage sidebar jumps to four real panels and preserves hero and chapter returns', async ({ page }) => {
   await openBook(page);
   const nav = page.getByRole('navigation', { name: '首页章节导航', includeHidden: true });
   await expect(nav).toHaveCount(1);
   await expect(page.locator('#homeInheritors')).toHaveCount(0);
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await returnToHomeHero(page);
   await expect(nav).toBeHidden();
   await showRealArchive(page);
-  await expect(nav.locator('button')).toHaveCount(4);
-  await expect(nav.locator('button')).toHaveText(['岭南醒狮志', '醒狮文化', '醒狮种类', '参考资料']);
+  await expect(nav.locator('[data-home-section]')).toHaveCount(4);
+  await expect(nav.locator('[data-home-section]')).toHaveText(['岭南醒狮志', '醒狮文化', '醒狮种类', '参考资料']);
   for (const id of ids) {
     await nav.locator(`[data-home-section="${id}"]`).click();
     await expect(nav.locator(`[data-home-section="${id}"]`)).toHaveAttribute('aria-current', 'location');
-    await expect.poll(() => page.evaluate(id => {
-      const section = document.getElementById(id), heading = document.getElementById(section.getAttribute('aria-labelledby'));
-      const desired = scrollY + heading.getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom - 24;
-      const target = Math.max(0, Math.min(desired, document.documentElement.scrollHeight - innerHeight));
-      return Math.abs(scrollY - target);
-    }, id)).toBeLessThan(2);
+    await expectExhibitFrame(page, id);
   }
   await showRealArchive(page, 'homeLionTypes');
   await expect(nav.locator('[data-home-section="homeLionTypes"]')).toHaveAttribute('aria-current', 'location');
   const originalHash = new URL(page.url()).hash;
-  await nav.locator('button').first().focus();
+  await nav.locator('[data-home-section]').first().focus();
   await page.keyboard.press('End');
-  await expect(nav.locator('button').last()).toBeFocused();
+  await expect(nav.locator('[data-home-section]').last()).toBeFocused();
   expect(new URL(page.url()).hash).toBe(originalHash);
   await page.locator('.site-header [data-route="state"]').click();
   await expect(nav).toBeHidden();
@@ -345,7 +344,7 @@ test('mounted HomePage sidebar jumps to all four real sections and tracks manual
   await expect(nav).toBeVisible();
 });
 
-test('mounted HomePage sidebar handles settings push and short final sources section', async ({ page }) => {
+test('mounted HomePage sidebar handles settings push and the one-screen sources frame', async ({ page }) => {
   await openBook(page, 'no-preference');
   await page.setViewportSize({ width: 1600, height: 900 });
   await showRealArchive(page);
@@ -357,19 +356,18 @@ test('mounted HomePage sidebar handles settings push and short final sources sec
   const width = page.getByRole('spinbutton', { name: '设置面板宽度数值', exact: true });
   await width.fill(String(available - 900)); await width.press('Tab');
   await expect.poll(() => page.locator('.site-page').evaluate(element => Math.abs(element.getBoundingClientRect().width - 900))).toBeLessThan(2);
-  await expect.poll(async () => (await nav.boundingBox()).width).toBe(140);
+  await expect.poll(async () => (await nav.boundingBox()).width).toBe(116);
   const box = await nav.boundingBox();
   const pageBox = await page.locator('.site-page').boundingBox();
   expect(Math.abs(box.x - pageBox.x - 12)).toBeLessThan(1);
-  await page.getByRole('button', { name: '关闭开发者参数', exact: true }).click();
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.locator('.site-page').evaluate((element, available) => Math.abs(element.getBoundingClientRect().width - available), available)).toBeLessThan(2);
-  await page.locator('#homeCultureSources').evaluate(section => { section.style.cssText += ';height:240px;min-height:0;overflow:hidden;padding-block:24px'; });
   await nav.locator('[data-home-section="homeCultureSources"]').click();
-  await expect.poll(() => page.evaluate(() => Math.abs(document.documentElement.scrollHeight - innerHeight - scrollY))).toBeLessThan(2);
+  await expectExhibitFrame(page, 'homeCultureSources');
   await expect(nav.locator('[data-home-section="homeCultureSources"]')).toHaveAttribute('aria-current', 'location');
 });
 
-test('mounted HomePage sidebar keeps a smooth target and releases observers when reduced or backgrounded', async ({ page }) => {
+test('mounted HomePage sidebar keeps the selected panel and releases observers when reduced or backgrounded', async ({ page }) => {
   await openBook(page, 'no-preference');
   await showRealArchive(page);
   const nav = page.locator('.home-archive-nav');
@@ -383,7 +381,7 @@ test('mounted HomePage sidebar keeps a smooth target and releases observers when
     window.realNavigationObserver.observe(element, { subtree: true, attributes: true, attributeFilter: ['aria-current'] });
   });
   await nav.locator('[data-home-section="homeLionTypes"]').click();
-  await expect.poll(() => page.locator('#homeLionTypes h2').evaluate(heading => Math.abs(heading.getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom - 24))).toBeLessThan(2);
+  await expectExhibitFrame(page, 'homeLionTypes');
   expect(await page.evaluate(() => { window.realNavigationObserver.disconnect(); return [...new Set(window.realNavigationSelections)]; })).toEqual(['homeLionTypes']);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(nav).toHaveAttribute('data-observing', 'false');

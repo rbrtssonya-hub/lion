@@ -212,10 +212,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         </aside>
       </div>
       <div className="theater-view-tools">
-        <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
+        <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
           {flatMode ? '返回巨幕' : '平面观看'}
         </button>
-        <button type="button" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
+        <button type="button" className="interaction-cue interaction-cue--dark" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
           <Icon kind="fullscreen" />
         </button>
       </div>
@@ -243,13 +243,13 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
 
       <div className="theater-bottom">
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
-          {clips.map((clip, index) => <button type="button" key={clip.id} data-action-id={clip.id}
+          {clips.map((clip, index) => <button type="button" className="interaction-cue interaction-cue--dark" key={clip.id} data-action-id={clip.id}
             aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>
             <span>{String(index + 1).padStart(2, '0')}</span><strong>{clip.name}</strong>
           </button>)}
         </nav>
         <div id="theaterControls" className="theater-controls" aria-label="当前动作播放控制">
-          <button type="button" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
+          <button type="button" className="interaction-cue interaction-cue--dark" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
           <span className="theater-time">{clock(playback.view.currentTime)} <i>/</i> {clock(duration)}</span>
           <input type="range" min="0" max={duration || 1} step=".01" value={duration ? Math.min(playback.view.currentTime || 0, duration) : 0}
             style={{ '--theater-seek-head': `url("${new URL(assets.navLion ?? media.navLion, document.baseURI).href}")` }}

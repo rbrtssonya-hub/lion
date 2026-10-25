@@ -146,7 +146,7 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
       style={{ '--culture-photo-aspect': photo.width / photo.height, '--culture-focus-scale': settings.carouselFocusScale / 100 }}
       onClick={event => {
         if (status === 'ready' || event.button !== 0 || !isPageVisible ||
-          event.target.closest('.culture-depth-photo-action') || !isFallbackRightSide(event)) return;
+          event.target.closest('button') || !isFallbackRightSide(event)) return;
         onNext();
       }} onPointerMove={event => {
         if (status !== 'ready') event.currentTarget.style.cursor = isFallbackRightSide(event) ? 'pointer' : '';
@@ -154,13 +154,15 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
         if (status !== 'ready') event.currentTarget.style.cursor = '';
       }}>
       <div className="culture-depth-atmosphere" aria-hidden="true" />
-      <span className="culture-depth-label" aria-hidden="true">风土入画 <i /> 狮影成章</span>
       <canvas key={reducedMotion ? 'static' : 'animated'} ref={canvasRef} className="culture-depth-canvas" aria-hidden="true" />
       <button className="culture-depth-photo-action" type="button" aria-label="下一张文化照片"
         aria-describedby="culture-photo-instructions" aria-controls={`culture-panel-${stories[currentIndex].id}`}
         onClick={onNext} onPointerEnter={handleFallbackPointer} onPointerMove={handleFallbackPointer}
         onPointerLeave={clearFallbackPointer} onPointerCancel={clearFallbackPointer} />
-      <div className="culture-depth-axis" aria-hidden="true"><span>近</span><i /><span>远</span></div>
+      <button className="culture-depth-next interaction-cue" type="button" onClick={onNext}
+        aria-controls={`culture-panel-${stories[currentIndex].id}`}>
+        点击照片，换一幅风土 <span aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')} →</span>
+      </button>
     </div>
   );
 }

@@ -12,7 +12,9 @@ async function open(page, saved = {}) {
     if (!localStorage.getItem(storageKey)) localStorage.setItem(storageKey, JSON.stringify({ bookAutoplay: false, ...saved }));
   }, { storageKey, saved });
   await page.goto('/');
-  await sources(page).scrollIntoViewIfNeeded();
+  await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 45000 });
+  await page.locator('#enterWork').click();
+  await page.locator('.home-archive-nav [data-home-section="homeCultureSources"]').click();
 }
 async function settings(page) {
   await page.locator('.site-navigation [data-action="settings"]').click();
@@ -64,7 +66,6 @@ test('maximum source font sizes fit narrow desktop surfaces and expose readable 
     await sources(page).scrollIntoViewIfNeeded();
     await typography(page, 48, 28, 22);
     for (const section of ['.home-culture-photo-licenses', '.archive-provenance']) {
-      await sources(page).locator(`${section} > summary`).click();
       await expect(sources(page).locator(`${section} p`).first()).toHaveCSS('font-size', '28px');
     }
     await expect(sources(page).locator('.home-culture-photo-license .home-culture-credit').first()).toHaveCSS('font-size', '22px');
@@ -72,6 +73,5 @@ test('maximum source font sizes fit narrow desktop surfaces and expose readable 
       width: node.clientWidth, content: node.scrollWidth,
     })));
     expect(boxes.every(box => box.content <= box.width + 1), JSON.stringify({ width, boxes })).toBe(true);
-    for (const section of ['.home-culture-photo-licenses', '.archive-provenance']) await sources(page).locator(`${section} > summary`).click();
   }
 });

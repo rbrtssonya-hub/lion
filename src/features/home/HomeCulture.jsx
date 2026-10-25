@@ -5,12 +5,13 @@ import { useCultureCarousel } from './useCultureCarousel.js';
 import CultureDepthGallery from './CultureDepthGallery.jsx';
 import LionArchiveOrnament from './LionArchiveOrnament.jsx';
 import '../../styles/home-culture.css';
+import '../../styles/home-exhibit-content.css';
 
 export function PhotoCredit({ photo }) {
   return (
     <span className="home-culture-credit">
-      摄影：<a href={photo.sourceUrl} target="_blank" rel="noreferrer">{photo.author}</a>
-      {' · '}<a href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>
+      摄影：<a className="interaction-cue" href={photo.sourceUrl} target="_blank" rel="noreferrer">{photo.author}</a>
+      {' · '}<a className="interaction-cue" href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>
     </span>
   );
 }
@@ -49,7 +50,7 @@ function CultureSlide({ story, active }) {
         <p className="home-culture-note">{story.note}</p>
         <div className="heritage-links">{story.sources.map(id => {
           const source = homeCultureSources.find(item => item.id === id);
-          return <a key={id} href={source.url} target="_blank" rel="noreferrer">资料 · {source.label} ↗</a>;
+          return <a className="interaction-cue" key={id} href={source.url} target="_blank" rel="noreferrer">资料 · {source.label} ↗</a>;
         })}</div>
       </div>
     </article>
@@ -127,8 +128,8 @@ export default function HomeCulture({ settings, preload = false, playbackEnabled
             <div className="lion-archive-title-line"><h2 id="home-culture-title">一头醒狮，一方风土。</h2><LionArchiveOrnament kind="paw" /></div>
           </div>
           <div className="home-culture-intro-copy">
-            <p>醒狮文化 · 纵深图鉴</p>
-            <p>从岭南的街巷到远方的节庆，图片与文字同步展开，让一头醒狮背后的风土、工艺、动作与默契逐项显影。</p>
+            <p>醒狮文化 · 风土与狮艺</p>
+            <p>从街巷到节庆，循着实景照片，认识醒狮的风土、工艺与默契。</p>
           </div>
         </header>
 

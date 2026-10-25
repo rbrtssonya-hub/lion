@@ -12,7 +12,9 @@ import HomeCultureSources from './HomeCultureSources.jsx';
 import HomeArchiveNav from './HomeArchiveNav.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
 import EntryAnimationOverlay from './EntryAnimationOverlay.jsx';
+import useHomeExhibit from './useHomeExhibit.js';
 import '../../styles/home-archive.css';
+import '../../styles/home-exhibit.css';
 
 export default function HomePage({ settings, playbackEnabled = true, onBookReady, onGalleryReady, onVideoReady }) {
   const { introActive, entryAnimationActive, playbackId, finishIntro, finishVideo, finishEntryAnimation, replayIntro } = useEntryPlayback(playbackEnabled);
@@ -20,15 +22,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
   const [volume, setVolume] = useMediaVolumePreference();
   const [audioState, setAudioState] = useState({ enabled: false, pending: false });
   const resumeAudioRef = useRef(null);
-  const exploreCulture = () => {
-    const book = document.querySelector('#homeLionBook');
-    if (!book) return;
-    const headerBottom = document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
-    // Align the archive boundary exactly below the fixed navigation: the video
-    // finishes behind the navigation instead of leaving a visible red strip.
-    const top = window.scrollY + book.getBoundingClientRect().top - headerBottom;
-    window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  };
+  const exhibit = useHomeExhibit(playbackEnabled && !introActive && !entryAnimationActive);
 
   return <div className="home-page" data-intro-active={introActive} data-page-hit-enabled={settings.pageHitEnabled}>
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
@@ -54,7 +48,7 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
       <h1 className="sr-only">南风有狮</h1>
       <TitleMotionLayer />
       <ChapterIdentity chapter="entry" eyebrow="南风有狮 · 醒狮展览" className="chapter-identity--cinema" />
-      <button className="entry-cta" id="enterWork" type="button" aria-label="探索更多" onClick={exploreCulture}>
+      <button className="entry-cta interaction-cue interaction-cue--dark" id="enterWork" type="button" aria-label="探索更多" onClick={exhibit.enter}>
         {['left', 'right'].map((side) => <svg key={side} className={`entry-cta-cloud entry-cta-cloud-${side}`} viewBox="0 0 72 76" aria-hidden="true" focusable="false">
           <path className="entry-cta-cloud-line" d="M26 5C11 9 5 20 7 33M27 9C16 12 11 20 12 28" />
           <path className="entry-cta-cloud-fill" d="M65 69H35C20 69 7 62 5 51C-2 47 0 35 8 32C9 22 21 20 27 27C36 25 42 32 40 40C51 38 58 48 54 56C60 58 63 64 65 69Z" />
@@ -78,19 +72,18 @@ export default function HomePage({ settings, playbackEnabled = true, onBookReady
         }
       }} />}
   </section>
-  <div className="home-archive-scene" style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
+  <div className="home-archive-scene home-exhibit" ref={exhibit.archiveRef} data-open={exhibit.visible} data-active-panel={exhibit.active} style={{ '--archive-background-image': `url("${new URL(media.homeArchiveBackground, document.baseURI).href}")`, '--archive-panel-opacity': 1 - settings.archivePanelTransparency / 100 }}>
     {['top', 'side', 'bottom'].map(position => <div key={position} className={`archive-background-layer is-${position}`} aria-hidden="true" />)}
-    <HomeLionBook settings={settings} preload={true} playbackEnabled={playbackEnabled} onReady={onBookReady} />
-    <div className="home-archive-next">
-      <div className="home-archive-peek" aria-hidden="true">
-        <img src={media.homeArchivePeek} alt="" draggable="false" loading="lazy" width="1536" height="1024" />
-      </div>
-      <HomeCulture settings={settings} preload={true} playbackEnabled={playbackEnabled} onReady={onGalleryReady} />
-      <HomeLionTypes />
-      <HomeCultureSources settings={settings} />
+    <div className="home-archive-panel" hidden={exhibit.active !== 0} inert={!exhibit.visible || !playbackEnabled}>
+      <HomeLionBook settings={settings} preload={true} playbackEnabled={playbackEnabled && exhibit.visible && exhibit.active === 0} onReady={onBookReady} onArchiveWheel={exhibit.wheel} />
     </div>
+    <div className="home-archive-panel" hidden={exhibit.active !== 1} inert={!exhibit.visible || !playbackEnabled}>
+      <HomeCulture settings={settings} preload={true} playbackEnabled={playbackEnabled && exhibit.visible && exhibit.active === 1} onReady={onGalleryReady} />
+    </div>
+    <div className="home-archive-panel" hidden={exhibit.active !== 2} inert={!exhibit.visible || !playbackEnabled}><HomeLionTypes /></div>
+    <div className="home-archive-panel" hidden={exhibit.active !== 3} inert={!exhibit.visible || !playbackEnabled}><HomeCultureSources settings={settings} /></div>
   </div>
-  <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} />
+  <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} current={exhibit.active} visible={exhibit.visible} onSelect={exhibit.select} onReturnHome={exhibit.returnHome} />
   {playbackEnabled && entryAnimationActive && <EntryAnimationOverlay onComplete={finishEntryAnimation} onSkip={finishIntro} />}
   </div>;
 }

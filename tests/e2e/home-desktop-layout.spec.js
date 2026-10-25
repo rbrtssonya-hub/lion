@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { returnToHomeHero, selectHomeExhibit } from './home-exhibit.helpers.js';
 
 const settingsKey = 'nanfeng-lion:developer-settings:v1';
 const windows = [[640, 360], [675, 403], [640, 480], [800, 600], [1024, 640], [1280, 720], [1366, 768], [1920, 1080], [2560, 1080], [3840, 2160]];
@@ -19,13 +20,7 @@ async function openHome(page, width, height, saved = {}, intro = false) {
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true', { timeout: 30_000 });
 }
 
-async function alignSection(page, id) {
-  await page.evaluate(id => {
-    const section = document.getElementById(id);
-    const header = document.querySelector('.site-header').getBoundingClientRect().bottom;
-    scrollTo({ top: scrollY + section.getBoundingClientRect().top - header, behavior: 'instant' });
-  }, id);
-}
+async function alignSection(page, id) { await selectHomeExhibit(page, id); }
 
 async function expectTextFits(page) {
   const violations = await page.locator('.home-page').evaluate(root => {
@@ -104,7 +99,7 @@ for (const width of [640, 900]) {
   test(`最短电脑余窗 ${width}×360 与180px顶栏组合保留完整主视觉和全部入口`, async ({ page }) => {
     await openHome(page, width, 360, { headerHeight: 180 });
     await expectHomeGeometry(page, 360);
-    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await returnToHomeHero(page);
     const geometry = await page.locator('.home-page').evaluate(root => {
       const header = document.querySelector('.site-header').getBoundingClientRect();
       const selectors = ['.entry-title-art', '#enterWork', '.entry-motto', '.entry-english', '#replayIntro'];
@@ -126,14 +121,13 @@ for (const [width, height] of windows) {
     await openHome(page, width, height);
     await expectHomeGeometry(page, height);
     await expectTextFits(page);
-    const type = page.locator('.heritage-type-image');
-    await type.click();
+    await selectHomeExhibit(page, 'homeLionTypes');
     await expect(page.locator('.heritage-type-copy')).toBeVisible();
     await expectTextFits(page);
     await page.getByRole('button', { name: '形制对照', exact: true }).click();
     await expect(page.locator('.heritage-comparison-card')).toHaveCount(2);
     await expectTextFits(page);
-    await page.locator('#homeCultureSources details').evaluateAll(nodes => nodes.forEach(node => { node.open = true; }));
+    await selectHomeExhibit(page, 'homeCultureSources');
     await expectTextFits(page);
     await test.info().attach('desktop-layout', { body: JSON.stringify(await page.evaluate(() => ({ viewport: [innerWidth, innerHeight], page: document.querySelector('.site-page').clientWidth, bookStage: document.querySelector('.lion-book-stage').clientHeight, galleryColumns: getComputedStyle(document.querySelector('.home-culture-slide.is-active')).gridTemplateColumns }))), contentType: 'application/json' });
   });
@@ -146,7 +140,7 @@ for (const [width, height] of [[640, 360], [1920, 1080]]) {
       saved[`${prefix}Width`] = 40; saved[`${prefix}Height`] = 900;
     }
     await openHome(page, width, height, saved);
-    await page.locator('#homeCultureSources details').evaluateAll(nodes => nodes.forEach(node => { node.open = true; }));
+    await selectHomeExhibit(page, 'homeCultureSources');
     await expectTextFits(page);
     if (width === 640) {
       const reading = await page.locator('.home-culture-source-description').first().evaluate(element => {
@@ -206,9 +200,7 @@ test('窄电脑书页时间线可命中，真实WebGL图鉴重排后保持同一
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-index', '1');
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-turning', 'false');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.locator('.home-culture-photo-wrap').first().evaluate(element => {
-    scrollTo({ top: scrollY + element.getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom - 10, behavior: 'instant' });
-  });
+  await selectHomeExhibit(page, 'homeCulture');
   const gallery = page.locator('.culture-depth-gallery');
   await expect(gallery).toHaveAttribute('data-depth-state', 'ready');
   const canvas = await gallery.locator('canvas').elementHandle();

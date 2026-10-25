@@ -289,10 +289,10 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
                 <button className="model-retry" type="button" onClick={() => sceneRef.current?.retryHdri()?.catch(() => {})}>重新载入 HDRI</button>
               </p>}
               <div className="scene-action-row" aria-label="模型视图工具">
-                <button type="button" id="resetView" disabled={status.phase !== 'ready'} onClick={resetView}>
+                <button type="button" className="interaction-cue" id="resetView" disabled={status.phase !== 'ready'} onClick={resetView}>
                   <span aria-hidden="true">↶</span>复原整体
                 </button>
-                <button type="button" id="toggleRotate" className={autoRotate ? 'active' : ''}
+                <button type="button" id="toggleRotate" className={`interaction-cue${autoRotate ? ' active' : ''}`}
                   disabled={status.phase !== 'ready'} aria-pressed={autoRotate}
                   aria-label={autoRotate ? '暂停自动旋转' : '开启自动旋转'}
                   onClick={() => setAutoRotate((value) => !value)}>

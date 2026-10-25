@@ -22,8 +22,8 @@
 .entry-copy > .chapter-identity + .entry-cta { margin-top: 6px; }
 .entry-copy > .chapter-identity .chapter-identity__rule { position: absolute; top: 0; left: -22px; width: 1px; height: 24px; margin: 0; background: #d4aa6d99; }
 .entry-copy > .chapter-identity .chapter-identity__eyebrow { font-size: 10px; }
-.model-scene-heading:has(.chapter-identity) { border-left: 0; padding: 16px 20px 18px; background: linear-gradient(120deg, #f7f4edf5, #f7f4edc7); }
-.theater-topline:has(.chapter-identity) { border-left: 0; padding: 15px 17px; background: linear-gradient(100deg, #190b06d9, #190b0626); }
+.model-scene-heading:has(.chapter-identity) { padding: 16px 20px 18px; }
+.theater-topline:has(.chapter-identity) { padding: 15px 17px; }
 .theater-topline .chapter-identity__description { font-size: clamp(16px, 1cqw, 18px); }
 .theater-gesture-list { display: flex; flex-wrap: wrap; gap: 0 14px; }
 .theater-gesture-list > span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectHomeExhibit } from './home-exhibit.helpers.js';
 import { selectSettingsFor } from './settings-navigation.helpers.js';
 
 const destinations = [
@@ -26,7 +27,7 @@ async function openHome(page, reducedMotion = 'reduce', url = '/') {
 }
 
 async function showRail(page) {
-  await page.locator('#homeLionTypes').scrollIntoViewIfNeeded();
+  await selectHomeExhibit(page, 'homeLionTypes');
   const rail = page.getByRole('navigation', { name: '首页章节导航', exact: true });
   await expect(rail).toBeVisible();
   return rail;
@@ -67,10 +68,10 @@ async function expectRailGeometry(page, rail, large = false) {
       return box.left >= frame.left && box.right <= frame.right && box.height <= label.parentElement.getBoundingClientRect().height;
     }),
   }));
-  expect(appearance.background).toBe('rgba(0, 0, 0, 0)');
+  expect(appearance.background).not.toBe('rgba(0, 0, 0, 0)');
   expect(appearance.backdrop).toBe('none');
   const shortWindow = page.viewportSize().height <= 520;
-  expect(appearance.fontSize).toBeGreaterThanOrEqual(shortWindow ? 16 : appearance.compact ? 18 : 22);
+  expect(appearance.fontSize).toBeGreaterThanOrEqual(shortWindow ? 16 : appearance.compact ? 17 : 22);
   expect(appearance.labelsFit).toBe(true);
   const geometry = await rail.evaluate(nav => {
     const bounds = nav.getBoundingClientRect();
@@ -84,7 +85,7 @@ async function expectRailGeometry(page, rail, large = false) {
       header: document.querySelector('.site-header').getBoundingClientRect().bottom,
       viewport: innerHeight, stops,
       track: { x: track.left + track.width / 2, top: track.top, bottom: track.bottom },
-      fits: [...nav.querySelectorAll('button')].every(button => {
+      fits: [...nav.querySelectorAll('[data-home-section]')].every(button => {
         const box = button.getBoundingClientRect();
         return box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
       }),
@@ -120,23 +121,22 @@ async function expectRailGeometry(page, rail, large = false) {
   }
 }
 
-test('all archive sections keep equal page margins independently of the sidebar and settings push', async ({ page }) => {
+test('each exhibit reserves the sidebar and stays inside the settings-adjusted page', async ({ page }) => {
   await openHome(page);
-  const selectors = ['.lion-book-inner', '.home-culture-inner', '#homeLionTypes .heritage-inner', '#homeCultureSources'];
-  const symmetric = async () => {
-    for (const selector of selectors) {
-      await expect.poll(() => page.locator(selector).evaluate(node => {
-        const bounds = node.getBoundingClientRect(), frame = node.closest('.site-page').getBoundingClientRect();
-        return Math.abs((bounds.left - frame.left) - (frame.right - bounds.right));
-      }), { message: `${selector} must use the page center, not a sidebar-shifted center` }).toBeLessThan(2);
-    }
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  };
-  for (const [width, height] of [[2560,1440], [1920,1080], [1366,768], [1024,768], [900,600]]) {
+  for (const [width, height] of [[1920,1080], [1440,900], [1366,768]]) {
     await page.setViewportSize({width,height});
-    await symmetric();
+    for (const [id] of destinations) {
+      const section = await selectHomeExhibit(page, id);
+      await expect.poll(() => section.evaluate(node => {
+        const panel = node.closest('.home-archive-panel').getBoundingClientRect();
+        const page = node.closest('.site-page').getBoundingClientRect();
+        const rail = document.querySelector('.home-archive-nav').getBoundingClientRect();
+        return panel.left >= rail.right + 8 && panel.right <= page.right + 1 && node.scrollWidth <= node.clientWidth + 1;
+      })).toBe(true);
+    }
   }
   await page.setViewportSize({width:1500,height:1080});
+  await selectHomeExhibit(page, 'homeLionTypes');
   await page.locator('.site-header [data-action="settings"]').click();
   const settings = page.getByRole('region',{name:'开发者参数设置',exact:true});
   await selectSettingsFor(page, 'pushPage');
@@ -145,7 +145,7 @@ test('all archive sections keep equal page margins independently of the sidebar 
   const width = settings.getByRole('spinbutton',{name:'设置面板宽度数值',exact:true});
   await width.fill(String(shell - 900)); await width.press('Tab');
   await expect.poll(()=>page.locator('.site-page').evaluate(n=>n.getBoundingClientRect().width)).toBe(900);
-  await symmetric();
+  expect(await page.locator('#homeLionTypes').evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
 });
 
 for (const url of ['/', '/?researchPhotos=1']) {
@@ -159,21 +159,21 @@ for (const url of ['/', '/?researchPhotos=1']) {
     await expect(page.locator('#homeInheritors, #inheritors-title, #heritage-person-panel, [data-person-id], .heritage-person-photo, .heritage-person-plaque')).toHaveCount(0);
     await expect(page.locator('[aria-controls="homeInheritors"], a[href*="homeInheritors"]')).toHaveCount(0);
     const rail = await showRail(page);
-    await expect(rail.getByRole('button')).toHaveText(destinations.map(([, label]) => label));
+    await expect(rail.locator('[data-home-section]')).toHaveText(destinations.map(([, label]) => label));
     const sources = page.locator('#homeCultureSources');
-    await sources.scrollIntoViewIfNeeded();
+    await selectHomeExhibit(page, 'homeCultureSources');
     await expect(sources.locator('.home-culture-source-cards a')).toHaveCount(3);
     await expect(sources.locator('.heritage-source-group')).toHaveCount(2);
     await expect(sources.getByRole('region', { name: '历史与文化', exact: true })).toBeVisible();
     await expect(sources.getByRole('region', { name: '形制与工艺', exact: true })).toBeVisible();
     await expect(sources.getByRole('region', { name: '人物资料', exact: true })).toHaveCount(0);
-    await sources.locator('.archive-provenance summary').click();
+    await expect(sources.locator('details')).toHaveCount(0);
     await expect(sources.locator('.archive-portrait-sources')).toHaveCount(0);
     await expect(sources.getByRole('link', { name: /照片来源|冯昆杰|赵继红|黄钦添|赵伟斌|黎伟|黎婉珍/ })).toHaveCount(0);
     await expect(sources.locator('.archive-provenance')).toContainText('AI辅助示意');
     await expect(sources.getByRole('link', { name: 'Sketchbook · ThreeUI / MIT', exact: true })).toHaveAttribute('href', /LICENSE/);
     await expect(sources.getByRole('link', { name: '字体许可', exact: true })).toHaveAttribute('href', /threeui-FONT-LICENSES\.txt$/);
-    await sources.locator('.home-culture-photo-licenses summary').click();
+
     const licenses = sources.locator('.home-culture-photo-license');
     await expect(licenses).toHaveCount(8);
     for (const license of await licenses.all()) {
@@ -186,10 +186,10 @@ for (const url of ['/', '/?researchPhotos=1']) {
 }
 
 for (const reducedMotion of ['no-preference', 'reduce']) {
-  test(`four archive entrances scroll to real sections and align the lion: ${reducedMotion}`, async ({ page }) => {
+  test(`four archive entrances select real panels and align the lion: ${reducedMotion}`, async ({ page }) => {
     await openHome(page, reducedMotion);
     const rail = await showRail(page);
-    await expect(rail.getByRole('button')).toHaveCount(4);
+    await expect(rail.locator('[data-home-section]')).toHaveCount(4);
     const hash = new URL(page.url()).hash;
     for (const [id, label] of destinations) {
       const button = rail.getByRole('button', { name: label, exact: true });
@@ -210,11 +210,11 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
       })).toBe(true);
       await expectMarkerAt(rail, id);
     }
-    await rail.getByRole('button').last().focus();
+    await rail.locator('[data-home-section]').last().focus();
     await page.keyboard.press('ArrowDown');
-    await expect(rail.getByRole('button').first()).toBeFocused();
+    await expect(rail.locator('[data-home-section]').first()).toBeFocused();
     await page.keyboard.press('End');
-    await expect(rail.getByRole('button').last()).toBeFocused();
+    await expect(rail.locator('[data-home-section]').last()).toBeFocused();
     expect(new URL(page.url()).hash).toBe(hash);
     if (reducedMotion === 'reduce') {
       await expect(rail).toHaveAttribute('data-playing', 'false');
@@ -259,7 +259,7 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
             Math.abs(box.top - (header + (innerHeight - header - box.height) / 2)) < 1;
         })).toBe(true);
         await expectRailGeometry(page, rail, width === 1920);
-        expect((await rail.boundingBox()).width).toBe(width > 1250 ? 184 : 140);
+        expect((await rail.boundingBox()).width).toBe(width > 1250 ? 184 : width > 900 ? 140 : 116);
         for (const [id] of [destinations[0], destinations.at(-1)]) {
           await rail.locator(`[data-home-section="${id}"]`).click();
           await expectMarkerAt(rail, id);
@@ -274,7 +274,7 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     await openHome(page, reducedMotion);
     await page.setViewportSize({ width: 1500, height: 1080 });
     const types = page.locator('#homeLionTypes');
-    await types.getByRole('button', { name: '展开佛山狮介绍', exact: true }).click();
+    await selectHomeExhibit(page, 'homeLionTypes');
     await expect(types.locator('.heritage-type-copy')).toBeVisible();
     await page.locator('.site-header [data-action="settings"]').click();
     const settings = page.getByRole('region', { name: '开发者参数设置', exact: true });
@@ -286,7 +286,7 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     await widthInput.press('Tab');
     await expect.poll(() => page.locator('.site-page').evaluate(node => node.getBoundingClientRect().width)).toBe(900);
     const rail = await showRail(page);
-    await expect(rail.getByRole('button')).toHaveCount(4);
+    await expect(rail.locator('[data-home-section]')).toHaveCount(4);
     await expectRailGeometry(page, rail, true);
     const railRight = await rail.evaluate(node => node.getBoundingClientRect().right);
     for (const selector of ['.heritage-heading', '.heritage-figure', '.heritage-type-copy']) {
@@ -302,7 +302,7 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
         await expect.poll(() => rail.evaluate(nav => Number(nav.style.getPropertyValue('--archive-nav-header').replace('px', '')))).toBe(headerHeight);
         await expectRailGeometry(page, rail);
         await expectMarkerAt(rail, 'homeLionTypes');
-        expect((await rail.boundingBox()).width).toBe(140);
+        expect((await rail.boundingBox()).width).toBe(116);
       }
     }
     await page.screenshot({ path: test.info().outputPath(`archive-pushed-${reducedMotion}.png`) });

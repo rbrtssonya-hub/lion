@@ -1,0 +1,26 @@
+/* Four exhibits share a single frame beneath the measured navigation. */
+.home-archive-scene.home-exhibit {
+  height: calc(100svh - var(--site-header-height)); min-height: 0;
+  padding: 0 24px 0 208px; overflow: hidden;
+  background-image: var(--archive-background-image); background-size: cover; background-position: center;
+}
+.home-exhibit .archive-background-layer { display: none; }
+.home-archive-panel { height: 100%; min-height: 0; min-width: 0; overflow: hidden; }
+.home-archive-panel[hidden] { display: none; }
+.home-archive-panel > section, .home-archive-panel > div { height: 100%; min-height: 0; }
+.home-archive-nav {
+  border: 1px solid #c6a58180; border-radius: 18px;
+  background: #fffaf0eb; backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px #66351d18, inset 0 1px #fff;
+}
+.home-archive-nav button span { text-shadow: none; }
+.home-archive-nav button[aria-current] { background: #a72f2210; border-radius: 10px; }
+.home-archive-nav .home-archive-return { position: absolute; left: 10px; right: 10px; bottom: -52px; width: calc(100% - 20px); min-height: 36px; justify-content: center; padding: 6px; font-size: 14px; gap: 6px; }
+@container lion-page (max-width: 1250px) {
+  .home-archive-scene.home-exhibit { padding-left: 168px; padding-right: 16px; }
+}
+@container lion-page (max-width: 900px) {
+  .home-archive-scene.home-exhibit { padding-left: 138px; padding-right: 12px; }
+  .home-archive-nav { width: 116px; }
+  .home-archive-nav button { gap: 17px; font-size: 17px; }
+}

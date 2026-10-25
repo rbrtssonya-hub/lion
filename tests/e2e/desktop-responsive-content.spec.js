@@ -68,9 +68,7 @@ test('结构图鉴按电脑余宽保留模型阅读双栏，画布热点与末�
     await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-focus-state', 'idle');
     await page.locator('#modelHotspots button[data-id="mouth"]').click();
     await expect(page.locator('#modelStage')).toHaveAttribute('data-selected-id', 'mouth');
-    await page.locator('#structureBoundary summary').click();
     await expect(page.locator('#structureBoundary p')).toBeVisible();
-    await page.locator('#structureBoundary summary').click();
   }
 });
 

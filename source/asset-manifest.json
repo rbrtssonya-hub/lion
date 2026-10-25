@@ -4358,6 +4358,102 @@
       "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1440.png",
       "bytes": 1378694,
       "sha256": "0f36f116a9d689fd2bd419fa54c24990a4956d7009484b8bf1a156dc2cf8ce63"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/action-1366.png",
+      "bytes": 1220961,
+      "sha256": "383e3d8520e4e70c7108176b5063c083877c19fcbf7041b77999dcfaf86b7b60"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/action-1920.png",
+      "bytes": 2194818,
+      "sha256": "959a9be90c3512b1b3bc1bf395bac87cd120a1b56f4919157d909992bf8344db"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1366.png",
+      "bytes": 1275769,
+      "sha256": "1dbf099baa3643e233bafa1a3ac51eea747f99f93293f896ba9a006a698ee776"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1440.png",
+      "bytes": 1582943,
+      "sha256": "ed99cda4d31a57a7bcfe4d3fac9f64f4cbb45411998d3f3397107fa8136c4b56"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1920.png",
+      "bytes": 2374418,
+      "sha256": "7c4ae114c9740afac575d351b13280940da239c375823f81dc34cd73e6bdf08c"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/capture.json",
+      "bytes": 11899,
+      "sha256": "7efd86288ddf32d7e83bb304ee8396e878606b42dd36fce4164286365786d26e"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/culture-1366.png",
+      "bytes": 1002340,
+      "sha256": "e5366a87559feae920a1affcfe35b40401e21d33d22502232d4691cabd3f451a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/culture-1920.png",
+      "bytes": 1804200,
+      "sha256": "094de01194788b8a38cd4d63b94faaba21557c029a2ab8e533130aabf4b67760"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/model-1366.png",
+      "bytes": 1203547,
+      "sha256": "84ca153a93b8664763f172efe5084c8f01581e101dee68d5790979e4bf0fb943"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/model-1920.png",
+      "bytes": 2366702,
+      "sha256": "180c89178fbff27669058a02c038d6831771f8f673e6758ad9da97d3c1d036b2"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/sources-1366.png",
+      "bytes": 529850,
+      "sha256": "2a5c5185ace8e400df49736b56958ac12ef1b49b9ec7288e4837a06ccd092148"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/sources-1920.png",
+      "bytes": 787379,
+      "sha256": "dd8d363cb12d129cae68f5812757cfe6306d19a1dc9f3596e5ab229948c16fa6"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/state-1366.png",
+      "bytes": 1077009,
+      "sha256": "ae8602cb91409a48a10d1a78a72013f5ab0cf2609ebb39eac95ee4e4e56c4688"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/state-1920.png",
+      "bytes": 2051135,
+      "sha256": "7ba19ac9c5d68a139d5537722530a1a7415147be280c34c0bef052b2be956e6a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/types-1366.png",
+      "bytes": 841142,
+      "sha256": "beca2c64dbc5447f3a35c771fc76a9f92785dab9eaabe6e2e2db273e58af7f7a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/types-1920.png",
+      "bytes": 1724829,
+      "sha256": "fb835d218ba7a88d497e795c7250b3f0f45466e7aee6c39d1a1da0198bc0cea4"
     }
   ]
 }
