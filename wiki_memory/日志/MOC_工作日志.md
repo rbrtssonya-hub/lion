@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-25
+updated: 2026-10-26
 topic: work-log-index
 sources: []
 ---
@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-26 | feature | completed | [阿南醒狮双小游戏独立试玩](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E9%98%BF%E5%8D%97%E9%86%92%E7%8B%AE%E5%8F%8C%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%8B%AC%E7%AB%8B%E8%AF%95%E7%8E%A9.md) |
 | 2026-10-25 | discussion | completed | [四章视觉语言统一方案](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E7%BB%9F%E4%B8%80%E6%96%B9%E6%A1%88.md) |
 | 2026-10-25 | ui | completed | [四章视觉统一与八态整图动作](UI%E4%BF%AE%E6%94%B9/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E7%BB%9F%E4%B8%80%E4%B8%8E%E5%85%AB%E6%80%81%E6%95%B4%E5%9B%BE%E5%8A%A8%E4%BD%9C.md) |
 | 2026-10-25 | ui | completed | [十二项批注与一屏展览整改](UI%E4%BF%AE%E6%94%B9/2026-10-25-%E5%8D%81%E4%BA%8C%E9%A1%B9%E6%89%B9%E6%B3%A8%E4%B8%8E%E4%B8%80%E5%B1%8F%E5%B1%95%E8%A7%88%E6%95%B4%E6%94%B9.md) |

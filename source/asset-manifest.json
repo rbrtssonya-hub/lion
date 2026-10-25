@@ -4580,6 +4580,102 @@
       "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-host-1920.png",
       "bytes": 2874481,
       "sha256": "4cce1e059ba89f8d98f036d800dbf211e66fc3af778fc4490804a32f8196f2d7"
+    },
+    {
+      "from": "AI-assisted original Anan IP, built-in image_gen, 2026-10-26; see source/design/lion-mini-games/ip-brief.md",
+      "path": "source/design/lion-mini-games/assets/lion-ip.png",
+      "bytes": 2007897,
+      "sha256": "faa5f58f80279c118072599dd9d81f6c4ea395918e33399b00cbf7fc1e23103a"
+    },
+    {
+      "from": "AI-assisted original Anan IP, built-in image_gen, 2026-10-26; see source/design/lion-mini-games/ip-brief.md",
+      "path": "source/design/lion-mini-games/assets/lion-poses.png",
+      "bytes": 1504844,
+      "sha256": "a8290234222eabc87336cfb86e1633645768f934bbd7482b7e5fc91e47d3beb7"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/01-menu-1920.png",
+      "bytes": 2283593,
+      "sha256": "4a10b836bfed25145a32e9efce09299a8b29de2019ba77e88b3658c9d604c0e7"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/02-character.png",
+      "bytes": 636895,
+      "sha256": "8a699c4ad18d108989a3849269b42c6f79c7782ea69a7e054e7e149c3eb23109"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/03-rhythm.png",
+      "bytes": 2093311,
+      "sha256": "10fc4528c06129967d16baebc1053f6bc957fb9f65864219713a333413c2da1c"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/04-rhythm-result.png",
+      "bytes": 296846,
+      "sha256": "ff3a09543fcc01f6e473cebba5df670dda52238c34cfcf7911b63bcaea3f1d28"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/05-poles.png",
+      "bytes": 1915216,
+      "sha256": "6c6b86866f42502859142e2b3b0255ba6a844e0e899b294a08666b155f0e85b3"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/06-poles-after-jump.png",
+      "bytes": 1908619,
+      "sha256": "e19b9765c5e2257c6f690b2c8bfdcec879b4ca4f88e11098c391a257ae84705c"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/07-menu-1366.png",
+      "bytes": 1249263,
+      "sha256": "0394493b7610a5ebd0820319f97d70f9a62aa4f08ff42d6a8e1e64567cbc51a3"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/08-poles-1366.png",
+      "bytes": 1055182,
+      "sha256": "f037a22f8d359142951e851df3c387139b37a8282df26602fe26cdf1ef2cde5d"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/09-rhythm-success.png",
+      "bytes": 298671,
+      "sha256": "05a1eefa9f528d06b0157d7f85c8219dbb6f2bab491064b8cec3ee1669a0ab01"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/10-poles-charge.png",
+      "bytes": 1896059,
+      "sha256": "308d639c2c885bb62c009fa2e2275f894f96ec9059ae387865423eb5ee91d8ae"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/11-poles-jump.png",
+      "bytes": 1900462,
+      "sha256": "091e9ab77d2f052675a657477655a1b667c1cad1dd164ef61b52163c52655083"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/12-poles-success.png",
+      "bytes": 271871,
+      "sha256": "f564cd2eed60e977da4208fd45b633821163d5139d477e707b73abf287b51d4e"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/13-rhythm-picking.png",
+      "bytes": 2082474,
+      "sha256": "9a8959b1ff3f9d7e719c864c99bae2810a8a7033f0d3d5617e9d14a66b35a782"
+    },
+    {
+      "from": "native Chrome standalone local-file gameplay screenshot, 2026-10-26",
+      "path": "source/reviews/lion-mini-games/2026-10-26/14-rhythm-1366.png",
+      "bytes": 1148255,
+      "sha256": "26d5850cea5f201bb518eb4fe0517026fccaaea325a3c16c7bc85991b2a5a4f5"
     }
   ]
 }
