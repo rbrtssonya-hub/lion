@@ -2,7 +2,7 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff': 'font/woff', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary', '.mp4': 'video/mp4', '.m4a': 'audio/mp4', '.txt': 'text/plain; charset=utf-8' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff': 'font/woff', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary', '.mp4': 'video/mp4', '.m4a': 'audio/mp4', '.wav': 'audio/wav', '.txt': 'text/plain; charset=utf-8' };
 
 function rangeOf(value, size) {
   const match = /^bytes=(\d*)-(\d*)$/.exec(value);
@@ -13,7 +13,7 @@ function rangeOf(value, size) {
   return [first, last];
 }
 
-async function startServer({ root, manifest, port = 0, token, onShutdown }) {
+async function startServer({ root, manifest, port = 0, token, onShutdown, assistantHandler }) {
   const files = new Map(manifest.files.map(file => [file.path, file]));
   let origin;
   const server = http.createServer({ maxHeaderSize: 16384 }, (req, res) => {
@@ -28,6 +28,13 @@ async function startServer({ root, manifest, port = 0, token, onShutdown }) {
     let decoded;
     try { decoded = decodeURIComponent(raw); } catch { return reply(400, 'Bad Request'); }
     if (!decoded.startsWith('/') || /[\\\0:]/.test(decoded) || decoded.split('/').some(part => part === '.' || part === '..')) return reply(403, 'Forbidden');
+    if (decoded === '/api/xiaoxing/chat' && assistantHandler) {
+      Promise.resolve(assistantHandler(req, res)).catch(() => {
+        if (!res.headersSent) reply(503, { error: '讲解服务暂时不可用' }, 'application/json');
+        else res.end();
+      });
+      return;
+    }
     if (decoded === '/_portable/shutdown') {
       if (req.method !== 'POST') return reply(405, 'Method Not Allowed');
       if (req.url !== `/_portable/shutdown?token=${token}`) return reply(403, 'Forbidden');

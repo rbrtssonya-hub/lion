@@ -28,3 +28,11 @@ source/reviews/expression-hover/2026-10-22/capture.json -text
 source/reviews/culture-gallery-click/2026-10-22/capture.json -text
 source/reviews/structure-view-editing/2026-10-22/capture.json -text
 source/reviews/expression-click-feedback/2026-10-22/capture.json -text
+
+# Preserve the newer authenticated capture evidence in fresh Windows worktrees.
+source/reviews/exhibit-screen/2026-10-25/capture.json -text
+source/reviews/book-timeline-size/2026-10-25/capture.json -text
+source/reviews/book-marked-zones/2026-10-25/capture.json -text
+source/reviews/entry-brush-type/2026-10-26/capture.json -text
+source/reviews/entry-brush-horizontal/2026-10-26/capture.json -text
+source/reviews/xiaoxing/**/capture.json -text

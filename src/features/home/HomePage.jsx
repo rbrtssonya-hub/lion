@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import VideoStage from '../../components/VideoStage.jsx';
 import SoundControl from '../../components/SoundControl.jsx';
 import { getMediaVolumePreference, useMediaAudioPreference, useMediaVolumePreference } from '../../hooks/useMediaAudioPreference.js';
@@ -16,13 +16,26 @@ import useHomeExhibit from './useHomeExhibit.js';
 import '../../styles/home-archive.css';
 import '../../styles/home-exhibit.css';
 
-export default function HomePage({ settings, playbackEnabled = true, onBookReady, onGalleryReady, onVideoReady }) {
+export default function HomePage({ settings, playbackEnabled = true, assistantSource, onBookReady, onGalleryReady, onVideoReady }) {
   const { introActive, entryAnimationActive, playbackId, finishIntro, finishVideo, finishEntryAnimation, replayIntro } = useEntryPlayback(playbackEnabled);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
   const [volume, setVolume] = useMediaVolumePreference();
   const [audioState, setAudioState] = useState({ enabled: false, pending: false });
   const resumeAudioRef = useRef(null);
   const exhibit = useHomeExhibit(playbackEnabled && !introActive && !entryAnimationActive);
+  const consumedSource = useRef(null);
+  useEffect(() => {
+    if (!assistantSource || consumedSource.current === assistantSource || !playbackEnabled || introActive || entryAnimationActive) return undefined;
+    const panel = { homeLionBook: 0, homeCulture: 1, homeLionTypes: 2, homeCultureSources: 3 }[assistantSource.section];
+    if (panel === undefined) return undefined;
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => {
+        consumedSource.current = assistantSource;
+        exhibit.select(panel);
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [assistantSource, playbackEnabled, introActive, entryAnimationActive, exhibit.select]);
 
   return <div className="home-page" data-intro-active={introActive} data-page-hit-enabled={settings.pageHitEnabled}>
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
