@@ -4508,6 +4508,42 @@
       "path": "source/reviews/book-marked-zones/2026-10-25/capture.json",
       "bytes": 5522,
       "sha256": "9aca6c049907c886269bcd0428f7f82b6a79db2eb8f1b44e0f52cd852eb1adeb"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/capture.json",
+      "bytes": 24173,
+      "sha256": "88d303d8c921180317fd3d1e876307333a468336ffb2e378f48b7b302a8e590e"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1024x560.png",
+      "bytes": 970118,
+      "sha256": "460fc7d1ac46984f4ea7afaab3e6c602c92e36277f4d79a5d8966b4d8abd7b5c"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1366x768.png",
+      "bytes": 1642436,
+      "sha256": "7904f051e36290cdd3ec267ab90f15cdf0e84360e32fba25465f97c02226f7a9"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1920x1080.png",
+      "bytes": 2881894,
+      "sha256": "9b7520716337baf57030e9528238b8b8bd949e85408ff1140b861f94e54f1192"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1920x400.png",
+      "bytes": 984727,
+      "sha256": "1f30e016bb9f28fd737061565cc77348d5f22346d021954dffaac5c9e44c5a0f"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-host-1920.png",
+      "bytes": 2863465,
+      "sha256": "482e0e39feefddd47c1894c3edb9315ae55ac11e14c81c9a82bffcc2eb727e81"
     }
   ]
 }
