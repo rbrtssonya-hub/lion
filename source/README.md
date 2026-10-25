@@ -1,5 +1,7 @@
 # 工程资源目录
 
+2026-10-26 当前结构主模型来自用户指定 `科比blend.blend`。`public/assets/models/lion-kobi.glb` 与 `lion-kobi-hair.json` / 33个同前缀毛发数据为完整网页导出；本地原件归档 `models/lion-kobi-2026-10-26.blend`（超过100MiB，精确Git忽略，SHA记录在清单）。语义部件、来源与可用动作见 `src/data/lion-interactive-parts.json` 和[模型说明](references/lion-kobi-model-2026-10-26.md)，导出核验见[来源报告](references/lion-kobi-source-2026-10-26.json)。原 `lion-user-full.glb` 与旧33组毛发继续服务动作剧场，未和新模型混用；下方原图鉴描述属于历史版本。
+
 `source/` 统一管理媒体、模型、创作源文件、设计文档、审查截图与参考资料。应用代码位于根 `src/`。
 
 2026-10-21结构右栏单独拣选到主线，保留主线原动作页面。原结构素材与制作报告原样保全，主线整合记录独立见[本次说明](references/structure-atlas-main-2026-10-21.md)，不把原分支的动作参考图、截图或验证数字计入本次交付。

@@ -813,7 +813,7 @@ export function createActionTheater({
       const previousLionBox = new Box3().setFromObject(lionRoot);
       const previousLionHeight = previousLionBox.max.y - previousLionBox.min.y;
       const loadedLion = await acquireFullLion({
-        modelUrl: media.model,
+        modelUrl: media.actionLionModel,
         manifestUrl: media.modelHair,
         resolveAsset: key => media[key],
         signal: loadController.signal,
@@ -833,7 +833,7 @@ export function createActionTheater({
       lionMount.scale.setScalar(previousLionHeight / replacementHeight);
       lionMount.add(fullLion.root);
       lionRoot.add(lionMount);
-      lionRoot.userData.fullSourceModel = media.model;
+      lionRoot.userData.fullSourceModel = media.actionLionModel;
       lionRoot.userData.fullSourceHair = media.modelHair;
       // The room's screen geometry and UVs stay intact. Its historical embedded
       // lion is replaced by the same complete mesh/strand asset as structure.

@@ -13,6 +13,12 @@ const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
 const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.gz', '.gzip', '.exr', '.moc3', '.psd', '.cmo3', '.blend', '.woff', '.woff2', '.ttf', '.otf']);
 const localSourcePath = 'source/models/user-lion-2026-10-20.blend';
 const userSourceSha256 = 'dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770';
+const localSources = new Map([
+  [localSourcePath, { bytes: 136_543_222, sha256: userSourceSha256 }],
+  ['source/models/lion-kobi-2026-10-26.blend', {
+    bytes: 136_175_747, sha256: 'cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53',
+  }],
+]);
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
 function containedPath(base, path) {
@@ -51,9 +57,10 @@ test('migration snapshot preserves the size and SHA256 of every archived binary 
     assert.match(entry.sha256, /^[a-f0-9]{64}$/);
     if (entry.localOnly !== undefined) {
       assert.equal(entry.localOnly, true, `Unsupported local-only flag: ${entry.path}`);
-      assert.equal(entry.path, localSourcePath, 'Only the original oversized user source may be absent from a GitHub checkout');
-      assert.equal(entry.bytes, 136_543_222);
-      assert.equal(entry.sha256, userSourceSha256);
+      const source = localSources.get(entry.path);
+      assert.ok(source, 'Only explicitly recorded oversized source archives may be absent from a GitHub checkout');
+      assert.equal(entry.bytes, source.bytes);
+      assert.equal(entry.sha256, source.sha256);
       if (!existsSync(path)) continue;
     }
     const file = statSync(path);
@@ -112,8 +119,8 @@ test('navigation brush font is a WOFF with its redistributable license', () => {
   assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
 });
 
-test('structure web export preserves every source mesh and its authored sheen weights', () => {
-  const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));
+test('retained theater lion preserves every source mesh and its authored sheen weights', () => {
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.actionLionModel));
   const model = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString('utf8'));
   const report = readJson(resolve(sourceRoot, 'references/lion-structure-model.json'));
   assert.equal(createHash('sha256').update(bytes).digest('hex'), report.export.sha256);
@@ -271,9 +278,9 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
   assert.equal(report.export.hair_points, sourcePoints);
 });
 
-test('all six structure regions describe real model meshes or finite surface volumes', () => {
+test('archived six-region atlas describes real theater model meshes or finite surface volumes', () => {
   const structure = readJson(resolve(root, 'src/data/lion-structure.json'));
-  const bytes = readFileSync(containedPath(publicRoot, assetPaths.model));
+  const bytes = readFileSync(containedPath(publicRoot, assetPaths.actionLionModel));
   assert.equal(bytes.readUInt32LE(0), 0x46546c67, 'The configured model must be GLB');
   assert.equal(bytes.readUInt32LE(4), 2);
   assert.equal(bytes.readUInt32LE(8), bytes.length);

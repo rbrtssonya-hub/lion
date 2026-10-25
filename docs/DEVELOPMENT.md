@@ -1,5 +1,11 @@
 # 工程开发说明
 
+2026-10-26 结构页 `#/model` 已切换为用户指定的 `科比blend.blend`，使用暗色红金交互展陈。当前入口为 `src/features/model/ModelPage.jsx`，场景为 `src/services/lionInteractiveScene.js`，17组真实部件及动作能力由 `src/data/lion-interactive-parts.json` 提供。原53网格、彩色贴图与33组完整毛发保留；搜索、分类、点选聚焦、独显、单独分离、0–3级拆解、自动拆解/复原、复位、自转和标注均操作实际场景。动态模式仅演示独立双耳及尾部，不用牙饰代替不存在的可动下颚，不将头壳中的眼睛伪装成可眨眼网格。本轮明确要求覆盖新结构页的电脑、平板及手机；其他章节沿用原验收边界。
+
+运行仍为 `npm ci`、`npm run dev`，生产输出为 `npm run build`。没有新增网页依赖，Blender只用于离线导出。复现导出使用 Blender 5.2.3 LTS：`blender --background --factory-startup --python-exit-code 1 --python scripts/export_interactive_lion.py -- --input <原始.blend路径>`。原始136MB文件仅在本地 `source/models/lion-kobi-2026-10-26.blend` 精确归档并忽略Git；网页GLB、完整毛发及来源校验随Git交付。结构页 `media.model` / `media.modelHairKobi` 与原动作剧场 `media.actionLionModel` / `media.modelHair` 分开配置，避免将旧毛发错误配到新网格上。资源和真实性限制见[新模型说明](../source/references/lion-kobi-model-2026-10-26.md)。
+
+交互专项运行 `npx playwright test --config playwright.interactive.config.js`；生产验收先构建，在PowerShell中运行 `$env:LION_TEST_PREVIEW='1'; npx playwright test --config playwright.interactive.config.js`。专项使用5189/4189隔离端口；实际执行结果以本轮工程记忆日志为准。下方旧结构图鉴、六区域和跨章共享模型的描述仅追溯历史实现。
+
 Windows 离线展示包使用 `node scripts/portable/build-bundled.mjs '<工程外输出目录>'`，将当前生产网页、Electron 自带 Chromium/Node、媒体解码及软件图形库封装为单 EXE；图标使用现有 `nav-lion-head.png`，不改变网页开发入口或 npm 应用依赖。默认输出桌面“南风有狮”中的离线版目录，成品验收后用 `scripts/portable/finalize-delivery.ps1` 生成同内容 ZIP 并逐文件校验。构建依赖与中间产物只在 ignored tmp，详细命令及当前/历史验证器区别见[打包说明](../scripts/portable/README.md)。
 
 2026-10-22交互整改现行规则：声音控件公开粗细/峰谷/波长，单条连续周期曲线取代hover双dash及横移尾部；神态去hover伪内框，点击反馈默认108%/280ms，可在章节→神态调整；图库前景右缘至canvas右界（后排/余白）可点下一张，hover仍仅前景，fallback失焦/隐藏/离屏清指针；结构与动作的视角分类共用现场操作、保存继续、仅取消退出。原尺寸/音量/播放/资料来源保持。下方旧机制描述仅追溯历史。修改时跑相应 `sound-control-settings`/`home-audio-wave`、`expression-hover`/`expression-click-feedback`、`culture-gallery-hitarea`/`home-culture`、`structure-view-editing`/`action-view-editing` 与受影响旧回归，严格音频trace关闭。相关109独立案例按阶段分批验证，实际失败与恢复、原生raster及资产证据见[说明](../source/references/interaction-refinements-2026-10-22.md)和[验证](../source/references/interaction-refinements-2026-10-22-validation.json)。

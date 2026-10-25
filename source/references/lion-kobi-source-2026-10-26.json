@@ -1,0 +1,5806 @@
+{
+  "blender_version": "5.2.3 LTS",
+  "source": "source/models/lion-kobi-2026-10-26.blend",
+  "source_filename": "科比blend.blend",
+  "source_bytes": 136175747,
+  "source_sha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53",
+  "scene_object_counts": {
+    "CAMERA": 1,
+    "CURVES": 3,
+    "EMPTY": 49,
+    "LIGHT": 3,
+    "MESH": 53
+  },
+  "mesh_objects": [
+    {
+      "name": "立方体",
+      "vertices": 40,
+      "polygons": 38,
+      "triangles": 76,
+      "uv_layers": [
+        "UV贴图",
+        "Tongue_Painted_UV"
+      ],
+      "materials": [
+        "醒狮_舌头_朱漆如意卷草_柔金边"
+      ],
+      "modifiers": [
+        {
+          "name": "细分",
+          "type": "SUBSURF"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.07707202434539795,
+          0.3859308958053589,
+          0.5737497210502625
+        ],
+        "max": [
+          0.07623884081840515,
+          0.47025245428085327,
+          0.6944949626922607
+        ]
+      }
+    },
+    {
+      "name": "牙下",
+      "vertices": 374,
+      "polygons": 370,
+      "triangles": 740,
+      "uv_layers": [
+        "UV贴图"
+      ],
+      "materials": [
+        "牙",
+        "材质"
+      ],
+      "modifiers": [
+        {
+          "name": "倒角",
+          "type": "BEVEL"
+        },
+        {
+          "name": "细分",
+          "type": "SUBSURF"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.12742124497890472,
+          0.3853868842124939,
+          0.6110579967498779
+        ],
+        "max": [
+          0.1274206042289734,
+          0.45367375016212463,
+          0.7021462321281433
+        ]
+      }
+    },
+    {
+      "name": "上牙",
+      "vertices": 432,
+      "polygons": 430,
+      "triangles": 860,
+      "uv_layers": [
+        "UV贴图"
+      ],
+      "materials": [
+        "牙",
+        "材质"
+      ],
+      "modifiers": [
+        {
+          "name": "倒角",
+          "type": "BEVEL"
+        },
+        {
+          "name": "细分",
+          "type": "SUBSURF"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.1393488496541977,
+          0.4579291343688965,
+          0.6103299856185913
+        ],
+        "max": [
+          0.1393488347530365,
+          0.4927358627319336,
+          0.732315182685852
+        ]
+      }
+    },
+    {
+      "name": "Lion_Head.001",
+      "vertices": 53,
+      "polygons": 52,
+      "triangles": 91,
+      "uv_layers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR",
+        "Head_Scarlet_Velvet_Base",
+        "Head_Ivory_Fringe_Base",
+        "Forehead_ReferenceInspired_Brocade_Study",
+        "金属"
+      ],
+      "modifiers": [
+        {
+          "name": "细分",
+          "type": "SUBSURF"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.03655138239264488,
+          0.7175571322441101,
+          0.7073591947555542
+        ],
+        "max": [
+          0.03980058431625366,
+          0.787416398525238,
+          0.7462396621704102
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forehead_Bead_09",
+      "vertices": 1984,
+      "polygons": 2304,
+      "triangles": 3840,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "New_Head_Brass"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.04329231008887291,
+          0.7077485918998718,
+          0.7034082412719727
+        ],
+        "max": [
+          0.04622289538383484,
+          0.7981621623039246,
+          0.7478492259979248
+        ]
+      }
+    },
+    {
+      "name": "Lion_Crown",
+      "vertices": 3784,
+      "polygons": 5027,
+      "triangles": 5521,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR",
+        "Head_Scarlet_Velvet_Base",
+        "Head_Ivory_Fringe_Base"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.09730876237154007,
+          0.8902612924575806,
+          0.35955268144607544
+        ],
+        "max": [
+          0.09811349213123322,
+          1.0,
+          0.6930205225944519
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body",
+      "vertices": 79810,
+      "polygons": 116869,
+      "triangles": 120978,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined",
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.3513529300689697,
+          0.08132842183113098,
+          -0.6077722311019897
+        ],
+        "max": [
+          0.3508310317993164,
+          0.763904333114624,
+          0.6040153503417969
+        ]
+      }
+    },
+    {
+      "name": "Lion_Tail.001",
+      "vertices": 19871,
+      "polygons": 30953,
+      "triangles": 33455,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.22168269753456116,
+          0.25305458903312683,
+          -0.8015120029449463
+        ],
+        "max": [
+          0.2191823422908783,
+          0.7782517671585083,
+          -0.5223888754844666
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_R.001",
+      "vertices": 1516,
+      "polygons": 2493,
+      "triangles": 2807,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.45202070474624634,
+          0.009189162403345108,
+          -0.6451449990272522
+        ],
+        "max": [
+          -0.1285078078508377,
+          0.0916023999452591,
+          -0.35346972942352295
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_L.001",
+      "vertices": 1529,
+      "polygons": 2514,
+      "triangles": 2778,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.15838560461997986,
+          0.00882316380739212,
+          -0.6460768580436707
+        ],
+        "max": [
+          0.45202070474624634,
+          0.09283250570297241,
+          -0.3545041084289551
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_R.001",
+      "vertices": 7651,
+      "polygons": 11525,
+      "triangles": 12592,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.4361523389816284,
+          0.07388609647750854,
+          -0.6369115114212036
+        ],
+        "max": [
+          -0.1298263967037201,
+          0.44047024846076965,
+          -0.2769937515258789
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_L.001",
+      "vertices": 7989,
+      "polygons": 12411,
+      "triangles": 13568,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.1307544857263565,
+          0.07249626517295837,
+          -0.640867292881012
+        ],
+        "max": [
+          0.4369558095932007,
+          0.4400576949119568,
+          -0.26919132471084595
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_R.001",
+      "vertices": 1579,
+      "polygons": 2660,
+      "triangles": 2908,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.40871328115463257,
+          0.00029452890157699585,
+          0.2254377156496048
+        ],
+        "max": [
+          -0.15378862619400024,
+          0.09502314031124115,
+          0.5528643727302551
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_L.001",
+      "vertices": 1506,
+      "polygons": 2487,
+      "triangles": 2753,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.1528892070055008,
+          -1.4901161193847656e-08,
+          0.22956950962543488
+        ],
+        "max": [
+          0.40868502855300903,
+          0.09338141232728958,
+          0.552494466304779
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_R.001",
+      "vertices": 6909,
+      "polygons": 10498,
+      "triangles": 11472,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.4075545072555542,
+          0.0713668167591095,
+          0.18492069840431213
+        ],
+        "max": [
+          -0.14277537167072296,
+          0.43001896142959595,
+          0.5846503376960754
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_L.001",
+      "vertices": 7153,
+      "polygons": 10921,
+      "triangles": 11871,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.14131221175193787,
+          0.07481580972671509,
+          0.189297616481781
+        ],
+        "max": [
+          0.40715688467025757,
+          0.43826940655708313,
+          0.5862594842910767
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_R.001",
+      "vertices": 6312,
+      "polygons": 7306,
+      "triangles": 8065,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.36535319685935974,
+          0.7278459072113037,
+          0.2255842387676239
+        ],
+        "max": [
+          -0.16141155362129211,
+          0.979769766330719,
+          0.5611081123352051
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_L.001",
+      "vertices": 7313,
+      "polygons": 8347,
+      "triangles": 9137,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.16051308810710907,
+          0.7262190580368042,
+          0.2268749177455902
+        ],
+        "max": [
+          0.3647352457046509,
+          0.9828596711158752,
+          0.5592085719108582
+        ]
+      }
+    },
+    {
+      "name": "Lion_Brow_R.001",
+      "vertices": 4888,
+      "polygons": 5922,
+      "triangles": 6488,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.26024848222732544,
+          0.6300641298294067,
+          0.5450076460838318
+        ],
+        "max": [
+          -0.030442245304584503,
+          0.8970057964324951,
+          0.7781645059585571
+        ]
+      }
+    },
+    {
+      "name": "Lion_Brow_L.001",
+      "vertices": 5013,
+      "polygons": 6348,
+      "triangles": 7063,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          0.031743839383125305,
+          0.6318113803863525,
+          0.5479552149772644
+        ],
+        "max": [
+          0.2591078281402588,
+          0.8979776501655579,
+          0.779985785484314
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body_Red_Trim.001",
+      "vertices": 15569,
+      "polygons": 23746,
+      "triangles": 24790,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Brocade_Clear_Tile_Cloth_Study.002",
+        "Lion_Atlas_PBR_Refined",
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.3081314265727997,
+          0.3057231307029724,
+          -0.5489936470985413
+        ],
+        "max": [
+          0.308478981256485,
+          0.7878578901290894,
+          0.2724246680736542
+        ]
+      }
+    },
+    {
+      "name": "Lion_Beard.001",
+      "vertices": 5895,
+      "polygons": 8258,
+      "triangles": 8863,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.21887950599193573,
+          0.22316089272499084,
+          0.5377401113510132
+        ],
+        "max": [
+          0.21764075756072998,
+          0.38695240020751953,
+          0.7430418729782104
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_L.003",
+      "vertices": 1029,
+      "polygons": 1299,
+      "triangles": 1468,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.17356935143470764,
+          0.7958937287330627,
+          0.34657564759254456
+        ],
+        "max": [
+          0.3045022785663605,
+          0.9150539040565491,
+          0.5028517842292786
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_R.003",
+      "vertices": 760,
+      "polygons": 1147,
+      "triangles": 1264,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.3041881322860718,
+          0.7953556776046753,
+          0.34010738134384155
+        ],
+        "max": [
+          -0.18017131090164185,
+          0.9145148992538452,
+          0.49082836508750916
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_L.003",
+      "vertices": 293,
+      "polygons": 322,
+      "triangles": 360,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.17188699543476105,
+          0.01514415442943573,
+          -0.6460768580436707
+        ],
+        "max": [
+          0.4114760756492615,
+          0.09283250570297241,
+          -0.3743290901184082
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_R.003",
+      "vertices": 376,
+      "polygons": 468,
+      "triangles": 533,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Head_Ivory_Fringe_Base",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.45202070474624634,
+          0.009256549179553986,
+          -0.5804703235626221
+        ],
+        "max": [
+          -0.23029017448425293,
+          0.08977852761745453,
+          -0.35346972942352295
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_R.003",
+      "vertices": 100,
+      "polygons": 127,
+      "triangles": 130,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.365841269493103,
+          0.07745960354804993,
+          0.4522084593772888
+        ],
+        "max": [
+          -0.1830209195613861,
+          0.10642886161804199,
+          0.5344192385673523
+        ]
+      }
+    },
+    {
+      "name": "Lion_Nose.003",
+      "vertices": 98407,
+      "polygons": 200368,
+      "triangles": 207648,
+      "uv_layers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.003",
+        "Head_Scarlet_Velvet_Base.003",
+        "Head_Ivory_Fringe_Base.003",
+        "Forehead_ReferenceInspired_Brocade_Study.002",
+        "金属.002"
+      ],
+      "modifiers": [],
+      "gltf_bounds": {
+        "min": [
+          -0.361871600151062,
+          0.29092878103256226,
+          0.10993647575378418
+        ],
+        "max": [
+          0.3609868288040161,
+          0.9814152717590332,
+          0.8015120029449463
+        ]
+      }
+    },
+    {
+      "name": "Lion_Brow_R.002",
+      "vertices": 4650,
+      "polygons": 5571,
+      "triangles": 6082,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.26024848222732544,
+          0.6318657398223877,
+          0.5450076460838318
+        ],
+        "max": [
+          -0.04122447967529297,
+          0.8970057964324951,
+          0.7581003904342651
+        ]
+      }
+    },
+    {
+      "name": "Lion_Brow_L.002",
+      "vertices": 2645,
+      "polygons": 3238,
+      "triangles": 3656,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.052597776055336,
+          0.6363193988800049,
+          0.5479552149772644
+        ],
+        "max": [
+          0.2591078281402588,
+          0.8979776501655579,
+          0.7582413554191589
+        ]
+      }
+    },
+    {
+      "name": "Lion_Nose.002",
+      "vertices": 5134,
+      "polygons": 7735,
+      "triangles": 7978,
+      "uv_layers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.3179440498352051,
+          0.4468223452568054,
+          0.31089454889297485
+        ],
+        "max": [
+          0.2779817581176758,
+          0.9814152717590332,
+          0.779060423374176
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_L.002",
+      "vertices": 5738,
+      "polygons": 7433,
+      "triangles": 8154,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.16238653659820557,
+          0.7472902536392212,
+          0.24595679342746735
+        ],
+        "max": [
+          0.3655269742012024,
+          0.9828596711158752,
+          0.5614340901374817
+        ]
+      }
+    },
+    {
+      "name": "Lion_Ear_R.002",
+      "vertices": 5415,
+      "polygons": 7239,
+      "triangles": 7952,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.3666578531265259,
+          0.7472050189971924,
+          0.24410469830036163
+        ],
+        "max": [
+          -0.1652410328388214,
+          0.980983555316925,
+          0.5622406601905823
+        ]
+      }
+    },
+    {
+      "name": "Lion_Nose.001",
+      "vertices": 1874,
+      "polygons": 2880,
+      "triangles": 2965,
+      "uv_layers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base",
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.26110780239105225,
+          0.3167836666107178,
+          0.18837016820907593
+        ],
+        "max": [
+          0.27136120200157166,
+          0.4534239172935486,
+          0.5208138227462769
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body_Red_Trim.002",
+      "vertices": 6214,
+      "polygons": 9500,
+      "triangles": 9752,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Lion_Atlas_PBR_Refined.001",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.3074586093425751,
+          0.3108536899089813,
+          -0.5578588247299194
+        ],
+        "max": [
+          0.308478981256485,
+          0.7799847722053528,
+          0.2660614550113678
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_R.002",
+      "vertices": 1788,
+      "polygons": 2522,
+      "triangles": 2755,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.4075545072555542,
+          0.0713668167591095,
+          0.18791712820529938
+        ],
+        "max": [
+          -0.14741888642311096,
+          0.43001896142959595,
+          0.49481627345085144
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_L.002",
+      "vertices": 1864,
+      "polygons": 2556,
+      "triangles": 2814,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.14818350970745087,
+          0.07686865329742432,
+          0.19301439821720123
+        ],
+        "max": [
+          0.40715688467025757,
+          0.4334346652030945,
+          0.49490126967430115
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_L.002",
+      "vertices": 2026,
+      "polygons": 2861,
+      "triangles": 3150,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.1349504590034485,
+          0.07249626517295837,
+          -0.640867292881012
+        ],
+        "max": [
+          0.41905853152275085,
+          0.4150947034358978,
+          -0.28090861439704895
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_R.002",
+      "vertices": 1682,
+      "polygons": 2515,
+      "triangles": 2730,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.4197779893875122,
+          0.07388609647750854,
+          -0.6369115114212036
+        ],
+        "max": [
+          -0.1337774693965912,
+          0.3849295675754547,
+          -0.27740907669067383
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body.001",
+      "vertices": 7770,
+      "polygons": 10550,
+      "triangles": 10836,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base",
+        "Lion_Atlas_PBR_Refined",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.3513529300689697,
+          0.08160382509231567,
+          -0.6077722311019897
+        ],
+        "max": [
+          0.3508310317993164,
+          0.7638677954673767,
+          0.5793777108192444
+        ]
+      }
+    },
+    {
+      "name": "Lion_Tail.002",
+      "vertices": 871,
+      "polygons": 1193,
+      "triangles": 1327,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.22168269753456116,
+          0.2591956853866577,
+          -0.6102257966995239
+        ],
+        "max": [
+          0.2191823422908783,
+          0.7768392562866211,
+          -0.5233872532844543
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_R.002",
+      "vertices": 370,
+      "polygons": 525,
+      "triangles": 573,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.40871328115463257,
+          0.01196962594985962,
+          0.2254377156496048
+        ],
+        "max": [
+          -0.15378862619400024,
+          0.09278903156518936,
+          0.5018312931060791
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body.002",
+      "vertices": 698,
+      "polygons": 1204,
+      "triangles": 1233,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.16519546508789062,
+          0.08132842183113098,
+          0.17318864166736603
+        ],
+        "max": [
+          0.2903550863265991,
+          0.2027750313282013,
+          0.433845192193985
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_L.002",
+      "vertices": 270,
+      "polygons": 423,
+      "triangles": 457,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.1528892070055008,
+          0.012073300778865814,
+          0.2943658232688904
+        ],
+        "max": [
+          0.40868502855300903,
+          0.09338141232728958,
+          0.45152485370635986
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_L.002",
+      "vertices": 294,
+      "polygons": 392,
+      "triangles": 437,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.2706851065158844,
+          0.008837025612592697,
+          -0.5887035131454468
+        ],
+        "max": [
+          0.45202070474624634,
+          0.08975976705551147,
+          -0.3545041084289551
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_L.003",
+      "vertices": 88,
+      "polygons": 86,
+      "triangles": 94,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.313984751701355,
+          0.07625347375869751,
+          -0.5088993906974792
+        ],
+        "max": [
+          0.4369558095932007,
+          0.10332092642784119,
+          -0.3743290901184082
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body.003",
+      "vertices": 30,
+      "polygons": 21,
+      "triangles": 21,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.12110594660043716,
+          0.09442564845085144,
+          0.15947215259075165
+        ],
+        "max": [
+          0.2417869120836258,
+          0.1913081407546997,
+          0.4328252971172333
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindpaw_R.002",
+      "vertices": 362,
+      "polygons": 545,
+      "triangles": 601,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.41583937406539917,
+          0.010514527559280396,
+          -0.6451449990272522
+        ],
+        "max": [
+          -0.17269638180732727,
+          0.0916023999452591,
+          -0.3764168620109558
+        ]
+      }
+    },
+    {
+      "name": "Lion_Hindleg_R.003",
+      "vertices": 96,
+      "polygons": 102,
+      "triangles": 110,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Fiber_Warm_Ivory"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.4361523389816284,
+          0.07575628161430359,
+          -0.5136863589286804
+        ],
+        "max": [
+          -0.3176981806755066,
+          0.10306110978126526,
+          -0.36951398849487305
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_R.003",
+      "vertices": 321,
+      "polygons": 433,
+      "triangles": 480,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.394011527299881,
+          0.0050922781229019165,
+          0.384025901556015
+        ],
+        "max": [
+          -0.16248773038387299,
+          0.08903145045042038,
+          0.5528643727302551
+        ]
+      }
+    },
+    {
+      "name": "Lion_Forepaw_L.003",
+      "vertices": 335,
+      "polygons": 427,
+      "triangles": 470,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.16188986599445343,
+          0.008579716086387634,
+          0.30212053656578064
+        ],
+        "max": [
+          0.3936941623687744,
+          0.09022445976734161,
+          0.552494466304779
+        ]
+      }
+    },
+    {
+      "name": "Lion_Foreleg_L.003",
+      "vertices": 96,
+      "polygons": 97,
+      "triangles": 111,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          0.17988812923431396,
+          0.07556384801864624,
+          0.45152485370635986
+        ],
+        "max": [
+          0.36482152342796326,
+          0.10146200656890869,
+          0.5296028256416321
+        ]
+      }
+    },
+    {
+      "name": "Lion_Body.004",
+      "vertices": 641,
+      "polygons": 837,
+      "triangles": 864,
+      "uv_layers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study",
+        null
+      ],
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM"
+        }
+      ],
+      "gltf_bounds": {
+        "min": [
+          -0.16070058941841125,
+          0.4810604453086853,
+          -0.5424639582633972
+        ],
+        "max": [
+          0.1834917813539505,
+          0.6202629804611206,
+          -0.357096791267395
+        ]
+      }
+    }
+  ],
+  "hair_source": [
+    {
+      "id": "hair-01",
+      "name": "粒子系统",
+      "kind": "CURVES",
+      "partId": "tail",
+      "parentName": "粒子系统",
+      "assetKey": "lionKobiHair01",
+      "path": "assets/models/lion-kobi-hair-01.bin.gz",
+      "strands": 99854,
+      "pointsPerStrand": 5,
+      "bytes": 5419825,
+      "rawBytes": 7988320,
+      "sha256": "50ee22db4510bee0feee7ae55e90cb5a267753e8f72032276f596af0f6101d9c",
+      "rawSha256": "b503c8dc0118f9e03b6794c07f1923e598463cf441a24635bbd369b16a95e73a",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.14511151611804962,
+          0.1748814433813095,
+          -0.821292519569397
+        ],
+        "max": [
+          0.12706822156906128,
+          0.8321564197540283,
+          -0.524692714214325
+        ]
+      },
+      "material": {
+        "name": "Fiber_Warm_Ivory",
+        "color": [
+          1.0,
+          0.9735051989555359,
+          0.9072781801223755
+        ],
+        "roughness": 0.7200000286102295,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "source_object": "粒子系统",
+      "source_curves": 99854,
+      "source_points": 499270,
+      "radius_attribute": false,
+      "radius_default_m": 0.01,
+      "curve_types": [
+        "CATMULL_ROM"
+      ]
+    },
+    {
+      "id": "hair-02",
+      "name": "粒子系统.001",
+      "kind": "CURVES",
+      "partId": "head_shell",
+      "parentName": "粒子系统.001",
+      "assetKey": "lionKobiHair02",
+      "path": "assets/models/lion-kobi-hair-02.bin.gz",
+      "strands": 29973,
+      "pointsPerStrand": 5,
+      "bytes": 1608165,
+      "rawBytes": 2397840,
+      "sha256": "076d2d3c27dcbba4c01fddff7bc8ae4c7997d060cc0438e663684a08a96dc554",
+      "rawSha256": "cc99ff7de60639085d1c9beb1b9525cad809b7c7161506a4b58851d473a14876",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.3647584617137909,
+          0.3259086608886719,
+          0.11144929379224777
+        ],
+        "max": [
+          0.363760769367218,
+          0.7157689332962036,
+          0.7638468742370605
+        ]
+      },
+      "material": {
+        "name": "Blender_Default",
+        "color": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": false
+      },
+      "source_object": "粒子系统.001",
+      "source_curves": 29973,
+      "source_points": 149865,
+      "radius_attribute": false,
+      "radius_default_m": 0.01,
+      "curve_types": [
+        "CATMULL_ROM"
+      ]
+    },
+    {
+      "id": "hair-03",
+      "name": "粒子系统.002",
+      "kind": "CURVES",
+      "partId": "beard",
+      "parentName": "粒子系统.002",
+      "assetKey": "lionKobiHair03",
+      "path": "assets/models/lion-kobi-hair-03.bin.gz",
+      "strands": 39974,
+      "pointsPerStrand": 5,
+      "bytes": 2126522,
+      "rawBytes": 3197920,
+      "sha256": "8f3605b65cb4589de14063ef2ae91762204213a5279e7c27b57eae718f5b7028",
+      "rawSha256": "b7ffbc653eba32500d9750df8e6c7c7be5d6b2c6ac0e043a87374945dae47f30",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.21878106892108917,
+          0.17527709901332855,
+          0.5279415845870972
+        ],
+        "max": [
+          0.22748100757598877,
+          0.3939611613750458,
+          0.7648273706436157
+        ]
+      },
+      "material": {
+        "name": "Blender_Default",
+        "color": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": false
+      },
+      "source_object": "粒子系统.002",
+      "source_curves": 39974,
+      "source_points": 199870,
+      "radius_attribute": false,
+      "radius_default_m": 0.01,
+      "curve_types": [
+        "CATMULL_ROM"
+      ]
+    },
+    {
+      "id": "hair-04",
+      "name": "Lion_Ear_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "ear_l",
+      "parentName": "Lion_Ear_L.003",
+      "assetKey": "lionKobiHair04",
+      "path": "assets/models/lion-kobi-hair-04.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5115062,
+      "rawBytes": 7600000,
+      "sha256": "5af3484a9da736f43b96580777630eba7848d4b267002a8a87c91fcee64af5a1",
+      "rawSha256": "5b195fa6cbc3ed282489605abc4c1e51e1f017f72c3ac38cc7a165533f6bee74",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.16947461664676666,
+          0.7812564373016357,
+          0.34148555994033813
+        ],
+        "max": [
+          0.3183366060256958,
+          0.9283043742179871,
+          0.5098341703414917
+        ]
+      },
+      "material": {
+        "name": "HighDetail_Head_Atlas_PBR.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Ear_L.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-05",
+      "name": "Lion_Ear_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "ear_r",
+      "parentName": "Lion_Ear_R.003",
+      "assetKey": "lionKobiHair05",
+      "path": "assets/models/lion-kobi-hair-05.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5107652,
+      "rawBytes": 7600000,
+      "sha256": "595d560733bcdc25bd2ace4785bc3aa7714a8b7d6a7f6ee5b8732bcbfdc39266",
+      "rawSha256": "cda340bab2b5decef174294be6dc9d6e92b2c55db9c0e5553cd6c8e94a70a8a9",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.3189139664173126,
+          0.7805997729301453,
+          0.32849743962287903
+        ],
+        "max": [
+          -0.17088845372200012,
+          0.9273898005485535,
+          0.5031378269195557
+        ]
+      },
+      "material": {
+        "name": "HighDetail_Head_Atlas_PBR.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Ear_R.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-06",
+      "name": "Lion_Hindpaw_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_l",
+      "parentName": "Lion_Hindpaw_L.003",
+      "assetKey": "lionKobiHair06",
+      "path": "assets/models/lion-kobi-hair-06.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5257452,
+      "rawBytes": 7600000,
+      "sha256": "32d90fe97efe7d1ea5a3afc8d89ef78c36ae701896a60c9cc6af5ff303a44b70",
+      "rawSha256": "43906978e348f3342ced3021c4de8d1792cef04af9f82c933fcb51a11c79f46a",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.1571681648492813,
+          0.007605614140629768,
+          -0.6608772277832031
+        ],
+        "max": [
+          0.419329971075058,
+          0.10275411605834961,
+          -0.36150553822517395
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindpaw_L.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-07",
+      "name": "Lion_Hindpaw_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_r",
+      "parentName": "Lion_Hindpaw_R.003",
+      "assetKey": "lionKobiHair07",
+      "path": "assets/models/lion-kobi-hair-07.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5265117,
+      "rawBytes": 7600000,
+      "sha256": "14597f178c34909d6587a1e644bf7adf43389840392590eb95488b6c33ffb857",
+      "rawSha256": "c2e8ad982d9ea424e09b5e7133c8ae167089694eb44ad07e959c604be93fe28b",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.46677127480506897,
+          -0.005092721898108721,
+          -0.5852574706077576
+        ],
+        "max": [
+          -0.22533175349235535,
+          0.10181412845849991,
+          -0.33877554535865784
+        ]
+      },
+      "material": {
+        "name": "Head_Ivory_Fringe_Base",
+        "color": [
+          0.7400000095367432,
+          0.7200000286102295,
+          0.6800000071525574
+        ],
+        "roughness": 0.8600000143051147,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindpaw_R.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-08",
+      "name": "Lion_Foreleg_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_r",
+      "parentName": "Lion_Foreleg_R.003",
+      "assetKey": "lionKobiHair08",
+      "path": "assets/models/lion-kobi-hair-08.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5172259,
+      "rawBytes": 7600000,
+      "sha256": "94784f3c749412b1bea5775b2c45de9e97f137732791ed8fbd2d22a50b6f3dab",
+      "rawSha256": "6e087f137c9577e75c94145f489a0c97d76baf8da9512477bd0e171b3bcbf45d",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.37577998638153076,
+          0.06728892028331757,
+          0.4474581480026245
+        ],
+        "max": [
+          -0.173837810754776,
+          0.11360973119735718,
+          0.5458871126174927
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Foreleg_R.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-09",
+      "name": "Lion_Brow_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "brow_r",
+      "parentName": "Lion_Brow_R.002",
+      "assetKey": "lionKobiHair09",
+      "path": "assets/models/lion-kobi-hair-09.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5265132,
+      "rawBytes": 7600000,
+      "sha256": "ed8bd259291c56410a527876dfc5329bf5c9d266c697bc86b733aa64b8316819",
+      "rawSha256": "143977d7056c86d9d373ba66d176ce8bcc76edfe1e37f7bdc2dd228757e4a9b4",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.2712514400482178,
+          0.6269972920417786,
+          0.5416661500930786
+        ],
+        "max": [
+          -0.02791215106844902,
+          0.9095209240913391,
+          0.771671712398529
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Brow_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-10",
+      "name": "Lion_Brow_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "brow_l",
+      "parentName": "Lion_Brow_L.002",
+      "assetKey": "lionKobiHair10",
+      "path": "assets/models/lion-kobi-hair-10.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5193935,
+      "rawBytes": 7600000,
+      "sha256": "af94ffe7dfc09636118d014c79637f201cab3b32562c01b76f0248f7a5f8829f",
+      "rawSha256": "44cd4b7df3822b5405c78668a8662fbf776970ba9702eb835525eef08b57b914",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.04512868821620941,
+          0.6272128224372864,
+          0.5419207811355591
+        ],
+        "max": [
+          0.27190378308296204,
+          0.9116312265396118,
+          0.773057758808136
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Brow_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-11",
+      "name": "Lion_Nose.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "head_shell",
+      "parentName": "Lion_Nose.002",
+      "assetKey": "lionKobiHair11",
+      "path": "assets/models/lion-kobi-hair-11.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7355506,
+      "rawBytes": 10640000,
+      "sha256": "de2d8f4d24cc71438b84a52afcb7813201670988bbde8e186f77e89212e1a894",
+      "rawSha256": "30e2cc71b6d8617edea4cf928a305ba929c0cec3a577c506bc48d31262521148",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.3300246000289917,
+          0.4323766529560089,
+          0.30053234100341797
+        ],
+        "max": [
+          0.291721910238266,
+          0.9936103820800781,
+          0.7940307855606079
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Nose.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-12",
+      "name": "Lion_Ear_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "ear_l",
+      "parentName": "Lion_Ear_L.002",
+      "assetKey": "lionKobiHair12",
+      "path": "assets/models/lion-kobi-hair-12.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5234080,
+      "rawBytes": 7600000,
+      "sha256": "adaad1f09e91bb37d4db391b1f9120c13b89ff9a86ed18a7d06f11dad7f9ec88",
+      "rawSha256": "23e3e3234a9c4fb6f1ca4a602e382009bb4956dacee346652fc80a786eeedf0b",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.15927569568157196,
+          0.7328383922576904,
+          0.23151805996894836
+        ],
+        "max": [
+          0.38020870089530945,
+          0.9925649166107178,
+          0.5651547312736511
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Ear_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-13",
+      "name": "Lion_Ear_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "ear_r",
+      "parentName": "Lion_Ear_R.002",
+      "assetKey": "lionKobiHair13",
+      "path": "assets/models/lion-kobi-hair-13.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5233107,
+      "rawBytes": 7600000,
+      "sha256": "d7ee7b56619d0c3f01ba7672299347a1e87a43cba8effdef6d22fec7f2cfd07b",
+      "rawSha256": "9397f3c170c49e870dd5191e25dcc2fc39d1ea9223c4ddf2747002d5c0e13ed4",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.38021978735923767,
+          0.7331331372261047,
+          0.2309870421886444
+        ],
+        "max": [
+          -0.1619219332933426,
+          0.9949175715446472,
+          0.5681355595588684
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Ear_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-14",
+      "name": "Lion_Nose.001 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "head_shell",
+      "parentName": "Lion_Nose.001",
+      "assetKey": "lionKobiHair14",
+      "path": "assets/models/lion-kobi-hair-14.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5159261,
+      "rawBytes": 7600000,
+      "sha256": "8c74f7e8aa0b70c28e7bcba7f60103377995038c38baaefa936174e9d9a6436a",
+      "rawSha256": "2ebc437978c771d8316ca8f167c132ba3f3bb03e0c5c75d20e4270efada77dcd",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.27528417110443115,
+          0.31218424439430237,
+          0.18159830570220947
+        ],
+        "max": [
+          0.2858614921569824,
+          0.466408371925354,
+          0.5350093841552734
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Nose.001",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-15",
+      "name": "Lion_Body_Red_Trim.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "body_trim",
+      "parentName": "Lion_Body_Red_Trim.002",
+      "assetKey": "lionKobiHair15",
+      "path": "assets/models/lion-kobi-hair-15.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 16204882,
+      "rawBytes": 22800000,
+      "sha256": "6a3b276d97d9fc8abe3c25a05ec4bb48b7572c92dbc8c3f4ea55789dfc5948af",
+      "rawSha256": "08552a1f9be773017360c81888c5e0e664b8225e136fcba19f58b9265e9949c6",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.32208332419395447,
+          0.30311861634254456,
+          -0.5639848113059998
+        ],
+        "max": [
+          0.31780216097831726,
+          0.7889867424964905,
+          0.26900291442871094
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Body_Red_Trim.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.002",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 150,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        150,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 150000,
+      "evaluated_rendered_strands": 150000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-16",
+      "name": "Lion_Foreleg_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_r",
+      "parentName": "Lion_Foreleg_R.002",
+      "assetKey": "lionKobiHair16",
+      "path": "assets/models/lion-kobi-hair-16.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7454807,
+      "rawBytes": 10640000,
+      "sha256": "797e3533aa1e7307a3b37f8be15ce6ec1f47bcd7d20618ad9b5b46c584e4c16f",
+      "rawSha256": "dff12c265f6a94289c5dc925ec1bb711afd8551c402bfdc607b3ba4ba1485ce2",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.42066752910614014,
+          0.06696274131536484,
+          0.18386080861091614
+        ],
+        "max": [
+          -0.13963457942008972,
+          0.4351886510848999,
+          0.5097598433494568
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Foreleg_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-17",
+      "name": "Lion_Foreleg_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_l",
+      "parentName": "Lion_Foreleg_L.002",
+      "assetKey": "lionKobiHair17",
+      "path": "assets/models/lion-kobi-hair-17.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7342301,
+      "rawBytes": 10640000,
+      "sha256": "9775635edf05976fbeabbfc2fc0d958401a8436f307bd3e445bdfb08a4b0f3cd",
+      "rawSha256": "e178a76a6370b72b504bd4e302042ce66e4cf12d517f3af237212ba909d20c60",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.14104031026363373,
+          0.06815700232982635,
+          0.1828550547361374
+        ],
+        "max": [
+          0.4204028844833374,
+          0.4370630979537964,
+          0.5094507932662964
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Foreleg_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-18",
+      "name": "Lion_Hindleg_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_l",
+      "parentName": "Lion_Hindleg_L.002",
+      "assetKey": "lionKobiHair18",
+      "path": "assets/models/lion-kobi-hair-18.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7309171,
+      "rawBytes": 10640000,
+      "sha256": "9d6aebceda99aa2d7d9f81c3b543c2eae56e3f645a422797f8cbe26e632ac305",
+      "rawSha256": "2a666603ed544bddaf76b2629535d5ce6a6a522944a290213d0c416b124e66b5",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.12496434897184372,
+          0.06560543924570084,
+          -0.652847409248352
+        ],
+        "max": [
+          0.432598352432251,
+          0.4193755090236664,
+          -0.27005094289779663
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindleg_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-19",
+      "name": "Lion_Hindleg_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_r",
+      "parentName": "Lion_Hindleg_R.002",
+      "assetKey": "lionKobiHair19",
+      "path": "assets/models/lion-kobi-hair-19.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7388576,
+      "rawBytes": 10640000,
+      "sha256": "3fa0763a2154fada04bc7149d4a29e06b3e676d266e9f3a5ffb3ca02d58ca3c2",
+      "rawSha256": "c052d7bbb575954935d6b9c3e599c5299a774aedc33463dd67882ecfb41897ce",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.43403327465057373,
+          0.06842608004808426,
+          -0.6518410444259644
+        ],
+        "max": [
+          -0.13127954304218292,
+          0.3901461362838745,
+          -0.27037692070007324
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindleg_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-20",
+      "name": "Lion_Body.001 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "body",
+      "parentName": "Lion_Body.001",
+      "assetKey": "lionKobiHair20",
+      "path": "assets/models/lion-kobi-hair-20.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 16139761,
+      "rawBytes": 22800000,
+      "sha256": "a9629b4cae0ebe42f2d30ac99a6e1655623a4342e2e323341619f289e575a4bd",
+      "rawSha256": "a7557ce0cc5e00a8f1658222b793b79ec0c7f4fbe9e4a09f73adbc2e17fc7d7e",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.36310744285583496,
+          0.06852150708436966,
+          -0.6201025247573853
+        ],
+        "max": [
+          0.36443668603897095,
+          0.766563355922699,
+          0.5929529666900635
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Body.001",
+      "particle_system": "粒子系统",
+      "settings": "h",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 150,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        150,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 150000,
+      "evaluated_rendered_strands": 150000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-21",
+      "name": "Lion_Tail.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "tail",
+      "parentName": "Lion_Tail.002",
+      "assetKey": "lionKobiHair21",
+      "path": "assets/models/lion-kobi-hair-21.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7279813,
+      "rawBytes": 10640000,
+      "sha256": "0c299a9383d9a684b01f07049760b50946c5ef729a56bf800f5a85f7f2594179",
+      "rawSha256": "f49c9cf206646cd8f1884b648b68e0f566071438a3bd164d2a5c63ebaf58915f",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.23156948387622833,
+          0.24722015857696533,
+          -0.6249626278877258
+        ],
+        "max": [
+          0.2264665961265564,
+          0.7914367318153381,
+          -0.5154576301574707
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Tail.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.001",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 70,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        70,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 70000,
+      "evaluated_rendered_strands": 70000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-22",
+      "name": "Lion_Forepaw_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_r",
+      "parentName": "Lion_Forepaw_R.002",
+      "assetKey": "lionKobiHair22",
+      "path": "assets/models/lion-kobi-hair-22.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15820828,
+      "rawBytes": 22800000,
+      "sha256": "c88aab7748b187318064a4816644c7145eb9d474536a14779ca8a2caf154ad09",
+      "rawSha256": "da699d99cc7755c7a34d18abcf4972c1b9194f0b73156a4db561536d5920d1b3",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.42345499992370605,
+          -0.002971178386360407,
+          0.2179330587387085
+        ],
+        "max": [
+          -0.139020174741745,
+          0.10069482773542404,
+          0.5071570873260498
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Forepaw_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.002",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 150,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        150,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 150000,
+      "evaluated_rendered_strands": 150000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-23",
+      "name": "Lion_Body.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "body",
+      "parentName": "Lion_Body.002",
+      "assetKey": "lionKobiHair23",
+      "path": "assets/models/lion-kobi-hair-23.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5295638,
+      "rawBytes": 7600000,
+      "sha256": "b2299706714c3c7b35f63d737e2d5b4a16474ec89156e5ca053aa798328e4bfe",
+      "rawSha256": "4003ab6f1b14220114105a2361cd4d2d4b663c1c6d223397ce725ad5adb0abc7",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.16983866691589355,
+          0.06892933696508408,
+          0.16269563138484955
+        ],
+        "max": [
+          0.300514280796051,
+          0.207051619887352,
+          0.447284072637558
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Body.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-24",
+      "name": "Lion_Forepaw_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_l",
+      "parentName": "Lion_Forepaw_L.002",
+      "assetKey": "lionKobiHair24",
+      "path": "assets/models/lion-kobi-hair-24.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15786655,
+      "rawBytes": 22800000,
+      "sha256": "e52bdaaf5bd221d31fe5742b140b51da4bfa9869d90e3992530bddfb4fb89a71",
+      "rawSha256": "49c9b325dd0552616768680d8a25c56d811e5291ac426ec66834e733ad0846ce",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.13796710968017578,
+          -0.002846992574632168,
+          0.2797400951385498
+        ],
+        "max": [
+          0.422970712184906,
+          0.1000320240855217,
+          0.46233102679252625
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Forepaw_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置.002",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 150,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        150,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 150000,
+      "evaluated_rendered_strands": 150000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-25",
+      "name": "Lion_Hindpaw_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_l",
+      "parentName": "Lion_Hindpaw_L.002",
+      "assetKey": "lionKobiHair25",
+      "path": "assets/models/lion-kobi-hair-25.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5252202,
+      "rawBytes": 7600000,
+      "sha256": "be083c0965f43e0d725634f7f80c6824d29aabe52d5dbef46f1ca44073d89d64",
+      "rawSha256": "ec99f96c0fcc2f81c0fce4665515eabbb2c0ed58273a8e0adcadcb8d5fa40abe",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.256965309381485,
+          -0.005442488938570023,
+          -0.6033142805099487
+        ],
+        "max": [
+          0.4666704833507538,
+          0.10028669238090515,
+          -0.3397065997123718
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindpaw_L.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-26",
+      "name": "Lion_Hindleg_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_l",
+      "parentName": "Lion_Hindleg_L.003",
+      "assetKey": "lionKobiHair26",
+      "path": "assets/models/lion-kobi-hair-26.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5210182,
+      "rawBytes": 7600000,
+      "sha256": "464bb36f92a6a1021b8cbd409d0eeded5efd1539e7b765b11d5212f5dad601e9",
+      "rawSha256": "6fc156dbdc1ee0ef87e47bdf981ac35f00384e1c4f70ac460e670d992a6ef3d8",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.3092198669910431,
+          0.0680566057562828,
+          -0.515976071357727
+        ],
+        "max": [
+          0.44861456751823425,
+          0.11708882451057434,
+          -0.3626633286476135
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindleg_L.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-27",
+      "name": "Lion_Body.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "body",
+      "parentName": "Lion_Body.003",
+      "assetKey": "lionKobiHair27",
+      "path": "assets/models/lion-kobi-hair-27.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15377391,
+      "rawBytes": 22800000,
+      "sha256": "aad7d7fd8b8f001c65305b15f274043b10bdff3632dea958109ceb18013f6f56",
+      "rawSha256": "15c7276af659edaf35baf87326135c7adb65453281710ccdd308f7174436f177",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.126092791557312,
+          0.0816442221403122,
+          0.14680218696594238
+        ],
+        "max": [
+          0.24676725268363953,
+          0.20553499460220337,
+          0.44595766067504883
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Body.003",
+      "particle_system": "粒子系统",
+      "settings": "h",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 150,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        150,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 150000,
+      "evaluated_rendered_strands": 150000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-28",
+      "name": "Lion_Hindpaw_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_r",
+      "parentName": "Lion_Hindpaw_R.002",
+      "assetKey": "lionKobiHair28",
+      "path": "assets/models/lion-kobi-hair-28.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5290533,
+      "rawBytes": 7600000,
+      "sha256": "70fde991119f8ddeac543aa987694da07a5cc1dd1dbb5a86b152581cf13c49bf",
+      "rawSha256": "5f78a866efe7a4e8cbe5d72df982a1fd730b4cf4ba0bcd1a015589e4ae773214",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.42902320623397827,
+          -0.0039610364474356174,
+          -0.6600741744041443
+        ],
+        "max": [
+          -0.15801332890987396,
+          0.09913143515586853,
+          -0.3615742623806
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindpaw_R.002",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-29",
+      "name": "Lion_Hindleg_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "hindleg_r",
+      "parentName": "Lion_Hindleg_R.003",
+      "assetKey": "lionKobiHair29",
+      "path": "assets/models/lion-kobi-hair-29.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5196893,
+      "rawBytes": 7600000,
+      "sha256": "cf69c48196ae2a9a374453416d1e7439b91e51d9dbbb0b67c18e181c9821f596",
+      "rawSha256": "a3e67bdbab7fd79564dedae17a3dfc944c3460c1feb885a0c5b584014fe804f4",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.4482058584690094,
+          0.06530319154262543,
+          -0.5201135277748108
+        ],
+        "max": [
+          -0.31310200691223145,
+          0.11696886271238327,
+          -0.35631006956100464
+        ]
+      },
+      "material": {
+        "name": "Fiber_Warm_Ivory",
+        "color": [
+          1.0,
+          0.9735051989555359,
+          0.9072781801223755
+        ],
+        "roughness": 0.7200000286102295,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Hindleg_R.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-30",
+      "name": "Lion_Forepaw_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_r",
+      "parentName": "Lion_Forepaw_R.003",
+      "assetKey": "lionKobiHair30",
+      "path": "assets/models/lion-kobi-hair-30.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5266205,
+      "rawBytes": 7600000,
+      "sha256": "9bc08c1edacb237c1e4a644f87424e164276e08992d6a847500528dc8266ba0f",
+      "rawSha256": "e30e6dd798c5c125b67c10e435d608bbb93acc5b072aa7d2e4a5b878d801d355",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.40873706340789795,
+          -0.006251190323382616,
+          0.37974652647972107
+        ],
+        "max": [
+          -0.14754410088062286,
+          0.09997815638780594,
+          0.5676364302635193
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Forepaw_R.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-31",
+      "name": "Lion_Forepaw_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_l",
+      "parentName": "Lion_Forepaw_L.003",
+      "assetKey": "lionKobiHair31",
+      "path": "assets/models/lion-kobi-hair-31.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5263236,
+      "rawBytes": 7600000,
+      "sha256": "e335c48f814aa14e940d9799d70075360784dbd0c4ed9a1680bacb7b53e7fcae",
+      "rawSha256": "0021770c169e9d8d4c33d6db15bba430058f8b7bac7895b2eaa75692a5689d59",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.14700031280517578,
+          -0.0019348121713846922,
+          0.28952428698539734
+        ],
+        "max": [
+          0.4085753262042999,
+          0.09838344156742096,
+          0.5673922300338745
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Forepaw_L.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-32",
+      "name": "Lion_Foreleg_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "foreleg_l",
+      "parentName": "Lion_Foreleg_L.003",
+      "assetKey": "lionKobiHair32",
+      "path": "assets/models/lion-kobi-hair-32.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5208983,
+      "rawBytes": 7600000,
+      "sha256": "a9ab87f76891566a1c978674096353cf005e6c239008961fed2e5b68efe26151",
+      "rawSha256": "82dda78b081c82c1e431c96cfd16389b7837b5be5746efd9ccfbbd4f25078b92",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.17045630514621735,
+          0.06704619526863098,
+          0.44654902815818787
+        ],
+        "max": [
+          0.3747275769710541,
+          0.11353399604558945,
+          0.539519190788269
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Foreleg_L.003",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    },
+    {
+      "id": "hair-33",
+      "name": "Lion_Body.004 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "partId": "body",
+      "parentName": "Lion_Body.004",
+      "assetKey": "lionKobiHair33",
+      "path": "assets/models/lion-kobi-hair-33.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5193087,
+      "rawBytes": 7600000,
+      "sha256": "a09e92e1aab05045229a3a898f3745033bf67d68ae5062186c4f675f4568f35c",
+      "rawSha256": "6e25ad0d5493c576e8e4366fb40c10d968e335e9b753c47f46847f32ae62f418",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.1682416945695877,
+          0.47331729531288147,
+          -0.5573533773422241
+        ],
+        "max": [
+          0.189317986369133,
+          0.6344879865646362,
+          -0.34928572177886963
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      },
+      "emitter": "Lion_Body.004",
+      "particle_system": "粒子系统",
+      "settings": "粒子设置",
+      "source_parent_guides": 0,
+      "source_guide_key_counts": [],
+      "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_child_count": 50,
+      "source_render_step": 3,
+      "source_child_type": "INTERPOLATED",
+      "source_root_radius": 1.0,
+      "source_tip_radius": 0.0,
+      "source_radius_scale": 0.009999999776482582,
+      "source_shape": 0.0,
+      "source_close_tip": true,
+      "source_viewport_values": [
+        2,
+        50,
+        100
+      ],
+      "source_material_slot": 1,
+      "evaluated_parent_guides": 1000,
+      "evaluated_rendered_children": 50000,
+      "evaluated_rendered_strands": 50000,
+      "rendered_parents": 0
+    }
+  ],
+  "source_render": {
+    "engine": "CYCLES",
+    "hair_type": "STRAND",
+    "hair_subdiv": 0
+  },
+  "policy": {
+    "mesh_decimation": false,
+    "mesh_deduplication": false,
+    "mesh_repair": false,
+    "hair_sampling": false,
+    "hair_point_simplification": false,
+    "quantization": false,
+    "texture_resize": false,
+    "source_saved": false
+  },
+  "images": [
+    {
+      "name": "body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.002",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.003",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.004",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "05e235ab9f36ac80f09c3bb74625edad708faefe1e8fd482533c599baa4b62ea"
+    },
+    {
+      "name": "brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "packed_sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.002",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "packed_sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.003",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "packed_sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.004",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "packed_sha256": "75b4c86681f9363c622f8ec33b537efa8d08e8a282523a7d8a70ba37a705496c"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "bf324ff8e82e5f35f7a2cc15d269c04c0cc619a3585be4ba36007f32d78eee81"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "a94f752505abead95bba2611a398eac9067fac37042ff02154a07ac9b3785465"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined.003",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "3d7b98d16fb1fdbad8ca44d12e3c56665eb7af255092d22ab3299cc54cafeaee"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "93ecb895744e45330e0f8a204be6f4a2896a4747ede5fc88f0a710281ef58c5c"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "93ecb895744e45330e0f8a204be6f4a2896a4747ede5fc88f0a710281ef58c5c"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "88ede3aaa25929abb8f249fa700e38c83b2a635be964825c903d11759d4ff912"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "88ede3aaa25929abb8f249fa700e38c83b2a635be964825c903d11759d4ff912"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic.003",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "88ede3aaa25929abb8f249fa700e38c83b2a635be964825c903d11759d4ff912"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "357980b3307f7b6696ca0db277d183b9f3388133591819f2599786eadd53fc3d"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "357980b3307f7b6696ca0db277d183b9f3388133591819f2599786eadd53fc3d"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness.003",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "357980b3307f7b6696ca0db277d183b9f3388133591819f2599786eadd53fc3d"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "16edb21df6ee05ca2e074aedc8cb05a4bc7749de93200882a0dfa9078ddb2a88"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "16edb21df6ee05ca2e074aedc8cb05a4bc7749de93200882a0dfa9078ddb2a88"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "434f1f9c6fe98b95e998bff074cb214cba31affb0a90302fa87fe42a1e968ced"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "434f1f9c6fe98b95e998bff074cb214cba31affb0a90302fa87fe42a1e968ced"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "eb368652412dd365b00a9a6ac16b1aebfa7bb1dba00295f329ef5382e90465c0"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "eb368652412dd365b00a9a6ac16b1aebfa7bb1dba00295f329ef5382e90465c0"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask.003",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "eb368652412dd365b00a9a6ac16b1aebfa7bb1dba00295f329ef5382e90465c0"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "e45931ad65c7f957cca013cc420a2cceb25bb80a5bd0435fe4ca07fc9f1f433a"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "e45931ad65c7f957cca013cc420a2cceb25bb80a5bd0435fe4ca07fc9f1f433a"
+    },
+    {
+      "name": "Render Result",
+      "size": [
+        0,
+        0
+      ],
+      "packed": false,
+      "packed_sha256": null
+    },
+    {
+      "name": "Tongue_BaseColor_2K",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "fd9ed26d1f653b337c3b650bdbf0228f8bb5cc5ec3ba5fbf483ab8144fb64dbf"
+    },
+    {
+      "name": "Tongue_Metallic_2K",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "a4271e861e79a1c255351ef6ed59d40a1b863d05bdc7bac873ade1a29a998741"
+    },
+    {
+      "name": "Tongue_Normal_2K",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "b00e69a153d6a03bec036f9a16327433d589d3dca2d04f0d9be67908aeed8847"
+    },
+    {
+      "name": "Tongue_Roughness_2K",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "packed_sha256": "6aa2d89a93ec2d513a1e30db440790a9cb1efc1e4914cd7b00c8d43e279567e3"
+    },
+    {
+      "name": "Viewer Node",
+      "size": [
+        256,
+        256
+      ],
+      "packed": false,
+      "packed_sha256": null
+    },
+    {
+      "name": "微信图片_20261012151351_49_384.jpg",
+      "size": [
+        1610,
+        906
+      ],
+      "packed": true,
+      "packed_sha256": "2e232078c9380999ee629a3da34359f94cda098553087b130172f119a30287bf"
+    }
+  ],
+  "exporter_mesh_validation_disabled": true,
+  "exporter_compatibility": {
+    "blender_version": "5.2.3 LTS",
+    "function": "io_scene_gltf2.blender.exp.nodes.__gather_mesh",
+    "original_function_sha256": "bed7391dfb587ee34a94b98d1b75141bc3181111967dd84fbedc0831028d643b",
+    "patched_function_sha256": "246182cf5a7c25dd2fa9e3ea938c1a4927d9e7a3c974eeb8043c5d8d7ff032ac",
+    "scope": "Current process only; skip Mesh.validate() without changing source geometry or installation"
+  },
+  "evaluated_source_meshes": [
+    {
+      "name": "立方体",
+      "vertices": 610,
+      "polygons": 608,
+      "triangles": 1216
+    },
+    {
+      "name": "牙下",
+      "vertices": 18324,
+      "polygons": 18320,
+      "triangles": 36640
+    },
+    {
+      "name": "上牙",
+      "vertices": 15234,
+      "polygons": 15232,
+      "triangles": 30464
+    },
+    {
+      "name": "Lion_Head.001",
+      "vertices": 807,
+      "polygons": 780,
+      "triangles": 1560
+    },
+    {
+      "name": "Lion_Forehead_Bead_09",
+      "vertices": 1984,
+      "polygons": 2304,
+      "triangles": 3840
+    },
+    {
+      "name": "Lion_Crown",
+      "vertices": 3784,
+      "polygons": 5027,
+      "triangles": 5521
+    },
+    {
+      "name": "Lion_Body",
+      "vertices": 79810,
+      "polygons": 116869,
+      "triangles": 120978
+    },
+    {
+      "name": "Lion_Tail.001",
+      "vertices": 19871,
+      "polygons": 30953,
+      "triangles": 33455
+    },
+    {
+      "name": "Lion_Hindpaw_R.001",
+      "vertices": 1516,
+      "polygons": 2493,
+      "triangles": 2807
+    },
+    {
+      "name": "Lion_Hindpaw_L.001",
+      "vertices": 1529,
+      "polygons": 2514,
+      "triangles": 2778
+    },
+    {
+      "name": "Lion_Hindleg_R.001",
+      "vertices": 7651,
+      "polygons": 11525,
+      "triangles": 12592
+    },
+    {
+      "name": "Lion_Hindleg_L.001",
+      "vertices": 7989,
+      "polygons": 12411,
+      "triangles": 13568
+    },
+    {
+      "name": "Lion_Forepaw_R.001",
+      "vertices": 1579,
+      "polygons": 2660,
+      "triangles": 2908
+    },
+    {
+      "name": "Lion_Forepaw_L.001",
+      "vertices": 1506,
+      "polygons": 2487,
+      "triangles": 2753
+    },
+    {
+      "name": "Lion_Foreleg_R.001",
+      "vertices": 6909,
+      "polygons": 10498,
+      "triangles": 11472
+    },
+    {
+      "name": "Lion_Foreleg_L.001",
+      "vertices": 7153,
+      "polygons": 10921,
+      "triangles": 11871
+    },
+    {
+      "name": "Lion_Ear_R.001",
+      "vertices": 6312,
+      "polygons": 7306,
+      "triangles": 8065
+    },
+    {
+      "name": "Lion_Ear_L.001",
+      "vertices": 7313,
+      "polygons": 8347,
+      "triangles": 9137
+    },
+    {
+      "name": "Lion_Brow_R.001",
+      "vertices": 4888,
+      "polygons": 5922,
+      "triangles": 6488
+    },
+    {
+      "name": "Lion_Brow_L.001",
+      "vertices": 5013,
+      "polygons": 6348,
+      "triangles": 7063
+    },
+    {
+      "name": "Lion_Body_Red_Trim.001",
+      "vertices": 15569,
+      "polygons": 23746,
+      "triangles": 24790
+    },
+    {
+      "name": "Lion_Beard.001",
+      "vertices": 5895,
+      "polygons": 8258,
+      "triangles": 8863
+    },
+    {
+      "name": "Lion_Ear_L.003",
+      "vertices": 1029,
+      "polygons": 1299,
+      "triangles": 1468
+    },
+    {
+      "name": "Lion_Ear_R.003",
+      "vertices": 760,
+      "polygons": 1147,
+      "triangles": 1264
+    },
+    {
+      "name": "Lion_Hindpaw_L.003",
+      "vertices": 293,
+      "polygons": 322,
+      "triangles": 360
+    },
+    {
+      "name": "Lion_Hindpaw_R.003",
+      "vertices": 376,
+      "polygons": 468,
+      "triangles": 533
+    },
+    {
+      "name": "Lion_Foreleg_R.003",
+      "vertices": 100,
+      "polygons": 127,
+      "triangles": 130
+    },
+    {
+      "name": "Lion_Nose.003",
+      "vertices": 98407,
+      "polygons": 200368,
+      "triangles": 207648
+    },
+    {
+      "name": "Lion_Brow_R.002",
+      "vertices": 4650,
+      "polygons": 5571,
+      "triangles": 6082
+    },
+    {
+      "name": "Lion_Brow_L.002",
+      "vertices": 2645,
+      "polygons": 3238,
+      "triangles": 3656
+    },
+    {
+      "name": "Lion_Nose.002",
+      "vertices": 5134,
+      "polygons": 7735,
+      "triangles": 7978
+    },
+    {
+      "name": "Lion_Ear_L.002",
+      "vertices": 5738,
+      "polygons": 7433,
+      "triangles": 8154
+    },
+    {
+      "name": "Lion_Ear_R.002",
+      "vertices": 5415,
+      "polygons": 7239,
+      "triangles": 7952
+    },
+    {
+      "name": "Lion_Nose.001",
+      "vertices": 1874,
+      "polygons": 2880,
+      "triangles": 2965
+    },
+    {
+      "name": "Lion_Body_Red_Trim.002",
+      "vertices": 6214,
+      "polygons": 9500,
+      "triangles": 9752
+    },
+    {
+      "name": "Lion_Foreleg_R.002",
+      "vertices": 1788,
+      "polygons": 2522,
+      "triangles": 2755
+    },
+    {
+      "name": "Lion_Foreleg_L.002",
+      "vertices": 1864,
+      "polygons": 2556,
+      "triangles": 2814
+    },
+    {
+      "name": "Lion_Hindleg_L.002",
+      "vertices": 2026,
+      "polygons": 2861,
+      "triangles": 3150
+    },
+    {
+      "name": "Lion_Hindleg_R.002",
+      "vertices": 1682,
+      "polygons": 2515,
+      "triangles": 2730
+    },
+    {
+      "name": "Lion_Body.001",
+      "vertices": 7770,
+      "polygons": 10550,
+      "triangles": 10836
+    },
+    {
+      "name": "Lion_Tail.002",
+      "vertices": 871,
+      "polygons": 1193,
+      "triangles": 1327
+    },
+    {
+      "name": "Lion_Forepaw_R.002",
+      "vertices": 370,
+      "polygons": 525,
+      "triangles": 573
+    },
+    {
+      "name": "Lion_Body.002",
+      "vertices": 698,
+      "polygons": 1204,
+      "triangles": 1233
+    },
+    {
+      "name": "Lion_Forepaw_L.002",
+      "vertices": 270,
+      "polygons": 423,
+      "triangles": 457
+    },
+    {
+      "name": "Lion_Hindpaw_L.002",
+      "vertices": 294,
+      "polygons": 392,
+      "triangles": 437
+    },
+    {
+      "name": "Lion_Hindleg_L.003",
+      "vertices": 88,
+      "polygons": 86,
+      "triangles": 94
+    },
+    {
+      "name": "Lion_Body.003",
+      "vertices": 30,
+      "polygons": 21,
+      "triangles": 21
+    },
+    {
+      "name": "Lion_Hindpaw_R.002",
+      "vertices": 362,
+      "polygons": 545,
+      "triangles": 601
+    },
+    {
+      "name": "Lion_Hindleg_R.003",
+      "vertices": 96,
+      "polygons": 102,
+      "triangles": 110
+    },
+    {
+      "name": "Lion_Forepaw_R.003",
+      "vertices": 321,
+      "polygons": 433,
+      "triangles": 480
+    },
+    {
+      "name": "Lion_Forepaw_L.003",
+      "vertices": 335,
+      "polygons": 427,
+      "triangles": 470
+    },
+    {
+      "name": "Lion_Foreleg_L.003",
+      "vertices": 96,
+      "polygons": 97,
+      "triangles": 111
+    },
+    {
+      "name": "Lion_Body.004",
+      "vertices": 641,
+      "polygons": 837,
+      "triangles": 864
+    }
+  ],
+  "evaluated_source_triangles": 645834,
+  "source_mesh_invariants": [
+    {
+      "name": "立方体",
+      "before": {
+        "vertices": 40,
+        "edges": 76,
+        "polygons": 38,
+        "loops": 152,
+        "geometry_sha256": "071e7e3238377ee5bed3b4f2005567799519e99e82cba16342461a6ce0e89505"
+      },
+      "after": {
+        "vertices": 40,
+        "edges": 76,
+        "polygons": 38,
+        "loops": 152,
+        "geometry_sha256": "071e7e3238377ee5bed3b4f2005567799519e99e82cba16342461a6ce0e89505"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "牙下",
+      "before": {
+        "vertices": 374,
+        "edges": 740,
+        "polygons": 370,
+        "loops": 1480,
+        "geometry_sha256": "06158268a630ca498256edbc5dfa131650c8a419704a328809913fdcc89d639c"
+      },
+      "after": {
+        "vertices": 374,
+        "edges": 740,
+        "polygons": 370,
+        "loops": 1480,
+        "geometry_sha256": "06158268a630ca498256edbc5dfa131650c8a419704a328809913fdcc89d639c"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "上牙",
+      "before": {
+        "vertices": 432,
+        "edges": 860,
+        "polygons": 430,
+        "loops": 1720,
+        "geometry_sha256": "13176453bad1da9a40e3997d119759018ef8a64340c21740f5528272f8887512"
+      },
+      "after": {
+        "vertices": 432,
+        "edges": 860,
+        "polygons": 430,
+        "loops": 1720,
+        "geometry_sha256": "13176453bad1da9a40e3997d119759018ef8a64340c21740f5528272f8887512"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Head.001",
+      "before": {
+        "vertices": 53,
+        "edges": 104,
+        "polygons": 52,
+        "loops": 195,
+        "geometry_sha256": "894fbad3f838ef779d63af377433ed27cc623aa2aeaae86c409471a574bc8a76"
+      },
+      "after": {
+        "vertices": 53,
+        "edges": 104,
+        "polygons": 52,
+        "loops": 195,
+        "geometry_sha256": "894fbad3f838ef779d63af377433ed27cc623aa2aeaae86c409471a574bc8a76"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forehead_Bead_09",
+      "before": {
+        "vertices": 1984,
+        "edges": 4224,
+        "polygons": 2304,
+        "loops": 8448,
+        "geometry_sha256": "72bc58332ff7eb4c88082ee5332f59fda93f2734ab1dfefc2873e86aac340af8"
+      },
+      "after": {
+        "vertices": 1984,
+        "edges": 4224,
+        "polygons": 2304,
+        "loops": 8448,
+        "geometry_sha256": "72bc58332ff7eb4c88082ee5332f59fda93f2734ab1dfefc2873e86aac340af8"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Crown",
+      "before": {
+        "vertices": 3784,
+        "edges": 8646,
+        "polygons": 5027,
+        "loops": 15575,
+        "geometry_sha256": "0a939237a08bb5d20b60ea934b2c742a15e267d81c0ea88564af35d7ce7d8312"
+      },
+      "after": {
+        "vertices": 3784,
+        "edges": 8646,
+        "polygons": 5027,
+        "loops": 15575,
+        "geometry_sha256": "0a939237a08bb5d20b60ea934b2c742a15e267d81c0ea88564af35d7ce7d8312"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body",
+      "before": {
+        "vertices": 79810,
+        "edges": 200325,
+        "polygons": 116869,
+        "loops": 354716,
+        "geometry_sha256": "9cc4ed828abb88ae7eda934b009fd61dec034ace866e409f7e858f119284e287"
+      },
+      "after": {
+        "vertices": 79810,
+        "edges": 200325,
+        "polygons": 116869,
+        "loops": 354716,
+        "geometry_sha256": "9cc4ed828abb88ae7eda934b009fd61dec034ace866e409f7e858f119284e287"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Tail.001",
+      "before": {
+        "vertices": 19871,
+        "edges": 51738,
+        "polygons": 30953,
+        "loops": 95361,
+        "geometry_sha256": "aa91e435f4290d3bcd12633498f3fb7616c99bfa8296b220e2f1af0dfd453252"
+      },
+      "after": {
+        "vertices": 19871,
+        "edges": 51738,
+        "polygons": 30953,
+        "loops": 95361,
+        "geometry_sha256": "aa91e435f4290d3bcd12633498f3fb7616c99bfa8296b220e2f1af0dfd453252"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_R.001",
+      "before": {
+        "vertices": 1516,
+        "edges": 4003,
+        "polygons": 2493,
+        "loops": 7793,
+        "geometry_sha256": "2c1e35ff7be4a1aef067cd9223df8a58d5b70577dc3a427ad86dbd6aa37674dc"
+      },
+      "after": {
+        "vertices": 1516,
+        "edges": 4003,
+        "polygons": 2493,
+        "loops": 7793,
+        "geometry_sha256": "2c1e35ff7be4a1aef067cd9223df8a58d5b70577dc3a427ad86dbd6aa37674dc"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_L.001",
+      "before": {
+        "vertices": 1529,
+        "edges": 4037,
+        "polygons": 2514,
+        "loops": 7806,
+        "geometry_sha256": "22cea4f7dd202ae8377171eb9390fbac2d4f8c861376d6a9540adde554d10011"
+      },
+      "after": {
+        "vertices": 1529,
+        "edges": 4037,
+        "polygons": 2514,
+        "loops": 7806,
+        "geometry_sha256": "22cea4f7dd202ae8377171eb9390fbac2d4f8c861376d6a9540adde554d10011"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_R.001",
+      "before": {
+        "vertices": 7651,
+        "edges": 19383,
+        "polygons": 11525,
+        "loops": 35642,
+        "geometry_sha256": "704c145fd3f737e8ef2fd7b36996835382e35f915a37450833373afd52aae8a9"
+      },
+      "after": {
+        "vertices": 7651,
+        "edges": 19383,
+        "polygons": 11525,
+        "loops": 35642,
+        "geometry_sha256": "704c145fd3f737e8ef2fd7b36996835382e35f915a37450833373afd52aae8a9"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_L.001",
+      "before": {
+        "vertices": 7989,
+        "edges": 20712,
+        "polygons": 12411,
+        "loops": 38390,
+        "geometry_sha256": "539667bf92cadf0de77b994c7a254d918271ec2112277b77548f6d2dbb498acd"
+      },
+      "after": {
+        "vertices": 7989,
+        "edges": 20712,
+        "polygons": 12411,
+        "loops": 38390,
+        "geometry_sha256": "539667bf92cadf0de77b994c7a254d918271ec2112277b77548f6d2dbb498acd"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_R.001",
+      "before": {
+        "vertices": 1579,
+        "edges": 4239,
+        "polygons": 2660,
+        "loops": 8228,
+        "geometry_sha256": "81abfa0df2e6a82b5d6aa36b032bd3650ce1e51624e0f6fb446b2e630d1dc180"
+      },
+      "after": {
+        "vertices": 1579,
+        "edges": 4239,
+        "polygons": 2660,
+        "loops": 8228,
+        "geometry_sha256": "81abfa0df2e6a82b5d6aa36b032bd3650ce1e51624e0f6fb446b2e630d1dc180"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_L.001",
+      "before": {
+        "vertices": 1506,
+        "edges": 3986,
+        "polygons": 2487,
+        "loops": 7727,
+        "geometry_sha256": "1ed81e4bb591f400c183fa60dfa9626b3d68c60ac3e3f5f43ac4a666a8b4987a"
+      },
+      "after": {
+        "vertices": 1506,
+        "edges": 3986,
+        "polygons": 2487,
+        "loops": 7727,
+        "geometry_sha256": "1ed81e4bb591f400c183fa60dfa9626b3d68c60ac3e3f5f43ac4a666a8b4987a"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_R.001",
+      "before": {
+        "vertices": 6909,
+        "edges": 17545,
+        "polygons": 10498,
+        "loops": 32468,
+        "geometry_sha256": "b2ca82db03be38c2557e9f1188de31e56f3b6474bd56085b0e69c29da4949222"
+      },
+      "after": {
+        "vertices": 6909,
+        "edges": 17545,
+        "polygons": 10498,
+        "loops": 32468,
+        "geometry_sha256": "b2ca82db03be38c2557e9f1188de31e56f3b6474bd56085b0e69c29da4949222"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_L.001",
+      "before": {
+        "vertices": 7153,
+        "edges": 18237,
+        "polygons": 10921,
+        "loops": 33713,
+        "geometry_sha256": "c3502065216aada8016148227b1ac669e6c34e6022ce3e3c78b7bea65535f5a6"
+      },
+      "after": {
+        "vertices": 7153,
+        "edges": 18237,
+        "polygons": 10921,
+        "loops": 33713,
+        "geometry_sha256": "c3502065216aada8016148227b1ac669e6c34e6022ce3e3c78b7bea65535f5a6"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_R.001",
+      "before": {
+        "vertices": 6312,
+        "edges": 13521,
+        "polygons": 7306,
+        "loops": 22677,
+        "geometry_sha256": "c68ed0a7f32f55edd69121e978a2a6ab9d1fea1ad5ebeae538fc2a7f7652044b"
+      },
+      "after": {
+        "vertices": 6312,
+        "edges": 13521,
+        "polygons": 7306,
+        "loops": 22677,
+        "geometry_sha256": "c68ed0a7f32f55edd69121e978a2a6ab9d1fea1ad5ebeae538fc2a7f7652044b"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_L.001",
+      "before": {
+        "vertices": 7313,
+        "edges": 15563,
+        "polygons": 8347,
+        "loops": 25831,
+        "geometry_sha256": "959f82c37e55f6ab20b4cde3459d927a53aa844c1a3e884e2c6be53d65f8f1d8"
+      },
+      "after": {
+        "vertices": 7313,
+        "edges": 15563,
+        "polygons": 8347,
+        "loops": 25831,
+        "geometry_sha256": "959f82c37e55f6ab20b4cde3459d927a53aa844c1a3e884e2c6be53d65f8f1d8"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Brow_R.001",
+      "before": {
+        "vertices": 4888,
+        "edges": 10931,
+        "polygons": 5922,
+        "loops": 18332,
+        "geometry_sha256": "526a9fe563ede72ce7de92c8c7489ac866779c995832661980d1ecca86dab4bd"
+      },
+      "after": {
+        "vertices": 4888,
+        "edges": 10931,
+        "polygons": 5922,
+        "loops": 18332,
+        "geometry_sha256": "526a9fe563ede72ce7de92c8c7489ac866779c995832661980d1ecca86dab4bd"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Brow_L.001",
+      "before": {
+        "vertices": 5013,
+        "edges": 11570,
+        "polygons": 6348,
+        "loops": 19759,
+        "geometry_sha256": "e55a6f2e9dba39f130a6c66b28b3419be6466edf0a08289323adb45d6e328868"
+      },
+      "after": {
+        "vertices": 5013,
+        "edges": 11570,
+        "polygons": 6348,
+        "loops": 19759,
+        "geometry_sha256": "e55a6f2e9dba39f130a6c66b28b3419be6466edf0a08289323adb45d6e328868"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body_Red_Trim.001",
+      "before": {
+        "vertices": 15569,
+        "edges": 40077,
+        "polygons": 23746,
+        "loops": 72282,
+        "geometry_sha256": "3fe476c86f69224360af6e25936f8399e6d8d3aedd2104cf5658fcf8edc35950"
+      },
+      "after": {
+        "vertices": 15569,
+        "edges": 40077,
+        "polygons": 23746,
+        "loops": 72282,
+        "geometry_sha256": "3fe476c86f69224360af6e25936f8399e6d8d3aedd2104cf5658fcf8edc35950"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Beard.001",
+      "before": {
+        "vertices": 5895,
+        "edges": 14259,
+        "polygons": 8258,
+        "loops": 25379,
+        "geometry_sha256": "b4b157c4f5f94e454dab0a7f4936e86dd6ce779714c9fbceef78e1527b79fa85"
+      },
+      "after": {
+        "vertices": 5895,
+        "edges": 14259,
+        "polygons": 8258,
+        "loops": 25379,
+        "geometry_sha256": "b4b157c4f5f94e454dab0a7f4936e86dd6ce779714c9fbceef78e1527b79fa85"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_L.003",
+      "before": {
+        "vertices": 1029,
+        "edges": 2428,
+        "polygons": 1299,
+        "loops": 4066,
+        "geometry_sha256": "6bb4a2123d70e8b0f0c69b222d800760f000b1210ce6089b1d44051580a29d64"
+      },
+      "after": {
+        "vertices": 1029,
+        "edges": 2428,
+        "polygons": 1299,
+        "loops": 4066,
+        "geometry_sha256": "6bb4a2123d70e8b0f0c69b222d800760f000b1210ce6089b1d44051580a29d64"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_R.003",
+      "before": {
+        "vertices": 760,
+        "edges": 1965,
+        "polygons": 1147,
+        "loops": 3558,
+        "geometry_sha256": "1803a6e3f34a56fefc8ba08adf4775632d5305bfcd56c304ccb15368b75c0818"
+      },
+      "after": {
+        "vertices": 760,
+        "edges": 1965,
+        "polygons": 1147,
+        "loops": 3558,
+        "geometry_sha256": "1803a6e3f34a56fefc8ba08adf4775632d5305bfcd56c304ccb15368b75c0818"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_L.003",
+      "before": {
+        "vertices": 293,
+        "edges": 607,
+        "polygons": 322,
+        "loops": 1004,
+        "geometry_sha256": "ef60e6860e4eff687cb34bd27d33653c4a798ae43d3c26d82b09fd3f21ce1452"
+      },
+      "after": {
+        "vertices": 293,
+        "edges": 607,
+        "polygons": 322,
+        "loops": 1004,
+        "geometry_sha256": "ef60e6860e4eff687cb34bd27d33653c4a798ae43d3c26d82b09fd3f21ce1452"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_R.003",
+      "before": {
+        "vertices": 376,
+        "edges": 835,
+        "polygons": 468,
+        "loops": 1469,
+        "geometry_sha256": "2e891dee760a4293cf9b9695954c01e3993ff41482eee8fd89010ab45a8cefe0"
+      },
+      "after": {
+        "vertices": 376,
+        "edges": 835,
+        "polygons": 468,
+        "loops": 1469,
+        "geometry_sha256": "2e891dee760a4293cf9b9695954c01e3993ff41482eee8fd89010ab45a8cefe0"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_R.003",
+      "before": {
+        "vertices": 100,
+        "edges": 224,
+        "polygons": 127,
+        "loops": 384,
+        "geometry_sha256": "4a15a28d0cbb801b2a2bf484c630e2bac5739a605c6387f5367a99ac169ad38c"
+      },
+      "after": {
+        "vertices": 100,
+        "edges": 224,
+        "polygons": 127,
+        "loops": 384,
+        "geometry_sha256": "4a15a28d0cbb801b2a2bf484c630e2bac5739a605c6387f5367a99ac169ad38c"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Nose.003",
+      "before": {
+        "vertices": 98407,
+        "edges": 305623,
+        "polygons": 200368,
+        "loops": 608384,
+        "geometry_sha256": "24637c6d0f5d0d38f25e3070d0720ebace69fe22a8f9565459d4b44ebcb5c377"
+      },
+      "after": {
+        "vertices": 98407,
+        "edges": 305623,
+        "polygons": 200368,
+        "loops": 608384,
+        "geometry_sha256": "24637c6d0f5d0d38f25e3070d0720ebace69fe22a8f9565459d4b44ebcb5c377"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Brow_R.002",
+      "before": {
+        "vertices": 4650,
+        "edges": 10326,
+        "polygons": 5571,
+        "loops": 17224,
+        "geometry_sha256": "6b73473c5da62a9c6e959dfce2d1eff175fe4b82a98807a597301c6ab8e03958"
+      },
+      "after": {
+        "vertices": 4650,
+        "edges": 10326,
+        "polygons": 5571,
+        "loops": 17224,
+        "geometry_sha256": "6b73473c5da62a9c6e959dfce2d1eff175fe4b82a98807a597301c6ab8e03958"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Brow_L.002",
+      "before": {
+        "vertices": 2645,
+        "edges": 6052,
+        "polygons": 3238,
+        "loops": 10132,
+        "geometry_sha256": "30b35a7a2fbbd48e0ce5b7bfdc74fd200933dc94bb35f53854bf305065fa7344"
+      },
+      "after": {
+        "vertices": 2645,
+        "edges": 6052,
+        "polygons": 3238,
+        "loops": 10132,
+        "geometry_sha256": "30b35a7a2fbbd48e0ce5b7bfdc74fd200933dc94bb35f53854bf305065fa7344"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Nose.002",
+      "before": {
+        "vertices": 5134,
+        "edges": 13067,
+        "polygons": 7735,
+        "loops": 23448,
+        "geometry_sha256": "6c155040c19797b0ed623a8c5617b50eceb84ffd0aaf5c382d92e6df98fe4d50"
+      },
+      "after": {
+        "vertices": 5134,
+        "edges": 13067,
+        "polygons": 7735,
+        "loops": 23448,
+        "geometry_sha256": "6c155040c19797b0ed623a8c5617b50eceb84ffd0aaf5c382d92e6df98fe4d50"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_L.002",
+      "before": {
+        "vertices": 5738,
+        "edges": 13602,
+        "polygons": 7433,
+        "loops": 23020,
+        "geometry_sha256": "c46befd000d6f10082fb8457a254a2bd26a11fcadd8f3ae910b3fb309e38e1d9"
+      },
+      "after": {
+        "vertices": 5738,
+        "edges": 13602,
+        "polygons": 7433,
+        "loops": 23020,
+        "geometry_sha256": "c46befd000d6f10082fb8457a254a2bd26a11fcadd8f3ae910b3fb309e38e1d9"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Ear_R.002",
+      "before": {
+        "vertices": 5415,
+        "edges": 13089,
+        "polygons": 7239,
+        "loops": 22430,
+        "geometry_sha256": "67629838f79a8bc10beeb7e4b61089d1b0cdacc74282cdc4e945aaaf39ee64a2"
+      },
+      "after": {
+        "vertices": 5415,
+        "edges": 13089,
+        "polygons": 7239,
+        "loops": 22430,
+        "geometry_sha256": "67629838f79a8bc10beeb7e4b61089d1b0cdacc74282cdc4e945aaaf39ee64a2"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Nose.001",
+      "before": {
+        "vertices": 1874,
+        "edges": 4958,
+        "polygons": 2880,
+        "loops": 8725,
+        "geometry_sha256": "134f8f0aeb4d727320598220b63ec7df118637fe0f5435130b7419fe3e756d76"
+      },
+      "after": {
+        "vertices": 1874,
+        "edges": 4958,
+        "polygons": 2880,
+        "loops": 8725,
+        "geometry_sha256": "134f8f0aeb4d727320598220b63ec7df118637fe0f5435130b7419fe3e756d76"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body_Red_Trim.002",
+      "before": {
+        "vertices": 6214,
+        "edges": 15735,
+        "polygons": 9500,
+        "loops": 28752,
+        "geometry_sha256": "7fcaadad464521d9f5b6e277f514a286b8711239d2eea9c48c79404c84fc3f4f"
+      },
+      "after": {
+        "vertices": 6214,
+        "edges": 15735,
+        "polygons": 9500,
+        "loops": 28752,
+        "geometry_sha256": "7fcaadad464521d9f5b6e277f514a286b8711239d2eea9c48c79404c84fc3f4f"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_R.002",
+      "before": {
+        "vertices": 1788,
+        "edges": 4298,
+        "polygons": 2522,
+        "loops": 7799,
+        "geometry_sha256": "f9ecbae41630316d6d0e2fe87509849d2706f22ad22cfffd04535b37d3706b14"
+      },
+      "after": {
+        "vertices": 1788,
+        "edges": 4298,
+        "polygons": 2522,
+        "loops": 7799,
+        "geometry_sha256": "f9ecbae41630316d6d0e2fe87509849d2706f22ad22cfffd04535b37d3706b14"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_L.002",
+      "before": {
+        "vertices": 1864,
+        "edges": 4443,
+        "polygons": 2556,
+        "loops": 7926,
+        "geometry_sha256": "f848a4838cc68722ef0acb2d96c18996ad2c5ab7d5de830f96eba40c7a5aa7ad"
+      },
+      "after": {
+        "vertices": 1864,
+        "edges": 4443,
+        "polygons": 2556,
+        "loops": 7926,
+        "geometry_sha256": "f848a4838cc68722ef0acb2d96c18996ad2c5ab7d5de830f96eba40c7a5aa7ad"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_L.002",
+      "before": {
+        "vertices": 2026,
+        "edges": 4879,
+        "polygons": 2861,
+        "loops": 8872,
+        "geometry_sha256": "47770c19caf86baff7ec8d8c804796ba4a5cb969d2974342abd21319ab826a25"
+      },
+      "after": {
+        "vertices": 2026,
+        "edges": 4879,
+        "polygons": 2861,
+        "loops": 8872,
+        "geometry_sha256": "47770c19caf86baff7ec8d8c804796ba4a5cb969d2974342abd21319ab826a25"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_R.002",
+      "before": {
+        "vertices": 1682,
+        "edges": 4203,
+        "polygons": 2515,
+        "loops": 7760,
+        "geometry_sha256": "68ed4d3e723baf036a3aa5fd2750047f059dbe15dee57292938a0b41a7896ace"
+      },
+      "after": {
+        "vertices": 1682,
+        "edges": 4203,
+        "polygons": 2515,
+        "loops": 7760,
+        "geometry_sha256": "68ed4d3e723baf036a3aa5fd2750047f059dbe15dee57292938a0b41a7896ace"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body.001",
+      "before": {
+        "vertices": 7770,
+        "edges": 18224,
+        "polygons": 10550,
+        "loops": 31936,
+        "geometry_sha256": "627ef77d5c9c0eb4881ff06f66a7c044bd4e9a04c9b4ee155c74c07ad7c0dd00"
+      },
+      "after": {
+        "vertices": 7770,
+        "edges": 18224,
+        "polygons": 10550,
+        "loops": 31936,
+        "geometry_sha256": "627ef77d5c9c0eb4881ff06f66a7c044bd4e9a04c9b4ee155c74c07ad7c0dd00"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Tail.002",
+      "before": {
+        "vertices": 871,
+        "edges": 2051,
+        "polygons": 1193,
+        "loops": 3713,
+        "geometry_sha256": "099897f946265f44b224c3705c3aced46bf9a7c90151d318b58fdecc0eb2f39b"
+      },
+      "after": {
+        "vertices": 871,
+        "edges": 2051,
+        "polygons": 1193,
+        "loops": 3713,
+        "geometry_sha256": "099897f946265f44b224c3705c3aced46bf9a7c90151d318b58fdecc0eb2f39b"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_R.002",
+      "before": {
+        "vertices": 370,
+        "edges": 890,
+        "polygons": 525,
+        "loops": 1623,
+        "geometry_sha256": "8ef0548e08c9c057c42596a9761e3b0dc0b739a6e3c8c9fe973771a259ce3512"
+      },
+      "after": {
+        "vertices": 370,
+        "edges": 890,
+        "polygons": 525,
+        "loops": 1623,
+        "geometry_sha256": "8ef0548e08c9c057c42596a9761e3b0dc0b739a6e3c8c9fe973771a259ce3512"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body.002",
+      "before": {
+        "vertices": 698,
+        "edges": 1913,
+        "polygons": 1204,
+        "loops": 3641,
+        "geometry_sha256": "f81ff1c0eeb01c92cc56e9f7336209db097197f51b35bae1c34989ac029bdc07"
+      },
+      "after": {
+        "vertices": 698,
+        "edges": 1913,
+        "polygons": 1204,
+        "loops": 3641,
+        "geometry_sha256": "f81ff1c0eeb01c92cc56e9f7336209db097197f51b35bae1c34989ac029bdc07"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_L.002",
+      "before": {
+        "vertices": 270,
+        "edges": 692,
+        "polygons": 423,
+        "loops": 1303,
+        "geometry_sha256": "38fe237b6b817fdfd327146c7382534c04afe69435a2a6548dde5010000638c7"
+      },
+      "after": {
+        "vertices": 270,
+        "edges": 692,
+        "polygons": 423,
+        "loops": 1303,
+        "geometry_sha256": "38fe237b6b817fdfd327146c7382534c04afe69435a2a6548dde5010000638c7"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_L.002",
+      "before": {
+        "vertices": 294,
+        "edges": 686,
+        "polygons": 392,
+        "loops": 1221,
+        "geometry_sha256": "f745b08ec24fd5c19e97772a3bb6f00d5ab8275f082aae7cf4dfd67762214657"
+      },
+      "after": {
+        "vertices": 294,
+        "edges": 686,
+        "polygons": 392,
+        "loops": 1221,
+        "geometry_sha256": "f745b08ec24fd5c19e97772a3bb6f00d5ab8275f082aae7cf4dfd67762214657"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_L.003",
+      "before": {
+        "vertices": 88,
+        "edges": 167,
+        "polygons": 86,
+        "loops": 266,
+        "geometry_sha256": "b53aa44f5610dec256c31d596a59e3aa7c1a8cb31b2342144da89e3f41f76319"
+      },
+      "after": {
+        "vertices": 88,
+        "edges": 167,
+        "polygons": 86,
+        "loops": 266,
+        "geometry_sha256": "b53aa44f5610dec256c31d596a59e3aa7c1a8cb31b2342144da89e3f41f76319"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body.003",
+      "before": {
+        "vertices": 30,
+        "edges": 47,
+        "polygons": 21,
+        "loops": 63,
+        "geometry_sha256": "27875ce65344a4676f7f9240c09c348212073db1330581a464801e4fd5e03e55"
+      },
+      "after": {
+        "vertices": 30,
+        "edges": 47,
+        "polygons": 21,
+        "loops": 63,
+        "geometry_sha256": "27875ce65344a4676f7f9240c09c348212073db1330581a464801e4fd5e03e55"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindpaw_R.002",
+      "before": {
+        "vertices": 362,
+        "edges": 906,
+        "polygons": 545,
+        "loops": 1691,
+        "geometry_sha256": "b88fec60836f8333cdd08c09d9ccbe0c0857163558c21d3f6bfcf3307b301e4c"
+      },
+      "after": {
+        "vertices": 362,
+        "edges": 906,
+        "polygons": 545,
+        "loops": 1691,
+        "geometry_sha256": "b88fec60836f8333cdd08c09d9ccbe0c0857163558c21d3f6bfcf3307b301e4c"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Hindleg_R.003",
+      "before": {
+        "vertices": 96,
+        "edges": 195,
+        "polygons": 102,
+        "loops": 314,
+        "geometry_sha256": "41fbd1168b84680bbd8e076543838db42d0439cd5dfd8dd0e9a332fc3565a0b5"
+      },
+      "after": {
+        "vertices": 96,
+        "edges": 195,
+        "polygons": 102,
+        "loops": 314,
+        "geometry_sha256": "41fbd1168b84680bbd8e076543838db42d0439cd5dfd8dd0e9a332fc3565a0b5"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_R.003",
+      "before": {
+        "vertices": 321,
+        "edges": 747,
+        "polygons": 433,
+        "loops": 1346,
+        "geometry_sha256": "b6e6f4406227a5392ddbbd2fa85b698891340682219b78516d0d183f9db3245a"
+      },
+      "after": {
+        "vertices": 321,
+        "edges": 747,
+        "polygons": 433,
+        "loops": 1346,
+        "geometry_sha256": "b6e6f4406227a5392ddbbd2fa85b698891340682219b78516d0d183f9db3245a"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Forepaw_L.003",
+      "before": {
+        "vertices": 335,
+        "edges": 753,
+        "polygons": 427,
+        "loops": 1324,
+        "geometry_sha256": "6e9932e22f429eab371b780025ec5b2303f4b6df727c98b9e2704b2722a470f6"
+      },
+      "after": {
+        "vertices": 335,
+        "edges": 753,
+        "polygons": 427,
+        "loops": 1324,
+        "geometry_sha256": "6e9932e22f429eab371b780025ec5b2303f4b6df727c98b9e2704b2722a470f6"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Foreleg_L.003",
+      "before": {
+        "vertices": 96,
+        "edges": 191,
+        "polygons": 97,
+        "loops": 305,
+        "geometry_sha256": "e82de0e25fa30cd522be70e5c52c68f2490f51dac1dee196652ed04bb541ce2f"
+      },
+      "after": {
+        "vertices": 96,
+        "edges": 191,
+        "polygons": 97,
+        "loops": 305,
+        "geometry_sha256": "e82de0e25fa30cd522be70e5c52c68f2490f51dac1dee196652ed04bb541ce2f"
+      },
+      "unchanged": true
+    },
+    {
+      "name": "Lion_Body.004",
+      "before": {
+        "vertices": 641,
+        "edges": 1476,
+        "polygons": 837,
+        "loops": 2538,
+        "geometry_sha256": "2fbf4fcb5118daba28e2bd7b609500becdf9a4703e4e601ec331395c93ba8aab"
+      },
+      "after": {
+        "vertices": 641,
+        "edges": 1476,
+        "polygons": 837,
+        "loops": 2538,
+        "geometry_sha256": "2fbf4fcb5118daba28e2bd7b609500becdf9a4703e4e601ec331395c93ba8aab"
+      },
+      "unchanged": true
+    }
+  ],
+  "material_sheen_corrections": [
+    {
+      "material": "Lion_Atlas_PBR_Refined",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
+      "material": "Velvet_Scarlet_Uniform_Base",
+      "source_weight": 0.2199999988079071,
+      "source_tint": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "exporter_factor": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "corrected_factor": [
+        0.06600000226497649,
+        0.0013200000043213367,
+        0.0026400000086426734
+      ]
+    },
+    {
+      "material": "Brocade_Clear_Tile_Cloth_Study",
+      "source_weight": 0.18000000715255737,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
+      ]
+    },
+    {
+      "material": "Brocade_Clear_Tile_Cloth_Study",
+      "source_weight": 0.18000000715255737,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
+      ]
+    },
+    {
+      "material": "HighDetail_Head_Atlas_PBR",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
+      "material": "Head_Scarlet_Velvet_Base",
+      "source_weight": 0.2199999988079071,
+      "source_tint": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "exporter_factor": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "corrected_factor": [
+        0.06600000226497649,
+        0.0013200000043213367,
+        0.0026400000086426734
+      ]
+    },
+    {
+      "material": "Lion_Atlas_PBR_Refined.001",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
+      "material": "Velvet_Scarlet_Uniform_Base.001",
+      "source_weight": 0.2199999988079071,
+      "source_tint": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "exporter_factor": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "corrected_factor": [
+        0.06600000226497649,
+        0.0013200000043213367,
+        0.0026400000086426734
+      ]
+    },
+    {
+      "material": "Brocade_Clear_Tile_Cloth_Study.002",
+      "source_weight": 0.18000000715255737,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
+      ]
+    },
+    {
+      "material": "Brocade_Clear_Tile_Cloth_Study.002",
+      "source_weight": 0.18000000715255737,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
+      ]
+    },
+    {
+      "material": "Fiber_Warm_Ivory",
+      "source_weight": 0.20000000298023224,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.20000000298023224,
+        0.20000000298023224,
+        0.20000000298023224
+      ]
+    },
+    {
+      "material": "HighDetail_Head_Atlas_PBR.001",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
+      "material": "Head_Scarlet_Velvet_Base.001",
+      "source_weight": 0.2199999988079071,
+      "source_tint": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "exporter_factor": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "corrected_factor": [
+        0.06600000226497649,
+        0.0013200000043213367,
+        0.0026400000086426734
+      ]
+    },
+    {
+      "material": "Head_Ivory_Fringe_Base.001",
+      "source_weight": 0.23000000417232513,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.23000000417232513,
+        0.23000000417232513,
+        0.23000000417232513
+      ]
+    },
+    {
+      "material": "Head_Ivory_Fringe_Base",
+      "source_weight": 0.23000000417232513,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.23000000417232513,
+        0.23000000417232513,
+        0.23000000417232513
+      ]
+    },
+    {
+      "material": "HighDetail_Head_Atlas_PBR.003",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
+      "material": "Head_Scarlet_Velvet_Base.003",
+      "source_weight": 0.2199999988079071,
+      "source_tint": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "exporter_factor": [
+        0.30000001192092896,
+        0.006000000052154064,
+        0.012000000104308128
+      ],
+      "corrected_factor": [
+        0.06600000226497649,
+        0.0013200000043213367,
+        0.0026400000086426734
+      ]
+    },
+    {
+      "material": "Head_Ivory_Fringe_Base.003",
+      "source_weight": 0.23000000417232513,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.23000000417232513,
+        0.23000000417232513,
+        0.23000000417232513
+      ]
+    },
+    {
+      "material": "Forehead_ReferenceInspired_Brocade_Study.002",
+      "source_weight": 0.18000000715255737,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
+      ]
+    }
+  ],
+  "export": {
+    "path": "source/public/assets/models/lion-kobi.glb",
+    "bytes": 89080296,
+    "sha256": "cbdccfafbae02b102d9f50c60f33ec3cfafd942deadfc5dbda19b771393ff58e",
+    "settings": {
+      "export_format": "GLB",
+      "use_selection": true,
+      "export_yup": true,
+      "export_apply": true,
+      "export_texcoords": true,
+      "export_normals": true,
+      "export_materials": "EXPORT",
+      "export_image_format": "AUTO",
+      "export_animations": true,
+      "export_extras": true,
+      "export_cameras": false,
+      "export_lights": false
+    },
+    "gltf_nodes": 102,
+    "gltf_meshes": 53,
+    "gltf_materials": 24,
+    "gltf_triangles": 645834,
+    "mesh_object_names": [
+      "立方体",
+      "牙下",
+      "上牙",
+      "Lion_Head.001",
+      "Lion_Forehead_Bead_09",
+      "Lion_Crown",
+      "Lion_Body",
+      "Lion_Tail.001",
+      "Lion_Hindpaw_R.001",
+      "Lion_Hindpaw_L.001",
+      "Lion_Hindleg_R.001",
+      "Lion_Hindleg_L.001",
+      "Lion_Forepaw_R.001",
+      "Lion_Forepaw_L.001",
+      "Lion_Foreleg_R.001",
+      "Lion_Foreleg_L.001",
+      "Lion_Ear_R.001",
+      "Lion_Ear_L.001",
+      "Lion_Brow_R.001",
+      "Lion_Brow_L.001",
+      "Lion_Body_Red_Trim.001",
+      "Lion_Beard.001",
+      "Lion_Ear_L.003",
+      "Lion_Ear_R.003",
+      "Lion_Hindpaw_L.003",
+      "Lion_Hindpaw_R.003",
+      "Lion_Foreleg_R.003",
+      "Lion_Nose.003",
+      "Lion_Brow_R.002",
+      "Lion_Brow_L.002",
+      "Lion_Nose.002",
+      "Lion_Ear_L.002",
+      "Lion_Ear_R.002",
+      "Lion_Nose.001",
+      "Lion_Body_Red_Trim.002",
+      "Lion_Foreleg_R.002",
+      "Lion_Foreleg_L.002",
+      "Lion_Hindleg_L.002",
+      "Lion_Hindleg_R.002",
+      "Lion_Body.001",
+      "Lion_Tail.002",
+      "Lion_Forepaw_R.002",
+      "Lion_Body.002",
+      "Lion_Forepaw_L.002",
+      "Lion_Hindpaw_L.002",
+      "Lion_Hindleg_L.003",
+      "Lion_Body.003",
+      "Lion_Hindpaw_R.002",
+      "Lion_Hindleg_R.003",
+      "Lion_Forepaw_R.003",
+      "Lion_Forepaw_L.003",
+      "Lion_Foreleg_L.003",
+      "Lion_Body.004"
+    ],
+    "hair_manifest": "source/public/assets/models/lion-kobi-hair.json",
+    "hair_groups": 33,
+    "hair_strands": 2289801,
+    "hair_points": 19929005
+  },
+  "source_unchanged": true,
+  "semantic_parts": {
+    "path": "src/data/lion-interactive-parts.json",
+    "count": 17,
+    "all_source_meshes_assigned_once": true,
+    "all_hair_groups_assigned_once": true
+  },
+  "archive_local_only": true,
+  "source_capabilities": {
+    "armatures": 0,
+    "actions": 0,
+    "shape_keys": 0,
+    "eye_mesh_independent": false,
+    "jaw_independent": false,
+    "ear_parts_independent": true,
+    "tail_independent": true,
+    "cloth_animation": false
+  }
+}

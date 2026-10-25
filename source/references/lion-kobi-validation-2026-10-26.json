@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-26",
+  "baseline": "codex/TestModel@32d435b plus this task's changes",
+  "environment": {
+    "os": "Windows",
+    "node": "24.16.0",
+    "npm": "12.0.1",
+    "browser": "Playwright Chromium",
+    "desktopViewports": ["1920x1080", "1366x768"],
+    "tabletViewport": "820x1180",
+    "phoneViewport": "390x844",
+    "touch": "Chromium CDP dispatchTouchEvent; no physical phone validation"
+  },
+  "commands": [
+    {"command": "npm test", "result": "80/80 passed, 0 skipped", "milliseconds": 5396.0429},
+    {"command": "npm run build", "result": "345 modules passed; existing Three.js chunk size warning", "seconds": 1.95},
+    {"command": "npx playwright test --config playwright.interactive.config.js", "result": "8/8 passed", "duration": "1.4m (runner summary)"},
+    {"command": "npx playwright test --config playwright.interactive.config.js --grep 390×844", "result": "Final multi-touch correction: 1/1 passed", "seconds": 8.7},
+    {"command": "npx playwright test --config playwright.interactive.config.js --grep 指定模型实际", "result": "Added public camera FOV check: 1/1 passed", "seconds": 9.9},
+    {"command": "$env:LION_TEST_PREVIEW='1'; npx playwright test --config playwright.interactive.config.js", "result": "Final production rebuild: 8/8 passed", "duration": "1.3m (runner summary)"},
+    {"command": "$env:LION_TEST_PREVIEW='1'; npx playwright test --config tmp/interactive-regression.config.mjs", "specs": ["action-theater.spec.js", "full-lion-model.spec.js", "settings-transaction.spec.js"], "result": "12/12 passed", "duration": "1.5m (runner summary)"}
+  ],
+  "observations": {
+    "semanticParts": 17,
+    "meshObjects": 53,
+    "actuallyDrawnHairGroups": 33,
+    "actuallyDrawnHairStrands": 2289801,
+    "actuallyDrawnHairPoints": 19929005,
+    "threeRepeatedRestoreTransformErrors": [0, 0, 0],
+    "highlightedPartsWhenLeftEarSelected": ["ear_l"],
+    "independentWebGLInstancedDrawAudit": {
+      "overall": {"groups": 33, "instances": 2289801},
+      "leftEarIsolated": {"groups": 2, "instances": 100000},
+      "tailIsolated": {"groups": 2, "instances": 169854}
+    },
+    "labelRectangleOverlaps": {"overall": 0, "fullyExploded": 0},
+    "disposeCanvasCount": 0,
+    "idleAndInactiveRenderCountStable": true,
+    "pausedMotionTimeStable": true,
+    "dragBlurCancelAndMultiTouchDoNotSelect": true,
+    "resourceAndWebGLContextFailureRetry": true,
+    "sourceAndArchiveUnchanged": true
+  },
+  "reviewDirectory": "source/reviews/model/2026-10-26-interactive",
+  "historicalReview": "narrow-label-gutters.png is the navigation-overflow discovery screenshot; narrow-model-header.png and layout-390.png show the corrected final navigation.",
+  "limits": [
+    "Source has no authored skeletal animation, independent eyes, complete lower jaw or cloth controls. Motion demonstrates only independent ears and tail around approximate manual pivots.",
+    "Digital mesh decomposition does not reconstruct internal traditional craft or real assembly connections.",
+    "The complete model and hair are large. Browser STRAND shading is not identical to Blender; no claim of equal performance across hardware.",
+    "No complete historical E2E suite, physical mobile devices, other browsers, long-running hardware benchmark, deployed hosting or new offline executable validation was performed. Legacy six-region/paper-atlas layout assertions describe the previous product."
+  ]
+}

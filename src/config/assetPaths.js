@@ -66,7 +66,13 @@ export const assetPaths = {
   expressionGlyphStillness: 'assets/expression/calligraphy/stillness.png',
   expressionGlyphSurprise: 'assets/expression/calligraphy/surprise.png',
   expressionGlyphDoubt: 'assets/expression/calligraphy/doubt.png',
-  model: 'assets/models/lion-user-full.glb',
+  model: 'assets/models/lion-kobi.glb',
+  modelHairKobi: 'assets/models/lion-kobi-hair.json',
+  ...Object.fromEntries(Array.from({ length: 33 }, (_, index) => {
+    const number = String(index + 1).padStart(2, '0');
+    return [`lionKobiHair${number}`, `assets/models/lion-kobi-hair-${number}.bin.gz`];
+  })),
+  actionLionModel: 'assets/models/lion-user-full.glb',
   modelHair: 'assets/models/lion-user-hair.json',
   lionHdri: 'assets/environments/citrus_orchard_road_puresky_4k.exr',
   lionForestHdri: 'assets/environments/forest.exr',

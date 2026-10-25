@@ -258,6 +258,9 @@ async function createHairGroup(definition, url, signal, sourceMaterials) {
   mesh.userData.interpolation = interpolation;
   mesh.userData.segmentsPerSourceSegment = segmentsPerSourceSegment;
   mesh.userData.sourceParent = definition.parentName;
+  // Interactive exports provide the semantic owner for curves whose Blender
+  // parent is an emitter or an empty. Keep each authored strand with its part.
+  mesh.userData.sourcePart = definition.partId;
   // The manifest supplies complete evaluated strand bounds. No distance LOD,
   // strand sample, opacity fade, or centerline reduction is applied here.
   mesh.raycast = () => {};
