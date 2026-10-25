@@ -4544,6 +4544,42 @@
       "path": "source/reviews/entry-brush-type/2026-10-26/entry-host-1920.png",
       "bytes": 2863465,
       "sha256": "482e0e39feefddd47c1894c3edb9315ae55ac11e14c81c9a82bffcc2eb727e81"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/capture.json",
+      "bytes": 24138,
+      "sha256": "965f655a1288c1e9c35fd9268aec1735783192e30958d6cde363311e153b1065"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1024x560.png",
+      "bytes": 973810,
+      "sha256": "10714bb3a1a4a20ce9e484fc8c599ce50ca84f738f7d5cf80e211df1c4cd11a7"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1366x768.png",
+      "bytes": 1651411,
+      "sha256": "f8520526d0c1b4d8361278739922dcc48a10b3e10c26d36ddc05d8c17bf080b1"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1920x1080.png",
+      "bytes": 2892975,
+      "sha256": "98027bdf57070dfad9fa632a4823b9c0b2e93f55582df933e6c5c9ab6e8e5c55"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1920x400.png",
+      "bytes": 989640,
+      "sha256": "4dafd2aca366a50648c163c7ae7b4f9241f7bf1ccafa3f885efe26700ad1a888"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-host-1920.png",
+      "bytes": 2874481,
+      "sha256": "4cce1e059ba89f8d98f036d800dbf211e66fc3af778fc4490804a32f8196f2d7"
     }
   ]
 }
