@@ -4454,6 +4454,30 @@
       "path": "source/reviews/exhibit-screen/2026-10-25/types-1920.png",
       "bytes": 1724829,
       "sha256": "fb835d218ba7a88d497e795c7250b3f0f45466e7aee6c39d1a1da0198bc0cea4"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1366.png",
+      "bytes": 1246966,
+      "sha256": "cdae709102d66122b759dae31601606264fb8cb562d08750fbaa12c1ff293e69"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1440.png",
+      "bytes": 1561101,
+      "sha256": "541eb6f9db7dadbeeb031b9717a38818377ccf6f8d25910d3fa8df2977d5a084"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1920.png",
+      "bytes": 2355370,
+      "sha256": "55b80bc808553e98556d3c661cfba073b38ef6aee139cdd850921558d9a7e844"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/capture.json",
+      "bytes": 2988,
+      "sha256": "9a7db8dd98cd4449babac4dedc5483f7a543aca7dd2fce90bac130c6fd0e2b14"
     }
   ]
 }

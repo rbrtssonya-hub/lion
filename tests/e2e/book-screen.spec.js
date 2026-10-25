@@ -151,7 +151,9 @@ for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768]]) {
           top: rect.top + rect.height * .218, bottom: rect.top + rect.height * .782 };
       });
       const iframe = await page.locator('#homeLionBook iframe').boundingBox();
-      expect(paper.right - paper.left).toBeGreaterThanOrEqual({ 1366: 940, 1440: 1100, 1920: 1500 }[width]);
+      // The enlarged navigation reserves 32px more below the paper; the user
+      // explicitly permits a slightly smaller book while all reading stays in view.
+      expect(paper.right - paper.left).toBeGreaterThanOrEqual({ 1366: 890, 1440: 1100, 1920: 1500 }[width]);
       expect(paper.top + iframe.y).toBeGreaterThanOrEqual(layout.blocks[1].top - 3);
       expect(paper.bottom + iframe.y).toBeLessThanOrEqual(layout.blocks[1].bottom + 3);
       expect(Math.abs(paper.left + iframe.x - layout.blocks[3].left)).toBeLessThan(8);
