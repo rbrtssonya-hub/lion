@@ -13,7 +13,7 @@ export function useChapterTransition(route) {
       displayed.current = route;
       setScene({ route, phase: 'idle' });
     };
-    if (route === displayed.current || preference.matches) settle();
+    if (route === displayed.current || preference.matches || document.hidden) settle();
     else {
       setScene(previous => ({ ...previous, phase: 'leaving' }));
       timer = setTimeout(() => {
@@ -23,8 +23,14 @@ export function useChapterTransition(route) {
       }, 140);
     }
     const onPreference = () => { if (preference.matches) settle(); };
+    const onVisibility = () => { if (document.hidden) settle(); };
     preference.addEventListener('change', onPreference);
-    return () => { clearTimeout(timer); preference.removeEventListener('change', onPreference); };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      clearTimeout(timer);
+      preference.removeEventListener('change', onPreference);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, [route]);
   return scene;
 }

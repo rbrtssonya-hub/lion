@@ -15,6 +15,7 @@ import { withStartupTimeout } from './features/loading/useStartupLoading.js';
 import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSettings.js';
 import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
 import { getSoundControlLayout } from './features/sound-control/soundWaveGeometry.js';
+import ChapterInkTransition from './components/ChapterInkTransition.jsx';
 
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
@@ -180,6 +181,7 @@ export default function App() {
         }}
         settingsTriggerRef={triggerRef} />
       <main id="react-app" data-route={displayedRoute} data-chapter-target={route} data-chapter-phase={scene.phase}>
+        <ChapterInkTransition key={route} phase={scene.phase} />
         <span className="chapter-transition-line" aria-hidden="true" />
         <div className="chapter-scene" inert={scene.phase === 'leaving'}>
         <div className="prewarmed-page" data-active={displayedRoute === 'entry'} inert={displayedRoute !== 'entry'} aria-hidden={displayedRoute !== 'entry'}>
@@ -192,7 +194,7 @@ export default function App() {
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {displayedRoute !== 'entry' && displayedRoute !== 'model' && <ChapterPage lightingSettings={settings} route={displayedRoute} observation={observation} onReturnToModel={returnToModel} />}
+        {displayedRoute !== 'entry' && displayedRoute !== 'model' && <ChapterPage lightingSettings={settings} route={displayedRoute} active={displayedRoute === route && scene.phase !== 'leaving'} observation={observation} onReturnToModel={returnToModel} />}
         </div>
       </main>
     </div>

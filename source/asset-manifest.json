@@ -4580,6 +4580,102 @@
       "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-host-1920.png",
       "bytes": 2874481,
       "sha256": "4cce1e059ba89f8d98f036d800dbf211e66fc3af778fc4490804a32f8196f2d7"
+    },
+    {
+      "from": "built-in imagegen underpaint edit, 2026-10-26",
+      "path": "source/public/assets/expression/lion-surprise-underpaint-v1.png",
+      "bytes": 1809215,
+      "sha256": "3ccf15f901e51651d8f7a12365d1941f1cb86316c15d842dca5f9325d2b71356"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-0ms.png",
+      "bytes": 337256,
+      "sha256": "848399a23ffd6ecff477cee13ffd5fb893812d225f4d8c6f4cae421e20ac87a7"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-120ms.png",
+      "bytes": 339361,
+      "sha256": "f90d590098e7cb741af007c813dfa69f0b41fb7ed7eb5f3af8d77a64f613d889"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-300ms.png",
+      "bytes": 340236,
+      "sha256": "7f4a71a6964d1cb66cb6c210e492366c9a840c2d21eb58485aba2f7760f5bd94"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-490ms.png",
+      "bytes": 337874,
+      "sha256": "01dd73a05df9d93e7f89d092f84a0884c3c09c9cbad554d4703983afaa234750"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-0ms.png",
+      "bytes": 593305,
+      "sha256": "5cbc327e719e275f626ca598da388778bdae0d48c0d752deed0bb63d7c42c6f1"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-120ms.png",
+      "bytes": 596746,
+      "sha256": "f87638a934441567afeef384f16670c7c8af964f90c258f9cd50444ae13e3cda"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-300ms.png",
+      "bytes": 598035,
+      "sha256": "7ad1446740c87e7766227a26a1acfb6aea816bd8ef4cc85a72e118150d5fabc7"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-490ms.png",
+      "bytes": 595098,
+      "sha256": "6f2caced22b0c1a6b800026b0d3d296b3ddd0a6a14d9f9852a833bd0b98158a3"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-page-1440.png",
+      "bytes": 1329837,
+      "sha256": "b2d41dc6509e4d68584041c499f36604a9aa0df7015bc4d6cc9de0aecfdd00a0"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-page-1920.png",
+      "bytes": 2065456,
+      "sha256": "89f8d721bbe06c208d556fe8bc9c1ebf86dbab7380f44b073eab29dd9cbcbfc4"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-rest-1440.png",
+      "bytes": 366938,
+      "sha256": "c2c195224a88aadc5b24be54232e90d0909566e50cc51672c917305179e00584"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-rest-1920.png",
+      "bytes": 654424,
+      "sha256": "e888ab73ff6a0d14f3b1c1a33084a3f8111021757a21da1855a75e9e0f4751db"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/ink-middle-1440.png",
+      "bytes": 1429406,
+      "sha256": "62a34bf13e91fd24f7484472225fd3c698ecda21d610659afff78ecf7d879789"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/ink-middle-1920.png",
+      "bytes": 2378955,
+      "sha256": "95e5cf3f7763f3f5ca2306b9697b9780302fdc16ebaf669a7d45d67e3fc2720e"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/capture.json",
+      "bytes": 4889,
+      "sha256": "8b30f94532ffeb2210b90b95458a277c792acb907e72a5937e27cbe92a9febb8"
     }
   ]
 }

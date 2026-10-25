@@ -57,6 +57,7 @@ export const assetPaths = {
   expressionMotion: 'assets/expression/lion-motion-v2.png',
   expressionStillness: 'assets/expression/lion-stillness-v2.png',
   expressionSurprise: 'assets/expression/lion-surprise-v2.png',
+  expressionSurpriseUnderpaint: 'assets/expression/lion-surprise-underpaint-v1.png',
   expressionDoubt: 'assets/expression/lion-doubt-v2.png',
   expressionGlyphJoy: 'assets/expression/calligraphy/joy.png',
   expressionGlyphAnger: 'assets/expression/calligraphy/anger.png',

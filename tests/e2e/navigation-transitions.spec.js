@@ -72,6 +72,7 @@ async function sampleFlight(page, selector, interrupt = null, remeasure = false)
         animating: h.dataset.navAnimating, columns: h.style.getPropertyValue('--navigation-columns'),
         pageWidth: document.querySelector('.site-page').getBoundingClientRect().width,
         brand: state(h.querySelector('.site-brand-capsule')),
+        logo: state(h.querySelector('.entry-lion-emblem')),
         brandName: state(h.querySelector('.site-brand-copy')), backgrounds, covered,
         items: [...h.querySelectorAll('.site-nav-item')].map(element => ({
           key: element.dataset.route || 'settings', button: box(element),
@@ -201,18 +202,32 @@ function expectStationaryBackground(flight) {
   expect(violations).toEqual([]);
 }
 
-function expectBrandBeforeHome(frame) {
+// The approved 2026-10-25 exhibit layout fixes the Logo at the left edge;
+// navigation-surface.css overrides the former compact margin-left:auto.
+// Keep the existing subpixel bounds while the titles/icons continue flying.
+function expectBrandAtLeft(frame) {
   const home = item(frame, 'entry').button;
   const gap = home.x - frame.brand.right;
   expect(gap).toBeGreaterThanOrEqual(-.75);
-  expect(gap).toBeLessThanOrEqual(48);
   expect(Math.abs(frame.brand.y + frame.brand.height / 2 - home.y - home.height / 2)).toBeLessThan(18);
   const bounds = frame.backgrounds[0];
   expect(frame.brand.x).toBeGreaterThanOrEqual(bounds.x - .75);
+  expect(frame.brand.x).toBeLessThan(bounds.x + bounds.width * .25);
   expect(item(frame, 'settings').button.right).toBeLessThanOrEqual(bounds.right + .75);
 }
 
-test('经典滚动条下三章图标、原毛笔标题与品牌移动，完整红底板逐帧不变', async ({ page }) => {
+function expectFixedLogo(flight) {
+  const violations = [];
+  for (const [index, frame] of [flight.initial, ...flight.frames, flight.final].entries()) {
+    for (const key of ['x', 'y', 'width', 'height']) {
+      if (Math.abs(frame.logo[key] - flight.initial.logo[key]) >= .75) violations.push({ frame: index, key, value: frame.logo[key], original: flight.initial.logo[key] });
+    }
+    if (frame.brand.running || frame.brand.willChange) violations.push({ frame: index, problem: 'fixed Logo parent must not fly' });
+  }
+  expect(violations).toEqual([]);
+}
+
+test('经典滚动条下三章图标与原毛笔标题移动，Logo矩形和完整红底板逐帧固定', async ({ page }) => {
   await open(page);
   const homepageWidth = await page.locator('.site-page').evaluate(element => element.getBoundingClientRect().width);
   expect(homepageWidth).toBeLessThan(1920);
@@ -221,15 +236,15 @@ test('经典滚动条下三章图标、原毛笔标题与品牌移动，完整�
     expectNaturalFlight(leaving);
     expectStationaryBackground(leaving);
     expect(leaving.final.pageWidth).toBeCloseTo(homepageWidth, 1);
-    expect(leaving.frames.some(frame => frame.brand.running)).toBe(true);
-    expect(leaving.final.brand.x - leaving.initial.brand.x).toBeGreaterThan(150);
-    expectBrandBeforeHome(leaving.final);
+    expectFixedLogo(leaving);
+    expectBrandAtLeft(leaving.final);
     expect(item(leaving.final, 'model').heading.opacity).toBe(1);
     expect(leaving.final.brandName.opacity).toBe(0);
     expect(leaving.final.brandName.visibility).toBe('hidden');
     await expect(header(page)).toHaveAttribute('data-nav-layout', 'compact');
     const returning = await sampleFlight(page, '.site-brand-capsule');
     expectNaturalFlight(returning);
+    expectFixedLogo(returning);
     expectStationaryBackground(returning);
     expect(returning.final.route).toBe('entry');
     expect(returning.final.brand.x).toBeCloseTo(leaving.initial.brand.x, 1);
@@ -256,11 +271,11 @@ test('返回首页恢复原文字和布局，字体复测不打断标题飞行�
   expect(await page.locator('.site-nav-copy').evaluateAll(elements => elements.map(element => getComputedStyle(element).fontSize))).toEqual(original.map(value => value.font));
 });
 
-test('快速中断从品牌可见位置返回，零首页偏移仍让章节品牌移到首页左邻', async ({ page }) => {
+test('快速中断保持Logo原矩形，零首页偏移仍固定左侧并连续恢复标题', async ({ page }) => {
   await open(page);
   const flight = await sampleFlight(page, '.site-nav-item[data-route="state"]', { selector: '.site-brand-capsule', after: 370 });
-  expect(flight.preInterrupt.brand.running).toBe(true);
-  expect(Math.abs(flight.postInterrupt.brand.x - flight.preInterrupt.brand.x)).toBeLessThan(25);
+  expectFixedLogo(flight);
+  expect(Math.abs(flight.postInterrupt.logo.x - flight.preInterrupt.logo.x)).toBeLessThan(.75);
   expect(Math.abs(item(flight.postInterrupt, 'model').symbol.x - item(flight.preInterrupt, 'model').symbol.x)).toBeLessThan(25);
   expect(Math.abs(item(flight.postInterrupt, 'model').heading.x - item(flight.preInterrupt, 'model').heading.x)).toBeLessThan(25);
   expect(Math.abs(item(flight.postInterrupt, 'model').helper.x - item(flight.preInterrupt, 'model').helper.x)).toBeLessThan(25);
@@ -280,9 +295,8 @@ test('快速中断从品牌可见位置返回，零首页偏移仍让章节品�
   await page.evaluate(() => document.fonts.ready);
   await doubleFrame(page);
   const zero = await sampleFlight(page, '.site-nav-item[data-route="action"]');
-  expect(zero.final.brand.x - zero.initial.brand.x).toBeGreaterThan(150);
-  expect(zero.frames.some(frame => frame.brand.running)).toBe(true);
-  expectBrandBeforeHome(zero.final);
+  expectFixedLogo(zero);
+  expectBrandAtLeft(zero.final);
   expectStationaryBackground(zero);
   await sampleFlight(page, '.site-brand-capsule');
   await expect(brand(page)).toBeVisible();
@@ -304,8 +318,9 @@ test('直接打开章节仍为完整平直红栏，品牌只留狮头且原毛�
   });
   expect(geometry.buttons.map(button => button.label)).toEqual(['首页', '结构', '动作', '神态', '设置']);
   expect(geometry.brand.right).toBeLessThanOrEqual(geometry.buttons[0].button.left + .75);
-  expect(geometry.buttons[0].button.left - geometry.brand.right).toBeLessThanOrEqual(48);
-  expect(geometry.brand.left).toBeGreaterThan(geometry.header.left + geometry.header.width * .4);
+  // Same fixed-left Logo contract as navigation-surface.css since 2026-10-25.
+  expect(geometry.brand.left).toBeGreaterThanOrEqual(geometry.header.left - .75);
+  expect(geometry.brand.left).toBeLessThan(geometry.header.left + geometry.header.width * .25);
   for (const button of geometry.buttons) {
     expect(button.labelRect.top).toBeGreaterThanOrEqual(button.underlineBottom + 1);
     expect(button.labelRect.bottom).toBeLessThanOrEqual(geometry.header.bottom);
@@ -318,6 +333,7 @@ test('直接打开章节仍为完整平直红栏，品牌只留狮头且原毛�
   for (const helper of await page.locator('.site-nav-description').all()) await expect(helper).toBeHidden();
   expect(geometry.buttons.find(button => button.label === '神态').current).toBe('page');
   const returning = await sampleFlight(page, '.site-brand-capsule');
+  expectFixedLogo(returning);
   expectStationaryBackground(returning);
 });
 
@@ -356,12 +372,12 @@ test('窄顶栏与125%电脑缩放往返保持整条底板，图标组不越界'
         expect(rect.y).toBeGreaterThanOrEqual(bounds.y - .75);
         expect(rect.bottom).toBeLessThanOrEqual(bounds.bottom + .75);
       }
-      if (flight.final.route !== 'entry') expectBrandBeforeHome(flight.final);
+      if (flight.final.route !== 'entry') expectBrandAtLeft(flight.final);
     }
   }
 });
 
-test('短顶栏飞行中resize清理旧位移，缩放后品牌仍在首页左邻且可继续往返', async ({ page }) => {
+test('短顶栏飞行中resize清理旧位移，缩放后Logo仍固定左侧且可继续往返', async ({ page }) => {
   await open(page, { headerHeight: 64 });
   await page.evaluate(() => document.querySelector('.site-nav-item[data-route="state"]').click());
   await expect(header(page)).toHaveAttribute('data-nav-animating', 'true');
@@ -391,12 +407,13 @@ test('短顶栏飞行中resize清理旧位移，缩放后品牌仍在首页左�
   await page.setViewportSize({ width: 1920, height: 1080 });
   await doubleFrame(page);
   const returning = await sampleFlight(page, '.site-brand-capsule');
-  expectBrandBeforeHome(returning.initial);
+  expectBrandAtLeft(returning.initial);
+  expectFixedLogo(returning);
   expectNaturalFlight(returning);
   expectStationaryBackground(returning);
 });
 
-test('设置推开至实测900px余宽，章节品牌靠首页且底板在切换中保持原面积', async ({ page }) => {
+test('设置推开至实测900px余宽，章节Logo保持左侧且底板在切换中保持原面积', async ({ page }) => {
   await open(page, { panelWidth: 760, pushPage: true });
   const gutter = await page.evaluate(() => innerWidth - document.documentElement.clientWidth);
   await page.setViewportSize({ width: 1660 + gutter, height: 1080 });
@@ -406,7 +423,7 @@ test('设置推开至实测900px余宽，章节品牌靠首页且底板在切换
   await doubleFrame(page);
   const leaving = await sampleFlight(page, '.site-nav-item[data-route="state"]');
   expectStationaryBackground(leaving);
-  expectBrandBeforeHome(leaving.final);
+  expectBrandAtLeft(leaving.final);
   const returning = await sampleFlight(page, '.site-brand-capsule');
   expectStationaryBackground(returning);
   expect(returning.final.route).toBe('entry');

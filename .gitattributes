@@ -28,3 +28,6 @@ source/reviews/expression-hover/2026-10-22/capture.json -text
 source/reviews/culture-gallery-click/2026-10-22/capture.json -text
 source/reviews/structure-view-editing/2026-10-22/capture.json -text
 source/reviews/expression-click-feedback/2026-10-22/capture.json -text
+
+# Capture evidence is authenticated by SHA256; Windows must preserve its bytes.
+source/reviews/**/capture.json -text
