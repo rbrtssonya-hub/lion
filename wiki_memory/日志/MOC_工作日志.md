@@ -21,6 +21,7 @@ sources: []
 | 2026-10-26 | feature | completed | [小醒用户参考音色与动态语音](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E7%94%A8%E6%88%B7%E5%8F%82%E8%80%83%E9%9F%B3%E8%89%B2%E4%B8%8E%E5%8A%A8%E6%80%81%E8%AF%AD%E9%9F%B3.md) |
 | 2026-10-26 | feature | completed | [小醒桌宠与离线讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E4%B8%8E%E7%A6%BB%E7%BA%BF%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | feature | in_progress | [小醒常驻语音讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E5%B8%B8%E9%A9%BB%E8%AF%AD%E9%9F%B3%E8%AE%B2%E8%A7%A3.md) |
+| 2026-10-26 | feature | completed | [小醒 DeepSeek 问答接入](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92DeepSeek%E9%97%AE%E7%AD%94%E6%8E%A5%E5%85%A5.md) |
 | 2026-10-26 | feature | completed | [四章精简改版本地实现](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%9B%9B%E7%AB%A0%E7%B2%BE%E7%AE%80%E6%94%B9%E7%89%88%E6%9C%AC%E5%9C%B0%E5%AE%9E%E7%8E%B0.md) |
 | 2026-10-26 | ui | completed | [章节切页与撕纸转场移除](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E7%AB%A0%E8%8A%82%E5%88%87%E9%A1%B5%E4%B8%8E%E6%92%95%E7%BA%B8%E8%BD%AC%E5%9C%BA%E7%A7%BB%E9%99%A4.md) |
 | 2026-10-26 | ui | completed | [惊态五官动作延长三秒](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E6%83%8A%E6%80%81%E4%BA%94%E5%AE%98%E5%8A%A8%E4%BD%9C%E5%BB%B6%E9%95%BF%E4%B8%89%E7%A7%92.md) |

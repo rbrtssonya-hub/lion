@@ -1,14 +1,14 @@
 # 小醒问答接入
 
-小醒优先检索工程内的四章讲解资料，使用资料原有的结构示意、AI辅助创作和定性观察表述。当前用户选择稍后配置 DeepSeek API；未配置时返回真实的本地讲解，不显示为模型生成。
+小醒先检索工程内的醒狮讲解资料，再由 DeepSeek 根据命中的资料回答。模型只能引用本轮检索到的资料编号；密钥缺失、API 错误或来源无效时，继续返回真实的本地讲解，不显示为模型生成。
 
 ## 开发与生产预览
 
 `npm run dev` 与 `npm run preview` 均在 Node 端提供 `POST /api/xiaoxing/chat`。纯静态托管 `dist` 时需要将这个路径反向代理到下述独立服务；静态文件本身不提供服务端 API。
 
-将根 `.env.xiaoxing.example` 复制为 `.env.xiaoxing.local`，在本机填写 `XIAOXING_AI_BASE_URL`、`XIAOXING_AI_MODEL`、`XIAOXING_AI_API_KEY`，然后重启 Node 服务。该文件须保持未提交状态。配置不使用 `VITE_` 前缀，不进入浏览器构建和 EXE；响应也不返回密钥、上游错误正文或配置值。
+将根 `.env.xiaoxing.example` 复制为 `.env.xiaoxing.local`，在本机填写 `XIAOXING_AI_API_KEY`，例如 `XIAOXING_AI_API_KEY=sk-你的密钥`。示例已配好 DeepSeek API 地址和 `deepseek-flash`；切换模型时请先核对账户可用模型。将 `XIAOXING_OFFLINE` 设为 `0`，然后重启 Node 服务。密钥只保存在本机忽略文件或服务端环境变量中，不能填入网页代码、提交 Git 或发送到聊天。配置不使用 `VITE_` 前缀，不进入浏览器构建和 EXE；响应也不返回密钥、上游错误正文或配置值。
 
-按 2026-10-26 查阅的 [DeepSeek Chat Completions 官方文档](https://api-docs.deepseek.com/api/create-chat-completion/)，接口采用 `POST /chat/completions`，支持 `response_format: {"type":"json_object"}`。当前文档列出的模型包括 `deepseek-flash` 与 `deepseek-v4-pro`，示例使用前者；启用 API 时应核对账户实际可用模型。模型名保持可配置，不依赖历史别名。DeepSeek 请求使用非思考模式以适合短篇展览讲解。
+[DeepSeek Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/) 使用 OpenAI 兼容的 `POST /chat/completions`。当前默认 `deepseek-flash`，文档也列出 `deepseek-v4-pro`；模型名可配置。请求关闭思考模式以配合短篇讲解，并要求 JSON 输出。DeepSeek 文档说明 `thinking.type` 支持 `disabled`，JSON 模式需在指令中明确要求 JSON，代码已按此实现。[官方 API 入门](https://api-docs.deepseek.com/quick_start/agent_integrations/)说明可用 `deepseek-flash` 通过兼容接口调用。
 
 ## 独立问答服务
 
@@ -26,7 +26,7 @@ node scripts/assistant/server.mjs
 
 ## 用户选定音色与本地 GPT-SoVITS
 
-2026-10-26 用户提供《小醒解说员音色.mp3》，听过真实生成试听后确认“可以用这个音色”。固定讲解已替换为 GPT-SoVITS v2ProPlus 合成的五段 WAV，覆盖四章中的 `entry/model/action/state/spread` 五处位置；动态问答也通过同一参考音频合成。认可试听、参考原件、片段及逐文件哈希见 `source/characters/xiaoxing/voice/`。DeepSeek 仍按用户计划延期，语音合成与问答模型分别配置。
+2026-10-26 用户提供《小醒解说员音色.mp3》，听过真实生成试听后确认“可以用这个音色”。固定讲解已替换为 GPT-SoVITS v2ProPlus 合成的五段 WAV，覆盖四章中的 `entry/model/action/state/spread` 五处位置；动态问答也通过同一参考音频合成。认可试听、参考原件、片段及逐文件哈希见 `source/characters/xiaoxing/voice/`。DeepSeek 服务端接口已加入现有同源问答，语音合成与问答模型分别配置。
 
 本机已从[官方 GitHub](https://github.com/RVC-Boss/GPT-SoVITS)下载程序到 `F:/AI-Tools/GPT-SoVITS`，不是 Codex 内置插件。模型、Python 和缓存保存在工程外，不随网站或 Git 提交。使用预训练模型和 7.2 秒参考音频直接推理，没有训练专用模型，也没有通过变调替代音色。
 
@@ -38,8 +38,10 @@ XIAOXING_TTS_PYTHON=F:/AI-Tools/xiaoxing-tts/.venv/Scripts/python.exe
 XIAOXING_TTS_CONFIG=scripts/xiaoxing/gpt-sovits-v2proplus.yaml
 XIAOXING_TTS_PORT=9880
 XIAOXING_TTS_URL=http://127.0.0.1:9880/tts
-XIAOXING_OFFLINE=1
+XIAOXING_OFFLINE=0
 ```
+
+在线问答需保持 `XIAOXING_OFFLINE=0`；要强制只用本地讲解时再切换为 `1`。GPT-SoVITS 语音服务仍运行在本机。
 
 在工程根目录打开两个终端，分别运行：
 
@@ -68,6 +70,6 @@ npm run dev
 
 ## 验证边界
 
-`node --test tests/assets/xiaoxing-server.test.mjs` 使用真实本地 HTTP 服务和模拟上游验证请求契约、来源过滤、故障/离线回退、请求限额及跨来源拒绝；它不等于真实 DeepSeek 联调。真正配置密钥后还需在开发、生产预览和最终 EXE 中分别验证模型回答、网络中断、来源跳转和关闭清理。当前阶段不发送付费模型请求、不部署外部服务。
+已在本机配置 DeepSeek 密钥，并重启 Node 服务；本机 HTTP 与 Chrome 生产预览的真实问答均返回 `mode: online` 和可信本地来源，浏览器无页面异常。验证记录见[本轮接入记录](../source/references/xiaoxing-deepseek-2026-10-26.md)。本次续接未重跑自动化测试套件或构建。最终 EXE 尚未重新打包或验证联网。
 
 本次实际显卡推理及 Chrome 生产播放结果保存在 `source/reviews/xiaoxing/2026-10-26/voice/capture.json`：固定讲解与真实动态回答均播放、收起聊天后继续、停止有效，无页面异常。动态回答生成 21.7 秒 WAV，暖机后该次点击至播放约 5.9 秒；此单次测量不代表所有文本耗时。模拟服务浏览器用例另外覆盖取消、失败与资源回收，不代替真实音色验收。
