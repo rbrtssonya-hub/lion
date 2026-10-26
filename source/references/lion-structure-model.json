@@ -1,10 +1,11 @@
 {
   "blender_version": "5.1.2",
-  "source": "source/models/user-lion-2026-10-20.blend",
-  "source_filename": "结blend.blend",
-  "source_bytes": 136543222,
-  "source_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+  "source": "source/models/lion-kobi-2026-10-26.blend",
+  "source_filename": "lion-kobi-2026-10-26.blend",
+  "source_bytes": 136175747,
+  "source_sha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53",
   "scene_object_counts": {
+    "CAMERA": 1,
     "CURVES": 3,
     "EMPTY": 49,
     "LIGHT": 3,
@@ -201,9 +202,9 @@
     },
     {
       "name": "Lion_Body",
-      "vertices": 79860,
-      "polygons": 116923,
-      "triangles": 121036,
+      "vertices": 79810,
+      "polygons": 116869,
+      "triangles": 120978,
       "uv_layers": [
         "UVMap",
         "BrocadeCylinder_0p2m"
@@ -222,7 +223,7 @@
         ],
         "max": [
           0.3508310317993164,
-          0.7688655257225037,
+          0.763904333114624,
           0.6040153503417969
         ]
       }
@@ -332,9 +333,9 @@
     },
     {
       "name": "Lion_Hindleg_L.001",
-      "vertices": 8003,
-      "polygons": 12423,
-      "triangles": 13581,
+      "vertices": 7989,
+      "polygons": 12411,
+      "triangles": 13568,
       "uv_layers": [
         "UVMap"
       ],
@@ -446,7 +447,8 @@
       "materials": [
         "Lion_Atlas_PBR_Refined.001",
         "Velvet_Scarlet_Uniform_Base.001",
-        "Fiber_Warm_Ivory"
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
       ],
       "modifiers": [],
       "gltf_bounds": {
@@ -572,9 +574,9 @@
     },
     {
       "name": "Lion_Body_Red_Trim.001",
-      "vertices": 15497,
-      "polygons": 23713,
-      "triangles": 24753,
+      "vertices": 15569,
+      "polygons": 23746,
+      "triangles": 24790,
       "uv_layers": [
         "UVMap",
         "BrocadeCylinder_0p2m"
@@ -582,7 +584,10 @@
       "materials": [
         "Lion_Atlas_PBR_Refined.001",
         "Velvet_Scarlet_Uniform_Base.001",
-        "Brocade_Clear_Tile_Cloth_Study.002"
+        "Brocade_Clear_Tile_Cloth_Study.002",
+        "Lion_Atlas_PBR_Refined",
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study"
       ],
       "modifiers": [],
       "gltf_bounds": {
@@ -784,9 +789,9 @@
     },
     {
       "name": "Lion_Nose.003",
-      "vertices": 102255,
-      "polygons": 212156,
-      "triangles": 219830,
+      "vertices": 98407,
+      "polygons": 200368,
+      "triangles": 207648,
       "uv_layers": [
         "UVMap",
         "ForeheadPlane_XZ_0p2m"
@@ -874,9 +879,9 @@
     },
     {
       "name": "Lion_Nose.002",
-      "vertices": 5135,
-      "polygons": 7736,
-      "triangles": 7979,
+      "vertices": 5134,
+      "polygons": 7735,
+      "triangles": 7978,
       "uv_layers": [
         "UVMap",
         "ForeheadPlane_XZ_0p2m"
@@ -899,7 +904,7 @@
         "max": [
           0.2779817581176758,
           0.9814152717590332,
-          0.7852635979652405
+          0.779060423374176
         ]
       }
     },
@@ -965,15 +970,19 @@
     },
     {
       "name": "Lion_Nose.001",
-      "vertices": 1799,
-      "polygons": 2803,
-      "triangles": 2882,
+      "vertices": 1874,
+      "polygons": 2880,
+      "triangles": 2965,
       "uv_layers": [
         "UVMap",
         "ForeheadPlane_XZ_0p2m"
       ],
       "materials": [
-        "Head_Scarlet_Velvet_Base"
+        "Head_Scarlet_Velvet_Base",
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
       ],
       "modifiers": [
         {
@@ -984,11 +993,11 @@
       "gltf_bounds": {
         "min": [
           -0.26110780239105225,
-          0.32883986830711365,
+          0.3167836666107178,
           0.18837016820907593
         ],
         "max": [
-          0.2592184245586395,
+          0.27136120200157166,
           0.4534239172935486,
           0.5208138227462769
         ]
@@ -996,15 +1005,17 @@
     },
     {
       "name": "Lion_Body_Red_Trim.002",
-      "vertices": 6286,
-      "polygons": 9668,
-      "triangles": 9928,
+      "vertices": 6214,
+      "polygons": 9500,
+      "triangles": 9752,
       "uv_layers": [
         "UVMap",
         "BrocadeCylinder_0p2m"
       ],
       "materials": [
-        "Velvet_Scarlet_Uniform_Base.001"
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Lion_Atlas_PBR_Refined.001",
+        "Brocade_Clear_Tile_Cloth_Study.002"
       ],
       "modifiers": [
         {
@@ -1014,9 +1025,9 @@
       ],
       "gltf_bounds": {
         "min": [
-          -0.3081314265727997,
-          0.3072606921195984,
-          -0.5489936470985413
+          -0.3074586093425751,
+          0.3108536899089813,
+          -0.5578588247299194
         ],
         "max": [
           0.308478981256485,
@@ -1147,15 +1158,17 @@
     },
     {
       "name": "Lion_Body.001",
-      "vertices": 7574,
-      "polygons": 10242,
-      "triangles": 10523,
+      "vertices": 7770,
+      "polygons": 10550,
+      "triangles": 10836,
       "uv_layers": [
         "UVMap",
         "BrocadeCylinder_0p2m"
       ],
       "materials": [
-        "Velvet_Scarlet_Uniform_Base"
+        "Velvet_Scarlet_Uniform_Base",
+        "Lion_Atlas_PBR_Refined",
+        "Brocade_Clear_Tile_Cloth_Study"
       ],
       "modifiers": [
         {
@@ -1632,12 +1645,12 @@
       "kind": "CURVES",
       "assetKey": "lionHair02",
       "path": "assets/models/lion-user-hair-02.bin.gz",
-      "strands": 35567,
+      "strands": 29973,
       "pointsPerStrand": 5,
-      "bytes": 1905151,
-      "rawBytes": 2845360,
-      "sha256": "f3be680860b8b53ae22dcddf8d86a57a5cdefc399246ba0e7bab30dc6f6572a4",
-      "rawSha256": "a2d6d2903bf7296014e10e38cb5ce650e18d9c22ae6d8738ca7c2c8f630913e0",
+      "bytes": 1608165,
+      "rawBytes": 2397840,
+      "sha256": "076d2d3c27dcbba4c01fddff7bc8ae4c7997d060cc0438e663684a08a96dc554",
+      "rawSha256": "cc99ff7de60639085d1c9beb1b9525cad809b7c7161506a4b58851d473a14876",
       "hasRootUV": false,
       "displayMode": "STRAND",
       "interpolation": "CATMULL_ROM",
@@ -1665,8 +1678,8 @@
         "metalness": 0.0,
         "useSourceMaterial": false
       },
-      "source_curves": 35567,
-      "source_points": 177835,
+      "source_curves": 29973,
+      "source_points": 149865,
       "radius_attribute": false,
       "radius_default_m": 0.01,
       "curve_types": [
@@ -1679,12 +1692,12 @@
       "kind": "CURVES",
       "assetKey": "lionHair03",
       "path": "assets/models/lion-user-hair-03.bin.gz",
-      "strands": 40000,
+      "strands": 39974,
       "pointsPerStrand": 5,
-      "bytes": 2127965,
-      "rawBytes": 3200000,
-      "sha256": "0848c733f1a41ab5e8f37d74910d44408748ec298e912f06e25c07c530b44d87",
-      "rawSha256": "c1b5b3f08cf9bd8abc46a07f30433db59a5e16ccdab87587f4daa1afa29ed56f",
+      "bytes": 2126522,
+      "rawBytes": 3197920,
+      "sha256": "8f3605b65cb4589de14063ef2ae91762204213a5279e7c27b57eae718f5b7028",
+      "rawSha256": "b7ffbc653eba32500d9750df8e6c7c7be5d6b2c6ac0e043a87374945dae47f30",
       "hasRootUV": false,
       "displayMode": "STRAND",
       "interpolation": "CATMULL_ROM",
@@ -1712,8 +1725,8 @@
         "metalness": 0.0,
         "useSourceMaterial": false
       },
-      "source_curves": 40000,
-      "source_points": 200000,
+      "source_curves": 39974,
+      "source_points": 199870,
       "radius_attribute": false,
       "radius_default_m": 0.01,
       "curve_types": [
@@ -2176,24 +2189,24 @@
       "path": "assets/models/lion-user-hair-11.bin.gz",
       "strands": 70000,
       "pointsPerStrand": 9,
-      "bytes": 7355082,
+      "bytes": 7355506,
       "rawBytes": 10640000,
-      "sha256": "52096c5ce39ff6a1bec6f5fb8cf111cfee3d5e023a631d5d707b467661feb015",
-      "rawSha256": "51ac34dde3f2bfc360d317bfdb03b97ada8f5cff01f9ddd82f4d2fba3b1c7546",
+      "sha256": "de2d8f4d24cc71438b84a52afcb7813201670988bbde8e186f77e89212e1a894",
+      "rawSha256": "30e2cc71b6d8617edea4cf928a305ba929c0cec3a577c506bc48d31262521148",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.32857468724250793,
-          0.4323769211769104,
-          0.2995184361934662
+          -0.3300246000289917,
+          0.4323766529560089,
+          0.30053234100341797
         ],
         "max": [
-          0.29221242666244507,
-          0.9941734671592712,
-          0.7998175621032715
+          0.291721910238266,
+          0.9936103820800781,
+          0.7940307855606079
         ]
       },
       "material": {
@@ -2368,24 +2381,24 @@
       "path": "assets/models/lion-user-hair-14.bin.gz",
       "strands": 50000,
       "pointsPerStrand": 9,
-      "bytes": 5159773,
+      "bytes": 5159261,
       "rawBytes": 7600000,
-      "sha256": "eedf10f1aab732836a83a4b37286396f6eb678ef68f4ffcdb3ca6611eb9ff970",
-      "rawSha256": "5cfd29fd6025853d9b7485089ec1f24dfce042b7ca475e89fdb88f78183f4067",
+      "sha256": "8c74f7e8aa0b70c28e7bcba7f60103377995038c38baaefa936174e9d9a6436a",
+      "rawSha256": "2ebc437978c771d8316ca8f167c132ba3f3bb03e0c5c75d20e4270efada77dcd",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.27484655380249023,
-          0.32130926847457886,
-          0.18410596251487732
+          -0.27528417110443115,
+          0.31218424439430237,
+          0.18159830570220947
         ],
         "max": [
-          0.27220746874809265,
-          0.4645017683506012,
-          0.5350014567375183
+          0.2858614921569824,
+          0.466408371925354,
+          0.5350093841552734
         ]
       },
       "material": {
@@ -2432,24 +2445,24 @@
       "path": "assets/models/lion-user-hair-15.bin.gz",
       "strands": 150000,
       "pointsPerStrand": 9,
-      "bytes": 16204130,
+      "bytes": 16204882,
       "rawBytes": 22800000,
-      "sha256": "b697c9ed4de84e8a214254d64223bc3854e78023730bd62e4ed2ec265d5e89ad",
-      "rawSha256": "37d892310f444949ced640e36fd6e8f2612bf7f02f4ebbecbe23b78c07169732",
+      "sha256": "6a3b276d97d9fc8abe3c25a05ec4bb48b7572c92dbc8c3f4ea55789dfc5948af",
+      "rawSha256": "08552a1f9be773017360c81888c5e0e664b8225e136fcba19f58b9265e9949c6",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.32218968868255615,
-          0.30085110664367676,
-          -0.5591216087341309
+          -0.32208332419395447,
+          0.30311861634254456,
+          -0.5639848113059998
         ],
         "max": [
-          0.32193419337272644,
-          0.7890646457672119,
-          0.26851797103881836
+          0.31780216097831726,
+          0.7889867424964905,
+          0.26900291442871094
         ]
       },
       "material": {
@@ -2752,24 +2765,24 @@
       "path": "assets/models/lion-user-hair-20.bin.gz",
       "strands": 150000,
       "pointsPerStrand": 9,
-      "bytes": 16132730,
+      "bytes": 16139761,
       "rawBytes": 22800000,
-      "sha256": "2ca024afb3a1179690d1f67bee7297047d0f78de67f481b8be372b5ccb45b377",
-      "rawSha256": "ee6256d727ea14d1af4c6618d1b3fe981ef07f0bdb468aeda561a6ca21a3d663",
+      "sha256": "a9629b4cae0ebe42f2d30ac99a6e1655623a4342e2e323341619f289e575a4bd",
+      "rawSha256": "a7557ce0cc5e00a8f1658222b793b79ec0c7f4fbe9e4a09f73adbc2e17fc7d7e",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.3647582530975342,
-          0.06775818765163422,
-          -0.6197999119758606
+          -0.36310744285583496,
+          0.06852150708436966,
+          -0.6201025247573853
         ],
         "max": [
-          0.3635725975036621,
-          0.7668856978416443,
-          0.5921236276626587
+          0.36443668603897095,
+          0.766563355922699,
+          0.5929529666900635
         ]
       },
       "material": {
@@ -3642,7 +3655,7 @@
     }
   ],
   "source_render": {
-    "engine": "BLENDER_EEVEE",
+    "engine": "CYCLES",
     "hair_type": "STRAND",
     "hair_subdiv": 0
   },
@@ -3745,7 +3758,7 @@
         2048
       ],
       "packed": true,
-      "packed_sha256": "bf324ff8e82e5f35f7a2cc15d269c04c0cc619a3585be4ba36007f32d78eee81"
+      "packed_sha256": "a94f752505abead95bba2611a398eac9067fac37042ff02154a07ac9b3785465"
     },
     {
       "name": "Lion_Atlas_Color_Refined.003",
@@ -3754,7 +3767,7 @@
         2048
       ],
       "packed": true,
-      "packed_sha256": "dbd5e1de24326cdcc101e859ffc41bb88ff442ddbf0d6557f1472ac78001a615"
+      "packed_sha256": "3d7b98d16fb1fdbad8ca44d12e3c56665eb7af255092d22ab3299cc54cafeaee"
     },
     {
       "name": "Lion_Atlas_Color_Scarlet",
@@ -4020,9 +4033,9 @@
     },
     {
       "name": "Lion_Body",
-      "vertices": 79860,
-      "polygons": 116923,
-      "triangles": 121036
+      "vertices": 79810,
+      "polygons": 116869,
+      "triangles": 120978
     },
     {
       "name": "Lion_Tail.001",
@@ -4050,9 +4063,9 @@
     },
     {
       "name": "Lion_Hindleg_L.001",
-      "vertices": 8003,
-      "polygons": 12423,
-      "triangles": 13581
+      "vertices": 7989,
+      "polygons": 12411,
+      "triangles": 13568
     },
     {
       "name": "Lion_Forepaw_R.001",
@@ -4104,9 +4117,9 @@
     },
     {
       "name": "Lion_Body_Red_Trim.001",
-      "vertices": 15497,
-      "polygons": 23713,
-      "triangles": 24753
+      "vertices": 15569,
+      "polygons": 23746,
+      "triangles": 24790
     },
     {
       "name": "Lion_Beard.001",
@@ -4146,9 +4159,9 @@
     },
     {
       "name": "Lion_Nose.003",
-      "vertices": 102255,
-      "polygons": 212156,
-      "triangles": 219830
+      "vertices": 98407,
+      "polygons": 200368,
+      "triangles": 207648
     },
     {
       "name": "Lion_Brow_R.002",
@@ -4164,9 +4177,9 @@
     },
     {
       "name": "Lion_Nose.002",
-      "vertices": 5135,
-      "polygons": 7736,
-      "triangles": 7979
+      "vertices": 5134,
+      "polygons": 7735,
+      "triangles": 7978
     },
     {
       "name": "Lion_Ear_L.002",
@@ -4182,15 +4195,15 @@
     },
     {
       "name": "Lion_Nose.001",
-      "vertices": 1799,
-      "polygons": 2803,
-      "triangles": 2882
+      "vertices": 1874,
+      "polygons": 2880,
+      "triangles": 2965
     },
     {
       "name": "Lion_Body_Red_Trim.002",
-      "vertices": 6286,
-      "polygons": 9668,
-      "triangles": 9928
+      "vertices": 6214,
+      "polygons": 9500,
+      "triangles": 9752
     },
     {
       "name": "Lion_Foreleg_R.002",
@@ -4218,9 +4231,9 @@
     },
     {
       "name": "Lion_Body.001",
-      "vertices": 7574,
-      "polygons": 10242,
-      "triangles": 10523
+      "vertices": 7770,
+      "polygons": 10550,
+      "triangles": 10836
     },
     {
       "name": "Lion_Tail.002",
@@ -4301,7 +4314,7 @@
       "triangles": 864
     }
   ],
-  "evaluated_source_triangles": 657831,
+  "evaluated_source_triangles": 645834,
   "source_mesh_invariants": [
     {
       "name": "立方体",
@@ -4414,18 +4427,18 @@
     {
       "name": "Lion_Body",
       "before": {
-        "vertices": 79860,
-        "edges": 200419,
-        "polygons": 116923,
-        "loops": 354882,
-        "geometry_sha256": "04494cbbc3fcbf83938adb67f1d598a3e48a5597f3d22cf1f74d887372e899c2"
+        "vertices": 79810,
+        "edges": 200325,
+        "polygons": 116869,
+        "loops": 354716,
+        "geometry_sha256": "9cc4ed828abb88ae7eda934b009fd61dec034ace866e409f7e858f119284e287"
       },
       "after": {
-        "vertices": 79860,
-        "edges": 200419,
-        "polygons": 116923,
-        "loops": 354882,
-        "geometry_sha256": "04494cbbc3fcbf83938adb67f1d598a3e48a5597f3d22cf1f74d887372e899c2"
+        "vertices": 79810,
+        "edges": 200325,
+        "polygons": 116869,
+        "loops": 354716,
+        "geometry_sha256": "9cc4ed828abb88ae7eda934b009fd61dec034ace866e409f7e858f119284e287"
       },
       "unchanged": true
     },
@@ -4504,18 +4517,18 @@
     {
       "name": "Lion_Hindleg_L.001",
       "before": {
-        "vertices": 8003,
-        "edges": 20737,
-        "polygons": 12423,
-        "loops": 38427,
-        "geometry_sha256": "2a6ecbebcc760ef395b89138dd3d37d49b11256badecfe6ee5279985fbfaa0f5"
+        "vertices": 7989,
+        "edges": 20712,
+        "polygons": 12411,
+        "loops": 38390,
+        "geometry_sha256": "539667bf92cadf0de77b994c7a254d918271ec2112277b77548f6d2dbb498acd"
       },
       "after": {
-        "vertices": 8003,
-        "edges": 20737,
-        "polygons": 12423,
-        "loops": 38427,
-        "geometry_sha256": "2a6ecbebcc760ef395b89138dd3d37d49b11256badecfe6ee5279985fbfaa0f5"
+        "vertices": 7989,
+        "edges": 20712,
+        "polygons": 12411,
+        "loops": 38390,
+        "geometry_sha256": "539667bf92cadf0de77b994c7a254d918271ec2112277b77548f6d2dbb498acd"
       },
       "unchanged": true
     },
@@ -4580,14 +4593,14 @@
         "edges": 18237,
         "polygons": 10921,
         "loops": 33713,
-        "geometry_sha256": "9323f2e953cf1179fd3e2acc2ed4a1fdb95cfd9f649e2c76bfd261b30f19dbab"
+        "geometry_sha256": "c3502065216aada8016148227b1ac669e6c34e6022ce3e3c78b7bea65535f5a6"
       },
       "after": {
         "vertices": 7153,
         "edges": 18237,
         "polygons": 10921,
         "loops": 33713,
-        "geometry_sha256": "9323f2e953cf1179fd3e2acc2ed4a1fdb95cfd9f649e2c76bfd261b30f19dbab"
+        "geometry_sha256": "c3502065216aada8016148227b1ac669e6c34e6022ce3e3c78b7bea65535f5a6"
       },
       "unchanged": true
     },
@@ -4634,14 +4647,14 @@
         "edges": 10931,
         "polygons": 5922,
         "loops": 18332,
-        "geometry_sha256": "6092148e4530cc2897943c7774986e3560af6fd0db1ffab7b79275d2287c882e"
+        "geometry_sha256": "526a9fe563ede72ce7de92c8c7489ac866779c995832661980d1ecca86dab4bd"
       },
       "after": {
         "vertices": 4888,
         "edges": 10931,
         "polygons": 5922,
         "loops": 18332,
-        "geometry_sha256": "6092148e4530cc2897943c7774986e3560af6fd0db1ffab7b79275d2287c882e"
+        "geometry_sha256": "526a9fe563ede72ce7de92c8c7489ac866779c995832661980d1ecca86dab4bd"
       },
       "unchanged": true
     },
@@ -4666,18 +4679,18 @@
     {
       "name": "Lion_Body_Red_Trim.001",
       "before": {
-        "vertices": 15497,
-        "edges": 39985,
-        "polygons": 23713,
-        "loops": 72179,
-        "geometry_sha256": "5f9ed03e04b13a20aab6828401b3813917b1a614928efc1c59937f2201cda7bf"
+        "vertices": 15569,
+        "edges": 40077,
+        "polygons": 23746,
+        "loops": 72282,
+        "geometry_sha256": "3fe476c86f69224360af6e25936f8399e6d8d3aedd2104cf5658fcf8edc35950"
       },
       "after": {
-        "vertices": 15497,
-        "edges": 39985,
-        "polygons": 23713,
-        "loops": 72179,
-        "geometry_sha256": "5f9ed03e04b13a20aab6828401b3813917b1a614928efc1c59937f2201cda7bf"
+        "vertices": 15569,
+        "edges": 40077,
+        "polygons": 23746,
+        "loops": 72282,
+        "geometry_sha256": "3fe476c86f69224360af6e25936f8399e6d8d3aedd2104cf5658fcf8edc35950"
       },
       "unchanged": true
     },
@@ -4688,14 +4701,14 @@
         "edges": 14259,
         "polygons": 8258,
         "loops": 25379,
-        "geometry_sha256": "d9fd70e65f2a0382e009ea4a9d2bca581929843c40b90c74fb225f9be353c89f"
+        "geometry_sha256": "b4b157c4f5f94e454dab0a7f4936e86dd6ce779714c9fbceef78e1527b79fa85"
       },
       "after": {
         "vertices": 5895,
         "edges": 14259,
         "polygons": 8258,
         "loops": 25379,
-        "geometry_sha256": "d9fd70e65f2a0382e009ea4a9d2bca581929843c40b90c74fb225f9be353c89f"
+        "geometry_sha256": "b4b157c4f5f94e454dab0a7f4936e86dd6ce779714c9fbceef78e1527b79fa85"
       },
       "unchanged": true
     },
@@ -4792,18 +4805,18 @@
     {
       "name": "Lion_Nose.003",
       "before": {
-        "vertices": 102255,
-        "edges": 321479,
-        "polygons": 212156,
-        "loops": 644142,
-        "geometry_sha256": "e535e07a05b33120b4367172cac0fae350af502f92100930b7638e8f9ad194a3"
+        "vertices": 98407,
+        "edges": 305623,
+        "polygons": 200368,
+        "loops": 608384,
+        "geometry_sha256": "24637c6d0f5d0d38f25e3070d0720ebace69fe22a8f9565459d4b44ebcb5c377"
       },
       "after": {
-        "vertices": 102255,
-        "edges": 321479,
-        "polygons": 212156,
-        "loops": 644142,
-        "geometry_sha256": "e535e07a05b33120b4367172cac0fae350af502f92100930b7638e8f9ad194a3"
+        "vertices": 98407,
+        "edges": 305623,
+        "polygons": 200368,
+        "loops": 608384,
+        "geometry_sha256": "24637c6d0f5d0d38f25e3070d0720ebace69fe22a8f9565459d4b44ebcb5c377"
       },
       "unchanged": true
     },
@@ -4846,18 +4859,18 @@
     {
       "name": "Lion_Nose.002",
       "before": {
-        "vertices": 5135,
-        "edges": 13069,
-        "polygons": 7736,
-        "loops": 23451,
-        "geometry_sha256": "621b6c3f7b861e83814f0f3b3ee70803033d516e3cf95b37de217796a6d0b040"
+        "vertices": 5134,
+        "edges": 13067,
+        "polygons": 7735,
+        "loops": 23448,
+        "geometry_sha256": "6c155040c19797b0ed623a8c5617b50eceb84ffd0aaf5c382d92e6df98fe4d50"
       },
       "after": {
-        "vertices": 5135,
-        "edges": 13069,
-        "polygons": 7736,
-        "loops": 23451,
-        "geometry_sha256": "621b6c3f7b861e83814f0f3b3ee70803033d516e3cf95b37de217796a6d0b040"
+        "vertices": 5134,
+        "edges": 13067,
+        "polygons": 7735,
+        "loops": 23448,
+        "geometry_sha256": "6c155040c19797b0ed623a8c5617b50eceb84ffd0aaf5c382d92e6df98fe4d50"
       },
       "unchanged": true
     },
@@ -4900,36 +4913,36 @@
     {
       "name": "Lion_Nose.001",
       "before": {
-        "vertices": 1799,
-        "edges": 4806,
-        "polygons": 2803,
-        "loops": 8488,
-        "geometry_sha256": "19a00dda45eaa866765211352ab2c0ef12bc9183eb89ce388e2c81f4b9712afe"
+        "vertices": 1874,
+        "edges": 4958,
+        "polygons": 2880,
+        "loops": 8725,
+        "geometry_sha256": "134f8f0aeb4d727320598220b63ec7df118637fe0f5435130b7419fe3e756d76"
       },
       "after": {
-        "vertices": 1799,
-        "edges": 4806,
-        "polygons": 2803,
-        "loops": 8488,
-        "geometry_sha256": "19a00dda45eaa866765211352ab2c0ef12bc9183eb89ce388e2c81f4b9712afe"
+        "vertices": 1874,
+        "edges": 4958,
+        "polygons": 2880,
+        "loops": 8725,
+        "geometry_sha256": "134f8f0aeb4d727320598220b63ec7df118637fe0f5435130b7419fe3e756d76"
       },
       "unchanged": true
     },
     {
       "name": "Lion_Body_Red_Trim.002",
       "before": {
-        "vertices": 6286,
-        "edges": 15993,
-        "polygons": 9668,
-        "loops": 29264,
-        "geometry_sha256": "381f27e3c5c324ea6ccf9ce5b5159df48a4a8b188037a5d3c53b8fbff6337ed2"
+        "vertices": 6214,
+        "edges": 15735,
+        "polygons": 9500,
+        "loops": 28752,
+        "geometry_sha256": "7fcaadad464521d9f5b6e277f514a286b8711239d2eea9c48c79404c84fc3f4f"
       },
       "after": {
-        "vertices": 6286,
-        "edges": 15993,
-        "polygons": 9668,
-        "loops": 29264,
-        "geometry_sha256": "381f27e3c5c324ea6ccf9ce5b5159df48a4a8b188037a5d3c53b8fbff6337ed2"
+        "vertices": 6214,
+        "edges": 15735,
+        "polygons": 9500,
+        "loops": 28752,
+        "geometry_sha256": "7fcaadad464521d9f5b6e277f514a286b8711239d2eea9c48c79404c84fc3f4f"
       },
       "unchanged": true
     },
@@ -5008,18 +5021,18 @@
     {
       "name": "Lion_Body.001",
       "before": {
-        "vertices": 7574,
-        "edges": 17725,
-        "polygons": 10242,
-        "loops": 31007,
-        "geometry_sha256": "4437531c1ab1d988e67005eb9ddc734df262234bf243b097962159b49080c70f"
+        "vertices": 7770,
+        "edges": 18224,
+        "polygons": 10550,
+        "loops": 31936,
+        "geometry_sha256": "627ef77d5c9c0eb4881ff06f66a7c044bd4e9a04c9b4ee155c74c07ad7c0dd00"
       },
       "after": {
-        "vertices": 7574,
-        "edges": 17725,
-        "polygons": 10242,
-        "loops": 31007,
-        "geometry_sha256": "4437531c1ab1d988e67005eb9ddc734df262234bf243b097962159b49080c70f"
+        "vertices": 7770,
+        "edges": 18224,
+        "polygons": 10550,
+        "loops": 31936,
+        "geometry_sha256": "627ef77d5c9c0eb4881ff06f66a7c044bd4e9a04c9b4ee155c74c07ad7c0dd00"
       },
       "unchanged": true
     },
@@ -5374,6 +5387,25 @@
       ]
     },
     {
+      "material": "Lion_Atlas_PBR_Refined.001",
+      "source_weight": 0.11999999731779099,
+      "source_tint": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exporter_factor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "corrected_factor": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ]
+    },
+    {
       "material": "Velvet_Scarlet_Uniform_Base.001",
       "source_weight": 0.2199999988079071,
       "source_tint": [
@@ -5412,8 +5444,8 @@
       ]
     },
     {
-      "material": "Lion_Atlas_PBR_Refined.001",
-      "source_weight": 0.11999999731779099,
+      "material": "Brocade_Clear_Tile_Cloth_Study.002",
+      "source_weight": 0.18000000715255737,
       "source_tint": [
         1.0,
         1.0,
@@ -5425,9 +5457,9 @@
         1.0
       ],
       "corrected_factor": [
-        0.11999999731779099,
-        0.11999999731779099,
-        0.11999999731779099
+        0.18000000715255737,
+        0.18000000715255737,
+        0.18000000715255737
       ]
     },
     {
@@ -5604,8 +5636,8 @@
   ],
   "export": {
     "path": "source/public/assets/models/lion-user-full.glb",
-    "bytes": 81290340,
-    "sha256": "0a0a855cde7981e9eef2f622863bbae64bda3e156791f3410d89cf8051f02e00",
+    "bytes": 89080256,
+    "sha256": "13f851f565caa12564d9434f0e529b8bf734e32d1500e6fd1ae5326c06b44ad5",
     "settings": {
       "export_format": "GLB",
       "use_selection": true,
@@ -5622,8 +5654,8 @@
     },
     "gltf_nodes": 102,
     "gltf_meshes": 53,
-    "gltf_materials": 23,
-    "gltf_triangles": 657831,
+    "gltf_materials": 24,
+    "gltf_triangles": 645834,
     "mesh_object_names": [
       "立方体",
       "牙下",
@@ -5681,8 +5713,8 @@
     ],
     "hair_manifest": "source/public/assets/models/lion-user-hair.json",
     "hair_groups": 33,
-    "hair_strands": 2295421,
-    "hair_points": 19957105
+    "hair_strands": 2289801,
+    "hair_points": 19929005
   },
   "source_unchanged": true
 }

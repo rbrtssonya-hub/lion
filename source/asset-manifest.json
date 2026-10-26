@@ -2859,220 +2859,227 @@
       "sha256": "a8c4b335bf503232be04c3103c63d551b1b665de8a7debf494e9dcbe382b991a"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-full.glb",
-      "bytes": 81290340,
-      "sha256": "0a0a855cde7981e9eef2f622863bbae64bda3e156791f3410d89cf8051f02e00"
+      "bytes": 89080256,
+      "sha256": "13f851f565caa12564d9434f0e529b8bf734e32d1500e6fd1ae5326c06b44ad5"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-01.bin.gz",
       "bytes": 5419825,
       "sha256": "50ee22db4510bee0feee7ae55e90cb5a267753e8f72032276f596af0f6101d9c"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-02.bin.gz",
-      "bytes": 1905151,
-      "sha256": "f3be680860b8b53ae22dcddf8d86a57a5cdefc399246ba0e7bab30dc6f6572a4"
+      "bytes": 1608165,
+      "sha256": "076d2d3c27dcbba4c01fddff7bc8ae4c7997d060cc0438e663684a08a96dc554"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-03.bin.gz",
-      "bytes": 2127965,
-      "sha256": "0848c733f1a41ab5e8f37d74910d44408748ec298e912f06e25c07c530b44d87"
+      "bytes": 2126522,
+      "sha256": "8f3605b65cb4589de14063ef2ae91762204213a5279e7c27b57eae718f5b7028"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-04.bin.gz",
       "bytes": 5115062,
       "sha256": "5af3484a9da736f43b96580777630eba7848d4b267002a8a87c91fcee64af5a1"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-05.bin.gz",
       "bytes": 5107652,
       "sha256": "595d560733bcdc25bd2ace4785bc3aa7714a8b7d6a7f6ee5b8732bcbfdc39266"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-06.bin.gz",
       "bytes": 5257452,
       "sha256": "32d90fe97efe7d1ea5a3afc8d89ef78c36ae701896a60c9cc6af5ff303a44b70"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-07.bin.gz",
       "bytes": 5265117,
       "sha256": "14597f178c34909d6587a1e644bf7adf43389840392590eb95488b6c33ffb857"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-08.bin.gz",
       "bytes": 5172259,
       "sha256": "94784f3c749412b1bea5775b2c45de9e97f137732791ed8fbd2d22a50b6f3dab"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-09.bin.gz",
       "bytes": 5265132,
       "sha256": "ed8bd259291c56410a527876dfc5329bf5c9d266c697bc86b733aa64b8316819"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-10.bin.gz",
       "bytes": 5193935,
       "sha256": "af94ffe7dfc09636118d014c79637f201cab3b32562c01b76f0248f7a5f8829f"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-11.bin.gz",
-      "bytes": 7355082,
-      "sha256": "52096c5ce39ff6a1bec6f5fb8cf111cfee3d5e023a631d5d707b467661feb015"
+      "bytes": 7355506,
+      "sha256": "de2d8f4d24cc71438b84a52afcb7813201670988bbde8e186f77e89212e1a894"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-12.bin.gz",
       "bytes": 5234080,
       "sha256": "adaad1f09e91bb37d4db391b1f9120c13b89ff9a86ed18a7d06f11dad7f9ec88"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-13.bin.gz",
       "bytes": 5233107,
       "sha256": "d7ee7b56619d0c3f01ba7672299347a1e87a43cba8effdef6d22fec7f2cfd07b"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-14.bin.gz",
-      "bytes": 5159773,
-      "sha256": "eedf10f1aab732836a83a4b37286396f6eb678ef68f4ffcdb3ca6611eb9ff970"
+      "bytes": 5159261,
+      "sha256": "8c74f7e8aa0b70c28e7bcba7f60103377995038c38baaefa936174e9d9a6436a"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-15.bin.gz",
-      "bytes": 16204130,
-      "sha256": "b697c9ed4de84e8a214254d64223bc3854e78023730bd62e4ed2ec265d5e89ad"
+      "bytes": 16204882,
+      "sha256": "6a3b276d97d9fc8abe3c25a05ec4bb48b7572c92dbc8c3f4ea55789dfc5948af"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-16.bin.gz",
       "bytes": 7454807,
       "sha256": "797e3533aa1e7307a3b37f8be15ce6ec1f47bcd7d20618ad9b5b46c584e4c16f"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-17.bin.gz",
       "bytes": 7342301,
       "sha256": "9775635edf05976fbeabbfc2fc0d958401a8436f307bd3e445bdfb08a4b0f3cd"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-18.bin.gz",
       "bytes": 7309171,
       "sha256": "9d6aebceda99aa2d7d9f81c3b543c2eae56e3f645a422797f8cbe26e632ac305"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-19.bin.gz",
       "bytes": 7388576,
       "sha256": "3fa0763a2154fada04bc7149d4a29e06b3e676d266e9f3a5ffb3ca02d58ca3c2"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-20.bin.gz",
-      "bytes": 16132730,
-      "sha256": "2ca024afb3a1179690d1f67bee7297047d0f78de67f481b8be372b5ccb45b377"
+      "bytes": 16139761,
+      "sha256": "a9629b4cae0ebe42f2d30ac99a6e1655623a4342e2e323341619f289e575a4bd"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-21.bin.gz",
       "bytes": 7279813,
       "sha256": "0c299a9383d9a684b01f07049760b50946c5ef729a56bf800f5a85f7f2594179"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-22.bin.gz",
       "bytes": 15820828,
       "sha256": "c88aab7748b187318064a4816644c7145eb9d474536a14779ca8a2caf154ad09"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-23.bin.gz",
       "bytes": 5295638,
       "sha256": "b2299706714c3c7b35f63d737e2d5b4a16474ec89156e5ca053aa798328e4bfe"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-24.bin.gz",
       "bytes": 15786655,
       "sha256": "e52bdaaf5bd221d31fe5742b140b51da4bfa9869d90e3992530bddfb4fb89a71"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-25.bin.gz",
       "bytes": 5252202,
       "sha256": "be083c0965f43e0d725634f7f80c6824d29aabe52d5dbef46f1ca44073d89d64"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-26.bin.gz",
       "bytes": 5210182,
       "sha256": "464bb36f92a6a1021b8cbd409d0eeded5efd1539e7b765b11d5212f5dad601e9"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-27.bin.gz",
       "bytes": 15377391,
       "sha256": "aad7d7fd8b8f001c65305b15f274043b10bdff3632dea958109ceb18013f6f56"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-28.bin.gz",
       "bytes": 5290533,
       "sha256": "70fde991119f8ddeac543aa987694da07a5cc1dd1dbb5a86b152581cf13c49bf"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-29.bin.gz",
       "bytes": 5196893,
       "sha256": "cf69c48196ae2a9a374453416d1e7439b91e51d9dbbb0b67c18e181c9821f596"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-30.bin.gz",
       "bytes": 5266205,
       "sha256": "9bc08c1edacb237c1e4a644f87424e164276e08992d6a847500528dc8266ba0f"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-31.bin.gz",
       "bytes": 5263236,
       "sha256": "e335c48f814aa14e940d9799d70075360784dbd0c4ed9a1680bacb7b53e7fcae"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-32.bin.gz",
       "bytes": 5208983,
       "sha256": "a9ab87f76891566a1c978674096353cf005e6c239008961fed2e5b68efe26151"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair-33.bin.gz",
       "bytes": 5193087,
       "sha256": "a09e92e1aab05045229a3a898f3745033bf67d68ae5062186c4f675f4568f35c"
     },
     {
-      "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
+      "from": "user supplied 科比blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-26",
       "path": "source/public/assets/models/lion-user-hair.json",
-      "bytes": 38393,
-      "sha256": "7b5ba72d17ab24c5f89e0a5707de139b37e2e924a496c9c752e7635f8396f8b6"
+      "bytes": 38390,
+      "sha256": "8252d75c9746c0da585ce7eaa5d8c1a574e7105da06a328984a0aed66b66020e"
     },
     {
       "from": "user supplied 结blend.blend; full fidelity export via scripts/export_full_lion.py, 2026-10-20",
       "path": "source/models/user-lion-2026-10-20.blend",
       "bytes": 136543222,
       "sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+      "localOnly": true
+    },
+    {
+      "from": "user supplied 科比blend.blend; byte-identical source, localOnly because it exceeds GitHub file limit",
+      "path": "source/models/lion-kobi-2026-10-26.blend",
+      "bytes": 136175747,
+      "sha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53",
       "localOnly": true
     },
     {
@@ -5080,6 +5087,36 @@
       "sha256": "c39dd95ab7912481b944be5fe1f63c13df62eae72c12b558acc70356a6613101"
     },
     {
+      "from": "actual Chromium desktop review after full model and hair render, 2026-10-26",
+      "path": "source/reviews/model/2026-10-26-kobi/structure-1920.png",
+      "bytes": 2381071,
+      "sha256": "f210abdcb4f312ef3a7ce04e85a4e0a0046f2dfa2548fb293172adf784d30e08"
+    },
+    {
+      "from": "actual Chromium desktop review after full model and hair render, 2026-10-26",
+      "path": "source/reviews/model/2026-10-26-kobi/action-1920.png",
+      "bytes": 2204570,
+      "sha256": "ee59104a4ee8b78f565b0465df9122e2134be7fbf2c93a0118cb1421066cd8ca"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/100000.datav-areas-v3.json",
+      "bytes": 162746,
+      "sha256": "83ac502aeac66a5527607ec844169418505d990f1a2dc33226743643541eed3c"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/440000.datav-areas-v3.json",
+      "bytes": 59165,
+      "sha256": "1d6882879b704297ad8331468fce9ce767c21f14af13c3cf46c237b40b2a7b9d"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/preview.png",
+      "bytes": 78326,
+      "sha256": "830f5e72869f35241fc9c94c3be28f708431670eeda33030a444818e01df16ee"
+    },
+    {
       "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
       "path": "source/reviews/four-chapter-journey/2026-10-26/action-1366.png",
       "bytes": 1195952,
@@ -5198,24 +5235,6 @@
       "path": "source/reviews/four-chapter-journey/2026-10-26/types-1440.png",
       "bytes": 949181,
       "sha256": "96c975861ca4606ba024ec2cf5ad384e6ee2e28a12789a1970e5722857db8e3e"
-    },
-    {
-      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
-      "path": "source/design/spread-map-geography/100000.datav-areas-v3.json",
-      "bytes": 162746,
-      "sha256": "83ac502aeac66a5527607ec844169418505d990f1a2dc33226743643541eed3c"
-    },
-    {
-      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
-      "path": "source/design/spread-map-geography/440000.datav-areas-v3.json",
-      "bytes": 59165,
-      "sha256": "1d6882879b704297ad8331468fce9ce767c21f14af13c3cf46c237b40b2a7b9d"
-    },
-    {
-      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
-      "path": "source/design/spread-map-geography/preview.png",
-      "bytes": 78326,
-      "sha256": "830f5e72869f35241fc9c94c3be28f708431670eeda33030a444818e01df16ee"
     },
     {
       "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",

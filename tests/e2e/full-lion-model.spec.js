@@ -10,12 +10,12 @@ test('结构与巨幕都实际绘制完整新狮，跨章复用全部模型与�
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expect(page.locator('#modelStatus')).toContainText('模型已载入');
   const model = page.locator('#sceneContainer canvas');
-  for (const [key, value] of [['groups', '33'], ['strands', '2295421'], ['points', '19957105']]) {
+  for (const [key, value] of [['groups', '33'], ['strands', '2289801'], ['points', '19929005']]) {
     await expect(model).toHaveAttribute(`data-full-hair-${key}`, value);
     await expect(model).toHaveAttribute(`data-full-hair-drawn-${key}`, value);
   }
   await expect(model).toHaveAttribute('data-source-model', new RegExp('lion-user-full\\.glb$'));
-  expect(Number(await model.getAttribute('data-render-lines'))).toBe(25_380_208);
+  expect(Number(await model.getAttribute('data-render-lines'))).toBe(25_110_448);
   await page.locator('#modelHotspots [data-id="eyes"]').click();
   await expect(model).toHaveAttribute('data-focused-part', 'eyes');
   await page.locator('#resetView').click();
@@ -23,7 +23,7 @@ test('结构与巨幕都实际绘制完整新狮，跨章复用全部模型与�
   await page.locator('.site-header [data-route="action"]').click();
   const theater = page.locator('#chapterStage canvas');
   await expect(theater).toHaveAttribute('data-scene-ready', 'true', { timeout: 45_000 });
-  for (const [key, value] of [['groups', '33'], ['strands', '2295421'], ['points', '19957105']]) {
+  for (const [key, value] of [['groups', '33'], ['strands', '2289801'], ['points', '19929005']]) {
     await expect(theater).toHaveAttribute(`data-full-hair-${key}`, value);
     await expect(theater).toHaveAttribute(`data-full-hair-drawn-${key}`, value);
   }
@@ -47,5 +47,5 @@ test('完整毛发请求失败会明确退出加载并可重试恢复全量毛�
   await page.unroute(failing);
   await page.getByRole('button', { name: '重新载入', exact: true }).click();
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
-  await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-full-hair-drawn-strands', '2295421');
+  await expect(page.locator('#sceneContainer canvas')).toHaveAttribute('data-full-hair-drawn-strands', '2289801');
 });

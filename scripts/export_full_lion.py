@@ -2,6 +2,7 @@
 
 Run with Blender 5.1+ --background --factory-startup --python-exit-code 1
 --python scripts/export_full_lion.py -- --input <source.blend>.
+An alternate byte-identical source archive can be set with --archive <project-path>.
 Never saves a Blender file. The byte-identical local source archive is ignored
 by Git because it exceeds GitHub's ordinary-file limit.
 """
@@ -47,13 +48,22 @@ def main():
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', required=True)
+    parser.add_argument('--archive', default='source/models/user-lion-2026-10-20.blend',
+                        help='Project-relative path for the byte-identical local source archive')
     args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     if bpy.app.version < (5, 1, 0):
         raise RuntimeError('Use Blender 5.1+ to read this source without the older-version data-loss warning')
     source = Path(args.input).resolve()
     source_bytes = source.read_bytes()
     source_hash = sha(source_bytes)
-    archive = ROOT / 'source/models/user-lion-2026-10-20.blend'
+    archive = Path(args.archive)
+    if not archive.is_absolute():
+        archive = ROOT / archive
+    archive = archive.resolve()
+    try:
+        archive.relative_to(ROOT)
+    except ValueError as error:
+        raise RuntimeError('The project source archive must stay inside the project root') from error
     archive.parent.mkdir(parents=True, exist_ok=True)
     if archive.exists() and sha(archive.read_bytes()) != source_hash:
         raise RuntimeError('Refusing to overwrite a different archived source')
@@ -123,7 +133,7 @@ def main():
         print(f'FULL_HAIR {number:02d}: {name}: {count} strands x {points}, gzip {len(compressed)} bytes', flush=True)
 
     # Preserve every authored point of all three Curves objects. Missing radius
-    # uses EEVEE's CurvesGeometry default; source STRAND mode draws centerlines.
+    # uses the CurvesGeometry default; the runtime STRAND adapter draws centerlines.
     for o in curves:
         counts = np.array([c.points_length for c in o.data.curves])
         if len(set(counts.tolist())) != 1:

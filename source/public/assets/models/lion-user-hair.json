@@ -1,7 +1,7 @@
 {
   "version": 1,
   "coordinateSystem": "GLTF_Y_UP",
-  "sourceSha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+  "sourceSha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53",
   "groups": [
     {
       "id": "hair-01",
@@ -49,12 +49,12 @@
       "kind": "CURVES",
       "assetKey": "lionHair02",
       "path": "assets/models/lion-user-hair-02.bin.gz",
-      "strands": 35567,
+      "strands": 29973,
       "pointsPerStrand": 5,
-      "bytes": 1905151,
-      "rawBytes": 2845360,
-      "sha256": "f3be680860b8b53ae22dcddf8d86a57a5cdefc399246ba0e7bab30dc6f6572a4",
-      "rawSha256": "a2d6d2903bf7296014e10e38cb5ce650e18d9c22ae6d8738ca7c2c8f630913e0",
+      "bytes": 1608165,
+      "rawBytes": 2397840,
+      "sha256": "076d2d3c27dcbba4c01fddff7bc8ae4c7997d060cc0438e663684a08a96dc554",
+      "rawSha256": "cc99ff7de60639085d1c9beb1b9525cad809b7c7161506a4b58851d473a14876",
       "hasRootUV": false,
       "displayMode": "STRAND",
       "interpolation": "CATMULL_ROM",
@@ -89,12 +89,12 @@
       "kind": "CURVES",
       "assetKey": "lionHair03",
       "path": "assets/models/lion-user-hair-03.bin.gz",
-      "strands": 40000,
+      "strands": 39974,
       "pointsPerStrand": 5,
-      "bytes": 2127965,
-      "rawBytes": 3200000,
-      "sha256": "0848c733f1a41ab5e8f37d74910d44408748ec298e912f06e25c07c530b44d87",
-      "rawSha256": "c1b5b3f08cf9bd8abc46a07f30433db59a5e16ccdab87587f4daa1afa29ed56f",
+      "bytes": 2126522,
+      "rawBytes": 3197920,
+      "sha256": "8f3605b65cb4589de14063ef2ae91762204213a5279e7c27b57eae718f5b7028",
+      "rawSha256": "b7ffbc653eba32500d9750df8e6c7c7be5d6b2c6ac0e043a87374945dae47f30",
       "hasRootUV": false,
       "displayMode": "STRAND",
       "interpolation": "CATMULL_ROM",
@@ -411,24 +411,24 @@
       "path": "assets/models/lion-user-hair-11.bin.gz",
       "strands": 70000,
       "pointsPerStrand": 9,
-      "bytes": 7355082,
+      "bytes": 7355506,
       "rawBytes": 10640000,
-      "sha256": "52096c5ce39ff6a1bec6f5fb8cf111cfee3d5e023a631d5d707b467661feb015",
-      "rawSha256": "51ac34dde3f2bfc360d317bfdb03b97ada8f5cff01f9ddd82f4d2fba3b1c7546",
+      "sha256": "de2d8f4d24cc71438b84a52afcb7813201670988bbde8e186f77e89212e1a894",
+      "rawSha256": "30e2cc71b6d8617edea4cf928a305ba929c0cec3a577c506bc48d31262521148",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.32857468724250793,
-          0.4323769211769104,
-          0.2995184361934662
+          -0.3300246000289917,
+          0.4323766529560089,
+          0.30053234100341797
         ],
         "max": [
-          0.29221242666244507,
-          0.9941734671592712,
-          0.7998175621032715
+          0.291721910238266,
+          0.9936103820800781,
+          0.7940307855606079
         ]
       },
       "material": {
@@ -531,24 +531,24 @@
       "path": "assets/models/lion-user-hair-14.bin.gz",
       "strands": 50000,
       "pointsPerStrand": 9,
-      "bytes": 5159773,
+      "bytes": 5159261,
       "rawBytes": 7600000,
-      "sha256": "eedf10f1aab732836a83a4b37286396f6eb678ef68f4ffcdb3ca6611eb9ff970",
-      "rawSha256": "5cfd29fd6025853d9b7485089ec1f24dfce042b7ca475e89fdb88f78183f4067",
+      "sha256": "8c74f7e8aa0b70c28e7bcba7f60103377995038c38baaefa936174e9d9a6436a",
+      "rawSha256": "2ebc437978c771d8316ca8f167c132ba3f3bb03e0c5c75d20e4270efada77dcd",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.27484655380249023,
-          0.32130926847457886,
-          0.18410596251487732
+          -0.27528417110443115,
+          0.31218424439430237,
+          0.18159830570220947
         ],
         "max": [
-          0.27220746874809265,
-          0.4645017683506012,
-          0.5350014567375183
+          0.2858614921569824,
+          0.466408371925354,
+          0.5350093841552734
         ]
       },
       "material": {
@@ -571,24 +571,24 @@
       "path": "assets/models/lion-user-hair-15.bin.gz",
       "strands": 150000,
       "pointsPerStrand": 9,
-      "bytes": 16204130,
+      "bytes": 16204882,
       "rawBytes": 22800000,
-      "sha256": "b697c9ed4de84e8a214254d64223bc3854e78023730bd62e4ed2ec265d5e89ad",
-      "rawSha256": "37d892310f444949ced640e36fd6e8f2612bf7f02f4ebbecbe23b78c07169732",
+      "sha256": "6a3b276d97d9fc8abe3c25a05ec4bb48b7572c92dbc8c3f4ea55789dfc5948af",
+      "rawSha256": "08552a1f9be773017360c81888c5e0e664b8225e136fcba19f58b9265e9949c6",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.32218968868255615,
-          0.30085110664367676,
-          -0.5591216087341309
+          -0.32208332419395447,
+          0.30311861634254456,
+          -0.5639848113059998
         ],
         "max": [
-          0.32193419337272644,
-          0.7890646457672119,
-          0.26851797103881836
+          0.31780216097831726,
+          0.7889867424964905,
+          0.26900291442871094
         ]
       },
       "material": {
@@ -771,24 +771,24 @@
       "path": "assets/models/lion-user-hair-20.bin.gz",
       "strands": 150000,
       "pointsPerStrand": 9,
-      "bytes": 16132730,
+      "bytes": 16139761,
       "rawBytes": 22800000,
-      "sha256": "2ca024afb3a1179690d1f67bee7297047d0f78de67f481b8be372b5ccb45b377",
-      "rawSha256": "ee6256d727ea14d1af4c6618d1b3fe981ef07f0bdb468aeda561a6ca21a3d663",
+      "sha256": "a9629b4cae0ebe42f2d30ac99a6e1655623a4342e2e323341619f289e575a4bd",
+      "rawSha256": "a7557ce0cc5e00a8f1658222b793b79ec0c7f4fbe9e4a09f73adbc2e17fc7d7e",
       "hasRootUV": true,
       "displayMode": "STRAND",
       "interpolation": "LINEAR",
       "segmentsPerSourceSegment": 1,
       "bounds": {
         "min": [
-          -0.3647582530975342,
-          0.06775818765163422,
-          -0.6197999119758606
+          -0.36310744285583496,
+          0.06852150708436966,
+          -0.6201025247573853
         ],
         "max": [
-          0.3635725975036621,
-          0.7668856978416443,
-          0.5921236276626587
+          0.36443668603897095,
+          0.766563355922699,
+          0.5929529666900635
         ]
       },
       "material": {
@@ -1324,6 +1324,6 @@
       }
     }
   ],
-  "totalStrands": 2295421,
-  "totalPoints": 19957105
+  "totalStrands": 2289801,
+  "totalPoints": 19929005
 }
