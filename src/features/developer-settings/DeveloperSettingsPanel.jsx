@@ -133,6 +133,10 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           {range('bookPageInterval','每页停留时间',3,30,1,'秒')}
           <p className="developer-settings-note">封面、各页依次播放，末页回到封面；默认每页停留8秒。悬停、操作和离开可视区时暂停，减少动态时保留手动翻页。</p>
         </SettingsGroup>
+        <SettingsGroup title="书册下方人物" note="时间线引导角色">
+          {range('bookGuideScale','人物放大比例',100,200,1,'%')}
+          <p className="developer-settings-note">默认150%。正常窗口以96px、短窗口以80px为基准；调整比例时自动上移人物，保持脚底与年代台阶对齐。</p>
+        </SettingsGroup>
       </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
       case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
         {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : value === 'spread' ? ['spreadOverlay'] : ['expressionOverlay'])}

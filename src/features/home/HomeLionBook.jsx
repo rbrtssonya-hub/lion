@@ -23,7 +23,8 @@ class BookBoundary extends Component {
 export default function HomeLionBook({ settings = {}, preload = false, playbackEnabled = true, onReady, onArchiveWheel }) {
   const sectionRef = useRef(null);
   const [entered, setEntered] = useState(preload);
-  const { bookScale = 116, bookStageHeight = 680, bookInkEnabled = true, bookAutoplay = true, bookPageInterval = 8 } = settings;
+  const { bookScale = 116, bookStageHeight = 680, bookGuideScale = 150, bookInkEnabled = true, bookAutoplay = true, bookPageInterval = 8 } = settings;
+  const guideScale = bookGuideScale / 100;
   useEffect(() => { if (preload) setEntered(true); }, [preload]);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -34,7 +35,9 @@ export default function HomeLionBook({ settings = {}, preload = false, playbackE
   }, []);
 
   return <section className="lion-book-section" id="homeLionBook" ref={sectionRef} aria-labelledby="lion-book-title"
-    style={{ '--book-scale': bookScale / 100, '--book-layout-ratio': Math.min(1, bookScale / 116), '--book-stage-height': `${bookStageHeight}px` }}>
+    style={{ '--book-scale': bookScale / 100, '--book-layout-ratio': Math.min(1, bookScale / 116), '--book-stage-height': `${bookStageHeight}px`,
+      '--book-guide-normal-size': `${96 * guideScale}px`, '--book-guide-short-size': `${80 * guideScale}px`,
+      '--book-guide-normal-lift': `${48 * (guideScale - 1)}px`, '--book-guide-short-lift': `${40 * (guideScale - 1)}px` }}>
     <div className="lion-book-inner">
       <header className="lion-book-heading archive-reading-panel" data-surface="bookTitle">
         <div className="lion-book-title-group">
