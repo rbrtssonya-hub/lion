@@ -86,7 +86,9 @@ export function createChatHandler({ env = process.env, offline = false, fetchImp
     const local = answerLocally(question, chapter);
     const guideQuestion = /^(?:请)?(?:讲解|介绍|解释)(?:一下)?(?:本页|这一页|当前页|这个页面)[。！!？?\s]*$/.test(question);
     const guide = getChapterGuide(chapter);
-    const entries = guideQuestion ? [{ id: `guide-${chapter}`, title: '当前章节讲解', answer: guide.answer, sources: guide.sources }] : retrieveKnowledge(question, chapter, 3);
+    const chapterGuide = { id: `guide-${chapter}`, title: '当前章节讲解', answer: guide.answer, sources: guide.sources };
+    const matchedEntries = retrieveKnowledge(question, chapter, 3);
+    const entries = guideQuestion || !matchedEntries.length ? [chapterGuide] : matchedEntries;
     const fallback = reason => json(res, 200, { ...local, mode: 'local', reason }, cors);
     if (offline || env.XIAOXING_OFFLINE === '1') return fallback('offline');
     if (!entries.length) return fallback('not-covered');

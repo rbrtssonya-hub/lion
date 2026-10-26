@@ -4,7 +4,7 @@
 
 ## 小醒桌宠与讲解（2026-10-26）
 
-小醒位于四章之外，支持9层面部动作、鼠标/方向键移动、章节上下文、本地来源与离线女声讲解。可编辑源在 `source/characters/xiaoxing/`，运行层和音频在 `source/public/assets/xiaoxing/`。真实DeepSeek配置由用户延期；接口默认本地。服务和EXE接入见[问答说明](XIAOXING_AI.md)，实际验收与截图见[交付记录](../source/references/xiaoxing-assistant-2026-10-26.md)。
+小醒位于四章之外，支持9层面部动作、鼠标/方向键移动、章节上下文、本地来源与离线女声讲解。可编辑源在 `source/characters/xiaoxing/`，运行层和音频在 `source/public/assets/xiaoxing/`。问答支持 `entry/model/action/state/spread` 页面上下文，由Node服务端读取DeepSeek配置；纯静态托管需要将 `/api/xiaoxing/chat` 反向代理到Node服务。设置与EXE边界见[问答说明](XIAOXING_AI.md)，实际验收与截图见[桌宠记录](../source/references/xiaoxing-assistant-2026-10-26.md)和[DeepSeek接入记录](../source/references/xiaoxing-deepseek-2026-10-26.md)。
 构建后执行 `npx playwright test --config scripts/xiaoxing/playwright.config.mjs`，使用独立42827端口且不复用其他工作树。角色导出为 `node scripts/xiaoxing/export-rig.mjs`、`python scripts/xiaoxing/package-layers.py`；语音重建使用PowerShell7执行 `scripts/xiaoxing/build-narration.ps1`，声音要求见角色voice说明。
 
 2026-10-25十二项视觉批注后的首页：主视觉向下滚轮或“探索更多”进入书页，再通过左侧导航切换四个一屏展板，继续向下不跳展板，向上回主视觉。`useHomeExhibit`统一外页/书页iframe滚轮、键盘及resize落点；停用时清滚动意图，长资料列保留局部阅读。书册导航并入说明底卡，完整纸面/标题/底卡共用列宽；旧独立宽度偏好不再拆散边界。结构浅折叠直接呈现，真实操作使用`interaction-cue`，Logo固定左侧。修改这些部分时以`book-screen`、`exhibit-content`、`exhibit-panels`、`home-exhibit-navigation`为新验收入口；测试进入隐藏展板要用`home-exhibit.helpers.js`中的真实探索/侧栏流程。实际结果与边界见[本轮验收](../source/references/exhibit-screen-review-2026-10-25.md)。
