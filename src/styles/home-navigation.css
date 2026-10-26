@@ -66,6 +66,6 @@
 @media (prefers-reduced-motion: reduce) {
   .lion-book-game-nav .lion-book-particles, .home-archive-nav-particles { display: none; }
   /* Static markers share button geometry without an animation RAF. */
-  .lion-book-game-nav .lion-book-guide-character { left: calc((var(--book-nav-index, 0) + .5) * 100% / 7) !important; top: 48px !important; }
+  .lion-book-game-nav .lion-book-guide-character { left: calc((var(--book-nav-index, 0) + .5) * 100% / 7 + var(--book-guide-stop-current-offset, 0%)) !important; top: 48px !important; }
   .home-archive-nav-lion { left: var(--archive-nav-node-x) !important; top: calc(var(--archive-nav-first) + var(--archive-nav-index, 0) * var(--archive-nav-step)) !important; }
 }

@@ -5,10 +5,10 @@ import '../../styles/home-navigation.css';
 
 // Generalize the original ink loop to a vertical rail. Every retarget starts
 // from the last painted position; no game/physics runtime is involved.
-export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false, markerDuration = 650 }) {
+export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false, markerDuration = 650, layoutKey = 0 }) {
   const navRef = useRef(null), markerRef = useRef(null), canvasRef = useRef(null), spriteRef = useRef(null);
   const updateRef = useRef(null), latest = useRef(null);
-  latest.current = { index, playbackEnabled, particlesEnabled, visible, markerDuration };
+  latest.current = { index, playbackEnabled, particlesEnabled, visible, markerDuration, layoutKey };
 
   useLayoutEffect(() => {
     const nav = navRef.current, marker = markerRef.current, canvas = canvasRef.current;
@@ -139,8 +139,9 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
     updateRef.current = next => {
       const changed = next.index !== options.index;
       const becomingVisible = next.visible && !options.visible;
+      const layoutChanged = next.layoutKey !== options.layoutKey;
       options = next;
-      if (becomingVisible) measure();
+      if (becomingVisible || layoutChanged) measure();
       if (changed && !becomingVisible) {
         move = { from: position, direction: Math.sign(target() - position) || 1, elapsed: 0 };
         previousTime = performance.now(); clock = 0;
@@ -171,13 +172,13 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       reduced.removeEventListener('change', visibility); updateRef.current = null;
     };
   }, [vertical, sprite, markerDuration]);
-  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible, markerDuration]);
+  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible, markerDuration, layoutKey]);
   return { navRef, markerRef, canvasRef, spriteRef };
 }
 
-export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled = true, playbackEnabled = true }) {
+export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled = true, stopSpacing = 115, playbackEnabled = true }) {
   const { navRef, markerRef, canvasRef, spriteRef } = useHomeNavigationMotion({
-    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true, markerDuration: 400,
+    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true, markerDuration: 400, layoutKey: stopSpacing,
   });
   const buttons = useRef([]);
   const onKeyDown = event => {
@@ -195,7 +196,8 @@ export default function BookTimeline({ book, index: timelineIndex = book.index, 
     if (book.ready && playbackEnabled) send('goTo', next);
   };
   return <nav ref={navRef} className="lion-book-timeline lion-book-game-nav" aria-label="醒狮历史时间线"
-    aria-describedby="lion-book-instructions" data-particles-enabled={inkEnabled} style={{ '--book-nav-index': timelineIndex }} onKeyDown={onKeyDown}>
+    aria-describedby="lion-book-instructions" data-particles-enabled={inkEnabled} style={{ '--book-nav-index': timelineIndex,
+      '--book-guide-stop-current-offset': `${(timelineIndex - (lionBookPages.length - 1) / 2) * (stopSpacing - 100) / lionBookPages.length}%` }} onKeyDown={onKeyDown}>
     <span className="lion-book-game-track" aria-hidden="true" />
     <canvas ref={canvasRef} className="lion-book-particles" aria-hidden="true" />
     <span ref={markerRef} className="lion-book-guide-character" data-ready="false" aria-hidden="true">
@@ -203,6 +205,7 @@ export default function BookTimeline({ book, index: timelineIndex = book.index, 
       <canvas ref={spriteRef} width="256" height="256" />
     </span>
     {lionBookPages.map((page, index) => <button type="button" key={page.id} ref={node => { buttons.current[index] = node; }}
+      style={{ '--book-guide-stop-shift': `${(index - (lionBookPages.length - 1) / 2) * (stopSpacing - 100)}%` }}
       data-book-page={page.id} aria-label={`翻阅${page.stage}：${page.title}`}
       aria-current={timelineIndex === index ? 'step' : undefined} disabled={!book.ready || !playbackEnabled}
       onClick={() => send('goTo', index)}>

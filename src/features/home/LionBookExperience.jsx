@@ -6,7 +6,7 @@ import { lionBookPages } from '../../data/lion-book.js';
 import BookTimeline from './BookTimeline.jsx';
 
 const fileBase = media.lionBookCover.slice(0, media.lionBookCover.lastIndexOf('/') + 1);
-export default function LionBookExperience({ autoplay = true, pageInterval = 8, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady, onArchiveWheel }) {
+export default function LionBookExperience({ autoplay = true, pageInterval = 8, scale = 1.16, inkEnabled = true, guideSpacing = 115, playbackEnabled = true, onReady, onArchiveWheel }) {
   const hostRef = useRef(null);
   const [fitScale, setFitScale] = useState(scale);
   const autoplayRef = useRef(autoplay);
@@ -214,7 +214,7 @@ export default function LionBookExperience({ autoplay = true, pageInterval = 8, 
     </div>
     <p className="sr-only" id="lion-book-instructions">拖动左右书页，或点选年代；左右方向键翻页。</p>
     <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails">
-      <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
+      <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} stopSpacing={guideSpacing} playbackEnabled={playbackEnabled} />
       <div className="lion-book-reading-content" aria-live={autoplay ? 'off' : 'polite'} aria-atomic="true">
         <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
         <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>

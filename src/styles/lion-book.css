@@ -120,13 +120,15 @@
 #homeLionBook .lion-book-timeline.lion-book-game-nav {
   width: calc(100% + 32px); height: var(--book-nav-height); margin: 0 0 0 -16px; padding: 56px 0 0;
 }
-#homeLionBook .lion-book-game-track { top: 67px; }
+#homeLionBook .lion-book-game-track {
+  top: 66px; left: calc(100% / 14 - var(--book-guide-stop-end-shift, 0%)); right: calc(100% / 14 - var(--book-guide-stop-end-shift, 0%));
+}
 #homeLionBook .lion-book-game-nav .lion-book-guide-character {
   width: var(--book-guide-size, 96px); height: var(--book-guide-size, 96px);
   margin-top: calc(36px - var(--book-guide-lift, 0px));
 }
 #homeLionBook .lion-book-timeline.lion-book-game-nav button {
-  min-height: 60px; gap: 8px; padding: 0 4px; font-size: 22px; line-height: 1.25;
+  min-height: 60px; gap: 8px; padding: 0 4px; transform: translateX(var(--book-guide-stop-shift, 0%)); font-size: 22px; line-height: 1.25;
 }
 #homeLionBook .lion-book-game-nav .lion-book-game-platform { width: 88px; height: 22px; }
 #homeLionBook .lion-book-game-platform::before { top: -25px; font-size: 14px; line-height: 20px; }
@@ -149,7 +151,7 @@
     --book-guide-lift: var(--book-guide-short-lift, 0px);
   }
   #homeLionBook .lion-book-timeline.lion-book-game-nav { padding-top: 44px; }
-  #homeLionBook .lion-book-game-track { top: 54px; }
+  #homeLionBook .lion-book-game-track { top: 53px; }
   #homeLionBook .lion-book-game-nav .lion-book-guide-character { margin-top: calc(41px - var(--book-guide-lift, 0px)); }
   #homeLionBook .lion-book-timeline.lion-book-game-nav button { min-height: 52px; gap: 6px; font-size: 20px; }
   #homeLionBook .lion-book-game-nav .lion-book-game-platform { width: 80px; height: 20px; }
