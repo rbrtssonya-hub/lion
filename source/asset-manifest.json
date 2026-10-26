@@ -4587,6 +4587,18 @@
       "path": "source/reviews/model/2026-10-26-interactive/narrow-model-header.png",
       "bytes": 221671,
       "sha256": "e1b351fa90b56e9229d7aa3c9746d7788032dc9d9d069d5087ed491ac4dc27da"
+    },
+    {
+      "from": "Actual Blender 5.0 reopen render / native Chrome action scene capture 2026-10-26",
+      "path": "source/reviews/action-blender/2026-10-26/blender-action-preview.png",
+      "bytes": 1544414,
+      "sha256": "7ddc6dd697cdcdf9d1cb23002addc7b8ec5737f72c0fcc1aef2a006ceea97392"
+    },
+    {
+      "from": "Actual Blender 5.0 reopen render / native Chrome action scene capture 2026-10-26",
+      "path": "source/reviews/action-blender/2026-10-26/web-action-reference.png",
+      "bytes": 2295434,
+      "sha256": "76111d21aac2e0993dcaace3b56a20f168f3e75e73730733c7f9bf7af88154fe"
     }
   ]
 }

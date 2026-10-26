@@ -1,0 +1,4328 @@
+{
+  "date": "2026-10-26",
+  "revision": "bdab21b10d9f5cd1a1677f1216df26d247f3246b",
+  "branch": "codex/TestModel",
+  "blender_version": "5.0.0",
+  "delivery": "C:\\Users\\Administrator\\Desktop\\虚拟展厅",
+  "files": [
+    {
+      "path": "assets/videos/doumao.mp4",
+      "bytes": 6159115,
+      "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a"
+    },
+    {
+      "path": "assets/videos/meihuazhuang.mp4",
+      "bytes": 7929073,
+      "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866"
+    },
+    {
+      "path": "assets/videos/tanqing.mp4",
+      "bytes": 7593974,
+      "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143"
+    },
+    {
+      "path": "assets/videos/tuqiu.mp4",
+      "bytes": 6519176,
+      "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650"
+    },
+    {
+      "path": "使用说明.txt",
+      "bytes": 1150,
+      "sha256": "97e61fe20835127874bc0eb41ce2d25541c11218f4fa7616e9d935277a4cb437"
+    },
+    {
+      "path": "动作场景预览.png",
+      "bytes": 1544414,
+      "sha256": "7ddc6dd697cdcdf9d1cb23002addc7b8ec5737f72c0fcc1aef2a006ceea97392"
+    },
+    {
+      "path": "南风有狮_动作完整场景_Blender5.0.blend",
+      "bytes": 199587238,
+      "sha256": "e18cf1993fddaf02b2e9e5b4e7af77b29846c09eaba72dcb0b6f1a12807bb907"
+    },
+    {
+      "path": "南风有狮_动作完整场景_Blender5.0.export.json",
+      "bytes": 2814,
+      "sha256": "544698d0b797f62413fa4cadcd7be0b9c940deccf7f13e99b545aff38007b95d"
+    },
+    {
+      "path": "场景完整性验收.json",
+      "bytes": 917246,
+      "sha256": "637a28e8d3f3e9a75a540360ea6a46f9c8c5501b926ae2558bdd84b0c5c8936f"
+    }
+  ],
+  "native_source": {
+    "checks": [
+      {
+        "name": "source_original_archive_expected_sha",
+        "pass": true,
+        "archive_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+        "original_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770"
+      },
+      {
+        "name": "GLB_53_meshes_102_nodes",
+        "pass": true,
+        "meshes": 53,
+        "nodes": 102
+      },
+      {
+        "name": "GLB_all_53_source_mesh_names",
+        "pass": true,
+        "missing": [],
+        "extra": []
+      },
+      {
+        "name": "立方体",
+        "pass": true,
+        "source_evaluated_vertices": 610,
+        "source_evaluated_triangles": 1216,
+        "gltf_triangles": 1216,
+        "gltf_split_vertices": 816,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 610,
+        "gltf_unique_position_keys": 610,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "0960f443179ea4e867443134a85f280f42d4ecfb71fe84ba35eb15ced18d6c41",
+        "gltf_sorted_oriented_triangles_sha256": "0960f443179ea4e867443134a85f280f42d4ecfb71fe84ba35eb15ced18d6c41"
+      },
+      {
+        "name": "牙下",
+        "pass": true,
+        "source_evaluated_vertices": 18324,
+        "source_evaluated_triangles": 36640,
+        "gltf_triangles": 36640,
+        "gltf_split_vertices": 19698,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 18322,
+        "gltf_unique_position_keys": 18322,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "10ac43f0abc203f3bc43435ec3706e89127af84e06cbf3a4788b495029a17792",
+        "gltf_sorted_oriented_triangles_sha256": "10ac43f0abc203f3bc43435ec3706e89127af84e06cbf3a4788b495029a17792"
+      },
+      {
+        "name": "上牙",
+        "pass": true,
+        "source_evaluated_vertices": 15234,
+        "source_evaluated_triangles": 30464,
+        "gltf_triangles": 30464,
+        "gltf_split_vertices": 16498,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 15234,
+        "gltf_unique_position_keys": 15234,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "74e272fd55506580608cdff2e81706ebe1ff813224cb5a62e62488c8ae9d3468",
+        "gltf_sorted_oriented_triangles_sha256": "74e272fd55506580608cdff2e81706ebe1ff813224cb5a62e62488c8ae9d3468"
+      },
+      {
+        "name": "Lion_Head.001",
+        "pass": true,
+        "source_evaluated_vertices": 807,
+        "source_evaluated_triangles": 1560,
+        "gltf_triangles": 1560,
+        "gltf_split_vertices": 1026,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 807,
+        "gltf_unique_position_keys": 807,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "17908a3ca1bc004cc69845e87b648ac1b9f1ae477c3e12f538df0fb67b1aaed4",
+        "gltf_sorted_oriented_triangles_sha256": "17908a3ca1bc004cc69845e87b648ac1b9f1ae477c3e12f538df0fb67b1aaed4"
+      },
+      {
+        "name": "Lion_Forehead_Bead_09",
+        "pass": true,
+        "source_evaluated_vertices": 1984,
+        "source_evaluated_triangles": 3840,
+        "gltf_triangles": 3840,
+        "gltf_split_vertices": 2848,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1984,
+        "gltf_unique_position_keys": 1984,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "3e684a1a3005f8674830b49bef00c12a085445b3caf87d5113df4a8d77a3ee91",
+        "gltf_sorted_oriented_triangles_sha256": "3e684a1a3005f8674830b49bef00c12a085445b3caf87d5113df4a8d77a3ee91"
+      },
+      {
+        "name": "Lion_Crown",
+        "pass": true,
+        "source_evaluated_vertices": 3784,
+        "source_evaluated_triangles": 5521,
+        "gltf_triangles": 5521,
+        "gltf_split_vertices": 5924,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 2824,
+        "gltf_unique_position_keys": 2824,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "137c7b5acbafcb6662ac6e393a80c31634a185fafd53c37ad3fa8876837098b5",
+        "gltf_sorted_oriented_triangles_sha256": "137c7b5acbafcb6662ac6e393a80c31634a185fafd53c37ad3fa8876837098b5"
+      },
+      {
+        "name": "Lion_Body",
+        "pass": true,
+        "source_evaluated_vertices": 79860,
+        "source_evaluated_triangles": 121036,
+        "gltf_triangles": 121036,
+        "gltf_split_vertices": 148040,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 58069,
+        "gltf_unique_position_keys": 58069,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "1e2a005d6cb54668e6d31ae7187e7debc1bb5a8e78e61558d3b17b0cd864e948",
+        "gltf_sorted_oriented_triangles_sha256": "1e2a005d6cb54668e6d31ae7187e7debc1bb5a8e78e61558d3b17b0cd864e948"
+      },
+      {
+        "name": "Lion_Tail.001",
+        "pass": true,
+        "source_evaluated_vertices": 19871,
+        "source_evaluated_triangles": 33455,
+        "gltf_triangles": 33455,
+        "gltf_split_vertices": 39271,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 15635,
+        "gltf_unique_position_keys": 15635,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "b693986df3e346ae17516d2fc6886c315f54f6de68e4bb4dd181792be2177d72",
+        "gltf_sorted_oriented_triangles_sha256": "b693986df3e346ae17516d2fc6886c315f54f6de68e4bb4dd181792be2177d72"
+      },
+      {
+        "name": "Lion_Hindpaw_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 1516,
+        "source_evaluated_triangles": 2807,
+        "gltf_triangles": 2807,
+        "gltf_split_vertices": 2308,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1502,
+        "gltf_unique_position_keys": 1502,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "360ed1b6fcde182dfa928d28b9a32ca87198025d864133a9b55c47184f8b4983",
+        "gltf_sorted_oriented_triangles_sha256": "360ed1b6fcde182dfa928d28b9a32ca87198025d864133a9b55c47184f8b4983"
+      },
+      {
+        "name": "Lion_Hindpaw_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 1529,
+        "source_evaluated_triangles": 2778,
+        "gltf_triangles": 2778,
+        "gltf_split_vertices": 2392,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1472,
+        "gltf_unique_position_keys": 1472,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "32cc7d35aac20b4791e8c873e195d26ef177f0ec9acc113f0911728e51a26a64",
+        "gltf_sorted_oriented_triangles_sha256": "32cc7d35aac20b4791e8c873e195d26ef177f0ec9acc113f0911728e51a26a64"
+      },
+      {
+        "name": "Lion_Hindleg_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 7651,
+        "source_evaluated_triangles": 12592,
+        "gltf_triangles": 12592,
+        "gltf_split_vertices": 13570,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 6225,
+        "gltf_unique_position_keys": 6225,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "37c530f12322bdb5056fcb5b2477a568dc71d417f476e89c8cba5839dacb6fa5",
+        "gltf_sorted_oriented_triangles_sha256": "37c530f12322bdb5056fcb5b2477a568dc71d417f476e89c8cba5839dacb6fa5"
+      },
+      {
+        "name": "Lion_Hindleg_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 8003,
+        "source_evaluated_triangles": 13581,
+        "gltf_triangles": 13581,
+        "gltf_split_vertices": 14864,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 6647,
+        "gltf_unique_position_keys": 6647,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "8665f749318610f6375b34aa9e77dea0a807f9daf50dd76814f9fb172299a843",
+        "gltf_sorted_oriented_triangles_sha256": "8665f749318610f6375b34aa9e77dea0a807f9daf50dd76814f9fb172299a843"
+      },
+      {
+        "name": "Lion_Forepaw_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 1579,
+        "source_evaluated_triangles": 2908,
+        "gltf_triangles": 2908,
+        "gltf_split_vertices": 2462,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1547,
+        "gltf_unique_position_keys": 1547,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "ca8f3d50bb2500ff5a945f898843fc1e984d9e7b256f8e3770d094b05ba80092",
+        "gltf_sorted_oriented_triangles_sha256": "ca8f3d50bb2500ff5a945f898843fc1e984d9e7b256f8e3770d094b05ba80092"
+      },
+      {
+        "name": "Lion_Forepaw_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 1506,
+        "source_evaluated_triangles": 2753,
+        "gltf_triangles": 2753,
+        "gltf_split_vertices": 2300,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1470,
+        "gltf_unique_position_keys": 1470,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "f0fab23c53733a6969ca1b7ab0fa7cad06da024ef6d8abc0b5208b9354cd53c7",
+        "gltf_sorted_oriented_triangles_sha256": "f0fab23c53733a6969ca1b7ab0fa7cad06da024ef6d8abc0b5208b9354cd53c7"
+      },
+      {
+        "name": "Lion_Foreleg_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 6909,
+        "source_evaluated_triangles": 11472,
+        "gltf_triangles": 11472,
+        "gltf_split_vertices": 12506,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 5801,
+        "gltf_unique_position_keys": 5801,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "4dbbe90116e15de35586a68023b33ac267d33f0061ac9fe54e7ee2a9106e6f4b",
+        "gltf_sorted_oriented_triangles_sha256": "4dbbe90116e15de35586a68023b33ac267d33f0061ac9fe54e7ee2a9106e6f4b"
+      },
+      {
+        "name": "Lion_Foreleg_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 7153,
+        "source_evaluated_triangles": 11871,
+        "gltf_triangles": 11871,
+        "gltf_split_vertices": 12999,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 5949,
+        "gltf_unique_position_keys": 5949,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "63a1ef2f0b24f30d7b435a93eb3817f65081c59ce657e22ccb03ec6133dddc8f",
+        "gltf_sorted_oriented_triangles_sha256": "63a1ef2f0b24f30d7b435a93eb3817f65081c59ce657e22ccb03ec6133dddc8f"
+      },
+      {
+        "name": "Lion_Ear_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 6312,
+        "source_evaluated_triangles": 8065,
+        "gltf_triangles": 8065,
+        "gltf_split_vertices": 10754,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 5234,
+        "gltf_unique_position_keys": 5234,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "bb990afc74dcc148810e5b12b936954011879f53c7f15bc40dce44a590e4bf80",
+        "gltf_sorted_oriented_triangles_sha256": "bb990afc74dcc148810e5b12b936954011879f53c7f15bc40dce44a590e4bf80"
+      },
+      {
+        "name": "Lion_Ear_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 7313,
+        "source_evaluated_triangles": 9137,
+        "gltf_triangles": 9137,
+        "gltf_split_vertices": 12591,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 5671,
+        "gltf_unique_position_keys": 5671,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "172d4e62f65b3b86d8edf02de1088d8187705da70a62e15c6cd99bf6f401468a",
+        "gltf_sorted_oriented_triangles_sha256": "172d4e62f65b3b86d8edf02de1088d8187705da70a62e15c6cd99bf6f401468a"
+      },
+      {
+        "name": "Lion_Brow_R.001",
+        "pass": true,
+        "source_evaluated_vertices": 4888,
+        "source_evaluated_triangles": 6488,
+        "gltf_triangles": 6488,
+        "gltf_split_vertices": 8737,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 3776,
+        "gltf_unique_position_keys": 3776,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "8e2350431e6e70c15e7b9ccb2d709b004bb950f2c5ad12489e07e4c425cbffbb",
+        "gltf_sorted_oriented_triangles_sha256": "8e2350431e6e70c15e7b9ccb2d709b004bb950f2c5ad12489e07e4c425cbffbb"
+      },
+      {
+        "name": "Lion_Brow_L.001",
+        "pass": true,
+        "source_evaluated_vertices": 5013,
+        "source_evaluated_triangles": 7063,
+        "gltf_triangles": 7063,
+        "gltf_split_vertices": 9330,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 3945,
+        "gltf_unique_position_keys": 3945,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "886957d674a895d79ac9dd6fc400f174ffffc9f4613ba67ca7e1cd4311c12ea8",
+        "gltf_sorted_oriented_triangles_sha256": "886957d674a895d79ac9dd6fc400f174ffffc9f4613ba67ca7e1cd4311c12ea8"
+      },
+      {
+        "name": "Lion_Body_Red_Trim.001",
+        "pass": true,
+        "source_evaluated_vertices": 15497,
+        "source_evaluated_triangles": 24753,
+        "gltf_triangles": 24753,
+        "gltf_split_vertices": 24633,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 14983,
+        "gltf_unique_position_keys": 14983,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "e3efc0e1c31b0b3608ae2f4ab7ccb56ea0c0a1c602e0a89ded0da7020fee73de",
+        "gltf_sorted_oriented_triangles_sha256": "e3efc0e1c31b0b3608ae2f4ab7ccb56ea0c0a1c602e0a89ded0da7020fee73de"
+      },
+      {
+        "name": "Lion_Beard.001",
+        "pass": true,
+        "source_evaluated_vertices": 5895,
+        "source_evaluated_triangles": 8863,
+        "gltf_triangles": 8863,
+        "gltf_split_vertices": 12284,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 4405,
+        "gltf_unique_position_keys": 4405,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "3ec3e705795e4160e0e43b7041a4fcaeca74797fa8f2767bdf653c1adf822430",
+        "gltf_sorted_oriented_triangles_sha256": "3ec3e705795e4160e0e43b7041a4fcaeca74797fa8f2767bdf653c1adf822430"
+      },
+      {
+        "name": "Lion_Ear_L.003",
+        "pass": true,
+        "source_evaluated_vertices": 1029,
+        "source_evaluated_triangles": 1468,
+        "gltf_triangles": 1468,
+        "gltf_split_vertices": 1954,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 887,
+        "gltf_unique_position_keys": 887,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "0d174fc0f954cc4edcc665e73e52aebf7d08b89c8d01344d7c4bd039c30ac518",
+        "gltf_sorted_oriented_triangles_sha256": "0d174fc0f954cc4edcc665e73e52aebf7d08b89c8d01344d7c4bd039c30ac518"
+      },
+      {
+        "name": "Lion_Ear_R.003",
+        "pass": true,
+        "source_evaluated_vertices": 760,
+        "source_evaluated_triangles": 1264,
+        "gltf_triangles": 1264,
+        "gltf_split_vertices": 1443,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 733,
+        "gltf_unique_position_keys": 733,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "56d76738db9f8b0910fcbec5f9667c25a01737cf62c18d7fb1185d4bbc50121f",
+        "gltf_sorted_oriented_triangles_sha256": "56d76738db9f8b0910fcbec5f9667c25a01737cf62c18d7fb1185d4bbc50121f"
+      },
+      {
+        "name": "Lion_Hindpaw_L.003",
+        "pass": true,
+        "source_evaluated_vertices": 293,
+        "source_evaluated_triangles": 360,
+        "gltf_triangles": 360,
+        "gltf_split_vertices": 373,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 292,
+        "gltf_unique_position_keys": 292,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "5b5ff626fe02ab8004288e33ead5f35b22d22cd4a29428b5ecf314ece64d25bc",
+        "gltf_sorted_oriented_triangles_sha256": "5b5ff626fe02ab8004288e33ead5f35b22d22cd4a29428b5ecf314ece64d25bc"
+      },
+      {
+        "name": "Lion_Hindpaw_R.003",
+        "pass": true,
+        "source_evaluated_vertices": 376,
+        "source_evaluated_triangles": 533,
+        "gltf_triangles": 533,
+        "gltf_split_vertices": 545,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 369,
+        "gltf_unique_position_keys": 369,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "62e32edcc39e2c569501085060075060c449a86cab65631c05aca58ccfc7335c",
+        "gltf_sorted_oriented_triangles_sha256": "62e32edcc39e2c569501085060075060c449a86cab65631c05aca58ccfc7335c"
+      },
+      {
+        "name": "Lion_Foreleg_R.003",
+        "pass": true,
+        "source_evaluated_vertices": 100,
+        "source_evaluated_triangles": 130,
+        "gltf_triangles": 130,
+        "gltf_split_vertices": 133,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 100,
+        "gltf_unique_position_keys": 100,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "6cc92c849268de4364f9ee1a9b10049df3b3caf9284da53007c9697cb2fa7e74",
+        "gltf_sorted_oriented_triangles_sha256": "6cc92c849268de4364f9ee1a9b10049df3b3caf9284da53007c9697cb2fa7e74"
+      },
+      {
+        "name": "Lion_Nose.003",
+        "pass": true,
+        "source_evaluated_vertices": 102255,
+        "source_evaluated_triangles": 219830,
+        "gltf_triangles": 219830,
+        "gltf_split_vertices": 273825,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 102255,
+        "gltf_unique_position_keys": 102255,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "90168318515b5ee3cd5e913368782789c9dd2305adb46c0774a8fc382be1f184",
+        "gltf_sorted_oriented_triangles_sha256": "90168318515b5ee3cd5e913368782789c9dd2305adb46c0774a8fc382be1f184"
+      },
+      {
+        "name": "Lion_Brow_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 4650,
+        "source_evaluated_triangles": 6082,
+        "gltf_triangles": 6082,
+        "gltf_split_vertices": 8163,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 3546,
+        "gltf_unique_position_keys": 3546,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "8b07eb56c92b9dd6b60cbf5427fd837a96092a4fb2fc834e7075dd5f53aeaece",
+        "gltf_sorted_oriented_triangles_sha256": "8b07eb56c92b9dd6b60cbf5427fd837a96092a4fb2fc834e7075dd5f53aeaece"
+      },
+      {
+        "name": "Lion_Brow_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 2645,
+        "source_evaluated_triangles": 3656,
+        "gltf_triangles": 3656,
+        "gltf_split_vertices": 4697,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 2367,
+        "gltf_unique_position_keys": 2367,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "74cf9983219afc10fdbb9b27d4e1b1be6cae698840ba2720f7c0550789ff995f",
+        "gltf_sorted_oriented_triangles_sha256": "74cf9983219afc10fdbb9b27d4e1b1be6cae698840ba2720f7c0550789ff995f"
+      },
+      {
+        "name": "Lion_Nose.002",
+        "pass": true,
+        "source_evaluated_vertices": 5135,
+        "source_evaluated_triangles": 7979,
+        "gltf_triangles": 7979,
+        "gltf_split_vertices": 9219,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 5122,
+        "gltf_unique_position_keys": 5122,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "6768da1e17d5f87521c580082d3aa8c692dec2e1f8245eaac1477bd0f1262f27",
+        "gltf_sorted_oriented_triangles_sha256": "6768da1e17d5f87521c580082d3aa8c692dec2e1f8245eaac1477bd0f1262f27"
+      },
+      {
+        "name": "Lion_Ear_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 5738,
+        "source_evaluated_triangles": 8154,
+        "gltf_triangles": 8154,
+        "gltf_split_vertices": 10975,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 4802,
+        "gltf_unique_position_keys": 4802,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "f213d512dada67a5fb4bc4d557f6cee8bd990323fb8d2830daf944a8df0a5245",
+        "gltf_sorted_oriented_triangles_sha256": "f213d512dada67a5fb4bc4d557f6cee8bd990323fb8d2830daf944a8df0a5245"
+      },
+      {
+        "name": "Lion_Ear_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 5415,
+        "source_evaluated_triangles": 7952,
+        "gltf_triangles": 7952,
+        "gltf_split_vertices": 10523,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 4672,
+        "gltf_unique_position_keys": 4672,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "9a2762847773b78cd83d8994d13abd10ccd14ddf58f0daca65f53ca51ac4fa37",
+        "gltf_sorted_oriented_triangles_sha256": "9a2762847773b78cd83d8994d13abd10ccd14ddf58f0daca65f53ca51ac4fa37"
+      },
+      {
+        "name": "Lion_Nose.001",
+        "pass": true,
+        "source_evaluated_vertices": 1799,
+        "source_evaluated_triangles": 2882,
+        "gltf_triangles": 2882,
+        "gltf_split_vertices": 3831,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1799,
+        "gltf_unique_position_keys": 1799,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "a1eaafe96e8d90a88cd4b4b101ce159bf7d26567ef6528f5facebaf75cf257a0",
+        "gltf_sorted_oriented_triangles_sha256": "a1eaafe96e8d90a88cd4b4b101ce159bf7d26567ef6528f5facebaf75cf257a0"
+      },
+      {
+        "name": "Lion_Body_Red_Trim.002",
+        "pass": true,
+        "source_evaluated_vertices": 6286,
+        "source_evaluated_triangles": 9928,
+        "gltf_triangles": 9928,
+        "gltf_split_vertices": 8851,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 6230,
+        "gltf_unique_position_keys": 6230,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "7edf2491fed646295ba148982a128a54af94533f29196cbcc59d026cccb2c887",
+        "gltf_sorted_oriented_triangles_sha256": "7edf2491fed646295ba148982a128a54af94533f29196cbcc59d026cccb2c887"
+      },
+      {
+        "name": "Lion_Foreleg_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 1788,
+        "source_evaluated_triangles": 2755,
+        "gltf_triangles": 2755,
+        "gltf_split_vertices": 2561,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1764,
+        "gltf_unique_position_keys": 1764,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "e3427ba40903d2a805d21e70f49ab2c2d0933d67b62ec007d22f89b74a7538f6",
+        "gltf_sorted_oriented_triangles_sha256": "e3427ba40903d2a805d21e70f49ab2c2d0933d67b62ec007d22f89b74a7538f6"
+      },
+      {
+        "name": "Lion_Foreleg_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 1864,
+        "source_evaluated_triangles": 2814,
+        "gltf_triangles": 2814,
+        "gltf_split_vertices": 2727,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1824,
+        "gltf_unique_position_keys": 1824,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "377e05a8bd3b7b4b332d95be43e508a04c137b05247805314b874037ccb39b09",
+        "gltf_sorted_oriented_triangles_sha256": "377e05a8bd3b7b4b332d95be43e508a04c137b05247805314b874037ccb39b09"
+      },
+      {
+        "name": "Lion_Hindleg_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 2026,
+        "source_evaluated_triangles": 3150,
+        "gltf_triangles": 3150,
+        "gltf_split_vertices": 2912,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 2006,
+        "gltf_unique_position_keys": 2006,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "ff6b8a32439a65b4943c0aa5f4ecf72d62e2e7deaa75594714db91a10536e1db",
+        "gltf_sorted_oriented_triangles_sha256": "ff6b8a32439a65b4943c0aa5f4ecf72d62e2e7deaa75594714db91a10536e1db"
+      },
+      {
+        "name": "Lion_Hindleg_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 1682,
+        "source_evaluated_triangles": 2730,
+        "gltf_triangles": 2730,
+        "gltf_split_vertices": 2331,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 1681,
+        "gltf_unique_position_keys": 1681,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "1d415f157b73b61b630ff53d5624e1f071b8b29c9a8a33ac14ae5a7568b7b2b7",
+        "gltf_sorted_oriented_triangles_sha256": "1d415f157b73b61b630ff53d5624e1f071b8b29c9a8a33ac14ae5a7568b7b2b7"
+      },
+      {
+        "name": "Lion_Body.001",
+        "pass": true,
+        "source_evaluated_vertices": 7574,
+        "source_evaluated_triangles": 10523,
+        "gltf_triangles": 10523,
+        "gltf_split_vertices": 11315,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 7279,
+        "gltf_unique_position_keys": 7279,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "6a8081782bd20935111e8ff779a3e74a11c70faabd4d81a4a1c44902606edd6b",
+        "gltf_sorted_oriented_triangles_sha256": "6a8081782bd20935111e8ff779a3e74a11c70faabd4d81a4a1c44902606edd6b"
+      },
+      {
+        "name": "Lion_Tail.002",
+        "pass": true,
+        "source_evaluated_vertices": 871,
+        "source_evaluated_triangles": 1327,
+        "gltf_triangles": 1327,
+        "gltf_split_vertices": 1294,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 865,
+        "gltf_unique_position_keys": 865,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "63b54d5caa4b44838e26360198a5e20ac5f38b8db62f24126f8be3e3a1b2a78a",
+        "gltf_sorted_oriented_triangles_sha256": "63b54d5caa4b44838e26360198a5e20ac5f38b8db62f24126f8be3e3a1b2a78a"
+      },
+      {
+        "name": "Lion_Forepaw_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 370,
+        "source_evaluated_triangles": 573,
+        "gltf_triangles": 573,
+        "gltf_split_vertices": 568,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 368,
+        "gltf_unique_position_keys": 368,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "b55793e1e295c3042636198f36b9471add7ed68c1ae98f4a77f111849d63fa60",
+        "gltf_sorted_oriented_triangles_sha256": "b55793e1e295c3042636198f36b9471add7ed68c1ae98f4a77f111849d63fa60"
+      },
+      {
+        "name": "Lion_Body.002",
+        "pass": true,
+        "source_evaluated_vertices": 698,
+        "source_evaluated_triangles": 1233,
+        "gltf_triangles": 1233,
+        "gltf_split_vertices": 1046,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 691,
+        "gltf_unique_position_keys": 691,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "c665f1c82f2d784f8c5f3468298b7e0ab39565fa8c315d6de1bddfd886a2a05b",
+        "gltf_sorted_oriented_triangles_sha256": "c665f1c82f2d784f8c5f3468298b7e0ab39565fa8c315d6de1bddfd886a2a05b"
+      },
+      {
+        "name": "Lion_Forepaw_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 270,
+        "source_evaluated_triangles": 457,
+        "gltf_triangles": 457,
+        "gltf_split_vertices": 368,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 270,
+        "gltf_unique_position_keys": 270,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "12fed3daca89d1cc8ed2ae025f18c2ca9538e81fa4f22f153203020d644fa671",
+        "gltf_sorted_oriented_triangles_sha256": "12fed3daca89d1cc8ed2ae025f18c2ca9538e81fa4f22f153203020d644fa671"
+      },
+      {
+        "name": "Lion_Hindpaw_L.002",
+        "pass": true,
+        "source_evaluated_vertices": 294,
+        "source_evaluated_triangles": 437,
+        "gltf_triangles": 437,
+        "gltf_split_vertices": 431,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 289,
+        "gltf_unique_position_keys": 289,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "654967446ee754b8d5c6f3fa206a321ff515635f2ec41185cf86941974d7a4af",
+        "gltf_sorted_oriented_triangles_sha256": "654967446ee754b8d5c6f3fa206a321ff515635f2ec41185cf86941974d7a4af"
+      },
+      {
+        "name": "Lion_Hindleg_L.003",
+        "pass": true,
+        "source_evaluated_vertices": 88,
+        "source_evaluated_triangles": 94,
+        "gltf_triangles": 94,
+        "gltf_split_vertices": 96,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 88,
+        "gltf_unique_position_keys": 88,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "555071161e2fe1a5a94f5ac14fc5660876e5991f0f5dd21e74a8234dee2332e2",
+        "gltf_sorted_oriented_triangles_sha256": "555071161e2fe1a5a94f5ac14fc5660876e5991f0f5dd21e74a8234dee2332e2"
+      },
+      {
+        "name": "Lion_Body.003",
+        "pass": true,
+        "source_evaluated_vertices": 30,
+        "source_evaluated_triangles": 21,
+        "gltf_triangles": 21,
+        "gltf_split_vertices": 35,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 30,
+        "gltf_unique_position_keys": 30,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "5218aaece056a05dbeb89186a4271c4d97ef2871b20fd15045c6fc0c91d2fb9a",
+        "gltf_sorted_oriented_triangles_sha256": "5218aaece056a05dbeb89186a4271c4d97ef2871b20fd15045c6fc0c91d2fb9a"
+      },
+      {
+        "name": "Lion_Hindpaw_R.002",
+        "pass": true,
+        "source_evaluated_vertices": 362,
+        "source_evaluated_triangles": 601,
+        "gltf_triangles": 601,
+        "gltf_split_vertices": 478,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 362,
+        "gltf_unique_position_keys": 362,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "73ee53b0f40cc73e3e037362ff6cf4e4fbc13a83623e40a7472fc25acf0a8b37",
+        "gltf_sorted_oriented_triangles_sha256": "73ee53b0f40cc73e3e037362ff6cf4e4fbc13a83623e40a7472fc25acf0a8b37"
+      },
+      {
+        "name": "Lion_Hindleg_R.003",
+        "pass": true,
+        "source_evaluated_vertices": 96,
+        "source_evaluated_triangles": 110,
+        "gltf_triangles": 110,
+        "gltf_split_vertices": 132,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 96,
+        "gltf_unique_position_keys": 96,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "b54b049518a62a62cf6e9441ea8e484197e4cb58cb8796a8d95b4b0627b5ebbd",
+        "gltf_sorted_oriented_triangles_sha256": "b54b049518a62a62cf6e9441ea8e484197e4cb58cb8796a8d95b4b0627b5ebbd"
+      },
+      {
+        "name": "Lion_Forepaw_R.003",
+        "pass": true,
+        "source_evaluated_vertices": 321,
+        "source_evaluated_triangles": 480,
+        "gltf_triangles": 480,
+        "gltf_split_vertices": 419,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 321,
+        "gltf_unique_position_keys": 321,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "7bbca2eb9e0c9a5acf720de012c0c7f46f4188095374e20377e100cafe17462c",
+        "gltf_sorted_oriented_triangles_sha256": "7bbca2eb9e0c9a5acf720de012c0c7f46f4188095374e20377e100cafe17462c"
+      },
+      {
+        "name": "Lion_Forepaw_L.003",
+        "pass": true,
+        "source_evaluated_vertices": 335,
+        "source_evaluated_triangles": 470,
+        "gltf_triangles": 470,
+        "gltf_split_vertices": 445,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 335,
+        "gltf_unique_position_keys": 335,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "005133c268c6a134b9151b26bc86045392e4e3d335f12c720ba3f5b21ade624d",
+        "gltf_sorted_oriented_triangles_sha256": "005133c268c6a134b9151b26bc86045392e4e3d335f12c720ba3f5b21ade624d"
+      },
+      {
+        "name": "Lion_Foreleg_L.003",
+        "pass": true,
+        "source_evaluated_vertices": 96,
+        "source_evaluated_triangles": 111,
+        "gltf_triangles": 111,
+        "gltf_split_vertices": 118,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 96,
+        "gltf_unique_position_keys": 96,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "09037ae11ec10c4781960a417504665bb50f61ecdf50a4e60300887bcba482df",
+        "gltf_sorted_oriented_triangles_sha256": "09037ae11ec10c4781960a417504665bb50f61ecdf50a4e60300887bcba482df"
+      },
+      {
+        "name": "Lion_Body.004",
+        "pass": true,
+        "source_evaluated_vertices": 641,
+        "source_evaluated_triangles": 864,
+        "gltf_triangles": 864,
+        "gltf_split_vertices": 1001,
+        "all_used_position_keys_equal_at_1e_5": true,
+        "source_unique_position_keys": 597,
+        "gltf_unique_position_keys": 597,
+        "all_triangle_coordinates_and_winding_exact_float32": true,
+        "source_sorted_oriented_triangles_sha256": "0086e63c2ba5d945166531f946bbecfc300b8d8603bc94fc67544564d466b2b4",
+        "gltf_sorted_oriented_triangles_sha256": "0086e63c2ba5d945166531f946bbecfc300b8d8603bc94fc67544564d466b2b4"
+      },
+      {
+        "name": "GLB_total_triangles",
+        "pass": true,
+        "triangles": 657831
+      },
+      {
+        "name": "hair_group_and_total_counts",
+        "pass": true,
+        "groups": 33,
+        "strands": 2295421,
+        "points": 19957105
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-01",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-02",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-03",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-04",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-05",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-06",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-07",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-08",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-09",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-10",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-11",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-12",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-13",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-14",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-15",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-16",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-17",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-18",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-19",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-20",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-21",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-22",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-23",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-24",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-25",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-26",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-27",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-28",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-29",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-30",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-31",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-32",
+        "pass": true
+      },
+      {
+        "name": "sidecar_lengths_gzip_hashes_hair-33",
+        "pass": true
+      },
+      {
+        "name": "粒子系统",
+        "pass": true,
+        "source_strands": 99854,
+        "source_points": 499270,
+        "all_points_exact_float32": true,
+        "max_position_error_m": 0.0,
+        "radius_attribute": false,
+        "default_radius_m": 0.01
+      },
+      {
+        "name": "粒子系统.001",
+        "pass": true,
+        "source_strands": 35567,
+        "source_points": 177835,
+        "all_points_exact_float32": true,
+        "max_position_error_m": 0.0,
+        "radius_attribute": false,
+        "default_radius_m": 0.01
+      },
+      {
+        "name": "粒子系统.002",
+        "pass": true,
+        "source_strands": 40000,
+        "source_points": 200000,
+        "all_points_exact_float32": true,
+        "max_position_error_m": 0.0,
+        "radius_attribute": false,
+        "default_radius_m": 0.01
+      },
+      {
+        "name": "particle_source_counts_Lion_Ear_L.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Ear_L.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 2098,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4087,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4292,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 5364,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 9700,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13343,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13934,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 20560,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21138,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30128,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31547,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32453,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33315,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42647,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42718,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48834,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Ear_R.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Ear_R.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 2555,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3308,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 5917,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7462,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 10074,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 10368,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14003,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14576,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 16133,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27987,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 34576,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36475,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41276,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 43954,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48662,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49141,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindpaw_L.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindpaw_L.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 5939,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 6100,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13390,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13519,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 17656,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 18027,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 20916,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 26673,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29140,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30509,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38050,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38232,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44937,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 46786,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 46802,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47694,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.862645149230957e-09
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindpaw_R.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindpaw_R.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3020,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3232,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 6081,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 6223,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 9080,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 11139,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 13560,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14132,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 20421,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21019,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 24040,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30006,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30508,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33169,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 37281,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 39620,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Foreleg_R.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Foreleg_R.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 431,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 6018,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 8492,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 12513,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 12567,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 26039,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 26340,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 26352,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 33045,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 35364,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 36144,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 40232,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 41724,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 44471,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 45432,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 47276,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Brow_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Brow_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 10290,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 11844,
+            "max_position_error_m": 3.725290298461914e-09
+          },
+          {
+            "child_index": 13720,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15634,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 18448,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23379,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25780,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 26202,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27637,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29140,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29774,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30127,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31423,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42708,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44049,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49145,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 3.725290298461914e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Brow_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Brow_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1036,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1171,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3252,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4184,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7598,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 9505,
+            "max_position_error_m": 3.725290298461914e-09
+          },
+          {
+            "child_index": 11317,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 12866,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14191,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 22756,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 34147,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35822,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36014,
+            "max_position_error_m": 3.725290298461914e-09
+          },
+          {
+            "child_index": 41943,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44886,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47360,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 3.725290298461914e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Nose.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Nose.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1420,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21229,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23023,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29302,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33475,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36033,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 37731,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 43541,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47913,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49679,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 58178,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 59086,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 60805,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 62532,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 64722,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 68474,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Ear_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Ear_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 5506,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 5964,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7229,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14374,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 17481,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 24820,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25004,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 28774,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31188,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31849,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36735,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38392,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41176,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44021,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47364,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49478,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Ear_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Ear_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 178,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1553,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 2956,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 9148,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14754,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 19849,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21829,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25465,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25576,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 26988,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 28486,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29399,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32057,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32628,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40448,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42684,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Nose.001 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Nose.001 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3494,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3854,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4180,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 8587,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 12592,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 12699,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14276,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 18596,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27397,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31079,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33273,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33935,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38715,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 39755,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41452,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49537,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Body_Red_Trim.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 150000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Body_Red_Trim.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 150000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13540,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 24982,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27162,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 39192,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41949,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 53301,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 75000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 77435,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 81309,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 83085,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 90377,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 93675,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 112836,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 115818,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 131811,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 141967,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 142840,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Foreleg_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Foreleg_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 4738,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 4857,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 11763,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 20675,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 26665,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 28350,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35967,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44485,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 45099,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 45267,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 51657,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 55286,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 60434,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 61032,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 61170,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 62255,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Foreleg_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Foreleg_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1937,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 2889,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 8222,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 8254,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13819,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 18740,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 20907,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 22390,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29752,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44187,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49419,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 55201,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 56314,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 65612,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 67561,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 67855,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindleg_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindleg_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3751,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7354,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7945,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13720,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14550,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15339,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 16142,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 17120,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 22815,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33957,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 37769,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44348,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44742,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 46760,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 50862,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 67643,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindleg_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindleg_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 2445,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 2772,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 9599,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15796,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15883,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 22534,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23583,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27088,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 32136,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 33777,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 43883,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48362,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 51843,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 52032,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 52691,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 57174,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Body.001 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 150000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Body.001 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 150000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7906,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 16458,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21810,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 31587,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 64283,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 64540,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 70220,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 75000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 78452,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 79847,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 93091,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 97105,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 97632,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 103950,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 112563,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 136252,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149491,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Tail.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 70000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Tail.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 70000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 10062,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13935,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 17110,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21847,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 22927,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38142,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38369,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38772,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 39087,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40053,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41134,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47114,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49487,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 51414,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 52234,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 67687,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 69999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Forepaw_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 150000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Forepaw_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 150000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25237,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47403,
+            "max_position_error_m": 2.7939677238464355e-09
+          },
+          {
+            "child_index": 47779,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48284,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49527,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 61878,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 73273,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 75000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 81271,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 91997,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 95477,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 97780,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 99602,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 116499,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 126902,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 132227,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 148809,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 2.7939677238464355e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Body.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Body.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 6572,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 10439,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 11949,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 14868,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 19060,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 20380,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21318,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 22777,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25790,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32199,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32284,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 34404,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 38976,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42765,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48190,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 49780,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Forepaw_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 150000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Forepaw_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 150000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 18035,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 35260,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 46729,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49698,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 66361,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 74583,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 75000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 81614,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 92452,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 100332,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 114851,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 118868,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 118898,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 134747,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 136332,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 136803,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 138295,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 149998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindpaw_L.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindpaw_L.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 2396,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 6573,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 7587,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 8044,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 8213,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 16924,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23626,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 27783,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 28211,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29892,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 30747,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 34399,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36053,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 36514,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40645,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40938,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindleg_L.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindleg_L.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 5122,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 5148,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 8774,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 19819,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 21175,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 22980,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 23471,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 29127,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 29167,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 31813,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 32379,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 36088,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 42379,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 48227,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49140,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49777,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Body.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 150000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Body.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 150000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 20806,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25495,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 42022,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44479,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 46738,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 53057,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 70650,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 71758,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 75000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 79686,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 92501,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 108793,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 123415,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 128391,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 134247,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 134800,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 135134,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 149999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindpaw_R.002 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindpaw_R.002 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1856,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 3687,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 8433,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 9582,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 10468,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15268,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 22177,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23369,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25229,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25386,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 26504,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29632,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40086,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42425,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 44166,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47539,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.862645149230957e-09
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Hindleg_R.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Hindleg_R.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1622,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 13759,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 16201,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 17911,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 22170,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 22806,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 22996,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 26889,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 33116,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 33786,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 35035,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 35967,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 37323,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 46344,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 48266,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 49325,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Forepaw_R.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Forepaw_R.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1231,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 2565,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 7990,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 8849,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 15036,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 20002,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 20160,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 35313,
+            "max_position_error_m": 3.725290298461914e-09
+          },
+          {
+            "child_index": 36213,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40861,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41525,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 42465,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 44967,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 46579,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47966,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 48936,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 3.725290298461914e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Forepaw_L.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Forepaw_L.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1233,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 6544,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7549,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 7759,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 10501,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 12516,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 12731,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 12901,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 21023,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 29405,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32929,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 37113,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 40495,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 45662,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 46401,
+            "max_position_error_m": 1.862645149230957e-09
+          },
+          {
+            "child_index": 49934,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 1.862645149230957e-09,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Foreleg_L.003 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Foreleg_L.003 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 876,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 3084,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 3189,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 4240,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 5534,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 18163,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 20452,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 22382,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 23500,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 27550,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 33252,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 34783,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 38516,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 40901,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 45232,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 46884,
+            "max_position_error_m": 1.4901161193847656e-08
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 7.450580596923828e-09
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 1.4901161193847656e-08
+          }
+        ],
+        "max_sampled_position_error_m": 1.4901161193847656e-08,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "particle_source_counts_Lion_Body.004 / 粒子系统",
+        "pass": true,
+        "parents": 1000,
+        "children": 50000,
+        "guide_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "Lion_Body.004 / 粒子系统",
+        "pass": true,
+        "source_parents": 1000,
+        "evaluated_children": 50000,
+        "points_per_strand": 9,
+        "source_guide_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "independent_complete_sample_strands": 21,
+        "samples": [
+          {
+            "child_index": 0,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 1546,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4036,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 4886,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 13893,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 15631,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 16058,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 23716,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25000,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 25798,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 28438,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 28605,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32250,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 32832,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41013,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 41087,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 47406,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49153,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49998,
+            "max_position_error_m": 0.0
+          },
+          {
+            "child_index": 49999,
+            "max_position_error_m": 0.0
+          }
+        ],
+        "max_sampled_position_error_m": 0.0,
+        "max_sampled_root_uv_error": 0.0,
+        "all_child_radii_max_error_m": 0.0,
+        "source_shape": 0.0,
+        "source_render_step": 3
+      },
+      {
+        "name": "all_particle_children_total",
+        "pass": true,
+        "systems": 30,
+        "children": 2120000
+      },
+      {
+        "name": "source_hash_unchanged_after_audit",
+        "pass": true,
+        "archive_after_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+        "original_after_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770"
+      }
+    ],
+    "pass": true,
+    "errors": [],
+    "source_sha256": "dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770",
+    "source_saved": false
+  },
+  "saved_scene": {
+    "pass": true,
+    "checks": 1722,
+    "errors": [],
+    "native_lion_counts": {
+      "MESH": 53,
+      "CURVES": 3,
+      "EMPTY": 49
+    },
+    "particle_hair_systems": 30,
+    "hair": {
+      "strands": 2295421,
+      "groups": 33,
+      "points": 19957105,
+      "sourceModel": "/assets/models/lion-user-full.glb"
+    },
+    "runtime_objects": 1482,
+    "collections": {
+      "01_Room": 5,
+      "02_Red_Gold_Architecture": 1445,
+      "03_Complete_Native_Lion": 107,
+      "04_Four_User_Drums": 28,
+      "05_Video_Screens": 4,
+      "06_Lighting": 9,
+      "07_Cameras": 3,
+      "08_Interaction_Anchors": 22
+    },
+    "movies": [
+      {
+        "screen": "Screen_Tanqing",
+        "relative_path": "//assets\\videos\\tanqing.mp4",
+        "bytes": 7593974,
+        "sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143",
+        "source_sha256": "a458df1d7948870c8836deb9d9fb3f77e3e86fe685ccdfe4beaf7cfe7bf18143"
+      },
+      {
+        "screen": "Screen_Doumao",
+        "relative_path": "//assets\\videos\\doumao.mp4",
+        "bytes": 6159115,
+        "sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a",
+        "source_sha256": "aeeafd7520e55dbfe2b7101cf43d9f395b089741e801fa91e8bc4acc5d43b21a"
+      },
+      {
+        "screen": "Screen_Tuqiu",
+        "relative_path": "//assets\\videos\\tuqiu.mp4",
+        "bytes": 6519176,
+        "sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650",
+        "source_sha256": "464c2d9f91710cd2cd714a22584639ab6c131511ba63587007f4c39f84808650"
+      },
+      {
+        "screen": "Screen_Meihuazhuang",
+        "relative_path": "//assets\\videos\\meihuazhuang.mp4",
+        "bytes": 7929073,
+        "sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866",
+        "source_sha256": "43d0663802f39c889cd5f1a37d2db60027f2996f1d5be60870889f25d177e866"
+      }
+    ],
+    "projection_max_error": 1.1920928955078125e-07,
+    "fps": 24,
+    "frame_end": 864,
+    "rotation_seconds": 36,
+    "packed_capture_pngs": 17,
+    "read_only_render": true,
+    "preview": {
+      "path": "C:\\Users\\Administrator\\Desktop\\虚拟展厅\\动作场景预览.png",
+      "bytes": 1544414,
+      "width": 1280,
+      "height": 726
+    }
+  },
+  "browser_capture": {
+    "errors": [],
+    "window": [
+      1920,
+      1080
+    ],
+    "canvas": [
+      1905,
+      1080
+    ],
+    "geometry_count": 33,
+    "materials": 22,
+    "textures": 17
+  },
+  "project_checks": {
+    "npm_test": {
+      "pass": 80,
+      "fail": 0
+    },
+    "build": {
+      "modules": 345,
+      "pass": true,
+      "existing_large_chunk_warning_kb": 538.05
+    },
+    "node_syntax": true,
+    "python_syntax": true,
+    "full_e2e_run": false
+  },
+  "initial_failure_and_fix": {
+    "checks": 1722,
+    "failed": 4,
+    "reason": "Movie nodes saved frame_duration=1 after paths became relative to the still-open source blend.",
+    "fix": "Read all 192 movie frames while source paths remain absolute, then store relative paths; regenerate and reopen.",
+    "final_checks_passed": 1722
+  },
+  "limits": [
+    "Three.js custom GLSL becomes native EEVEE shading/reflections.",
+    "2D React controls are not scene geometry.",
+    "Movies stay in the accompanying relative assets/videos folder."
+  ]
+}

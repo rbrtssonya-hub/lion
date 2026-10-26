@@ -12,6 +12,7 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-26 | maintenance | completed | [动作完整场景Blender5导出](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%8A%A8%E4%BD%9C%E5%AE%8C%E6%95%B4%E5%9C%BA%E6%99%AFBlender5%E5%AF%BC%E5%87%BA.md) |
 | 2026-10-26 | feature | completed | [指定模型与交互拆解展陈](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E6%8C%87%E5%AE%9A%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BA%A4%E4%BA%92%E6%8B%86%E8%A7%A3%E5%B1%95%E9%99%88.md) |
 | 2026-10-25 | discussion | completed | [四章视觉语言统一方案](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E7%BB%9F%E4%B8%80%E6%96%B9%E6%A1%88.md) |
 | 2026-10-23 | maintenance | completed | [桌面离线EXE与压缩包](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-23-%E6%A1%8C%E9%9D%A2%E7%A6%BB%E7%BA%BFEXE%E4%B8%8E%E5%8E%8B%E7%BC%A9%E5%8C%85.md) |
