@@ -218,7 +218,7 @@ test('待机时独立眼层真实眨眼，身体与脸部图层保持对齐', as
   await pet(page).screenshot({ path: testInfo.outputPath('xiaoxing-layered-blink.png'), omitBackground: true });
 });
 
-test('语音明确开启后才播放真实本地女声录音，关闭与切章停止，陌生音色不读动态答案', async ({ page }) => {
+test('语音明确开启后才播放真实本地女声录音，收起面板可继续点播，切章停止，陌生音色不读动态答案', async ({ page }) => {
   await page.addInitScript(() => {
     if (window !== window.top) return;
     const NativeAudio = window.Audio;
@@ -245,13 +245,23 @@ test('语音明确开启后才播放真实本地女声录音，关闭与切章�
   await expect.poll(() => page.evaluate(() => __xiaoxingRecordings[0]?.currentTime ?? 0)).toBeGreaterThan(.02);
   expect(await page.evaluate(() => __xiaoxingRecordings[0].src)).toContain('/xiaoxing/voice/state.wav');
   await page.getByRole('button', { name: '收起小醒对话', exact: true }).click();
+  const chapterVoice = page.getByRole('button', { name: '当前章节语音讲解', exact: true });
+  await expect(chapterVoice).toBeVisible();
+  const petBounds = await pet(page).boundingBox(), voiceBounds = await chapterVoice.boundingBox();
+  expect(voiceBounds.x >= petBounds.x + petBounds.width || voiceBounds.x + voiceBounds.width <= petBounds.x).toBe(true);
+  expect(voiceBounds.x + voiceBounds.width).toBeLessThanOrEqual(1440);
+  expect(voiceBounds.y + voiceBounds.height).toBeLessThanOrEqual(900);
+  expect(await page.evaluate(() => !__xiaoxingRecordings[0].paused && __xiaoxingRecordings[0].hasAttribute('src'))).toBe(true);
+  await chapterVoice.click();
   expect(await page.evaluate(() => __xiaoxingRecordings[0].paused && !__xiaoxingRecordings[0].hasAttribute('src'))).toBe(true);
+  await chapterVoice.click();
+  await expect.poll(() => page.evaluate(() => __xiaoxingRecordings[1]?.currentTime ?? 0)).toBeGreaterThan(.02);
+  await expect(chapterVoice).toHaveAttribute('aria-pressed', 'true');
+  await page.evaluate(() => { location.hash = '/action'; });
+  expect(await page.evaluate(() => __xiaoxingRecordings[1].paused)).toBe(true);
+  await expect(chapterVoice).toHaveAttribute('aria-pressed', 'false');
   await pet(page).click();
   await page.getByRole('button', { name: '讲解本页', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => __xiaoxingRecordings[1]?.currentTime ?? 0)).toBeGreaterThan(.02);
-  await page.evaluate(() => { location.hash = '/action'; });
-  await expect(dialog(page).locator('.xiaoxing-title p')).toContainText('起舞');
-  expect(await page.evaluate(() => __xiaoxingRecordings[1].paused)).toBe(true);
   await page.getByLabel('向小醒提问', { exact: true }).fill('抖毛是什么动作？');
   await page.getByRole('button', { name: '发送问题', exact: true }).click();
   await expect(replies(page).last()).toContainText('抖毛');
@@ -285,7 +295,7 @@ test('模拟迟到的声音播放回调在关闭语音后不能重新发声', as
   await expect.poll(() => page.locator('.xiaoxing-companion').getAttribute('data-state')).not.toBe('answering');
 });
 
-test('真实首页视频在小醒讲解时降低音量，收起与切换章节恢复原音量', async ({ page }) => {
+test('真实首页视频在小醒讲解时降低音量，收起聊天保留播报，停止与切章恢复原音量', async ({ page }) => {
   await page.goto('/#/entry');
   await expectLayeredPet(page);
   const video = page.locator('#entryLionVideo');
@@ -307,10 +317,14 @@ test('真实首页视频在小醒讲解时降低音量，收起与切换章节�
   await page.locator('#toggleHomeAudio').click();
   await expect.poll(() => video.evaluate(element => element.muted)).toBe(true);
   await page.getByRole('button', { name: '收起小醒对话', exact: true }).click();
-  await expect.poll(() => video.evaluate(element => element.volume)).toBeCloseTo(.4, 2);
+  await expect(page.getByRole('button', { name: '当前章节语音讲解', exact: true })).toHaveAttribute('aria-pressed', 'true');
   expect(await video.evaluate(element => element.muted)).toBe(true);
   await page.locator('#toggleHomeAudio').click();
-  await expect.poll(() => video.evaluate(element => !element.paused && !element.muted)).toBe(true);
+  await expect.poll(() => video.evaluate(element => !element.muted)).toBe(true);
+  await expect.poll(() => video.evaluate(element => element.volume)).toBeCloseTo(.072, 3);
+  await page.getByRole('button', { name: '当前章节语音讲解', exact: true }).click();
+  await expect.poll(() => video.evaluate(element => element.volume)).toBeCloseTo(.4, 2);
+  expect(await video.evaluate(element => !element.muted)).toBe(true);
   await pet(page).click();
   await page.getByRole('button', { name: '讲解本页', exact: true }).click();
   await expect.poll(() => video.evaluate(element => element.volume)).toBeLessThan(.25);

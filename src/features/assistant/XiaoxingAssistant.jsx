@@ -65,11 +65,11 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     setAnswering(true);
     clearTimeout(answeringTimer.current);
     answeringTimer.current = setTimeout(() => setAnswering(false), 2000);
-    if (narrationRef.current.enabled && availableRef.current.open && !availableRef.current.hidden
+    if (narrationRef.current.enabled && !availableRef.current.hidden
       && availableRef.current.chapter === requestChapter) narrationRef.current.speak(reply.answer);
   }, []);
   const close = useCallback(() => {
-    setOpen(false); narrationRef.current.stop();
+    setOpen(false);
     triggerRef.current?.focus({ preventScroll: true });
   }, []);
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     return () => document.removeEventListener('keydown', escape);
   }, [open, close]);
   useEffect(() => { narrationRef.current.stop(); }, [chapter]);
-  useEffect(() => { if (hidden || !open) narrationRef.current.stop(); }, [hidden, open]);
+  useEffect(() => { if (hidden) narrationRef.current.stop(); }, [hidden]);
   useEffect(() => () => { requestRef.current?.abort(); clearTimeout(answeringTimer.current); }, []);
   useLayoutEffect(() => {
     if (open && logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
@@ -140,6 +140,12 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     guide();
     narration.speak(reply.answer);
   };
+  const toggleNarrationPlayback = () => {
+    if (narration.speaking) { narration.stop(); return; }
+    if (!narration.enabled) narration.toggleEnabled();
+    const latest = messagesRef.current.findLast(message => message.role === 'assistant' && message.chapter === chapter);
+    narration.speak(latest?.answer || getChapterGuide(chapter).answer);
+  };
   const visitSource = source => { setSourceTarget(source); onNavigate?.(source.chapter, { assistantSource: source }); close(); };
   const panelWidth = Math.min(378, viewport.width - 28);
   const topInset = viewport.height < 600 ? 14 : 100;
@@ -147,6 +153,9 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
   const panelX = Math.max(14, Math.min(viewport.width - panelWidth - 14,
     position.x > viewport.width / 2 ? position.x - panelWidth - 10 : viewport.width - panelWidth - 24));
   const panelY = Math.max(topInset, Math.min(viewport.height - panelHeight - 14, position.y + petSize.height - panelHeight));
+  const narrationX = Math.max(8, Math.min(viewport.width - 40,
+    position.x > viewport.width / 2 ? position.x - 38 : position.x + petSize.width + 6));
+  const narrationY = Math.max(8, Math.min(viewport.height - 40, position.y + petSize.height - 38));
   const state = thinking ? 'thinking' : narration.speaking || answering ? 'answering' : focused ? 'listening' : 'idle';
   const suggestions = getSuggestedQuestions(chapter).slice(0, 3);
 
@@ -156,8 +165,11 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
       onClick={() => { if (!consumeClick()) { if (open) close(); else setOpen(true); } }}>
       <span className="xiaoxing-pet-shadow" aria-hidden="true" />
       <XiaoxingAvatar state={state} animated={animated && !dragging} />
-      <span className="xiaoxing-pet-caption"><span className="xiaoxing-pet-dot" />小醒<span aria-hidden="true"> · </span><small>{open ? '陪你看醒狮' : '点我讲解'}</small></span>
+      <span className="xiaoxing-pet-caption"><span className="xiaoxing-pet-dot" />小醒<span aria-hidden="true"> · </span><small>{open ? '陪你看醒狮' : '点我对话'}</small></span>
     </button>
+    <button type="button" className="xiaoxing-narration-toggle" aria-label="当前章节语音讲解" aria-pressed={narration.speaking}
+      data-enabled={narration.enabled} title={narration.speaking ? '停止当前讲解' : '播放当前章节讲解'} disabled={!narration.supported}
+      style={{ left: narrationX, top: narrationY }} onClick={toggleNarrationPlayback}><Icon type="voice" /></button>
     <span id="xiaoxingMoveHelp" className="sr-only">可按住鼠标拖动小醒；聚焦后用方向键移动，按回车打开对话。</span>
     {open && <section id="xiaoxingDialog" className="xiaoxing-dialog" role="dialog" aria-modal="false" aria-labelledby="xiaoxingDialogTitle"
       style={{ left: panelX, top: panelY, width: panelWidth, height: panelHeight }}>
@@ -186,7 +198,7 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
           <button type="submit" aria-label="发送问题" disabled={thinking || !input.trim()}><Icon type="send" /></button>
         </form>
         <div className="xiaoxing-footnote"><button type="button" className="xiaoxing-voice" aria-label="语音讲解" aria-pressed={narration.enabled} disabled={!narration.supported}
-          title={narration.supported ? narration.voiceLabel || '开启小醒的语音讲解' : '此电脑暂无适合的中文讲解声音，仍可阅读文字'} onClick={toggleVoice}><Icon type="voice" />语音讲解{narration.enabled ? ' · 开' : ''}</button><span>依据展览资料作答</span></div>
+          title={narration.supported ? narration.voiceLabel || '开启小醒的语音讲解' : '此电脑暂无适合的中文讲解声音，仍可阅读文字'} onClick={toggleVoice}><Icon type="voice" />语音讲解{narration.enabled ? ' · 开' : ''}</button><span>收起后也可点播</span></div>
       </div>
     </section>}
   </aside>, document.body);
