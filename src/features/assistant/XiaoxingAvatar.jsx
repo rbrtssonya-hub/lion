@@ -19,11 +19,13 @@ export default function XiaoxingAvatar({ state = 'idle', animated = true }) {
     return () => { active = false; };
   }, []);
   return <span className="xiaoxing-avatar" data-state={state} data-animated={animated} data-layered={ready} aria-hidden="true">
-    {!ready && media.xiaoxingReference && <img className="xiaoxing-avatar-reference" src={media.xiaoxingReference} alt="" draggable="false" />}
-    {ready && <>
-      <img className="xiaoxing-layer xiaoxing-layer--body" src={media.xiaoxingBody} alt="" draggable="false" />
-      <span className="xiaoxing-head-group">{parts.filter(([part]) => part !== 'body').map(([part, key]) =>
-        <img key={part} className={`xiaoxing-layer xiaoxing-layer--${part}`} src={media[key]} alt="" draggable="false" />)}</span>
-    </>}
+    <span className="xiaoxing-puppet">
+      {!ready && media.xiaoxingReference && <img className="xiaoxing-avatar-reference" src={media.xiaoxingReference} alt="" draggable="false" />}
+      {ready && <>
+        <img className="xiaoxing-layer xiaoxing-layer--body" src={media.xiaoxingBody} alt="" draggable="false" />
+        <span className="xiaoxing-head-group">{parts.filter(([part]) => part !== 'body').map(([part, key]) =>
+          <img key={part} className={`xiaoxing-layer xiaoxing-layer--${part}`} src={media[key]} alt="" draggable="false" />)}</span>
+      </>}
+    </span>
   </span>;
 }

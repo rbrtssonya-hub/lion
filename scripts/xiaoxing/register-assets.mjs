@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '../..');
 const manifestPath=path.join(root,'source/asset-manifest.json');
 const manifest=JSON.parse(await fs.readFile(manifestPath,'utf8'));
-const types=new Set(['.png','.psd','.ora','.wav','.m4a','.mp3']);
+const types=new Set(['.png','.psd','.ora','.wav','.m4a','.mp3','.gif']);
 const locations=['source/characters/xiaoxing','source/public/assets/xiaoxing','source/reviews/xiaoxing/2026-10-26'];
 async function visit(folder){
  for(const item of await fs.readdir(path.join(root,folder),{withFileTypes:true})){const relative=`${folder}/${item.name}`;

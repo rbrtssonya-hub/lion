@@ -7,7 +7,7 @@ import { chapterGuides, getChapterGuide, getSuggestedQuestions } from './knowled
 import { askXiaoxing } from './client.js';
 import './assistant.css';
 
-const petSize = { width: 138, height: 152 };
+const petSize = { width: 152, height: 194 };
 const chapterTitles = { entry: '入境 · 首页', model: '观形 · 结构', action: '起舞 · 动作', state: '传神 · 神态' };
 const Icon = ({ type }) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
   {type === 'close' ? <path d="m6 6 12 12M18 6 6 18" /> : type === 'send' ? <><path d="m4 11 16-7-6 16-3-6-7-3Z" /><path d="m11 14 9-10" /></> : type === 'voice' ? <><path d="M11 5 6 9H3v6h3l5 4V5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></> : <><path d="M4 5h6c2 0 2 1 2 1s0-1 2-1h6v14h-6c-2 0-2 1-2 1s0-1-2-1H4V5Z" /><path d="M12 6v14" /></>}
@@ -20,7 +20,7 @@ function useStageVisibility(suppressed) {
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => {
       setBlocked(Boolean(document.fullscreenElement || document.querySelector('.entry-transition-stage, .prewarmed-page[data-active="true"] .is-intro-playing, .site-shell[data-settings-open="true"]')));
-      setAnimated(!document.hidden && document.hasFocus() && !motion.matches);
+      setAnimated(!document.hidden && !motion.matches);
     };
     const observer = new MutationObserver(update);
     const root = document.getElementById('root');
@@ -28,12 +28,10 @@ function useStageVisibility(suppressed) {
       attributeFilter: ['class', 'data-active', 'data-settings-open', 'data-intro-active'] });
     document.addEventListener('fullscreenchange', update);
     document.addEventListener('visibilitychange', update);
-    window.addEventListener('focus', update); window.addEventListener('blur', update);
     motion.addEventListener('change', update); update();
     return () => {
       observer.disconnect(); document.removeEventListener('fullscreenchange', update);
       document.removeEventListener('visibilitychange', update);
-      window.removeEventListener('focus', update); window.removeEventListener('blur', update);
       motion.removeEventListener('change', update);
     };
   }, []);
@@ -47,6 +45,7 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
   const [thinking, setThinking] = useState(false);
   const [answering, setAnswering] = useState(false);
   const [focused, setFocused] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [mode, setMode] = useState('local');
   const [sourceTarget, setSourceTarget] = useState(null);
   const { position, viewport, dragging, consumeClick, handlers } = usePetPosition(petSize, chapter);
@@ -64,7 +63,7 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     setMessages(current => [...current, message]);
     setAnswering(true);
     clearTimeout(answeringTimer.current);
-    answeringTimer.current = setTimeout(() => setAnswering(false), 2000);
+    answeringTimer.current = setTimeout(() => setAnswering(false), 4200);
     if (narrationRef.current.enabled && !availableRef.current.hidden
       && availableRef.current.chapter === requestChapter) narrationRef.current.speak(reply.answer);
   }, []);
@@ -82,7 +81,12 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     document.addEventListener('keydown', escape);
     return () => document.removeEventListener('keydown', escape);
   }, [open, close]);
-  useEffect(() => { narrationRef.current.stop(); }, [chapter]);
+  useEffect(() => {
+    requestRef.current?.abort(); requestRef.current = null;
+    clearTimeout(answeringTimer.current);
+    setThinking(false); setAnswering(false);
+    narrationRef.current.stop();
+  }, [chapter]);
   useEffect(() => { if (hidden) narrationRef.current.stop(); }, [hidden]);
   useEffect(() => () => { requestRef.current?.abort(); clearTimeout(answeringTimer.current); }, []);
   useLayoutEffect(() => {
@@ -156,16 +160,18 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
   const narrationX = Math.max(8, Math.min(viewport.width - 40,
     position.x > viewport.width / 2 ? position.x - 38 : position.x + petSize.width + 6));
   const narrationY = Math.max(8, Math.min(viewport.height - 40, position.y + petSize.height - 38));
-  const state = thinking ? 'thinking' : narration.speaking || answering ? 'answering' : focused ? 'listening' : 'idle';
+  const state = thinking ? 'thinking' : narration.speaking || answering ? 'answering' : open || focused || hovered ? 'listening' : 'idle';
+  const caption = { idle: '点我对话', listening: '在听你说', thinking: '整理资料中', answering: '说给你听' }[state];
   const suggestions = getSuggestedQuestions(chapter).slice(0, 3);
 
-  return createPortal(<aside className="xiaoxing-companion" hidden={hidden} data-state={state} data-dragging={dragging} aria-label="小醒讲解员">
+  return createPortal(<aside className="xiaoxing-companion" hidden={hidden} data-state={state} data-chapter={chapter} data-dragging={dragging} aria-label="小醒讲解员">
     <button ref={triggerRef} type="button" className="xiaoxing-pet" aria-label="与小醒对话" aria-describedby="xiaoxingMoveHelp"
       title="点击对话，按住拖动小醒" aria-expanded={open} aria-controls="xiaoxingDialog" style={{ left: position.x, top: position.y }} {...handlers}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       onClick={() => { if (!consumeClick()) { if (open) close(); else setOpen(true); } }}>
       <span className="xiaoxing-pet-shadow" aria-hidden="true" />
       <XiaoxingAvatar state={state} animated={animated && !dragging} />
-      <span className="xiaoxing-pet-caption"><span className="xiaoxing-pet-dot" />小醒<span aria-hidden="true"> · </span><small>{open ? '陪你看醒狮' : '点我对话'}</small></span>
+      <span className="xiaoxing-pet-caption"><span className="xiaoxing-pet-dot" />小醒<span aria-hidden="true"> · </span><small>{caption}</small></span>
     </button>
     <button type="button" className="xiaoxing-narration-toggle" aria-label="当前章节语音讲解" aria-pressed={narration.speaking}
       data-enabled={narration.enabled} title={narration.speaking ? '停止当前讲解' : '播放当前章节讲解'} disabled={!narration.supported}

@@ -139,16 +139,16 @@ test('联网上游测试夹具覆盖当前章节、思考状态和回答来源�
   await pet(page).click();
   await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'listening');
   await expect.poll(() => page.locator('.xiaoxing-layer--mouth-closed').evaluate(element => getComputedStyle(element).opacity)).toBe('1');
-  await expect.poll(() => page.locator('.xiaoxing-head-group').evaluate(element => getComputedStyle(element).transform)).not.toBe('none');
+  await expect.poll(() => page.locator('.xiaoxing-head-group').evaluate(element => parseFloat(getComputedStyle(element).rotate))).toBeLessThan(-3);
   await page.getByLabel('向小醒提问', { exact: true }).fill('讲讲醒狮神态');
   await page.getByRole('button', { name: '发送问题', exact: true }).click();
   await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'thinking');
-  await expect.poll(() => page.locator('.xiaoxing-layer--brow-right').evaluate(element => getComputedStyle(element).transform)).not.toBe('none');
+  await expect.poll(() => page.locator('.xiaoxing-layer--brow-right').evaluate(element => parseFloat(getComputedStyle(element).translate.split(' ').at(-1)))).toBeLessThan(-1.8);
   await expect(replies(page).last()).toHaveAttribute('data-mode', 'online');
   await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'answering');
   const mouthFrames = await page.locator('.xiaoxing-avatar').evaluate(async element => {
     const frames = [];
-    const until = performance.now() + 760;
+    const until = performance.now() + 1250;
     while (performance.now() < until) {
       frames.push([getComputedStyle(element.querySelector('.xiaoxing-layer--mouth-talk')).opacity,
         getComputedStyle(element.querySelector('.xiaoxing-layer--mouth-smile')).opacity]);
@@ -193,6 +193,26 @@ test('本页讲解能取消等待中的回答，减少动态仍可操作', async
   await expect.poll(async () => (await pet(page).boundingBox()).y).toBeCloseTo(before.y - 16, 0);
 });
 
+test('换章后结束旧思考，迟到的旧回答不会驱动新章节表情', async ({ page }) => {
+  let release;
+  const delayed = new Promise(resolve => { release = resolve; });
+  await page.route('**/api/xiaoxing/chat', async route => {
+    await delayed;
+    await route.fulfill({ json: { mode: 'online', answer: '过期的神态回答', sources: [] } }).catch(() => {});
+  });
+  await page.goto('/#/state');
+  await expectLayeredPet(page);
+  await pet(page).click();
+  await page.getByLabel('向小醒提问', { exact: true }).fill('讲讲神态');
+  await page.getByRole('button', { name: '发送问题', exact: true }).click();
+  await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'thinking');
+  await page.evaluate(() => { location.hash = '/action'; });
+  await expect(dialog(page).locator('.xiaoxing-title p')).toContainText('起舞');
+  await expect(page.locator('.xiaoxing-companion')).not.toHaveAttribute('data-state', 'thinking', { timeout: 2000 });
+  release();
+  await expect(dialog(page)).not.toContainText('过期的神态回答');
+});
+
 test('待机时独立眼层真实眨眼，身体与脸部图层保持对齐', async ({ page }, testInfo) => {
   await page.goto('/#/state');
   await expectLayeredPet(page);
@@ -216,6 +236,32 @@ test('待机时独立眼层真实眨眼，身体与脸部图层保持对齐', as
   expect(blink?.scaleY).toBeLessThan(.5);
   expect(await page.locator('.xiaoxing-head-group > .xiaoxing-layer').count()).toBe(8);
   await pet(page).screenshot({ path: testInfo.outputPath('xiaoxing-layered-blink.png'), omitBackground: true });
+});
+
+test('网页可见但未聚焦时头身仍独立活动，悬停后眉眼明确进入倾听', async ({ page }, testInfo) => {
+  await page.addInitScript(() => Object.defineProperty(document, 'hasFocus', { configurable: true, value: () => false }));
+  await page.goto('/#/state');
+  await expectLayeredPet(page);
+  expect(await page.evaluate(() => document.visibilityState)).toBe('visible');
+  await expect(page.locator('.xiaoxing-avatar')).toHaveAttribute('data-animated', 'true');
+  const motion = await page.locator('.xiaoxing-avatar').evaluate(async element => {
+    const samples = [];
+    const until = performance.now() + 1800;
+    while (performance.now() < until) {
+      const head = new DOMMatrixReadOnly(getComputedStyle(element.querySelector('.xiaoxing-head-group')).transform);
+      const body = new DOMMatrixReadOnly(getComputedStyle(element.querySelector('.xiaoxing-layer--body')).transform);
+      samples.push({ head: Math.atan2(head.b, head.a) * 180 / Math.PI, body: body.m42 });
+      await new Promise(requestAnimationFrame);
+    }
+    const range = key => Math.max(...samples.map(sample => sample[key])) - Math.min(...samples.map(sample => sample[key]));
+    return { head: range('head'), body: range('body') };
+  });
+  expect(motion.head).toBeGreaterThan(.25);
+  expect(motion.body).toBeGreaterThan(.15);
+  await pet(page).hover();
+  await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'listening');
+  await expect.poll(() => page.locator('.xiaoxing-head-group').evaluate(element => parseFloat(getComputedStyle(element).rotate))).toBeLessThan(-3);
+  await pet(page).screenshot({ path: testInfo.outputPath('xiaoxing-listening-default-size.png'), omitBackground: true });
 });
 
 test('语音明确开启后才播放真实本地女声录音，收起面板可继续点播，切章停止，陌生音色不读动态答案', async ({ page }) => {

@@ -4760,6 +4760,18 @@
       "path": "source/reviews/xiaoxing/2026-10-26/state-1920.png",
       "bytes": 1835701,
       "sha256": "c6899c8e0ace48246c17f91c1998cb361e3787730e0dae51084e56ca0d1eab82"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/motion/character-states.gif",
+      "bytes": 4539964,
+      "sha256": "ba3fef65cefbc99983621eafc77d05789561d1f89d45e6d1396687f71fd3266e"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/motion/state-1366.png",
+      "bytes": 1093533,
+      "sha256": "c39dd95ab7912481b944be5fe1f63c13df62eae72c12b558acc70356a6613101"
     }
   ]
 }
