@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3c1519">
+  <title>阿南的醒狮游园 · 独立试玩</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-view="menu" data-play-state="idle" data-ready="false">
+  <div class="paper-grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" id="brand-home" aria-label="回到游园入口"><span class="brand-seal" aria-hidden="true">狮</span><span>南风有狮<small>醒狮游园 · 独立试玩</small></span></a>
+    <div class="header-actions"><button class="text-button" id="character-open">认识阿南 <span aria-hidden="true">↗</span></button><button class="sound-button" id="sound-button" aria-pressed="false"><span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-label">声音已关闭</span></button></div>
+  </header>
+
+  <main>
+    <section id="menu-view" class="menu-view" aria-label="选择小游戏">
+      <div class="menu-copy"><p class="eyebrow"><span></span> 鼓声一起 · 好戏登场</p><h1>与阿南<br>醒一场<span class="accent-word">狮</span><i>。</i></h1><p class="menu-description">跟一段鼓点，跃一程梅花桩。<br>让醒狮的神气，在你的指尖起舞。</p></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><span class="hero-watermark">狮</span><div class="hero-ground"></div><img class="hero-lion" src="assets/lion-ip.png" alt=""><div class="hero-sign"><span>阿 南</span><small>小狮有大志 · 一跃见精神</small></div><span class="hero-seal">南风<br>狮醒</span></div>
+      <div class="game-picker">
+        <button class="game-card" data-game="rhythm" disabled><span class="card-label"><span>01</span> 听鼓 · 应声</span><span class="game-card-title">鼓点采青 <b aria-hidden="true">↗</b></span><span class="game-card-copy">看光圈，跟鼓点。和阿南合上一拍。</span><span class="card-bottom"><span><kbd>空格</kbd> 或点击击鼓</span><strong>开始体验</strong></span></button>
+        <button class="game-card" data-game="poles" disabled><span class="card-label"><span>02</span> 观势 · 起跃</span><span class="game-card-title">梅花桩落点 <b aria-hidden="true">↗</b></span><span class="game-card-copy">蓄一点力，稳稳跃上下一根桩。</span><span class="card-bottom"><span><kbd>按住</kbd> 蓄力，松开跳跃</span><strong>开始挑战</strong></span></button>
+      </div>
+      <div class="menu-bottom"><span id="asset-status" role="status">正在准备阿南的舞台…</span><span>原创 IP · AI 辅助创作 <b>／</b> 电脑端独立演示</span></div>
+    </section>
+
+    <section id="play-view" class="play-view" aria-label="游戏舞台" hidden>
+      <div class="play-top"><div class="play-title"><p class="eyebrow" id="game-chapter">01 · 听鼓应声</p><h1 id="game-title">鼓点采青</h1></div><div class="hud" aria-label="本局状态"><div><small id="hud-primary-label">本局得分</small><strong id="hud-primary">0</strong></div><div><small id="hud-secondary-label">合拍</small><strong id="hud-secondary">0 / 18</strong></div><div class="phase-block"><small>当前进程</small><strong id="hud-phase">好戏将启</strong></div></div></div>
+      <div class="stage-shell"><canvas id="game-canvas" width="1400" height="760" tabindex="0" aria-label="醒狮游戏舞台"></canvas><div class="stage-corner" aria-hidden="true">南风有狮 · 游园试演</div><div class="game-progress" aria-hidden="true"><div id="game-progress-fill"></div></div></div>
+      <div class="play-controls"><button class="text-button" id="menu-button">← 返回游园</button><p id="game-hint" aria-live="polite">空格或点击舞台击鼓</p><button class="outline-button" id="pause-button">暂停 <kbd>Esc</kbd></button></div>
+    </section>
+  </main>
+
+  <div id="pause-dialog" class="modal" role="dialog" aria-modal="true" aria-labelledby="pause-title" hidden><div class="dialog-card pause-card"><span class="dialog-kicker">歇一拍，再起舞</span><h2 id="pause-title">好戏稍候</h2><p>准备好后，和阿南继续这一局。</p><button class="primary-button" id="resume-button">继续体验 →</button><button class="text-button" id="pause-menu">回到游园入口</button></div></div>
+  <div id="result-dialog" class="modal" role="dialog" aria-modal="true" aria-labelledby="result-title" hidden><div class="dialog-card result-card"><div class="result-mark" aria-hidden="true">吉</div><span class="dialog-kicker" id="result-rank">好戏圆满</span><h2 id="result-title">鼓起，狮应</h2><p id="result-subtitle"></p><div class="result-stats" id="result-stats"></div><p class="result-note">本局数据为创意互动成绩，动作与节奏为游戏化演绎。</p><div class="result-actions"><button class="primary-button" id="replay-button">再来一局 ↗</button><button class="outline-button" id="result-menu">返回游园</button></div></div></div>
+  <div id="character-dialog" class="modal" role="dialog" aria-modal="true" aria-labelledby="character-title" hidden><div class="dialog-card character-card"><button class="dialog-close" id="character-close" aria-label="关闭角色设定">×</button><div class="character-portrait"><img src="assets/lion-ip.png" alt="阿南：朱红与米白的醒狮IP，大圆眼、浓眉、额镜与短狮被，朝右站立。"></div><div class="character-copy"><p class="eyebrow">原创醒狮 IP · 角色初稿</p><h2 id="character-title">阿南<span>一跃见精神</span></h2><p>眼里有神，脚下有劲。<br>鼓声一起，就想跳到最亮的地方。</p><div class="color-swatches" aria-label="角色配色"><i style="--swatch:#bb3027"></i><i style="--swatch:#f5e8ca"></i><i style="--swatch:#d2a34c"></i><i style="--swatch:#30201e"></i><span>朱红 · 米白 · 暖金 · 墨褐</span></div><p class="character-description">国潮手绘与轻立体明暗，保留浓眉圆眼、额镜、宽口与披覆狮被。用醒狮的轮廓，讲一个机灵又有冲劲的性格。</p><small>AI 辅助原创设计 · 当前为游戏角色概念与动作草案</small></div></div></div>
+  <script src="shared.js"></script><script src="rhythm.js"></script><script src="poles.js"></script><script src="app.js"></script>
+</body>
+</html>

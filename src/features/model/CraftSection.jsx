@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import { homeCultureSources, homeCultureStories } from '../../data/home-culture.js';
 
 const story = homeCultureStories.find(item => item.id === 'lion-head-craft');
 const source = homeCultureSources.find(item => item.id === 'fut-hok-craft');
+const MiniGameDialog = lazy(() => import('../mini-games/MiniGameDialog.jsx'));
 const stages = [
   { name: '扎', line: '立起形的轮廓' },
   { name: '扑', line: '承接面的塑造' },
@@ -11,8 +12,18 @@ const stages = [
   { name: '装', line: '完成外观装饰' },
 ];
 
-export default function CraftSection() {
+function GameIcon({ poles = false }) {
+  return <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    {poles ? <><path d="M10 26v16m14-24v24m14-30v30M7 42h6m8 0h6m8 0h6" /><ellipse cx="10" cy="25" rx="6" ry="3" /><ellipse cx="24" cy="17" rx="6" ry="3" /><ellipse cx="38" cy="11" rx="6" ry="3" /><path d="M8 13c7-9 15-6 22-7" strokeDasharray="2 4" /></> : <><ellipse cx="24" cy="14" rx="15" ry="7" /><path d="M9 14v15c0 9 30 9 30 0V14M12 32l-4 10m28-10 4 10M8 42h32M15 4l7 8m14-8-8 8" /><ellipse cx="24" cy="22" rx="15" ry="7" strokeDasharray="2 4" /></>}
+  </svg>;
+}
+
+export default function CraftSection({ active = true }) {
   const [failed, setFailed] = useState(false);
+  const [gameId, setGameId] = useState(null);
+  const returnFocusRef = useRef(null);
+  useEffect(() => { if (!active) setGameId(null); }, [active]);
+  const openGame = (id, event) => { returnFocusRef.current = event.currentTarget; setGameId(id); };
   const { photo } = story;
   return <section className="model-craft" aria-labelledby="model-craft-title">
     <figure className="model-craft-figure">
@@ -46,6 +57,18 @@ export default function CraftSection() {
         <span>工艺资料</span><a href={source.url} target="_blank" rel="noreferrer">{source.label} · {source.title} ↗</a>
       </div>
       <p className="model-craft-note">{story.note}</p>
+      <section className="model-craft-games" aria-label="醒狮互动小游戏">
+        <div className="model-craft-games-heading"><h3>小试狮艺</h3><span>跟鼓采青 · 跃上梅花桩</span></div>
+        <div className="model-craft-game-grid">
+          <button type="button" className="model-craft-game" aria-label="体验鼓点采青" aria-haspopup="dialog" onClick={event => openGame('rhythm', event)}>
+            <span className="model-craft-game-icon"><GameIcon /></span><span className="model-craft-game-copy"><strong>鼓点采青</strong><span>看金圈 · 跟鼓点</span></span><span className="model-craft-game-action">玩一局 <b aria-hidden="true">↗</b></span>
+          </button>
+          <button type="button" className="model-craft-game" aria-label="挑战梅花桩" aria-haspopup="dialog" onClick={event => openGame('poles', event)}>
+            <span className="model-craft-game-icon"><GameIcon poles /></span><span className="model-craft-game-copy"><strong>梅花桩落点</strong><span>蓄一点力 · 稳稳落桩</span></span><span className="model-craft-game-action">试身手 <b aria-hidden="true">↗</b></span>
+          </button>
+        </div>
+      </section>
     </div>
+    {active && gameId && <Suspense fallback={<div className="model-craft-game-loading" role="status">正在准备小游戏…</div>}><MiniGameDialog gameId={gameId} onClose={() => setGameId(null)} returnFocus={returnFocusRef.current} /></Suspense>}
   </section>;
 }

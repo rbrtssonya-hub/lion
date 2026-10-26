@@ -150,4 +150,5 @@ export const assetPaths = {
   lionBookEnding: 'assets/lion-book/ending.png',
   lionBookLicense: 'assets/licenses/threeui-LICENSE.txt',
   lionBookFontLicense: 'assets/licenses/threeui-FONT-LICENSES.txt',
+  lionGamePoses: 'assets/lion-games/lion-poses.png',
 };

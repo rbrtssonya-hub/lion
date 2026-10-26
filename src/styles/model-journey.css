@@ -91,6 +91,58 @@
 .model-craft-source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-top: 20px; font: 12px/1.7 var(--sans); }
 .model-craft-source > span { color: #9e805c; }
 .model-craft-note { margin: 18px 0 0; color: #8e6f52; font: 17px/1.7 var(--structure-serif); }
+.model-craft-games { margin-top: clamp(18px, 2.2svh, 28px); padding-top: 15px; border-top: 1px solid #b992604d; }
+.model-craft-games-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 11px; }
+.model-craft-games-heading h3 { display: flex; align-items: center; gap: 9px; margin: 0; color: #963e2a; font: 19px/1.5 var(--structure-serif); letter-spacing: .12em; }
+.model-craft-games-heading h3::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #b8422c; box-shadow: 0 0 0 4px #bb79431a; animation: craft-game-invite 2.6s ease-in-out infinite; }
+.model-craft-games-heading > span { color: #977a58; font: 11px/1.5 var(--sans); letter-spacing: .05em; }
+.model-craft-game-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.model-craft-game { display: flex; align-items: center; gap: 11px; min-width: 0; min-height: 87px; padding: 13px 14px; border: 1px solid #bb7f4b70; border-radius: 12px; background: linear-gradient(120deg, #fff9efb8, #ead7b74a); color: #873a28; text-align: left; cursor: pointer; transition: border-color 180ms, box-shadow 180ms, transform 180ms; }
+.model-craft-game:hover { transform: translateY(-2px); border-color: #a5482b; box-shadow: 0 5px 15px #78412412; }
+.model-craft-game:focus-visible { outline: 2px solid #aa422e; outline-offset: 3px; }
+.model-craft-game-icon { display: grid; place-items: center; flex-shrink: 0; width: 39px; height: 46px; color: #ae743b; }
+.model-craft-game-icon svg { display: block; width: 37px; height: 37px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.model-craft-game-copy { display: grid; gap: 5px; min-width: 0; }
+.model-craft-game-copy > strong { color: #913d2a; font: 21px/1.3 var(--structure-serif); white-space: nowrap; }
+.model-craft-game-copy > span { color: #896d52; font: 12px/1.5 var(--sans); white-space: nowrap; }
+.model-craft-game-action { display: grid; gap: 6px; justify-items: end; flex-shrink: 0; margin-left: auto; color: #ab5c35; font: 10px/1.3 var(--sans); }
+.model-craft-game-action b { font: 20px/1 Georgia, serif; }
+.model-craft-game-loading { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; color: #f9e5be; background: #36131edb; font: 22px var(--structure-serif); }
+@keyframes craft-game-invite { 0%, 100% { box-shadow: 0 0 0 3px #bb794314; } 50% { box-shadow: 0 0 0 6px #bb79432c; } }
+@media (max-height: 850px) {
+  .model-craft-games { margin-top: 14px; padding-top: 10px; }
+  .model-craft-games-heading { margin-bottom: 8px; }
+  .model-craft-game { min-height: 73px; padding: 10px 11px; gap: 8px; }
+  .model-craft-game-copy > strong { font-size: 19px; }
+  .model-craft-game-icon { width: 31px; }
+  .model-craft-game-icon svg { width: 31px; height: 31px; }
+}
+@container lion-page (max-width: 1200px) {
+  .model-craft-game-grid { gap: 8px; }
+  .model-craft-game-action { font-size: 0; }
+  .model-craft-game-copy > span { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .model-craft-games-heading h3::before { animation: none; }
+  .model-craft-game { transition: none; }
+}
+@media (max-height: 850px) and (min-width: 1000px) {
+  .model-craft-reading { padding-block: 4px; }
+  .model-craft-eyebrow { margin-bottom: 6px; }
+  .model-craft h2 { font-size: 34px; line-height: 1.25; }
+  .model-craft-lead { margin: 5px 0 10px; font-size: 19px; line-height: 1.45; }
+  .model-craft-description { font-size: 17px; line-height: 1.7; }
+  .model-craft-stages { margin: 12px 0 8px; }
+  .model-craft-stages li { padding-top: 8px; }
+  .model-craft-stages strong { margin: 1px 0 3px; font-size: 28px; line-height: 1.15; }
+  .model-craft-stages li > span:last-child { font-size: 12px; line-height: 1.6; }
+  .model-craft-source { margin-top: 10px; }
+  .model-craft-note { margin-top: 8px; font-size: 16px; line-height: 1.5; }
+  .model-craft-games { margin-top: 10px; padding-top: 8px; }
+  .model-craft-games-heading { margin-bottom: 6px; }
+  .model-craft-games-heading h3 { font-size: 17px; line-height: 1.4; }
+  .model-craft-game { min-height: 64px; padding-block: 8px; }
+}
 .model-craft-fallback { display: grid; place-content: center; min-height: 320px; padding: 24px; color: #806c5b; text-align: center; }
 .model-craft-fallback > span { color: #a38a67; font: 80px/1.3 var(--archive-brush); }
 .model-craft-fallback p { margin: 10px 0; font: 19px/1.6 var(--structure-serif); }

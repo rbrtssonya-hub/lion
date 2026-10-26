@@ -5337,6 +5337,54 @@
       "path": "source/reviews/spread-map-levels/2026-10-26/world-1920.png",
       "bytes": 762639,
       "sha256": "01db6d8d75acd0e71bd8f700865a722697890d13442e385139a2aa65d6e97265"
+    },
+    {
+      "from": "AI-assisted original Anan IP from commit a9422f6; see source/design/lion-mini-games/ip-brief.md",
+      "path": "source/design/lion-mini-games/assets/lion-ip.png",
+      "bytes": 2007897,
+      "sha256": "faa5f58f80279c118072599dd9d81f6c4ea395918e33399b00cbf7fc1e23103a"
+    },
+    {
+      "from": "AI-assisted original Anan IP from commit a9422f6; see source/design/lion-mini-games/ip-brief.md",
+      "path": "source/design/lion-mini-games/assets/lion-poses.png",
+      "bytes": 1504844,
+      "sha256": "a8290234222eabc87336cfb86e1633645768f934bbd7482b7e5fc91e47d3beb7"
+    },
+    {
+      "from": "AI-assisted original Anan IP from commit a9422f6; see source/design/lion-mini-games/ip-brief.md",
+      "path": "source/public/assets/lion-games/lion-poses.png",
+      "bytes": 1504844,
+      "sha256": "a8290234222eabc87336cfb86e1633645768f934bbd7482b7e5fc91e47d3beb7"
+    },
+    {
+      "from": "native Chrome production screenshot, craft game entry and in-page gameplay, 2026-10-26",
+      "path": "source/reviews/craft-mini-games/2026-10-26/craft-entries-1366x768.png",
+      "bytes": 1130752,
+      "sha256": "b181838ec1b1fdaac754e8af0254f31ae636ac2b058211cfe7bce5e875a07237"
+    },
+    {
+      "from": "native Chrome production screenshot, craft game entry and in-page gameplay, 2026-10-26",
+      "path": "source/reviews/craft-mini-games/2026-10-26/craft-entries-1440x900.png",
+      "bytes": 1233403,
+      "sha256": "c381a849dde8e29d546786e9e30f71cb6c9bd2c2627347de16356eb6a26d9a3e"
+    },
+    {
+      "from": "native Chrome production screenshot, craft game entry and in-page gameplay, 2026-10-26",
+      "path": "source/reviews/craft-mini-games/2026-10-26/craft-entries-1920x1080.png",
+      "bytes": 1994105,
+      "sha256": "469ae64f8760fd0f79aa3ddc73473be8460d60ffdcfd94b4fde29386d652e4a8"
+    },
+    {
+      "from": "native Chrome production screenshot, craft game entry and in-page gameplay, 2026-10-26",
+      "path": "source/reviews/craft-mini-games/2026-10-26/game-poles-1920x1080.png",
+      "bytes": 925318,
+      "sha256": "97355e887da953e51c2069abdb8e9f0a7efd0b186ac5c04436fbe42fd2fb6106"
+    },
+    {
+      "from": "native Chrome production screenshot, craft game entry and in-page gameplay, 2026-10-26",
+      "path": "source/reviews/craft-mini-games/2026-10-26/game-rhythm-1920x1080.png",
+      "bytes": 1134039,
+      "sha256": "e939e423b692de596f9f684a9e721d45515a42d21f2be0956a8420c15ac42426"
     }
   ]
 }
