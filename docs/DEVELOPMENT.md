@@ -1,6 +1,7 @@
 # 工程开发说明
 
 2026-10-26神态点击已扩展到全部八态：`ExpressionLion.jsx` 共用3秒分层播放、原图回退与清理；`face-profiles/` 保存各图独立的1254坐标、五部位变换与时序。进入神态时的整图短动作仍由 `useExpressionReaction` 维护，点击狮头后取消该整图动作并启动眉眼狮口，同时保留点击放大与原解读。静止/结束仍是原IMG，补绘仅填露出窗口；窗口蒙版超出轮廓4px覆盖静态羽化边缘，哀态眉根单独保留原图固定遮挡。新八态全覆盖测试 `expression-eight-face` 与已有 `expression-surprise-face`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 为相关验收入口。素材/提示词见[八态源记录](../source/design/expression-eight/README.md)，实跑与边界见[八态补验](../source/references/eight-state-face-motion-2026-10-26.md)。布局及章节转场沿用原版，未新增依赖。
+
 ## 小醒桌宠与讲解（2026-10-26）
 
 小醒位于四章之外，支持9层面部动作、鼠标/方向键移动、章节上下文、本地来源与离线女声讲解。可编辑源在 `source/characters/xiaoxing/`，运行层和音频在 `source/public/assets/xiaoxing/`。真实DeepSeek配置由用户延期；接口默认本地。服务和EXE接入见[问答说明](XIAOXING_AI.md)，实际验收与截图见[交付记录](../source/references/xiaoxing-assistant-2026-10-26.md)。
