@@ -145,7 +145,7 @@ test('离开动作页释放四个媒体元素与画布，返回后只有一套�
   await ensurePlaying(page);
   const retainedVideos = await videos(page).elementHandles();
   const retainedCanvas = await scene(page).elementHandle();
-  await page.locator('.site-header [data-route="state"]').click();
+  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
   for (const video of retainedVideos) expect(await video.evaluate(element => ({ connected: element.isConnected, paused: element.paused, muted: element.muted, src: element.getAttribute('src') }))).toEqual({ connected: false, paused: true, muted: true, src: null });
   expect(await retainedCanvas.evaluate(element => element.isConnected)).toBe(false);
@@ -168,7 +168,7 @@ test('延迟播放期间离页不会让已释放的旧媒体在后台启动', as
   await ensurePaused(page);
   const retained = await videos(page).elementHandles();
   await play(page).click();
-  await page.locator('.site-header [data-route="state"]').click();
+  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
   await page.waitForTimeout(750);
   for (const video of retained) expect(await video.evaluate(element => ({ connected: element.isConnected, paused: element.paused, muted: element.muted, src: element.getAttribute('src'), readyState: element.readyState, error: element.error?.code }))).toMatchObject({ connected: false, paused: true, muted: true, src: null });
 });

@@ -14,7 +14,7 @@ const pages = [
   { id:'appearance', label:'外观', title:'顶栏与设置面板', note:'全局界面材质；内容底板在首页、章节和资料中分别管理。', icon:'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
-  { id:'chapters', label:'章节', title:'章节专属设置', note:'结构、动作与神态各有独立子页，不混入全局导航。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
+  { id:'chapters', label:'章节', title:'章节专属设置', note:'观形、戏台、八态与远方实景的阅读底板分别管理。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
   { id:'view', label:'视角', title:'结构与动作观看视角', note:'分别调整结构模型缩放边界和动作场景的观察范围。', icon:'M2 10q8-11 16 0-8 11-16 0M7 10a3 3 0 1 0 6 0 3 3 0 1 0-6 0' },
   { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时预览，保存设置后记住。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
   { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
@@ -23,7 +23,7 @@ const pages = [
   { id:'layout', label:'布局', title:'面板布局与页面交互', note:'调整设置面板宽度、推开方式与文字选择。', icon:'M3 4h14v12H3zM12 4v12' },
 ];
 const homePages = [{id:'book',label:'书册'},{id:'culture',label:'图鉴'}];
-const chapterPages = [{id:'model',label:'结构'},{id:'action',label:'动作'},{id:'expression',label:'神态'}];
+const chapterPages = [{id:'model',label:'结构'},{id:'action',label:'动作'},{id:'expression',label:'神态'},{id:'spread',label:'传章'}];
 const easingOptions = [
   {value:'smooth',label:'平滑进出',note:'缓慢起步，加速移动，再平稳停下。'},
   {value:'swift',label:'快速收拢',note:'快速响应，接近终点时逐渐减速。'},
@@ -66,10 +66,10 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
     const {prefix,label,heightStep=10} = surface;
     return <SettingsGroup key={prefix} title={label} note="独立设置">
       {range(`${prefix}Width`,`${label}宽度`,40,100,1,'%')}
-      {range(`${prefix}Height`,`${label}${prefix === 'bookTitle' ? '最小高度' : '高度'}`,0,900,heightStep)}
+      {!surface.automaticHeight && range(`${prefix}Height`,`${label}${prefix === 'bookTitle' ? '最小高度' : '高度'}`,0,900,heightStep)}
       {prefix === 'bookTitle' && range('bookTitleSpacing','标题底板留白',50,150,1,'%')}
       <MaterialControls prefix={prefix} label={label} values={settings} onChange={onChange} />
-      <p className="developer-settings-note">宽度相对所属区域；最小高度 0 为自动，内容不会被裁掉。透明度 100 时底色、模糊与淡纹理一并移除。</p>
+      <p className="developer-settings-note">宽度相对所属区域；{surface.automaticHeight ? '高度随视口适配，正文可在卡片内滚动。' : '最小高度 0 为自动，内容不会被裁掉。'}透明度 100 时底色、模糊与淡纹理一并移除。</p>
     </SettingsGroup>;
   });
   const content = id => {
@@ -135,7 +135,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup>
       </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
       case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
-        {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
+        {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : value === 'spread' ? ['spreadOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
         </SettingsGroup>}

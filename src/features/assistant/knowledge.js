@@ -3,14 +3,15 @@
 // Source-to-code mapping and editorial limits: source/references/xiaoxing-knowledge.md.
 const pageSources = {
   entry: { id: 'page-entry', label: '首页 · 岭南醒狮志', chapter: 'entry', section: 'homeLionBook' },
-  culture: { id: 'page-culture', label: '首页 · 醒狮风土', chapter: 'entry', section: 'homeCulture' },
-  types: { id: 'page-lion-types', label: '首页 · 醒狮形制对照', chapter: 'entry', section: 'homeLionTypes' },
-  sources: { id: 'page-sources', label: '首页 · 参考资料与创作说明', chapter: 'entry', section: 'homeCultureSources' },
-  model: { id: 'page-model', label: '结构 · 醒狮部件图鉴', chapter: 'model', section: 'structurePanel' },
-  modelBoundary: { id: 'page-model-boundary', label: '结构 · 模型与资料说明', chapter: 'model', section: 'structureBoundary' },
-  action: { id: 'page-action', label: '动作 · 四面巨幕厅', chapter: 'action', section: 'actionTheater' },
-  state: { id: 'page-state', label: '神态 · 八态观察', chapter: 'state', section: 'expressionObservation' },
-  stateBoundary: { id: 'page-state-boundary', label: '神态 · 样本与视觉说明', chapter: 'state', section: 'chapterEvidence' },
+  culture: { id: 'page-culture', label: '序 · 醒狮文化与资料', chapter: 'entry', section: 'homeCultureSources' },
+  types: { id: 'page-lion-types', label: '造 · 醒狮形制', chapter: 'model', section: 'modelStage' },
+  sources: { id: 'page-sources', label: '序 · 参考资料与创作说明', chapter: 'entry', section: 'homeCultureSources' },
+  model: { id: 'page-model', label: '造 · 醒狮部件图鉴', chapter: 'model', section: 'structurePanel' },
+  modelBoundary: { id: 'page-model-boundary', label: '造 · 模型与资料说明', chapter: 'model', section: 'structureBoundary' },
+  action: { id: 'page-action', label: '舞 · 四面巨幕厅', chapter: 'action', section: 'actionTheater' },
+  state: { id: 'page-state', label: '舞 · 八态观察', chapter: 'state', section: 'expressionObservation' },
+  stateBoundary: { id: 'page-state-boundary', label: '舞 · 样本与视觉说明', chapter: 'state', section: 'chapterEvidence' },
+  spread: { id: 'page-spread', label: '传 · 广东、中国与世界案例地图', chapter: 'spread', section: 'spreadStage' },
 };
 
 const references = {
@@ -22,28 +23,34 @@ const references = {
 
 export const chapterGuides = {
   entry: {
-    title: '首页 · 入境', shortTitle: '入境',
-    guide: '这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》书册。首页展览还可以切换文化照片、佛山狮与鹤山狮及佛鹤狮的形制对照，以及参考资料。随后可去“结构”点选部件，去“动作”观看四段演示，再到“神态”比较八态的观察线索。书册与类型图属于 AI 辅助示意，文化照片另有署名与许可。',
-    questions: ['这个网站可以看什么？', '佛山狮和鹤山狮有什么区别？', '狮头是怎样制作的？'],
-    sources: [pageSources.entry, pageSources.types, pageSources.sources],
+    title: '序 · 入境', shortTitle: '入境',
+    guide: '这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》七页书册。打开“资料与许可”可查阅来源和摄影许可；序、造、舞、传可由顶栏直达。造章聚焦外形、形制与工艺，舞章呈现四段动作和八态观察，传章用广东、中国、世界三级地图查看已收录案例。书册、类型图和部分影像含 AI 辅助内容；照片保留署名与许可。',
+    questions: ['这个网站可以看什么？', '在哪里查看参考资料？', '佛山狮和鹤山狮有什么区别？'],
+    sources: [pageSources.entry, pageSources.types, pageSources.sources, pageSources.spread],
   },
   model: {
-    title: '结构 · 观形', shortTitle: '观形',
+    title: '造 · 观形', shortTitle: '观形',
     guide: '结构页把醒狮的可见外形分成六处：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。可以拖拽旋转、滚轮缩放，点选模型上的部位或图鉴目录，让镜头聚焦并阅读形制、工艺和文化说明。当前模型支持可见结构观察，未展示内部拆装；内部骨架、活动连接和工艺只作资料说明。',
     questions: ['结构页有哪些部件？', '这个模型怎么旋转和缩放？', '这个模型可以拆开内部骨架吗？'],
     sources: [pageSources.model, pageSources.modelBoundary],
   },
   action: {
-    title: '动作 · 起舞', shortTitle: '起舞',
+    title: '舞 · 起舞', shortTitle: '起舞',
     guide: '这里是四面巨幕动作展厅，提供探青采青、抖毛、狮子吐球、踩梅花桩四段用户提供的演示素材。可以拖拽环绕展厅、选择动作并控制当前视频播放，也可切换平面观看。观察时先看狮头朝向，再看步法、道具、落点与前后身段的衔接。这些片段用于观看与讲解，不提供自动动作识别、动作捕捉或评分。',
     questions: ['动作页有哪些视频？', '探青采青应该观察什么？', '动作展厅怎么操作？'],
     sources: [pageSources.action],
   },
   state: {
-    title: '神态 · 传神', shortTitle: '传神',
+    title: '舞 · 传神', shortTitle: '传神',
     guide: '神态页提供喜、怒、哀、乐、动、静、惊、疑八种观察提示。点击左侧目录，或在主狮头处使用滚轮、方向键与前后箭头切换；点击狮头能阅读眉眼、狮口、身段、步法和鼓点的观察引导，也可以比较喜与乐、惊与疑、动与静。图像为 AI 辅助视觉，八态属于本项目的定性观察框架，仍等待真实图片或视频样本校核，不构成情绪识别或评分。',
     questions: ['醒狮八态有哪些？', '喜与乐有什么不同？', '这些神态图片是真实表演照片吗？'],
     sources: [pageSources.state, pageSources.stateBoundary],
+  },
+  spread: {
+    title: '传 · 狮行远方', shortTitle: '狮行远方',
+    guide: '传章地图分广东、中国、世界三个层级：广东层看广州与佛山，中国层看广东与香港，世界层展开五地八幅已收录实景。点选地点可阅读照片、拍摄年份、摄影者、许可与案例说明。地图只是已收录案例的空间索引；拍摄年份不表示传播先后，也不代表完整传播史或全球覆盖率。',
+    questions: ['地图怎么从广东看到中国和世界？', '传章地图有哪些案例？', '地图地点和照片怎么查看？'],
+    sources: [pageSources.spread],
   },
 };
 
@@ -57,12 +64,12 @@ export const knowledgeEntries = [
   fact('site-tour', 'entry', '怎样参观《南风有狮》',
     ['这个网站可以看什么？', '这个网页怎么逛？', '怎么参观这个作品？', '醒狮网页有哪些内容？'],
     ['南风有狮', '网站介绍', '网页介绍', '参观路线', '四章', '四个章节', '网页内容', '网站内容'],
-    '《南风有狮》按“入境 → 观形 → 起舞 → 传神”展开：首页用影像、醒狮志书册、文化照片和形制对照带你进入主题；结构页可以旋转狮头并点选可见部件；动作页用四面巨幕呈现四段演示；神态页提供八态切换和定性观察。你可以点答案下方的章节入口继续探索。',
-    [pageSources.entry, pageSources.model, pageSources.action, pageSources.state]),
+    '《南风有狮》按“序 → 造 → 舞 → 传”展开：首页以影像和七页书册入境，来源与照片许可在辅助对话框中查阅；造章呈现可旋转的醒狮模型、形制和工艺线索；舞章安排四段动作与八态观察；传章用广东、中国、世界三级地图索引现有案例。各章可以直接跳转。',
+    [pageSources.entry, pageSources.model, pageSources.action, pageSources.state, pageSources.spread]),
   fact('lion-culture', 'entry', '从展览认识广东醒狮',
     ['什么是醒狮？', '醒狮是什么？', '你知道醒狮吗？', '广东醒狮有什么文化特点？'],
     ['什么是醒狮', '醒狮是什么', '醒狮文化', '广东醒狮', '岭南风土'],
-    '在这个展览里，广东醒狮通过狮头、狮被、两位舞者和锣鼓的配合呈现。网页从岭南风土、武术功架、狮头制作、采青和技艺传承几个方向介绍它。可以先读首页的文化照片与形制对照，再结合动作视频理解舞者怎样让器物获得神采；本地讲解资料不据传说确定单一创始年份。',
+    '在这个展览里，广东醒狮通过狮头、狮被、两位舞者和锣鼓的配合呈现。网页从岭南风土、武术功架、狮头制作、采青和技艺传承几个方向介绍它。可以在造章的形制页签比较佛山狮、鹤山狮与佛鹤融合形制，再结合动作视频观察舞者怎样让器物获得神采；本地讲解资料不据传说确定单一创始年份。',
     [pageSources.culture, references.culture]),
   fact('lion-types', 'entry', '佛山狮与鹤山狮怎样比较',
     ['佛山狮和鹤山狮有什么区别？', '醒狮有哪些流派？', '佛山狮与鹤山狮的差别是什么？'],
@@ -93,7 +100,7 @@ export const knowledgeEntries = [
   fact('content-sources', 'entry', '网页资料与图像来源',
     ['网页资料从哪里来？', '这些图片都是AI生成的吗？', '在哪里查看参考资料？'],
     ['参考资料', '资料来源', '摄影署名', '图片来源', '图像说明', 'ai生成'],
-    '首页“参考资料”展板列出内容来源、摄影署名与许可。文化照片保留各自的作者和许可；书册水彩、类型图与神态图属于 AI 辅助示意，不能作为历史、实物鉴定或真实神态样本的证据。神态观察说明也保留“等待真实图片/视频样本校核”的状态。',
+    '首页“资料与许可”对话框列出内容来源、摄影署名与许可。文化照片保留各自的作者和许可；书册水彩、类型图与神态图属于 AI 辅助示意，不能作为历史、实物鉴定或真实神态样本的证据。神态观察说明也保留“等待真实图片/视频样本校核”的状态。',
     [pageSources.sources, pageSources.stateBoundary]),
   fact('structure-parts', 'model', '六处可见部件',
     ['结构页有哪些部件？', '醒狮狮头有哪些结构？', '这个狮子分成哪几部分？'],
@@ -105,6 +112,11 @@ export const knowledgeEntries = [
     ['旋转', '缩放', '转一转', '滚轮', '点选模型', '聚焦', '复原视角'],
     '在结构页的模型交互区域拖拽可以旋转视角，滚轮可以缩放。点选模型上的可见部位或图鉴目录，可以聚焦该部件并同步阅读说明；也可使用前一部件、下一部件和复原视角。模型加载失败时页面保留预览与重试入口。',
     [pageSources.model]),
+  fact('model-reading-tabs', 'model', '造章的三个阅读页签',
+    ['造章有哪些页签？', '形制和工艺在哪里查看？', '在哪里看佛山狮和鹤山狮对照？'],
+    ['观形', '形制', '工艺', '阅读页签', '三个页签'],
+    '造章当前分为“观形、形制、工艺”三个页签：观形显示可交互模型和部件图鉴，形制对照佛山狮、鹤山狮与佛鹤融合形制，工艺呈现有来源的扎、扑、画、装线索和完成品实景。',
+    [pageSources.types, pageSources.model]),
   fact('model-boundary', 'model', '模型展示的范围',
     ['这个模型可以拆开内部骨架吗？', '能不能演示内部拆装？', '这是物理仿真或数字孪生吗？'],
     ['内部骨架', '内部拆装', '内部结构', '拆开', '拆解', '爆炸图', '物理仿真', '数字孪生', '实际活动连接'],
@@ -151,6 +163,11 @@ export const knowledgeEntries = [
     ['踩梅花桩应该观察什么？', '高桩醒狮怎么看？'], ['踩梅花桩', '梅花桩', '高桩', '落桩', '重心'],
     '踩梅花桩演示中，醒狮在红金高桩间跨步、落步，并调整身体保持平衡。建议关注落点与重心的衔接、头尾的配合。当前页面不根据画面判定动作难度或比赛得分；高桩是一种表演形式，也不能直接当作狮种流派分类。',
     [pageSources.action, pageSources.types]),
+  fact('spread-map-levels', 'spread', '广东、中国与世界三级地图',
+    ['地图怎么从广东看到中国和世界？', '传章地图有哪些案例？', '地图地点和照片怎么查看？'],
+    ['广东中国世界三级地图', '三级地图', '案例地图', '地图地点', '五地八幅实景', '传播地图'],
+    '传章地图分广东、中国、世界三个层级：广东层看广州与佛山，中国层看广东与香港，世界层展开五地八幅已收录实景。点选地点可看照片、拍摄年份、摄影者、许可与案例说明。地图只是案例索引；拍摄年份不表示传播先后，也不代表完整传播史或全球覆盖率。',
+    [pageSources.spread]),
   fact('eight-states', 'state', '八态有哪些',
     ['醒狮八态有哪些？', '八种神态分别是什么？', '神态页有哪八态？'], ['醒狮八态', '八态', '八种神态', '喜怒哀乐动静惊疑'],
     '本项目的八态依次是喜、怒、哀、乐、动、静、惊、疑。它们帮助观众从眉眼、狮口、头部朝向、身段和鼓点寻找观察线索。八态是本项目的定性观察框架，不宣称所有流派都采用同一分类；AI 辅助示意图仍等待真实图片或视频样本校核。',
@@ -197,7 +214,7 @@ const genericKeywords = new Set([
   '参考资料', '资料来源', '图片来源', '图像说明', '真实照片', '真实样本', '样本校核',
   '全屏', '环绕', '切换视频', '抖动', '重心', '绣球', 'ai生成', 'ai画',
 ]);
-const domain = /醒狮|舞狮|狮头|狮口|狮子|佛山狮|鹤山狮|佛鹤狮|采青|抖毛|吐球|梅花桩|八态|网页|网站|本页|这一页|这个作品|这件作品|展厅|巨幕|本项目/;
+const domain = /醒狮|舞狮|狮头|狮口|狮子|佛山狮|鹤山狮|佛鹤狮|采青|抖毛|吐球|梅花桩|八态|广东|中国|世界|地图|案例|网页|网站|本页|这一页|这个作品|这件作品|展厅|巨幕|本项目/;
 // A topic name alone is not evidence for a requested price, exact date, score,
 // rule number or medical claim. This small corpus does not contain those facts.
 const uncoveredIntent = /多少钱|售价|价格|购买|哪里买|怎么买|哪(?:一)?年|哪个朝代|起源|创始|发明|第[一二三四五六七八九十0-9]+条|评分标准|比赛规则|赛事规则|多少分|得几分|得分是多少|医学|治疗|能治|联系方式|电话号码|统计数据|多少度|角度是多少|关节|膝盖|体重|重量|多重|几公斤|几厘米|多少厘米|一天吃|吃多少|喂养|食谱|眼睛.*(?:蓝色|绿色|紫色)|颜色.*(?:含义|意义|代表|原因)|为什么.*(?:蓝色|黄色|红色)/;
@@ -207,7 +224,7 @@ function guideIntent(question, chapter) {
   const query = normalize(question);
   if (/^(?:请|帮我|给我|小醒)?(?:讲解|介绍|讲讲|导览)(?:一下|下)?(?:本页|当前页|这一页|这个页面)$/.test(query)) return canonicalChapter(chapter);
   if (/(?:讲解|介绍|讲讲|导览)/.test(query)) {
-    for (const [route, name] of [['entry', '首页'], ['model', '结构页'], ['action', '动作页'], ['state', '神态页']]) if (query.includes(name)) return route;
+    for (const [route, name] of [['entry', '首页'], ['model', '结构页'], ['action', '动作页'], ['state', '神态页'], ['spread', '地图页'], ['spread', '传章']]) if (query.includes(name)) return route;
   }
   return null;
 }

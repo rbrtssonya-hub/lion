@@ -47,13 +47,13 @@
 .home-culture-sources-intro { margin: 0 0 0 auto; max-width: 400px; color: #765237; font: 20px/1.65 var(--archive-body); text-align: right; }
 .home-culture-sources-intro span { color: #88694e; font-size: 14px; }
 .home-culture-source-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(160px / var(--cultureSourceCard-surface-width-ratio, 1))), 1fr)); gap: 18px; }
-.home-archive-scene a.home-culture-source-card { position: relative; display: flex; flex-direction: column; min-height: 186px; padding: 23px 25px; border: 1px solid #d8bd96; border-radius: 9px; color: #583a28; background: #fff8eb; text-decoration: none; transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+:is(.home-archive-scene, .home-sources-dialog) a.home-culture-source-card { position: relative; display: flex; flex-direction: column; min-height: 186px; padding: 23px 25px; border: 1px solid #d8bd96; border-radius: 9px; color: #583a28; background: #fff8eb; text-decoration: none; transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
 .home-culture-source-number { display: flex; justify-content: space-between; align-items: center; margin-bottom: 23px; color: #b08757; font: italic 19px/1 Georgia, serif; }
 .home-culture-source-number svg { width: 19px; height: 19px; fill: none; stroke: #a54a31; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms ease; }
 .home-culture-source-publisher { margin-bottom: 8px; color: #956341; font: 12px/1.5 var(--sans); letter-spacing: .06em; }
 .home-culture-source-card strong { font: 500 clamp(20px, 1.9cqw, 26px)/1.4 var(--archive-body); }
 .home-culture-source-description { display: block; margin-top: 10px; color: #8e745b; font: 13px/1.6 var(--sans); }
-.home-archive-scene a.home-culture-source-card:hover { color: #8d2e1f; border-color: #a95d38; box-shadow: 0 7px 18px #7b4a2812; transform: translateY(-3px); }
+:is(.home-archive-scene, .home-sources-dialog) a.home-culture-source-card:hover { color: #8d2e1f; border-color: #a95d38; box-shadow: 0 7px 18px #7b4a2812; transform: translateY(-3px); }
 .home-culture-source-card:hover svg { transform: translate(2px, -2px); }
 .home-culture-photo-licenses { margin-top: 28px; border-top: 1px solid #d5ba94; border-bottom: 1px solid #d5ba94; }
 .home-culture-photo-licenses summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; color: #8b3828; cursor: pointer; list-style: none; font: 19px/1.7 var(--archive-body); }

@@ -1,0 +1,26 @@
+.home-exhibit { position: relative; }
+.home-sources-trigger { position: absolute; z-index: 5; top: 12px; right: 24px; padding: 7px 13px; border: 1px solid #9f71564a; border-radius: 4px; background: #faf6edeb; color: #742d24; font: 16px/1.4 var(--archive-body, serif); cursor: pointer; }
+.home-sources-trigger:focus-visible, .home-sources-dialog button:focus-visible { outline: 2px solid #9d3325; outline-offset: 3px; }
+.home-sources-dialog { --archive-brush: var(--navigation-brush, var(--brush)); --archive-body: 'STKaiti', 'KaiTi', serif; box-sizing: border-box; width: min(1440px, calc(100vw - 64px)); height: min(900px, calc(100dvh - 64px)); max-width: none; max-height: none; padding: 0; border: 1px solid #bb9673; border-radius: 12px; background: #f7f3e9; color: #523d30; box-shadow: 0 24px 100px #1b100b55; }
+.home-sources-dialog::backdrop { background: #23140d80; backdrop-filter: blur(5px); }
+.home-sources-dialog[open] { display: flex; flex-direction: column; }
+.home-sources-dialog-top { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #c3a5806b; font: 16px/1.5 var(--archive-body, serif); color: #8c3d2e; }
+.home-sources-dialog-top button { border: 0; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+.home-sources-dialog-top button span { margin-left: 12px; font: 24px/1 serif; }
+.home-sources-dialog > .heritage-sources-wrap { flex: 1; min-height: 0; padding: 18px 24px 24px; }
+.home-sources-dialog .heritage-inner, .home-sources-dialog .home-culture-sources { height: 100%; min-height: 0; }
+.home-sources-dialog .home-culture-sources { box-sizing: border-box; display: flex; flex-direction: column; padding: 20px; }
+.home-sources-dialog .home-culture-sources-heading { flex: none; }
+.home-sources-dialog .exhibit-sources-body { flex: 1; min-height: 0; }
+.home-sources-dialog .home-culture-sources-heading { gap: 14px; margin-bottom: 16px; }
+.home-sources-dialog .home-culture-sources-intro { font-size: var(--sources-body-size, 18px); }
+.home-sources-dialog .heritage-sources-wrap .home-culture-source-cards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.home-sources-dialog a.home-culture-source-card { padding: 14px 18px; }
+.home-sources-dialog .home-culture-credit, .home-sources-dialog .home-culture-credit a { color: #685d51; text-underline-offset: 3px; }
+.home-archive-nav button { gap: 18px; font-size: 20px; }
+.home-archive-nav [data-chapter-link] { font-size: 18px; }
+@media (max-height: 800px) {
+  .home-sources-dialog { height: calc(100dvh - 36px); }
+  .home-sources-dialog-top { padding-block: 9px; }
+  .home-sources-dialog > .heritage-sources-wrap { padding: 10px 20px 16px; }
+}

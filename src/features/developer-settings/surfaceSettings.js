@@ -10,14 +10,15 @@ export const surfaceDefinitions = Object.freeze([
   { prefix: 'expressionOverlay', label: '神态文字底板', color: '#f7f5f0', transparency: 10, blur: 0, radius: 10 },
   { prefix: 'actionOverlay', label: '动作目录底板', color: '#faf7f1', transparency: 9, blur: 10, radius: 0 },
   { prefix: 'videoOverlay', label: '视频提示底板', color: '#080b0a', transparency: 12, blur: 0, radius: 8, width: 80 },
+  { prefix: 'spreadOverlay', label: '传章案例底板', color: '#f7f4ed', transparency: 5, blur: 0, radius: 10, automaticHeight: true },
 ]);
 
 // The same scope registry drives the UI and the atomic application action.
 export const surfaceScopes = Object.freeze({
   home: { label: '首页阅读 · 4处', prefixes: ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody'] },
-  chapters: { label: '章节与视频 · 4处', prefixes: ['modelOverlay', 'actionOverlay', 'expressionOverlay', 'videoOverlay'] },
+  chapters: { label: '章节与视频 · 5处', prefixes: ['modelOverlay', 'actionOverlay', 'expressionOverlay', 'videoOverlay', 'spreadOverlay'] },
   sources: { label: '参考资料 · 2处', prefixes: ['cultureSources', 'cultureSourceCard'] },
-  all: { label: '全部内容底板 · 10处', prefixes: surfaceDefinitions.map(surface => surface.prefix) },
+  all: { label: '全部内容底板 · 11处', prefixes: surfaceDefinitions.map(surface => surface.prefix) },
 });
 
 export const surfaceDefaults = Object.freeze(Object.fromEntries(surfaceDefinitions.flatMap(surface => [

@@ -23,6 +23,7 @@ const chapterBackgrounds = {
   model: media.modelBackground,
   action: media.actionBackground,
   state: media.stateBackground,
+  spread: media.homeArchiveBackground,
 };
 
 export default function App() {
@@ -202,7 +203,7 @@ export default function App() {
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {displayedRoute !== 'entry' && displayedRoute !== 'model' && <ChapterPage lightingSettings={settings} route={displayedRoute} active={displayedRoute === route && scene.phase !== 'leaving'} observation={observation} onReturnToModel={returnToModel} />}
+        {displayedRoute !== 'entry' && displayedRoute !== 'model' && <ChapterPage lightingSettings={settings} route={displayedRoute} active={displayedRoute === route && scene.phase !== 'leaving'} observation={observation} onReturnToModel={returnToModel} onNavigate={navigateTo} />}
         </div>
       </main>
     </div>

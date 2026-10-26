@@ -20,11 +20,12 @@ test('dynamic voice selection preserves a known Chinese female family and refuse
   assert.ok(voiceProfile.browserRate >= 0.94 && voiceProfile.browserRate <= 1.03);
 });
 
-test('fixed offline narration matches exact current guide text, not an unrelated partial answer', () => {
+test('fixed narration recognizes exact guide text and uses clips only for chapters with current recordings', () => {
+  const recordedChapters = ['model', 'action', 'state'];
   for (const [chapter, guide] of Object.entries(chapterGuides)) {
     assert.equal(fixedNarrationChapter(guide.guide), chapter);
     assert.equal(fixedNarrationChapter(` ${guide.guide}\n`), chapter);
-    assert.equal(typeof narrationMediaKeys[chapter], 'string');
+    assert.equal(typeof narrationMediaKeys[chapter], recordedChapters.includes(chapter) ? 'string' : 'undefined');
   }
   assert.equal(fixedNarrationChapter('你好，小醒'), null);
   assert.equal(fixedNarrationChapter(chapterGuides.entry.guide.slice(0, 20)), null);
@@ -52,14 +53,14 @@ function waveFacts(bytes) {
   return { ...format, seconds: pcm.length / format.byteRate, rms: Math.sqrt(energy / (pcm.length / 2)) };
 }
 
-test('four packaged recordings retain the selected female profile and exact source guide text', () => {
+test('three unchanged packaged recordings retain the selected female profile and exact source guide text', () => {
   const profile = JSON.parse(readFileSync(new URL('../../source/characters/xiaoxing/voice/profile.json', import.meta.url), 'utf8'));
   assert.equal(profile.voice.gender, 'Female');
   assert.equal(profile.voice.culture, 'zh-CN');
   assert.equal(profile.voice.name, voiceProfile.recordingVoice);
   assert.equal(profile.prosody.pitch, voiceProfile.recordingPitch);
   assert.equal(profile.prosody.rate, voiceProfile.recordingRate);
-  assert.deepEqual(profile.records.map(record => record.chapter), Object.keys(chapterGuides));
+  assert.deepEqual(profile.records.map(record => record.chapter), ['model', 'action', 'state']);
   for (const record of profile.records) {
     assert.equal(record.text, chapterGuides[record.chapter].guide);
     const bytes = readFileSync(new URL(`../../${record.runtime}`, import.meta.url));

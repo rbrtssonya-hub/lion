@@ -2,11 +2,16 @@ import { lionExpressions } from '../data/lion-expressions.js';
 import { actionClips } from '../features/action/actionClips.js';
 
 export const chapters = [
-  { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南', number: '01', phase: '入境' },
-  { route: 'model', label: '结构', description: '认识广府醒狮', number: '02', phase: '观形' },
-  { route: 'action', label: '动作', description: '探秘经典招式', number: '03', phase: '起舞' },
-  { route: 'state', label: '神态', description: '解读狮之神韵', number: '04', phase: '传神' },
+  { route: 'entry', label: '序', description: '循狮入境', number: '01', phase: '溯源' },
+  { route: 'model', label: '造', description: '扎作观形', number: '02', phase: '观形' },
+  { route: 'action', label: '舞', description: '观舞传神', number: '03', phase: '传神' },
+  { route: 'spread', label: '传', description: '狮行远方', number: '04', phase: '远播' },
 ];
+
+// The expression collection remains addressable within the stage chapter.
+export const pageRoutes = [...chapters.map(chapter => chapter.route), 'state'];
+export const chapterForRoute = route => route === 'state' ? 'action' : route;
+export const getChapter = route => chapters.find(chapter => chapter.route === chapterForRoute(route));
 
 // Insets frame the visible artwork while keeping the supplied PNG bytes intact.
 export const navigationIcons = {
@@ -14,6 +19,7 @@ export const navigationIcons = {
   model: { mediaKey: 'navStructureIcon', viewBox: '156 135 942 987' },
   action: { mediaKey: 'navActionIcon', viewBox: '210 140 888 963' },
   state: { mediaKey: 'navExpressionIcon', viewBox: '109 311 1038 611' },
+  spread: { mediaKey: 'navExpressionIcon', viewBox: '109 311 1038 611' },
   settings: { mediaKey: 'navSettingsIcon', viewBox: '270 272 715 715' },
 };
 

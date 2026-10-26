@@ -5,9 +5,7 @@ import { getMediaVolumePreference, useMediaAudioPreference, useMediaVolumePrefer
 import TitleMotionLayer from '../../components/TitleMotionLayer.jsx';
 import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import { media } from '../../config/media.js';
-import HomeCulture from './HomeCulture.jsx';
 import HomeLionBook from './HomeLionBook.jsx';
-import { HomeLionTypes } from './HomeHeritage.jsx';
 import HomeCultureSources from './HomeCultureSources.jsx';
 import HomeArchiveNav from './HomeArchiveNav.jsx';
 import { useEntryPlayback } from './useEntryPlayback.js';
@@ -15,27 +13,42 @@ import EntryAnimationOverlay from './EntryAnimationOverlay.jsx';
 import useHomeExhibit from './useHomeExhibit.js';
 import '../../styles/home-archive.css';
 import '../../styles/home-exhibit.css';
+import '../../styles/home-journey.css';
 
-export default function HomePage({ settings, playbackEnabled = true, assistantSource, onBookReady, onGalleryReady, onVideoReady }) {
+export default function HomePage({ settings, playbackEnabled = true, assistantSource, onBookReady, onGalleryReady, onVideoReady, onNavigate }) {
   const { introActive, entryAnimationActive, playbackId, finishIntro, finishVideo, finishEntryAnimation, replayIntro } = useEntryPlayback(playbackEnabled);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
   const [volume, setVolume] = useMediaVolumePreference();
   const [audioState, setAudioState] = useState({ enabled: false, pending: false });
   const resumeAudioRef = useRef(null);
+  const sourcesRef = useRef(null);
+  const sourceTriggerRef = useRef(null);
+  const [sourcesOpen, setSourcesOpen] = useState(false);
   const exhibit = useHomeExhibit(playbackEnabled && !introActive && !entryAnimationActive);
   const consumedSource = useRef(null);
   useEffect(() => {
     if (!assistantSource || consumedSource.current === assistantSource || !playbackEnabled || introActive || entryAnimationActive) return undefined;
-    const panel = { homeLionBook: 0, homeCulture: 1, homeLionTypes: 2, homeCultureSources: 3 }[assistantSource.section];
-    if (panel === undefined) return undefined;
-    let frame = requestAnimationFrame(() => {
-      frame = requestAnimationFrame(() => {
-        consumedSource.current = assistantSource;
-        exhibit.select(panel);
+    const section = assistantSource.section;
+    if (section === 'homeLionBook') {
+      let frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          consumedSource.current = assistantSource;
+          exhibit.select(0);
+        });
       });
-    });
-    return () => cancelAnimationFrame(frame);
+      return () => cancelAnimationFrame(frame);
+    }
+    if (!['homeCulture', 'homeLionTypes', 'homeCultureSources'].includes(section)) return undefined;
+    consumedSource.current = assistantSource;
+    setSourcesOpen(true);
+    return undefined;
   }, [assistantSource, playbackEnabled, introActive, entryAnimationActive, exhibit.select]);
+
+  useEffect(() => {
+    const dialog = sourcesRef.current;
+    if (sourcesOpen && playbackEnabled) dialog.showModal();
+    else if (dialog.open) dialog.close();
+  }, [sourcesOpen, playbackEnabled]);
 
   return <div className="home-page" data-intro-active={introActive} data-page-hit-enabled={settings.pageHitEnabled}>
   <section className={`entry-gate final-home${introActive ? ' is-intro-playing' : ''}`} aria-label="入场首页">
@@ -90,13 +103,16 @@ export default function HomePage({ settings, playbackEnabled = true, assistantSo
     <div className="home-archive-panel" hidden={exhibit.active !== 0} inert={!exhibit.visible || !playbackEnabled}>
       <HomeLionBook settings={settings} preload={true} playbackEnabled={playbackEnabled && exhibit.visible && exhibit.active === 0} onReady={onBookReady} onArchiveWheel={exhibit.wheel} />
     </div>
-    <div className="home-archive-panel" hidden={exhibit.active !== 1} inert={!exhibit.visible || !playbackEnabled}>
-      <HomeCulture settings={settings} preload={true} playbackEnabled={playbackEnabled && exhibit.visible && exhibit.active === 1} onReady={onGalleryReady} />
-    </div>
-    <div className="home-archive-panel" hidden={exhibit.active !== 2} inert={!exhibit.visible || !playbackEnabled}><HomeLionTypes /></div>
-    <div className="home-archive-panel" hidden={exhibit.active !== 3} inert={!exhibit.visible || !playbackEnabled}><HomeCultureSources settings={settings} /></div>
+    <button className="home-sources-trigger" ref={sourceTriggerRef} type="button" onClick={() => setSourcesOpen(true)} aria-haspopup="dialog">资料与许可</button>
   </div>
-  <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} current={exhibit.active} visible={exhibit.visible} onSelect={exhibit.select} onReturnHome={exhibit.returnHome} />
+  <HomeArchiveNav playbackEnabled={playbackEnabled} particlesEnabled={settings.bookInkEnabled} current={exhibit.active} visible={exhibit.visible} onSelect={exhibit.select} onReturnHome={exhibit.returnHome} onNavigate={onNavigate} />
+  <dialog className="home-sources-dialog" ref={sourcesRef} aria-label="资料与许可" onWheelCapture={event => event.stopPropagation()} onKeyDownCapture={event => event.stopPropagation()} onClose={() => {
+    setSourcesOpen(false);
+    if (playbackEnabled) sourceTriggerRef.current?.focus({ preventScroll: true });
+  }}>
+    <div className="home-sources-dialog-top"><span>南风有狮 · 阅读依据</span><button type="button" onClick={() => sourcesRef.current.close()} aria-label="关闭资料与许可">关闭 <span aria-hidden="true">×</span></button></div>
+    {sourcesOpen && <HomeCultureSources settings={settings} />}
+  </dialog>
   {playbackEnabled && entryAnimationActive && <EntryAnimationOverlay onComplete={finishEntryAnimation} onSkip={finishIntro} />}
   </div>;
 }

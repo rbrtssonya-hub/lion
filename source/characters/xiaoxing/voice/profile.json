@@ -2,7 +2,7 @@
   "version": 1,
   "generator": "scripts/xiaoxing/build-narration.ps1",
   "generatedAt": "2026-10-25T18:28:05.3472065+00:00",
-  "textSource": "src/features/assistant/knowledge.js#chapterGuides",
+  "textSource": "src/features/assistant/knowledge.js#chapterGuides[model,action,state]",
   "voice": {
     "engine": "Windows System.Speech.Synthesis",
     "name": "Microsoft Yaoyao",
@@ -24,14 +24,6 @@
     "channels": 1
   },
   "records": [
-    {
-      "chapter": "entry",
-      "text": "这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》书册。首页展览还可以切换文化照片、佛山狮与鹤山狮及佛鹤狮的形制对照，以及参考资料。随后可去“结构”点选部件，去“动作”观看四段演示，再到“神态”比较八态的观察线索。书册与类型图属于 AI 辅助示意，文化照片另有署名与许可。",
-      "ssml": "source/characters/xiaoxing/voice/entry.ssml",
-      "runtime": "source/public/assets/xiaoxing/voice/entry.wav",
-      "bytes": 1383894,
-      "sha256": "cb34d5cf0e37aae72cd62701920c5c76364c4b9782797c051686f6b888f0a598"
-    },
     {
       "chapter": "model",
       "text": "结构页把醒狮的可见外形分成六处：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。可以拖拽旋转、滚轮缩放，点选模型上的部位或图鉴目录，让镜头聚焦并阅读形制、工艺和文化说明。当前模型支持可见结构观察，未展示内部拆装；内部骨架、活动连接和工艺只作资料说明。",

@@ -14,10 +14,9 @@ async function open(page, route = '') {
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60000 });
 }
 
-test('类型对照按相同维度联动，重复选择交换两侧，不干扰轮播或Hash', async ({ page }) => {
+test('造章形制对照按相同维度联动，重复选择交换两侧并保持章节', async ({ page }) => {
   await open(page);
   const types = await selectHomeExhibit(page, 'homeLionTypes');
-  const culture = await page.locator('#homeCulture').getAttribute('data-culture-index');
   const hash = new URL(page.url()).hash;
   await types.getByRole('button', { name: '形制对照', exact: true }).click();
   const cards = types.locator('.heritage-comparison-card');
@@ -42,7 +41,6 @@ test('类型对照按相同维度联动，重复选择交换两侧，不干扰�
   await expect(cards.nth(1).getByRole('link', { name: /查阅资料/ })).toHaveAttribute('href', 'https://www.nhmuseum.org/fei-yi/1575.html');
   await types.getByLabel('右侧醒狮形制').press('Home');
   expect(new URL(page.url()).hash).toBe(hash);
-  expect(await page.locator('#homeCulture').getAttribute('data-culture-index')).toBe(culture);
 });
 
 test('退出类型对照恢复直接可读的单狮介绍和焦点，示意图失败仍能读对照', async ({ page }) => {
@@ -130,7 +128,8 @@ test('结构观察跳转与浏览器返回保留部位、相机、可读资料�
   await expect(stage).toHaveAttribute('data-selected-id', 'eyes');
   await expect(cultureReading).toBeVisible();
   await page.locator('.site-header [data-route="entry"]').click();
-  await page.locator('.site-header [data-route="state"]').click();
+  await page.locator('.site-header [data-route="action"]').click();
+  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
   await expect(page.getByRole('button', { name: '返回眉眼部位', exact: true })).toHaveCount(0);
 });
 

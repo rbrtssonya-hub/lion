@@ -1,13 +1,14 @@
-import { chapters } from '../config/chapters.js';
+import { chapters, chapterForRoute } from '../config/chapters.js';
 import NavigationIcon from './NavigationIcon.jsx';
 
 export default function ChapterNav({ current, onNavigate, settingsOpen, settingsCancelOnly, onToggleSettings, settingsTriggerRef }) {
+  const activeChapter = chapterForRoute(current);
   return <nav className="site-navigation" aria-label="作品章节导航">
     {chapters.map(({ route, label, description }) => (
       <button key={route} data-route={route} type="button"
-        className={`site-nav-item${current === route ? ' is-current' : ''}`}
+        className={`site-nav-item${activeChapter === route ? ' is-current' : ''}`}
         onClick={() => onNavigate(route)} aria-label={label} title={label}
-        aria-current={current === route ? 'page' : undefined}>
+        aria-current={activeChapter === route ? 'page' : undefined}>
         <span className="site-nav-symbol">
           <NavigationIcon name={route} />
         </span>

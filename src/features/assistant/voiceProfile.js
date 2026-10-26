@@ -10,7 +10,7 @@ export const voiceProfile = Object.freeze({
 });
 
 export const narrationMediaKeys = Object.freeze({
-  entry: 'xiaoxingVoiceEntry', model: 'xiaoxingVoiceModel',
+  model: 'xiaoxingVoiceModel',
   action: 'xiaoxingVoiceAction', state: 'xiaoxingVoiceState',
 });
 

@@ -8,7 +8,7 @@ import { askXiaoxing } from './client.js';
 import './assistant.css';
 
 const petSize = { width: 152, height: 194 };
-const chapterTitles = { entry: '入境 · 首页', model: '观形 · 结构', action: '起舞 · 动作', state: '传神 · 神态' };
+const chapterTitles = { entry: '入境 · 首页', model: '造 · 观形', action: '舞 · 动作', state: '舞 · 神态', spread: '传 · 狮行远方' };
 const Icon = ({ type }) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
   {type === 'close' ? <path d="m6 6 12 12M18 6 6 18" /> : type === 'send' ? <><path d="m4 11 16-7-6 16-3-6-7-3Z" /><path d="m11 14 9-10" /></> : type === 'voice' ? <><path d="M11 5 6 9H3v6h3l5 4V5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></> : <><path d="M4 5h6c2 0 2 1 2 1s0-1 2-1h6v14h-6c-2 0-2 1-2 1s0-1-2-1H4V5Z" /><path d="M12 6v14" /></>}
 </svg>;

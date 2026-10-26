@@ -1,4 +1,9 @@
 /* Surface aliases stay local: nested cards never inherit a parent's material. */
+[data-surface='spreadOverlay'] {
+  --surface-width: var(--spreadOverlay-surface-width); --surface-height: var(--spreadOverlay-surface-height);
+  --surface-opacity: var(--spreadOverlay-surface-opacity); --surface-blur: var(--spreadOverlay-surface-blur);
+  --surface-radius: var(--spreadOverlay-surface-radius); --surface-rgb: var(--spreadOverlay-surface-rgb);
+}
 [data-surface='bookTitle'] {
   --surface-width: var(--bookTitle-surface-width); --surface-height: var(--bookTitle-surface-height);
   --surface-opacity: var(--bookTitle-surface-opacity); --surface-blur: var(--bookTitle-surface-blur);
@@ -34,7 +39,7 @@
   --surface-opacity: var(--expressionOverlay-surface-opacity); --surface-blur: var(--expressionOverlay-surface-blur);
   --surface-radius: var(--expressionOverlay-surface-radius); --surface-rgb: var(--expressionOverlay-surface-rgb);
 }
-.home-archive-scene .home-culture-sources[data-surface='cultureSources'] {
+:is(.home-archive-scene, .home-sources-dialog) .home-culture-sources[data-surface='cultureSources'] {
   width: var(--surface-width, 100%);
   min-height: var(--surface-height, 0px);
   margin-inline: auto;
@@ -45,10 +50,10 @@
   -webkit-backdrop-filter: var(--surface-blur, none);
   box-shadow: 0 2px 8px rgb(60 53 45 / calc(var(--surface-opacity, .95) * .025));
 }
-.home-archive-scene .home-culture-sources[data-surface='cultureSources']::before {
+:is(.home-archive-scene, .home-sources-dialog) .home-culture-sources[data-surface='cultureSources']::before {
   background: rgb(165 57 37 / var(--surface-opacity, 1));
 }
-.home-archive-scene a.home-culture-source-card[data-surface='cultureSourceCard'] {
+:is(.home-archive-scene, .home-sources-dialog) a.home-culture-source-card[data-surface='cultureSourceCard'] {
   width: var(--surface-width, 100%);
   padding-inline: min(25px, 4%);
   min-height: var(--surface-height, 186px);
@@ -59,7 +64,7 @@
   backdrop-filter: var(--surface-blur, none);
   -webkit-backdrop-filter: var(--surface-blur, none);
 }
-.home-archive-scene a.home-culture-source-card[data-surface='cultureSourceCard']:hover {
+:is(.home-archive-scene, .home-sources-dialog) a.home-culture-source-card[data-surface='cultureSourceCard']:hover {
   border-color: rgb(183 170 151 / calc(var(--surface-opacity, .95) * .6));
   box-shadow: 0 2px 8px rgb(60 53 45 / calc(var(--surface-opacity, .95) * .035));
 }

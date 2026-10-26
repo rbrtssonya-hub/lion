@@ -5,12 +5,12 @@ import '../../styles/home-navigation.css';
 
 const sections = [
   { id: 'homeLionBook', label: '岭南醒狮志' },
-  { id: 'homeCulture', label: '醒狮文化' },
-  { id: 'homeLionTypes', label: '醒狮种类' },
-  { id: 'homeCultureSources', label: '参考资料' },
+  { id: 'model', route: 'model', label: '造 · 扎作观形' },
+  { id: 'action', route: 'action', label: '舞 · 观舞传神' },
+  { id: 'spread', route: 'spread', label: '传 · 狮行远方' },
 ];
 
-export default function HomeArchiveNav({ playbackEnabled = true, particlesEnabled = true, current = 0, visible = false, onSelect, onReturnHome }) {
+export default function HomeArchiveNav({ playbackEnabled = true, particlesEnabled = true, current = 0, visible = false, onSelect, onReturnHome, onNavigate }) {
   const { navRef, markerRef, canvasRef } = useHomeNavigationMotion({ index: current, playbackEnabled, particlesEnabled, visible, vertical: true });
   const buttons = useRef([]);
   useLayoutEffect(() => {
@@ -46,9 +46,9 @@ export default function HomeArchiveNav({ playbackEnabled = true, particlesEnable
     <span className="home-archive-nav-track" aria-hidden="true" />
     <canvas ref={canvasRef} className="home-archive-nav-particles" aria-hidden="true" />
     <span ref={markerRef} className="home-archive-nav-lion" aria-hidden="true"><img src={media.navLion} width="48" height="48" alt="" draggable="false" /></span>
-    {sections.map((section, index) => <button type="button" key={section.id} data-home-section={section.id}
-      ref={node => { buttons.current[index] = node; }} aria-controls={section.id}
-      aria-current={current === index ? 'location' : undefined} onClick={() => onSelect(index)}>
+    {sections.map((section, index) => <button type="button" key={section.id} data-home-section={section.route ? undefined : section.id} data-chapter-link={section.route}
+      ref={node => { buttons.current[index] = node; }} aria-controls={section.route ? undefined : section.id}
+      aria-current={!section.route ? 'location' : undefined} onClick={() => section.route ? onNavigate?.(section.route) : onSelect(0)}>
       <i data-navigation-stop="" aria-hidden="true" /><span>{section.label}</span>
     </button>)}
     <button type="button" className="home-archive-return interaction-cue" onClick={onReturnHome}>↑ 上滑返回首页</button>

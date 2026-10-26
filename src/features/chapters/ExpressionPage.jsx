@@ -20,7 +20,7 @@ function Cloud({ className = '' }) {
   </svg>;
 }
 
-export default function ExpressionPage({ active = true, observation, onReturnToModel, settings = expressionFeedbackDefaults }) {
+export default function ExpressionPage({ active = true, observation, onReturnToModel, onReturnToAction, settings = expressionFeedbackDefaults }) {
   const initialIndex = Math.max(0, lionExpressions.findIndex(item => item.id === observation?.expressionId));
   const [selection, setSelection] = useState({ index: initialIndex, previous: null, direction: 'next', revision: 0 });
   const [reactionRevision, setReactionRevision] = useState(0);
@@ -143,6 +143,7 @@ export default function ExpressionPage({ active = true, observation, onReturnToM
       <div className="expression-toolbar">
         <ChapterIdentity chapter="state" eyebrow="南风有狮 · 神态图鉴" title="醒狮八态" description="观眉眼，读神韵。" />
         {observation && <button type="button" className="expression-model-return" onClick={onReturnToModel}>返回{observation.partLabel}部位</button>}
+        <button type="button" className="expression-action-return" onClick={onReturnToAction}>返回戏台</button>
         <div className="expression-reading-modes" role="group" aria-label="神态阅读方式"><button type="button" aria-pressed={!comparing} onClick={exitComparison}>八态浏览</button><button type="button" ref={compareButton} aria-pressed={comparing} onClick={showComparison}>神态对照</button></div>
       </div>
       {comparing && <ExpressionComparison pairId={pairId} onSelect={setPairId} />}

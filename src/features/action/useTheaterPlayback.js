@@ -19,12 +19,13 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
   const recordFor = id => {
     if (!records.has(id)) records.set(id, {
       node: null, wanted: false, revision: 0, pending: null, status: 'idle', error: '',
+      endedPending: false, endedConsumed: false,
     });
     return records.get(id);
   };
 
   const mayPlay = (id, record, node = record.node) => mounted && config.enabled && visibleDocument()
-    && config.playingIntent && config.ids.has(id) && (!config.flatMode || id === config.activeId)
+    && config.playingIntent && config.ids.has(id) && (!(config.flatMode || config.sequenceActive) || id === config.activeId)
     && node && record.node === node && node.isConnected;
 
   const publish = id => {
@@ -64,9 +65,21 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
     publish(id);
   };
 
+  const consumeEnded = (id, record) => {
+    if (!record.endedPending || record.endedConsumed || !record.node?.ended || !mayPlay(id, record)) return false;
+    record.endedPending = false;
+    record.endedConsumed = true;
+    pauseRecord(id, record);
+    config.onEnded?.(id);
+    return true;
+  };
+
   const requestPlay = (id, record, force = false) => {
     const node = record.node;
     if (!mayPlay(id, record, node) || record.status === 'blocked' || record.status === 'error') return;
+    // Native pause/timeupdate can commit before ended. Let ended advance the
+    // sequence before reconciliation can restart this completed clip at zero.
+    if (config.sequenceActive && node.ended) return;
     if (!force && record.wanted && (record.pending || !node.paused)) return;
     record.wanted = true;
     const revision = ++record.revision;
@@ -137,6 +150,9 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
     syncAudio();
     for (const [id, record] of records) {
       if (!record.node) continue;
+      record.node.loop = !config.sequenceActive;
+      if (record.endedPending && !record.node.ended) record.endedPending = false;
+      if (consumeEnded(id, record)) continue;
       if (!mayPlay(id, record)) {
         if (record.wanted || record.pending || !record.node.paused) pauseRecord(id, record);
         else if (record.status === 'idle') record.status = 'paused';
@@ -173,10 +189,12 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
         record.node = node;
         record.status = node ? 'idle' : 'paused';
         record.error = '';
+        record.endedPending = false;
+        record.endedConsumed = false;
         if (node) {
           node.muted = true;
           node.volume = config.volume;
-          node.loop = true;
+          node.loop = !config.sequenceActive;
           if (mounted) reconcile();
         }
       },
@@ -204,7 +222,21 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
       onLoadedMetadata: event => { if (eventFor(id, event)) publish(id); },
       onDurationChange: event => { if (eventFor(id, event)) publish(id); },
       onTimeUpdate: event => { if (eventFor(id, event)) publish(id); },
-      onSeeked: event => { if (eventFor(id, event)) publish(id); },
+      onSeeked: event => {
+        const record = eventFor(id, event);
+        if (!record) return;
+        if (!event.currentTarget.ended) { record.endedPending = false; record.endedConsumed = false; }
+        publish(id);
+      },
+      onEnded: event => {
+        const record = eventFor(id, event);
+        if (!record || !mounted || !config.sequenceActive || id !== config.activeId || record.endedConsumed
+          || !event.currentTarget.ended || !event.currentTarget.isConnected) return;
+        // A native ended can arrive after visibilitychange has paused the node
+        // and cleared wanted. Keep that end until this screen may run again.
+        record.endedPending = true;
+        consumeEnded(id, record);
+      },
       onError: event => {
         const record = eventFor(id, event);
         if (!record) return;
@@ -230,6 +262,8 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
     pauseRecord(config.activeId, record);
     record.status = 'idle';
     record.error = '';
+    record.endedPending = false;
+    record.endedConsumed = false;
     // Loading is reserved for an explicit retry; switching primary screens and
     // ordinary play/pause never reset a clip's timeline or reload its source.
     record.node.load();
@@ -251,6 +285,9 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
     getVideo: id => records.get(id)?.node || null,
     configure(next) {
       if (next.audioEnabled !== config.audioEnabled) audioBlocked = false;
+      if (!next.sequenceActive || next.activeId !== config.activeId) {
+        for (const record of records.values()) record.endedPending = false;
+      }
       config = next;
       reconcile();
     },
@@ -267,6 +304,7 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
       document.removeEventListener('pointerdown', unlockAudio, true);
       document.removeEventListener('keydown', unlockAudio, true);
       const nodes = [...records.entries()].map(([id, record]) => {
+        record.endedPending = false;
         pauseRecord(id, record);
         return record.node;
       }).filter(Boolean);
@@ -339,17 +377,29 @@ function createPlaybackController(updateView, updateIntent, updateAudio, updateV
       active.node.currentTime = Math.min(duration, Math.max(0, Number(value)));
       publish(config.activeId);
     },
+    restart(id) {
+      const record = records.get(id);
+      if (!record?.node) return;
+      record.endedPending = false;
+      record.endedConsumed = false;
+      record.node.currentTime = 0;
+      setIntent(true);
+      for (const item of records.values()) {
+        if (item.status === 'blocked') { item.status = 'paused'; item.error = ''; }
+      }
+    },
+    pause() { setIntent(false); reconcile(); },
     retry,
   };
 }
 
-export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false }) {
+export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false, sequenceActive = false, onEnded }) {
   const [view, setView] = useState(initialView);
   const [playingIntent, setPlayingIntent] = useState(true);
   const [audioEnabled, setAudioEnabled] = useMediaAudioPreference();
   const [volume, setVolume] = useMediaVolumePreference();
   const controllerRef = useRef(null);
-  const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, playingIntent, audioEnabled, volume };
+  const config = { ids: new Set(clips.map(clip => clip.id)), activeId, enabled, flatMode, sequenceActive, onEnded, playingIntent, audioEnabled, volume };
   if (!controllerRef.current) controllerRef.current = createPlaybackController(setView, setPlayingIntent, setAudioEnabled, setVolume, config);
   const controller = controllerRef.current;
 
@@ -373,6 +423,8 @@ export function useTheaterPlayback({ clips, activeId, enabled, flatMode = false 
     togglePlayback: controller.togglePlayback,
     toggleAudio: controller.toggleAudio,
     seek: controller.seek,
+    restart: controller.restart,
+    pause: controller.pause,
     retry: controller.retry,
   };
 }

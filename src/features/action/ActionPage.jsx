@@ -30,7 +30,7 @@ function ActionCaption({ clip, index, leaving = false }) {
   </div>;
 }
 
-export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings }) {
+export default function ActionPage({ clips = theaterActions, assets = media, lightingSettings, onNavigate }) {
   const stageRef = useRef(null);
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
@@ -51,10 +51,26 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   const [fullscreen, setFullscreen] = useState(false);
   const [compactLayout, setCompactLayout] = useState(false);
   const [notice, setNotice] = useState('');
+  const [sequenceMode, setSequenceMode] = useState('idle');
   const [caption, setCaption] = useState({ current: clips[0].id, previous: null });
   const previousCaption = useRef(clips[0].id);
   const active = clips.find(clip => clip.id === activeId) || clips[0];
-  const playback = useTheaterPlayback({ clips, activeId, enabled: visible, flatMode });
+  const sequenceActive = sequenceMode === 'playing';
+  const playback = useTheaterPlayback({
+    clips, activeId, enabled: visible, flatMode, sequenceActive,
+    onEnded: id => {
+      const next = clips[clips.findIndex(clip => clip.id === id) + 1];
+      if (!next) {
+        playback.pause();
+        setSequenceMode('complete');
+        return;
+      }
+      playback.restart(next.id);
+      requestedScreen.current = next.id;
+      setActiveId(next.id);
+      sceneRef.current?.focusScreen(next.id, { instant: matchMedia('(prefers-reduced-motion: reduce)').matches });
+    },
+  });
   activeRef.current = activeId;
   visibleRef.current = visible;
   flatRef.current = flatMode;
@@ -116,6 +132,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
         onActiveScreen: id => {
           if (cancelled) return;
+          if (requestedScreen.current !== id) setSequenceMode('idle');
           requestedScreen.current = id;
           activeRef.current = id;
           setActiveId(id);
@@ -162,12 +179,24 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   }, []);
 
   const selectAction = useCallback(id => {
+    if (sequenceMode !== 'idle') {
+      setSequenceMode('idle');
+      playback.restart(id);
+    }
     requestedScreen.current = id;
     if (flatRef.current || !sceneRef.current || sceneState !== 'ready') {
       setActiveId(id);
       sceneRef.current?.focusScreen(id, { instant: true });
     } else sceneRef.current.focusScreen(id);
-  }, [sceneState]);
+  }, [sceneState, sequenceMode, playback.restart]);
+  const startSequence = () => {
+    const first = clips[0].id;
+    requestedScreen.current = first;
+    playback.restart(first);
+    setActiveId(first);
+    setSequenceMode('playing');
+    sceneRef.current?.focusScreen(first, { instant: true });
+  };
   const retryScene = () => { setFlatMode(false); setSceneVersion(value => value + 1); };
   const toggleFullscreen = async () => {
     try {
@@ -191,12 +220,12 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
   return <section className="chapter-stage action-page action-theater-page" id="chapterStage" data-chapter="action" data-compact-layout={compactLayout} data-active-action={activeId} aria-label="醒狮动作巨幕厅">
     <h1 className="sr-only" id="chapterTitle">动作</h1>
     <div id="actionTheater" ref={stageRef} className="action-theater" tabIndex={0} onKeyDown={onKeyDown}
-      data-scene-state={sceneState} data-compact-layout={compactLayout} data-active-action={activeId} data-view={flatMode ? 'flat' : 'theater'} data-playing={playing}>
+      data-scene-state={sceneState} data-compact-layout={compactLayout} data-active-action={activeId} data-view={flatMode ? 'flat' : 'theater'} data-playing={playing} data-sequence={sequenceMode}>
       <div id="theaterSceneContainer" className="theater-scene" ref={containerRef} aria-label="拖拽环绕的四面巨幕与醒狮" />
       <div className="theater-video-bank" aria-hidden={!flatMode}>
         {clips.map(clip => <video key={clip.id} data-action-id={clip.id} data-current={clip.id === activeId}
           {...playback.bindVideo(clip.id)} src={assets[clip.videoKey]} poster={assets[clip.posterKey]}
-          muted playsInline loop preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
+          muted playsInline loop={!sequenceActive} preload="auto" tabIndex={-1} aria-label={`${clip.name}视频`} />)}
       </div>
       <div className="theater-vignette" aria-hidden="true" />
       <div className="theater-context">
@@ -212,6 +241,9 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         </aside>
       </div>
       <div className="theater-view-tools">
+        <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => onNavigate?.('state')}>看狮头 · 八态</button>
+        <button type="button" className="interaction-cue interaction-cue--dark theater-sequence-toggle" aria-pressed={sequenceActive}
+          onClick={sequenceActive ? () => setSequenceMode('idle') : startSequence}>{sequenceActive ? '停止顺序观赏' : '顺序观赏'}</button>
         <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
           {flatMode ? '返回巨幕' : '平面观看'}
         </button>
@@ -225,6 +257,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         <button type="button" onClick={() => setFlatMode(true)}>先看视频</button>
       </div>}
       <div className="theater-notices">
+        {sequenceMode === 'complete' && <div className="theater-journey-complete" role="status">
+          <p>四段观赏已结束，鼓声仍在远方。</p>
+          <button type="button" onClick={() => onNavigate?.('spread')}>去看狮行远方 <span aria-hidden="true">↗</span></button>
+        </div>}
         {sceneError && <div className="theater-scene-error" role="status"><span>{sceneError}</span>
           <button type="button" onClick={retryScene}>重新载入动作空间</button></div>}
         {lightingStatus.phase === 'error' && <div className="theater-hdri-notice" role="status">
@@ -242,6 +278,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       </div>
 
       <div className="theater-bottom">
+        {sequenceActive && <p className="theater-sequence-status" role="status">顺序观赏 · 第 {clips.indexOf(active) + 1} / {clips.length} 幕 <span>点选任一幕可单幕回看</span></p>}
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
           {clips.map((clip, index) => <button type="button" className="interaction-cue interaction-cue--dark" key={clip.id} data-action-id={clip.id}
             aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>

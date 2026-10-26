@@ -3,11 +3,17 @@ import { media } from '../../config/media.js';
 import lionStructure from '../../data/lion-structure.json';
 import StructureReadingPanel from './StructureReadingPanel.jsx';
 import ChapterIdentity from '../../components/ChapterIdentity.jsx';
+import { HomeLionTypes } from '../home/HomeHeritage.jsx';
+import { handleHeritageTabs } from '../home/HeritageElements.jsx';
+import CraftSection from './CraftSection.jsx';
+import '../../styles/model-journey.css';
 
 const initialStatus = { phase: 'loading', message: '正在载入醒狮模型' };
 const shortPartNames = { outer_shell: '狮头', eyes: '眉眼', mirror: '额饰', mouth: '狮嘴', fur_and_bells: '须毛', lion_cloth: '狮被' };
+const readingTabs = [{ id: 'form', label: '观形' }, { id: 'types', label: '形制' }, { id: 'craft', label: '工艺' }];
 
 export default function ModelPage({ active = true, onReady, onObserve, onPartChange, lightingSettings }) {
+  const [readingTab, setReadingTab] = useState('form');
   const hotspots = lionStructure.hotspots;
   const [selectedId, setSelectedId] = useState(hotspots[0]?.id);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -34,7 +40,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   const selectedIndex = hotspots.findIndex((item) => item.id === selectedId);
   const selected = hotspots[selectedIndex] ?? hotspots[0];
   const expressionLink = { eyes: { expressionId: 'surprise', name: '惊', partLabel: '眉眼' }, mouth: { expressionId: 'delight', name: '乐', partLabel: '狮嘴' } }[selected.id];
-  activeRef.current = active;
+  activeRef.current = active && readingTab === 'form';
   onReadyRef.current = onReady;
   selectedRef.current = selected;
   focusStateRef.current = focusState;
@@ -138,11 +144,11 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   };
 
   useEffect(() => {
-    const syncActivity = () => sceneRef.current?.setActive(active && !document.hidden);
+    const syncActivity = () => sceneRef.current?.setActive(active && readingTab === 'form' && !document.hidden);
     syncActivity();
     document.addEventListener('visibilitychange', syncActivity);
     return () => document.removeEventListener('visibilitychange', syncActivity);
-  }, [active]);
+  }, [active, readingTab]);
 
   useEffect(() => {
     autoRotateRef.current = autoRotate;
@@ -228,19 +234,35 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
   return (
     <section
       id="modelStage"
-      className="model-stage"
+      className="model-stage model-journey"
       data-chapter="model"
+      data-reading-tab={readingTab}
       data-selected-id={selected?.id}
       data-focus-state={focusState}
       aria-label="醒狮整体与结构"
     >
+      <div className="model-journey-bar">
+        <p className="model-journey-intro">从形入艺<span>一头狮，三重观看</span></p>
+        <div className="model-reading-tabs" role="tablist" aria-label="造章局部阅读">
+          {readingTabs.map((tab, index) => <button key={tab.id} type="button" role="tab"
+            id={`model-reading-tab-${tab.id}`} aria-selected={readingTab === tab.id}
+            aria-controls={`model-reading-panel-${tab.id}`} tabIndex={readingTab === tab.id ? 0 : -1}
+            onClick={() => setReadingTab(tab.id)}
+            onKeyDown={event => handleHeritageTabs(event, index, readingTabs.length, next => setReadingTab(readingTabs[next].id))}>
+            <small aria-hidden="true">0{index + 1}</small>{tab.label}
+          </button>)}
+        </div>
+      </div>
       <div
         id="sceneContainer"
         className="scene-container"
         ref={containerRef}
         aria-hidden="true"
+        hidden={readingTab !== 'form'}
         style={{ visibility: status.phase === 'ready' ? 'visible' : 'hidden' }}
       />
+      <div id="model-reading-panel-form" className="model-journey-panel model-form-panel" role="tabpanel"
+        aria-labelledby="model-reading-tab-form" hidden={readingTab !== 'form'}>
       <div className="model-layout">
         <div className="scene-column">
           <div className="scene-frame" id="sceneFrame">
@@ -309,6 +331,15 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
           focusState={focusState} detailScrollRef={detailScrollRef} expressionLink={expressionLink} onObserve={onObserve}
           onPrevious={() => selectHotspot(hotspots[(selectedIndex - 1 + hotspots.length) % hotspots.length].id)}
           onNext={() => selectHotspot(hotspots[(selectedIndex + 1) % hotspots.length].id)} />
+      </div>
+      </div>
+      <div id="model-reading-panel-types" className="model-journey-panel model-types-panel" role="tabpanel"
+        aria-labelledby="model-reading-tab-types" tabIndex={0} hidden={readingTab !== 'types'}>
+        <HomeLionTypes />
+      </div>
+      <div id="model-reading-panel-craft" className="model-journey-panel model-craft-panel" role="tabpanel"
+        aria-labelledby="model-reading-tab-craft" tabIndex={0} hidden={readingTab !== 'craft'}>
+        <CraftSection />
       </div>
     </section>
   );

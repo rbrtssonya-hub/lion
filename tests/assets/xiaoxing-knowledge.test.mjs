@@ -6,8 +6,8 @@ import {
   retrieveKnowledge, answerLocally,
 } from '../../src/features/assistant/knowledge.js';
 
-test('four current chapters offer grounded guides and answerable suggested questions', () => {
-  assert.deepEqual(Object.keys(chapterGuides), ['entry', 'model', 'action', 'state']);
+test('four current chapters plus the spread chapter offer grounded guides and answerable suggested questions', () => {
+  assert.deepEqual(Object.keys(chapterGuides), ['entry', 'model', 'action', 'state', 'spread']);
   for (const chapter of Object.keys(chapterGuides)) {
     const guide = getChapterGuide(chapter);
     assert.equal(guide.mode, 'local');
@@ -31,6 +31,7 @@ test('natural questions retrieve their own topic across current chapter boundari
     ['我想转一转这个狮头，怎么操作？', 'structure-controls', 'model'],
     ['想看狮子吐球的那一段，应该看什么？', 'action-tuqiu', 'action'],
     ['喜与乐到底有什么不同呀', 'joy-delight', 'state'],
+    ['地图怎么从广东看到中国和世界？', 'spread-map-levels', 'spread'],
   ];
   for (const [question, id, chapter] of questions) {
     assert.equal(retrieveKnowledge(question, chapter === 'entry' ? 'state' : 'entry')[0]?.id, id, question);
@@ -96,6 +97,14 @@ test('eight states retain AI-assisted qualitative and unverified-sample boundari
   assert.match(answerLocally('这个网站能识别情绪或给动作打分吗？', 'entry').answer, /不提供.*评分/);
 });
 
+test('spread guide describes the actual Guangdong, China, world levels and avoids a migration claim', () => {
+  const answer = answerLocally('地图怎么从广东看到中国和世界？', 'spread');
+  assert.equal(retrieveKnowledge('地图怎么从广东看到中国和世界？', 'entry')[0]?.id, 'spread-map-levels');
+  assert.match(answer.answer, /广东.*中国.*世界/);
+  assert.match(answer.answer, /五地.*八幅/);
+  assert.match(answer.answer, /拍摄年份.*不表示传播先后/);
+});
+
 test('chapter-guide intent follows explicit chapter and otherwise current route', () => {
   assert.deepEqual(answerLocally('讲解本页', 'state'), getChapterGuide('state'));
   assert.equal(retrieveKnowledge('介绍结构页', 'action')[0]?.id, 'guide-model');
@@ -105,10 +114,11 @@ test('chapter-guide intent follows explicit chapter and otherwise current route'
 
 test('source links use existing sections and curated HTTPS references', () => {
   const sourceFiles = {
-    entry: ['src/features/home/HomeLionBook.jsx', 'src/features/home/HomeCulture.jsx', 'src/features/home/HomeHeritage.jsx', 'src/features/home/HomeCultureSources.jsx'],
-    model: ['src/features/model/ModelPage.jsx', 'src/features/model/StructureReadingPanel.jsx'],
+    entry: ['src/features/home/HomeLionBook.jsx', 'src/features/home/HomeCultureSources.jsx'],
+    model: ['src/features/model/ModelPage.jsx', 'src/features/model/StructureReadingPanel.jsx', 'src/features/model/CraftSection.jsx'],
     action: ['src/features/action/ActionPage.jsx'],
     state: ['src/features/chapters/ExpressionPage.jsx', 'src/features/chapters/ExpressionComparison.jsx'],
+    spread: ['src/features/spread/SpreadPage.jsx', 'src/features/spread/SpreadMap.jsx'],
   };
   const files = Object.fromEntries(Object.entries(sourceFiles).map(([chapter, paths]) => [chapter, paths.map(path => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')).join('\n')]));
   const ids = new Set();

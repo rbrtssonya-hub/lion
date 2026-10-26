@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "baseRevision": "ce85484",
+  "originalManifestRecords": 779,
+  "runtimeSourceAndDistEqual": 121,
+  "runtimeAssetsChanged": 0,
+  "source": "existing manifest size/SHA256 and production dist byte equality"
+}

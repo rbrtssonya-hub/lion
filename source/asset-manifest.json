@@ -5078,6 +5078,126 @@
       "path": "source/reviews/xiaoxing/2026-10-26/motion/state-1366.png",
       "bytes": 1093533,
       "sha256": "c39dd95ab7912481b944be5fe1f63c13df62eae72c12b558acc70356a6613101"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/action-1366.png",
+      "bytes": 1195952,
+      "sha256": "a05ec05e5a6a8738dcb1b895171811b1498bb813cc98129bb5b71151bbb65ee5"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/action-1440.png",
+      "bytes": 1486768,
+      "sha256": "a6c32763a004c52ec99bbe9d3c3e7ca133e48104715b5008cc11e774c252d568"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/action-1920.png",
+      "bytes": 2248177,
+      "sha256": "4528b6de968035bb640b1b762fb6a181691680f76f6c3ca91e5cbd3024073188"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/assets.json",
+      "bytes": 240,
+      "sha256": "4ff45991cbddd6b5c2dd224bfd494d91f47014ac32b70b81138e5d57e938e78e"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/book-1366.png",
+      "bytes": 1196263,
+      "sha256": "e121f301647209c764731958370670bd389255075e6e81d247b42202eb2b94fd"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/book-1440.png",
+      "bytes": 1505122,
+      "sha256": "47f6e34c660b95aae1f566fd83c4cc6df632921702727e3f647f1f6b3ed6ac03"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/book-1920.png",
+      "bytes": 2306539,
+      "sha256": "c1003971283fb48369c3ef03b6313fe6d7479d8719b296d7dd2e794ddf6ecfb5"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/capture.json",
+      "bytes": 13808,
+      "sha256": "8c6246588c9bf434bc4966dbc2de5e5778b4ad8901400c5b25aead54a02d8e4e"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/craft-1440.png",
+      "bytes": 1231914,
+      "sha256": "d917ac3b080e14ba7f07105b4991527a8ab56d2678d89022fa366700109dbb01"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/model-1366.png",
+      "bytes": 1160927,
+      "sha256": "6f79700c6117af9cda7b94fe70b380dcbf73ca447ff6e5a8f65b202c299fe1cd"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/model-1440.png",
+      "bytes": 1394596,
+      "sha256": "74f9bcd417af5021e9fa9f82b2a0b69faff50773f4c50f4ab6997915e0dc7adf"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/model-1920.png",
+      "bytes": 2286643,
+      "sha256": "a6a2b2895dfbe4c4b208e4c43d7c37e8a41f1e86a0b53b0ef16db35a788091bb"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/sources-1440.png",
+      "bytes": 176671,
+      "sha256": "39a5ba43caf5ecda3ed0b7885190e6ee2c415c46b8192fff8973559d5aaea4da"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/spread-1366.png",
+      "bytes": 408687,
+      "sha256": "672b3f24aa951d692bd6991eb5c39dc05b147ae5ed8ba7f2c210460863f0fec4"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/spread-1440.png",
+      "bytes": 509284,
+      "sha256": "3925ddb3f0250ae9ed8cb40a7441a7e60da4b95934126636bbdaa45c56421c5a"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/spread-1920.png",
+      "bytes": 757582,
+      "sha256": "fa7f6ad2410cbbfae632ae908be4215850e787bb4efd65b0aad0140d430e20d1"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/state-1366.png",
+      "bytes": 1075257,
+      "sha256": "3b19cb71e9bcbb64a09aee4b58f9f6467a76265497adc09e804bf6032ec1c01e"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/state-1440.png",
+      "bytes": 1323970,
+      "sha256": "c53dc4ac618d6a57e5e9da60e3a45f03eeff8a09d3a7416a18c329fb54b5a4e2"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/state-1920.png",
+      "bytes": 2046958,
+      "sha256": "72df14e6d787d8b91db01aad34afe2c197c1752a313e2c827049b5d0928e52cb"
+    },
+    {
+      "from": "native Chrome production four-chapter review and asset verification, 2026-10-26",
+      "path": "source/reviews/four-chapter-journey/2026-10-26/types-1440.png",
+      "bytes": 949181,
+      "sha256": "96c975861ca4606ba024ec2cf5ad384e6ee2e28a12789a1970e5722857db8e3e"
     }
   ]
 }

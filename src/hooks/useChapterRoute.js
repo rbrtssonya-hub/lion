@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { chapters } from '../config/chapters.js';
+import { pageRoutes } from '../config/chapters.js';
 
-const routes = new Set(chapters.map((chapter) => chapter.route));
+const routes = new Set(pageRoutes);
 const routeAliases = new Map([['intro', 'entry'], ['structure', 'model']]);
 const readCandidate = () => window.location.hash.replace(/^#\/?/, '');
 const readRoute = () => {
