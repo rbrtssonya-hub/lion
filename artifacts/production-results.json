@@ -1,0 +1,14 @@
+{
+  "production": true,
+  "performance": "180 FPS · 2,270,738 triangles · 161 draw calls · 16 textures",
+  "errors": [],
+  "failedResponses": [],
+  "verified": [
+    "static GLB and Draco decoder load",
+    "production chunks run",
+    "generated image loads at full resolution",
+    "UV and texture repeat diagrams render",
+    "image enlargement and Escape close",
+    "no development debug global"
+  ]
+}

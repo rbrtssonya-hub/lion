@@ -1,0 +1,78 @@
+{
+  "assets": [
+    {
+      "path": "images/navigation/brows.png",
+      "bytes": 2596149,
+      "sha256": "0cdfcaee1b47576f582b0f74e3bfbaad043471c5e73b414efcb2892d5097f038",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/navigation/crown.png",
+      "bytes": 2105889,
+      "sha256": "a22f62c0ea72244415ddaa6ac3f57a469aecfee6342f9c1fff06dca7dc5b04fd",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/navigation/beard.png",
+      "bytes": 2621656,
+      "sha256": "4ffa8f175cb4e41df5c51787de5ec04e6fe0cb1fd9cd6885f129df4d50382310",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/navigation/body.png",
+      "bytes": 3000398,
+      "sha256": "2baff97e9e49ba07d50bfea2de94be2b287fd2f341af412dc05ee31601d0eddb",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/navigation/trim.png",
+      "bytes": 2568097,
+      "sha256": "5114277e3e5a331e5f06c3295e2c6974a24abc1d9b64774d25b201a401b95a21",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/navigation/mouth.png",
+      "bytes": 2883102,
+      "sha256": "491e62a1d34fcd956d02dd8811e140a7da18db324e515f0523349313b213b1b1",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/brows.png",
+      "bytes": 2545782,
+      "sha256": "a25ce823b7289c5d3ff3a1109864bf3279d8cfbdb4ba5658f57ec025c36553d3",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/crown.png",
+      "bytes": 2683358,
+      "sha256": "24291a15ab614d742930bc3f7817ab8a7a592558d81533ab27385475afdb4a8f",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/beard.png",
+      "bytes": 2345520,
+      "sha256": "7e72f959d2a53b2a0245f0a2ac1c8b6a472ccbf1c88c709565f5a78bc328b542",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/body.png",
+      "bytes": 3227645,
+      "sha256": "fe6db055b93cf4563a8a9346bea9f63cac60090412c7ec157ab83ce2d4655771",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/trim.png",
+      "bytes": 2941838,
+      "sha256": "33767cf524f5fd921fe83ab0871e724d0573422f18fe356e0d7130bba9651b70",
+      "productionIdentical": true
+    },
+    {
+      "path": "images/culture/mouth.png",
+      "bytes": 2434358,
+      "sha256": "5a025c7415b810ffb415345135bf17a106244bc1f7723644eb818f860d739a7b",
+      "productionIdentical": true
+    }
+  ],
+  "all12ProductionIdentical": true,
+  "sourceModelSha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53"
+}

@@ -1,0 +1,222 @@
+{
+  "generatedAt": "2026-10-26",
+  "generationMode": "builtinimage_gen",
+  "scope": "Six new artistic navigation images and six new culture study illustrations; original full PNGs, no image editing or resizing.",
+  "assetCount": 12,
+  "verification": {
+    "navigationCount": 6,
+    "cultureCount": 6,
+    "distinctNewImageHashes": 12,
+    "allSourceFilesExist": true,
+    "allProjectFilesMatchOriginalBytes": true,
+    "allNewAssetsDifferFromAllSixHeroImages": true,
+    "heroImagesChecked": [
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\beard.png",
+        "sha256": "cd2cd6c1325e6bd0fc7dff07e518c26e95962315a95fd8bee19192413c2308c6"
+      },
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\body.png",
+        "sha256": "38ac2779f8060235d9bc3c2eabbbb56806fbb90762f2497208d51a00192dc555"
+      },
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\brows.png",
+        "sha256": "67d8c1ca47f1ccd040bd84f7d8ed272c3e01c6d35e536a377e9aa059b30a2cab"
+      },
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\crown.png",
+        "sha256": "c0fea154ba2cffc09d397236d3efee1708c9f856322208c64c75d2ef256e0aa3"
+      },
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\mouth.png",
+        "sha256": "d2db855b45d98ce65eabe6e0275ef34e48ca8c66abbc01688f2204d6198c438b"
+      },
+      {
+        "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\trim.png",
+        "sha256": "655742832fc6209d747408122a84e9218e38e862c55fbf8367c69cfb8df3d8ed"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "part": "brows",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-241e-7531-9fdd-936f76da40ff\\exec-67e98889-8b49-4b40-83c3-a69403aefdff.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\brows.png",
+      "url": "/images/navigation/brows.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 2596149,
+      "sha256": "0cdfcaee1b47576f582b0f74e3bfbaad043471c5e73b414efcb2892d5097f038",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BROWS_CROWN.md"
+    },
+    {
+      "part": "crown",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-241e-7531-9fdd-936f76da40ff\\exec-22a67f86-637d-46f1-9848-0ec35e1c3b82.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\crown.png",
+      "url": "/images/navigation/crown.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 2105889,
+      "sha256": "a22f62c0ea72244415ddaa6ac3f57a469aecfee6342f9c1fff06dca7dc5b04fd",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BROWS_CROWN.md"
+    },
+    {
+      "part": "brows",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-241e-7531-9fdd-936f76da40ff\\exec-c2a1e125-7523-49f8-b2eb-3cf444129df5.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\brows.png",
+      "url": "/images/culture/brows.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 2545782,
+      "sha256": "a25ce823b7289c5d3ff3a1109864bf3279d8cfbdb4ba5658f57ec025c36553d3",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BROWS_CROWN.md"
+    },
+    {
+      "part": "crown",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-241e-7531-9fdd-936f76da40ff\\exec-e8cf3e17-88b5-4462-9e94-8e93e3d0ef3f.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\crown.png",
+      "url": "/images/culture/crown.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 2683358,
+      "sha256": "24291a15ab614d742930bc3f7817ab8a7a592558d81533ab27385475afdb4a8f",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BROWS_CROWN.md"
+    },
+    {
+      "part": "beard",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-53f5-79a2-ac21-90f0b7687e62\\exec-353b7e27-948e-45a6-8f62-012a8d7a59eb.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\beard.png",
+      "url": "/images/navigation/beard.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 2621656,
+      "sha256": "4ffa8f175cb4e41df5c51787de5ec04e6fe0cb1fd9cd6885f129df4d50382310",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BEARD_BODY.md"
+    },
+    {
+      "part": "body",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-53f5-79a2-ac21-90f0b7687e62\\exec-c7487cf9-a7bd-469c-8ea2-be60426433e1.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\body.png",
+      "url": "/images/navigation/body.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 3000398,
+      "sha256": "2baff97e9e49ba07d50bfea2de94be2b287fd2f341af412dc05ee31601d0eddb",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BEARD_BODY.md"
+    },
+    {
+      "part": "beard",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-53f5-79a2-ac21-90f0b7687e62\\exec-7d9d6374-1e12-4bc2-8d91-f974bbe757f9.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\beard.png",
+      "url": "/images/culture/beard.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 2345520,
+      "sha256": "7e72f959d2a53b2a0245f0a2ac1c8b6a472ccbf1c88c709565f5a78bc328b542",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BEARD_BODY.md"
+    },
+    {
+      "part": "body",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-53f5-79a2-ac21-90f0b7687e62\\exec-b124f1d7-ccea-41e0-bee6-7f4a6d6d1803.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\body.png",
+      "url": "/images/culture/body.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 3227645,
+      "sha256": "fe6db055b93cf4563a8a9346bea9f63cac60090412c7ec157ab83ce2d4655771",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_BEARD_BODY.md"
+    },
+    {
+      "part": "trim",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-7c45-7421-9e23-058f0e20c8db\\exec-a355446f-6a9c-4ae0-907a-fb37b32f5b2f.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\trim.png",
+      "url": "/images/navigation/trim.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 2568097,
+      "sha256": "5114277e3e5a331e5f06c3295e2c6974a24abc1d9b64774d25b201a401b95a21",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_TRIM_MOUTH.md"
+    },
+    {
+      "part": "mouth",
+      "kind": "navigation",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-7c45-7421-9e23-058f0e20c8db\\exec-0aa05e5f-1c5e-494a-9047-bce932ee4a63.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\navigation\\mouth.png",
+      "url": "/images/navigation/mouth.png",
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGB",
+      "bytes": 2883102,
+      "sha256": "491e62a1d34fcd956d02dd8811e140a7da18db324e515f0523349313b213b1b1",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_TRIM_MOUTH.md"
+    },
+    {
+      "part": "trim",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-7c45-7421-9e23-058f0e20c8db\\exec-cac76a3f-6b89-4940-a34c-c5346ce1cfbe.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\trim.png",
+      "url": "/images/culture/trim.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 2941838,
+      "sha256": "33767cf524f5fd921fe83ab0871e724d0573422f18fe356e0d7130bba9651b70",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_TRIM_MOUTH.md"
+    },
+    {
+      "part": "mouth",
+      "kind": "culture",
+      "mode": "builtinimage_gen",
+      "sourcePath": "C:\\Users\\Administrator\\.codex\\generated_images\\01a17862-7c45-7421-9e23-058f0e20c8db\\exec-011fb949-e3a9-42a2-8577-ef49ae1d9344.png",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\culture\\mouth.png",
+      "url": "/images/culture/mouth.png",
+      "width": 1536,
+      "height": 1024,
+      "colorMode": "RGB",
+      "bytes": 2434358,
+      "sha256": "5a025c7415b810ffb415345135bf17a106244bc1f7723644eb818f860d739a7b",
+      "sourceMatchesProject": true,
+      "promptDocument": "C:\\Users\\Administrator\\Desktop\\炫技5\\artifacts\\enrichment\\PROMPTS_TRIM_MOUTH.md"
+    }
+  ]
+}

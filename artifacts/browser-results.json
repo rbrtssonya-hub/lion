@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-26T12:02:22.870Z",
+  "baseURL": "http://127.0.0.1:5173",
+  "model": {
+    "meshes": 87,
+    "parts": [
+      {
+        "id": "brows",
+        "meshes": 7
+      },
+      {
+        "id": "crown",
+        "meshes": 3
+      },
+      {
+        "id": "beard",
+        "meshes": 4
+      },
+      {
+        "id": "body",
+        "meshes": 9
+      },
+      {
+        "id": "trim",
+        "meshes": 6
+      },
+      {
+        "id": "mouth",
+        "meshes": 5
+      }
+    ],
+    "stats": {
+      "frame": 467,
+      "calls": 161,
+      "triangles": 2270738,
+      "points": 0,
+      "lines": 0
+    },
+    "materials": {
+      "geometries": 88,
+      "textures": 16
+    },
+    "sourceScale": 3.2241973486244246
+  },
+  "errors": [],
+  "passed": [
+    "six studies",
+    "parameter changes affect figures",
+    "source transforms unchanged",
+    "drag rotation",
+    "real 3D surface selection",
+    "view modes",
+    "spatial label selection",
+    "return overview",
+    "source dialog",
+    "generated image enlargement",
+    "1536px and 1280px desktop layouts"
+  ]
+}

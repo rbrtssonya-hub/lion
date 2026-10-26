@@ -1,0 +1,44 @@
+[
+  {
+    "productionIdentical": true,
+    "sha256": "67D8C1CA47F1CCD040BD84F7D8ED272C3E01C6D35E536A377E9AA059B30A2CAB",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\brows.png",
+    "id": "brows",
+    "bytes": 3015495
+  },
+  {
+    "productionIdentical": true,
+    "sha256": "C0FEA154BA2CFFC09D397236D3EFEE1708C9F856322208C64C75D2EF256E0AA3",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\crown.png",
+    "id": "crown",
+    "bytes": 2697910
+  },
+  {
+    "productionIdentical": true,
+    "sha256": "CD2CD6C1325E6BD0FC7DFF07E518C26E95962315A95FD8BEE19192413C2308C6",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\beard.png",
+    "id": "beard",
+    "bytes": 2649480
+  },
+  {
+    "productionIdentical": true,
+    "sha256": "38AC2779F8060235D9BC3C2EABBBB56806FBB90762F2497208D51A00192DC555",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\body.png",
+    "id": "body",
+    "bytes": 3068388
+  },
+  {
+    "productionIdentical": true,
+    "sha256": "655742832FC6209D747408122A84E9218E38E862C55FBF8367C69CFB8DF3D8ED",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\trim.png",
+    "id": "trim",
+    "bytes": 2849825
+  },
+  {
+    "productionIdentical": true,
+    "sha256": "D2DB855B45D98CE65EABE6E0275EF34E48CA8C66ABBC01688F2204D6198C438B",
+    "path": "C:\\Users\\Administrator\\Desktop\\炫技5\\public\\images\\chapters\\mouth.png",
+    "id": "mouth",
+    "bytes": 2721115
+  }
+]

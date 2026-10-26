@@ -1,0 +1,8 @@
+This compatibility-history pointer replaces only an oversized duplicate Blender source.
+The original source is preserved byte-for-byte in the existing lion localOnly model.
+Original-Path: source/科比blend.blend
+Original-Blob: 42b92d0080e75e9b8b7c06ffc8af2f2495c44fec
+Original-Bytes: 136175747
+Original-SHA256: cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53
+Existing-Source: source/models/lion-kobi-2026-10-26.blend
+Original commit/tree SHA-1 identities can be reconstructed with restore_original_history.py.

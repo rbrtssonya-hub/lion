@@ -1,0 +1,8332 @@
+{
+  "source": "C:\\Users\\Administrator\\Desktop\\炫技5\\source\\科比blend.blend",
+  "blender": "5.1.2",
+  "scene": "Scene",
+  "unitSystem": "METRIC",
+  "unitScale": 1.0,
+  "objects": [
+    {
+      "name": "Lion_Beard.001",
+      "type": "MESH",
+      "parent": "Pivot_Beard.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.21888,
+          -0.743042,
+          0.223161
+        ],
+        "max": [
+          0.217641,
+          -0.53774,
+          0.386952
+        ],
+        "center": [
+          -0.000619,
+          -0.640391,
+          0.305057
+        ],
+        "size": [
+          0.43652,
+          0.205302,
+          0.163792
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [],
+      "vertices": 5895,
+      "polygons": 8258,
+      "triangles": 8863,
+      "mesh": "Lion_Beard_HeadSourceMesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Body",
+      "type": "MESH",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.351353,
+          -0.604015,
+          0.081328
+        ],
+        "max": [
+          0.350831,
+          0.607772,
+          0.763904
+        ],
+        "center": [
+          -0.000261,
+          0.001878,
+          0.422616
+        ],
+        "size": [
+          0.702184,
+          1.211788,
+          0.682576
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined",
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "particles": [],
+      "vertices": 79810,
+      "polygons": 116869,
+      "triangles": 120978,
+      "mesh": "Lion_Body_Remaining_Mesh",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body.001",
+      "type": "MESH",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.351353,
+          -0.579378,
+          0.081604
+        ],
+        "max": [
+          0.350831,
+          0.607772,
+          0.763868
+        ],
+        "center": [
+          -0.000261,
+          0.014197,
+          0.422736
+        ],
+        "size": [
+          0.702184,
+          1.18715,
+          0.682264
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base",
+        "Lion_Atlas_PBR_Refined",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.009999999776482582,
+          "childPercent": 150,
+          "renderedChildCount": 150,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 7770,
+      "polygons": 10550,
+      "triangles": 10836,
+      "mesh": "Lion_Body_Remaining_Mesh.001",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body.002",
+      "type": "MESH",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.165195,
+          -0.433845,
+          0.081328
+        ],
+        "max": [
+          0.290355,
+          -0.173189,
+          0.202775
+        ],
+        "center": [
+          0.06258,
+          -0.303517,
+          0.142052
+        ],
+        "size": [
+          0.455551,
+          0.260657,
+          0.121447
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 698,
+      "polygons": 1204,
+      "triangles": 1233,
+      "mesh": "Lion_Body_Remaining_Mesh.002",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body.003",
+      "type": "MESH",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.121106,
+          -0.432825,
+          0.094426
+        ],
+        "max": [
+          0.241787,
+          -0.159472,
+          0.191308
+        ],
+        "center": [
+          0.06034,
+          -0.296149,
+          0.142867
+        ],
+        "size": [
+          0.362893,
+          0.273353,
+          0.096882
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.009999999776482582,
+          "childPercent": 150,
+          "renderedChildCount": 150,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 30,
+      "polygons": 21,
+      "triangles": 21,
+      "mesh": "Lion_Body_Remaining_Mesh.003",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body.004",
+      "type": "MESH",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.160701,
+          0.357097,
+          0.48106
+        ],
+        "max": [
+          0.183492,
+          0.542464,
+          0.620263
+        ],
+        "center": [
+          0.011396,
+          0.44978,
+          0.550662
+        ],
+        "size": [
+          0.344192,
+          0.185367,
+          0.139203
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study",
+        null
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 641,
+      "polygons": 837,
+      "triangles": 864,
+      "mesh": "Lion_Body_Remaining_Mesh.004",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body_Red_Trim.001",
+      "type": "MESH",
+      "parent": "Pivot_Body_Red_Trim.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.12,
+        -0.19
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.308131,
+          -0.272425,
+          0.305723
+        ],
+        "max": [
+          0.308479,
+          0.548994,
+          0.787858
+        ],
+        "center": [
+          0.000174,
+          0.138284,
+          0.54679
+        ],
+        "size": [
+          0.61661,
+          0.821418,
+          0.482135
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Brocade_Clear_Tile_Cloth_Study.002",
+        "Lion_Atlas_PBR_Refined",
+        "Velvet_Scarlet_Uniform_Base",
+        "Brocade_Clear_Tile_Cloth_Study"
+      ],
+      "particles": [],
+      "vertices": 15569,
+      "polygons": 23746,
+      "triangles": 24790,
+      "mesh": "Lion_Body_Red_Trim_Mesh.001",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Body_Red_Trim.002",
+      "type": "MESH",
+      "parent": "Pivot_Body_Red_Trim.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        -0.12,
+        -0.19
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.307459,
+          -0.266061,
+          0.310854
+        ],
+        "max": [
+          0.308479,
+          0.557859,
+          0.779985
+        ],
+        "center": [
+          0.00051,
+          0.145899,
+          0.545419
+        ],
+        "size": [
+          0.615938,
+          0.82392,
+          0.469131
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Lion_Atlas_PBR_Refined.001",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.009999999776482582,
+          "childPercent": 150,
+          "renderedChildCount": 150,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 6214,
+      "polygons": 9500,
+      "triangles": 9752,
+      "mesh": "Lion_Body_Red_Trim_Mesh.003",
+      "uvLayers": [
+        "UVMap",
+        "BrocadeCylinder_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Brow_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Brow_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.031744,
+          -0.779986,
+          0.631811
+        ],
+        "max": [
+          0.259108,
+          -0.547955,
+          0.897978
+        ],
+        "center": [
+          0.145426,
+          -0.66397,
+          0.764894
+        ],
+        "size": [
+          0.227364,
+          0.232031,
+          0.266166
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [],
+      "vertices": 5013,
+      "polygons": 6348,
+      "triangles": 7063,
+      "mesh": "Lion_Brow_L_HeadSourceMesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Brow_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Brow_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.052598,
+          -0.758241,
+          0.636319
+        ],
+        "max": [
+          0.259108,
+          -0.547955,
+          0.897978
+        ],
+        "center": [
+          0.155853,
+          -0.653098,
+          0.767148
+        ],
+        "size": [
+          0.20651,
+          0.210286,
+          0.261658
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 2645,
+      "polygons": 3238,
+      "triangles": 3656,
+      "mesh": "Lion_Brow_L_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Brow_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Brow_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.260248,
+          -0.778165,
+          0.630064
+        ],
+        "max": [
+          -0.030442,
+          -0.545008,
+          0.897006
+        ],
+        "center": [
+          -0.145345,
+          -0.661586,
+          0.763535
+        ],
+        "size": [
+          0.229806,
+          0.233157,
+          0.266942
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [],
+      "vertices": 4888,
+      "polygons": 5922,
+      "triangles": 6488,
+      "mesh": "Lion_Brow_R_HeadSourceMesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Brow_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Brow_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.260248,
+          -0.7581,
+          0.631866
+        ],
+        "max": [
+          -0.041224,
+          -0.545008,
+          0.897006
+        ],
+        "center": [
+          -0.150736,
+          -0.651554,
+          0.764436
+        ],
+        "size": [
+          0.219024,
+          0.213093,
+          0.26514
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 4650,
+      "polygons": 5571,
+      "triangles": 6082,
+      "mesh": "Lion_Brow_R_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Crown",
+      "type": "MESH",
+      "parent": "Pivot_Crown",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.097309,
+          -0.693021,
+          0.890261
+        ],
+        "max": [
+          0.098113,
+          -0.359553,
+          1.0
+        ],
+        "center": [
+          0.000402,
+          -0.526287,
+          0.945131
+        ],
+        "size": [
+          0.195422,
+          0.333468,
+          0.109739
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR",
+        "Head_Scarlet_Velvet_Base",
+        "Head_Ivory_Fringe_Base"
+      ],
+      "particles": [],
+      "vertices": 3784,
+      "polygons": 5027,
+      "triangles": 5521,
+      "mesh": "Lion_Crown_HeadSourceMesh",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Ear_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.160513,
+          -0.559209,
+          0.726219
+        ],
+        "max": [
+          0.364735,
+          -0.226875,
+          0.98286
+        ],
+        "center": [
+          0.262624,
+          -0.393042,
+          0.854539
+        ],
+        "size": [
+          0.204222,
+          0.332334,
+          0.256641
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [],
+      "vertices": 7313,
+      "polygons": 8347,
+      "triangles": 9137,
+      "mesh": "Lion_Ear_L_HeadSourceMesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Ear_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.162387,
+          -0.561434,
+          0.74729
+        ],
+        "max": [
+          0.365527,
+          -0.245957,
+          0.98286
+        ],
+        "center": [
+          0.263957,
+          -0.403695,
+          0.865075
+        ],
+        "size": [
+          0.20314,
+          0.315477,
+          0.235569
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 5738,
+      "polygons": 7433,
+      "triangles": 8154,
+      "mesh": "Lion_Ear_L_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_L.003",
+      "type": "MESH",
+      "parent": "Pivot_Ear_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.173569,
+          -0.502852,
+          0.795894
+        ],
+        "max": [
+          0.304502,
+          -0.346576,
+          0.915054
+        ],
+        "center": [
+          0.239036,
+          -0.424714,
+          0.855474
+        ],
+        "size": [
+          0.130933,
+          0.156276,
+          0.11916
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 1029,
+      "polygons": 1299,
+      "triangles": 1468,
+      "mesh": "Lion_Ear_L_HeadSourceMesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Ear_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.365353,
+          -0.561108,
+          0.727846
+        ],
+        "max": [
+          -0.161412,
+          -0.225584,
+          0.97977
+        ],
+        "center": [
+          -0.263382,
+          -0.393346,
+          0.853808
+        ],
+        "size": [
+          0.203942,
+          0.335524,
+          0.251924
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [],
+      "vertices": 6312,
+      "polygons": 7306,
+      "triangles": 8065,
+      "mesh": "Lion_Ear_R_HeadSourceMesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Ear_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.366658,
+          -0.562241,
+          0.747205
+        ],
+        "max": [
+          -0.165241,
+          -0.244105,
+          0.980984
+        ],
+        "center": [
+          -0.265949,
+          -0.403173,
+          0.864094
+        ],
+        "size": [
+          0.201417,
+          0.318136,
+          0.233779
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 5415,
+      "polygons": 7239,
+      "triangles": 7952,
+      "mesh": "Lion_Ear_R_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Ear_R.003",
+      "type": "MESH",
+      "parent": "Pivot_Ear_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.304188,
+          -0.490828,
+          0.795356
+        ],
+        "max": [
+          -0.180171,
+          -0.340107,
+          0.914515
+        ],
+        "center": [
+          -0.24218,
+          -0.415468,
+          0.854935
+        ],
+        "size": [
+          0.124017,
+          0.150721,
+          0.119159
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.001",
+        "Head_Scarlet_Velvet_Base.001",
+        "Head_Ivory_Fringe_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 760,
+      "polygons": 1147,
+      "triangles": 1264,
+      "mesh": "Lion_Ear_R_HeadSourceMesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forehead_Bead_09",
+      "type": "MESH",
+      "parent": "Pivot_Forehead_Metal",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.001465,
+        -0.725629,
+        0.752955
+      ],
+      "rotation": [
+        -0.279851,
+        -0.027972,
+        -0.04848
+      ],
+      "scale": [
+        1.255412,
+        1.255413,
+        1.255413
+      ],
+      "bounds": {
+        "min": [
+          -0.043292,
+          -0.747849,
+          0.707749
+        ],
+        "max": [
+          0.046223,
+          -0.703408,
+          0.798162
+        ],
+        "center": [
+          0.001465,
+          -0.725629,
+          0.752955
+        ],
+        "size": [
+          0.089515,
+          0.044441,
+          0.090414
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "New_Head_Brass"
+      ],
+      "particles": [],
+      "vertices": 1984,
+      "polygons": 2304,
+      "triangles": 3840,
+      "mesh": "Sphere.009",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.141312,
+          -0.586259,
+          0.074816
+        ],
+        "max": [
+          0.407157,
+          -0.189298,
+          0.438269
+        ],
+        "center": [
+          0.274235,
+          -0.387779,
+          0.256543
+        ],
+        "size": [
+          0.265845,
+          0.396962,
+          0.363454
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "particles": [],
+      "vertices": 7153,
+      "polygons": 10921,
+      "triangles": 11871,
+      "mesh": "Lion_Foreleg_L_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.148184,
+          -0.494901,
+          0.076869
+        ],
+        "max": [
+          0.407157,
+          -0.193014,
+          0.433435
+        ],
+        "center": [
+          0.27767,
+          -0.343958,
+          0.255152
+        ],
+        "size": [
+          0.258973,
+          0.301887,
+          0.356566
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 1864,
+      "polygons": 2556,
+      "triangles": 2814,
+      "mesh": "Lion_Foreleg_L_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_L.003",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.179888,
+          -0.529603,
+          0.075564
+        ],
+        "max": [
+          0.364822,
+          -0.451525,
+          0.101462
+        ],
+        "center": [
+          0.272355,
+          -0.490564,
+          0.088513
+        ],
+        "size": [
+          0.184933,
+          0.078078,
+          0.025898
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 96,
+      "polygons": 97,
+      "triangles": 111,
+      "mesh": "Lion_Foreleg_L_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.407555,
+          -0.58465,
+          0.071367
+        ],
+        "max": [
+          -0.142775,
+          -0.184921,
+          0.430019
+        ],
+        "center": [
+          -0.275165,
+          -0.384786,
+          0.250693
+        ],
+        "size": [
+          0.264779,
+          0.39973,
+          0.358652
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "particles": [],
+      "vertices": 6909,
+      "polygons": 10498,
+      "triangles": 11472,
+      "mesh": "Lion_Foreleg_R_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.407555,
+          -0.494816,
+          0.071367
+        ],
+        "max": [
+          -0.147419,
+          -0.187917,
+          0.430019
+        ],
+        "center": [
+          -0.277487,
+          -0.341367,
+          0.250693
+        ],
+        "size": [
+          0.260136,
+          0.306899,
+          0.358652
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 1788,
+      "polygons": 2522,
+      "triangles": 2755,
+      "mesh": "Lion_Foreleg_R_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Foreleg_R.003",
+      "type": "MESH",
+      "parent": "Pivot_Foreleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.365841,
+          -0.534419,
+          0.07746
+        ],
+        "max": [
+          -0.183021,
+          -0.452208,
+          0.106429
+        ],
+        "center": [
+          -0.274431,
+          -0.493314,
+          0.091944
+        ],
+        "size": [
+          0.18282,
+          0.082211,
+          0.028969
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 100,
+      "polygons": 127,
+      "triangles": 130,
+      "mesh": "Lion_Foreleg_R_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.152889,
+          -0.552494,
+          -0.0
+        ],
+        "max": [
+          0.408685,
+          -0.22957,
+          0.093381
+        ],
+        "center": [
+          0.280787,
+          -0.391032,
+          0.046691
+        ],
+        "size": [
+          0.255796,
+          0.322925,
+          0.093381
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 1506,
+      "polygons": 2487,
+      "triangles": 2753,
+      "mesh": "Lion_Forepaw_L_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.152889,
+          -0.451525,
+          0.012073
+        ],
+        "max": [
+          0.408685,
+          -0.294366,
+          0.093381
+        ],
+        "center": [
+          0.280787,
+          -0.372945,
+          0.052727
+        ],
+        "size": [
+          0.255796,
+          0.157159,
+          0.081308
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.009999999776482582,
+          "childPercent": 150,
+          "renderedChildCount": 150,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 270,
+      "polygons": 423,
+      "triangles": 457,
+      "mesh": "Lion_Forepaw_L_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_L.003",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.16189,
+          -0.552494,
+          0.00858
+        ],
+        "max": [
+          0.393694,
+          -0.302121,
+          0.090224
+        ],
+        "center": [
+          0.277792,
+          -0.427307,
+          0.049402
+        ],
+        "size": [
+          0.231804,
+          0.250374,
+          0.081645
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 335,
+      "polygons": 427,
+      "triangles": 470,
+      "mesh": "Lion_Forepaw_L_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.408713,
+          -0.552864,
+          0.000295
+        ],
+        "max": [
+          -0.153789,
+          -0.225438,
+          0.095023
+        ],
+        "center": [
+          -0.281251,
+          -0.389151,
+          0.047659
+        ],
+        "size": [
+          0.254925,
+          0.327427,
+          0.094729
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 1579,
+      "polygons": 2660,
+      "triangles": 2908,
+      "mesh": "Lion_Forepaw_R_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.408713,
+          -0.501831,
+          0.01197
+        ],
+        "max": [
+          -0.153789,
+          -0.225438,
+          0.092789
+        ],
+        "center": [
+          -0.281251,
+          -0.363634,
+          0.052379
+        ],
+        "size": [
+          0.254925,
+          0.276394,
+          0.080819
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.009999999776482582,
+          "childPercent": 150,
+          "renderedChildCount": 150,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 370,
+      "polygons": 525,
+      "triangles": 573,
+      "mesh": "Lion_Forepaw_R_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Forepaw_R.003",
+      "type": "MESH",
+      "parent": "Pivot_Forepaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.394012,
+          -0.552864,
+          0.005092
+        ],
+        "max": [
+          -0.162488,
+          -0.384026,
+          0.089031
+        ],
+        "center": [
+          -0.27825,
+          -0.468445,
+          0.047062
+        ],
+        "size": [
+          0.231524,
+          0.168838,
+          0.083939
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 321,
+      "polygons": 433,
+      "triangles": 480,
+      "mesh": "Lion_Forepaw_R_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Head.001",
+      "type": "MESH",
+      "parent": "Pivot_Head",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.002013,
+        -0.45971,
+        0.1375
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.097303,
+        1.097303,
+        1.097303
+      ],
+      "bounds": {
+        "min": [
+          -0.036551,
+          -0.74624,
+          0.717557
+        ],
+        "max": [
+          0.039801,
+          -0.707359,
+          0.787416
+        ],
+        "center": [
+          0.001625,
+          -0.726799,
+          0.752487
+        ],
+        "size": [
+          0.076352,
+          0.03888,
+          0.069859
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "细分",
+          "type": "SUBSURF",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR",
+        "Head_Scarlet_Velvet_Base",
+        "Head_Ivory_Fringe_Base",
+        "Forehead_ReferenceInspired_Brocade_Study",
+        "金属"
+      ],
+      "particles": [],
+      "vertices": 53,
+      "polygons": 52,
+      "triangles": 91,
+      "mesh": "Lion_Head_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.130754,
+          0.269191,
+          0.072496
+        ],
+        "max": [
+          0.436956,
+          0.640867,
+          0.440058
+        ],
+        "center": [
+          0.283855,
+          0.455029,
+          0.256277
+        ],
+        "size": [
+          0.306201,
+          0.371676,
+          0.367561
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 7989,
+      "polygons": 12411,
+      "triangles": 13568,
+      "mesh": "Lion_Hindleg_L_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.13495,
+          0.280909,
+          0.072496
+        ],
+        "max": [
+          0.419059,
+          0.640867,
+          0.415095
+        ],
+        "center": [
+          0.277004,
+          0.460888,
+          0.243795
+        ],
+        "size": [
+          0.284108,
+          0.359959,
+          0.342598
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 2026,
+      "polygons": 2861,
+      "triangles": 3150,
+      "mesh": "Lion_Hindleg_L_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_L.003",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.313985,
+          0.374329,
+          0.076253
+        ],
+        "max": [
+          0.436956,
+          0.508899,
+          0.103321
+        ],
+        "center": [
+          0.37547,
+          0.441614,
+          0.089787
+        ],
+        "size": [
+          0.122971,
+          0.13457,
+          0.027067
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 88,
+      "polygons": 86,
+      "triangles": 94,
+      "mesh": "Lion_Hindleg_L_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.436152,
+          0.276994,
+          0.073886
+        ],
+        "max": [
+          -0.129826,
+          0.636912,
+          0.44047
+        ],
+        "center": [
+          -0.282989,
+          0.456953,
+          0.257178
+        ],
+        "size": [
+          0.306326,
+          0.359918,
+          0.366584
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001"
+      ],
+      "particles": [],
+      "vertices": 7651,
+      "polygons": 11525,
+      "triangles": 12592,
+      "mesh": "Lion_Hindleg_R_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.419778,
+          0.277409,
+          0.073886
+        ],
+        "max": [
+          -0.133777,
+          0.636912,
+          0.38493
+        ],
+        "center": [
+          -0.276778,
+          0.45716,
+          0.229408
+        ],
+        "size": [
+          0.286001,
+          0.359502,
+          0.311043
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 1682,
+      "polygons": 2515,
+      "triangles": 2730,
+      "mesh": "Lion_Hindleg_R_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindleg_R.003",
+      "type": "MESH",
+      "parent": "Pivot_Hindleg_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.436152,
+          0.369514,
+          0.075756
+        ],
+        "max": [
+          -0.317698,
+          0.513686,
+          0.103061
+        ],
+        "center": [
+          -0.376925,
+          0.4416,
+          0.089409
+        ],
+        "size": [
+          0.118454,
+          0.144172,
+          0.027305
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Fiber_Warm_Ivory"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 96,
+      "polygons": 102,
+      "triangles": 110,
+      "mesh": "Lion_Hindleg_R_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_L.001",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.158386,
+          0.354504,
+          0.008823
+        ],
+        "max": [
+          0.452021,
+          0.646077,
+          0.092833
+        ],
+        "center": [
+          0.305203,
+          0.500291,
+          0.050828
+        ],
+        "size": [
+          0.293635,
+          0.291573,
+          0.084009
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 1529,
+      "polygons": 2514,
+      "triangles": 2778,
+      "mesh": "Lion_Hindpaw_L_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_L.002",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.270685,
+          0.354504,
+          0.008837
+        ],
+        "max": [
+          0.452021,
+          0.588704,
+          0.08976
+        ],
+        "center": [
+          0.361353,
+          0.471604,
+          0.049298
+        ],
+        "size": [
+          0.181336,
+          0.234199,
+          0.080923
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 294,
+      "polygons": 392,
+      "triangles": 437,
+      "mesh": "Lion_Hindpaw_L_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_L.003",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_L.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.171887,
+          0.374329,
+          0.015144
+        ],
+        "max": [
+          0.411476,
+          0.646077,
+          0.092833
+        ],
+        "center": [
+          0.291682,
+          0.510203,
+          0.053988
+        ],
+        "size": [
+          0.239589,
+          0.271748,
+          0.077688
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 293,
+      "polygons": 322,
+      "triangles": 360,
+      "mesh": "Lion_Hindpaw_L_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_R.001",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.452021,
+          0.35347,
+          0.009189
+        ],
+        "max": [
+          -0.128508,
+          0.645145,
+          0.091602
+        ],
+        "center": [
+          -0.290264,
+          0.499307,
+          0.050396
+        ],
+        "size": [
+          0.323513,
+          0.291675,
+          0.082413
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 1516,
+      "polygons": 2493,
+      "triangles": 2807,
+      "mesh": "Lion_Hindpaw_R_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_R.002",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.415839,
+          0.376417,
+          0.010515
+        ],
+        "max": [
+          -0.172696,
+          0.645145,
+          0.091602
+        ],
+        "center": [
+          -0.294268,
+          0.510781,
+          0.051058
+        ],
+        "size": [
+          0.243143,
+          0.268728,
+          0.081088
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 362,
+      "polygons": 545,
+      "triangles": 601,
+      "mesh": "Lion_Hindpaw_R_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Hindpaw_R.003",
+      "type": "MESH",
+      "parent": "Pivot_Hindpaw_R.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.452021,
+          0.35347,
+          0.009257
+        ],
+        "max": [
+          -0.23029,
+          0.58047,
+          0.089779
+        ],
+        "center": [
+          -0.341155,
+          0.46697,
+          0.049518
+        ],
+        "size": [
+          0.221731,
+          0.227001,
+          0.080522
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Ivory_Fringe_Base",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 376,
+      "polygons": 468,
+      "triangles": 533,
+      "mesh": "Lion_Hindpaw_R_Mesh.003",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Nose.001",
+      "type": "MESH",
+      "parent": "Pivot_Nose",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.261108,
+          -0.520814,
+          0.316784
+        ],
+        "max": [
+          0.271361,
+          -0.18837,
+          0.453424
+        ],
+        "center": [
+          0.005127,
+          -0.354592,
+          0.385104
+        ],
+        "size": [
+          0.532469,
+          0.332444,
+          0.13664
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base",
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001",
+        "Fiber_Warm_Ivory",
+        "Brocade_Clear_Tile_Cloth_Study.002"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.00999998115003109,
+          "childPercent": 50,
+          "renderedChildCount": 50,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 1874,
+      "polygons": 2880,
+      "triangles": 2965,
+      "mesh": "Lion_Nose_HeadSourceMesh.003",
+      "uvLayers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Nose.002",
+      "type": "MESH",
+      "parent": "Pivot_Nose",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.317944,
+          -0.77906,
+          0.446822
+        ],
+        "max": [
+          0.277982,
+          -0.310895,
+          0.981415
+        ],
+        "center": [
+          -0.019981,
+          -0.544977,
+          0.714119
+        ],
+        "size": [
+          0.595926,
+          0.468166,
+          0.534593
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Head_Scarlet_Velvet_Base"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 5134,
+      "polygons": 7735,
+      "triangles": 7978,
+      "mesh": "Lion_Nose_HeadSourceMesh.002",
+      "uvLayers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Nose.003",
+      "type": "MESH",
+      "parent": "Pivot_Nose.002",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.361872,
+          -0.801512,
+          0.290929
+        ],
+        "max": [
+          0.360987,
+          -0.109936,
+          0.981415
+        ],
+        "center": [
+          -0.000442,
+          -0.455724,
+          0.636172
+        ],
+        "size": [
+          0.722858,
+          0.691576,
+          0.690486
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "HighDetail_Head_Atlas_PBR.003",
+        "Head_Scarlet_Velvet_Base.003",
+        "Head_Ivory_Fringe_Base.003",
+        "Forehead_ReferenceInspired_Brocade_Study.002",
+        "金属.002"
+      ],
+      "particles": [],
+      "vertices": 98407,
+      "polygons": 200368,
+      "triangles": 207648,
+      "mesh": "Lion_Nose_HeadSourceMesh.004",
+      "uvLayers": [
+        "UVMap",
+        "ForeheadPlane_XZ_0p2m"
+      ]
+    },
+    {
+      "name": "Lion_Root",
+      "type": "EMPTY",
+      "parent": null,
+      "children": [
+        "Pivot_Body"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Lion_Root.001",
+      "type": "EMPTY",
+      "parent": null,
+      "children": [
+        "Pivot_Body.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Lion_Root.002",
+      "type": "EMPTY",
+      "parent": null,
+      "children": [
+        "Pivot_Body.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Lion_Root.003",
+      "type": "EMPTY",
+      "parent": null,
+      "children": [
+        "Pivot_Body.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Lion_Tail.001",
+      "type": "MESH",
+      "parent": "Pivot_Tail.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.221683,
+          0.522389,
+          0.253055
+        ],
+        "max": [
+          0.219182,
+          0.801512,
+          0.778252
+        ],
+        "center": [
+          -0.00125,
+          0.66195,
+          0.515653
+        ],
+        "size": [
+          0.440865,
+          0.279123,
+          0.525197
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Lion_Atlas_PBR_Refined.001",
+        "Velvet_Scarlet_Uniform_Base.001"
+      ],
+      "particles": [],
+      "vertices": 19871,
+      "polygons": 30953,
+      "triangles": 33455,
+      "mesh": "Lion_Tail_Mesh.001",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Lion_Tail.002",
+      "type": "MESH",
+      "parent": "Pivot_Tail.001",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "粒子毛发"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.221683,
+          0.523387,
+          0.259196
+        ],
+        "max": [
+          0.219182,
+          0.610226,
+          0.776839
+        ],
+        "center": [
+          -0.00125,
+          0.566807,
+          0.518017
+        ],
+        "size": [
+          0.440865,
+          0.086839,
+          0.517644
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "粒子系统",
+          "type": "PARTICLE_SYSTEM",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "Velvet_Scarlet_Uniform_Base"
+      ],
+      "particles": [
+        {
+          "name": "粒子系统",
+          "type": "HAIR",
+          "count": 1000,
+          "hairLength": 0.010000081732869148,
+          "childPercent": 70,
+          "renderedChildCount": 70,
+          "renderType": "PATH",
+          "instanceObject": null
+        }
+      ],
+      "vertices": 871,
+      "polygons": 1193,
+      "triangles": 1327,
+      "mesh": "Lion_Tail_Mesh.002",
+      "uvLayers": [
+        "UVMap"
+      ]
+    },
+    {
+      "name": "Pivot_Beard",
+      "type": "EMPTY",
+      "parent": "Pivot_Jaw",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.124294,
+        -0.069916
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "max": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "center": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Beard.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Jaw.001",
+      "children": [
+        "Lion_Beard.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.124294,
+        -0.069916
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "max": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "center": [
+          3.3e-05,
+          -0.647626,
+          0.362992
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body",
+      "type": "EMPTY",
+      "parent": "Lion_Root",
+      "children": [
+        "Lion_Body",
+        "Lion_Body.001",
+        "Lion_Body.002",
+        "Lion_Body.003",
+        "Lion_Body.004",
+        "Pivot_Body_Red_Trim",
+        "Pivot_Foreleg_L",
+        "Pivot_Foreleg_R",
+        "Pivot_Head",
+        "Pivot_Hindleg_L",
+        "Pivot_Hindleg_R",
+        "Pivot_Tail"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.38
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body.001",
+      "type": "EMPTY",
+      "parent": "Lion_Root.001",
+      "children": [
+        "Pivot_Body_Red_Trim.001",
+        "Pivot_Foreleg_L.001",
+        "Pivot_Foreleg_R.001",
+        "Pivot_Head.001",
+        "Pivot_Hindleg_L.001",
+        "Pivot_Hindleg_R.001",
+        "Pivot_Tail.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.38
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body.002",
+      "type": "EMPTY",
+      "parent": "Lion_Root.002",
+      "children": [
+        "Pivot_Head.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.38
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body.003",
+      "type": "EMPTY",
+      "parent": "Lion_Root.003",
+      "children": [
+        "Pivot_Head.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.38
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.38
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body_Red_Trim",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.12,
+        0.19
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "max": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "center": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Body_Red_Trim.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Body_Red_Trim.001",
+        "Lion_Body_Red_Trim.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.12,
+        0.19
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "max": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "center": [
+          0.0,
+          0.12,
+          0.57
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Brow_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.139831,
+        -0.341809,
+        0.163136
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "max": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "center": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Brow_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.001",
+      "children": [
+        "Lion_Brow_L.001",
+        "Lion_Brow_L.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.139831,
+        -0.341809,
+        0.163136
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "max": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "center": [
+          0.139864,
+          -0.601016,
+          0.774717
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Brow_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.139831,
+        -0.341809,
+        0.163136
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "max": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "center": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Brow_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.001",
+      "children": [
+        "Lion_Brow_R.001",
+        "Lion_Brow_R.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.139831,
+        -0.341809,
+        0.163136
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "max": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "center": [
+          -0.139798,
+          -0.601016,
+          0.774717
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Crown",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [
+        "Lion_Crown"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.318504,
+        0.295199
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.577711,
+          0.906779
+        ],
+        "max": [
+          3.3e-05,
+          -0.577711,
+          0.906779
+        ],
+        "center": [
+          3.3e-05,
+          -0.577711,
+          0.906779
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Ear_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.271894,
+        -0.186441,
+        0.248589
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "max": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "center": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Ear_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.001",
+      "children": [
+        "Lion_Ear_L.001",
+        "Lion_Ear_L.002",
+        "Lion_Ear_L.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.271894,
+        -0.186441,
+        0.248589
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "max": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "center": [
+          0.271927,
+          -0.445648,
+          0.860169
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Ear_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.271894,
+        -0.186441,
+        0.248589
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "max": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "center": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Ear_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.001",
+      "children": [
+        "Lion_Ear_R.001",
+        "Lion_Ear_R.002",
+        "Lion_Ear_R.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.271894,
+        -0.186441,
+        0.248589
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "max": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "center": [
+          -0.27186,
+          -0.445648,
+          0.860169
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Forehead_Metal",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [
+        "Lion_Forehead_Bead_09"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.002594,
+        -0.756992,
+        0.756265
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.002594,
+          -0.756992,
+          0.756265
+        ],
+        "max": [
+          0.002594,
+          -0.756992,
+          0.756265
+        ],
+        "center": [
+          0.002594,
+          -0.756992,
+          0.756265
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Foreleg_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [
+        "Pivot_Forepaw_L"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.27,
+        -0.355,
+        0.03
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "max": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "center": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Foreleg_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Foreleg_L.001",
+        "Lion_Foreleg_L.002",
+        "Lion_Foreleg_L.003",
+        "Pivot_Forepaw_L.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.27,
+        -0.355,
+        0.03
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "max": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "center": [
+          0.27,
+          -0.355,
+          0.41
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Foreleg_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [
+        "Pivot_Forepaw_R"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.27,
+        -0.355,
+        0.03
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "max": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "center": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Foreleg_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Foreleg_R.001",
+        "Lion_Foreleg_R.002",
+        "Lion_Foreleg_R.003",
+        "Pivot_Forepaw_R.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.27,
+        -0.355,
+        0.03
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "max": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "center": [
+          -0.27,
+          -0.355,
+          0.41
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Forepaw_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Foreleg_L",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.022,
+        -0.065,
+        -0.335
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "max": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "center": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Forepaw_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Foreleg_L.001",
+      "children": [
+        "Lion_Forepaw_L.001",
+        "Lion_Forepaw_L.002",
+        "Lion_Forepaw_L.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.022,
+        -0.065,
+        -0.335
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "max": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "center": [
+          0.292,
+          -0.42,
+          0.075
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Forepaw_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Foreleg_R",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.022,
+        -0.065,
+        -0.335
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "max": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "center": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Forepaw_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Foreleg_R.001",
+      "children": [
+        "Lion_Forepaw_R.001",
+        "Lion_Forepaw_R.002",
+        "Lion_Forepaw_R.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.022,
+        -0.065,
+        -0.335
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "max": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "center": [
+          -0.292,
+          -0.42,
+          0.075
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Head",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [
+        "Lion_Head.001",
+        "Pivot_Brow_L",
+        "Pivot_Brow_R",
+        "Pivot_Crown",
+        "Pivot_Ear_L",
+        "Pivot_Ear_R",
+        "Pivot_Forehead_Metal",
+        "Pivot_Jaw",
+        "Pivot_Nose"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.259207,
+        0.61158
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "max": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "center": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Head.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Pivot_Brow_L.001",
+        "Pivot_Brow_R.001",
+        "Pivot_Ear_L.001",
+        "Pivot_Ear_R.001",
+        "Pivot_Jaw.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.259207,
+        0.61158
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "max": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "center": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Head.002",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.002",
+      "children": [
+        "Pivot_Nose.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.259207,
+        0.61158
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "max": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "center": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Head.003",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.003",
+      "children": [
+        "Pivot_Nose.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.259207,
+        0.61158
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "max": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "center": [
+          3.3e-05,
+          -0.259207,
+          0.61158
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindleg_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [
+        "Pivot_Hindpaw_L"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.265,
+        0.475,
+        0.02
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "max": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "center": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindleg_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Hindleg_L.001",
+        "Lion_Hindleg_L.002",
+        "Lion_Hindleg_L.003",
+        "Pivot_Hindpaw_L.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.265,
+        0.475,
+        0.02
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "max": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "center": [
+          0.265,
+          0.475,
+          0.4
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindleg_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [
+        "Pivot_Hindpaw_R"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.265,
+        0.475,
+        0.02
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "max": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "center": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindleg_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Hindleg_R.001",
+        "Lion_Hindleg_R.002",
+        "Lion_Hindleg_R.003",
+        "Pivot_Hindpaw_R.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.265,
+        0.475,
+        0.02
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "max": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "center": [
+          -0.265,
+          0.475,
+          0.4
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindpaw_L",
+      "type": "EMPTY",
+      "parent": "Pivot_Hindleg_L",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.018,
+        0.04,
+        -0.33
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "max": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "center": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindpaw_L.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Hindleg_L.001",
+      "children": [
+        "Lion_Hindpaw_L.001",
+        "Lion_Hindpaw_L.002",
+        "Lion_Hindpaw_L.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.018,
+        0.04,
+        -0.33
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "max": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "center": [
+          0.283,
+          0.515,
+          0.07
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindpaw_R",
+      "type": "EMPTY",
+      "parent": "Pivot_Hindleg_R",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.018,
+        0.04,
+        -0.33
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "max": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "center": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Hindpaw_R.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Hindleg_R.001",
+      "children": [
+        "Lion_Hindpaw_R.001",
+        "Lion_Hindpaw_R.002",
+        "Lion_Hindpaw_R.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -0.018,
+        0.04,
+        -0.33
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "max": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "center": [
+          -0.283,
+          0.515,
+          0.07
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Jaw",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [
+        "Pivot_Beard"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.264125,
+        -0.178673
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "max": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "center": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Jaw.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.001",
+      "children": [
+        "Pivot_Beard.001"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.264125,
+        -0.178673
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "max": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "center": [
+          3.3e-05,
+          -0.523332,
+          0.432907
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Nose",
+      "type": "EMPTY",
+      "parent": "Pivot_Head",
+      "children": [
+        "Lion_Nose.001",
+        "Lion_Nose.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.427262,
+        -0.038842
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "max": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "center": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Nose.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.002",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.427262,
+        -0.038842
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "max": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "center": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Nose.002",
+      "type": "EMPTY",
+      "parent": "Pivot_Head.003",
+      "children": [
+        "Lion_Nose.003"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        -0.427262,
+        -0.038842
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "max": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "center": [
+          3.3e-05,
+          -0.686468,
+          0.572738
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Tail",
+      "type": "EMPTY",
+      "parent": "Pivot_Body",
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.565,
+        0.23
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "max": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "center": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Pivot_Tail.001",
+      "type": "EMPTY",
+      "parent": "Pivot_Body.001",
+      "children": [
+        "Lion_Tail.001",
+        "Lion_Tail.002"
+      ],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.565,
+        0.23
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "max": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "center": [
+          0.0,
+          0.565,
+          0.61
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Studio_Fill",
+      "type": "LIGHT",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        2.8,
+        -1.5,
+        1.8
+      ],
+      "rotation": [
+        1.19589,
+        -0.0,
+        1.078987
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          2.8,
+          -1.5,
+          1.8
+        ],
+        "max": [
+          2.8,
+          -1.5,
+          1.8
+        ],
+        "center": [
+          2.8,
+          -1.5,
+          1.8
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Studio_Key",
+      "type": "LIGHT",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        -2.2,
+        -3.2,
+        3.1
+      ],
+      "rotation": [
+        0.989755,
+        -0.0,
+        -0.602287
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -2.2,
+          -3.2,
+          3.1
+        ],
+        "max": [
+          -2.2,
+          -3.2,
+          3.1
+        ],
+        "center": [
+          -2.2,
+          -3.2,
+          3.1
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "Studio_Rim",
+      "type": "LIGHT",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.5,
+        2.1,
+        2.8
+      ],
+      "rotation": [
+        0.764693,
+        -0.0,
+        2.90785
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          0.5,
+          2.1,
+          2.8
+        ],
+        "max": [
+          0.5,
+          2.1,
+          2.8
+        ],
+        "center": [
+          0.5,
+          2.1,
+          2.8
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "上牙",
+      "type": "MESH",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Scene Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.139349,
+          -0.732315,
+          0.457929
+        ],
+        "max": [
+          0.139349,
+          -0.61033,
+          0.492736
+        ],
+        "center": [
+          -0.0,
+          -0.671323,
+          0.475332
+        ],
+        "size": [
+          0.278698,
+          0.121985,
+          0.034807
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "倒角",
+          "type": "BEVEL",
+          "render": true,
+          "viewport": true
+        },
+        {
+          "name": "细分",
+          "type": "SUBSURF",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "牙",
+        "材质"
+      ],
+      "particles": [],
+      "vertices": 432,
+      "polygons": 430,
+      "triangles": 860,
+      "mesh": "平面.002",
+      "uvLayers": [
+        "UV贴图"
+      ]
+    },
+    {
+      "name": "摄像机",
+      "type": "CAMERA",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Scene Collection"
+      ],
+      "location": [
+        3.771281,
+        0.235267,
+        0.832672
+      ],
+      "rotation": [
+        1.445135,
+        -1e-06,
+        1.594068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          3.771281,
+          0.235267,
+          0.832672
+        ],
+        "max": [
+          3.771281,
+          0.235267,
+          0.832672
+        ],
+        "center": [
+          3.771281,
+          0.235267,
+          0.832672
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "牙下",
+      "type": "MESH",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Scene Collection"
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.127421,
+          -0.702146,
+          0.385387
+        ],
+        "max": [
+          0.127421,
+          -0.611058,
+          0.453674
+        ],
+        "center": [
+          -0.0,
+          -0.656602,
+          0.41953
+        ],
+        "size": [
+          0.254842,
+          0.091088,
+          0.068287
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "倒角",
+          "type": "BEVEL",
+          "render": true,
+          "viewport": true
+        },
+        {
+          "name": "细分",
+          "type": "SUBSURF",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "牙",
+        "材质"
+      ],
+      "particles": [],
+      "vertices": 374,
+      "polygons": 370,
+      "triangles": 740,
+      "mesh": "平面",
+      "uvLayers": [
+        "UV贴图"
+      ]
+    },
+    {
+      "name": "立方体",
+      "type": "MESH",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Scene Collection"
+      ],
+      "location": [
+        -0.023303,
+        -0.740099,
+        0.711232
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.077072,
+          -0.694495,
+          0.385931
+        ],
+        "max": [
+          0.076239,
+          -0.57375,
+          0.470252
+        ],
+        "center": [
+          -0.000417,
+          -0.634122,
+          0.428092
+        ],
+        "size": [
+          0.153311,
+          0.120745,
+          0.084322
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "细分",
+          "type": "SUBSURF",
+          "render": true,
+          "viewport": true
+        }
+      ],
+      "materials": [
+        "醒狮_舌头_朱漆如意卷草_柔金边"
+      ],
+      "particles": [],
+      "vertices": 40,
+      "polygons": 38,
+      "triangles": 76,
+      "mesh": "立方体",
+      "uvLayers": [
+        "UV贴图",
+        "Tongue_Painted_UV"
+      ]
+    },
+    {
+      "name": "粒子系统",
+      "type": "CURVES",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        0.0,
+        0.565,
+        0.61
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.145112,
+          0.524693,
+          0.174881
+        ],
+        "max": [
+          0.127068,
+          0.821293,
+          0.832156
+        ],
+        "center": [
+          -0.009022,
+          0.672993,
+          0.503519
+        ],
+        "size": [
+          0.27218,
+          0.2966,
+          0.657275
+        ]
+      },
+      "modifiers": [],
+      "materials": [
+        "Fiber_Warm_Ivory"
+      ],
+      "particles": []
+    },
+    {
+      "name": "粒子系统.001",
+      "type": "CURVES",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.686468,
+        0.572738
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.364758,
+          -0.763847,
+          0.325909
+        ],
+        "max": [
+          0.363761,
+          -0.111449,
+          0.715769
+        ],
+        "center": [
+          -0.000499,
+          -0.437648,
+          0.520839
+        ],
+        "size": [
+          0.728519,
+          0.652398,
+          0.38986
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    },
+    {
+      "name": "粒子系统.002",
+      "type": "CURVES",
+      "parent": null,
+      "children": [],
+      "visible": true,
+      "collections": [
+        "Collection"
+      ],
+      "location": [
+        3.3e-05,
+        -0.647626,
+        0.362992
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds": {
+        "min": [
+          -0.218781,
+          -0.764827,
+          0.175277
+        ],
+        "max": [
+          0.227481,
+          -0.527942,
+          0.393961
+        ],
+        "center": [
+          0.00435,
+          -0.646384,
+          0.284619
+        ],
+        "size": [
+          0.446262,
+          0.236886,
+          0.218684
+        ]
+      },
+      "modifiers": [],
+      "materials": [],
+      "particles": []
+    }
+  ],
+  "materials": [
+    {
+      "name": "Brocade_Clear_Tile_Cloth_Study",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.11999999731779099,
+          "MetallicLinked": false,
+          "Roughness": 0.5799999833106995,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.18000000715255737,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "brocade_reference_synthesis.png"
+        },
+        {
+          "name": "UV Map",
+          "type": "UVMAP"
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "TEX_IMAGE",
+          "image": "body_micro_weave_normal_2048.png"
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP"
+        },
+        {
+          "name": "纹理坐标",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "映射",
+          "type": "MAPPING"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Brocade_Clear_Tile_Cloth_Study.002",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.11999999731779099,
+          "MetallicLinked": false,
+          "Roughness": 0.5799999833106995,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.18000000715255737,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "brocade_reference_synthesis.png.003"
+        },
+        {
+          "name": "UV Map",
+          "type": "UVMAP"
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "TEX_IMAGE",
+          "image": "body_micro_weave_normal_2048.png.003"
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Fiber_Warm_Ivory",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            1.0,
+            0.9735051989555359,
+            0.9072781801223755,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.7200000286102295,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.20000000298023224,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Forehead_ReferenceInspired_Brocade_Study",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.11999999731779099,
+          "MetallicLinked": false,
+          "Roughness": 0.5799999833106995,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.18000000715255737,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "brocade_reference_synthesis.png.002"
+        },
+        {
+          "name": "UV Map",
+          "type": "UVMAP"
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "TEX_IMAGE",
+          "image": "body_micro_weave_normal_2048.png.002"
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Forehead_ReferenceInspired_Brocade_Study.002",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.11999999731779099,
+          "MetallicLinked": false,
+          "Roughness": 0.5799999833106995,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.18000000715255737,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "brocade_reference_synthesis.png.004"
+        },
+        {
+          "name": "UV Map",
+          "type": "UVMAP"
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "TEX_IMAGE",
+          "image": "body_micro_weave_normal_2048.png.004"
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Ivory_Fringe_Base",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.7400000095367432,
+            0.7200000286102295,
+            0.6800000071525574,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8600000143051147,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.23000000417232513,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Ivory_Fringe_Base.001",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.7400000095367432,
+            0.7200000286102295,
+            0.6800000071525574,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8600000143051147,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.23000000417232513,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Ivory_Fringe_Base.003",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.7400000095367432,
+            0.7200000286102295,
+            0.6800000071525574,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8600000143051147,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.23000000417232513,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Scarlet_Velvet_Base",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.20999999344348907,
+            0.0027000000700354576,
+            0.006000000052154064,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8799999952316284,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.2199999988079071,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Scarlet_Velvet_Base.001",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.20999999344348907,
+            0.0027000000700354576,
+            0.006000000052154064,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8799999952316284,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.2199999988079071,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Head_Scarlet_Velvet_Base.003",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.20999999344348907,
+            0.0027000000700354576,
+            0.006000000052154064,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8799999952316284,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.2199999988079071,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "HighDetail_Head_Atlas_PBR",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.11999999731779099,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "Lion_basecolor",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Atlas_Color_Refined"
+        },
+        {
+          "name": "Lion_roughness",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Roughness"
+        },
+        {
+          "name": "Lion_metallic",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Metallic"
+        },
+        {
+          "name": "Lion_weave_mask",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Weave_Appearance_Mask"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "HighDetail_Head_Atlas_PBR.001",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.11999999731779099,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "Lion_basecolor",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Atlas_Color_Refined.001"
+        },
+        {
+          "name": "Lion_roughness",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Roughness.001"
+        },
+        {
+          "name": "Lion_metallic",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Metallic.001"
+        },
+        {
+          "name": "Lion_weave_mask",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Weave_Appearance_Mask.001"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "HighDetail_Head_Atlas_PBR.003",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.11999999731779099,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "Lion_basecolor",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Atlas_Color_Refined.003"
+        },
+        {
+          "name": "Lion_roughness",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Roughness.003"
+        },
+        {
+          "name": "Lion_metallic",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Color_Derived_Metallic.003"
+        },
+        {
+          "name": "Lion_weave_mask",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Weave_Appearance_Mask.003"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Lion_Atlas_PBR_Refined",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.11999999731779099,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "Lion_basecolor",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Atlas_Color_Scarlet"
+        },
+        {
+          "name": "Lion_roughness",
+          "type": "TEX_IMAGE",
+          "image": "lion_roughness_color_inferred.png"
+        },
+        {
+          "name": "Lion_metallic",
+          "type": "TEX_IMAGE",
+          "image": "lion_metallic_color_inferred.png"
+        },
+        {
+          "name": "Lion_weave_mask",
+          "type": "TEX_IMAGE",
+          "image": "lion_weave_appearance_mask.png"
+        },
+        {
+          "name": "Regular_Weave_X",
+          "type": "TEX_WAVE"
+        },
+        {
+          "name": "Regular_Weave_Y",
+          "type": "TEX_WAVE"
+        },
+        {
+          "name": "Math",
+          "type": "MATH"
+        },
+        {
+          "name": "Math.001",
+          "type": "MATH"
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Lion_Atlas_PBR_Refined.001",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.11999999731779099,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD"
+        },
+        {
+          "name": "Lion_basecolor",
+          "type": "TEX_IMAGE",
+          "image": "Lion_Atlas_Color_Scarlet.001"
+        },
+        {
+          "name": "Lion_roughness",
+          "type": "TEX_IMAGE",
+          "image": "lion_roughness_color_inferred.png.001"
+        },
+        {
+          "name": "Lion_metallic",
+          "type": "TEX_IMAGE",
+          "image": "lion_metallic_color_inferred.png.001"
+        },
+        {
+          "name": "Lion_weave_mask",
+          "type": "TEX_IMAGE",
+          "image": "lion_weave_appearance_mask.png.001"
+        },
+        {
+          "name": "Regular_Weave_X",
+          "type": "TEX_WAVE"
+        },
+        {
+          "name": "Regular_Weave_Y",
+          "type": "TEX_WAVE"
+        },
+        {
+          "name": "Math",
+          "type": "MATH"
+        },
+        {
+          "name": "Math.001",
+          "type": "MATH"
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "New_Head_Brass",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.5699999928474426,
+            0.30000001192092896,
+            0.052000001072883606,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.8799999952316284,
+          "MetallicLinked": false,
+          "Roughness": 0.25,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Velvet_Scarlet_Uniform_Base",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.20999999344348907,
+            0.0027000000700354576,
+            0.006000000052154064,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8799999952316284,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.2199999988079071,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "Velvet_Scarlet_Uniform_Base.001",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.20999999344348907,
+            0.0027000000700354576,
+            0.006000000052154064,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.8799999952316284,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.2199999988079071,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "材质",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "原理化 BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 0.5,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "材质输出",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "牙",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "原理化 BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.9472948312759399,
+            1.0000240802764893,
+            1.0000240802764893,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.0,
+          "MetallicLinked": false,
+          "Roughness": 1.0,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "材质输出",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "醒狮_舌头_朱漆如意卷草_柔金边",
+      "diffuseColor": [
+        0.4564110338687897,
+        0.040915198624134064,
+        0.026241222396492958,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Base ColorLinked": true,
+          "Metallic": 0.0,
+          "MetallicLinked": true,
+          "Roughness": 0.5,
+          "RoughnessLinked": true,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "UV Map",
+          "type": "UVMAP"
+        },
+        {
+          "name": "Tongue_BaseColor",
+          "type": "TEX_IMAGE",
+          "image": "Tongue_BaseColor_2K"
+        },
+        {
+          "name": "Tongue_Roughness",
+          "type": "TEX_IMAGE",
+          "image": "Tongue_Roughness_2K"
+        },
+        {
+          "name": "Tongue_Metallic",
+          "type": "TEX_IMAGE",
+          "image": "Tongue_Metallic_2K"
+        },
+        {
+          "name": "Tongue_Normal",
+          "type": "TEX_IMAGE",
+          "image": "Tongue_Normal_2K"
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "金属",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "原理化 BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.8000074625015259,
+            0.5799070000648499,
+            0.19363173842430115,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.870090663433075,
+          "MetallicLinked": false,
+          "Roughness": 0.5,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "材质输出",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    },
+    {
+      "name": "金属.002",
+      "diffuseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "nodes": [
+        {
+          "name": "原理化 BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "Base Color": [
+            0.8000074625015259,
+            0.5799070000648499,
+            0.19363173842430115,
+            1.0
+          ],
+          "Base ColorLinked": false,
+          "Metallic": 0.870090663433075,
+          "MetallicLinked": false,
+          "Roughness": 0.5,
+          "RoughnessLinked": false,
+          "Alpha": 1.0,
+          "AlphaLinked": false,
+          "Transmission Weight": 0.0,
+          "Transmission WeightLinked": false,
+          "Sheen Weight": 0.0,
+          "Sheen WeightLinked": false
+        },
+        {
+          "name": "材质输出",
+          "type": "OUTPUT_MATERIAL"
+        }
+      ],
+      "surfaceRenderMethod": "DITHERED",
+      "useNodes": true
+    }
+  ],
+  "images": [
+    {
+      "name": "body_micro_weave_normal_2048.png",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.002",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.003",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "body_micro_weave_normal_2048.png.004",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\body_micro_weave_normal_2048.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "brocade_reference_synthesis.png",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.002",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.003",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "brocade_reference_synthesis.png.004",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\brocade_new\\brocade_reference_synthesis.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_basecolor_refined.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_basecolor_refined.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Refined.003",
+      "filepath": "D:\\Blender      zhiliao\\醒狮_后脑贴图修复_20261019\\textures\\Head_BaseColor_Rear_Restored_2K.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_basecolor_scarlet.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Atlas_Color_Scarlet.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_basecolor_scarlet.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Metallic.003",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Color_Derived_Roughness.003",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_metallic_color_inferred.png.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_metallic_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_roughness_color_inferred.png.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_roughness_color_inferred.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Lion_Weave_Appearance_Mask.003",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\highdetail_head\\lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "lion_weave_appearance_mask.png.001",
+      "filepath": "C:\\Users\\Administrator\\Desktop\\模型2\\Lion_3D_Project\\textures\\generated\\lion_weave_appearance_mask.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Render Result",
+      "filepath": "",
+      "size": [
+        0,
+        0
+      ],
+      "packed": false,
+      "source": "VIEWER",
+      "channels": 0,
+      "colorspace": ""
+    },
+    {
+      "name": "Tongue_BaseColor_2K",
+      "filepath": "C:\\Users\\xi\\Documents\\xwechat_files\\wxid_n2ouze2k8bxo12_ef36\\msg\\file\\2026-10\\textures\\Tongue_BaseColor_2K.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Tongue_Metallic_2K",
+      "filepath": "C:\\Users\\xi\\Documents\\xwechat_files\\wxid_n2ouze2k8bxo12_ef36\\msg\\file\\2026-10\\textures\\Tongue_Metallic_2K.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Tongue_Normal_2K",
+      "filepath": "C:\\Users\\xi\\Documents\\xwechat_files\\wxid_n2ouze2k8bxo12_ef36\\msg\\file\\2026-10\\textures\\Tongue_Normal_2K.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Tongue_Roughness_2K",
+      "filepath": "C:\\Users\\xi\\Documents\\xwechat_files\\wxid_n2ouze2k8bxo12_ef36\\msg\\file\\2026-10\\textures\\Tongue_Roughness_2K.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Viewer Node",
+      "filepath": "",
+      "size": [
+        256,
+        256
+      ],
+      "packed": false,
+      "source": "VIEWER",
+      "channels": 4,
+      "colorspace": ""
+    },
+    {
+      "name": "微信图片_20261012151351_49_384.jpg",
+      "filepath": "C:\\Users\\xi\\Documents\\xwechat_files\\wxid_n2ouze2k8bxo12_ef36\\msg\\file\\微信图片_20261012151351_49_384.jpg",
+      "size": [
+        1610,
+        906
+      ],
+      "packed": true,
+      "source": "FILE",
+      "channels": 4,
+      "colorspace": "sRGB"
+    }
+  ],
+  "armatures": [],
+  "actions": [],
+  "world": "World"
+}

@@ -1,0 +1,429 @@
+00:00.265  blend            | Read blend: "C:\Users\Administrator\Desktop\炫技5\source\科比blend.blend"
+EXPORTING 67 objects; hair True
+INFO Draco mesh compression is available, use library at C:\Users\Administrator\.cache\lion-atlas-tools\blender-5.1.2-windows-x64\5.1\scripts\addons_core\io_scene_gltf2\extern_draco.dll
+19:55:15 | INFO: Starting glTF 2.0 export
+19:55:15 | INFO: Extracting primitive: Mesh
+19:55:15 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:15 | INFO: Primitives created: 1
+19:55:15 | INFO: Extracting primitive: Mesh.001
+19:55:15 | INFO: Primitives created: 2
+19:55:15 | INFO: Extracting primitive: Mesh.002
+19:55:15 | INFO: Primitives created: 2
+19:55:15 | INFO: Extracting primitive: Mesh.003
+19:55:15 | INFO: Primitives created: 1
+19:55:15 | INFO: Extracting primitive: Sphere.001
+19:55:16 | INFO: Primitives created: 1
+19:55:16 | INFO: Extracting primitive: Lion_Crown_HeadSourceMesh.001
+19:55:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:16 | INFO: Primitives created: 1
+19:55:16 | INFO: Extracting primitive: Lion_Body_Remaining_Mesh.005
+19:55:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:16 | INFO: Primitives created: 3
+19:55:16 | INFO: Extracting primitive: Lion_Tail_Mesh.003
+19:55:17 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindpaw_R_Mesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindpaw_L_Mesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindleg_R_Mesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindleg_L_Mesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Forepaw_R_Mesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Forepaw_L_Mesh.004
+19:55:17 | INFO: Primitives created: 2
+19:55:17 | INFO: Extracting primitive: Lion_Foreleg_R_Mesh.004
+19:55:17 | INFO: Primitives created: 3
+19:55:17 | INFO: Extracting primitive: Lion_Foreleg_L_Mesh.004
+19:55:17 | INFO: Primitives created: 2
+19:55:17 | INFO: Extracting primitive: Lion_Ear_R_HeadSourceMesh.004
+19:55:17 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Ear_L_HeadSourceMesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Brow_R_HeadSourceMesh.003
+19:55:17 | INFO: Primitives created: 2
+19:55:17 | INFO: Extracting primitive: Lion_Brow_L_HeadSourceMesh.003
+19:55:17 | INFO: Primitives created: 2
+19:55:17 | INFO: Extracting primitive: Lion_Body_Red_Trim_Mesh.002
+19:55:17 | INFO: Primitives created: 3
+19:55:17 | INFO: Extracting primitive: Lion_Beard_HeadSourceMesh.002
+19:55:17 | INFO: Primitives created: 2
+19:55:17 | INFO: Extracting primitive: Lion_Ear_L_HeadSourceMesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Ear_R_HeadSourceMesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindpaw_L_Mesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Hindpaw_R_Mesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Foreleg_R_Mesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Nose_HeadSourceMesh.001
+19:55:17 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:55:17 | INFO: Primitives created: 4
+19:55:17 | INFO: Extracting primitive: Lion_Brow_R_HeadSourceMesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Brow_L_HeadSourceMesh.004
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Nose_HeadSourceMesh.005
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Ear_L_HeadSourceMesh.006
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Ear_R_HeadSourceMesh.006
+19:55:17 | INFO: Primitives created: 1
+19:55:17 | INFO: Extracting primitive: Lion_Nose_HeadSourceMesh.006
+19:55:17 | INFO: Primitives created: 3
+19:55:17 | INFO: Extracting primitive: Lion_Body_Red_Trim_Mesh.004
+19:55:18 | INFO: Primitives created: 2
+19:55:18 | INFO: Extracting primitive: Lion_Foreleg_R_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Foreleg_L_Mesh.005
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindleg_L_Mesh.005
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindleg_R_Mesh.005
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Body_Remaining_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Tail_Mesh.004
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Forepaw_R_Mesh.005
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Body_Remaining_Mesh.007
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Forepaw_L_Mesh.005
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindpaw_L_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindleg_L_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Body_Remaining_Mesh.008
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindpaw_R_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Hindleg_R_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Forepaw_R_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Forepaw_L_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Foreleg_L_Mesh.006
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: Lion_Body_Remaining_Mesh.009
+19:55:18 | INFO: Primitives created: 2
+19:55:18 | INFO: Extracting primitive: web_hair_tail_53
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_hair_beard_54
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_hair_beard_55
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_ears_HighDetail_Head_Atlas_PBR_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_limbs_Velvet_Scarlet_Uniform_Base_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_limbs_Head_Ivory_Fringe_Base
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_limbs_Lion_Atlas_PBR_Refined_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_brows_Head_Scarlet_Velvet_Base_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_head_Head_Scarlet_Velvet_Base
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_ears_Head_Scarlet_Velvet_Base_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_trim_Velvet_Scarlet_Uniform_Base_001
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_body_Velvet_Scarlet_Uniform_Base
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_tail_Velvet_Scarlet_Uniform_Base
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Extracting primitive: web_velvet_limbs_Fiber_Warm_Ivory
+19:55:18 | INFO: Primitives created: 1
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Tongue.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lower_Teeth.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Upper_Teeth.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Head.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forehead_Bead_09.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Crown.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Tail.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_L.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_L.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_L.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_L.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_L.001.
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:37:34)
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 835 vertices, 3648 indices, raw size: 39936, encoded size: 7505, compression ratio: 5.32
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 16423 vertices, 94464 indices, raw size: 714464, encoded size: 55952, compression ratio: 12.77
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 3275 vertices, 15456 indices, raw size: 135712, encoded size: 12156, compression ratio: 11.16
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 9122 vertices, 50880 indices, raw size: 393664, encoded size: 32171, compression ratio: 12.24
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 7376 vertices, 40512 indices, raw size: 317056, encoded size: 24657, compression ratio: 12.86
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1078 vertices, 4680 indices, raw size: 50400, encoded size: 9902, compression ratio: 5.09
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2848 vertices, 11520 indices, raw size: 114176, encoded size: 16333, compression ratio: 6.99
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 5960 vertices, 16563 indices, raw size: 222694, encoded size: 46904, compression ratio: 4.75
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 13376 vertices, 33375 indices, raw size: 596350, encoded size: 117074, compression ratio: 5.09
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12548 vertices, 35517 indices, raw size: 564634, encoded size: 109319, compression ratio: 5.17
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 123423 vertices, 294006 indices, raw size: 6072824, encoded size: 1048823, compression ratio: 5.79
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 39439 vertices, 100359 indices, raw size: 1457230, encoded size: 293683, compression ratio: 4.96
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2314 vertices, 8421 indices, raw size: 90698, encoded size: 18883, compression ratio: 4.80
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2394 vertices, 8331 indices, raw size: 93110, encoded size: 19672, compression ratio: 4.73
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 13628 vertices, 37776 indices, raw size: 509888, encoded size: 104688, compression ratio: 4.87
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 14900 vertices, 40701 indices, raw size: 556442, encoded size: 113794, compression ratio: 4.89
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2463 vertices, 8724 indices, raw size: 96232, encoded size: 20005, compression ratio: 4.81
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2247 vertices, 8097 indices, raw size: 87874, encoded size: 18395, compression ratio: 4.78
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 61 vertices, 162 indices, raw size: 2212, encoded size: 737, compression ratio: 3.00
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12272 vertices, 33501 indices, raw size: 458202, encoded size: 93598, compression ratio: 4.90
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 144 vertices, 522 indices, raw size: 5652, encoded size: 1396, compression ratio: 4.05
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 133 vertices, 390 indices, raw size: 4972, encoded size: 1336, compression ratio: 3.72
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12912 vertices, 35190 indices, raw size: 482028, encoded size: 98381, compression ratio: 4.90
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 126 vertices, 417 indices, raw size: 4866, encoded size: 1278, compression ratio: 3.81
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 10789 vertices, 24192 indices, raw size: 392448, encoded size: 83969, compression ratio: 4.67
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12655 vert19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Brow_R.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Brow_L.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body_Red_Trim.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Beard.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_L.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_R.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_L.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_R.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_R.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Nose.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Brow_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Brow_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Nose.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Ear_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Nose.001.
+ices, 27408 indices, raw size: 457568, encoded size: 97536, compression ratio: 4.69
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 793 vertices, 1698 indices, raw size: 27556, encoded size: 7127, compression ratio: 3.87
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 8088 vertices, 17763 indices, raw size: 291078, encoded size: 64197, compression ratio: 4.53
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 695 vertices, 1404 indices, raw size: 24248, encoded size: 6267, compression ratio: 3.87
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 8772 vertices, 19776 indices, raw size: 316448, encoded size: 68537, compression ratio: 4.62
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 21823 vertices, 66291 indices, raw size: 991862, encoded size: 200762, compression ratio: 4.94
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 3249 vertices, 7953 indices, raw size: 139706, encoded size: 33401, compression ratio: 4.18
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 62 vertices, 126 indices, raw size: 2732, encoded size: 934, compression ratio: 2.93
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1495 vertices, 2940 indices, raw size: 52696, encoded size: 12400, compression ratio: 4.25
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 10953 vertices, 23640 indices, raw size: 393200, encoded size: 84112, compression ratio: 4.67
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1968 vertices, 4404 indices, raw size: 71336, encoded size: 16094, compression ratio: 4.43
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1445 vertices, 3792 indices, raw size: 53760, encoded size: 11973, compression ratio: 4.49
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 374 vertices, 1080 indices, raw size: 14096, encoded size: 3353, compression ratio: 4.20
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 546 vertices, 1599 indices, raw size: 20638, encoded size: 4754, compression ratio: 4.34
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 133 vertices, 390 indices, raw size: 5036, encoded size: 1338, compression ratio: 3.76
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 246849 vertices, 592503 indices, raw size: 12202852, encoded size: 2259336, compression ratio: 5.40
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 5687 vertices, 12762 indices, raw size: 248124, encoded size: 51459, compression ratio: 4.82
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 7600 vertices, 16689 indices, raw size: 334738, encoded size: 60786, compression ratio: 5.51
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 302 vertices, 867 indices, raw size: 13694, encoded size: 3686, compression ratio: 3.72
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 8212 vertices, 18243 indices, raw size: 297510, encoded size: 64411, compression ratio: 4.62
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 4719 vertices, 10968 indices, raw size: 172304, encoded size: 37527, compression ratio: 4.59
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 9328 vertices, 23934 indices, raw size: 416508, encoded size: 89198, compression ratio: 4.67
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 11049 vertices, 24462 indices, raw size: 400252, encoded size: 85151, compression ratio: 4.70
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 10642 vertices, 23856 indices, raw size: 384320, encoded size: 81958, compression ratio: 4.69
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 3853 vertices, 8631 indices, raw size: 169942, encoded size: 36795, compression ratio: 4.62
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 19 vertices, 27 indices, raw size: 814, encoded size: 398, compression ratio: 2.05
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 124 vertices19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body_Red_Trim.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body.001.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Tail.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_L.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_L.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindpaw_R.002.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Hindleg_R.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_R.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Forepaw_L.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Foreleg_L.003.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_Lion_Body.004.
+19:55:18 | INFO: Draco encoder: Encoding mesh web_hair_tail_53.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_hair_beard_54.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_hair_beard_55.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_ears_HighDetail_Head_Atlas_PBR_001.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_limbs_Velvet_Scarlet_Uniform_Base_001.
+, 237 indices, raw size: 5354, encoded size: 1346, compression ratio: 3.98
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 8756 vertices, 29253 indices, raw size: 405986, encoded size: 80555, compression ratio: 5.04
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 3 vertices, 3 indices, raw size: 126, encoded size: 245, compression ratio: 0.51
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2566 vertices, 8265 indices, raw size: 98482, encoded size: 20803, compression ratio: 4.73
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2735 vertices, 8442 indices, raw size: 104084, encoded size: 21985, compression ratio: 4.73
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2920 vertices, 9450 indices, raw size: 112116, encoded size: 23661, compression ratio: 4.74
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 2334 vertices, 8190 indices, raw size: 90940, encoded size: 18558, compression ratio: 4.90
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 11629 vertices, 32508 indices, raw size: 528936, encoded size: 100208, compression ratio: 5.28
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1299 vertices, 3981 indices, raw size: 49370, encoded size: 10354, compression ratio: 4.77
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 568 vertices, 1719 indices, raw size: 21582, encoded size: 4877, compression ratio: 4.43
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 1047 vertices, 3699 indices, raw size: 49238, encoded size: 9784, compression ratio: 5.03
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 368 vertices, 1371 indices, raw size: 14518, encoded size: 3215, compression ratio: 4.52
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 431 vertices, 1311 indices, raw size: 16414, encoded size: 3783, compression ratio: 4.34
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 96 vertices, 282 indices, raw size: 3636, encoded size: 1030, compression ratio: 3.53
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 35 vertices, 63 indices, raw size: 1526, encoded size: 598, compression ratio: 2.55
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 479 vertices, 1803 indices, raw size: 18902, encoded size: 4123, compression ratio: 4.58
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 132 vertices, 330 indices, raw size: 4884, encoded size: 1331, compression ratio: 3.67
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 419 vertices, 1440 indices, raw size: 16288, encoded size: 3687, compression ratio: 4.42
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 445 vertices, 1410 indices, raw size: 17060, encoded size: 3916, compression ratio: 4.36
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 118 vertices, 333 indices, raw size: 4442, encoded size: 1202, compression ratio: 3.70
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 551 vertices, 1731 indices, raw size: 25262, encoded size: 5869, compression ratio: 4.30
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 460 vertices, 861 indices, raw size: 19922, encoded size: 4953, compression ratio: 4.02
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 499270 vertices, 1198248 indices, raw size: 16775472, encoded size: 2461035, compression ratio: 6.82
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 149870 vertices, 359688 indices, raw size: 5035632, encoded size: 721927, compression ratio: 6.98
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 199870 vertices, 479688 indices, raw size: 6715632, encoded size: 944553, compression ratio: 7.11
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24000 vertices, 60000 indices, raw size: 888000, encoded size: 76071, compression ratio: 11.67
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 96000 vertices, 240000 indices, raw size: 19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_limbs_Head_Ivory_Fringe_Base.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_limbs_Lion_Atlas_PBR_Refined_001.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_brows_Head_Scarlet_Velvet_Base_001.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_head_Head_Scarlet_Velvet_Base.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_ears_Head_Scarlet_Velvet_Base_001.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_trim_Velvet_Scarlet_Uniform_Base_001.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_body_Velvet_Scarlet_Uniform_Base.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_tail_Velvet_Scarlet_Uniform_Base.
+19:55:19 | INFO: Draco encoder: Encoding mesh web_velvet_limbs_Fiber_Warm_Ivory.
+19:55:19 | INFO: Finished glTF 2.0 export in 3.701019048690796 s
+
+SAVED C:\Users\Administrator\Desktop\炫技5\public\models\lion.glb 65314968
+MODIFIERS Lion_Body.001 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Body.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Body.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Body.004 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Body_Red_Trim.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Brow_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Brow_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Ear_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Ear_L.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Ear_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Ear_R.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Foreleg_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Foreleg_L.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Foreleg_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Foreleg_R.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Forepaw_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Forepaw_L.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Forepaw_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Forepaw_R.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Head.001 [('细分', 'SUBSURF')]
+MODIFIERS Lion_Hindleg_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindleg_L.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindleg_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindleg_R.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindpaw_L.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindpaw_L.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindpaw_R.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Hindpaw_R.003 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Nose.001 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Nose.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS Lion_Tail.002 [('粒子系统', 'PARTICLE_SYSTEM')]
+MODIFIERS 上牙 [('倒角', 'BEVEL'), ('细分', 'SUBSURF')]
+MODIFIERS 牙下 [('倒角', 'BEVEL'), ('细分', 'SUBSURF')]
+MODIFIERS 立方体 [('细分', 'SUBSURF')]
+HAIR 粒子系统 curves 99854 points 499270 modifiers []
+HAIR 粒子系统.001 curves 29973 points 149865 modifiers []
+HAIR 粒子系统.002 curves 39974 points 199870 modifiers []
+00:12.000  render           | Saved: 'C:\Users\Administrator\Desktop\炫技5\public\models\derived-preview.png'
+4032000, encoded size: 274185, compression ratio: 14.71
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12000 vertices, 30000 indices, raw size: 444000, encoded size: 43293, compression ratio: 10.26
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 72000 vertices, 180000 indices, raw size: 3024000, encoded size: 197307, compression ratio: 15.33
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24000 vertices, 60000 indices, raw size: 888000, encoded size: 79961, compression ratio: 11.11
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24000 vertices, 60000 indices, raw size: 888000, encoded size: 77668, compression ratio: 11.43
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 24000 vertices, 60000 indices, raw size: 888000, encoded size: 79063, compression ratio: 11.23
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12000 vertices, 30000 indices, raw size: 444000, encoded size: 39098, compression ratio: 11.36
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 48000 vertices, 120000 indices, raw size: 1776000, encoded size: 136548, compression ratio: 13.01
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12000 vertices, 30000 indices, raw size: 444000, encoded size: 39004, compression ratio: 11.38
+DracoEncoder | Preserve triangle order: no
+DracoEncoder | Encoded 12000 vertices, 30000 indices, raw size: 444000, encoded size: 45365, compression ratio: 9.79
+
+Blender quit
