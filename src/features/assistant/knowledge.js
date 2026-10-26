@@ -215,6 +215,7 @@ const genericKeywords = new Set([
   '全屏', '环绕', '切换视频', '抖动', '重心', '绣球', 'ai生成', 'ai画',
 ]);
 const domain = /醒狮|舞狮|狮头|狮口|狮子|佛山狮|鹤山狮|佛鹤狮|采青|抖毛|吐球|梅花桩|八态|广东|中国|世界|地图|案例|网页|网站|本页|这一页|这个作品|这件作品|展厅|巨幕|本项目/;
+export function isLionSiteQuestion(question) { return domain.test(normalize(question)); }
 // A topic name alone is not evidence for a requested price, exact date, score,
 // rule number or medical claim. This small corpus does not contain those facts.
 const uncoveredIntent = /多少钱|售价|价格|购买|哪里买|怎么买|哪(?:一)?年|哪个朝代|起源|创始|发明|第[一二三四五六七八九十0-9]+条|评分标准|比赛规则|赛事规则|多少分|得几分|得分是多少|医学|治疗|能治|联系方式|电话号码|统计数据|多少度|角度是多少|关节|膝盖|体重|重量|多重|几公斤|几厘米|多少厘米|一天吃|吃多少|喂养|食谱|眼睛.*(?:蓝色|绿色|紫色)|颜色.*(?:含义|意义|代表|原因)|为什么.*(?:蓝色|黄色|红色)/;
