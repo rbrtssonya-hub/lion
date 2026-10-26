@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-27 | maintenance | completed | [工艺双小游戏支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-27-%E5%B7%A5%E8%89%BA%E5%8F%8C%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-27 | feature | completed | [小醒 DeepSeek 全章节上下文](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-27-%E5%B0%8F%E9%86%92DeepSeek%E5%85%A8%E7%AB%A0%E8%8A%82%E4%B8%8A%E4%B8%8B%E6%96%87.md) |
+| 2026-10-27 | ui | completed | [工艺四阶段纵深轮播](UI%E4%BF%AE%E6%94%B9/2026-10-27-%E5%B7%A5%E8%89%BA%E5%9B%9B%E9%98%B6%E6%AE%B5%E7%BA%B5%E6%B7%B1%E8%BD%AE%E6%92%AD.md) |
 | 2026-10-27 | bug | completed | [小醒问候无响应](Bug%E5%A4%84%E7%90%86/2026-10-27-%E5%B0%8F%E9%86%92%E9%97%AE%E5%80%99%E6%97%A0%E5%93%8D%E5%BA%94.md) |
 | 2026-10-26 | discussion | in_progress | [四章精简改版范围与本地边界](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-26-%E5%9B%9B%E7%AB%A0%E7%B2%BE%E7%AE%80%E6%94%B9%E7%89%88%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%9C%AC%E5%9C%B0%E8%BE%B9%E7%95%8C.md) |
 | 2026-10-26 | maintenance | completed | [小醒桌宠分支合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |

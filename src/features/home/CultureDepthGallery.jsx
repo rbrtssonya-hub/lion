@@ -2,7 +2,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
 import { cultureGalleryPointerBounds, cultureGalleryRightSide } from './cultureGalleryHitArea.js';
 
-export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext, preload = false, onReady }) {
+export default function CultureDepthGallery({ stories, currentIndex, position, reducedMotion, isPageVisible, onVisibilityChange, settings, onPhotoHover, onNext, preload = false, onReady,
+  panelIdPrefix = 'culture-panel', instructionsId = 'culture-photo-instructions', photoActionLabel = '下一张文化照片',
+  nextLabel = '点击照片，换一幅风土', showNextButton = true }) {
   const hostRef = useRef(null);
   const canvasRef = useRef(null);
   const engineRef = useRef(null);
@@ -155,14 +157,14 @@ export default function CultureDepthGallery({ stories, currentIndex, position, r
       }}>
       <div className="culture-depth-atmosphere" aria-hidden="true" />
       <canvas key={reducedMotion ? 'static' : 'animated'} ref={canvasRef} className="culture-depth-canvas" aria-hidden="true" />
-      <button className="culture-depth-photo-action" type="button" aria-label="下一张文化照片"
-        aria-describedby="culture-photo-instructions" aria-controls={`culture-panel-${stories[currentIndex].id}`}
+      <button className="culture-depth-photo-action" type="button" aria-label={photoActionLabel}
+        aria-describedby={instructionsId} aria-controls={`${panelIdPrefix}-${stories[currentIndex].id}`}
         onClick={onNext} onPointerEnter={handleFallbackPointer} onPointerMove={handleFallbackPointer}
         onPointerLeave={clearFallbackPointer} onPointerCancel={clearFallbackPointer} />
-      <button className="culture-depth-next interaction-cue" type="button" onClick={onNext}
-        aria-controls={`culture-panel-${stories[currentIndex].id}`}>
-        点击照片，换一幅风土 <span aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')} →</span>
-      </button>
+      {showNextButton && <button className="culture-depth-next interaction-cue" type="button" onClick={onNext}
+        aria-controls={`${panelIdPrefix}-${stories[currentIndex].id}`}>
+        {nextLabel} <span aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')} →</span>
+      </button>}
     </div>
   );
 }
