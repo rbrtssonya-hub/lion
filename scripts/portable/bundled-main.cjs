@@ -60,7 +60,9 @@ app.whenReady().then(async () => {
   }
   const port = Number(option('port', '47851'));
   if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('Invalid port');
-  server = await startServer({ root, manifest, port, token, onShutdown: shutdown });
+  const { createChatHandler } = await import('./scripts/assistant/api.mjs');
+  const assistantHandler = createChatHandler({ offline: flag('offline') });
+  server = await startServer({ root, manifest, port, token, onShutdown: shutdown, assistantHandler });
   session.defaultSession.setPermissionRequestHandler((_contents, _permission, done) => done(false));
   session.defaultSession.setPermissionCheckHandler(() => false);
   // Content remains local, even if an asset/third-party script accidentally adds a remote fetch.

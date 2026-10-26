@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "generator": "scripts/xiaoxing/build-narration.ps1",
+  "generatedAt": "2026-10-25T18:28:05.3472065+00:00",
+  "textSource": "src/features/assistant/knowledge.js#chapterGuides",
+  "voice": {
+    "engine": "Windows System.Speech.Synthesis",
+    "name": "Microsoft Yaoyao",
+    "culture": "zh-CN",
+    "gender": "Female",
+    "age": "Adult",
+    "id": "MSTTS_V110_zhCN_YaoyaoM"
+  },
+  "direction": "Clear, friendly Chinese female exhibition guide; gently brightened for the chibi mascot, with natural articulation.",
+  "prosody": {
+    "pitch": "+10%",
+    "rate": "-3%",
+    "volume": 92
+  },
+  "audio": {
+    "container": "WAV",
+    "codec": "PCM signed 16-bit little-endian",
+    "sampleRate": 22050,
+    "channels": 1
+  },
+  "records": [
+    {
+      "chapter": "entry",
+      "text": "这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》书册。首页展览还可以切换文化照片、佛山狮与鹤山狮及佛鹤狮的形制对照，以及参考资料。随后可去“结构”点选部件，去“动作”观看四段演示，再到“神态”比较八态的观察线索。书册与类型图属于 AI 辅助示意，文化照片另有署名与许可。",
+      "ssml": "source/characters/xiaoxing/voice/entry.ssml",
+      "runtime": "source/public/assets/xiaoxing/voice/entry.wav",
+      "bytes": 1383894,
+      "sha256": "cb34d5cf0e37aae72cd62701920c5c76364c4b9782797c051686f6b888f0a598"
+    },
+    {
+      "chapter": "model",
+      "text": "结构页把醒狮的可见外形分成六处：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。可以拖拽旋转、滚轮缩放，点选模型上的部位或图鉴目录，让镜头聚焦并阅读形制、工艺和文化说明。当前模型支持可见结构观察，未展示内部拆装；内部骨架、活动连接和工艺只作资料说明。",
+      "ssml": "source/characters/xiaoxing/voice/model.ssml",
+      "runtime": "source/public/assets/xiaoxing/voice/model.wav",
+      "bytes": 1347606,
+      "sha256": "0951fc4ab32be7a18e4743239e05970e1453764fa8d7e00212088c4fecb29dd6"
+    },
+    {
+      "chapter": "action",
+      "text": "这里是四面巨幕动作展厅，提供探青采青、抖毛、狮子吐球、踩梅花桩四段用户提供的演示素材。可以拖拽环绕展厅、选择动作并控制当前视频播放，也可切换平面观看。观察时先看狮头朝向，再看步法、道具、落点与前后身段的衔接。这些片段用于观看与讲解，不提供自动动作识别、动作捕捉或评分。",
+      "ssml": "source/characters/xiaoxing/voice/action.ssml",
+      "runtime": "source/public/assets/xiaoxing/voice/action.wav",
+      "bytes": 1411088,
+      "sha256": "630fca44e849505dcbedec0fea836f7f50b2a91fc326d84506f186daca2e5abe"
+    },
+    {
+      "chapter": "state",
+      "text": "神态页提供喜、怒、哀、乐、动、静、惊、疑八种观察提示。点击左侧目录，或在主狮头处使用滚轮、方向键与前后箭头切换；点击狮头能阅读眉眼、狮口、身段、步法和鼓点的观察引导，也可以比较喜与乐、惊与疑、动与静。图像为 AI 辅助视觉，八态属于本项目的定性观察框架，仍等待真实图片或视频样本校核，不构成情绪识别或评分。",
+      "ssml": "source/characters/xiaoxing/voice/state.ssml",
+      "runtime": "source/public/assets/xiaoxing/voice/state.wav",
+      "bytes": 1528866,
+      "sha256": "38846e3eb5a954451f36a758e410f7c599291eab6c5fd6db721cdcd4fdab229a"
+    }
+  ],
+  "sample": {
+    "text": "你好呀，我是小醒。让我陪你一起走进醒狮的世界吧。",
+    "path": "source/characters/xiaoxing/voice/sample.wav",
+    "bytes": 273182,
+    "sha256": "cb538df6131bb9df96d82c48f0bbf5a9ee9fb818740ea86a3392b9e89e6efa45"
+  }
+}

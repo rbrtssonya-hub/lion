@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { lionBookPlugin } from './scripts/lion-book-vite-plugin.mjs';
+import { xiaoxingPlugin } from './scripts/assistant/vite-plugin.mjs';
 
 export default defineConfig({
-  plugins: [lionBookPlugin(), react()],
+  plugins: [lionBookPlugin(), xiaoxingPlugin(), react()],
   optimizeDeps: { exclude: ['@designcodeio/threeui'] },
   base: './',
   publicDir: 'source/public',

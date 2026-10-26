@@ -4886,6 +4886,198 @@
       "path": "source/reviews/eight-face/2026-10-26/surprise-peak-1920.png",
       "bytes": 598004,
       "sha256": "4cb01a5a1434e6334bcf13eaab07fd2a86900e0b90680075c3b8ff80bfe97983"
+    },
+    {
+      "from": "user-selected chibi lion costume mascot attachment 2026-10-26",
+      "path": "source/characters/xiaoxing/approved-reference.png",
+      "bytes": 1442601,
+      "sha256": "89583d666db5c67f44ecb5b9a6afdc1b910d6823f5c54b7a3e707a130e213069"
+    },
+    {
+      "from": "imagegen facial underpainting from approved mascot 2026-10-26",
+      "path": "source/characters/xiaoxing/face-repair.png",
+      "bytes": 1349231,
+      "sha256": "4e1477e7195cb34aabb8721ba6e7839ba6187d6e68550b4afa57d7250507a772"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/characters/xiaoxing/merged-preview.png",
+      "bytes": 1660161,
+      "sha256": "2f25189e1a7ca037047b99b7121b8e5600a87b7271316f8dda69b11c9ae8e64c"
+    },
+    {
+      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "path": "source/characters/xiaoxing/voice/sample.wav",
+      "bytes": 273182,
+      "sha256": "cb538df6131bb9df96d82c48f0bbf5a9ee9fb818740ea86a3392b9e89e6efa45"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/characters/xiaoxing/xiaoxing-layered.ora",
+      "bytes": 3528988,
+      "sha256": "54a3d65c898f1c3b89414260257a51944a02b33c4a92661220ee45a8729b8fda"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/characters/xiaoxing/xiaoxing-layered.psd",
+      "bytes": 3336675,
+      "sha256": "adcfc41b27ff367e991a07cc99f1aa21d1e0af79b996cb43f39662ba100f25ac"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/body.png",
+      "bytes": 546198,
+      "sha256": "a3e2e77a10b10baa028a019510c4de07e61c2c9fef15931c4a0aa487933834b4"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/head.png",
+      "bytes": 1143901,
+      "sha256": "b5e757c2faa94f0598cc9f09151a20367065039a2165f4fd040dbc314269d702"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/left-brow.png",
+      "bytes": 40697,
+      "sha256": "eb0d26d7ccb5fc5ce15bca8a982b0cbe1dc4b32a47718966f9a581b5b289b26b"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/left-eye.png",
+      "bytes": 69679,
+      "sha256": "52a08c318bfb667e82ca1e2814c96103205e5b8e0ff681ec7459337d1230501c"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/mouth-closed.png",
+      "bytes": 35936,
+      "sha256": "7503a9c94ccda2afeaee88573d745ea323e3bb75ac779b10bb1e01b69eae9f11"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/mouth-smile.png",
+      "bytes": 37430,
+      "sha256": "f44a6b958f0bd21a33439e1849cdb9510621519b626ed4c909f9c012a6445722"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/mouth-talk.png",
+      "bytes": 45331,
+      "sha256": "c893c6b41dc8d2f537459cedd5771e776bd9228b1f37666b76194fb9b1cdd56d"
+    },
+    {
+      "from": "user-selected chibi lion costume mascot attachment 2026-10-26",
+      "path": "source/public/assets/xiaoxing/reference.png",
+      "bytes": 1442601,
+      "sha256": "89583d666db5c67f44ecb5b9a6afdc1b910d6823f5c54b7a3e707a130e213069"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/right-brow.png",
+      "bytes": 39958,
+      "sha256": "3b3006c36fa3b44ee4af4fbcd84eaa9a8259e39816f127fcdb12320c79184a1f"
+    },
+    {
+      "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/right-eye.png",
+      "bytes": 66486,
+      "sha256": "2fe6fa51080be96b4cca32b3efd2cf6497a2ce2c35c99524349c895331bcbb97"
+    },
+    {
+      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "path": "source/public/assets/xiaoxing/voice/action.wav",
+      "bytes": 1411088,
+      "sha256": "630fca44e849505dcbedec0fea836f7f50b2a91fc326d84506f186daca2e5abe"
+    },
+    {
+      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "path": "source/public/assets/xiaoxing/voice/entry.wav",
+      "bytes": 1383894,
+      "sha256": "cb34d5cf0e37aae72cd62701920c5c76364c4b9782797c051686f6b888f0a598"
+    },
+    {
+      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "path": "source/public/assets/xiaoxing/voice/model.wav",
+      "bytes": 1347606,
+      "sha256": "0951fc4ab32be7a18e4743239e05970e1453764fa8d7e00212088c4fecb29dd6"
+    },
+    {
+      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "path": "source/public/assets/xiaoxing/voice/state.wav",
+      "bytes": 1528866,
+      "sha256": "38846e3eb5a954451f36a758e410f7c599291eab6c5fd6db721cdcd4fdab229a"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/action-1920-final.png",
+      "bytes": 2196058,
+      "sha256": "4789d867a5c3f64885b33dbb1a189b225597c78e3febe9a67ed3ee74d7f3174e"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/action-1920.png",
+      "bytes": 2217298,
+      "sha256": "7f1f02dbe2f58df26dcf19dbf586d9cb6853c8bff8acf2b80f1419dcf6ca7821"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/entry-1920-final.png",
+      "bytes": 2942946,
+      "sha256": "77f3e678f9f2ab88a3fd6e2af0361cc3ea51740f5737ee74dd7db538e00bd665"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/entry-1920.png",
+      "bytes": 2943712,
+      "sha256": "7bfb825c4c2bf6a95e58a256890e58ce7ceb5c7f475d0c20ccd5910924dc0d6c"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/model-1920-final.png",
+      "bytes": 2372340,
+      "sha256": "34836aa15fdffb11e9a04d45df80121311cc45bc8f14a2ee1f1970cbaede4715"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/model-1920.png",
+      "bytes": 2372471,
+      "sha256": "56ac4570e35d49fff095f173a466b3a9ec553f312042c16cff08fc59598628c7"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/state-1366-final.png",
+      "bytes": 1019070,
+      "sha256": "3bb93aca54f4e2e3c3e7876260515d665419fc540153e092fa6f1ea37cf9da66"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/state-1366.png",
+      "bytes": 893065,
+      "sha256": "846aabe32aae36c4a379ef89a1ce9e71e7daebf9c104b028c0ac07f2ef6c1104"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/state-1920-final.png",
+      "bytes": 2005883,
+      "sha256": "185a9362fc07c47d40d1739dd08b95a40221d5c2fd230d6024e633755e5a7e91"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/state-1920.png",
+      "bytes": 1835701,
+      "sha256": "c6899c8e0ace48246c17f91c1998cb361e3787730e0dae51084e56ca0d1eab82"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/motion/character-states.gif",
+      "bytes": 4539964,
+      "sha256": "ba3fef65cefbc99983621eafc77d05789561d1f89d45e6d1396687f71fd3266e"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/motion/state-1366.png",
+      "bytes": 1093533,
+      "sha256": "c39dd95ab7912481b944be5fe1f63c13df62eae72c12b558acc70356a6613101"
     }
   ]
 }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小醒 · 分层动效预览</title>
+<link rel="stylesheet" href="../../../../../src/features/assistant/assistant.css">
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#f8f2e8;color:#674936;font-family:'Microsoft YaHei',sans-serif}
+  main{width:1000px;max-width:100%;margin:auto;padding:34px 48px}header{border-bottom:1px solid #decab1;padding-bottom:20px}
+  .eyebrow{margin:0 0 8px;color:#a44731;font-size:12px;letter-spacing:.18em}h1{margin:0;font:34px/1.4 'KaiTi',serif;letter-spacing:.08em}
+  header p:last-child{margin:10px 0 0;color:#91745d;font-size:13px}.controls{display:flex;gap:10px;margin:20px 0}
+  button{padding:9px 24px;border:1px solid #d7bea0;border-radius:22px;background:#fffaf2;color:#805a42;font:13px 'Microsoft YaHei';cursor:pointer}
+  button[aria-pressed=true]{background:#a23b2c;color:#fff7e9;border-color:#a23b2c}button:focus-visible{outline:2px solid #a23b2c;outline-offset:3px}
+  .stages{display:grid;grid-template-columns:1fr 1fr;gap:22px}.stage{height:405px;position:relative;display:grid;place-items:center;border:1px solid #e3d3bd;border-radius:18px;background:#fffaf2}
+  .stage-label{position:absolute;top:18px;left:20px;color:#a07f60;font-size:12px}.stage .xiaoxing-avatar{margin-top:18px}.detail .xiaoxing-avatar{transform:scale(2.05)}
+  .status{position:absolute;bottom:18px;margin:0;color:#a23b2c;font-size:13px;letter-spacing:.1em}footer{margin-top:18px;font-size:12px;line-height:1.8;color:#927a65}
+</style>
+<main class="xiaoxing-companion">
+  <header><p class="eyebrow">南风有狮 · 角色动态</p><h1>小醒 · 分层动效预览</h1><p>观察身体、狮头、双眼、双眉与嘴型各自的变化。</p></header>
+  <nav class="controls" aria-label="角色状态预览">
+    <button data-state="idle" aria-pressed="true">待机</button><button data-state="blink" aria-pressed="false">眨眼</button><button data-state="listening" aria-pressed="false">倾听</button><button data-state="thinking" aria-pressed="false">思考</button><button data-state="answering" aria-pressed="false">回答</button>
+  </nav>
+  <section class="stages"><div class="stage"><span class="stage-label">网页实际尺寸</span><span id="actual"></span><p class="status">待机</p></div><div class="stage detail"><span class="stage-label">放大观察 · 2.05 倍</span><span id="detail"></span><p class="status">待机</p></div></section>
+  <footer>这是角色状态的独立审查页。网页中的倾听由悬停或打开对话触发，思考跟随真实请求等待，回答跟随回复和语音播放；待机眨眼会自动循环。</footer>
+</main>
+<script>
+  const root='../../../../public/assets/xiaoxing/';
+  const parts=[['body','body'],['head','head'],['eye-left','left-eye'],['eye-right','right-eye'],['brow-left','left-brow'],['brow-right','right-brow'],['mouth-closed','mouth-closed'],['mouth-smile','mouth-smile'],['mouth-talk','mouth-talk']];
+  const layer=([part,file])=>`<img class="xiaoxing-layer xiaoxing-layer--${part}" src="${root}${file}.png" alt="" draggable="false">`;
+  for(const id of ['actual','detail'])document.getElementById(id).innerHTML=`<span class="xiaoxing-avatar" data-state="idle" data-animated="true" data-layered="true"><span class="xiaoxing-puppet">${layer(parts[0])}<span class="xiaoxing-head-group">${parts.slice(1).map(layer).join('')}</span></span></span>`;
+  document.querySelectorAll('.controls button').forEach(button=>button.addEventListener('click',()=>{
+    document.querySelectorAll('.controls button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    document.querySelectorAll('.xiaoxing-avatar').forEach(avatar=>{
+      avatar.dataset.state=button.dataset.state==='blink'?'idle':button.dataset.state;
+      if(button.dataset.state==='blink')avatar.getAnimations({subtree:true}).filter(animation=>animation.animationName==='xiaoxing-blink').forEach(animation=>{animation.currentTime=1564;animation.play()});
+    });
+    document.querySelectorAll('.status').forEach(label=>label.textContent=button.textContent);
+  }));
+</script>
+</html>

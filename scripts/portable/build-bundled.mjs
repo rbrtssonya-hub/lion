@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { resolveBundledIcon } from './build-options.mjs';
+import { copyAssistantRuntime } from '../assistant/package-runtime.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const project = path.resolve(here, '../..');
@@ -115,9 +116,10 @@ const mediaPath = path.join(work, 'media-compatibility.json');
 await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2)); await fs.writeFile(mediaPath, JSON.stringify(media, null, 2));
 const appDir = path.join(work, 'app'); await fs.mkdir(appDir);
 await fs.writeFile(path.join(appDir, 'package.json'), JSON.stringify({ name: 'south-wind-lion-bundled', version: '1.0.0', private: true,
-  description: 'South Wind Lion self-contained offline desktop exhibition', author: 'South Wind Lion', main: 'main.cjs' }));
+  description: 'South Wind Lion self-contained offline desktop exhibition', author: 'South Wind Lion', type: 'module', main: 'main.cjs' }));
 await fs.copyFile(path.join(here, 'bundled-main.cjs'), path.join(appDir, 'main.cjs'));
 await fs.copyFile(path.join(here, 'bundled-server.cjs'), path.join(appDir, 'bundled-server.cjs'));
+await copyAssistantRuntime(project, appDir);
 const { build, Platform, Arch } = requireTools('electron-builder');
 const { getNsisElevatePath } = requireTools('app-builder-lib/out/toolsets/windows.js');
 const { editWindowsResources } = requireTools('app-builder-lib/out/util/resEdit.js');
@@ -126,7 +128,7 @@ let windowsIcon;
 const artifacts = await build({ projectDir: appDir, targets: Platform.WINDOWS.createTarget(['portable'], Arch.x64), config: {
   appId: 'org.southwindlion.offline', productName: '南风有狮', electronVersion: ELECTRON,
   directories: { output: buildOut }, npmRebuild: false, buildDependenciesFromSource: false,
-  asar: true, files: ['main.cjs', 'bundled-server.cjs', 'package.json'],
+  asar: true, files: ['main.cjs', 'bundled-server.cjs', 'package.json', 'scripts/assistant/api.mjs', 'src/features/assistant/knowledge.js'],
   extraResources: [{ from: site, to: 'site' }, { from: manifestPath, to: 'site.manifest.json' }, { from: mediaPath, to: 'media-compatibility.json' },
     { from: sourceIcon, to: 'app-icon.png' }],
   win: { artifactName: '南风有狮.exe', icon: sourceIcon, signAndEditExecutable: false, signExecutable: false },

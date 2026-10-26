@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-26",
+  "browser": "156.0.8078.47",
+  "baseURL": "http://127.0.0.1:42826",
+  "pageErrors": [],
+  "records": [
+    {
+      "chapter": "entry",
+      "file": "entry-1920-final.png",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "pet": {
+        "x": 1752,
+        "y": 804,
+        "width": 138,
+        "height": 152
+      },
+      "layerCount": 9,
+      "dialog": false
+    },
+    {
+      "chapter": "model",
+      "file": "model-1920-final.png",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "pet": {
+        "x": 14,
+        "y": 914,
+        "width": 138,
+        "height": 152
+      },
+      "layerCount": 9,
+      "dialog": false
+    },
+    {
+      "chapter": "action",
+      "file": "action-1920-final.png",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "pet": {
+        "x": 1752,
+        "y": 804,
+        "width": 138,
+        "height": 152
+      },
+      "layerCount": 9,
+      "dialog": false
+    },
+    {
+      "chapter": "state",
+      "file": "state-1920-final.png",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "pet": {
+        "x": 250,
+        "y": 914,
+        "width": 138,
+        "height": 152
+      },
+      "layerCount": 9,
+      "dialog": true
+    },
+    {
+      "chapter": "state",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "dialogInViewport": true,
+      "file": "state-1366-final.png"
+    }
+  ],
+  "scope": "actual production Chrome screenshots, desktop only; no live DeepSeek API or packaged EXE claim"
+}

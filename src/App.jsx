@@ -16,6 +16,7 @@ import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSet
 import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
 import { getSoundControlLayout } from './features/sound-control/soundWaveGeometry.js';
 import ChapterInkTransition from './components/ChapterInkTransition.jsx';
+import XiaoxingAssistant from './features/assistant/XiaoxingAssistant.jsx';
 
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
@@ -42,6 +43,7 @@ export default function App() {
   const headerRef = useRef(null);
   const captureNavigation = useNavigationMotion(headerRef, route, settings);
   const [observation, setObservation] = useState(null);
+  const [assistantSource, setAssistantSource] = useState(null);
   const modelReturn = useRef(null);
   useLayoutEffect(() => { navigationCaptureRef.current = captureNavigation; }, [captureNavigation]);
   const navigateTo = useCallback((target, context) => {
@@ -55,6 +57,12 @@ export default function App() {
     if (target !== route) captureNavigation();
     navigate(target);
   }, [route, navigate, captureNavigation]);
+  const navigateFromAssistant = useCallback((target, context) => {
+    if (target === 'entry' && context?.assistantSource?.section) {
+      setAssistantSource({ section: context.assistantSource.section, revision: Date.now() });
+    }
+    navigateTo(target);
+  }, [navigateTo]);
   const returnToModel = useCallback(() => {
     captureNavigation();
     navigate('model');
@@ -185,7 +193,7 @@ export default function App() {
         <span className="chapter-transition-line" aria-hidden="true" />
         <div className="chapter-scene" inert={scene.phase === 'leaving'}>
         <div className="prewarmed-page" data-active={displayedRoute === 'entry'} inert={displayedRoute !== 'entry'} aria-hidden={displayedRoute !== 'entry'}>
-          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={displayedRoute === 'entry' && route === 'entry'} />
+          <HomePage onNavigate={navigateTo} settings={settings} assistantSource={assistantSource} playbackEnabled={displayedRoute === 'entry' && route === 'entry'} />
         </div>
         <div className="prewarmed-page" data-active={displayedRoute === 'model'} inert={displayedRoute !== 'model'} aria-hidden={displayedRoute !== 'model'}>
           <ModelPreparationBoundary>
@@ -198,6 +206,7 @@ export default function App() {
         </div>
       </main>
     </div>
+    <XiaoxingAssistant chapter={displayedRoute} onNavigate={navigateFromAssistant} suppressed={settingsOpen} />
     {settingsOpen && !sceneViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
     {settingsFeedback && <div className="settings-status" role="status">{settingsFeedback}</div>}
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}

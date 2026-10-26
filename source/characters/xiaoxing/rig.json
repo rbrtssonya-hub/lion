@@ -1,0 +1,70 @@
+{
+  "width": 1349,
+  "height": 1166,
+  "layers": [
+    {
+      "id": "body",
+      "label": "身体与补全领口"
+    },
+    {
+      "id": "head",
+      "label": "狮头头饰与修复脸底"
+    },
+    {
+      "id": "left-eye",
+      "label": "left-eye"
+    },
+    {
+      "id": "right-eye",
+      "label": "right-eye"
+    },
+    {
+      "id": "left-brow",
+      "label": "left-brow"
+    },
+    {
+      "id": "right-brow",
+      "label": "right-brow"
+    },
+    {
+      "id": "mouth-closed",
+      "label": "闭合嘴型"
+    },
+    {
+      "id": "mouth-smile",
+      "label": "微笑嘴型"
+    },
+    {
+      "id": "mouth-talk",
+      "label": "说话嘴型"
+    }
+  ],
+  "pivots": {
+    "head": [
+      752,
+      741
+    ],
+    "leftEye": [
+      651,
+      632
+    ],
+    "rightEye": [
+      848,
+      596
+    ],
+    "leftBrow": [
+      650,
+      576
+    ],
+    "rightBrow": [
+      846,
+      540
+    ],
+    "mouth": [
+      776,
+      686
+    ]
+  },
+  "inpainting": "imagegen face-repair.png; original outer pixels preserved",
+  "exporter": "scripts/xiaoxing/export-rig.mjs"
+}

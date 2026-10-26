@@ -33,3 +33,10 @@ source/reviews/expression-click-feedback/2026-10-22/capture.json -text
 source/reviews/**/capture.json -text
 source/reviews/surprise-duration/2026-10-26/natural-playback.json -text
 source/reviews/eight-face/2026-10-26/*.json -text
+# Preserve the newer authenticated capture evidence in fresh Windows worktrees.
+source/reviews/exhibit-screen/2026-10-25/capture.json -text
+source/reviews/book-timeline-size/2026-10-25/capture.json -text
+source/reviews/book-marked-zones/2026-10-25/capture.json -text
+source/reviews/entry-brush-type/2026-10-26/capture.json -text
+source/reviews/entry-brush-horizontal/2026-10-26/capture.json -text
+source/reviews/xiaoxing/**/capture.json -text

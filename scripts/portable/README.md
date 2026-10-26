@@ -1,5 +1,9 @@
 # Windows 离线展示 EXE
 
+## 小醒智能问答（2026-10-26）
+
+桌宠通过同源 `/api/xiaoxing/chat` 访问包内 Node 问答处理器，渲染器仍只允许本地资源。发布端可通过进程环境 `XIAOXING_GATEWAY_URL` 指向自己的固定 HTTPS 问答网关，模型密钥保存在网关服务器；打包脚本只复制显式服务器代码与本地讲解资料，不复制任何 `.env`。未配置、网络故障或 `--offline` 时返回本地讲解，后者会在任何模型请求前强制离线。接入及独立服务配置见 [小醒问答说明](../../docs/XIAOXING_AI.md)。旧 EXE 不自动更新，需重新打包后验收。
+
 ## 当前：内置 Chromium、指定图标与 ZIP（2026-10-23）
 
 用户追加要求不依赖目标电脑的浏览器。新的 `build-bundled.mjs` 采用 Electron 44.9.1 自带 Chromium/Node 和 electron-builder 26.15.3 原生 portable 封装；运行不再需要已安装的 Edge、Chrome、Node、npm 或 .NET。旧 C# 方案保留为历史替代，不应再用它代表内置内核版。
