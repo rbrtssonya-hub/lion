@@ -64,3 +64,21 @@ test('三个范围可用键盘切换，地图标签和章内控制在电脑视�
     }
   }
 });
+
+test('小醒进入传章后避让地图和案例卡操作', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('nanfeng-xiaoxing-position-v1', JSON.stringify({ x: 1100, y: 450, width: 1366, height: 768 })));
+  await page.reload();
+  await page.getByRole('tab', { name: '世界', exact: true }).click();
+  await page.getByRole('button', { name: '选择新加坡案例', exact: true }).click();
+  const overlaps = await page.evaluate(() => {
+    const pet = document.querySelector('.xiaoxing-pet').getBoundingClientRect();
+    const targets = [...document.querySelectorAll('#spreadStage button, #spreadStage a, #spreadPlaceCard')];
+    return targets.filter(target => {
+      const box = target.getBoundingClientRect();
+      return Math.min(pet.right, box.right) - Math.max(pet.left, box.left) > 2 && Math.min(pet.bottom, box.bottom) - Math.max(pet.top, box.top) > 2;
+    }).map(target => target.getAttribute('aria-label') || target.id || target.className);
+  });
+  expect(overlaps).toEqual([]);
+  await page.getByRole('button', { name: '下一幅照片', exact: true }).click();
+  await expect(page.locator('.spread-photo')).toHaveAttribute('alt', /白色狮头近景/);
+});

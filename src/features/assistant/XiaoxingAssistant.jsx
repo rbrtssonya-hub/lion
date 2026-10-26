@@ -8,6 +8,7 @@ import { askXiaoxing } from './client.js';
 import './assistant.css';
 
 const petSize = { width: 152, height: 194 };
+const spreadPetSize = { width: 120, height: 160 };
 const chapterTitles = { entry: '入境 · 首页', model: '造 · 观形', action: '舞 · 动作', state: '舞 · 神态', spread: '传 · 狮行远方' };
 const Icon = ({ type }) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
   {type === 'close' ? <path d="m6 6 12 12M18 6 6 18" /> : type === 'send' ? <><path d="m4 11 16-7-6 16-3-6-7-3Z" /><path d="m11 14 9-10" /></> : type === 'voice' ? <><path d="M11 5 6 9H3v6h3l5 4V5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></> : <><path d="M4 5h6c2 0 2 1 2 1s0-1 2-1h6v14h-6c-2 0-2 1-2 1s0-1-2-1H4V5Z" /><path d="M12 6v14" /></>}
@@ -47,8 +48,9 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [mode, setMode] = useState('local');
+  const currentPetSize = chapter === 'spread' ? spreadPetSize : petSize;
   const [sourceTarget, setSourceTarget] = useState(null);
-  const { position, viewport, dragging, consumeClick, handlers } = usePetPosition(petSize, chapter);
+  const { position, viewport, dragging, consumeClick, handlers } = usePetPosition(currentPetSize, chapter);
   const { hidden, animated } = useStageVisibility(suppressed);
   const narration = useNarration();
   const narrationRef = useRef(narration); narrationRef.current = narration;
@@ -156,10 +158,10 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
   const panelHeight = Math.min(566, viewport.height - topInset - 14);
   const panelX = Math.max(14, Math.min(viewport.width - panelWidth - 14,
     position.x > viewport.width / 2 ? position.x - panelWidth - 10 : viewport.width - panelWidth - 24));
-  const panelY = Math.max(topInset, Math.min(viewport.height - panelHeight - 14, position.y + petSize.height - panelHeight));
+  const panelY = Math.max(topInset, Math.min(viewport.height - panelHeight - 14, position.y + currentPetSize.height - panelHeight));
   const narrationX = Math.max(8, Math.min(viewport.width - 40,
-    position.x > viewport.width / 2 ? position.x - 38 : position.x + petSize.width + 6));
-  const narrationY = Math.max(8, Math.min(viewport.height - 40, position.y + petSize.height - 38));
+    position.x > viewport.width / 2 ? position.x - 38 : position.x + currentPetSize.width + 6));
+  const narrationY = Math.max(8, Math.min(viewport.height - 40, position.y + currentPetSize.height - 38));
   const state = thinking ? 'thinking' : narration.speaking || answering ? 'answering' : open || focused || hovered ? 'listening' : 'idle';
   const caption = { idle: '点我对话', listening: '在听你说', thinking: '整理资料中', answering: '说给你听' }[state];
   const suggestions = getSuggestedQuestions(chapter).slice(0, 3);

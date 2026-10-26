@@ -6,6 +6,8 @@
 .xiaoxing-pet-shadow { position: absolute; bottom: 17px; left: 21%; width: 58%; height: 9px; border-radius: 50%; background: #55331c24; filter: blur(4px); pointer-events: none; }
 .xiaoxing-avatar { --xiaoxing-gaze-x: 0px; --xiaoxing-gaze-y: 0px; position: relative; display: block; flex: 0 0 auto; width: 144px; aspect-ratio: 930 / 1090; pointer-events: none; filter: drop-shadow(0 3px 4px #34190728); }
 .xiaoxing-companion[data-chapter='model'] .xiaoxing-avatar { width: 128px; }
+.xiaoxing-companion[data-chapter='spread'] .xiaoxing-pet { width: 120px; height: 160px; }
+.xiaoxing-companion[data-chapter='spread'] .xiaoxing-avatar { width: 112px; }
 /* Keep the aligned source canvases; frame out the reference's transparent margins. */
 .xiaoxing-puppet { position: absolute; left: -25.8065%; top: -4.4037%; width: 145.0538%; aspect-ratio: 1349 / 1166; }
 .xiaoxing-head-group { position: absolute; inset: 0; z-index: 2; display: block; transform-origin: 55.7% 63.5%; rotate: 0deg; transition: rotate .4s ease; }

@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
 const chapters = [
-  ['entry', '01', '入境'], ['model', '02', '观形'],
-  ['action', '03', '起舞'], ['state', '04', '传神'],
+  ['entry', '01', '溯源'], ['model', '02', '观形'],
+  ['action', '03', '传神'], ['spread', '04', '远播'],
 ];
 
 test.beforeEach(async ({ page }) => {
@@ -38,6 +38,10 @@ for (const size of [{ width: 1920, height: 1080 }, { width: 1440, height: 900 }]
         }), '首页章号必须完整避让重播工具').toBe(true);
       }
     }
+    await page.evaluate(() => { location.hash = '/state'; });
+    const expressionIdentity = page.locator('.chapter-identity[data-chapter-identity="state"]');
+    await expect(expressionIdentity.locator('.chapter-identity__number')).toHaveText('03 / 04');
+    await expect(expressionIdentity.locator('.chapter-identity__phase')).toHaveText('传神');
   });
 }
 
@@ -120,7 +124,7 @@ test('后台模型等待不遮挡首页和神态，准备后仍复用原画布',
     await page.goto('/');
     await expect(page.locator('#entryLionVideo')).toBeVisible();
     await expect.poll(() => page.locator('#entryLionVideo').evaluate(video => video.currentTime)).toBeGreaterThan(.1);
-    await page.locator('.site-nav-item[data-route="state"]').click();
+    await page.evaluate(() => { location.hash = '/state'; });
     await expect(page.locator('#expressionLion')).toBeVisible();
     release();
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
@@ -128,7 +132,7 @@ test('后台模型等待不遮挡首页和神态，准备后仍复用原画布',
     await expect(page.locator('#resetView')).toBeEnabled();
     await expect(page.locator('#resetView')).toBeVisible();
     const canvas = await page.locator('#sceneContainer canvas').elementHandle();
-    await page.locator('.site-nav-item[data-route="state"]').click();
+    await page.evaluate(() => { location.hash = '/state'; });
     await expect(page.locator('#expressionLion')).toBeVisible();
     await page.locator('.site-nav-item[data-route="model"]').click();
     await expect(page.locator('#resetView')).toBeVisible();

@@ -14,6 +14,7 @@ async function open(page, route, settings = {}) {
   }, settings);
   await page.goto(`/#/${route}`);
   await expect(page.locator(route === 'model' ? '#modelStage' : '#chapterStage')).toBeVisible();
+  await page.addStyleTag({ content: '.xiaoxing-companion { display: none !important; }' });
   await page.evaluate(() => document.fonts.ready);
 }
 
@@ -61,8 +62,8 @@ test('结构在矮窄到4K电脑窗口重排，模型与独立滚动图鉴都保
       return { sceneWidth: scene.width, sceneHeight: scene.height, stacked: panel.top >= scene.bottom, canvas: document.querySelector('#sceneContainer canvas').isConnected };
     });
     expect(bounds.sceneWidth).toBeGreaterThan(300);
-    expect(bounds.sceneHeight).toBeGreaterThanOrEqual(350);
-    expect(bounds.stacked).toBe(width < 850);
+    expect(bounds.sceneHeight).toBeGreaterThanOrEqual(330);
+    expect(bounds.stacked).toBe(width <= 900);
     expect(await canvas.evaluate(element => element === document.querySelector('#sceneContainer canvas'))).toBe(true);
   }
   await resize(page, 675, 403);

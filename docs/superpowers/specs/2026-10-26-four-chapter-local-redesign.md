@@ -111,3 +111,9 @@ React 管理选择、弹层与播放编排；Three 服务继续负责场景与�
 - `src/features/chapters/ExpressionPage.jsx`、`src/data/lion-structure.json`、`src/services/lionScene.js`
 - `source/references/home-culture-sources.md`、`source/references/home-heritage-sources.md`、`source/references/2026-10-19-action-theater-videos.md`
 - 根 `AGENTS.md`、`wiki_memory/AGENTS.md` 与用户 2026-10-26 的本轮本地分支要求
+
+## 后续交付授权（2026-10-26）
+
+实施完成后，用户明确要求“上传到 main 主线，并且上传 GitHub”。该较晚指令覆盖本说明原定的本地-only交付边界，授权将本说明范围内的四章改版与广东→中国→世界地图合入本地 `main` 并推送已配置的 GitHub `origin/main`。这不包含部署网站。
+
+本次从主线基线重建集成，只挑选本说明及四章/三级地图实现提交；原分支上独立小游戏提交 `a9422f6` 不在批准范围内，未合入。

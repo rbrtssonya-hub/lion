@@ -12,13 +12,16 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-26 | discussion | in_progress | [四章精简改版范围与本地边界](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-26-%E5%9B%9B%E7%AB%A0%E7%B2%BE%E7%AE%80%E6%94%B9%E7%89%88%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%9C%AC%E5%9C%B0%E8%BE%B9%E7%95%8C.md) |
 | 2026-10-26 | maintenance | completed | [小醒桌宠分支合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-26 | maintenance | completed | [八态视觉开发支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%85%AB%E6%80%81%E8%A7%86%E8%A7%89%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-26 | feature | completed | [小醒桌宠与离线讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E4%B8%8E%E7%A6%BB%E7%BA%BF%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | feature | in_progress | [小醒常驻语音讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E5%B8%B8%E9%A9%BB%E8%AF%AD%E9%9F%B3%E8%AE%B2%E8%A7%A3.md) |
+| 2026-10-26 | feature | completed | [四章精简改版本地实现](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%9B%9B%E7%AB%A0%E7%B2%BE%E7%AE%80%E6%94%B9%E7%89%88%E6%9C%AC%E5%9C%B0%E5%AE%9E%E7%8E%B0.md) |
 | 2026-10-26 | ui | completed | [惊态五官动作延长三秒](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E6%83%8A%E6%80%81%E4%BA%94%E5%AE%98%E5%8A%A8%E4%BD%9C%E5%BB%B6%E9%95%BF%E4%B8%89%E7%A7%92.md) |
 | 2026-10-26 | ui | completed | [惊态五官与墨迹转场](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E6%83%8A%E6%80%81%E4%BA%94%E5%AE%98%E4%B8%8E%E5%A2%A8%E8%BF%B9%E8%BD%AC%E5%9C%BA.md) |
 | 2026-10-26 | ui | completed | [八态三秒五官分层动作](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E5%85%AB%E6%80%81%E4%B8%89%E7%A7%92%E4%BA%94%E5%AE%98%E5%88%86%E5%B1%82%E5%8A%A8%E4%BD%9C.md) |
+| 2026-10-26 | ui | completed | [传章广东、中国、世界三级地图](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E4%BC%A0%E7%AB%A0%E5%B9%BF%E4%B8%9C%E4%B8%AD%E5%9B%BD%E4%B8%96%E7%95%8C%E4%B8%89%E7%BA%A7%E5%9C%B0%E5%9B%BE.md) |
 | 2026-10-26 | bug | completed | [小醒分层动效可见性修复](Bug%E5%A4%84%E7%90%86/2026-10-26-%E5%B0%8F%E9%86%92%E5%88%86%E5%B1%82%E5%8A%A8%E6%95%88%E5%8F%AF%E8%A7%81%E6%80%A7%E4%BF%AE%E5%A4%8D.md) |
 | 2026-10-25 | discussion | completed | [四章视觉语言统一方案](%E5%B7%A5%E7%A8%8B%E8%AE%A8%E8%AE%BA/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E7%BB%9F%E4%B8%80%E6%96%B9%E6%A1%88.md) |
 | 2026-10-25 | ui | completed | [四章视觉统一与八态整图动作](UI%E4%BF%AE%E6%94%B9/2026-10-25-%E5%9B%9B%E7%AB%A0%E8%A7%86%E8%A7%89%E7%BB%9F%E4%B8%80%E4%B8%8E%E5%85%AB%E6%80%81%E6%95%B4%E5%9B%BE%E5%8A%A8%E4%BD%9C.md) |

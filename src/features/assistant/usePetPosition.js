@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const storageKey = 'nanfeng-xiaoxing-position-v1';
 const margin = 14;
@@ -10,6 +10,7 @@ const constrain = (point, viewport, size) => ({
 });
 
 function defaultPosition(size, viewport, chapter) {
+  if (chapter === 'spread') return constrain({ x: margin, y: (viewport.height - size.height) / 2 }, viewport, size);
   if (chapter === 'model') return constrain({ x: margin, y: viewport.height - size.height - margin }, viewport, size);
   if (chapter === 'state') return constrain({ x: clamp(viewport.width * .135, 180, 250), y: viewport.height - size.height - margin }, viewport, size);
   return constrain({ x: viewport.width - size.width - 30, y: viewport.height - size.height - 124 }, viewport, size);
@@ -76,9 +77,17 @@ export default function usePetPosition(size, chapter = 'entry') {
     window.addEventListener('blur', cancelGesture);
     return () => { window.removeEventListener('resize', resize); window.removeEventListener('blur', cancelGesture); };
   }, [moveTo, cancelGesture, save]);
-  useEffect(() => {
-    moveTo(manualRef.current ? pointRef.current : defaultPosition(sizeRef.current, viewportSize(), chapter));
-  }, [size.width, size.height, chapter, moveTo]);
+  useLayoutEffect(() => {
+    const size = sizeRef.current;
+    const viewport = viewportSize();
+    const candidate = manualRef.current ? pointRef.current : defaultPosition(size, viewport, chapter);
+    const overlapsSpreadControl = chapter === 'spread' && [...document.querySelectorAll('#spreadStage button, #spreadStage a, #spreadPlaceCard')].some(target => {
+      const box = target.getBoundingClientRect();
+      return candidate.x < box.right && candidate.x + size.width > box.left
+        && candidate.y < box.bottom && candidate.y + size.height > box.top;
+    });
+    moveTo(overlapsSpreadControl ? defaultPosition(size, viewport, chapter) : candidate);
+  }, [size.width, size.height, chapter, moveTo, viewport.width, viewport.height]);
 
   const onPointerDown = event => {
     if (!event.isPrimary || event.button !== 0) return;
