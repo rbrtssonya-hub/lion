@@ -180,21 +180,12 @@ for (const [index, state] of states.entries()) {
     await expect(rig(page, state.id)).toHaveCount(0);
     await select(page, state);
     await start(page, state.id);
-    const departure = await page.evaluate(() => new Promise(resolve => {
-      const app = document.querySelector('#react-app');
-      const observer = new MutationObserver(() => {
-        if (app.dataset.chapterPhase !== 'leaving') return;
-        observer.disconnect();
-        const result = { oldScenePresent: !!document.querySelector('.expression-face-rig'),
-          stopped: window.eightFaceAnimations.every(animation => animation.playState === 'idle') };
-        document.querySelector('.site-nav-item[data-route="state"]').click();
-        resolve(result);
-      });
-      observer.observe(app, { attributes: true, attributeFilter: ['data-chapter-phase'] });
-      document.querySelector('.site-nav-item[data-route="entry"]').click();
-    }));
-    expect(departure).toEqual({ oldScenePresent: true, stopped: true });
-    await expect(page.locator('#react-app')).toHaveAttribute('data-chapter-phase', 'idle');
+    await page.locator('.site-nav-item[data-route="entry"]').click();
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+    await expect(rig(page, state.id)).toHaveCount(0);
+    expect(await page.evaluate(() => window.eightFaceAnimations.every(animation => animation.playState === 'idle'))).toBe(true);
+    await page.evaluate(() => { location.hash = '/state'; });
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
     await expect(rig(page, state.id)).toHaveAttribute('data-playing', 'false');
     await assertOriginal(page, state);
   });

@@ -51,6 +51,12 @@ GPU、CPU 配置分别为 `gpt-sovits-v2proplus.yaml`、`gpt-sovits-v2proplus-cp
 - `npm run build`：成功，仅既有大 chunk 提示。
 - `npx playwright test tests/e2e/xiaoxing.spec.js --config scripts/xiaoxing/playwright.config.mjs --output tmp/xiaoxing-reference-voice/production-focused`：13/13 通过（独立42829生产预览）。旧标题和首页来源断言已按现行实现校正。
 - `npx playwright test --config scripts/xiaoxing/playwright-voice.config.mjs`：5/5 通过（42833，Chrome 真实解码 WAV，模型使用夹具；检查取消、失败、回收、五处固定音频及长文本）。
-- **真实显卡与生产浏览器链路**：42835生产页面、不使用路由模拟。本地问答实际调用 GPT 显卡服务，返回200 audio/wav、1388844字节、21.7秒；暖机后该次点击至Blob播放5412ms。固定和动态均收起聊天后继续、常驻停止有效、无pageerror。WAV、JSON及两张1920截图在 `source/reviews/xiaoxing/2026-10-26/voice/`，两图已查看。
+- **真实显卡与生产浏览器链路**：42835生产页面、不使用路由模拟。本地问答实际调用 GPT 显卡服务，返回200 audio/wav、1388844字节、21.7秒；暖机后该次点击至Blob播放约5.4秒（初次），合并复验5934ms。固定和动态均收起聊天后继续、常驻停止有效、无pageerror。WAV、JSON及两张1920截图在 `source/reviews/xiaoxing/2026-10-26/voice/`，两图已查看。
 
 验收脚本最初通过 DevTools 读取二进制响应得到空 buffer，改为导出 Chrome 正在播放的实际 Blob 后完成原断言；产品没有因此修改。GPU另经Node直接请求验证返回200、有效RIFF。旧组合配置首跑含四章重构前的首页四展板用例，失败未计作本次声音通过项；未声称全仓 E2E 全部通过。
+
+### 合并最新主线复验
+
+合并 `origin/main 514f61e`（书册参数、导航字图及用户取消章节转场的更新），保留声音提交 `9f235bb`。组合树核心126/126、构建成功、小醒生产13/13（57.3秒）通过；真实显卡→生产网页再次通过，最终 capture 为5934ms起播、21.7秒动态WAV。资源清单896条，最终资产专项13/13、工程记忆149页无错误。声音专项5/5在合并前完成，受影响的生产与实机路径已在组合树重跑。
+
+最终只读审查发现相对引擎路径会随cwd重复拼接，已统一按项目根解析为绝对路径。以真实Python和临时api_v2入口验证相对引擎路径、cwd、绝对配置参数及退出状态正确，没有重复加载模型。未发现新的声音生命周期阻塞。

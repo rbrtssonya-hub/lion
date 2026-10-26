@@ -83,6 +83,8 @@
   --book-footer-height: clamp(248px, 25cqh, 280px);
   --book-nav-height: 116px;
   --book-character-center: 40px;
+  --book-guide-size: var(--book-guide-normal-size, 96px);
+  --book-guide-lift: var(--book-guide-normal-lift, 0px);
   box-sizing: border-box; height: calc(100dvh - var(--site-header-height, 100px));
   min-height: 0; padding: 8px 0; border: 0; container-type: size;
 }
@@ -104,7 +106,7 @@
 #homeLionBook .lion-book-heading .lion-book-preface p { flex-shrink: 0; margin: 0; font-size: 16px; line-height: 1.35; }
 #homeLionBook .lion-book-heading .lion-book-preface>span { display: block; font-size: 14px; line-height: 1.45; }
 #homeLionBook .lion-book-experience {
-  display: grid; grid-template-rows: minmax(0, 1fr) var(--book-footer-height); gap: 6px;
+  display: grid; grid-template-rows: minmax(0, 1fr) var(--book-footer-height); gap: var(--book-guide-vertical-spacing, 32px);
   min-width: 0; min-height: 0;
 }
 .home-archive-scene #homeLionBook .lion-book-stage {
@@ -118,8 +120,13 @@
 #homeLionBook .lion-book-timeline.lion-book-game-nav {
   width: calc(100% + 32px); height: var(--book-nav-height); margin: 0 0 0 -16px; padding: 56px 0 0;
 }
-#homeLionBook .lion-book-game-track { top: 67px; }
-#homeLionBook .lion-book-game-nav .lion-book-guide-character { width: 96px; height: 96px; margin-top: 36px; }
+#homeLionBook .lion-book-game-track {
+  top: 66px; left: calc(100% / 14); right: calc(100% / 14);
+}
+#homeLionBook .lion-book-game-nav .lion-book-guide-character {
+  width: var(--book-guide-size, 96px); height: var(--book-guide-size, 96px);
+  margin-top: calc(36px - var(--book-guide-lift, 0px));
+}
 #homeLionBook .lion-book-timeline.lion-book-game-nav button {
   min-height: 60px; gap: 8px; padding: 0 4px; font-size: 22px; line-height: 1.25;
 }
@@ -138,13 +145,17 @@
 .home-archive-scene #homeLionBook .lion-book-reading-copy>a { font-size: 12px; line-height: 1.5; }
 #homeLionBook .lion-book-additional-source { margin-left: 12px; }
 @media (max-height: 820px) {
-  .home-archive-scene #homeLionBook { --book-footer-height: 224px; --book-nav-height: 96px; --book-character-center: 32px; }
+  .home-archive-scene #homeLionBook {
+    --book-footer-height: 224px; --book-nav-height: 96px; --book-character-center: 32px;
+    --book-guide-size: var(--book-guide-short-size, 80px);
+    --book-guide-lift: var(--book-guide-short-lift, 0px);
+  }
   #homeLionBook .lion-book-timeline.lion-book-game-nav { padding-top: 44px; }
-  #homeLionBook .lion-book-game-track { top: 54px; }
-  #homeLionBook .lion-book-game-nav .lion-book-guide-character { width: 80px; height: 80px; margin-top: 41px; }
+  #homeLionBook .lion-book-game-track { top: 53px; }
+  #homeLionBook .lion-book-game-nav .lion-book-guide-character { margin-top: calc(41px - var(--book-guide-lift, 0px)); }
   #homeLionBook .lion-book-timeline.lion-book-game-nav button { min-height: 52px; gap: 6px; font-size: 20px; }
   #homeLionBook .lion-book-game-nav .lion-book-game-platform { width: 80px; height: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #homeLionBook .lion-book-game-nav .lion-book-guide-character { top: var(--book-character-center) !important; margin-top: 0; }
+  #homeLionBook .lion-book-game-nav .lion-book-guide-character { top: calc(var(--book-character-center) - var(--book-guide-lift, 0px)) !important; margin-top: 0; }
 }

@@ -28,8 +28,9 @@
 .site-nav-icon svg { display: block; width: 100%; height: 100%; transition: transform 180ms ease; filter: none; }
 .site-nav-item:hover .site-nav-icon svg { transform: translateY(-2px); }
 .site-nav-copy { display: flex; flex: 0 0 auto; align-items: baseline; gap: var(--navigation-copy-gap, 8px); min-width: 0; font: 400 var(--site-nav-font-size)/1.45 var(--navigation-brush); letter-spacing: 0; white-space: nowrap; transform-origin: left top; }
-.site-nav-heading { display: flex; flex: 0 0 auto; align-items: baseline; gap: var(--navigation-heading-gap, 6px); }
-.site-nav-heading strong { color: inherit; font: inherit; letter-spacing: inherit; }
+.site-nav-heading { position: relative; display: flex; flex: 0 0 auto; align-items: baseline; gap: var(--navigation-heading-gap, 6px); }
+.site-nav-heading strong { color: transparent; -webkit-text-fill-color: transparent; font: inherit; letter-spacing: inherit; }
+.site-nav-lettering { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; pointer-events: none; user-select: none; }
 .site-nav-description { display: block; flex: 0 0 auto; color: #fff; font: inherit; font-size: var(--site-nav-helper-font-size); letter-spacing: inherit; word-spacing: -.35em; white-space: nowrap; opacity: var(--helper-opacity, .5); }
 .home-culture { scroll-margin-top: calc(var(--site-header-height) + 20px); }
 .site-header[data-nav-layout='stacked'] .site-header-inner { flex-direction: column; align-items: stretch; gap: 0; }

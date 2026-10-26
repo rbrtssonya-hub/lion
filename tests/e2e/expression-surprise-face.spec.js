@@ -149,20 +149,12 @@ test('离开神态的首帧取消五官动画，快速返回不续播旧动作',
   await openSurprise(page);
   await expect(rig(page)).toHaveAttribute('data-ready', 'true');
   await page.locator('#expressionLionTrigger').click();
-  const departure = await page.evaluate(() => new Promise(resolve => {
-    const main = document.querySelector('#react-app');
-    const observer = new MutationObserver(() => {
-      if (main.dataset.chapterPhase !== 'leaving') return;
-      observer.disconnect();
-      const result = { oldScenePresent: !!document.querySelector('.surprise-lion-rig'), stopped: window.faceAnimations.every(animation => animation.playState === 'idle') };
-      document.querySelector('.site-nav-item[data-route="state"]').click();
-      resolve(result);
-    });
-    observer.observe(main, { attributes: true, attributeFilter: ['data-chapter-phase'] });
-    document.querySelector('.site-nav-item[data-route="entry"]').click();
-  }));
-  expect(departure.oldScenePresent).toBe(true);
-  expect(departure.stopped).toBe(true);
-  await expect(rig(page)).toHaveAttribute('data-playing', 'false');
-  await expect(page.locator('#react-app')).toHaveAttribute('data-chapter-phase', 'idle');
+  await page.locator('.site-nav-item[data-route="entry"]').click();
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
+  await expect(rig(page)).toHaveCount(0);
+  expect(await page.evaluate(() => window.faceAnimations.every(animation => animation.playState === 'idle'))).toBe(true);
+  await page.evaluate(() => { location.hash = '/state'; });
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
+  await expect(page.locator('.expression-face-rig')).toHaveAttribute('data-playing', 'false');
+  expect(await page.evaluate(() => window.faceAnimations.every(animation => animation.playState === 'idle'))).toBe(true);
 });

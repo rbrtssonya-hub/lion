@@ -357,18 +357,22 @@ test('模型页复用全局品牌与章节导航并高亮当前章节', async ({
   const modelLion = header.locator('.site-brand .entry-lion-emblem');
   await expect(modelLion).toBeVisible();
   await expect(modelLion).toHaveAttribute('src', /assets\/entry\/nav-lion-head\.png/);
-  expect(await modelLion.evaluate((image) => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0)).toBe(true);
-  await expect(header.locator('.site-navigation img')).toHaveCount(0);
+  await expect.poll(() => modelLion.evaluate(image => image.tagName === 'IMG' && image.complete && image.naturalWidth > 0), { timeout: 60000 }).toBe(true);
+  const navigationLettering = header.locator('.site-navigation .site-nav-lettering');
+  await expect(navigationLettering).toHaveCount(5);
+  for (const lettering of await navigationLettering.all()) {
+    expect(await lettering.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+  }
   await expect(header.locator('.site-navigation')).toBeVisible();
   await expect(header.locator('.site-nav-item[data-route]:visible')).toHaveCount(4);
   await expect(header.locator('.site-brand-capsule')).toHaveAccessibleName('南风有狮，返回首页');
   await expect(page.locator('.model-header .site-navigation, .model-header .site-brand')).toHaveCount(0);
   await expect(header.locator('.site-nav-item.is-current')).toHaveAttribute('data-route', 'model');
   await expect(routeButton(page, 'model')).toHaveAttribute('aria-current', 'page');
-  await expect(routeButton(page, 'model')).toHaveAccessibleName('结构');
+  await expect(routeButton(page, 'model')).toHaveAccessibleName('造');
   const title = routeButton(page, 'model').locator('.site-nav-heading strong');
   await expect(title).toBeVisible();
-  await expect(title).toHaveText('结构');
+  await expect(title).toHaveText('造');
   expect(await title.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Nanfeng Navigation Brush');
   await expect(routeButton(page, 'model').locator('.site-nav-description')).toBeHidden();
   await expect(header.locator('.site-nav-short-label')).toHaveCount(0);

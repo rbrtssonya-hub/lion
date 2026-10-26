@@ -50,11 +50,71 @@ test('书册默认放大，尺寸设置即时生效而不重建纸张文档', as
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
 });
 
+test('书册人物可放大至250%，书页与下方人物的上下间距可调并适配短窗口', async ({ page }) => {
+  await openBook(page);
+  const sprite = page.locator('.lion-book-guide-character');
+  const platform = page.locator('.lion-book-game-platform').first();
+  const footGap = async () => {
+    const characterBox = await sprite.boundingBox();
+    const platformBox = await platform.boundingBox();
+    return characterBox.y + characterBox.height - platformBox.y - platformBox.height;
+  };
+  await expect(sprite).toHaveCSS('width', '144px');
+  const normalFootGap = await footGap();
+  await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'bookGuideScale');
+  const guideScale = page.getByRole('spinbutton', { name: '人物放大比例数值', exact: true });
+  await expect(guideScale).toHaveValue('150');
+  await expect(guideScale).toHaveAttribute('max', '250');
+  await guideScale.fill('250'); await guideScale.press('Tab');
+  await expect(sprite).toHaveCSS('width', '240px');
+  expect(Math.abs(await footGap() - normalFootGap)).toBeLessThan(1);
+  await guideScale.fill('125'); await guideScale.press('Tab');
+  await expect(sprite).toHaveCSS('width', '120px');
+  expect(Math.abs(await footGap() - normalFootGap)).toBeLessThan(1);
+  const stage = page.locator('.lion-book-stage');
+  const reading = page.locator('.lion-book-reading');
+  const verticalGap = () => stage.evaluate(element => {
+    const readingBox = element.parentElement.querySelector('.lion-book-reading').getBoundingClientRect();
+    return readingBox.top - element.getBoundingClientRect().bottom;
+  });
+  const spacing = page.getByRole('spinbutton', { name: '书页与人物上下间距数值', exact: true });
+  await expect(spacing).toHaveValue('32');
+  await expect(spacing).toHaveAttribute('max', '80');
+  expect(await verticalGap()).toBe(32);
+  const readingTopBefore = (await reading.boundingBox()).y;
+  await spacing.fill('64'); await spacing.press('Tab');
+  await expect.poll(verticalGap).toBe(64);
+  expect((await reading.boundingBox()).y).toBe(readingTopBefore);
+  await expect.poll(async () => {
+    const marker = await sprite.boundingBox();
+    const selected = await page.locator('.lion-book-timeline [aria-current="step"] .lion-book-game-platform').boundingBox();
+    return Math.abs(marker.x + marker.width / 2 - selected.x - selected.width / 2);
+  }).toBeLessThan(2);
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => {
+    const settings = JSON.parse(localStorage.getItem('nanfeng-lion:developer-settings:v1'));
+    return [settings.bookGuideScale, settings.bookGuideVerticalSpacing];
+  })).toEqual([125, 64]);
+  await page.setViewportSize({ width: 1920, height: 768 });
+  await expect(sprite).toHaveCSS('width', '100px');
+  const shortFootGap = await footGap();
+  await page.locator('.site-header [data-action="settings"]').click();
+  await selectSettingsFor(page, 'bookGuideScale');
+  await guideScale.fill('250'); await guideScale.press('Tab');
+  await expect(sprite).toHaveCSS('width', '200px');
+  expect(Math.abs(await footGap() - shortFootGap)).toBeLessThan(1);
+  await page.getByRole('button', { name: '保存设置', exact: true }).click();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(Math.abs(await footGap() - shortFootGap)).toBeLessThan(1);
+});
+
 test('七个年代台阶水平排列，角色与书页同步且粒子拖尾可以关闭', async ({ page }) => {
   await openBook(page);
   const timeline = page.locator('.lion-book-timeline');
   const sprite = timeline.locator('.lion-book-guide-character');
   const particles = timeline.locator('.lion-book-particles');
+  await expect(sprite).toHaveCSS('width', '144px');
   await timeline.scrollIntoViewIfNeeded();
   await expect(timeline.locator('button')).toHaveCount(7);
   const geometry = await timeline.evaluate(element => {
@@ -122,6 +182,7 @@ test('短桌面大书册舞台按页码循环且不播放首次快翻', async ({
   const book = page.locator('.lion-book-experience');
   const frame = page.frameLocator('#homeLionBook iframe');
   await expect(book).toHaveAttribute('data-book-ready', 'true');
+  await expect(page.locator('.lion-book-guide-character')).toHaveCSS('width', '120px');
   await page.mouse.move(10, 150);
   await page.locator('.lion-book-stage').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
   await expect(book).toHaveAttribute('data-book-playback', 'playing');

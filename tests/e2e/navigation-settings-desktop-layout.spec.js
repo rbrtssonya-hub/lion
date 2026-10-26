@@ -53,8 +53,8 @@ test('电脑有效宽度640至4K保留完整单行导航文字，短窗不被顶
   for (const [width, height] of [[640, 480], [800, 600], [1024, 576], [1366, 768], [1920, 1080], [2560, 1080], [3840, 2160]]) {
     await page.setViewportSize({ width, height });
     await expectHeaderLabels(page, true);
-    await page.locator('.site-header [data-route="state"]').click();
-    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
+    await page.locator('.site-header [data-route="model"]').click();
+    await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'model');
     await expectHeaderLabels(page, false);
     await page.locator('.site-header [data-route="entry"]').click();
     await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'entry');
@@ -69,7 +69,7 @@ test('窄低电脑窗的极端导航偏好可局部滚动访问，往返尺寸�
   for (const [width, height] of [[640, 480], [640, 360], [1920, 1080], [640, 480]]) {
     await page.setViewportSize({ width, height });
     await expectHeaderLabels(page, true);
-    await page.locator('.site-header [data-route="state"]').click();
+    await page.locator('.site-header [data-route="model"]').click();
     await expectHeaderLabels(page, false);
     await page.locator('.site-header [data-route="entry"]').click();
     expect(await stored(page)).toEqual(initial);

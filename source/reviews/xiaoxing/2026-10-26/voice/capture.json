@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-26T14:16:28.802Z",
+  "verifiedAt": "2026-10-26T14:28:08.617Z",
   "baseURL": "http://127.0.0.1:42835",
   "engine": "GPT-SoVITS v2ProPlus",
   "device": "NVIDIA GeForce RTX 5060 Laptop GPU / torch 2.7.1+cu128",
@@ -7,7 +7,7 @@
   "fixed": {
     "src": "http://127.0.0.1:42835/assets/xiaoxing/voice/state.wav",
     "duration": 46.98,
-    "currentTime": 0.215744,
+    "currentTime": 0.143012,
     "paused": false,
     "continuesAfterClosingChat": true,
     "stopped": true
@@ -15,13 +15,13 @@
   "dynamic": {
     "question": "醒狮为什么要采青？",
     "answer": "小醒\n舞 · 神态\n\n这段演示先察青、探青，再靠近低头，最后将青采起。建议先看狮头怎样朝向目标，再看步法如何配合靠近与低头。完整采青要结合连续表演和叙事情节理解，单个瞬间不能代表整套套路或难度。\n\n↗\n舞 · 四面巨幕厅\n↗\n序 · 醒狮文化与资料",
-    "elapsedToPlaybackMs": 5412,
+    "elapsedToPlaybackMs": 5934,
     "status": 200,
     "contentType": "audio/wav",
     "bytes": 1388844,
-    "sha256": "4fc15e336dbd126e7217d4d736c2877080618422ff0790a90dcdbae40f7722e6",
+    "sha256": "334cfa36e730b309c8e31a8d7003eeb51eeadb5b9e2de89e9c3e27a001d84fa3",
     "duration": 21.7,
-    "currentTime": 0.318745,
+    "currentTime": 0.318481,
     "paused": false,
     "source": "Blob URL from actual speech API",
     "continuesAfterClosingChat": true,

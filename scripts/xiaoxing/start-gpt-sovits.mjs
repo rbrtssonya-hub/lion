@@ -5,7 +5,7 @@ import { loadXiaoxingEnv } from '../assistant/config.mjs';
 
 const root = path.resolve(import.meta.dirname, '../..');
 loadXiaoxingEnv(root);
-const engine = process.env.XIAOXING_GPT_SOVITS_ROOT;
+const engine = process.env.XIAOXING_GPT_SOVITS_ROOT ? path.resolve(root, process.env.XIAOXING_GPT_SOVITS_ROOT) : '';
 const python = process.env.XIAOXING_TTS_PYTHON || 'python';
 const port = Number(process.env.XIAOXING_TTS_PORT || 9880);
 if (!engine || !fs.existsSync(path.join(engine, 'api_v2.py'))) {

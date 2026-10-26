@@ -5,10 +5,10 @@ import '../../styles/home-navigation.css';
 
 // Generalize the original ink loop to a vertical rail. Every retarget starts
 // from the last painted position; no game/physics runtime is involved.
-export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false, markerDuration = 650 }) {
+export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabled, visible = true, vertical = false, sprite = false, markerDuration = 650, layoutKey = 0 }) {
   const navRef = useRef(null), markerRef = useRef(null), canvasRef = useRef(null), spriteRef = useRef(null);
   const updateRef = useRef(null), latest = useRef(null);
-  latest.current = { index, playbackEnabled, particlesEnabled, visible, markerDuration };
+  latest.current = { index, playbackEnabled, particlesEnabled, visible, markerDuration, layoutKey };
 
   useLayoutEffect(() => {
     const nav = navRef.current, marker = markerRef.current, canvas = canvasRef.current;
@@ -139,8 +139,9 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
     updateRef.current = next => {
       const changed = next.index !== options.index;
       const becomingVisible = next.visible && !options.visible;
+      const layoutChanged = next.layoutKey !== options.layoutKey;
       options = next;
-      if (becomingVisible) measure();
+      if (becomingVisible || layoutChanged) measure();
       if (changed && !becomingVisible) {
         move = { from: position, direction: Math.sign(target() - position) || 1, elapsed: 0 };
         previousTime = performance.now(); clock = 0;
@@ -171,7 +172,7 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
       reduced.removeEventListener('change', visibility); updateRef.current = null;
     };
   }, [vertical, sprite, markerDuration]);
-  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible, markerDuration]);
+  useLayoutEffect(() => { updateRef.current?.(latest.current); }, [index, playbackEnabled, particlesEnabled, visible, markerDuration, layoutKey]);
   return { navRef, markerRef, canvasRef, spriteRef };
 }
 
