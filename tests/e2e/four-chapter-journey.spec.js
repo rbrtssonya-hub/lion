@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { assetPaths } from '../../src/config/assetPaths.js';
 
 async function open(page, route = 'entry', viewport = { width: 1440, height: 900 }) {
   await page.setViewportSize(viewport);
@@ -18,8 +19,32 @@ async function open(page, route = 'entry', viewport = { width: 1440, height: 900
 }
 
 test('four chapter navigation preserves the expression deep link and browser history', async ({ page }) => {
-  await open(page, 'state');
+  await open(page);
+  const lettering = page.locator('.site-navigation .site-nav-lettering');
+  await expect(lettering).toHaveCount(5);
+  for (const image of await lettering.all()) {
+    await expect(image).toBeVisible();
+    await expect.poll(() => image.evaluate(element => element.complete && element.naturalWidth > 0)).toBe(true);
+  }
+  const expectedLabels = [
+    [page.locator('.site-navigation [data-route=\"entry\"] .site-nav-lettering'), assetPaths.navLabelXu],
+    [page.locator('.site-navigation [data-route=\"model\"] .site-nav-lettering'), assetPaths.navLabelZao],
+    [page.locator('.site-navigation [data-route=\"action\"] .site-nav-lettering'), assetPaths.navLabelWu],
+    [page.locator('.site-navigation [data-route=\"spread\"] .site-nav-lettering'), assetPaths.navLabelChuan],
+    [page.locator('.site-navigation [data-action=\"settings\"] .site-nav-lettering'), assetPaths.navLabelSettings],
+  ];
+  for (const [image, path] of expectedLabels) {
+    expect(await image.evaluate((element, expectedPath) => element.src.endsWith(expectedPath), path)).toBe(true);
+  }
+  await page.evaluate(() => { location.hash = '#/state'; });
+  await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
+  await expect(page.locator('.site-header')).toHaveAttribute('data-nav-mode', 'compact');
   await expect(page.locator('.site-navigation [data-route] .site-nav-heading strong')).toHaveText(['序', '造', '舞', '传']);
+  await expect(lettering).toHaveCount(5);
+  for (const image of await lettering.all()) {
+    await expect(image).toBeVisible();
+    await expect.poll(() => image.evaluate(element => element.complete && element.naturalWidth > 0)).toBe(true);
+  }
   await expect(page.locator('.site-navigation [data-route="action"]')).toHaveAttribute('aria-current', 'page');
   await expect(page.locator('[data-chapter-identity="state"]')).toContainText('03');
   await page.locator('.site-navigation [data-route="spread"]').click();

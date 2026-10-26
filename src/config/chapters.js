@@ -8,6 +8,14 @@ export const chapters = [
   { route: 'spread', label: '传', description: '狮行远方', number: '04', phase: '远播' },
 ];
 
+export const navigationLabelMediaKeys = {
+  entry: 'navLabelXu',
+  model: 'navLabelZao',
+  action: 'navLabelWu',
+  spread: 'navLabelChuan',
+  settings: 'navLabelSettings',
+};
+
 // The expression collection remains addressable within the stage chapter.
 export const pageRoutes = [...chapters.map(chapter => chapter.route), 'state'];
 export const chapterForRoute = route => route === 'state' ? 'action' : route;

@@ -1,4 +1,5 @@
-import { chapters, chapterForRoute } from '../config/chapters.js';
+import { chapters, chapterForRoute, navigationLabelMediaKeys } from '../config/chapters.js';
+import { media } from '../config/media.js';
 import NavigationIcon from './NavigationIcon.jsx';
 
 export default function ChapterNav({ current, onNavigate, settingsOpen, settingsCancelOnly, onToggleSettings, settingsTriggerRef }) {
@@ -13,7 +14,10 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, settings
           <NavigationIcon name={route} />
         </span>
         <span className="site-nav-copy">
-          <span className="site-nav-heading"><strong>{label}</strong></span>
+          <span className="site-nav-heading">
+            <strong aria-hidden="true">{label}</strong>
+            <img className="site-nav-lettering" src={media[navigationLabelMediaKeys[route]]} alt="" aria-hidden="true" draggable="false" />
+          </span>
           <span className="site-nav-description" aria-hidden={current !== 'entry' ? true : undefined}>{description}</span>
         </span>
       </button>
@@ -26,7 +30,10 @@ export default function ChapterNav({ current, onNavigate, settingsOpen, settings
         <NavigationIcon name="settings" />
       </span>
       <span className="site-nav-copy">
-        <span className="site-nav-heading"><strong>设置</strong></span>
+        <span className="site-nav-heading">
+          <strong aria-hidden="true">设置</strong>
+          <img className="site-nav-lettering" src={media[navigationLabelMediaKeys.settings]} alt="" aria-hidden="true" draggable="false" />
+        </span>
         <span className="site-nav-description" aria-hidden={current !== 'entry' ? true : undefined}>界面参数</span>
       </span>
     </button>

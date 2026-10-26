@@ -1491,6 +1491,48 @@
       "sha256": "4fdfc5b5bf17c5e14392fddef1a4a3710a325be7636b118999f1d7b929ef2737"
     },
     {
+      "from": "OpenAI ImageGen based on user reference image-2.png, 2026-10-26",
+      "path": "source/public/assets/navigation/nav-label-xu.png",
+      "bytes": 958016,
+      "sha256": "d4d98f45541e1ca1f1473cb81c15d28b0794ba832bcbe617e6237d74f43257c0"
+    },
+    {
+      "from": "OpenAI ImageGen based on user reference image-2.png, 2026-10-26",
+      "path": "source/public/assets/navigation/nav-label-zao.png",
+      "bytes": 1321389,
+      "sha256": "3d712b391db528689e0fcdb6bb291b84b0e6c2b2158969220d21923bc3a2e680"
+    },
+    {
+      "from": "OpenAI ImageGen based on user reference image-2.png, 2026-10-26",
+      "path": "source/public/assets/navigation/nav-label-wu.png",
+      "bytes": 1233227,
+      "sha256": "d9709758fb8811bf0300274e38c07eb5c60cc38e0c0dd5ee6b082a0ac81f611b"
+    },
+    {
+      "from": "OpenAI ImageGen based on user reference image-2.png, 2026-10-26",
+      "path": "source/public/assets/navigation/nav-label-chuan.png",
+      "bytes": 1082602,
+      "sha256": "c9fe9fe98169e0dfb1e65d6d5c3e977c1b4a5b99dc8b7362bc8a5cdc973c4438"
+    },
+    {
+      "from": "OpenAI ImageGen based on user reference image-2.png, 2026-10-26",
+      "path": "source/public/assets/navigation/nav-label-settings.png",
+      "bytes": 1298532,
+      "sha256": "4d7e510fd96da6825ee17e53c2e127612706bf5b7637ea785b45317f7945216a"
+    },
+    {
+      "from": "Playwright Chromium desktop navigation review, expanded header, 2026-10-26",
+      "path": "source/reviews/navigation-calligraphy/2026-10-26/expanded-1920.png",
+      "bytes": 113026,
+      "sha256": "a8c457c8112181e4f29beba2c3105502c2c183b99ecb1ad339367a2c8e45955b"
+    },
+    {
+      "from": "Playwright Chromium desktop navigation review, compact header, 2026-10-26",
+      "path": "source/reviews/navigation-calligraphy/2026-10-26/compact-1920.png",
+      "bytes": 70657,
+      "sha256": "ff8c5e8d4f09f22258de3d33ead46a90bfc315b880fb4a40a327195228701b71"
+    },
+    {
       "from": "Chrome电脑端导航图案验收：desktop-1920-home-header.png",
       "path": "source/reviews/navigation/2026-10-14-user-icons/desktop-1920-home-header.png",
       "bytes": 117233,
