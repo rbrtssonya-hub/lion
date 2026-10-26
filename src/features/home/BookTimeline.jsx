@@ -176,9 +176,9 @@ export function useHomeNavigationMotion({ index, playbackEnabled, particlesEnabl
   return { navRef, markerRef, canvasRef, spriteRef };
 }
 
-export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled = true, stopSpacing = 115, playbackEnabled = true }) {
+export default function BookTimeline({ book, index: timelineIndex = book.index, send, inkEnabled = true, playbackEnabled = true }) {
   const { navRef, markerRef, canvasRef, spriteRef } = useHomeNavigationMotion({
-    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true, markerDuration: 400, layoutKey: stopSpacing,
+    index: timelineIndex, playbackEnabled, particlesEnabled: inkEnabled, sprite: true, markerDuration: 400,
   });
   const buttons = useRef([]);
   const onKeyDown = event => {
@@ -196,8 +196,7 @@ export default function BookTimeline({ book, index: timelineIndex = book.index, 
     if (book.ready && playbackEnabled) send('goTo', next);
   };
   return <nav ref={navRef} className="lion-book-timeline lion-book-game-nav" aria-label="醒狮历史时间线"
-    aria-describedby="lion-book-instructions" data-particles-enabled={inkEnabled} style={{ '--book-nav-index': timelineIndex,
-      '--book-guide-stop-current-offset': `${(timelineIndex - (lionBookPages.length - 1) / 2) * (stopSpacing - 100) / lionBookPages.length}%` }} onKeyDown={onKeyDown}>
+    aria-describedby="lion-book-instructions" data-particles-enabled={inkEnabled} style={{ '--book-nav-index': timelineIndex }} onKeyDown={onKeyDown}>
     <span className="lion-book-game-track" aria-hidden="true" />
     <canvas ref={canvasRef} className="lion-book-particles" aria-hidden="true" />
     <span ref={markerRef} className="lion-book-guide-character" data-ready="false" aria-hidden="true">
@@ -205,7 +204,6 @@ export default function BookTimeline({ book, index: timelineIndex = book.index, 
       <canvas ref={spriteRef} width="256" height="256" />
     </span>
     {lionBookPages.map((page, index) => <button type="button" key={page.id} ref={node => { buttons.current[index] = node; }}
-      style={{ '--book-guide-stop-shift': `${(index - (lionBookPages.length - 1) / 2) * (stopSpacing - 100)}%` }}
       data-book-page={page.id} aria-label={`翻阅${page.stage}：${page.title}`}
       aria-current={timelineIndex === index ? 'step' : undefined} disabled={!book.ready || !playbackEnabled}
       onClick={() => send('goTo', index)}>

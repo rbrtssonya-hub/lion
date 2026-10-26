@@ -23,7 +23,7 @@ class BookBoundary extends Component {
 export default function HomeLionBook({ settings = {}, preload = false, playbackEnabled = true, onReady, onArchiveWheel }) {
   const sectionRef = useRef(null);
   const [entered, setEntered] = useState(preload);
-  const { bookScale = 116, bookStageHeight = 680, bookGuideScale = 150, bookGuideSpacing = 115, bookInkEnabled = true, bookAutoplay = true, bookPageInterval = 8 } = settings;
+  const { bookScale = 116, bookStageHeight = 680, bookGuideScale = 150, bookGuideVerticalSpacing = 32, bookInkEnabled = true, bookAutoplay = true, bookPageInterval = 8 } = settings;
   const guideScale = bookGuideScale / 100;
   useEffect(() => { if (preload) setEntered(true); }, [preload]);
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function HomeLionBook({ settings = {}, preload = false, playbackE
     style={{ '--book-scale': bookScale / 100, '--book-layout-ratio': Math.min(1, bookScale / 116), '--book-stage-height': `${bookStageHeight}px`,
       '--book-guide-normal-size': `${96 * guideScale}px`, '--book-guide-short-size': `${80 * guideScale}px`,
       '--book-guide-normal-lift': `${48 * (guideScale - 1)}px`, '--book-guide-short-lift': `${40 * (guideScale - 1)}px`,
-      '--book-guide-stop-end-shift': `${3 * (bookGuideSpacing - 100) / 7}%` }}>
+      '--book-guide-vertical-spacing': `${bookGuideVerticalSpacing}px` }}>
     <div className="lion-book-inner">
       <header className="lion-book-heading archive-reading-panel" data-surface="bookTitle">
         <div className="lion-book-title-group">
@@ -47,7 +47,7 @@ export default function HomeLionBook({ settings = {}, preload = false, playbackE
         <div className="lion-book-preface"><p>一狮一鼓，百年传承</p><span>翻一页纸，循一脉鼓声。从瑞兽的想象，读到今日岭南。</span></div>
       </header>
       <BookBoundary onReady={onReady}><Suspense fallback={<BookPlaceholder />}>
-        {entered || preload ? <LionBookExperience autoplay={bookAutoplay} pageInterval={bookPageInterval} scale={bookScale / 100} inkEnabled={bookInkEnabled} guideSpacing={bookGuideSpacing} playbackEnabled={playbackEnabled} onReady={onReady} onArchiveWheel={onArchiveWheel} /> : <BookPlaceholder />}
+        {entered || preload ? <LionBookExperience autoplay={bookAutoplay} pageInterval={bookPageInterval} scale={bookScale / 100} inkEnabled={bookInkEnabled} playbackEnabled={playbackEnabled} onReady={onReady} onArchiveWheel={onArchiveWheel} /> : <BookPlaceholder />}
       </Suspense></BookBoundary>
     </div>
   </section>;

@@ -50,7 +50,7 @@ test('书册默认放大，尺寸设置即时生效而不重建纸张文档', as
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
 });
 
-test('书册人物可放大至250%，站立点间距可调并适配短窗口', async ({ page }) => {
+test('书册人物可放大至250%，书页与下方人物的上下间距可调并适配短窗口', async ({ page }) => {
   await openBook(page);
   const sprite = page.locator('.lion-book-guide-character');
   const platform = page.locator('.lion-book-game-platform').first();
@@ -72,31 +72,30 @@ test('书册人物可放大至250%，站立点间距可调并适配短窗口', a
   await guideScale.fill('125'); await guideScale.press('Tab');
   await expect(sprite).toHaveCSS('width', '120px');
   expect(Math.abs(await footGap() - normalFootGap)).toBeLessThan(1);
-  const timeline = page.locator('.lion-book-timeline');
-  const spacing = page.getByRole('spinbutton', { name: '人物站立点间距数值', exact: true });
-  await expect(spacing).toHaveValue('115');
-  await expect(spacing).toHaveAttribute('max', '120');
-  const before = await timeline.evaluate(element => {
-    const stops = [...element.querySelectorAll('.lion-book-game-platform')].map(node => node.getBoundingClientRect());
-    return { width: element.getBoundingClientRect().width, spread: stops.at(-1).left + stops.at(-1).width / 2 - stops[0].left - stops[0].width / 2 };
+  const stage = page.locator('.lion-book-stage');
+  const reading = page.locator('.lion-book-reading');
+  const verticalGap = () => stage.evaluate(element => {
+    const readingBox = element.parentElement.querySelector('.lion-book-reading').getBoundingClientRect();
+    return readingBox.top - element.getBoundingClientRect().bottom;
   });
-  await spacing.fill('120'); await spacing.press('Tab');
-  await expect.poll(() => timeline.evaluate(element => element.getBoundingClientRect().width)).toBe(before.width);
-  const after = await timeline.evaluate(element => {
-    const stops = [...element.querySelectorAll('.lion-book-game-platform')].map(node => node.getBoundingClientRect());
-    return stops.at(-1).left + stops.at(-1).width / 2 - stops[0].left - stops[0].width / 2;
-  });
-  expect(after).toBeGreaterThan(before.spread);
+  const spacing = page.getByRole('spinbutton', { name: '书页与人物上下间距数值', exact: true });
+  await expect(spacing).toHaveValue('32');
+  await expect(spacing).toHaveAttribute('max', '80');
+  expect(await verticalGap()).toBe(32);
+  const readingTopBefore = (await reading.boundingBox()).y;
+  await spacing.fill('64'); await spacing.press('Tab');
+  await expect.poll(verticalGap).toBe(64);
+  expect((await reading.boundingBox()).y).toBe(readingTopBefore);
   await expect.poll(async () => {
     const marker = await sprite.boundingBox();
-    const selected = await timeline.locator('[aria-current="step"] .lion-book-game-platform').boundingBox();
+    const selected = await page.locator('.lion-book-timeline [aria-current="step"] .lion-book-game-platform').boundingBox();
     return Math.abs(marker.x + marker.width / 2 - selected.x - selected.width / 2);
   }).toBeLessThan(2);
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect.poll(() => page.evaluate(() => {
     const settings = JSON.parse(localStorage.getItem('nanfeng-lion:developer-settings:v1'));
-    return [settings.bookGuideScale, settings.bookGuideSpacing];
-  })).toEqual([125, 120]);
+    return [settings.bookGuideScale, settings.bookGuideVerticalSpacing];
+  })).toEqual([125, 64]);
   await page.setViewportSize({ width: 1920, height: 768 });
   await expect(sprite).toHaveCSS('width', '100px');
   const shortFootGap = await footGap();

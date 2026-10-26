@@ -10,7 +10,7 @@ const routes = [
   [['archivePanelTransparency', '首页阅读底板', '公共', '应用范围'], ['公共模块']],
   [['header', 'sidebar', '顶栏', '侧栏'], ['外观']],
   [['navFontSize', 'helperFontSize', 'navIconSize', 'helperTransparency', 'brandPadding', 'compactNav', 'homeBrandOffset', '导航标题', '导航辅助', '导航图标', '辅助文字', '品牌左侧', '紧凑导航', '首页品牌'], ['导航']],
-  [['bookTitle', 'bookDetails', 'bookScale', 'bookStageHeight', 'bookGuideScale', 'bookGuideSpacing', 'bookAutoplay', 'bookPageInterval', '书册标题', '书册详情', '标题底板留白', '书册放大', '书册展示', '书册下方人物', '按页码', '每页停留'], ['首页', '书册']],
+  [['bookTitle', 'bookDetails', 'bookScale', 'bookStageHeight', 'bookGuideScale', 'bookGuideVerticalSpacing', 'bookAutoplay', 'bookPageInterval', '书册标题', '书册详情', '标题底板留白', '书册放大', '书册展示', '书册下方人物', '按页码', '每页停留'], ['首页', '书册']],
   [['cultureTitle', 'cultureBody', '文化标题', '文化正文'], ['首页', '图鉴']],
   [['modelOverlay', '结构资料'], ['章节', '结构']],
   [['actionOverlay', 'videoOverlay', '动作目录', '视频提示'], ['章节', '动作']],
