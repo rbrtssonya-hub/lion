@@ -14,10 +14,11 @@ async function openReading(page, saved) {
     if (saved && !localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
   }, { key: settingsKey, saved });
   await page.goto('/');
-  await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
   await expect(page.locator('.lion-book-experience')).toHaveAttribute('data-book-ready', 'true');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });
   await page.evaluate(() => document.fonts.ready);
+  await page.locator('#enterWork').click();
+  await expect(page.locator('.home-archive-nav')).toBeVisible();
 }
 
 async function fills(page) {
@@ -31,36 +32,41 @@ async function fills(page) {
   }), panels);
 }
 
-test('两处主标题按整区居中，简介在下方且正文适度放大，侧栏余宽900仍可读', async ({ page }) => {
+test('画册紧凑题签、完整纸面、七站与说明同屏，正文保持可读且外边界对齐', async ({ page }) => {
   await openReading(page);
-  for (const [width, height] of [[1920, 1080], [2560, 1440], [1366, 768], [1024, 768], [1255, 900]]) {
+  for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768]]) {
     await page.setViewportSize({ width, height });
-    if (width === 1255) await page.locator('.site-header [data-action="settings"]').click();
+    await expect.poll(() => page.locator('#homeLionBook').evaluate(section =>
+      Math.abs(section.getBoundingClientRect().top - document.querySelector('.site-header').getBoundingClientRect().bottom))).toBeLessThan(2);
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const layout = await page.evaluate(() => {
-      const box = element => element.getBoundingClientRect();
-      const headings = [['.lion-book-inner', '#lion-book-title', '.lion-book-preface'], ['.home-culture-inner', '#home-culture-title', '.home-culture-intro-copy']].map(([outer, title, copy]) => {
-        const range = document.createRange(); range.selectNodeContents(document.querySelector(title));
-        const text = range.getBoundingClientRect(); const parent = box(document.querySelector(outer));
-        return { textCenter: (text.left + text.right) / 2, center: (parent.left + parent.right) / 2,
-          textBottom: text.bottom, copyTop: box(document.querySelector(copy)).top,
-          font: parseFloat(getComputedStyle(document.querySelector(title)).fontSize) };
-      });
-      const bodyFonts = ['.lion-book-preface>span:last-child', '.lion-book-reading-copy>p', '.home-culture-intro-copy>p:nth-child(2)', '.is-active .home-culture-text'].map(selector => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize));
-      return { headings, bodyFonts, overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        available: box(document.querySelector('.site-page')).width };
+      const box = selector => document.querySelector(selector).getBoundingClientRect().toJSON();
+      const content = ['.lion-book-heading', '.lion-book-stage', '.lion-book-timeline', '.lion-book-reading'].map(selector => ({ selector, ...box(selector) }));
+      const paragraph = document.querySelector('.lion-book-reading-copy>p');
+      const range = document.createRange(); range.selectNodeContents(paragraph);
+      return { content, header: box('.site-header'), title: box('#lion-book-title'),
+        paragraph: range.getBoundingClientRect().toJSON(), bodyFont: parseFloat(getComputedStyle(paragraph).fontSize),
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
     });
-    for (const heading of layout.headings) {
-      expect(Math.abs(heading.textCenter - heading.center)).toBeLessThan(2);
-      expect(heading.copyTop).toBeGreaterThan(heading.textBottom + 12);
+    for (const block of layout.content) {
+      expect(block.top, block.selector).toBeGreaterThanOrEqual(layout.header.bottom - 1);
+      expect(block.bottom, block.selector).toBeLessThanOrEqual(height + 1);
+      expect(Math.abs(block.left - layout.content[0].left), block.selector).toBeLessThan(2);
+      expect(Math.abs(block.right - layout.content[0].right), block.selector).toBeLessThan(2);
     }
-    if (width === 1920) {
-      expect(layout.headings[0].font).toBeGreaterThanOrEqual(72);
-      expect(layout.headings[1].font).toBeGreaterThanOrEqual(66);
-    }
-    for (const font of layout.bodyFonts) expect(font).toBeGreaterThanOrEqual(18);
+    expect(layout.content[0].height).toBeLessThanOrEqual(90);
+    expect(layout.title.top).toBeGreaterThanOrEqual(layout.content[0].top);
+    expect(layout.title.bottom).toBeLessThanOrEqual(layout.content[0].bottom);
+    expect(layout.bodyFont).toBeGreaterThanOrEqual(18);
+    expect(layout.paragraph.bottom).toBeLessThan(layout.content[3].bottom);
+    const paper = await page.frameLocator('#homeLionBook iframe').locator('#sbBook').evaluate(element => {
+      const box = element.getBoundingClientRect();
+      return { top: box.top + box.height * .218, bottom: box.top + box.height * .782 };
+    });
+    const iframe = await page.locator('#homeLionBook iframe').boundingBox();
+    expect(paper.top + iframe.y).toBeGreaterThanOrEqual(layout.content[1].top - 3);
+    expect(paper.bottom + iframe.y).toBeLessThanOrEqual(layout.content[1].bottom + 3);
     expect(layout.overflow).toBeLessThanOrEqual(0);
-    if (width === 1255) expect(layout.available).toBe(900);
   }
 });
 

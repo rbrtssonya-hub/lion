@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useSta
 import HomePage from './features/home/HomePage.jsx';
 import ChapterPage from './features/chapters/ChapterPage.jsx';
 import { useChapterRoute } from './hooks/useChapterRoute.js';
+import { useChapterTransition } from './hooks/useChapterTransition.js';
 import SiteHeader from './components/SiteHeader.jsx';
 import DeveloperSettingsPanel from './features/developer-settings/DeveloperSettingsPanel.jsx';
 import { useDeveloperSettings } from './features/developer-settings/useDeveloperSettings.js';
@@ -14,6 +15,7 @@ import { withStartupTimeout } from './features/loading/useStartupLoading.js';
 import { getGlobalSurfaceStyles } from './features/developer-settings/surfaceSettings.js';
 import ModelPreparationBoundary from './features/model/ModelPreparationBoundary.jsx';
 import { getSoundControlLayout } from './features/sound-control/soundWaveGeometry.js';
+import ChapterInkTransition from './components/ChapterInkTransition.jsx';
 
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
@@ -26,6 +28,8 @@ export default function App() {
   const navigationCaptureRef = useRef(null);
   const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
   const [route, navigate] = useChapterRoute(beforeRouteChange);
+  const scene = useChapterTransition(route);
+  const displayedRoute = scene.route;
   const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings,
     beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -50,7 +54,6 @@ export default function App() {
     }
     if (target !== route) captureNavigation();
     navigate(target);
-    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route, navigate, captureNavigation]);
   const returnToModel = useCallback(() => {
     captureNavigation();
@@ -66,8 +69,8 @@ export default function App() {
   const pushing = settingsOpen && settings.pushPage && canPush;
   // CSS variables are consumed by the built stylesheet in dist/assets.
   // Resolve media at the document first so './assets' cannot become assets/assets.
-  const chapterBackground = chapterBackgrounds[route]
-    ? new URL(chapterBackgrounds[route], window.location.href).href : undefined;
+  const chapterBackground = chapterBackgrounds[displayedRoute]
+    ? new URL(chapterBackgrounds[displayedRoute], window.location.href).href : undefined;
   const finishClosingSettings = useCallback(() => {
     setDiscardPromptOpen(false);
     setSettingsOpen(false);
@@ -109,8 +112,8 @@ export default function App() {
     return () => document.removeEventListener('keydown', handleSettingsKey);
   }, [settingsOpen, handleSettingsKey]);
   useEffect(() => {
-    document.body.dataset.state = route;
-    if (route === 'model' && modelReturn.current) {
+    document.body.dataset.state = displayedRoute;
+    if (displayedRoute === 'model' && modelReturn.current) {
       const top = modelReturn.current.scrollY;
       const deadline = performance.now() + 1000;
       let frame;
@@ -129,9 +132,9 @@ export default function App() {
       frame = requestAnimationFrame(restore);
       return () => cancelAnimationFrame(frame);
     }
-    if (route !== 'state') { modelReturn.current = null; setObservation(null); }
+    if (displayedRoute !== 'state') { modelReturn.current = null; setObservation(null); }
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [route]);
+  }, [displayedRoute]);
 
   const soundLayout = getSoundControlLayout(settings);
   const variables = {
@@ -177,18 +180,22 @@ export default function App() {
           else closeSettings();
         }}
         settingsTriggerRef={triggerRef} />
-      <main id="react-app" data-route={route}>
-        <div className="prewarmed-page" data-active={route === 'entry'} inert={route !== 'entry'} aria-hidden={route !== 'entry'}>
-          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={route === 'entry'} />
+      <main id="react-app" data-route={displayedRoute} data-chapter-target={route} data-chapter-phase={scene.phase}>
+        <ChapterInkTransition key={route} phase={scene.phase} />
+        <span className="chapter-transition-line" aria-hidden="true" />
+        <div className="chapter-scene" inert={scene.phase === 'leaving'}>
+        <div className="prewarmed-page" data-active={displayedRoute === 'entry'} inert={displayedRoute !== 'entry'} aria-hidden={displayedRoute !== 'entry'}>
+          <HomePage onNavigate={navigateTo} settings={settings} playbackEnabled={displayedRoute === 'entry' && route === 'entry'} />
         </div>
-        <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
+        <div className="prewarmed-page" data-active={displayedRoute === 'model'} inert={displayedRoute !== 'model'} aria-hidden={displayedRoute !== 'model'}>
           <ModelPreparationBoundary>
           <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
-            <ModelPage lightingSettings={settings} active={route === 'model'} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
+            <ModelPage lightingSettings={settings} active={displayedRoute === 'model' && route === 'model'} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
           </Suspense>
           </ModelPreparationBoundary>
         </div>
-        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} observation={observation} onReturnToModel={returnToModel} />}
+        {displayedRoute !== 'entry' && displayedRoute !== 'model' && <ChapterPage lightingSettings={settings} route={displayedRoute} active={displayedRoute === route && scene.phase !== 'leaving'} observation={observation} onReturnToModel={returnToModel} />}
+        </div>
       </main>
     </div>
     {settingsOpen && !sceneViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}

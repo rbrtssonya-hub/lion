@@ -18,7 +18,7 @@ export function HeritageHeading({ id, eyebrow, title, children }) {
 export function HeritageLinks({ ids }) {
   return <div className="heritage-links">{ids.map(id => {
     const source = heritageSources.find(item => item.id === id);
-    return <a key={id} href={source.url} target="_blank" rel="noreferrer">查阅资料 · {source.publisher} <span aria-hidden="true">↗</span></a>;
+    return <a className="interaction-cue" key={id} href={source.url} target="_blank" rel="noreferrer">查阅资料 · {source.publisher} <span aria-hidden="true">↗</span></a>;
   })}</div>;
 }
 

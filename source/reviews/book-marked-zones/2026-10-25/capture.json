@@ -1,0 +1,262 @@
+{
+  "browser": "156.0.8078.47",
+  "screenshots": [
+    {
+      "filename": "book-2040.png",
+      "width": 2040,
+      "height": 1148,
+      "headerHeight": 64,
+      "paper": {
+        "x": 324.49325,
+        "y": 149.3936875,
+        "width": 1559.826,
+        "height": 690.2126249999999
+      },
+      "guide": {
+        "x": 388.78125,
+        "y": 874,
+        "width": 96,
+        "height": 96,
+        "top": 874,
+        "right": 484.78125,
+        "bottom": 970,
+        "left": 388.78125
+      },
+      "platform": {
+        "x": 392.78125,
+        "y": 938,
+        "width": 88,
+        "height": 22,
+        "top": 938,
+        "right": 480.78125,
+        "bottom": 960,
+        "left": 392.78125
+      },
+      "timeline": {
+        "x": 325.5,
+        "y": 882,
+        "width": 1558,
+        "height": 116,
+        "top": 882,
+        "right": 1883.5,
+        "bottom": 998,
+        "left": 325.5
+      },
+      "card": {
+        "x": 324.5,
+        "y": 873,
+        "width": 1560,
+        "height": 267,
+        "top": 873,
+        "right": 1884.5,
+        "bottom": 1140,
+        "left": 324.5
+      },
+      "stage": {
+        "x": 324.5,
+        "y": 122,
+        "width": 1560,
+        "height": 745,
+        "top": 122,
+        "right": 1884.5,
+        "bottom": 867,
+        "left": 324.5
+      },
+      "labelFont": "22px",
+      "overflowX": false
+    },
+    {
+      "filename": "book-1920.png",
+      "width": 1920,
+      "height": 1080,
+      "headerHeight": 90,
+      "paper": {
+        "x": 299.11312499999997,
+        "y": 153.1921875,
+        "width": 1490.68,
+        "height": 659.6156249999999
+      },
+      "guide": {
+        "x": 358.453125,
+        "y": 825,
+        "width": 96,
+        "height": 96,
+        "top": 825,
+        "right": 454.453125,
+        "bottom": 921,
+        "left": 358.453125
+      },
+      "platform": {
+        "x": 362.453125,
+        "y": 889,
+        "width": 88,
+        "height": 22,
+        "top": 889,
+        "right": 450.453125,
+        "bottom": 911,
+        "left": 362.453125
+      },
+      "timeline": {
+        "x": 300.125,
+        "y": 833,
+        "width": 1488.734375,
+        "height": 116,
+        "top": 833,
+        "right": 1788.859375,
+        "bottom": 949,
+        "left": 300.125
+      },
+      "card": {
+        "x": 299.125,
+        "y": 824,
+        "width": 1490.734375,
+        "height": 248,
+        "top": 824,
+        "right": 1789.859375,
+        "bottom": 1072,
+        "left": 299.125
+      },
+      "stage": {
+        "x": 299.125,
+        "y": 148,
+        "width": 1490.734375,
+        "height": 670,
+        "top": 148,
+        "right": 1789.859375,
+        "bottom": 818,
+        "left": 299.125
+      },
+      "labelFont": "22px",
+      "overflowX": false
+    },
+    {
+      "filename": "book-1440.png",
+      "width": 1440,
+      "height": 900,
+      "headerHeight": 90,
+      "paper": {
+        "x": 259.367125,
+        "y": 151.801875,
+        "width": 1090.172,
+        "height": 482.39624999999995
+      },
+      "guide": {
+        "x": 290.09375,
+        "y": 645,
+        "width": 96,
+        "height": 96,
+        "top": 645,
+        "right": 386.09375,
+        "bottom": 741,
+        "left": 290.09375
+      },
+      "platform": {
+        "x": 294.09375,
+        "y": 709,
+        "width": 88,
+        "height": 22,
+        "top": 709,
+        "right": 382.09375,
+        "bottom": 731,
+        "left": 294.09375
+      },
+      "timeline": {
+        "x": 260.375,
+        "y": 653,
+        "width": 1088.25,
+        "height": 116,
+        "top": 653,
+        "right": 1348.625,
+        "bottom": 769,
+        "left": 260.375
+      },
+      "card": {
+        "x": 259.375,
+        "y": 644,
+        "width": 1090.25,
+        "height": 248,
+        "top": 644,
+        "right": 1349.625,
+        "bottom": 892,
+        "left": 259.375
+      },
+      "stage": {
+        "x": 259.375,
+        "y": 148,
+        "width": 1090.25,
+        "height": 490,
+        "top": 148,
+        "right": 1349.625,
+        "bottom": 638,
+        "left": 259.375
+      },
+      "labelFont": "22px",
+      "overflowX": false
+    },
+    {
+      "filename": "book-1366.png",
+      "width": 1366,
+      "height": 768,
+      "headerHeight": 90,
+      "paper": {
+        "x": 342.511625,
+        "y": 151.047,
+        "width": 849.508,
+        "height": 375.90599999999995
+      },
+      "guide": {
+        "x": 364.09375,
+        "y": 537,
+        "width": 80,
+        "height": 80,
+        "top": 537,
+        "right": 444.09375,
+        "bottom": 617,
+        "left": 364.09375
+      },
+      "platform": {
+        "x": 364.09375,
+        "y": 589,
+        "width": 80,
+        "height": 20,
+        "top": 589,
+        "right": 444.09375,
+        "bottom": 609,
+        "left": 364.09375
+      },
+      "timeline": {
+        "x": 343.53125,
+        "y": 545,
+        "width": 847.9375,
+        "height": 96,
+        "top": 545,
+        "right": 1191.46875,
+        "bottom": 641,
+        "left": 343.53125
+      },
+      "card": {
+        "x": 342.53125,
+        "y": 536,
+        "width": 849.9375,
+        "height": 224,
+        "top": 536,
+        "right": 1192.46875,
+        "bottom": 760,
+        "left": 342.53125
+      },
+      "stage": {
+        "x": 342.53125,
+        "y": 148,
+        "width": 849.9375,
+        "height": 382,
+        "top": 148,
+        "right": 1192.46875,
+        "bottom": 530,
+        "left": 342.53125
+      },
+      "labelFont": "20px",
+      "overflowX": false
+    }
+  ],
+  "errors": []
+}

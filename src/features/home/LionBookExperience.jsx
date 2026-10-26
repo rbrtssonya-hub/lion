@@ -6,21 +6,24 @@ import { lionBookPages } from '../../data/lion-book.js';
 import BookTimeline from './BookTimeline.jsx';
 
 const fileBase = media.lionBookCover.slice(0, media.lionBookCover.lastIndexOf('/') + 1);
-export default function LionBookExperience({ autoplay = true, pageInterval = 8, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady }) {
+export default function LionBookExperience({ autoplay = true, pageInterval = 8, scale = 1.16, inkEnabled = true, playbackEnabled = true, onReady, onArchiveWheel }) {
   const hostRef = useRef(null);
+  const [fitScale, setFitScale] = useState(scale);
   const autoplayRef = useRef(autoplay);
   autoplayRef.current = autoplay;
   const pageIntervalRef = useRef(pageInterval);
   pageIntervalRef.current = pageInterval;
-  const scaleRef = useRef(scale);
-  scaleRef.current = scale;
+  const scaleRef = useRef(fitScale);
+  scaleRef.current = fitScale;
   const frameRef = useRef(null);
   const channelRef = useRef(null);
   const playbackEnabledRef = useRef(playbackEnabled);
   const visibilityPublisher = useRef(null);
   const onReadyRef = useRef(onReady);
+  const onArchiveWheelRef = useRef(onArchiveWheel);
   playbackEnabledRef.current = playbackEnabled;
   onReadyRef.current = onReady;
+  onArchiveWheelRef.current = onArchiveWheel;
   const [attempt, setAttempt] = useState(0);
   const channelId = useMemo(() => crypto.randomUUID(), [attempt]);
   const assetBaseUrl = useMemo(() => {
@@ -117,6 +120,11 @@ export default function LionBookExperience({ autoplay = true, pageInterval = 8, 
         }
         setBook(nextBook);
       } else if (data.type === 'lion-book:wheel' && Number.isFinite(data.deltaY)) {
+        if (onArchiveWheelRef.current) {
+          if (Math.abs(data.deltaX ?? 0) > Math.abs(data.deltaY)) return;
+          onArchiveWheelRef.current(data.deltaY);
+          return;
+        }
         scrollDelta += Math.max(-1600, Math.min(1600, data.deltaY));
         if (scrollFrame === null) scrollFrame = requestAnimationFrame(() => {
           window.scrollBy({ top: scrollDelta, behavior: 'instant' });
@@ -165,7 +173,20 @@ export default function LionBookExperience({ autoplay = true, pageInterval = 8, 
 
   useLayoutEffect(() => { send('page-interval', pageInterval); }, [pageInterval, send]);
   useLayoutEffect(() => { send('autoplay-policy', autoplay); }, [autoplay, send]);
-  useLayoutEffect(() => { send('book-scale', scale); }, [scale, send]);
+  useLayoutEffect(() => { send('book-scale', fitScale); }, [fitScale, send]);
+  useLayoutEffect(() => {
+    // Fill the shared reading column within the existing engine's 90–145%
+    // presentation range. The artwork's painted width is 89.8% of its canvas.
+    const stage = hostRef.current;
+    const measure = () => {
+      const width = stage.getBoundingClientRect().width;
+      if (width > 0) setFitScale(Math.max(.9, Math.min(1.45, width / (1200 * .898))));
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage);
+    measure();
+    return () => observer.disconnect();
+  }, []);
 
   useLayoutEffect(() => { visibilityPublisher.current?.(); }, [playbackEnabled]);
   useEffect(() => {
@@ -192,13 +213,14 @@ export default function LionBookExperience({ autoplay = true, pageInterval = 8, 
       {book.error && <div className="lion-book-error" role="alert"><p>{book.error}</p><button type="button" onClick={retry}>重新展开</button></div>}
     </div>
     <p className="sr-only" id="lion-book-instructions">拖动左右书页，或点选年代；左右方向键翻页。</p>
-    <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
-    <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails" aria-live={autoplay ? 'off' : 'polite'} aria-atomic="true">
-      <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
-      <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
-        {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}
+    <div className="lion-book-reading archive-reading-panel" data-surface="bookDetails">
+      <BookTimeline book={book} index={timelineTarget ?? book.index} send={send} inkEnabled={inkEnabled} playbackEnabled={playbackEnabled} />
+      <div className="lion-book-reading-content" aria-live={autoplay ? 'off' : 'polite'} aria-atomic="true">
+        <div className="lion-book-reading-title"><p>{current.era}</p><h3>{current.title}</h3></div>
+        <div className="lion-book-reading-copy"><p>{current.description}</p><a href={current.sourceUrl} target="_blank" rel="noreferrer">资料依据：{current.source} <span aria-hidden="true">↗</span></a>
+          {current.additionalSource && <a className="lion-book-additional-source" href={current.additionalSource.url} target="_blank" rel="noreferrer">{current.additionalSource.label} ↗</a>}
+        </div>
       </div>
     </div>
-    <div className="lion-book-divider-space" aria-hidden="true" />
   </div>;
 }

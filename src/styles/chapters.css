@@ -203,3 +203,37 @@
   .expression-cues h3 { font-size: 14px; }
   .expression-evidence { font-size: 12px; }
 }
+
+/* Chapter transitions share a rhythm, with a small material response in each
+   scene. No full-screen veil: the artwork and navigation stay in view. */
+#react-app { position: relative; }
+.chapter-transition-line { position: fixed; z-index: 20; top: calc(var(--site-header-height) + 2px); left: 0; width: calc(100% - var(--settings-page-reserve, 0px)); height: 1px; background: linear-gradient(90deg, #a12d23 0 42%, #c5a16b 62%, transparent); pointer-events: none; opacity: 0; transform-origin: left; }
+[data-chapter-phase='leaving'] > .chapter-transition-line { animation: chapter-line-depart 140ms ease-out both; }
+[data-chapter-phase='revealing'] > .chapter-transition-line { animation: chapter-line-arrive 540ms cubic-bezier(.2,.7,.25,1) both; }
+[data-chapter-phase='leaving'] > .chapter-scene { animation: chapter-scene-depart 140ms ease-out both; }
+[data-chapter-phase='revealing'] > .chapter-scene { animation: chapter-scene-arrive 440ms ease-out both; }
+[data-chapter-phase='revealing'] .chapter-identity__title { animation: chapter-ink-arrive 400ms 65ms cubic-bezier(.2,.7,.25,1) both; }
+[data-chapter-phase='revealing'] .chapter-identity__rule { animation: chapter-rule-arrive 420ms 100ms ease-out both; }
+[data-chapter-phase='revealing'] .structure-atlas-masthead { animation: chapter-paper-arrive 480ms 70ms ease-out both; }
+[data-chapter-phase='revealing'] .expression-brush-ring { animation: chapter-ink-ring 500ms 30ms ease-out both; }
+[data-chapter-phase='revealing'] .entry-vignette { animation: chapter-cinema-arrive 500ms ease-out both; }
+[data-chapter-phase='revealing'] .theater-vignette::after,
+.action-theater[data-scene-state='ready'] .theater-vignette::after { content: ''; position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse at 50% 35%, #e5ba6e26, transparent 65%); animation: chapter-light-arrive 500ms ease-out both; pointer-events: none; }
+/* Cold room preparation can outlive the route transition. Start the visible
+   stage entrance when its loading cover actually leaves. */
+.action-theater[data-scene-state='ready'] .chapter-identity__title { animation: chapter-ink-arrive 400ms 65ms cubic-bezier(.2,.7,.25,1) both; }
+.action-theater[data-scene-state='ready'] .chapter-identity__rule { animation: chapter-rule-arrive 420ms 100ms ease-out both; }
+@keyframes chapter-scene-depart { from { opacity: 1; } to { opacity: .38; } }
+@keyframes chapter-scene-arrive { from { opacity: .5; } to { opacity: 1; } }
+@keyframes chapter-line-depart { from { opacity: 0; transform: scaleX(.04); } to { opacity: .8; transform: scaleX(.42); } }
+@keyframes chapter-line-arrive { 0% { opacity: .8; transform: scaleX(.42); } 65% { opacity: .8; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1); } }
+@keyframes chapter-ink-arrive { from { opacity: 0; clip-path: inset(0 38% 0 0); transform: translateY(5px); } to { opacity: 1; clip-path: inset(0); transform: none; } }
+@keyframes chapter-rule-arrive { from { transform: scaleX(.15); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes chapter-paper-arrive { from { opacity: .3; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes chapter-ink-ring { from { opacity: 0; clip-path: inset(0 30% 0 0); } to { opacity: .14; clip-path: inset(0); } }
+@keyframes chapter-cinema-arrive { from { opacity: .45; } to { opacity: 1; } }
+@keyframes chapter-light-arrive { 0%,100% { opacity: 0; } 45% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .chapter-transition-line { opacity: 0 !important; animation: none !important; }
+  .chapter-scene, .chapter-identity *, .structure-atlas-masthead, .expression-brush-ring, .entry-vignette, .theater-vignette::after { animation: none !important; }
+}

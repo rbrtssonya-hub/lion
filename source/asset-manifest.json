@@ -4310,6 +4310,582 @@
       "path": "source/reviews/action-theater/2026-10-23-reading-path/home-solid-red-dots.png",
       "bytes": 1835077,
       "sha256": "531cf7a54a6e35870bd8a046720d5fb2778c4102b0b5933ff8add9f0c348f0e7"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1920.png",
+      "bytes": 2900415,
+      "sha256": "6f34c461b2d9053a5acae3814162b3643ffaab6f2ce4c8f25843f63f850c383e"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1920.png",
+      "bytes": 2374905,
+      "sha256": "69715d86ac1b5f3da191488994bf64549719259e6f8f2b8cf16998a636a37fb6"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1920.png",
+      "bytes": 2214229,
+      "sha256": "c6deb998124d825fdae5cc35d3806009571b4a15951a70d1b3bfd06788d27014"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1920.png",
+      "bytes": 2103202,
+      "sha256": "ec03cff801b21ebb4a400bef65b4e92b47aecf2297de330d0d9b886cfb068a88"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1440.png",
+      "bytes": 1842056,
+      "sha256": "79369da816da9f05eeb1055347575132e395f508b2c27bb6618fe87b3ac3830c"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1440.png",
+      "bytes": 1472621,
+      "sha256": "e043c13afb1ee58b746c22061da28e80459af72268d06e1827048b0e1ee3a5fa"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1440.png",
+      "bytes": 1496164,
+      "sha256": "5207c10e5f4e453dc7b50520545e6079259579692ddc8fe3acad2c5866a25d00"
+    },
+    {
+      "from": "Chrome production screenshot, four-chapter visual identity 2026-10-25",
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1440.png",
+      "bytes": 1378694,
+      "sha256": "0f36f116a9d689fd2bd419fa54c24990a4956d7009484b8bf1a156dc2cf8ce63"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/action-1366.png",
+      "bytes": 1220961,
+      "sha256": "383e3d8520e4e70c7108176b5063c083877c19fcbf7041b77999dcfaf86b7b60"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/action-1920.png",
+      "bytes": 2194818,
+      "sha256": "959a9be90c3512b1b3bc1bf395bac87cd120a1b56f4919157d909992bf8344db"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1366.png",
+      "bytes": 1275769,
+      "sha256": "1dbf099baa3643e233bafa1a3ac51eea747f99f93293f896ba9a006a698ee776"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1440.png",
+      "bytes": 1582943,
+      "sha256": "ed99cda4d31a57a7bcfe4d3fac9f64f4cbb45411998d3f3397107fa8136c4b56"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/book-1920.png",
+      "bytes": 2374418,
+      "sha256": "7c4ae114c9740afac575d351b13280940da239c375823f81dc34cd73e6bdf08c"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/capture.json",
+      "bytes": 11899,
+      "sha256": "7efd86288ddf32d7e83bb304ee8396e878606b42dd36fce4164286365786d26e"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/culture-1366.png",
+      "bytes": 1002340,
+      "sha256": "e5366a87559feae920a1affcfe35b40401e21d33d22502232d4691cabd3f451a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/culture-1920.png",
+      "bytes": 1804200,
+      "sha256": "094de01194788b8a38cd4d63b94faaba21557c029a2ab8e533130aabf4b67760"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/model-1366.png",
+      "bytes": 1203547,
+      "sha256": "84ca153a93b8664763f172efe5084c8f01581e101dee68d5790979e4bf0fb943"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/model-1920.png",
+      "bytes": 2366702,
+      "sha256": "180c89178fbff27669058a02c038d6831771f8f673e6758ad9da97d3c1d036b2"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/sources-1366.png",
+      "bytes": 529850,
+      "sha256": "2a5c5185ace8e400df49736b56958ac12ef1b49b9ec7288e4837a06ccd092148"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/sources-1920.png",
+      "bytes": 787379,
+      "sha256": "dd8d363cb12d129cae68f5812757cfe6306d19a1dc9f3596e5ab229948c16fa6"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/state-1366.png",
+      "bytes": 1077009,
+      "sha256": "ae8602cb91409a48a10d1a78a72013f5ab0cf2609ebb39eac95ee4e4e56c4688"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/state-1920.png",
+      "bytes": 2051135,
+      "sha256": "7ba19ac9c5d68a139d5537722530a1a7415147be280c34c0bef052b2be956e6a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/types-1366.png",
+      "bytes": 841142,
+      "sha256": "beca2c64dbc5447f3a35c771fc76a9f92785dab9eaabe6e2e2db273e58af7f7a"
+    },
+    {
+      "from": "actual Chrome 156 production review, twelve visual comments 2026-10-25",
+      "path": "source/reviews/exhibit-screen/2026-10-25/types-1920.png",
+      "bytes": 1724829,
+      "sha256": "fb835d218ba7a88d497e795c7250b3f0f45466e7aee6c39d1a1da0198bc0cea4"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1366.png",
+      "bytes": 1246966,
+      "sha256": "cdae709102d66122b759dae31601606264fb8cb562d08750fbaa12c1ff293e69"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1440.png",
+      "bytes": 1561101,
+      "sha256": "541eb6f9db7dadbeeb031b9717a38818377ccf6f8d25910d3fa8df2977d5a084"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/book-1920.png",
+      "bytes": 2355370,
+      "sha256": "55b80bc808553e98556d3c661cfba073b38ef6aee139cdd850921558d9a7e844"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, enlarged book timeline 2026-10-25",
+      "path": "source/reviews/book-timeline-size/2026-10-25/capture.json",
+      "bytes": 2988,
+      "sha256": "9a7db8dd98cd4449babac4dedc5483f7a543aca7dd2fce90bac130c6fd0e2b14"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1366.png",
+      "bytes": 1203379,
+      "sha256": "f9c1b2708210db55baeced2c2c90f9eff70e263258e30ea3a5d63f6a689d5c1d"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1440.png",
+      "bytes": 1493702,
+      "sha256": "07e0cb896be821c4bfcad685d3a262722d1acb9aa6dcc09e94a007f2c753a858"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-1920.png",
+      "bytes": 2323964,
+      "sha256": "dd915f369e449c95dc62ff4fe3d2d2ad625027d1b8e77120b4b66e16d774db06"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/book-2040.png",
+      "bytes": 2519898,
+      "sha256": "71e850ed4025ff1fe9f8bf9f43728500cee82f5d692129a8da6cb2b1e1e7c75a"
+    },
+    {
+      "from": "actual Chrome 156 production screenshot/geometry, marked book and footer zones 2026-10-25",
+      "path": "source/reviews/book-marked-zones/2026-10-25/capture.json",
+      "bytes": 5522,
+      "sha256": "9aca6c049907c886269bcd0428f7f82b6a79db2eb8f1b44e0f52cd852eb1adeb"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/capture.json",
+      "bytes": 24173,
+      "sha256": "88d303d8c921180317fd3d1e876307333a468336ffb2e378f48b7b302a8e590e"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1024x560.png",
+      "bytes": 970118,
+      "sha256": "460fc7d1ac46984f4ea7afaab3e6c602c92e36277f4d79a5d8966b4d8abd7b5c"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1366x768.png",
+      "bytes": 1642436,
+      "sha256": "7904f051e36290cdd3ec267ab90f15cdf0e84360e32fba25465f97c02226f7a9"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1920x1080.png",
+      "bytes": 2881894,
+      "sha256": "9b7520716337baf57030e9528238b8b8bd949e85408ff1140b861f94e54f1192"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-1920x400.png",
+      "bytes": 984727,
+      "sha256": "1f30e016bb9f28fd737061565cc77348d5f22346d021954dffaac5c9e44c5a0f"
+    },
+    {
+      "from": "actual Chrome 156 production review, reference brush title and readable entry copy 2026-10-26",
+      "path": "source/reviews/entry-brush-type/2026-10-26/entry-host-1920.png",
+      "bytes": 2863465,
+      "sha256": "482e0e39feefddd47c1894c3edb9315ae55ac11e14c81c9a82bffcc2eb727e81"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/capture.json",
+      "bytes": 24138,
+      "sha256": "965f655a1288c1e9c35fd9268aec1735783192e30958d6cde363311e153b1065"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1024x560.png",
+      "bytes": 973810,
+      "sha256": "10714bb3a1a4a20ce9e484fc8c599ce50ca84f738f7d5cf80e211df1c4cd11a7"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1366x768.png",
+      "bytes": 1651411,
+      "sha256": "f8520526d0c1b4d8361278739922dcc48a10b3e10c26d36ddc05d8c17bf080b1"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1920x1080.png",
+      "bytes": 2892975,
+      "sha256": "98027bdf57070dfad9fa632a4823b9c0b2e93f55582df933e6c5c9ab6e8e5c55"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-1920x400.png",
+      "bytes": 989640,
+      "sha256": "4dafd2aca366a50648c163c7ae7b4f9241f7bf1ccafa3f885efe26700ad1a888"
+    },
+    {
+      "from": "actual Chrome 156 production review, horizontal entry brush title 2026-10-26",
+      "path": "source/reviews/entry-brush-horizontal/2026-10-26/entry-host-1920.png",
+      "bytes": 2874481,
+      "sha256": "4cce1e059ba89f8d98f036d800dbf211e66fc3af778fc4490804a32f8196f2d7"
+    },
+    {
+      "from": "built-in imagegen underpaint edit, 2026-10-26",
+      "path": "source/public/assets/expression/lion-surprise-underpaint-v1.png",
+      "bytes": 1809215,
+      "sha256": "3ccf15f901e51651d8f7a12365d1941f1cb86316c15d842dca5f9325d2b71356"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-0ms.png",
+      "bytes": 337256,
+      "sha256": "848399a23ffd6ecff477cee13ffd5fb893812d225f4d8c6f4cae421e20ac87a7"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-120ms.png",
+      "bytes": 339361,
+      "sha256": "f90d590098e7cb741af007c813dfa69f0b41fb7ed7eb5f3af8d77a64f613d889"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-300ms.png",
+      "bytes": 340236,
+      "sha256": "7f4a71a6964d1cb66cb6c210e492366c9a840c2d21eb58485aba2f7760f5bd94"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1440-490ms.png",
+      "bytes": 337874,
+      "sha256": "01dd73a05df9d93e7f89d092f84a0884c3c09c9cbad554d4703983afaa234750"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-0ms.png",
+      "bytes": 593305,
+      "sha256": "5cbc327e719e275f626ca598da388778bdae0d48c0d752deed0bb63d7c42c6f1"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-120ms.png",
+      "bytes": 596746,
+      "sha256": "f87638a934441567afeef384f16670c7c8af964f90c258f9cd50444ae13e3cda"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-300ms.png",
+      "bytes": 598035,
+      "sha256": "7ad1446740c87e7766227a26a1acfb6aea816bd8ef4cc85a72e118150d5fabc7"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-1920-490ms.png",
+      "bytes": 595098,
+      "sha256": "6f2caced22b0c1a6b800026b0d3d296b3ddd0a6a14d9f9852a833bd0b98158a3"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-page-1440.png",
+      "bytes": 1329837,
+      "sha256": "b2d41dc6509e4d68584041c499f36604a9aa0df7015bc4d6cc9de0aecfdd00a0"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-page-1920.png",
+      "bytes": 2065456,
+      "sha256": "89f8d721bbe06c208d556fe8bc9c1ebf86dbab7380f44b073eab29dd9cbcbfc4"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-rest-1440.png",
+      "bytes": 366938,
+      "sha256": "c2c195224a88aadc5b24be54232e90d0909566e50cc51672c917305179e00584"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/surprise-rest-1920.png",
+      "bytes": 654424,
+      "sha256": "e888ab73ff6a0d14f3b1c1a33084a3f8111021757a21da1855a75e9e0f4751db"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/ink-middle-1440.png",
+      "bytes": 1429406,
+      "sha256": "62a34bf13e91fd24f7484472225fd3c698ecda21d610659afff78ecf7d879789"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/ink-middle-1920.png",
+      "bytes": 2378955,
+      "sha256": "95e5cf3f7763f3f5ca2306b9697b9780302fdc16ebaf669a7d45d67e3fc2720e"
+    },
+    {
+      "from": "native Chrome production motion screenshot or geometry, 2026-10-26",
+      "path": "source/reviews/surprise-ink/2026-10-26/capture.json",
+      "bytes": 4889,
+      "sha256": "8b30f94532ffeb2210b90b95458a277c792acb907e72a5937e27cbe92a9febb8"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/capture.json",
+      "bytes": 5726,
+      "sha256": "3896c4b07881438d227e3e2c17a9fd886941bae49da965d8b81bcc22ff3a0d37"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/natural-playback.json",
+      "bytes": 13574,
+      "sha256": "51870ba088c0a598a4acf61a68e7c8e6030b5ca63c59ea05b9cda92fcd6e302b"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-0ms.png",
+      "bytes": 337256,
+      "sha256": "848399a23ffd6ecff477cee13ffd5fb893812d225f4d8c6f4cae421e20ac87a7"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-1680ms.png",
+      "bytes": 337886,
+      "sha256": "22d040b58a05b615366b1e9ce9d864287041adabb6661994a292b39e30818f2f"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-2250ms.png",
+      "bytes": 340095,
+      "sha256": "b5250d2a94b47106c21df9d5180542dacc2a6108d0ff35ed4d1bb3d3cfbc0c79"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-2850ms.png",
+      "bytes": 335877,
+      "sha256": "1ba1e6b14e8924650f42dac69215710d84b5cc12358fcf43f26cdf19e75b9779"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1440-900ms.png",
+      "bytes": 340094,
+      "sha256": "cb9f27f5b57f0d56ddb841dd5fa0331ce9757754830d90d4c5f2e76edf460365"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-0ms.png",
+      "bytes": 593305,
+      "sha256": "5cbc327e719e275f626ca598da388778bdae0d48c0d752deed0bb63d7c42c6f1"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-1680ms.png",
+      "bytes": 596359,
+      "sha256": "75dc1e8072dd814de7dcea77baaf2922c43e56cc84f055e5dd39665e08147184"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-2250ms.png",
+      "bytes": 598469,
+      "sha256": "f05d9d3bf7ab811442fc61877d2a2cd7875799287287466042f8476f9acdb00a"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-2850ms.png",
+      "bytes": 591124,
+      "sha256": "d2e8fa118752d1895db77d9d9bb74de56d32c2cdf11ec05e85fcc321665355b9"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-1920-900ms.png",
+      "bytes": 598482,
+      "sha256": "cf1f43c46f39b2980abd55f9f1ac64707eb868f5d306e15c6a3159ca1460a863"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-page-1440.png",
+      "bytes": 1326779,
+      "sha256": "3623db0cff837b5a6d6b4a05af964b9fc91d5b8eca6f02b5195808e4b382bc4b"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-page-1920.png",
+      "bytes": 2066310,
+      "sha256": "a57116bc3c107bfe3fea881b7ee8e43cf58fe2c39e7bce2f43c21f93200bd14c"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-rest-1440.png",
+      "bytes": 366938,
+      "sha256": "c2c195224a88aadc5b24be54232e90d0909566e50cc51672c917305179e00584"
+    },
+    {
+      "from": "native Chrome three-second surprise reaction review, 2026-10-26",
+      "path": "source/reviews/surprise-duration/2026-10-26/surprise-rest-1920.png",
+      "bytes": 654424,
+      "sha256": "e888ab73ff6a0d14f3b1c1a33084a3f8111021757a21da1855a75e9e0f4751db"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-anger-underpaint-v1.png",
+      "bytes": 2047820,
+      "sha256": "5229dd7a6b8b20779c79b95e9f309388462bc86d16e4321b2f361e93e8c175d6"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-delight-underpaint-v1.png",
+      "bytes": 1946657,
+      "sha256": "d7ed77a8bdf8f876ba2a79ba2965822d51706d9cace75fa91b3b4655a8358fc2"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-doubt-underpaint-v1.png",
+      "bytes": 1816450,
+      "sha256": "d1513155cbc52982c91c963179cb403e8da2e0adab116602e2201e2d0a050e25"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-joy-underpaint-v1.png",
+      "bytes": 1713559,
+      "sha256": "b831020f1d37f44848aa29fbecc26baad8cc929edb44e60be1699309c7e55f67"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-motion-underpaint-v1.png",
+      "bytes": 2117141,
+      "sha256": "bf27ef4f3c6d2e3f17ff4923e88e930f4704d1b79ffd6a44fb662db09737df0d"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-sorrow-underpaint-v1.png",
+      "bytes": 1996477,
+      "sha256": "266f21fa53b5a6701b0d27078690cbb2ca9950dcdb5ed50bab0de532f394a451"
+    },
+    {
+      "from": "built-in imagegen per-expression hidden backing edit, eight-state motion 2026-10-26",
+      "path": "source/public/assets/expression/lion-stillness-underpaint-v1.png",
+      "bytes": 1939047,
+      "sha256": "3222ceca66dcf12f08528b14e4f5d82e6eb584fc37852437397088ed838dc093"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/anger-peak-1920.png",
+      "bytes": 602293,
+      "sha256": "4a92503bf99ad96207f04c195c955b726436c8e291a0e7a4c5af3309adf8d64d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/capture.json",
+      "bytes": 40554,
+      "sha256": "fa2ae0f8c05ed953d9edf53ef79b7b1a2346f9ccda63e3c9244b17e931dbc5de"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/delight-peak-1920.png",
+      "bytes": 605739,
+      "sha256": "e84737c37ab090c2c3b38aa754175ddec2a97b9fe37d655f3fb456b2e4e52f0d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/doubt-page-1440.png",
+      "bytes": 1320017,
+      "sha256": "4f30c35e37c6619437ed1a3a326d0c1c6c0cff88241d498d509ce0ce864b4a93"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/doubt-peak-1920.png",
+      "bytes": 587127,
+      "sha256": "98258d2b1c78b09a37f18ab22436f29b772f360bad48db22b53491cf176a5066"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-natural-playback.json",
+      "bytes": 107875,
+      "sha256": "f7b433007d7704cfcfac8b9b4f4c2765915b644a670700d6d4497e2d641db07d"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-page-1440.png",
+      "bytes": 1326725,
+      "sha256": "7fa8365fd033aa651f7a3f3394aa14b9adf6c7489175be1c173198e0c8b60f95"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/joy-peak-1920.png",
+      "bytes": 596382,
+      "sha256": "54f08df026f7a0beef69c7949da05587ec4711cff63e6482d8fddf1514d2e8e0"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/motion-peak-1920.png",
+      "bytes": 619809,
+      "sha256": "1df2d5e51d73dd57426ff90788c1ae29f70d8ec6fc2b465e7c61631b04d4da5e"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/sorrow-peak-1920.png",
+      "bytes": 607308,
+      "sha256": "6b1b25924e609c8720740861460ccf0fc7c3ab04f2afd58e8143b050de8cd8f7"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/stillness-peak-1920.png",
+      "bytes": 599797,
+      "sha256": "b4fd845a9317bfb2a253fcb33e65a916bf28ce9a416372d5a35fcc1209c5e1de"
+    },
+    {
+      "from": "actual native Chrome production capture, eight-state motion 2026-10-26",
+      "path": "source/reviews/eight-face/2026-10-26/surprise-peak-1920.png",
+      "bytes": 598004,
+      "sha256": "4cb01a5a1434e6334bcf13eaab07fd2a86900e0b90680075c3b8ff80bfe97983"
     }
   ]
 }

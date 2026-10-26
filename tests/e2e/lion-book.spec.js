@@ -20,7 +20,8 @@ async function openBook(page, { reduced = false, ready = true, url = '/' } = {})
   } });
   await page.emulateMedia({ reducedMotion: reduced ? 'reduce' : 'no-preference' });
   await page.goto(url);
-  await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
+  await page.locator('#enterWork').click();
+  await expect(page.locator('.home-archive-nav')).toBeVisible();
   const book = page.locator('.lion-book-experience');
   if (ready) await expect(book).toHaveAttribute('data-book-ready', 'true');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 35_000 });

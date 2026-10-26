@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectHomeExhibit } from './home-exhibit.helpers.js';
 
 async function open(page, route = '') {
   await page.setViewportSize({ width: 1920, height: 1080 });
@@ -15,8 +16,7 @@ async function open(page, route = '') {
 
 test('类型对照按相同维度联动，重复选择交换两侧，不干扰轮播或Hash', async ({ page }) => {
   await open(page);
-  const types = page.locator('#homeLionTypes');
-  await types.scrollIntoViewIfNeeded();
+  const types = await selectHomeExhibit(page, 'homeLionTypes');
   const culture = await page.locator('#homeCulture').getAttribute('data-culture-index');
   const hash = new URL(page.url()).hash;
   await types.getByRole('button', { name: '形制对照', exact: true }).click();
@@ -45,19 +45,22 @@ test('类型对照按相同维度联动，重复选择交换两侧，不干扰�
   expect(await page.locator('#homeCulture').getAttribute('data-culture-index')).toBe(culture);
 });
 
-test('退出类型对照恢复单狮展开和焦点，示意图失败仍能读对照', async ({ page }) => {
+test('退出类型对照恢复直接可读的单狮介绍和焦点，示意图失败仍能读对照', async ({ page }) => {
   await page.route('**/lion-types/foshan.png', route => route.abort());
   await open(page);
-  const types = page.locator('#homeLionTypes');
+  const types = await selectHomeExhibit(page, 'homeLionTypes');
   await types.getByRole('tab', { name: /佛鹤狮/ }).click();
-  await types.getByRole('button', { name: '展开佛鹤狮介绍', exact: true }).click();
+  await expect(types.locator('.heritage-copy')).toBeVisible();
+  await expect(types.locator('.heritage-copy h3')).toHaveText('佛鹤狮');
   const compare = types.getByRole('button', { name: '形制对照', exact: true });
   await compare.click();
   await types.getByLabel('左侧醒狮形制').focus();
   await page.keyboard.press('Escape');
   await expect(types.getByRole('button', { name: '单狮阅读', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(compare).toBeFocused();
-  await expect(types.getByRole('button', { name: '展开佛鹤狮介绍', exact: true })).toHaveAttribute('aria-expanded', 'true');
+  await expect(types.locator('.heritage-copy')).toBeVisible();
+  await expect(types.locator('.heritage-copy h3')).toHaveText('佛鹤狮');
+  await expect(types.getByRole('list', { name: '观察重点' }).getByRole('listitem')).toHaveCount(3);
   await compare.click();
   await expect(types.locator('.heritage-comparison-card').first().locator('.heritage-image-fallback')).toBeVisible();
   await expect(types.locator('.heritage-comparison-card').first().getByRole('heading', { name: '佛山狮', exact: true })).toBeVisible();
@@ -66,12 +69,12 @@ test('退出类型对照恢复单狮展开和焦点，示意图失败仍能读�
 
 test('资料按历史文化和形制工艺去重，摄影仍保留八份署名许可', async ({ page }) => {
   await open(page);
-  const sources = page.locator('#homeCultureSources');
+  const sources = await selectHomeExhibit(page, 'homeCultureSources');
   await expect(sources.getByRole('heading', { name: '历史与文化', exact: true })).toBeVisible();
   await expect(sources.getByRole('heading', { name: '形制与工艺', exact: true })).toBeVisible();
   const links = await sources.locator('.home-culture-source-card, .heritage-source-group a').evaluateAll(nodes => nodes.map(node => node.href));
   expect(new Set(links).size).toBe(links.length);
-  await sources.getByText('摄影署名与许可', { exact: true }).click();
+  await expect(sources.getByRole('heading', { name: '摄影署名与许可', exact: true })).toBeVisible();
   await expect(sources.locator('.home-culture-photo-license')).toHaveCount(8);
   for (const credit of await sources.locator('.home-culture-photo-license .home-culture-credit').all()) {
     await expect(credit.getByRole('link')).toHaveCount(2);
@@ -102,13 +105,13 @@ test('神态三组对照保持原详情，退出恢复焦点，滚轮不驱动�
   await expect(page.locator('#expressionStateTitle')).toHaveText('疑');
 });
 
-test('结构观察跳转与浏览器返回保留部位、相机、展开资料和详情位置', async ({ page }) => {
+test('结构观察跳转与浏览器返回保留部位、相机、可读资料和详情位置', async ({ page }) => {
   await open(page, '#/model');
   const stage = page.locator('#modelStage');
   await expect(page.locator('#modelStatus')).toContainText('模型已载入');
   await page.locator('#modelHotspots button[data-id="eyes"]').click();
   const cultureReading = page.locator('.structure-more-reading').last();
-  await cultureReading.locator('summary').click();
+  await expect(cultureReading).toBeVisible();
   const canvas = page.locator('#sceneContainer canvas');
   await expect(canvas).toHaveAttribute('data-focus-state', 'idle');
   const before = await canvas.getAttribute('data-camera-distance');
@@ -120,18 +123,18 @@ test('结构观察跳转与浏览器返回保留部位、相机、展开资料�
   await expect(page).toHaveURL(/#\/model$/);
   await expect(page.locator('#modelExpressionLink')).toBeFocused();
   await expect(stage).toHaveAttribute('data-selected-id', 'eyes');
-  await expect(cultureReading).toHaveAttribute('open', '');
+  await expect(cultureReading).toBeVisible();
   expect(await canvas.getAttribute('data-camera-distance')).toBe(before);
   await page.getByRole('button', { name: '去神态页观察惊态', exact: true }).click();
   await page.goBack();
   await expect(stage).toHaveAttribute('data-selected-id', 'eyes');
-  await expect(cultureReading).toHaveAttribute('open', '');
+  await expect(cultureReading).toBeVisible();
   await page.locator('.site-header [data-route="entry"]').click();
   await page.locator('.site-header [data-route="state"]').click();
   await expect(page.getByRole('button', { name: '返回眉眼部位', exact: true })).toHaveCount(0);
 });
 
-test('结构图鉴展开文化原资料后标题与正文仍在阅读区可达', async ({ page }) => {
+test('结构图鉴直接呈现文化原资料，标题与正文仍在阅读区可达', async ({ page }) => {
   await open(page, '#/model');
   await page.setViewportSize({ width: 1366, height: 768 });
   await page.locator('#modelHotspots button[data-id="eyes"]').click();
@@ -139,8 +142,7 @@ test('结构图鉴展开文化原资料后标题与正文仍在阅读区可达',
   await culture.getByRole('heading', { name: '狮韵之意', exact: true }).scrollIntoViewIfNeeded();
   await expect(culture.getByRole('heading', { name: '狮韵之意', exact: true })).toBeInViewport();
   const reading = culture.locator('.structure-more-reading');
-  await reading.locator('summary').click();
-  await expect(reading).toHaveAttribute('open', '');
+  await expect(reading).toBeVisible();
   await reading.locator('dd').last().scrollIntoViewIfNeeded();
   await expect(reading.locator('dd').last()).toBeInViewport();
 });

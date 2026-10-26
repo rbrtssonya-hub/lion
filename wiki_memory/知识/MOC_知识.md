@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-23
+updated: 2026-10-26
 topic: catalog-知识
 sources: []
 ---

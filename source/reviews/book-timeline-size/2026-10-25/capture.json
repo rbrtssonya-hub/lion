@@ -1,0 +1,147 @@
+{
+  "browser": "156.0.8078.47",
+  "screenshots": [
+    {
+      "filename": "book-1920.png",
+      "width": 1920,
+      "height": 1080,
+      "guide": {
+        "x": 344.78125,
+        "y": 867,
+        "width": 64,
+        "height": 64,
+        "top": 867,
+        "right": 408.78125,
+        "bottom": 931,
+        "left": 344.78125
+      },
+      "platform": {
+        "x": 344.78125,
+        "y": 909,
+        "width": 64,
+        "height": 16,
+        "top": 909,
+        "right": 408.78125,
+        "bottom": 925,
+        "left": 344.78125
+      },
+      "timeline": {
+        "x": 265.5,
+        "y": 881,
+        "width": 1558,
+        "height": 76,
+        "top": 881,
+        "right": 1823.5,
+        "bottom": 957,
+        "left": 265.5
+      },
+      "card": {
+        "x": 264.5,
+        "y": 872,
+        "width": 1560,
+        "height": 200,
+        "top": 872,
+        "right": 1824.5,
+        "bottom": 1072,
+        "left": 264.5
+      },
+      "labelFont": "20px",
+      "overflowX": false
+    },
+    {
+      "filename": "book-1440.png",
+      "width": 1440,
+      "height": 900,
+      "guide": {
+        "x": 262.0625,
+        "y": 687,
+        "width": 64,
+        "height": 64,
+        "top": 687,
+        "right": 326.0625,
+        "bottom": 751,
+        "left": 262.0625
+      },
+      "platform": {
+        "x": 262.0625,
+        "y": 729,
+        "width": 64,
+        "height": 16,
+        "top": 729,
+        "right": 326.0625,
+        "bottom": 745,
+        "left": 262.0625
+      },
+      "timeline": {
+        "x": 209,
+        "y": 701,
+        "width": 1191,
+        "height": 76,
+        "top": 701,
+        "right": 1400,
+        "bottom": 777,
+        "left": 209
+      },
+      "card": {
+        "x": 208,
+        "y": 692,
+        "width": 1193,
+        "height": 200,
+        "top": 692,
+        "right": 1401,
+        "bottom": 892,
+        "left": 208
+      },
+      "labelFont": "20px",
+      "overflowX": false
+    },
+    {
+      "filename": "book-1366.png",
+      "width": 1366,
+      "height": 768,
+      "guide": {
+        "x": 349.203125,
+        "y": 555,
+        "width": 64,
+        "height": 64,
+        "top": 555,
+        "right": 413.203125,
+        "bottom": 619,
+        "left": 349.203125
+      },
+      "platform": {
+        "x": 349.203125,
+        "y": 597,
+        "width": 64,
+        "height": 16,
+        "top": 597,
+        "right": 413.203125,
+        "bottom": 613,
+        "left": 349.203125
+      },
+      "timeline": {
+        "x": 316.828125,
+        "y": 569,
+        "width": 901.34375,
+        "height": 76,
+        "top": 569,
+        "right": 1218.171875,
+        "bottom": 645,
+        "left": 316.828125
+      },
+      "card": {
+        "x": 315.828125,
+        "y": 560,
+        "width": 903.34375,
+        "height": 200,
+        "top": 560,
+        "right": 1219.171875,
+        "bottom": 760,
+        "left": 315.828125
+      },
+      "labelFont": "20px",
+      "overflowX": false
+    }
+  ],
+  "errors": []
+}

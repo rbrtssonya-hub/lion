@@ -1,0 +1,44 @@
+/* A common exhibition masthead; each scene keeps its own paper, ink and light. */
+.chapter-identity {
+  --identity-red: #a12d23;
+  --identity-gold: #b99260;
+  --identity-ink: #6e261e;
+  --identity-muted: #816c58;
+  min-width: 0;
+  color: var(--identity-ink);
+}
+.chapter-identity__masthead { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 12px; font: 11px/1.5 var(--sans); }
+.chapter-identity__number { display: inline-flex; gap: 5px; align-items: baseline; color: var(--identity-red); font: 18px/1.1 Georgia, serif; font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+.chapter-identity__number small { color: var(--identity-muted); font: 10px/1.5 var(--sans); }
+.chapter-identity__phase { padding-left: 12px; border-left: 1px solid var(--identity-gold); color: var(--identity-red); font: 15px/1.3 var(--navigation-brush, var(--brush)); letter-spacing: .16em; white-space: nowrap; }
+.chapter-identity__eyebrow { color: var(--identity-muted); font-size: 10px; letter-spacing: .12em; }
+.chapter-identity .chapter-identity__title { margin: 13px 0 0; color: var(--identity-ink); font: 400 clamp(26px, 2.1cqw, 38px)/1.3 var(--navigation-brush, var(--brush)); letter-spacing: .1em; text-wrap: balance; }
+.chapter-identity .chapter-identity__description { margin: 10px 0 0; color: var(--identity-muted); font: 13px/1.7 var(--sans); letter-spacing: .035em; }
+.chapter-identity__rule { display: block; width: 56px; height: 1px; margin-top: 16px; background: linear-gradient(90deg, var(--identity-red) 0 36%, var(--identity-gold) 36%); transform-origin: left; }
+.chapter-identity--cinema { --identity-red: #f2cd91; --identity-gold: #d4aa6d; --identity-ink: #fff0d2; --identity-muted: #e5cba8; }
+
+/* Home's existing animated calligraphy is its display title. */
+.entry-copy > .chapter-identity { position: relative; width: max-content; max-width: 100%; margin-top: 8px; text-shadow: 0 2px 10px #300a04; }
+.entry-copy > .chapter-identity + .entry-cta { margin-top: 6px; }
+.entry-copy > .chapter-identity .chapter-identity__rule { position: absolute; top: 0; left: -22px; width: 1px; height: 24px; margin: 0; background: #d4aa6d99; }
+.entry-copy > .chapter-identity .chapter-identity__eyebrow { font-size: 10px; }
+.model-scene-heading:has(.chapter-identity) { padding: 16px 20px 18px; }
+.theater-topline:has(.chapter-identity) { padding: 15px 17px; }
+.theater-topline .chapter-identity__description { font-size: clamp(16px, 1cqw, 18px); }
+.theater-gesture-list { display: flex; flex-wrap: wrap; gap: 0 14px; }
+.theater-gesture-list > span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.theater-gesture-list > span::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--identity-gold); }
+.theater-topline .chapter-identity__title { font-size: clamp(26px, 2.1cqw, 36px); }
+.expression-toolbar > .chapter-identity { flex: 1 1 330px; margin-right: auto; }
+.expression-toolbar .chapter-identity__title { margin-top: 7px; font-size: clamp(24px, 1.9cqw, 32px); }
+.expression-toolbar .chapter-identity__description { margin-top: 4px; font-size: 12px; }
+.expression-toolbar .chapter-identity__rule { margin-top: 10px; }
+.expression-toolbar .expression-model-return { margin-right: 0; }
+@media (max-height: 750px) {
+  .chapter-identity .chapter-identity__title { margin-top: 7px; font-size: 26px; }
+  .chapter-identity__rule { margin-top: 10px; }
+  .expression-toolbar > .chapter-identity .chapter-identity__description { display: none; }
+}
+@media (max-height: 440px) {
+  .entry-copy > .chapter-identity { grid-column: 1; grid-row: 4; margin: 0; }
+}

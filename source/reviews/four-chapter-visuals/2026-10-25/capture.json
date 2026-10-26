@@ -1,0 +1,119 @@
+{
+  "browser": "156.0.8078.47",
+  "node": "v24.20.0",
+  "captures": [
+    {
+      "route": "entry",
+      "width": 1920,
+      "height": 1080,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1920.png",
+      "identity": {
+        "x": 271.359375,
+        "y": 701.7890625,
+        "width": 223.796875,
+        "height": 19.796875
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "model",
+      "width": 1920,
+      "height": 1080,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1920.png",
+      "identity": {
+        "x": 92.765625,
+        "y": 139,
+        "width": 250.8125,
+        "height": 131.28125
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "action",
+      "width": 1920,
+      "height": 1080,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1920.png",
+      "identity": {
+        "x": 43,
+        "y": 127,
+        "width": 326,
+        "height": 167.78125
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "state",
+      "width": 1920,
+      "height": 1080,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1920.png",
+      "identity": {
+        "x": 76.1875,
+        "y": 110,
+        "width": 1508.625,
+        "height": 103.78125
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "entry",
+      "width": 1440,
+      "height": 900,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/entry-1440.png",
+      "identity": {
+        "x": 178.96875,
+        "y": 568.328125,
+        "width": 223.796875,
+        "height": 19.796875
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "model",
+      "width": 1440,
+      "height": 900,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/model-1440.png",
+      "identity": {
+        "x": 76.4375,
+        "y": 139,
+        "width": 237.3125,
+        "height": 120.78125
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "action",
+      "width": 1440,
+      "height": 900,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/action-1440.png",
+      "identity": {
+        "x": 43,
+        "y": 127,
+        "width": 279.5,
+        "height": 153.0625
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    },
+    {
+      "route": "state",
+      "width": 1440,
+      "height": 900,
+      "path": "source/reviews/four-chapter-visuals/2026-10-25/state-1440.png",
+      "identity": {
+        "x": 57,
+        "y": 110,
+        "width": 1067,
+        "height": 97.375
+      },
+      "horizontalOverflow": false,
+      "homeMarkClear": true
+    }
+  ],
+  "errors": []
+}

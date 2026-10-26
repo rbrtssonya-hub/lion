@@ -3,6 +3,7 @@ import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openTheater, prepare, scene, actionVideo, selectAction } from './action-theater.helpers.js';
 import { selectSettingsFor } from './settings-navigation.helpers.js';
+import { expectExhibitFrame, selectHomeExhibit } from './home-exhibit.helpers.js';
 
 const reviewDir = process.env.READABILITY_REVIEW_DIR;
 
@@ -32,7 +33,7 @@ async function expectReadableLayout(page, compact = false) {
     const size = selector => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
     const button = document.querySelector('.theater-view-tools button').getBoundingClientRect();
     return {
-      kicker: size('.theater-topline > p:first-child'), hint: size('.theater-gesture-hint'),
+      kicker: size('.theater-topline .chapter-identity__phase'), hint: size('.theater-topline .chapter-identity__description'),
       tool: size('.theater-view-tools button'), label: size('.theater-caption.is-current .theater-caption-kicker'),
       name: size('.theater-caption.is-current h2'), body: size('.theater-caption.is-current .theater-description'),
       keyword: size('.theater-caption.is-current .theater-keywords'), buttonHeight: button.height,
@@ -180,11 +181,12 @@ test('HDRI与鼓同时失败时提示按列排开，重试恢复而不覆盖解�
   await expect(page.locator('.theater-drum-notice')).toHaveCount(0);
 });
 
-test('首页非当前栏目圆点为实心朱红，透明侧栏与狮头跳转保持', async ({ page }) => {
+test('首页非当前栏目圆点为实心朱红，浅纸侧栏分离与狮头跳转保持', async ({ page }) => {
   await prepare(page, { reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
-  await page.locator('#homeLionTypes').scrollIntoViewIfNeeded();
+  await selectHomeExhibit(page, 'homeLionTypes');
+  await expectExhibitFrame(page, 'homeLionTypes');
   const nav = page.getByRole('navigation', { name: '首页章节导航', exact: true });
   await expect(nav).toBeVisible();
   const stops = await nav.locator('button:not([aria-current]) i').evaluateAll(nodes => nodes.map(node => {
@@ -193,9 +195,14 @@ test('首页非当前栏目圆点为实心朱红，透明侧栏与狮头跳转�
   }));
   expect(stops).toHaveLength(3);
   for (const stop of stops) expect(stop).toEqual({ color: 'rgb(182, 45, 32)', border: 'rgb(143, 35, 27)', width: 8, height: 8 });
-  await expect(nav).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  const paper = await nav.evaluate(element => getComputedStyle(element).backgroundColor.match(/[\d.]+/g).map(Number));
+  expect(paper.slice(0, 3)).toEqual([255, 250, 240]);
+  expect(paper[3]).toBeCloseTo(.92, 2);
+  await expect(nav).toHaveCSS('border-top-style', 'solid');
+  await expect(nav).not.toHaveCSS('box-shadow', 'none');
   for (const id of ['homeCultureSources', 'homeCulture', 'homeLionBook', 'homeLionTypes']) {
-    await nav.locator(`[data-home-section="${id}"]`).click();
+    await selectHomeExhibit(page, id);
+    await expectExhibitFrame(page, id);
     await expect(nav.locator(`[data-home-section="${id}"]`)).toHaveAttribute('aria-current', 'location');
   }
   await capture(page, 'home-solid-red-dots');

@@ -3,6 +3,7 @@ import { media } from '../../config/media.js';
 import { theaterActions } from './actionClips.js';
 import { useTheaterPlayback } from './useTheaterPlayback.js';
 import SoundControl from '../../components/SoundControl.jsx';
+import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import './action-theater.css';
 
 const clock = value => {
@@ -200,8 +201,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       <div className="theater-vignette" aria-hidden="true" />
       <div className="theater-context">
         <header className="theater-topline">
-          <p>南风有狮 <span>/ 动作</span></p><h2>四面观狮</h2>
-          <p className="theater-gesture-hint">{flatMode ? '选择动作，观看完整片段' : '拖拽环绕 · 滚轮缩放 · 左右方向键切换'}</p>
+          <ChapterIdentity chapter="action" eyebrow="南风有狮 · 动作空间" title="四面观狮" className="chapter-identity--cinema"
+            description={flatMode ? '选择动作，观看完整片段' : <span className="theater-gesture-list">
+              {['拖拽环绕', '滚轮缩放', '左右方向键切换'].map(hint => <span key={hint}>{hint}</span>)}
+            </span>} />
         </header>
         <aside className="theater-observation" id="theaterObservation" aria-live="polite" aria-label="当前动作解读">
           {previous && <ActionCaption key={`previous-${previous.id}`} clip={previous} index={clips.indexOf(previous)} leaving />}
@@ -209,10 +212,10 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         </aside>
       </div>
       <div className="theater-view-tools">
-        <button type="button" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
+        <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => setFlatMode(value => !value)} disabled={sceneState === 'error'}>
           {flatMode ? '返回巨幕' : '平面观看'}
         </button>
-        <button type="button" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
+        <button type="button" className="interaction-cue interaction-cue--dark" aria-label={fullscreen ? '退出动作空间全屏' : '全屏观看动作空间'} onClick={toggleFullscreen}>
           <Icon kind="fullscreen" />
         </button>
       </div>
@@ -240,13 +243,13 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
 
       <div className="theater-bottom">
         <nav className="theater-action-nav" aria-label="四面动作巨幕">
-          {clips.map((clip, index) => <button type="button" key={clip.id} data-action-id={clip.id}
+          {clips.map((clip, index) => <button type="button" className="interaction-cue interaction-cue--dark" key={clip.id} data-action-id={clip.id}
             aria-label={`转向${clip.name}`} aria-pressed={activeId === clip.id} onClick={() => selectAction(clip.id)}>
             <span>{String(index + 1).padStart(2, '0')}</span><strong>{clip.name}</strong>
           </button>)}
         </nav>
         <div id="theaterControls" className="theater-controls" aria-label="当前动作播放控制">
-          <button type="button" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
+          <button type="button" className="interaction-cue interaction-cue--dark" aria-label={playing ? '暂停动作视频' : '播放动作视频'} onClick={playback.togglePlayback}><Icon kind={playing ? 'pause' : 'play'} /></button>
           <span className="theater-time">{clock(playback.view.currentTime)} <i>/</i> {clock(duration)}</span>
           <input type="range" min="0" max={duration || 1} step=".01" value={duration ? Math.min(playback.view.currentTime || 0, duration) : 0}
             style={{ '--theater-seek-head': `url("${new URL(assets.navLion ?? media.navLion, document.baseURI).href}")` }}

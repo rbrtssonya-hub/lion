@@ -2,10 +2,10 @@ import { lionExpressions } from '../data/lion-expressions.js';
 import { actionClips } from '../features/action/actionClips.js';
 
 export const chapters = [
-  { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南' },
-  { route: 'model', label: '结构', description: '认识广府醒狮' },
-  { route: 'action', label: '动作', description: '探秘经典招式' },
-  { route: 'state', label: '神态', description: '解读狮之神韵' },
+  { route: 'entry', label: '首页', description: '循狮入境 · 感受岭南', number: '01', phase: '入境' },
+  { route: 'model', label: '结构', description: '认识广府醒狮', number: '02', phase: '观形' },
+  { route: 'action', label: '动作', description: '探秘经典招式', number: '03', phase: '起舞' },
+  { route: 'state', label: '神态', description: '解读狮之神韵', number: '04', phase: '传神' },
 ];
 
 // Insets frame the visible artwork while keeping the supplied PNG bytes intact.

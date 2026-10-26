@@ -43,7 +43,7 @@ function StructurePartNavigation({ hotspots, selectedIndex, onSelect }) {
       <ol>
         {hotspots.map((part, index) => (
           <li key={part.id}>
-            <button type="button" data-part-id={part.id}
+            <button type="button" className="interaction-cue" data-part-id={part.id}
               aria-label={`查看${part.name}`} aria-current={selectedIndex === index ? 'true' : undefined}
               aria-controls="modelDetailContent" tabIndex={selectedIndex === index ? 0 : -1}
               title={part.name} onClick={() => onSelect?.(part.id)}
@@ -131,42 +131,39 @@ export default function StructureReadingPanel({
           <section className="structure-culture-section" aria-labelledby="structureFormHeading">
             <h3 id="structureFormHeading"><span aria-hidden="true">一</span>形制之美</h3>
             <p id="panelDescription">{selected.description}</p>
-            <details className="structure-more-reading" data-reading="form">
-              <summary>细读形制与部位作用<span aria-hidden="true">＋</span></summary>
+            <div className="structure-more-reading" data-reading="form">
               <DetailList entries={[
                 ['组成', selected.structure.parts.join(' · ')],
                 ['造型', selected.culture.form],
                 ['部位作用', selected.function],
               ]} />
-            </details>
+            </div>
           </section>
 
           <section className="structure-culture-section" aria-labelledby="structureCraftHeading">
             <h3 id="structureCraftHeading"><span aria-hidden="true">二</span>匠心之艺</h3>
             <p>{selected.structure.craft}</p>
-            <details className="structure-more-reading" data-reading="craft">
-              <summary>细读材料与连接<span aria-hidden="true">＋</span></summary>
+            <div className="structure-more-reading" data-reading="craft">
               <p className="structure-material-note" id="panelMaterial">{selected.material}</p>
               <DetailList entries={[
                 ['材料', selected.structure.material],
                 ['连接', selected.structure.connection],
               ]} />
-            </details>
+            </div>
           </section>
 
           <section className="structure-culture-section" aria-labelledby="structureCultureHeading">
             <h3 id="structureCultureHeading"><span aria-hidden="true">三</span>狮韵之意</h3>
             <p>{selected.culture.meaning}</p>
-            <details className="structure-more-reading" data-reading="culture">
-              <summary>细读纹样<span aria-hidden="true">＋</span></summary>
+            <div className="structure-more-reading" data-reading="culture">
               <DetailList entries={[
                 ['纹样', selected.culture.pattern],
               ]} />
-            </details>
+            </div>
           </section>
 
           {expressionLink && <div className="model-expression-recommendation">
-            <button type="button" id="modelExpressionLink"
+            <button type="button" className="interaction-cue" id="modelExpressionLink"
               onClick={() => onObserve?.({ ...expressionLink, returnPartId: selected.id })}>
               去神态页观察{expressionLink.name}态<span aria-hidden="true">↗</span>
             </button>
@@ -174,23 +171,23 @@ export default function StructureReadingPanel({
           </div>}
 
           <p className="structure-source" id="panelSource">{selected.sourceTag}</p>
-          <details className="structure-boundary" id="structureBoundary">
-            <summary>模型与资料说明</summary>
+          <aside className="structure-boundary" id="structureBoundary" aria-labelledby="structureBoundaryTitle">
+            <h3 id="structureBoundaryTitle">模型与资料说明</h3>
             <p>当前展示来自用户提供的 Blender 醒狮模型，支持点选可见结构。纸扎内骨架、活动连接与制作工艺仅作资料说明，未展示内部拆装。本页六幅朱砂书法由 AI 辅助生成，用于展陈视觉。</p>
-          </details>
+          </aside>
         </article>
         </div>
       </div>
 
       <footer className="structure-atlas-footer">
         <nav className="structure-folio-nav" aria-label="部件翻阅">
-          <button type="button" id="previousStructurePart" aria-label={`前一部件：${previous.name}`} onClick={onPrevious}>
+          <button type="button" className="interaction-cue" id="previousStructurePart" aria-label={`前一部件：${previous.name}`} onClick={onPrevious}>
             <span aria-hidden="true">←</span>前一部件
           </button>
           <p id="panelIndex" aria-label={`第${selectedIndex + 1}部件，共${hotspots.length}部件`}>
             <span>{folios[selectedIndex]}</span><i aria-hidden="true">/</i>{folios[hotspots.length - 1]}
           </p>
-          <button type="button" id="nextStructurePart" aria-label={`探下一处：${next.name}`} onClick={onNext}>
+          <button type="button" className="interaction-cue" id="nextStructurePart" aria-label={`探下一处：${next.name}`} onClick={onNext}>
             探下一处<span aria-hidden="true">→</span>
           </button>
         </nav>

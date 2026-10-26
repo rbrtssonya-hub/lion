@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-26",
+  "browser": "156.0.8078.47",
+  "node": "v24.20.0",
+  "baseline": "37bbecf72fa9d714ba19d64b39c993169446455f plus current branch effects",
+  "url": "http://127.0.0.1:4196/#/state",
+  "results": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "rects": {
+        "#expressionLionTrigger": {
+          "x": 364.203125,
+          "y": 310.046875,
+          "width": 715.21875,
+          "height": 597
+        },
+        "#expressionStateCopy": {
+          "x": 1215.046875,
+          "y": 339.203125,
+          "width": 613.765625,
+          "height": 590.984375
+        },
+        ".expression-state-nav": {
+          "x": 76.1875,
+          "y": 349.6875,
+          "width": 152.390625,
+          "height": 570
+        }
+      },
+      "frames": [
+        {
+          "time": 0,
+          "matrices": {
+            "eye-left": "matrix(1, 0, 0, 1, 0, 0)",
+            "eye-right": "matrix(1, 0, 0, 1, 0, 0)",
+            "jaw": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-left": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-right": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        },
+        {
+          "time": 120,
+          "matrices": {
+            "eye-left": "matrix(1.01873, 0, 0, 1.03478, 0, -1.07001)",
+            "eye-right": "matrix(1.01873, 0, 0, 1.03478, 0, -1.07001)",
+            "jaw": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-left": "matrix(0.999819, -0.0190344, 0.0190344, 0.999819, 0, -19.9954)",
+            "brow-right": "matrix(0.999848, 0.0174484, -0.0174484, 0.999848, 0, -21.8132)"
+          }
+        },
+        {
+          "time": 300,
+          "matrices": {
+            "eye-left": "matrix(1.035, 0, 0, 1.065, 0, -2)",
+            "eye-right": "matrix(1.035, 0, 0, 1.065, 0, -2)",
+            "jaw": "matrix(1, 0, 0, 1.03451, 0, 17.7497)",
+            "brow-left": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, -22)",
+            "brow-right": "matrix(0.999816, 0.0191974, -0.0191974, 0.999816, 0, -24)"
+          }
+        },
+        {
+          "time": 490,
+          "matrices": {
+            "eye-left": "matrix(1.01952, 0, 0, 1.03625, 0, -1.11537)",
+            "eye-right": "matrix(1.01952, 0, 0, 1.03625, 0, -1.11537)",
+            "jaw": "matrix(1, 0, 0, 1.0268, 0, 13.7813)",
+            "brow-left": "matrix(0.999963, -0.00859973, 0.00859973, 0.999963, 0, -9.03346)",
+            "brow-right": "matrix(0.999969, 0.0078831, -0.0078831, 0.999969, 0, -9.85469)"
+          }
+        }
+      ],
+      "errors": [],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "rects": {
+        "#expressionLionTrigger": {
+          "x": 272.453125,
+          "y": 296.6875,
+          "width": 534.984375,
+          "height": 439.09375
+        },
+        "#expressionStateCopy": {
+          "x": 908.890625,
+          "y": 271.8125,
+          "width": 459.109375,
+          "height": 539.34375
+        },
+        ".expression-state-nav": {
+          "x": 57,
+          "y": 271.984375,
+          "width": 114,
+          "height": 539
+        }
+      },
+      "frames": [
+        {
+          "time": 0,
+          "matrices": {
+            "eye-left": "matrix(1, 0, 0, 1, 0, 0)",
+            "eye-right": "matrix(1, 0, 0, 1, 0, 0)",
+            "jaw": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-left": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-right": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        },
+        {
+          "time": 120,
+          "matrices": {
+            "eye-left": "matrix(1.01873, 0, 0, 1.03478, 0, -1.07001)",
+            "eye-right": "matrix(1.01873, 0, 0, 1.03478, 0, -1.07001)",
+            "jaw": "matrix(1, 0, 0, 1, 0, 0)",
+            "brow-left": "matrix(0.999819, -0.0190344, 0.0190344, 0.999819, 0, -19.9954)",
+            "brow-right": "matrix(0.999848, 0.0174484, -0.0174484, 0.999848, 0, -21.8132)"
+          }
+        },
+        {
+          "time": 300,
+          "matrices": {
+            "eye-left": "matrix(1.035, 0, 0, 1.065, 0, -2)",
+            "eye-right": "matrix(1.035, 0, 0, 1.065, 0, -2)",
+            "jaw": "matrix(1, 0, 0, 1.03451, 0, 17.7497)",
+            "brow-left": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, -22)",
+            "brow-right": "matrix(0.999816, 0.0191974, -0.0191974, 0.999816, 0, -24)"
+          }
+        },
+        {
+          "time": 490,
+          "matrices": {
+            "eye-left": "matrix(1.01952, 0, 0, 1.03625, 0, -1.11537)",
+            "eye-right": "matrix(1.01952, 0, 0, 1.03625, 0, -1.11537)",
+            "jaw": "matrix(1, 0, 0, 1.0268, 0, 13.7813)",
+            "brow-left": "matrix(0.999963, -0.00859973, 0.00859973, 0.999963, 0, -9.03346)",
+            "brow-right": "matrix(0.999969, 0.0078831, -0.0078831, 0.999969, 0, -9.85469)"
+          }
+        }
+      ],
+      "errors": [],
+      "overflow": false
+    }
+  ]
+}
