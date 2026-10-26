@@ -65,3 +65,5 @@
 2026-10-12历史书法与自适应导航审查图在 `reviews/homepage/2026-10-12-centered-calligraphy/`，覆盖1024、1366、1920、2560、390与推开设置；正式浏览器输出为 `tmp/e2e-calligraphy-responsive-dev-final/`、`tmp/e2e-calligraphy-responsive-preview-final/`。此前背景浏览器验收输出在 `tmp/e2e-chapter-backgrounds-dev/`、`tmp/e2e-chapter-backgrounds-preview/`，5张审查图在 `reviews/backgrounds/2026-10-12-chapter-backgrounds/`。此前导航输出为 `tmp/e2e-unified-navigation-dev/`、`tmp/e2e-unified-navigation-preview/`，通过UI图在 `reviews/navigation/2026-10-12-larger-typography/`；首页融合三图仍在 `reviews/homepage/2026-10-12-unified-entry/`。tmp/test-results等运行产物不纳入历史素材快照。
 
 历史方案与设计资料保存原文；当前工程状态由 [工程记忆](../wiki_memory/README.md) 统一维护。
+
+2026-10-26起网页醒狮改用用户提供的 `科比blend.blend`。结构页和动作剧场共用 `public/assets/models/lion-user-full.glb`、完整33组毛发及原有 `assetPaths.js` 路径；当前导出包含53个网格、645,834个三角面、2,289,801根发束及19,929,005个毛发点。原始 `.blend` 位于 `models/lion-kobi-2026-10-26.blend`，因单文件超过GitHub上限设为 `localOnly`；运行派生资产仍提交并部署。源与导出细节见[当前模型说明](references/lion-structure-model.md)，实施与验收见[本轮日志](../wiki_memory/日志/功能添加/2026-10-26-替换醒狮模型为科比blend.md)。

@@ -14,6 +14,7 @@ sources: []
 | --- | --- | --- | --- |
 | 2026-10-26 | maintenance | completed | [小醒桌宠分支合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-26 | maintenance | completed | [八态视觉开发支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%85%AB%E6%80%81%E8%A7%86%E8%A7%89%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |
+| 2026-10-26 | feature | completed | [替换网页醒狮模型为科比blend（2026-10-26）](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E6%9B%BF%E6%8D%A2%E9%86%92%E7%8B%AE%E6%A8%A1%E5%9E%8B%E4%B8%BA%E7%A7%91%E6%AF%94blend.md) |
 | 2026-10-26 | feature | completed | [小醒桌宠与离线讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E4%B8%8E%E7%A6%BB%E7%BA%BF%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | feature | in_progress | [小醒常驻语音讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E5%B8%B8%E9%A9%BB%E8%AF%AD%E9%9F%B3%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | ui | completed | [惊态五官动作延长三秒](UI%E4%BF%AE%E6%94%B9/2026-10-26-%E6%83%8A%E6%80%81%E4%BA%94%E5%AE%98%E5%8A%A8%E4%BD%9C%E5%BB%B6%E9%95%BF%E4%B8%89%E7%A7%92.md) |

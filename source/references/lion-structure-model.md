@@ -1,4 +1,26 @@
-# 当前醒狮：结blend.blend 完整数据接入（2026-10-20）
+# 当前醒狮：科比blend.blend 完整数据接入（2026-10-26）
+
+用户要求将 `D:\SoftWareDocuments\WeChatDownLoad\xwechat_files\wxid_j88e6n2v2yuz22_9229\msg\file\2026-10\科比blend.blend` 替换为网页醒狮。结构页与动作剧场继续共用统一的 `media.model`、`media.modelHair` 和 33 个毛发路径；只替换这些运行资产，不改剧场布景、首页内容、章节布局或交互。
+
+## 源文件保护与导出
+
+字节原件为 136,175,747 B，SHA256 `cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53`，精确副本存于 `source/models/lion-kobi-2026-10-26.blend`。此单文件超过 GitHub 普通文件限制，按 `localOnly` 忽略本地原件并在资产清单记录大小与哈希；网页派生资产、脚本、审计报告及说明正常提交。导出不会保存或修改 Blender 源文件，前后核对原件与副本 SHA256。
+
+使用项目内官方便携 Blender 5.1.2。执行 `scripts/export_full_lion.py -- --input <source.blend> --archive source/models/lion-kobi-2026-10-26.blend`；不抽发、减面、去重、量化或缩小贴图。继续禁用当前已指纹校验的 glTF 导出器 `Mesh.validate()` 调用，确保导出网格三角数与 Blender evaluated mesh 一致。当前导出为 89,080,256 B GLB、53 个网格、102 个节点、24 个材质和 645,834 个 evaluated triangles。
+
+## 毛发与网页显示
+
+源场景为 Cycles，毛发显示字段为 `hair_type=STRAND`、`hair_subdiv=0`。3 个 Curves 对象共 169,801 根、849,005 个原始控制点；30 个粒子毛发系统共 2,120,000 根、19,080,000 个路径点。合计保留 33 组、2,289,801 根、19,929,005 个原始点。每个粒子组保留原渲染子发数量、9 个路径点、根部 UV、全部浮点坐标和半径；Curve 每根 5 个原始点及原导出插值参数均保留。网页按 STRAND 绘制中心线，不把源半径改成粗发带。
+
+运行文件是 `source/public/assets/models/lion-user-full.glb`、`lion-user-hair.json` 与 33 个 `lion-user-hair-NN.bin.gz`。现有六组热点的对象前缀均能在新 GLB 中找到。`src/config/assetPaths.js` 中的路径保持不变；结构章和动作巨幕章复用同一份模型和毛发，原有资源生命周期继续生效。
+
+## 审计与验证
+
+`source/references/lion-structure-model.json` 记录新源哈希、全量网格、毛发逐组来源及导出 SHA。`tests/assets/asset-integrity.test.mjs` 核对 GLB 拓扑、完整毛发数据与资产清单；`tests/e2e/full-lion-model.spec.js` 核对结构页和动作剧场的真实绘制及跨章复用。最终构建、桌面浏览器结果及提交推送见 `wiki_memory/日志/功能添加/2026-10-26-替换醒狮模型为科比blend.md`。
+
+---
+
+# 历史：结blend.blend 完整数据接入（2026-10-20）
 
 用户要求用指定的 `结blend.blend` 替换网页醒狮，并明确禁止擅自删改模型数据，特别是毛发。结构页和动作剧场都使用同一个新源资产；首页视频、神态图片、网页布局及剧场建筑保持原有行为。
 

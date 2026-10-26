@@ -13,6 +13,12 @@ const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
 const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.webm', '.glb', '.gz', '.gzip', '.exr', '.moc3', '.psd', '.cmo3', '.blend', '.woff', '.woff2', '.ttf', '.otf']);
 const localSourcePath = 'source/models/user-lion-2026-10-20.blend';
 const userSourceSha256 = 'dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770';
+const activeSourcePath = 'source/models/lion-kobi-2026-10-26.blend';
+const activeSourceSha256 = 'cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53';
+const localOnlySources = new Map([
+  [localSourcePath, { bytes: 136_543_222, sha256: userSourceSha256 }],
+  [activeSourcePath, { bytes: 136_175_747, sha256: activeSourceSha256 }],
+]);
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
 function containedPath(base, path) {
@@ -51,9 +57,10 @@ test('migration snapshot preserves the size and SHA256 of every archived binary 
     assert.match(entry.sha256, /^[a-f0-9]{64}$/);
     if (entry.localOnly !== undefined) {
       assert.equal(entry.localOnly, true, `Unsupported local-only flag: ${entry.path}`);
-      assert.equal(entry.path, localSourcePath, 'Only the original oversized user source may be absent from a GitHub checkout');
-      assert.equal(entry.bytes, 136_543_222);
-      assert.equal(entry.sha256, userSourceSha256);
+      const expected = localOnlySources.get(entry.path);
+      assert.ok(expected, `Unrecognized local-only source: ${entry.path}`);
+      assert.equal(entry.bytes, expected.bytes);
+      assert.equal(entry.sha256, expected.sha256);
       if (!existsSync(path)) continue;
     }
     const file = statSync(path);
@@ -67,7 +74,9 @@ test('migration snapshot preserves the size and SHA256 of every archived binary 
     const path = relative(root, file).split(sep).join('/');
     assert.equal(paths.has(path), true, `Binary asset is absent from the migration snapshot: ${path}`);
   }
-  assert.equal(manifest.files.find(entry => entry.path === localSourcePath)?.localOnly, true, 'Record the original user source even when its oversized local archive is absent');
+  for (const path of localOnlySources.keys()) {
+    assert.equal(manifest.files.find(entry => entry.path === path)?.localOnly, true, `Record local-only source even when its oversized archive is absent: ${path}`);
+  }
 });
 
 test('public assets include configured media and exclude private creative or review files', () => {
@@ -121,7 +130,7 @@ test('structure web export preserves every source mesh and its authored sheen we
     sum + model.accessors[primitive.indices].count / 3
   ), 0), 0);
   assert.equal(triangles, report.export.gltf_triangles);
-  assert.equal(triangles, 657_831, 'Keep every evaluated source triangle, including the 72 degenerate faces the stock exporter repairs');
+  assert.equal(triangles, 645_834, 'Keep every evaluated source triangle, including degenerate faces the stock exporter might repair');
   assert.equal(triangles, report.evaluated_source_triangles, 'Export must match the source before any exporter repair');
   assert.equal(report.exporter_mesh_validation_disabled, true);
   assert.equal(model.meshes.length, 53);
@@ -132,8 +141,8 @@ test('structure web export preserves every source mesh and its authored sheen we
   const meshNames = model.nodes.filter(node => Number.isInteger(node.mesh)).map(node => node.name).sort();
   assert.deepEqual(meshNames, report.mesh_objects.map(mesh => mesh.name).sort());
   assert.deepEqual(meshNames, report.export.mesh_object_names.slice().sort());
-  assert.equal(report.source, localSourcePath);
-  assert.equal(report.source_sha256, userSourceSha256);
+  assert.equal(report.source, activeSourcePath);
+  assert.equal(report.source_sha256, activeSourceSha256);
   assert.equal(report.source_unchanged, true);
   for (const key of ['mesh_decimation', 'mesh_deduplication', 'mesh_repair', 'hair_sampling', 'hair_point_simplification', 'quantization', 'texture_resize', 'source_saved']) {
     assert.equal(report.policy[key], false, `The user source must not be simplified or rewritten: ${key}`);
@@ -167,8 +176,8 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
   const manifest = readJson(containedPath(publicRoot, assetPaths.modelHair));
   assert.equal(manifest.version, 1);
   assert.equal(manifest.coordinateSystem, 'GLTF_Y_UP');
-  assert.equal(manifest.sourceSha256, userSourceSha256);
-  assert.deepEqual(report.source_render, { engine: 'BLENDER_EEVEE', hair_type: 'STRAND', hair_subdiv: 0 });
+  assert.equal(manifest.sourceSha256, activeSourceSha256);
+  assert.deepEqual(report.source_render, { engine: 'CYCLES', hair_type: 'STRAND', hair_subdiv: 0 });
   assert.equal(manifest.groups.length, 33);
   assert.equal(report.hair_source.length, 33);
   assert.equal(report.export.hair_groups, 33);
@@ -176,7 +185,7 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
   assert.equal(auditById.size, 33);
   const names = new Set();
   const paths = new Set();
-  const authoredCurveCounts = new Map([['粒子系统', 99_854], ['粒子系统.001', 35_567], ['粒子系统.002', 40_000]]);
+  const authoredCurveCounts = new Map([['粒子系统', 99_854], ['粒子系统.001', 29_973], ['粒子系统.002', 39_974]]);
   let particleStrands = 0;
   let curveStrands = 0;
   let sourcePoints = 0;
@@ -189,7 +198,7 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
     paths.add(group.path);
     assert.equal(assetPaths[group.assetKey], group.path, `${group.name}: hair must use the central asset configuration`);
     assert.match(group.path, /^assets\/models\/lion-user-hair-\d{2}\.bin\.gz$/);
-    assert.equal(group.displayMode, 'STRAND', `${group.name}: retain the source EEVEE line rendering mode`);
+    assert.equal(group.displayMode, 'STRAND', `${group.name}: retain the source STRAND display mode`);
     const audit = auditById.get(group.id);
     assert.ok(audit, `${group.name}: missing source audit`);
     for (const [key, value] of Object.entries(group)) {
@@ -220,7 +229,7 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
       assert.equal(audit.source_curves, group.strands, `${group.name}: no curve density reduction`);
       assert.equal(audit.source_points, pointCount, `${group.name}: no authored point reduction`);
       assert.equal(audit.radius_attribute, false);
-      assert.equal(audit.radius_default_m, .01, `${group.name}: missing radius uses the source EEVEE default`);
+      assert.equal(audit.radius_default_m, .01, `${group.name}: missing radius uses Blender's default curve radius`);
       assert.deepEqual(audit.curve_types, ['CATMULL_ROM']);
       assert.equal(group.hasRootUV, false);
       expectedRadii = Array(group.pointsPerStrand).fill(.01);
@@ -261,11 +270,11 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
   }
   assert.equal(curveGroups, 3);
   assert.equal(particleGroups, 30);
-  assert.equal(curveStrands, 175_421);
+  assert.equal(curveStrands, 169_801);
   assert.equal(particleStrands, 2_120_000);
-  assert.equal(manifest.totalStrands, 2_295_421);
+  assert.equal(manifest.totalStrands, 2_289_801);
   assert.equal(manifest.totalStrands, curveStrands + particleStrands);
-  assert.equal(sourcePoints, 19_957_105);
+  assert.equal(sourcePoints, 19_929_005);
   assert.equal(manifest.totalPoints, sourcePoints);
   assert.equal(report.export.hair_strands, manifest.totalStrands);
   assert.equal(report.export.hair_points, sourcePoints);

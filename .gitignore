@@ -4,8 +4,9 @@ test-results/
 playwright-report/
 tmp/
 
-# Byte-identical user Blender source (136 MB); runtime exports are tracked.
+# Byte-identical user Blender sources (over GitHub's ordinary-file limit); runtime exports are tracked.
 source/models/user-lion-2026-10-20.blend
+source/models/lion-kobi-2026-10-26.blend
 
 # Local/editor noise
 .DS_Store

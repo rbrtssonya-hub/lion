@@ -243,7 +243,7 @@ async function createHairGroup(definition, url, signal, sourceMaterials) {
     metalness: definition.material?.metalness ?? 0,
   });
   adaptExportedWeaveBump(material);
-  // The source EEVEE STRAND mode draws one-pixel centerlines. Radius remains in
+  // The source STRAND display mode draws one-pixel centerlines. Radius remains in
   // the unmodified Float32 point data; it is intentionally not turned into an
   // enlarged ribbon or tube by this display adapter.
   material.linewidth = 1;
