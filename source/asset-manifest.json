@@ -4913,10 +4913,10 @@
       "sha256": "2f25189e1a7ca037047b99b7121b8e5600a87b7271316f8dda69b11c9ae8e64c"
     },
     {
-      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
       "path": "source/characters/xiaoxing/voice/sample.wav",
-      "bytes": 273182,
-      "sha256": "cb538df6131bb9df96d82c48f0bbf5a9ee9fb818740ea86a3392b9e89e6efa45"
+      "bytes": 330284,
+      "sha256": "239eec265a649501019f41684ee190aed1433c282edf3fa58923b5414a48b4ad"
     },
     {
       "from": "editable mascot layer export from approved art and repaired face, 2026-10-26",
@@ -4991,28 +4991,28 @@
       "sha256": "2fe6fa51080be96b4cca32b3efd2cf6497a2ce2c35c99524349c895331bcbb97"
     },
     {
-      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
       "path": "source/public/assets/xiaoxing/voice/action.wav",
-      "bytes": 1411088,
-      "sha256": "630fca44e849505dcbedec0fea836f7f50b2a91fc326d84506f186daca2e5abe"
+      "bytes": 2579244,
+      "sha256": "f1e64ef999bf47e0b8a809224c739e5a187f2e4313a1d2fc5ed5ee5802ea974d"
     },
     {
-      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
       "path": "source/public/assets/xiaoxing/voice/entry.wav",
-      "bytes": 1383894,
-      "sha256": "cb34d5cf0e37aae72cd62701920c5c76364c4b9782797c051686f6b888f0a598"
+      "bytes": 2732844,
+      "sha256": "5bd25e6872fe0ea628ea541025baef555cfa8b5f2818c29fa279fc5b091d78f2"
     },
     {
-      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
       "path": "source/public/assets/xiaoxing/voice/model.wav",
-      "bytes": 1347606,
-      "sha256": "0951fc4ab32be7a18e4743239e05970e1453764fa8d7e00212088c4fecb29dd6"
+      "bytes": 2603564,
+      "sha256": "60d14806ba1692add476c4ec0da0a52d7088832a770a9e5c519eb5d946d33df3"
     },
     {
-      "from": "local Microsoft Yaoyao female Chinese narration; SSML role profile 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
       "path": "source/public/assets/xiaoxing/voice/state.wav",
-      "bytes": 1528866,
-      "sha256": "38846e3eb5a954451f36a758e410f7c599291eab6c5fd6db721cdcd4fdab229a"
+      "bytes": 3006764,
+      "sha256": "75e2fecc0142a40093d4d04e867c8683812e9b7ad82343ca90b12cfafda03216"
     },
     {
       "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
@@ -5295,6 +5295,48 @@
       "path": "source/reviews/spread-map-levels/2026-10-26/world-1920.png",
       "bytes": 762639,
       "sha256": "01db6d8d75acd0e71bd8f700865a722697890d13442e385139a2aa65d6e97265"
+    },
+    {
+      "from": "user-approved GPT-SoVITS reference-voice audition, accepted 2026-10-26",
+      "path": "source/characters/xiaoxing/voice/approved-audition.wav",
+      "bytes": 327724,
+      "sha256": "21e51142e783526f129b6a0abfcae514475f16791eae92cd877f74def0a09c2e"
+    },
+    {
+      "from": "user-provided Xiaoxing voice reference, original MP3 bytes, 2026-10-26",
+      "path": "source/characters/xiaoxing/voice/reference.mp3",
+      "bytes": 487326,
+      "sha256": "9c5a4f87f24095c4a4329d79417629c47279777351188a639deb7529464cda5f"
+    },
+    {
+      "from": "7.2-second mono WAV excerpt of user-selected voice reference, no pitch shift, 2026-10-26",
+      "path": "source/characters/xiaoxing/voice/reference.wav",
+      "bytes": 460878,
+      "sha256": "895ba3a3b045422e385bff4177988fe1ad1729257fd0ae770b161e8f2526c0c0"
+    },
+    {
+      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
+      "path": "source/public/assets/xiaoxing/voice/spread.wav",
+      "bytes": 2022444,
+      "sha256": "d2bf1561233a5b7c5c5b87a165199ce390d6261cc74c31c2383a8481b7f28338"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/voice/chapter-voice-chat-closed-1920.png",
+      "bytes": 2083564,
+      "sha256": "597935e6fcd0e4410e3eadaef8e325056038a167a21b14cb58e063ece2cc82eb"
+    },
+    {
+      "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/voice/dynamic-answer-playing-1920.png",
+      "bytes": 2010812,
+      "sha256": "b1ec6516ccca2121ade36fbd0d6a775ade7f3db3f3388d99176369ef2c90973f"
+    },
+    {
+      "from": "actual GPT-SoVITS CUDA dynamic answer captured from Chrome playback, 2026-10-26",
+      "path": "source/reviews/xiaoxing/2026-10-26/voice/dynamic-answer.wav",
+      "bytes": 1388844,
+      "sha256": "4fc15e336dbd126e7217d4d736c2877080618422ff0790a90dcdbae40f7722e6"
     }
   ]
 }

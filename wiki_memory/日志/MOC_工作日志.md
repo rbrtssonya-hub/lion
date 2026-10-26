@@ -18,6 +18,7 @@ sources: []
 | 2026-10-26 | maintenance | completed | [八态视觉开发支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-%E5%85%AB%E6%80%81%E8%A7%86%E8%A7%89%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-26 | maintenance | completed | [E盘同步 GitHub 最新 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-26-E%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0%E6%9B%B4%E6%96%B0.md) |
 | 2026-10-26 | feature | completed | [替换网页醒狮模型为科比blend（2026-10-26）](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E6%9B%BF%E6%8D%A2%E9%86%92%E7%8B%AE%E6%A8%A1%E5%9E%8B%E4%B8%BA%E7%A7%91%E6%AF%94blend.md) |
+| 2026-10-26 | feature | in_progress | [小醒用户参考音色与动态语音](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E7%94%A8%E6%88%B7%E5%8F%82%E8%80%83%E9%9F%B3%E8%89%B2%E4%B8%8E%E5%8A%A8%E6%80%81%E8%AF%AD%E9%9F%B3.md) |
 | 2026-10-26 | feature | completed | [小醒桌宠与离线讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E6%A1%8C%E5%AE%A0%E4%B8%8E%E7%A6%BB%E7%BA%BF%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | feature | in_progress | [小醒常驻语音讲解](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%B0%8F%E9%86%92%E5%B8%B8%E9%A9%BB%E8%AF%AD%E9%9F%B3%E8%AE%B2%E8%A7%A3.md) |
 | 2026-10-26 | feature | completed | [四章精简改版本地实现](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-26-%E5%9B%9B%E7%AB%A0%E7%B2%BE%E7%AE%80%E6%94%B9%E7%89%88%E6%9C%AC%E5%9C%B0%E5%AE%9E%E7%8E%B0.md) |

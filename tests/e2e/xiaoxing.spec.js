@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
 const pet = page => page.getByRole('button', { name: '与小醒对话', exact: true });
 const dialog = page => page.getByRole('dialog', { name: '小醒 · 醒狮讲解员', exact: true });
@@ -28,7 +29,7 @@ test('小醒随四章切换提供本地讲解和可返回的资料来源', async
   await pet(page).screenshot({ path: testInfo.outputPath('xiaoxing-layered-idle.png'), omitBackground: true });
   await pet(page).click();
   await expect(page.getByLabel('向小醒提问', { exact: true })).toBeFocused();
-  for (const [chapter, title] of [['entry', '入境'], ['model', '观形'], ['action', '起舞'], ['state', '传神']]) {
+  for (const [chapter, title] of [['entry', '入境'], ['model', '观形'], ['action', '动作'], ['state', '神态'], ['spread', '狮行远方']]) {
     await page.evaluate(route => { location.hash = `/${route}`; }, chapter);
     await expect(dialog(page).locator('.xiaoxing-title p')).toContainText(title);
     await dialog(page).getByRole('button', { name: '讲解本页', exact: true }).click();
@@ -108,11 +109,11 @@ test('首页来源入口真实切换到对应展板，鼠标拖动失焦恢复�
   await expectLayeredPet(page);
   await pet(page).click();
   await page.getByRole('button', { name: '讲解本页', exact: true }).click();
-  await replies(page).last().getByRole('button', { name: '首页 · 醒狮形制对照', exact: true }).click();
+  await replies(page).last().getByRole('button', { name: '首页 · 岭南醒狮志', exact: true }).click();
   await expect(dialog(page)).toHaveCount(0);
-  await expect(page.locator('.home-exhibit')).toHaveAttribute('data-active-panel', '2');
+  await expect(page.locator('.home-exhibit')).toHaveAttribute('data-active-panel', '0');
   await expect(page.locator('.home-exhibit')).toHaveAttribute('data-open', 'true');
-  await expect(page.locator('#homeLionTypes')).toBeVisible();
+  await expect(page.locator('#homeLionBook')).toBeVisible();
   const before = await pet(page).boundingBox();
   await page.mouse.move(before.x + 65, before.y + 60);
   await page.mouse.down();
@@ -207,7 +208,7 @@ test('换章后结束旧思考，迟到的旧回答不会驱动新章节表情',
   await page.getByRole('button', { name: '发送问题', exact: true }).click();
   await expect(page.locator('.xiaoxing-companion')).toHaveAttribute('data-state', 'thinking');
   await page.evaluate(() => { location.hash = '/action'; });
-  await expect(dialog(page).locator('.xiaoxing-title p')).toContainText('起舞');
+  await expect(dialog(page).locator('.xiaoxing-title p')).toContainText('动作');
   await expect(page.locator('.xiaoxing-companion')).not.toHaveAttribute('data-state', 'thinking', { timeout: 2000 });
   release();
   await expect(dialog(page)).not.toContainText('过期的神态回答');
@@ -264,23 +265,30 @@ test('网页可见但未聚焦时头身仍独立活动，悬停后眉眼明确�
   await pet(page).screenshot({ path: testInfo.outputPath('xiaoxing-listening-default-size.png'), omitBackground: true });
 });
 
-test('语音明确开启后才播放真实本地女声录音，收起面板可继续点播，切章停止，陌生音色不读动态答案', async ({ page }) => {
+test('语音明确开启后播放选定音色，收起继续、切章停止，动态回答通过同源服务朗读', async ({ page }) => {
+  const speechRequests = [];
+  // Reuse a packaged WAV as the external synthesis response fixture. The
+  // request assertion checks the answer text; real voice matching is separate.
+  const speechFixture = readFileSync(new URL('../../source/public/assets/xiaoxing/voice/state.wav', import.meta.url));
+  await page.route('**/api/xiaoxing/speech', async route => {
+    speechRequests.push({ method: route.request().method(), url: route.request().url(), body: route.request().postDataJSON() });
+    await route.fulfill({ contentType: 'audio/wav', body: speechFixture });
+  });
   await page.addInitScript(() => {
     if (window !== window.top) return;
     const NativeAudio = window.Audio;
     window.__xiaoxingRecordings = [];
     window.Audio = function (...args) {
       const audio = new NativeAudio(...args);
-      if (String(args[0]).includes('/xiaoxing/voice/')) window.__xiaoxingRecordings.push(audio);
+      if (/\/xiaoxing\/voice\/|^blob:/.test(String(args[0]))) window.__xiaoxingRecordings.push(audio);
       return audio;
     };
     window.Audio.prototype = NativeAudio.prototype;
     window.__xiaoxingSyntheticSpoken = 0;
-    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
-      getVoices: () => [{ name: 'Microsoft Kangkang', lang: 'zh-CN' }, { name: 'English Female', lang: 'en-US' }],
-      addEventListener() {}, removeEventListener() {}, cancel() {},
-      speak() { window.__xiaoxingSyntheticSpoken += 1; },
-    } });
+    if (window.speechSynthesis) {
+      const nativeSpeak = window.speechSynthesis.speak.bind(window.speechSynthesis);
+      window.speechSynthesis.speak = utterance => { window.__xiaoxingSyntheticSpoken += 1; nativeSpeak(utterance); };
+    }
   });
   await page.goto('/#/state');
   await expectLayeredPet(page);
@@ -311,6 +319,12 @@ test('语音明确开启后才播放真实本地女声录音，收起面板可�
   await page.getByLabel('向小醒提问', { exact: true }).fill('抖毛是什么动作？');
   await page.getByRole('button', { name: '发送问题', exact: true }).click();
   await expect(replies(page).last()).toContainText('抖毛');
+  await expect.poll(() => speechRequests.length).toBe(1);
+  const answerText = await replies(page).last().locator('.xiaoxing-message-text').innerText();
+  expect(speechRequests[0]).toEqual({ method: 'POST', url: `${new URL(page.url()).origin}/api/xiaoxing/speech`, body: { text: answerText } });
+  await expect.poll(() => page.evaluate(() => __xiaoxingRecordings.at(-1)?.src || '')).toMatch(/^blob:/);
+  await expect.poll(() => page.evaluate(() => __xiaoxingRecordings.at(-1)?.currentTime ?? 0)).toBeGreaterThan(.02);
+  await expect(chapterVoice).toHaveAttribute('aria-pressed', 'true');
   expect(await page.evaluate(() => __xiaoxingSyntheticSpoken)).toBe(0);
 });
 

@@ -1,34 +1,44 @@
 # 小醒的声音素材
 
-用户2026-10-26明确音色由其后续提供，当前暂停选声和语音素材制作。此前“清亮亲切的少女感”及两段系统女声试听不再是待选择事项；收到用户声音后再确定素材替换方式。
+小醒现使用用户于 2026-10-26 提供的《小醒解说员音色.mp3》作为声音参考，通过本机 **GPT-SoVITS v2ProPlus** 为新文本合成语音。用户听取生成试听后回复“可以用这个音色”。当时认可的准确文件单独保存为 [approved-audition.wav](approved-audition.wav)，决定、文本和文件 SHA-256 保存在 [approval.json](approval.json)；它与后来批量生成的 [sample.wav](sample.wav) 分开留存。
 
-当前网页仍使用已有临时音频：本机 **Microsoft Yaoyao，zh-CN，Female，Adult** 中文女声。语音引擎为 Windows `System.Speech.Synthesis`，通过 PowerShell 7.6.5 调用；此前采用 SSML 音高 `+10%`、语速 `-3%`、音量 `92`。用户已反馈该听感不合适，不能将其描述为最终角色声线。原试听保留在 [sample.wav](sample.wav)。
+这是以预训练模型和参考音频进行的 zero-shot 推理，**没有训练专用声线模型**。参考 MP3 保留用户原始字节；[reference.wav](reference.wav) 是其开头 0–7.2 秒的单声道 WAV，没有变调。参考转写为空，固定随机种子为 `42`。现用生成器为 [build-gpt-narration.mjs](../../../../scripts/xiaoxing/build-gpt-narration.mjs)，不再使用历史 `System.Speech` 录音脚本生成现用素材。
 
-四章临时讲解的 SSML 源文件保存在本目录；文本直接读取 `src/features/assistant/knowledge.js` 的 `chapterGuides`。运行 WAV 保存在 `source/public/assets/xiaoxing/voice/`，由浏览器播放，不依赖观众电脑是否安装此声音或能否联网。`profile.json` 记录当前素材的声音身份、参数、准确文本、文件大小及 SHA-256。
+## 现用素材与来源
 
-## 现有临时素材的再生成记录
+[profile.json](profile.json) 保存原始 MP3、参考片段、已认可试听、模型源码和权重 revision，以及每段生成音频的原文、实际朗读文本、时长、字节数和 SHA-256。网页仍显示原有 `AI` 表述；送入语音模型时将独立单词 `AI` 读作“人工智能”，差异记在 `spokenText`。
 
-以下是现有 System.Speech 素材的复现入口；当前暂停期间不据此重新生成或选择音色。在安装了原声音的 Windows 和 PowerShell 7 中执行：
+| 讲解位置 | 所属章节 | 网页运行文件 | 时长 |
+| --- | --- | --- | ---: |
+| `entry` | 序／入境 | `source/public/assets/xiaoxing/voice/entry.wav` | 42.70 秒 |
+| `model` | 造／观形 | `source/public/assets/xiaoxing/voice/model.wav` | 40.68 秒 |
+| `action` | 舞／动作 | `source/public/assets/xiaoxing/voice/action.wav` | 40.30 秒 |
+| `state` | 舞／神态 | `source/public/assets/xiaoxing/voice/state.wav` | 46.98 秒 |
+| `spread` | 传／狮行远方 | `source/public/assets/xiaoxing/voice/spread.wav` | 31.60 秒 |
+
+以上是四章中的五处讲解位置。五段固定讲解与 `sample.wav` 已由本机 CPU 版 GPT-SoVITS v2ProPlus 实际生成并应用，格式为 **WAV / PCM 16-bit / 32,000 Hz / 单声道**。固定 WAV 可离线播放，不需要观众电脑安装 Python、模型或系统中文声音。参考、认可试听、profile 与历史 SSML 属于创作源资料，只有五段网页讲解进入部署资产。
+
+## 动态回答与播放交互
+
+动态回答由网页向同源 `POST /api/xiaoxing/speech` 发送文字，Node 服务再用固定参考音频调用本机 GPT-SoVITS。动态合成需要本地模型服务运行；服务不可用时保留文字并说明声音暂不可用，不用系统女声替代选定音色。DeepSeek 问答 API 仍未启用，本地资料问答和语音合成分别运行。
+
+语音初始关闭，由观众主动开启。桌宠旁常驻喇叭可播放或停止当前讲解，也可在“正在准备声音”时取消；收起聊天框后继续讲解。切换章节、页面进入后台、停用语音或组件卸载会停止网页播放并丢弃迟到结果，回收 Audio、请求与对象 URL。长回答只朗读前 1,200 字，按钮会说明范围。
+
+停止网页播放不保证立即中断官方引擎正在执行的 CPU/GPU 推理。Node 继续接收已放弃请求的上游结果，在结果返回或等待超时前保留单任务占用，期间拒绝新的动态合成，避免正常等待期间反复点按堆积任务。等待超时只限制 Node 等待时长，不代表底层模型已停止。
+
+讲解实际开始播放时，页面 DOM 中正在播放且未静音的音视频暂降到用户音量的 18%；结束或停止后恢复。用户期间更改音量或静音时保留其选择。准备语音期间不会提前压低背景声音。
+
+## 重建与检查
+
+两套 Python 环境、模型目录和启动步骤见 [小醒问答与语音接入](../../../../docs/XIAOXING_AI.md)。先启动 GPT-SoVITS 和独立 Node 服务，再在工程根目录运行：
 
 ```powershell
-pwsh -NoProfile -File scripts/xiaoxing/build-narration.ps1
-node --test tests/assets/xiaoxing-voice.test.mjs
+npm run assistant:narration
+npm run assistant:narration -- --apply
+node scripts/xiaoxing/register-assets.mjs
+node --test tests/assets/xiaoxing-voice.test.mjs tests/assets/xiaoxing-speech.test.mjs
 ```
 
-Windows PowerShell 5.1 的旧 `System.Speech` 枚举只显示 Desktop 声音，未必能调用 Yaoyao；此次使用 PowerShell 7 中实际枚举可见的原生 Yaoyao。脚本严格检查声音名称、中文区域和女性属性，不会自动换成其他声音。重新生成将更新本组已生成的 WAV、SSML 与 profile。
+默认从 `http://127.0.0.1:8787/api/xiaoxing/speech` 获取音频；其他地址通过进程环境变量 `XIAOXING_NARRATION_API_URL` 指定。第一次命令把完整候选批次放在 ignored 的 `tmp/xiaoxing-reference-voice/`；全部成功并核对后，`--apply` 才替换网页音频与 profile。生成器会核对已认可试听和当前参考片段的哈希，不能静默更换参考文件。
 
-## 动态问答与交互
-
-四章固定讲解使用内置录音。动态问答仅选用浏览器提供的中文女性声音家族，优先 Xiaoxiao、Xiaoyi、Yaoyao、Huihui，并将音高设为 `1.08`、语速设为 `0.98`。当前设备没有匹配声音时，仍能播放固定讲解，并通过按钮说明动态问答暂不能以匹配音色朗读。不会取浏览器任意默认男声或英语声音。
-
-语音初始关闭，由观众点击开启。桌宠旁常驻喇叭可播放/停止当前章节或当前章节最近回答；收起聊天面板不停止播报，语音开启状态保留。切换章节、进入后台、停用语音或组件卸载会结束当前播放。过期的音频 Promise 和语音事件不能重新启动已停止的讲解。
-
-讲解期间，页面中正在播放且未静音的视频或音频暂时降到用户设定音量的 18%，减少背景声遮住人声。后续开始播放的媒体也会降低。讲解结束或停止时恢复音量；若用户在讲解时调整音量，则以新设定为基准，保留用户的静音选择。未连接到页面 DOM 的讲解录音自身不会被降低。
-
-## 已执行检查
-
-`node --test tests/assets/xiaoxing-voice.test.mjs`：3/3 通过，覆盖中文女性音色筛选及优先顺序、拒绝任意默认声音、固定讲解的准确文本匹配、WAV 格式与有效非静音信号、原生声音元数据、源文本与 SHA-256。录音使用 PCM 16bit、22,050Hz、单声道；完整讲解时长约 30–35 秒，试听片段约 5 秒。波形与配置检查不等于人工听感已经确认。
-
-## 历史试听
-
-2026-10-26曾按“清亮亲切的少女感”方向生成两段系统女声比较样音，暂存于 `tmp/xiaoxing/voice-audition/`：`yaoyao-soft.wav` 为 Yaoyao 音高 `+4%`、语速 `+2%`，`huihui-soft.wav` 为 Huihui 同参数。用户随后明确音色由其提供，因此这两段仅保留为历史临时试听，不再等待 A/B 选择，也未进入网页运行资产。
+本轮真实 GPU 合成和 Chrome 播放证据见 [参考音色接入记录](../../../references/xiaoxing-reference-voice-2026-10-26.md)。旧 SSML、`build-narration.ps1` 及此前系统声音选型仅为历史资料。现有旧 EXE 尚未重新打包。

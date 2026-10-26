@@ -1,58 +1,100 @@
 {
-  "version": 1,
-  "generator": "scripts/xiaoxing/build-narration.ps1",
-  "generatedAt": "2026-10-25T18:28:05.3472065+00:00",
-  "textSource": "src/features/assistant/knowledge.js#chapterGuides[model,action,state]",
+  "version": 2,
+  "generator": "scripts/xiaoxing/build-gpt-narration.mjs",
+  "generatedAt": "2026-10-26T14:04:05.127Z",
+  "textSource": "src/features/assistant/knowledge.js#chapterGuides",
   "voice": {
-    "engine": "Windows System.Speech.Synthesis",
-    "name": "Microsoft Yaoyao",
+    "engine": "GPT-SoVITS v2ProPlus",
+    "name": "GPT-SoVITS v2ProPlus · 用户参考音色",
     "culture": "zh-CN",
-    "gender": "Female",
-    "age": "Adult",
-    "id": "MSTTS_V110_zhCN_YaoyaoM"
+    "gender": "Female"
   },
-  "direction": "Clear, friendly Chinese female exhibition guide; gently brightened for the chibi mascot, with natural articulation.",
-  "prosody": {
-    "pitch": "+10%",
-    "rate": "-3%",
-    "volume": 92
+  "approval": {
+    "acceptedOn": "2026-10-26",
+    "decision": "用户回复：可以用这个音色",
+    "audition": "source/characters/xiaoxing/voice/approved-audition.wav",
+    "sha256": "21e51142e783526f129b6a0abfcae514475f16791eae92cd877f74def0a09c2e",
+    "referenceSha256": "895ba3a3b045422e385bff4177988fe1ad1729257fd0ae770b161e8f2526c0c0",
+    "text": "你好呀，我是小醒。让我陪你一起走进醒狮的世界吧。",
+    "seed": 42
+  },
+  "reference": {
+    "original": "source/characters/xiaoxing/voice/reference.mp3",
+    "originalSha256": "9c5a4f87f24095c4a4329d79417629c47279777351188a639deb7529464cda5f",
+    "clip": "source/characters/xiaoxing/voice/reference.wav",
+    "clipSha256": "895ba3a3b045422e385bff4177988fe1ad1729257fd0ae770b161e8f2526c0c0",
+    "startSeconds": 0,
+    "seconds": 7.2,
+    "promptText": "",
+    "promptLanguage": "zh"
+  },
+  "inference": {
+    "mode": "zero-shot",
+    "repository": "https://github.com/RVC-Boss/GPT-SoVITS",
+    "codeRevision": "b4570b876f5c086819ba84e3215472733c6a7b70",
+    "weightsRevision": "8f8857563c040d542de108a2c18b0425abd6c9c5",
+    "seed": 42,
+    "speedFactor": 1,
+    "pitchShift": 0
   },
   "audio": {
     "container": "WAV",
     "codec": "PCM signed 16-bit little-endian",
-    "sampleRate": 22050,
+    "sampleRate": 32000,
     "channels": 1
   },
   "records": [
     {
+      "chapter": "entry",
+      "text": "这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》七页书册。打开“资料与许可”可查阅来源和摄影许可；序、造、舞、传可由顶栏直达。造章聚焦外形、形制与工艺，舞章呈现四段动作和八态观察，传章用广东、中国、世界三级地图查看已收录案例。书册、类型图和部分影像含 AI 辅助内容；照片保留署名与许可。",
+      "spokenText": "这里是《南风有狮》的入口。先通过影像感受醒狮，再进入《岭南醒狮志》七页书册。打开“资料与许可”可查阅来源和摄影许可；序、造、舞、传可由顶栏直达。造章聚焦外形、形制与工艺，舞章呈现四段动作和八态观察，传章用广东、中国、世界三级地图查看已收录案例。书册、类型图和部分影像含 人工智能 辅助内容；照片保留署名与许可。",
+      "runtime": "source/public/assets/xiaoxing/voice/entry.wav",
+      "bytes": 2732844,
+      "sha256": "5bd25e6872fe0ea628ea541025baef555cfa8b5f2818c29fa279fc5b091d78f2",
+      "seconds": 42.7
+    },
+    {
       "chapter": "model",
       "text": "结构页把醒狮的可见外形分成六处：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。可以拖拽旋转、滚轮缩放，点选模型上的部位或图鉴目录，让镜头聚焦并阅读形制、工艺和文化说明。当前模型支持可见结构观察，未展示内部拆装；内部骨架、活动连接和工艺只作资料说明。",
-      "ssml": "source/characters/xiaoxing/voice/model.ssml",
+      "spokenText": "结构页把醒狮的可见外形分成六处：彩绘狮头、鼓眼与狮眉、额饰与狮角、狮嘴、须毛与边饰、狮被与狮尾。可以拖拽旋转、滚轮缩放，点选模型上的部位或图鉴目录，让镜头聚焦并阅读形制、工艺和文化说明。当前模型支持可见结构观察，未展示内部拆装；内部骨架、活动连接和工艺只作资料说明。",
       "runtime": "source/public/assets/xiaoxing/voice/model.wav",
-      "bytes": 1347606,
-      "sha256": "0951fc4ab32be7a18e4743239e05970e1453764fa8d7e00212088c4fecb29dd6"
+      "bytes": 2603564,
+      "sha256": "60d14806ba1692add476c4ec0da0a52d7088832a770a9e5c519eb5d946d33df3",
+      "seconds": 40.68
     },
     {
       "chapter": "action",
       "text": "这里是四面巨幕动作展厅，提供探青采青、抖毛、狮子吐球、踩梅花桩四段用户提供的演示素材。可以拖拽环绕展厅、选择动作并控制当前视频播放，也可切换平面观看。观察时先看狮头朝向，再看步法、道具、落点与前后身段的衔接。这些片段用于观看与讲解，不提供自动动作识别、动作捕捉或评分。",
-      "ssml": "source/characters/xiaoxing/voice/action.ssml",
+      "spokenText": "这里是四面巨幕动作展厅，提供探青采青、抖毛、狮子吐球、踩梅花桩四段用户提供的演示素材。可以拖拽环绕展厅、选择动作并控制当前视频播放，也可切换平面观看。观察时先看狮头朝向，再看步法、道具、落点与前后身段的衔接。这些片段用于观看与讲解，不提供自动动作识别、动作捕捉或评分。",
       "runtime": "source/public/assets/xiaoxing/voice/action.wav",
-      "bytes": 1411088,
-      "sha256": "630fca44e849505dcbedec0fea836f7f50b2a91fc326d84506f186daca2e5abe"
+      "bytes": 2579244,
+      "sha256": "f1e64ef999bf47e0b8a809224c739e5a187f2e4313a1d2fc5ed5ee5802ea974d",
+      "seconds": 40.3
     },
     {
       "chapter": "state",
       "text": "神态页提供喜、怒、哀、乐、动、静、惊、疑八种观察提示。点击左侧目录，或在主狮头处使用滚轮、方向键与前后箭头切换；点击狮头能阅读眉眼、狮口、身段、步法和鼓点的观察引导，也可以比较喜与乐、惊与疑、动与静。图像为 AI 辅助视觉，八态属于本项目的定性观察框架，仍等待真实图片或视频样本校核，不构成情绪识别或评分。",
-      "ssml": "source/characters/xiaoxing/voice/state.ssml",
+      "spokenText": "神态页提供喜、怒、哀、乐、动、静、惊、疑八种观察提示。点击左侧目录，或在主狮头处使用滚轮、方向键与前后箭头切换；点击狮头能阅读眉眼、狮口、身段、步法和鼓点的观察引导，也可以比较喜与乐、惊与疑、动与静。图像为 人工智能 辅助视觉，八态属于本项目的定性观察框架，仍等待真实图片或视频样本校核，不构成情绪识别或评分。",
       "runtime": "source/public/assets/xiaoxing/voice/state.wav",
-      "bytes": 1528866,
-      "sha256": "38846e3eb5a954451f36a758e410f7c599291eab6c5fd6db721cdcd4fdab229a"
+      "bytes": 3006764,
+      "sha256": "75e2fecc0142a40093d4d04e867c8683812e9b7ad82343ca90b12cfafda03216",
+      "seconds": 46.98
+    },
+    {
+      "chapter": "spread",
+      "text": "传章地图分广东、中国、世界三个层级：广东层看广州与佛山，中国层看广东与香港，世界层展开五地八幅已收录实景。点选地点可阅读照片、拍摄年份、摄影者、许可与案例说明。地图只是已收录案例的空间索引；拍摄年份不表示传播先后，也不代表完整传播史或全球覆盖率。",
+      "spokenText": "传章地图分广东、中国、世界三个层级：广东层看广州与佛山，中国层看广东与香港，世界层展开五地八幅已收录实景。点选地点可阅读照片、拍摄年份、摄影者、许可与案例说明。地图只是已收录案例的空间索引；拍摄年份不表示传播先后，也不代表完整传播史或全球覆盖率。",
+      "runtime": "source/public/assets/xiaoxing/voice/spread.wav",
+      "bytes": 2022444,
+      "sha256": "d2bf1561233a5b7c5c5b87a165199ce390d6261cc74c31c2383a8481b7f28338",
+      "seconds": 31.6
     }
   ],
   "sample": {
     "text": "你好呀，我是小醒。让我陪你一起走进醒狮的世界吧。",
     "path": "source/characters/xiaoxing/voice/sample.wav",
-    "bytes": 273182,
-    "sha256": "cb538df6131bb9df96d82c48f0bbf5a9ee9fb818740ea86a3392b9e89e6efa45"
+    "bytes": 330284,
+    "sha256": "239eec265a649501019f41684ee190aed1433c282edf3fa58923b5414a48b4ad",
+    "seconds": 5.16
   }
 }

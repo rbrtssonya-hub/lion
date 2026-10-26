@@ -10,6 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "assistant:voice": "node scripts/xiaoxing/start-gpt-sovits.mjs",
+    "assistant:narration": "node scripts/xiaoxing/build-gpt-narration.mjs",
     "test": "node --test tests/assets/*.test.mjs",
     "test:e2e": "playwright test",
     "test:e2e:preview": "playwright test --config playwright.preview.config.js",

@@ -13,7 +13,7 @@ function rangeOf(value, size) {
   return [first, last];
 }
 
-async function startServer({ root, manifest, port = 0, token, onShutdown, assistantHandler }) {
+async function startServer({ root, manifest, port = 0, token, onShutdown, assistantHandler, speechHandler }) {
   const files = new Map(manifest.files.map(file => [file.path, file]));
   let origin;
   const server = http.createServer({ maxHeaderSize: 16384 }, (req, res) => {
@@ -28,8 +28,9 @@ async function startServer({ root, manifest, port = 0, token, onShutdown, assist
     let decoded;
     try { decoded = decodeURIComponent(raw); } catch { return reply(400, 'Bad Request'); }
     if (!decoded.startsWith('/') || /[\\\0:]/.test(decoded) || decoded.split('/').some(part => part === '.' || part === '..')) return reply(403, 'Forbidden');
-    if (decoded === '/api/xiaoxing/chat' && assistantHandler) {
-      Promise.resolve(assistantHandler(req, res)).catch(() => {
+    const apiHandler = decoded === '/api/xiaoxing/chat' ? assistantHandler : decoded === '/api/xiaoxing/speech' ? speechHandler : null;
+    if (apiHandler) {
+      Promise.resolve(apiHandler(req, res)).catch(() => {
         if (!res.headersSent) reply(503, { error: '讲解服务暂时不可用' }, 'application/json');
         else res.end();
       });

@@ -61,8 +61,12 @@ app.whenReady().then(async () => {
   const port = Number(option('port', '47851'));
   if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('Invalid port');
   const { createChatHandler } = await import('./scripts/assistant/api.mjs');
+  const { createSpeechHandler } = await import('./scripts/assistant/speech.mjs');
   const assistantHandler = createChatHandler({ offline: flag('offline') });
-  server = await startServer({ root, manifest, port, token, onShutdown: shutdown, assistantHandler });
+  // Python runs outside Electron and needs an actual file rather than an app.asar path.
+  const speechEnv = { ...process.env, XIAOXING_TTS_REFERENCE_AUDIO: process.env.XIAOXING_TTS_REFERENCE_AUDIO || path.join(process.resourcesPath, 'source/characters/xiaoxing/voice/reference.wav') };
+  const speechHandler = createSpeechHandler({ env: speechEnv, offline: flag('offline') });
+  server = await startServer({ root, manifest, port, token, onShutdown: shutdown, assistantHandler, speechHandler });
   session.defaultSession.setPermissionRequestHandler((_contents, _permission, done) => done(false));
   session.defaultSession.setPermissionCheckHandler(() => false);
   // Content remains local, even if an asset/third-party script accidentally adds a remote fetch.

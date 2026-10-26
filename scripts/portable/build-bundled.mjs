@@ -128,9 +128,10 @@ let windowsIcon;
 const artifacts = await build({ projectDir: appDir, targets: Platform.WINDOWS.createTarget(['portable'], Arch.x64), config: {
   appId: 'org.southwindlion.offline', productName: '南风有狮', electronVersion: ELECTRON,
   directories: { output: buildOut }, npmRebuild: false, buildDependenciesFromSource: false,
-  asar: true, files: ['main.cjs', 'bundled-server.cjs', 'package.json', 'scripts/assistant/api.mjs', 'src/features/assistant/knowledge.js'],
+  asar: true, files: ['main.cjs', 'bundled-server.cjs', 'package.json', 'scripts/assistant/api.mjs', 'scripts/assistant/speech.mjs', 'src/features/assistant/knowledge.js'],
   extraResources: [{ from: site, to: 'site' }, { from: manifestPath, to: 'site.manifest.json' }, { from: mediaPath, to: 'media-compatibility.json' },
-    { from: sourceIcon, to: 'app-icon.png' }],
+    { from: sourceIcon, to: 'app-icon.png' },
+    { from: path.join(appDir, 'source/characters/xiaoxing/voice/reference.wav'), to: 'source/characters/xiaoxing/voice/reference.wav' }],
   win: { artifactName: '南风有狮.exe', icon: sourceIcon, signAndEditExecutable: false, signExecutable: false },
   // Locked builder 26.15.3: true omits UNPACK_DIR_NAME and uses each launch's
   // unique $PLUGINSDIR. false unexpectedly embeds a fixed build-time directory.

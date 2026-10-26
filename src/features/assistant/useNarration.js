@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { media } from '../../config/media.js';
-import { chooseChineseFemaleVoice, fixedNarrationChapter, narrationMediaKeys, voiceProfile } from './voiceProfile.js';
+import { fixedNarrationChapter, narrationMediaKeys, voiceProfile } from './voiceProfile.js';
 
 // Keep the site's chosen volume as a base, then temporarily lower only DOM
 // media around this narration. The narration Audio is detached from the DOM.
@@ -54,20 +54,23 @@ function duckPageMedia() {
 }
 
 export default function useNarration() {
-  const synth = typeof window !== 'undefined' ? window.speechSynthesis : null;
   const [enabled, setEnabled] = useState(false);
   const [speaking, setSpeaking] = useState(false);
-  const [browserVoice, setBrowserVoice] = useState(() => chooseChineseFemaleVoice(synth?.getVoices() ?? []));
+  const [preparing, setPreparing] = useState(false);
+  const [truncated, setTruncated] = useState(false);
   const [playbackError, setPlaybackError] = useState('');
   const enabledRef = useRef(false);
   const mounted = useRef(true);
   const revision = useRef(0);
   const audioRef = useRef(null);
-  const utteranceRef = useRef(null);
+  const requestRef = useRef(null);
+  const objectURLRef = useRef(null);
   const releaseDucking = useRef(null);
 
   const stop = useCallback(() => {
     revision.current += 1;
+    requestRef.current?.abort();
+    requestRef.current = null;
     releaseDucking.current?.();
     releaseDucking.current = null;
     const audio = audioRef.current;
@@ -76,14 +79,12 @@ export default function useNarration() {
       audio.onplaying = null; audio.onended = null; audio.onerror = null;
       audio.pause(); audio.removeAttribute('src'); audio.load();
     }
-    const utterance = utteranceRef.current;
-    utteranceRef.current = null;
-    if (utterance) {
-      utterance.onstart = null; utterance.onend = null; utterance.onerror = null;
-      synth?.cancel();
+    if (objectURLRef.current) {
+      URL.revokeObjectURL(objectURLRef.current);
+      objectURLRef.current = null;
     }
-    if (mounted.current) setSpeaking(false);
-  }, [synth]);
+    if (mounted.current) { setSpeaking(false); setPreparing(false); }
+  }, []);
 
   const toggleEnabled = useCallback(() => {
     const next = !enabledRef.current;
@@ -98,80 +99,78 @@ export default function useNarration() {
     stop();
     if (!enabledRef.current || document.hidden || typeof text !== 'string' || !text.trim()) return false;
     setPlaybackError('');
+    setTruncated(text.trim().length > 1200);
+    setPreparing(true);
     const current = revision.current;
     const stillCurrent = () => mounted.current && revision.current === current && enabledRef.current && !document.hidden;
-    const onStart = () => { if (stillCurrent()) setSpeaking(true); else if (revision.current === current) stop(); };
     const onFinish = () => { if (revision.current === current) stop(); };
-    const chapter = fixedNarrationChapter(text);
-    if (chapter && typeof Audio !== 'undefined' && media[narrationMediaKeys[chapter]]) {
-      const audio = new Audio(media[narrationMediaKeys[chapter]]);
-      audioRef.current = audio;
-      audio.preload = 'auto';
-      audio.onplaying = onStart;
-      audio.onended = onFinish;
-      audio.onerror = () => {
-        if (!stillCurrent()) return;
-        setPlaybackError('讲解音频暂未载入，请重新点击播放。');
-        stop();
-      };
-      releaseDucking.current = duckPageMedia();
-      try {
-        const started = audio.play();
-        started?.then(() => { if (!stillCurrent()) audio.pause(); }).catch(() => {
-          if (!stillCurrent()) return;
-          setPlaybackError('声音暂未播放，请重新点击朗读。');
-          stop();
-        });
-      } catch {
-        setPlaybackError('声音暂未播放，请重新点击朗读。');
-        stop();
-        return false;
-      }
-      return true;
-    }
-    const voice = chooseChineseFemaleVoice(synth?.getVoices() ?? []);
-    if (!voice || typeof SpeechSynthesisUtterance === 'undefined') return false;
-    const utterance = new SpeechSynthesisUtterance(text.slice(0, 5000));
-    utteranceRef.current = utterance;
-    utterance.voice = voice;
-    utterance.lang = voice.lang;
-    utterance.pitch = voiceProfile.browserPitch;
-    utterance.rate = voiceProfile.browserRate;
-    utterance.volume = 0.92;
-    utterance.onstart = onStart;
-    utterance.onend = onFinish;
-    utterance.onerror = () => {
+    const fail = () => {
       if (!stillCurrent()) return;
-      setPlaybackError('问答朗读暂不可用，文字讲解可以继续阅读。');
+      setPlaybackError('声音暂不可用，文字讲解可继续阅读。');
       stop();
     };
-    releaseDucking.current = duckPageMedia();
-    try { synth.speak(utterance); return true; }
-    catch { onFinish(); return false; }
-  }, [stop, synth]);
+    const play = source => {
+      if (!stillCurrent()) return false;
+      const audio = new Audio(source);
+      audioRef.current = audio;
+      audio.preload = 'auto';
+      audio.onplaying = () => {
+        if (!stillCurrent()) { audio.pause(); return; }
+        setPreparing(false); setSpeaking(true);
+        releaseDucking.current ??= duckPageMedia();
+      };
+      audio.onended = onFinish;
+      audio.onerror = fail;
+      try {
+        const started = audio.play();
+        started?.then(() => { if (!stillCurrent()) audio.pause(); }).catch(fail);
+      } catch { fail(); return false; }
+      return true;
+    };
+    const chapter = fixedNarrationChapter(text);
+    const recording = chapter && media[narrationMediaKeys[chapter]];
+    if (recording) return play(recording);
+    const controller = new AbortController();
+    requestRef.current = controller;
+    void (async () => {
+      try {
+        const response = await fetch('/api/xiaoxing/speech', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
+          body: JSON.stringify({ text: text.trim().slice(0, 1200) }),
+        });
+        if (!stillCurrent()) return;
+        if (!response.ok || !/^audio\/(?:x-)?wav(?:;|$)/i.test(response.headers.get('Content-Type') || '')) throw Error('speech-unavailable');
+        const blob = await response.blob();
+        if (!stillCurrent()) return;
+        if (!blob.size) throw Error('empty-speech');
+        objectURLRef.current = URL.createObjectURL(blob);
+        play(objectURLRef.current);
+      } catch (error) {
+        if (error.name !== 'AbortError') fail();
+      } finally {
+        if (requestRef.current === controller) requestRef.current = null;
+      }
+    })();
+    return true;
+  }, [stop]);
 
   useEffect(() => {
     mounted.current = true;
-    const updateVoices = () => setBrowserVoice(chooseChineseFemaleVoice(synth?.getVoices() ?? []));
     const onVisibility = () => { if (document.hidden) stop(); };
-    synth?.addEventListener('voiceschanged', updateVoices);
     document.addEventListener('visibilitychange', onVisibility);
     window.addEventListener('hashchange', stop);
     window.addEventListener('pagehide', stop);
-    updateVoices();
     return () => {
       mounted.current = false;
       stop();
-      synth?.removeEventListener('voiceschanged', updateVoices);
       document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('hashchange', stop);
       window.removeEventListener('pagehide', stop);
     };
-  }, [stop, synth]);
+  }, [stop]);
 
-  const recordedSupported = typeof Audio !== 'undefined' && Object.values(narrationMediaKeys).every(key => typeof media[key] === 'string');
-  const voiceLabel = playbackError || (browserVoice
-    ? `固定讲解：小醒中文女声 · 问答：${browserVoice.name}`
-    : '小醒中文女声 · 四章固定讲解；当前设备无匹配的问答朗读音色');
-  return { supported: recordedSupported || Boolean(browserVoice), speaking, enabled, toggleEnabled, speak, stop, voiceLabel };
+  const supported = typeof Audio !== 'undefined' && typeof fetch === 'function';
+  const voiceLabel = playbackError || `${voiceProfile.label}${truncated ? ' · 长回答朗读前 1200 字' : ''}`;
+  const status = playbackError || (preparing ? '正在准备声音' : speaking ? '正在讲解' : '');
+  return { supported, preparing, speaking, enabled, toggleEnabled, speak, stop, voiceLabel, status };
 }

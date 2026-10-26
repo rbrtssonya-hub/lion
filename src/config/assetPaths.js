@@ -13,6 +13,7 @@ export const assetPaths = {
   xiaoxingVoiceModel: 'assets/xiaoxing/voice/model.wav',
   xiaoxingVoiceAction: 'assets/xiaoxing/voice/action.wav',
   xiaoxingVoiceState: 'assets/xiaoxing/voice/state.wav',
+  xiaoxingVoiceSpread: 'assets/xiaoxing/voice/spread.wav',
   startupLoading: 'assets/loading/index.html',
   entryTransition: 'assets/loading/entry-transition.html',
   startupPainting: 'assets/loading/painting.png',

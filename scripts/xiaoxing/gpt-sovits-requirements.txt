@@ -1,0 +1,35 @@
+# Inference-only environment for official GPT-SoVITS b4570b8, Windows Python 3.12.
+# First install torch==2.7.1+cu128 torchaudio==2.7.1+cu128 from the official cu128 index.
+numpy==1.26.4
+scipy
+matplotlib<3.11
+librosa==0.10.2
+resampy>=0.4.2,<0.5
+numba
+soundfile
+ffmpeg-python
+tqdm
+PyYAML
+requests
+einops>=0.8,<1
+pytorch-lightning==2.5.1
+torchmetrics==1.5.0
+transformers==4.51.3
+peft==0.15.2
+x-transformers>=1.42,<2
+rotary-embedding-torch>=0.8,<1
+cn2an
+pypinyin
+jieba
+split-lang>=2,<3
+fast-langdetect==0.3.2
+wordsegment
+g2p-en
+sentencepiece
+opencc==1.1.9
+onnxruntime==1.19.2
+fastapi>=0.115.2,<0.116
+python-multipart
+uvicorn>=0.30,<1
+pydantic>=2.9,<=2.10.6
+https://huggingface.co/lj1995/GPT-SoVITS-windows-package/resolve/main/wheels/cu128/jieba_fast-0.53-cp312-cp312-win_amd64.whl
