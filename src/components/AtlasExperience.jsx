@@ -32,7 +32,8 @@ export default function AtlasExperience() {
   const [error, setError] = useState(null);
   const [layout, setLayout] = useState(() => frameLayout(window.innerWidth, window.innerHeight));
   const world = useRef(null), registry = useRef(null);
-  const frame = useRef(null), modelLayer = useRef(null), imageLayer = useRef(null), image = useRef(null);
+  const frame = useRef(null), controls = useRef(null), modelLayer = useRef(null), imageLayer = useRef(null), image = useRef(null);
+  const presentation = useRef({ progress: 0 });
   const epoch = useRef(0), pendingTweens = useRef(new Set()), phaseRef = useRef('overview'), selectedRef = useRef(null), layoutRef = useRef(layout), disposed = useRef(false);
   const cachedUv = useRef(new Map());
   layoutRef.current = layout;
@@ -41,6 +42,13 @@ export default function AtlasExperience() {
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const changePhase = next => { phaseRef.current = next; setPhase(next); };
   const changeSelected = id => { selectedRef.current = id; setSelected(id); };
+
+  const placeFrame = useCallback(() => {
+    const l = layoutRef.current, p = presentation.current.progress;
+    const mix = (a, b) => a + (b - a) * p;
+    gsap.set(frame.current, { x: mix(l.homeX, l.studyX), y: mix(l.homeY, l.studyY), scale: mix(1, l.studyScale) });
+    gsap.set(controls.current, { x: mix(l.homeNavX, l.studyNavX) });
+  }, []);
 
   const animate = useCallback((target, values) => new Promise(resolve => {
     const job = { tween: null, done: false, finish: result => {
@@ -52,6 +60,11 @@ export default function AtlasExperience() {
     pendingTweens.current.add(job);
     job.tween = gsap.to(target, { ...values, onComplete: () => job.finish(true), onInterrupt: () => job.finish(false) });
   }), []);
+
+  // Animate one normalized value so resizing cannot leave stale pixel destinations.
+  const arrange = useCallback((progress, duration) => animate(presentation.current, {
+    progress, duration, ease: 'power2.inOut', onUpdate: placeFrame,
+  }), [animate, placeFrame]);
 
   const begin = useCallback(() => {
     epoch.current++;
@@ -67,28 +80,31 @@ export default function AtlasExperience() {
     if (selectedRef.current === id && phaseRef.current !== 'returning') return;
     const request = begin(), current = () => epoch.current === request && !disposed.current;
     setError(null);
-    const duration = reduced() ? .01 : 2.15;
-    w.setActive(true);
     w.setInteractive(false);
-    gsap.set(modelLayer.current, { autoAlpha: 1 });
-    if (selectedRef.current) {
-      changePhase('switching');
-      await animate(imageLayer.current, { autoAlpha: 0, duration: reduced() ? .01 : .42, ease: 'sine.inOut' });
-      if (!current()) return;
-    }
-    changeSelected(id);
-    changePhase('travel');
-    setAnalysis(reg.analyze(id));
-    setUvStudy(cachedUv.current.get(id) || null);
-    gsap.set(imageLayer.current, { autoAlpha: 0 });
-    const uv = id === 'body'
-      ? (cachedUv.current.has(id) ? Promise.resolve(cachedUv.current.get(id)) : analyzeTextureStudy(reg.get(id).meshes.filter(m => !m.userData.derivedHair), 2200).then(data => { cachedUv.current.set(id, data); return data; }))
-      : Promise.resolve(null);
     try {
-      const [flight, photo, , uvResult] = await Promise.all([
-        w.flyToPart(id, { duration }),
+      if (selectedRef.current) {
+        changePhase('switching');
+        // Bring the old picture back to the full viewport before revealing its camera.
+        await arrange(0, reduced() ? .01 : (presentation.current.progress > .001 ? .85 : 0));
+        if (!current()) return;
+        w.setActive(true);
+        gsap.set(modelLayer.current, { autoAlpha: 1 });
+        await animate(imageLayer.current, { autoAlpha: 0, duration: reduced() ? .01 : .42, ease: 'sine.inOut' });
+        if (!current()) return;
+      }
+      w.setActive(true);
+      gsap.set(modelLayer.current, { autoAlpha: 1 });
+      changeSelected(id);
+      changePhase('travel');
+      setAnalysis(reg.analyze(id));
+      setUvStudy(cachedUv.current.get(id) || null);
+      gsap.set(imageLayer.current, { autoAlpha: 0 });
+      const uv = id === 'body'
+        ? (cachedUv.current.has(id) ? Promise.resolve(cachedUv.current.get(id)) : analyzeTextureStudy(reg.get(id).meshes.filter(m => !m.userData.derivedHair), 2200).then(data => { cachedUv.current.set(id, data); return data; }))
+        : Promise.resolve(null);
+      const [flight, photo, uvResult] = await Promise.all([
+        w.flyToPart(id, { duration: reduced() ? .01 : 2.15 }),
         prepareImage(CHAPTERS[id].image),
-        animate(frame.current, { x: layoutRef.current.studyX, duration, ease: 'power2.inOut' }),
         uv,
       ]);
       if (!current() || !flight.completed) return;
@@ -102,6 +118,9 @@ export default function AtlasExperience() {
       if (!current()) return;
       gsap.set(modelLayer.current, { autoAlpha: 0 });
       w.setActive(false);
+      changePhase('arranging');
+      await arrange(1, reduced() ? .01 : 1.15);
+      if (!current()) return;
       changePhase('study');
     } catch (failure) {
       if (!current()) return;
@@ -109,39 +128,40 @@ export default function AtlasExperience() {
       w.cancelFlight();
       setError(failure.message || '图版载入失败，请重试。');
       changePhase('returning');
+      w.setActive(true);
+      gsap.set(modelLayer.current, { autoAlpha: 1 });
       gsap.set(imageLayer.current, { autoAlpha: 0 });
       await Promise.all([
         w.restoreOverview({ duration: reduced() ? .01 : .8 }),
-        animate(frame.current, { x: layoutRef.current.homeX, duration: reduced() ? .01 : .8, ease: 'power2.inOut' }),
+        arrange(0, reduced() ? .01 : .8),
       ]);
       if (!current()) return;
       changeSelected(null);
       changePhase('overview');
       w.setInteractive(true);
     }
-  }, [animate, begin]);
+  }, [animate, arrange, begin]);
 
   const returnHome = useCallback(async () => {
     if (!registry.current || phaseRef.current === 'overview' || phaseRef.current === 'returning') return;
     const request = begin(), current = () => epoch.current === request && !disposed.current;
     const w = world.current;
     changePhase('returning');
-    w.setActive(true);
     w.setInteractive(false);
+    await arrange(0, reduced() ? .01 : (presentation.current.progress > .001 ? .85 : 0));
+    if (!current()) return;
+    w.setActive(true);
     gsap.set(modelLayer.current, { autoAlpha: 1 });
     await animate(imageLayer.current, { autoAlpha: 0, duration: reduced() ? .02 : .65, ease: 'sine.inOut' });
     if (!current()) return;
-    await Promise.all([
-      w.restoreOverview({ duration: reduced() ? .01 : 1.65 }),
-      animate(frame.current, { x: layoutRef.current.homeX, duration: reduced() ? .01 : 1.65, ease: 'power2.inOut' }),
-    ]);
+    await w.restoreOverview({ duration: reduced() ? .01 : 1.65 });
     if (!current()) return;
     changeSelected(null);
     setAnalysis(null);
     setUvStudy(null);
     changePhase('overview');
     w.setInteractive(true);
-  }, [animate, begin]);
+  }, [animate, arrange, begin]);
 
   const onReady = useCallback(reg => {
     registry.current = reg;
@@ -150,9 +170,8 @@ export default function AtlasExperience() {
   }, []);
 
   useLayoutEffect(() => {
-    gsap.killTweensOf(frame.current);
-    gsap.set(frame.current, { x: ['overview', 'returning'].includes(phaseRef.current) ? layout.homeX : layout.studyX, y: layout.y });
-  }, [layout]);
+    placeFrame();
+  }, [layout, placeFrame]);
   useEffect(() => {
     const resize = () => setLayout(frameLayout(window.innerWidth, window.innerHeight));
     const keys = event => {
@@ -173,15 +192,15 @@ export default function AtlasExperience() {
     {selected && <button className="return-home" onClick={returnHome}><ArrowLeft size={14}/>返回整体</button>}
     <div className="visual-frame" ref={frame} style={{ width: layout.width, height: layout.height }}>
       <div className="model-layer" ref={modelLayer} aria-hidden={phase === 'study'}><ModelCanvas worldRef={world} onSelect={select} onReady={onReady} onProgress={setProgress} onError={setError}/></div>
-      <div className="artwork-layer" ref={imageLayer} aria-hidden={phase !== 'study' && phase !== 'handoff'}>
+      <div className="artwork-layer" ref={imageLayer} aria-hidden={phase === 'overview' || phase === 'travel'}>
         {chapter && <img ref={image} className="chapter-artwork" src={chapter.image} width="1536" height="1024" alt={chapter.imageAlt} draggable="false"/>}
       </div>
-      {phase === 'study' && <div className="artwork-credit"><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
     </div>
-    {part && <div className="cultural-column" style={{ left: layout.textX, top: layout.y, width: layout.textWidth, height: layout.height }}><CulturalPanel key={part.id} part={part} analysis={analysis} uvStudy={uvStudy} visible={phase === 'study'}/></div>}
+    {phase === 'study' && <div className="artwork-credit" style={{ left: 18, top: layout.studyHeight + 15, width: layout.studyWidth - 36 }}><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
+    {part && <div className="cultural-column" inert={phase !== 'study'} aria-hidden={phase !== 'study'} style={{ left: layout.textX, top: layout.textY, width: layout.textWidth, height: layout.textHeight }}><CulturalPanel key={part.id} part={part} analysis={analysis} uvStudy={uvStudy} visible={phase === 'study'}/></div>}
     {!ready && <div className="initial-loader" role="status"><span>{error ? '载入未完成' : '载入醒狮'}</span><i><b style={{ width: `${Math.max(3, progress)}%` }}/></i><small>{error || `${Math.round(progress)}%`}</small>{error && <button onClick={() => location.reload()}>重新载入</button>}</div>}
     {ready && error && <div className="experience-error" role="alert">{error}<button onClick={() => setError(null)}>关闭</button></div>}
-    <nav className="chapter-controls" aria-label="六个造型研究控件">
+    <nav className="chapter-controls" ref={controls} style={{ width: layout.navWidth }} aria-label="六个造型研究控件">
       {PARTS.map(item => <button className={`chapter-control ${selected === item.id ? 'is-selected' : ''}`} key={item.id} data-part={item.id} aria-pressed={selected === item.id} aria-label={`${item.number} ${item.name}`} disabled={!ready} onClick={() => select(item.id)}><span className="control-number">{item.number}</span><img className="control-art" src={`/images/navigation/${item.id}.png`} alt="" width="80" height="80" draggable="false"/><span className="control-name">{item.name}</span></button>)}
     </nav>
     {ready && phase === 'overview' && <button className="reset-camera" title="还原视角" aria-label="还原视角" onClick={() => world.current?.reset()}><RotateCcw size={14}/></button>}

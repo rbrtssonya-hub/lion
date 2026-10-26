@@ -10,7 +10,7 @@ await mkdir(`${output}/screenshots`, { recursive: true });
 const browser = await chromium.launch({ channel: 'chromium', headless: true, args: ['--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: { width: 1536, height: 960 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
 const errors = [], failedResponses = [], chapters = [], layouts = [];
-const result = { url, scope: 'six navigation artworks and all six enriched culture/data panels', errors, failedResponses, chapters, layouts };
+const result = { url, scope: 'six navigation artworks, all six enriched culture/data panels, and flush top-left desktop study layout', errors, failedResponses, chapters, layouts };
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
 page.on('response', response => { if (response.status() >= 400) failedResponses.push({ url: response.url(), status: response.status() }); });
@@ -68,12 +68,17 @@ async function desktopLayout(width, height) {
   });
   assert.ok(state.page.width <= width + 1, 'desktop has no horizontal page overflow');
   assert.ok(state.page.height <= height + 1, 'desktop has no vertical page overflow');
-  for (const [name, box] of Object.entries(state).filter(([name]) => ['column', 'nav', 'reader', 'tabs'].includes(name))) {
+  for (const [name, box] of Object.entries(state).filter(([name]) => ['frame', 'column', 'nav', 'reader', 'tabs'].includes(name))) {
     assert.ok(box.x >= -1 && box.y >= -1 && box.right <= width + 1 && box.bottom <= height + 1, `${name} stays inside desktop`);
     assert.ok(box.width > 0 && box.height > 0, `${name} has visible area`);
   }
-  assert.ok(state.reader.bottom <= state.nav.y + 1, 'scrollable reading area stays above navigation');
+  assert.ok(Math.abs(state.frame.x) < 1 && Math.abs(state.frame.y) < 1, 'study image meets the left and top viewport edges');
+  assert.ok(Math.abs(state.frame.width / state.frame.height - 1.5) < .00001, 'study image preserves the full 3:2 aperture');
   assert.ok(state.frame.right <= state.column.x + 1, 'hero image and culture column do not overlap');
+  assert.ok(state.column.width >= width * .32, 'right reading column receives at least 32 percent of the desktop width');
+  assert.ok(state.nav.x >= state.frame.x - 1 && state.nav.right <= state.frame.right + 1, 'six navigation controls remain within the left image area');
+  assert.ok(state.nav.right <= state.column.x + 1, 'navigation leaves the full right reading column clear');
+  assert.ok(Math.abs(state.nav.x + state.nav.width / 2 - (state.frame.x + state.frame.width / 2)) < 1, 'navigation follows the left image centre instead of the viewport centre');
   layouts.push(state);
   await page.screenshot({ path: `${output}/screenshots/desktop-${width}.png` });
 }
@@ -192,8 +197,9 @@ try {
   }
 
   await study('body');
-  await desktopLayout(1280, 800);
-  await desktopLayout(1920, 1080);
+  for (const [width, height] of [[1280, 800], [1536, 960], [1600, 800], [1920, 1080], [2560, 1440]]) {
+    await desktopLayout(width, height);
+  }
   await page.getByRole('button', { name: '返回整体', exact: true }).click();
   await page.waitForFunction(() => document.querySelector('.lion-experience').dataset.phase === 'overview');
   assert.equal(await page.locator('.cultural-panel').count(), 0, 'return removes cultural panel');

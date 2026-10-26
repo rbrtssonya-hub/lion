@@ -408,7 +408,9 @@ export class LionWorld {
   }
 
   resize(refit = true) {
-    const { width, height } = this.container.getBoundingClientRect();
+    // The artwork's GSAP scale also transforms this hidden host. Measure its
+    // layout size so a window resize cannot shrink the canvas a second time.
+    const width = this.container.clientWidth, height = this.container.clientHeight;
     if (!width || !height) return;
     this.width = width;
     this.height = height;
@@ -416,7 +418,7 @@ export class LionWorld {
     // registered optical aperture instead of deriving it from those roundings.
     this.camera.aspect = this.options.fixedAspect || 1.5;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
     // The handoff frame remains 3:2. Resizing its CSS pixel size must never
     // silently reframe a generated image's registered camera endpoint.
     if (!this.active && !this.disposed) this.renderer.render(this.scene, this.camera);

@@ -4,7 +4,7 @@
 
 工程记忆采用 standard 模式，入口为 [wiki_memory/README.md](wiki_memory/README.md)，日常维护遵循项目内协议。根目录 [AGENTS.md](AGENTS.md) 保存“每次完整对话的有效修改都要提交到本地 Git”的约束。
 
-**完整模型首页 → 六个艺术图控件 → 相机移动到部位 → 同构图交叉淡化为独立图片 → 右侧文化图解与形态数据。**
+**完整模型首页 → 全屏运镜到部位 → 原地交叉淡化为独立图片 → GSAP 图片缩放并贴齐左上、图标左移 → 右侧文化图解与形态数据。**
 
 首页只呈现完整醒狮与六个艺术图选择控件，已移除左上角印章图标。进入章节后，完整主图与右侧双页签阅读区共同呈现文化内容；真实模型隐藏并暂停渲染。三维节点始终保持原位。体验重点为桌面浏览器，本轮没有手机端优化。
 
@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-访问终端输出的本地地址。Vite 默认使用 `http://127.0.0.1:5173/`，端口被占用时会递增；本轮开发实例使用 `5175`。也可双击根目录的 `启动网页.cmd`，再打开它显示的地址。
+访问终端输出的本地地址。Vite 默认使用 `http://127.0.0.1:5173/`，端口被占用时会递增。也可双击根目录的 `启动网页.cmd`，再打开它显示的地址。
 
 ```powershell
 npm run build
@@ -30,17 +30,17 @@ npm run preview
 
 1. 在首页拖动模型旋转，滚轮缩放；右下角复位按钮恢复整体视角。
 2. 点击下方六个控件，或点击模型中已有映射的可识别表面。
-3. 相机飞向对应局部，三维画幅同时平移到页面左侧。相机到达为该章节预先确定的终点后，在同一画幅中淡入相应生成图片。
-4. 交接完成后，三维层设为 `visibility: hidden`、`opacity: 0`，并调用 `setActive(false)` 停止其 RAF 渲染循环。完整图片以 `object-fit: contain` 显示，不做网页裁切。
-5. 右侧标题此时才通过 GSAP 逐字进入。默认“文化图解”页呈现新生成的艺术图、编号点击区、分项解说、文化背景和来源；点击图中编号或图下分项，解说更新并自动滚入阅读区。
+3. 相机在全屏最大完整 3:2 画幅中飞向对应局部；此时不为右栏预留空间，也不移动画幅。到达登记终点后，原地淡入相应生成图片。
+4. 图片完全显示后，三维层设为 `visibility: hidden`、`opacity: 0`，并调用 `setActive(false)` 停止其 RAF 渲染循环。随后 GSAP 等比缩小图片并移到页面 `(0,0)`，六个图标同步移到左侧图片区下方。完整图片使用 `contain`，不做网页裁切。
+5. 图片移动结束，右侧标题才通过 GSAP 逐字进入。右栏占常用桌面宽度约三分之一，并独立使用屏幕高度。默认“文化图解”页呈现艺术图、编号点击区、分项解说、文化背景和来源；点击图中编号或图下分项，解说更新并自动滚入阅读区。
 6. “形态数据”页呈现实际网格分析、图例、方法、构件数量、宽高比、三轴尺寸及样本口径；织锦另有实际 UV 与按三角表面积估计的贴图色带。右侧内容可独立滚动，页签切换会回到内容顶部。
-7. “返回整体”或 `Esc` 反向衔接回真实模型，恢复第一次进入章节前的整体镜头。页签获得焦点时，左右方向键切换页签，`Home / End` 到首尾页签；其他位置的左右方向键切换章节。快速连续选择以最后一次操作为准。
+7. “返回整体”或 `Esc` 先将图片恢复全屏，再淡回同镜头的真实模型，最后恢复第一次进入章节前的整体镜头。切章同样先回全屏再运镜。页签获得焦点时，左右方向键切换页签，`Home / End` 到首尾页签；其他位置的左右方向键切换章节。快速连续选择以最后一次操作为准。
 
 图片为 **AI 造型转译**，不是模型实测截图或历史工艺照片。生成过程保持主要视角、主体位置和尺度，但材质细化及局部形状存在细部视觉差异。相同镜头终点与平滑淡化用于构图衔接，不宣称逐像素完全相同。
 
 ## 六个控件与十八张当前图片
 
-每个部位有三种不同用途的图片：底部艺术入口、左侧相机衔接主图、右侧文化图解。本轮新增六张导航图与六张文化图解，分别调用内置 `image_gen` 生成，已接入界面；导航入口使用真实 PNG，不再调用 `PartGlyph` 代码图标。原有六张主图和相机配置保持不变。
+每个部位有三种不同用途的图片：底部艺术入口、左侧相机衔接主图、右侧文化图解。六张导航图与六张文化图解此前分别调用内置 `image_gen` 生成，已接入界面；导航入口使用真实 PNG，不再调用 `PartGlyph` 代码图标。本轮调整时序与排版，十八张图片和相机终点配置保持不变。
 
 | 控件 | 独立图片 | 相机终点构图 | 右侧真实分析 |
 | --- | --- | --- | --- |
@@ -68,7 +68,9 @@ npm run preview
 
 ## 画幅与相机交接
 
-`src/interaction/layout.mjs` 令画幅宽度取 3 的整数倍、高度取对应 2 的整数倍；Three.js 相机使用精确 `aspect = 1.5`。首页与章节状态保持画幅宽高一致，仅改变其页面位置。生成图片、三维终点与显示容器因此共享一个 3:2 光学取景范围。
+`src/interaction/layout.mjs` 令画幅宽度取 3 的整数倍、高度取对应 2 的整数倍；Three.js 相机使用精确 `aspect = 1.5`。首页、运镜与淡化使用屏幕可容纳的最大完整 3:2 画幅，屏幕比例多出的区域保持纸底。图片替换完成后才通过 `x / y / scale` 等比移到左上角；内部画幅尺寸与相机取景不变，不裁图。导航以左侧图片区居中，右栏不受左侧导航高度限制。
+
+动画只驱动一个 0–1 的排版进度，每帧根据当前窗口计算位置，避免窗口变化后旧 tween 写回过期坐标。`LionWorld.resize()` 使用未缩放的 `clientWidth / clientHeight`，不会把 GSAP 的显示缩放再次写入画布尺寸。
 
 `LionWorld.js` 中的 `HANDOFF_FRAMINGS` 为六部位指定方向、按真实部位包围盒计算的目标偏移及观察距离。`public/data/handoff-cameras.json` 保存生成参考时的实际 `position / target / fov / aspect`，用于复核镜头与图片的构图关系。修改模型、镜头、FOV 或这些配置后，应重新抓取参考并生成对应图片。
 
@@ -111,7 +113,8 @@ artifacts/handoff/references/          六个终点原始截图
 artifacts/handoff/PROMPTS_ONE.md       眉目、额冠、鬃须完整生图提示词
 artifacts/handoff/PROMPTS_TWO.md       织锦、云边、口齿完整生图提示词
 artifacts/handoff/screenshots/         相机交接阶段的截图与回归记录
-artifacts/enrichment/                 本轮新增素材、提示词与图文界面验证
+artifacts/enrichment/                 导航/文化素材、提示词与前轮图文验证
+artifacts/transition/                 全屏交接、贴角排版与本轮浏览器证据
 tests/enrichment-browser.mjs          六章导航图、文化分项与数据页检查
 ```
 
@@ -126,7 +129,7 @@ tests/enrichment-browser.mjs          六章导航图、文化分项与数据页
 - 图片展示阶段停止三维渲染。返回时复用已加载模型，不重新下载 GLB。渲染期使用 DPR 上限 1.6、1024 阴影和 BVH 拾取。
 - 图片中的铅笔曲线、材料细化和工艺意象不作为测量或历史证据；文化资料从机构来源作简短转述，各章节保留链接。
 
-详细说明见 [MODEL_AUDIT.md](MODEL_AUDIT.md) 与 [VISUALIZATION_DESIGN.md](VISUALIZATION_DESIGN.md)。主图生成记录位于 `artifacts/handoff/`，本轮新增图标及文化图解记录位于 `artifacts/enrichment/`。
+详细说明见 [MODEL_AUDIT.md](MODEL_AUDIT.md) 与 [VISUALIZATION_DESIGN.md](VISUALIZATION_DESIGN.md)。主图生成记录位于 `artifacts/handoff/`，图标及文化图解生成记录位于 `artifacts/enrichment/`。
 
 ## 检查
 
@@ -144,23 +147,24 @@ $env:ATLAS_URL = 'http://127.0.0.1:5173'
 npm run test:browser
 ```
 
-`handoff-browser.mjs` 覆盖首页无文化内容、六个独立主图 URL、真实相机运动、登记终点、完整画幅、模型隐藏与暂停、GSAP 文字变化、返回与中断、真实表面点击、桌面窗口及图片失败恢复。这部分用于保留既有镜头交接的回归证据。
+`handoff-browser.mjs` 覆盖首页无文化内容、六个独立主图 URL、真实相机运动、登记终点、完整画幅、模型隐藏与暂停、GSAP 文字变化、返回与中断、真实表面点击、桌面窗口及图片失败恢复。新增逐帧采样验证“全屏运镜 → 全屏淡化 → 仅图片移动 → 文字进入”的严格顺序，结果默认写入 `artifacts/transition/`；可用 `ATLAS_EVIDENCE` 指定目录。
 
 新增图文界面检查：
 
 ```powershell
 $env:ATLAS_URL = 'http://127.0.0.1:5175'
-$env:ATLAS_EVIDENCE = 'artifacts/enrichment'
+$env:ATLAS_EVIDENCE = 'artifacts/transition/enrichment'
 node tests/enrichment-browser.mjs
 # 同一脚本检查本轮生产预览（先另开终端运行 npm run preview -- --port 4175）：
 $env:ATLAS_URL = 'http://127.0.0.1:4175'
-$env:ATLAS_EVIDENCE = 'artifacts/enrichment/production'
+$env:ATLAS_EVIDENCE = 'artifacts/transition/production'
 node tests/enrichment-browser.mjs
+node tests/production-transition-browser.mjs
 ```
 
-新增脚本默认访问 `5175`，检查六张艺术入口图、六章文化图解、编号/分项解说、自动滚动、页签与键盘、数据图、桌面版面和十二张新增资产。`ATLAS_EVIDENCE` 可指定证据目录。构建运行 `npm run build`；`tests/production.mjs` 仍可用于主图静态加载回归，其地址变量为 `ATLAS_PRODUCTION_URL`，默认 `4173`。
+图文脚本默认访问 `5175`，检查六张艺术入口、六章文化图解、编号/分项解说、自动滚动、页签与键盘、数据图、五种桌面版面和十二张独立资产。`production-transition-browser.mjs` 默认访问 `4175`，在生产普通动态模式下独立采样四阶段与标题动画。两者均支持 `ATLAS_URL / ATLAS_EVIDENCE`。构建运行 `npm run build`；旧 `tests/production.mjs` 仍可用于主图静态加载回归，其地址变量为 `ATLAS_PRODUCTION_URL`，默认 `4173`。
 
-相机交接阶段记录见 [handoff 验证记录](artifacts/handoff/VERIFICATION.md)。本轮新增界面的结果以 `artifacts/enrichment/browser-results.json`、`artifacts/enrichment/production/browser-results.json` 及相应截图为准；只将对应版本、对应范围内实际完成的检查作为通过证据。旧版 `artifacts/browser-results.json`、旧性能读数与旧面板截图属于历史版本。
+本轮全屏交接与贴角排版的验证入口为 [transition 验证记录](artifacts/transition/VERIFICATION.md)，相应 JSON 与截图位于同目录。`artifacts/handoff/` 保留先前交接记录；`artifacts/enrichment/` 保留先前图文界面记录。只将对应版本、对应范围内实际完成的检查作为通过证据。
 
 六张相机主图的完整提示词已汇总于 [主图 IMAGE_PROMPTS.md](artifacts/handoff/IMAGE_PROMPTS.md)，路径、大小与 SHA-256 见 `artifacts/handoff/asset-manifest.json`。十二张新增图标与文化图解使用独立的 [新增素材 IMAGE_PROMPTS.md](artifacts/enrichment/IMAGE_PROMPTS.md) 和清单。
 
