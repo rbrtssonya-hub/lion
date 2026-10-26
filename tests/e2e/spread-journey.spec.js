@@ -14,6 +14,7 @@ async function openSpread(page) {
   await page.goto('/#/spread');
   await expect(page.locator('#spreadStage')).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
+  await page.getByRole('tab', { name: '世界', exact: true }).click();
 }
 
 test('地图点击与键盘选择切换真实地点，选中态和当前照片同步', async ({ page }) => {

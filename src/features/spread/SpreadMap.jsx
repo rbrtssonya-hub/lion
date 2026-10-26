@@ -1,4 +1,6 @@
-import { spreadPlaces } from '../../data/spread.js';
+import { spreadMapLevels, spreadMapPoints } from '../../data/spread.js';
+import { regionalMaps, projectRegionalPoint, guangdongInChinaPaths } from '../../data/spread-map-geography.js';
+import { handleHeritageTabs } from '../home/HeritageElements.jsx';
 
 // An original schematic coastline for this collection, without political
 // boundaries or travel routes. All pins use the same simple projection.
@@ -19,16 +21,29 @@ const coastlines = [
   'M91 459 148 452 205 461 263 454 322 464 378 452 433 461 489 450 541 458 598 454 657 462 714 454 768 461 827 452 887 458 937 451 957 474 917 484 862 478 812 488 748 479 681 488 616 481 554 488 493 482 432 489 373 483 310 489 251 482 190 488 130 482 85 475Z',
 ];
 
-const position = ([longitude, latitude]) => [(longitude + 180) / 360 * 1000, (90 - latitude) / 180 * 500];
+const worldPosition = ([longitude, latitude]) => [(longitude + 180) / 360 * 1000, (90 - latitude) / 180 * 500 + 50];
 
-export default function SpreadMap({ activeId, onSelect }) {
-  return <section className="spread-map" aria-labelledby="spreadMapTitle">
+export default function SpreadMap({ activeId, photoIndex, level, onSelect, onLevelChange }) {
+  const levelIndex = spreadMapLevels.findIndex(item => item.id === level);
+  const current = spreadMapLevels[levelIndex];
+  const points = spreadMapPoints[level];
+  const isSelected = point => point.placeId === activeId && (point.photoIndex === undefined || point.photoIndex === photoIndex);
+  const position = coordinates => level === 'world' ? worldPosition(coordinates) : projectRegionalPoint(level, coordinates);
+  return <section className="spread-map" aria-labelledby="spreadMapTitle" data-map-level={level}>
     <div className="spread-map-heading">
       <h3 id="spreadMapTitle">所收录案例分布示意</h3>
-      <span>五地 · 八幅实景</span>
+      <span>{current.count}</span>
     </div>
-    <div className="spread-world">
-      <svg className="spread-world-svg" viewBox="0 0 1000 500" aria-hidden="true" focusable="false">
+    <div className="spread-level-tabs" role="tablist" aria-label="地图范围">
+      {spreadMapLevels.map((item, index) => <button key={item.id} type="button" role="tab" id={`spread-level-${item.id}`}
+        aria-label={item.name} aria-selected={level === item.id} aria-controls="spreadMapView" tabIndex={level === item.id ? 0 : -1}
+        onClick={() => onLevelChange(item.id)} onKeyDown={event => handleHeritageTabs(event, index, spreadMapLevels.length, next => onLevelChange(spreadMapLevels[next].id))}>
+        <small aria-hidden="true">0{index + 1}</small><span>{item.name}</span><i aria-hidden="true">{item.subtitle}</i>
+      </button>)}
+    </div>
+    <div className="spread-map-viewport" id="spreadMapView" role="tabpanel" aria-labelledby={`spread-level-${level}`}>
+    <div className="spread-world" key={level}>
+      <svg className="spread-world-svg" viewBox="0 0 1000 600" aria-hidden="true" focusable="false">
         <defs>
           <linearGradient id="spreadLandInk" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#b3a286" stopOpacity=".34" />
@@ -36,32 +51,46 @@ export default function SpreadMap({ activeId, onSelect }) {
             <stop offset="1" stopColor="#b8a484" stopOpacity=".36" />
           </linearGradient>
         </defs>
-        <g className="spread-coastlines">{coastlines.map((path, index) => <path d={path} key={index} />)}</g>
-        <g className="spread-pin-lines">{spreadPlaces.map(place => {
+        {level === 'world'
+          ? <g className="spread-coastlines" transform="translate(0 50)">{coastlines.map((path, index) => <path d={path} key={index} />)}</g>
+          : <g className="spread-coastlines spread-regional-land">{regionalMaps[level].paths.map((path, index) => <path d={path} key={index} />)}</g>}
+        {level === 'china' && <g className="spread-guangdong-highlight">{guangdongInChinaPaths.map((path, index) => <path d={path} key={index} />)}</g>}
+        <g className="spread-pin-lines">{points.map(place => {
           const [x, y] = position(place.coordinates);
-          return <path key={place.id} data-selected={activeId === place.id} d={`M${x} ${y}L${place.labelPosition[0]} ${place.labelPosition[1]}`} />;
+          return <path key={place.id} data-selected={isSelected(place)} d={`M${x} ${y}L${place.labelPosition[0]} ${place.labelPosition[1]}`} />;
         })}</g>
-        <g className="spread-pins">{spreadPlaces.map(place => {
+        <g className="spread-pins">{points.map(place => {
           const [x, y] = position(place.coordinates);
-          return <g key={place.id} data-selected={activeId === place.id}>
-            <circle className="spread-pin-halo" cx={x} cy={y} r="13" />
-            <circle className="spread-pin-dot" cx={x} cy={y} r="5" />
+          return <g key={place.id} data-selected={isSelected(place)}>
+            <circle className="spread-pin-halo" cx={x} cy={y} r="12" />
+            <circle className="spread-pin-dot" cx={x} cy={y} r="4" />
           </g>;
         })}</g>
       </svg>
       <div className="spread-map-buttons" role="group" aria-label="选择案例地点">
-        {spreadPlaces.map(place => <button key={place.id} type="button"
-          className="spread-map-place" data-place={place.id} aria-pressed={activeId === place.id}
+        {points.map(place => <button key={place.id} type="button"
+          className="spread-map-place" data-place={place.id} aria-pressed={isSelected(place)}
           aria-label={`选择${place.name}案例`} aria-controls="spreadPlaceCard"
-          style={{ left: `${place.labelPosition[0] / 10}%`, top: `${place.labelPosition[1] / 5}%` }}
-          onClick={() => onSelect(place.id)}>
+          style={{ left: `${place.labelPosition[0] / 10}%`, top: `${place.labelPosition[1] / 6}%` }}
+          onClick={() => onSelect(place.placeId, place.photoIndex)}>
           <span className="spread-map-place-dot" aria-hidden="true" />{place.name}
         </button>)}
       </div>
+      {level === 'world' && <>
       <span className="spread-ocean spread-ocean--pacific" aria-hidden="true">太 平 洋</span>
       <span className="spread-ocean spread-ocean--atlantic" aria-hidden="true">大 西 洋</span>
       <span className="spread-ocean spread-ocean--indian" aria-hidden="true">印 度 洋</span>
+      </>}
     </div>
-    <p className="spread-map-note">点击地点，走近一场实景。地图仅作案例索引，拍摄年份不表示传播先后。</p>
+    </div>
+    <div className="spread-map-actions">
+      <span>0{levelIndex + 1} <i>/ 03</i></span>
+      {levelIndex > 0 && <button type="button" className="spread-map-previous" onClick={() => onLevelChange(spreadMapLevels[levelIndex - 1].id)}>返回{spreadMapLevels[levelIndex - 1].name}</button>}
+      {current.nextLabel ? <button type="button" className="spread-map-next" onClick={() => onLevelChange(spreadMapLevels[levelIndex + 1].id)}>{current.nextLabel}<span aria-hidden="true">→</span></button>
+        : <button type="button" className="spread-map-next" onClick={() => onLevelChange('guangdong')}>回看广东<span aria-hidden="true">↗</span></button>}
+    </div>
+    <p className="spread-map-note">范围逐级展开，点位仅作案例索引。拍摄年份不表示传播先后。
+      {level !== 'world' && <a className="spread-map-attribution" href="https://datav.aliyun.com/portal/school/atlas/area_selector" target="_blank" rel="noreferrer">轮廓来源 · DataV.GeoAtlas ↗</a>}
+    </p>
   </section>;
 }

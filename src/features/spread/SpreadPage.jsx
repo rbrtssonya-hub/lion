@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { media } from '../../config/media.js';
-import { spreadPlaces } from '../../data/spread.js';
+import { spreadPlaces, spreadMapPoints } from '../../data/spread.js';
 import { homeCultureSources } from '../../data/home-culture.js';
 import ChapterIdentity from '../../components/ChapterIdentity.jsx';
 import SpreadMap from './SpreadMap.jsx';
@@ -17,20 +17,26 @@ function SpreadPhoto({ story }) {
 }
 
 export default function SpreadPage({ onNavigate, settings }) {
+  const [mapLevel, setMapLevel] = useState('guangdong');
   const [selection, setSelection] = useState({ placeId: spreadPlaces[0].id, photoIndex: 0 });
   const place = spreadPlaces.find(item => item.id === selection.placeId) ?? spreadPlaces[0];
   const story = place.stories[selection.photoIndex] ?? place.stories[0];
-  const selectPlace = placeId => setSelection({ placeId, photoIndex: 0 });
+  const selectPlace = (placeId, photoIndex = 0) => setSelection({ placeId, photoIndex });
+  const changeMapLevel = nextLevel => {
+    setMapLevel(nextLevel);
+    setSelection(current => spreadMapPoints[nextLevel].some(point => point.placeId === current.placeId && (point.photoIndex === undefined || point.photoIndex === current.photoIndex))
+      ? current : { placeId: spreadMapPoints[nextLevel][0].placeId, photoIndex: spreadMapPoints[nextLevel][0].photoIndex ?? 0 });
+  };
   const changePhoto = delta => setSelection(current => ({ ...current, photoIndex: (current.photoIndex + delta + place.stories.length) % place.stories.length }));
   const typography = { '--spread-body-size': `${settings?.sourcesBodyFontSize ?? 17}px` };
 
   return <section id="spreadStage" className="spread-page" style={typography} aria-label="狮行远方 · 传章">
     <header className="spread-heading">
       <ChapterIdentity chapter="spread" title="狮行远方" eyebrow="A LIVING TRADITION" titleAs="h1" />
-      <p>一方锣鼓，万里相逢。<br /><span>从岭南的制作与表演，走近街巷、节庆与社区里的狮。</span></p>
+      <p>一方锣鼓，万里相逢。<br /><span>从广东到中国，再放眼世界。</span></p>
     </header>
     <div className="spread-layout">
-      <SpreadMap activeId={place.id} onSelect={selectPlace} />
+      <SpreadMap activeId={place.id} photoIndex={selection.photoIndex} level={mapLevel} onSelect={selectPlace} onLevelChange={changeMapLevel} />
       <article id="spreadPlaceCard" className="spread-case" data-surface="spreadOverlay" aria-labelledby="spreadPlaceTitle">
         <header className="spread-place-heading">
           <div><p className="spread-place-kicker">{place.english}<span>{place.context}</span></p><div className="spread-place-title-row"><h2 id="spreadPlaceTitle">{place.name}</h2><span>{place.location}</span></div></div>

@@ -1,0 +1,2 @@
+# Keep the downloaded source bytes identical on Windows checkouts.
+*.datav-areas-v3.json -text

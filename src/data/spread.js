@@ -31,3 +31,22 @@ export const spreadPlaces = [
     stories: stories('cai-qing'), photoYears: [2013],
   },
 ];
+
+export const spreadMapLevels = [
+  { id: 'guangdong', name: '广东', subtitle: '从这里出发', count: '广州 · 佛山', nextLabel: '查看中国范围' },
+  { id: 'china', name: '中国', subtitle: '把视野拉远', count: '广东 · 香港', nextLabel: '走向世界' },
+  { id: 'world', name: '世界', subtitle: '万里相逢', count: '五地 · 八幅实景' },
+];
+
+// Regional pins index the same photographs; changing scale adds no new cases.
+export const spreadMapPoints = {
+  guangdong: [
+    { id: 'foshan', name: '佛山', placeId: 'lingnan', photoIndex: 0, coordinates: [113.12, 23.02], labelPosition: [350, 365] },
+    { id: 'guangzhou', name: '广州', placeId: 'lingnan', photoIndex: 1, coordinates: [113.26, 23.13], labelPosition: [620, 215] },
+  ],
+  china: [
+    { id: 'guangdong', name: '广东', placeId: 'lingnan', coordinates: [113.26, 23.13], labelPosition: [455, 450] },
+    { id: 'hong-kong', name: '香港', placeId: 'hong-kong', coordinates: [114.17, 22.3], labelPosition: [715, 420] },
+  ],
+  world: spreadPlaces.map(place => ({ ...place, placeId: place.id, labelPosition: [place.labelPosition[0], place.labelPosition[1] + 50] })),
+};

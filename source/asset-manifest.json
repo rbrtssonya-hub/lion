@@ -5198,6 +5198,84 @@
       "path": "source/reviews/four-chapter-journey/2026-10-26/types-1440.png",
       "bytes": 949181,
       "sha256": "96c975861ca4606ba024ec2cf5ad384e6ee2e28a12789a1970e5722857db8e3e"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/100000.datav-areas-v3.json",
+      "bytes": 162746,
+      "sha256": "83ac502aeac66a5527607ec844169418505d990f1a2dc33226743643541eed3c"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/440000.datav-areas-v3.json",
+      "bytes": 59165,
+      "sha256": "1d6882879b704297ad8331468fce9ce767c21f14af13c3cf46c237b40b2a7b9d"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/design/spread-map-geography/preview.png",
+      "bytes": 78326,
+      "sha256": "830f5e72869f35241fc9c94c3be28f708431670eeda33030a444818e01df16ee"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/capture.json",
+      "bytes": 4297,
+      "sha256": "9f835b309a2149dec407a37adff5275e185cd64d170c9c59abd82bec8ea7986e"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/china-1366.png",
+      "bytes": 377530,
+      "sha256": "26674f202e87edcaeb0efe3dd8912275ae86ca9666ca8f4ad640465d87d07d95"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/china-1440.png",
+      "bytes": 478793,
+      "sha256": "7088f7ab7f66218cd04f6d7bc7a98b344b2956ef13d567ac0aa7c40e9694c016"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/china-1920.png",
+      "bytes": 712314,
+      "sha256": "9f62451a227ca81f8929fc1a807782034384a9565e023c05138ffcd37fc38f1a"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/guangdong-1366.png",
+      "bytes": 377825,
+      "sha256": "1c38fabe3c60f5a068d41f4b5852aac1b61be1b81be7fae67d0a799b03123649"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/guangdong-1440.png",
+      "bytes": 485586,
+      "sha256": "1e37a3c950b685d790157eec565924872efea72e8f18cf7d3fbd53e3ec11763b"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/guangdong-1920.png",
+      "bytes": 729264,
+      "sha256": "026263de6015b8630910ec046145f2adce8ac6ffa65e617aea32120b788a9974"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/world-1366.png",
+      "bytes": 396530,
+      "sha256": "405e9f97c6482bdb80c1d2f92412956a947cc6fb22cc202ee703fede3360c38b"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/world-1440.png",
+      "bytes": 503356,
+      "sha256": "4c628bc827f4bef4321dae592ab9452dd5187818f58a9e9ff33a68a86c9d1679"
+    },
+    {
+      "from": "DataV.GeoAtlas geographic source archive and native Chrome three-level map review, 2026-10-26",
+      "path": "source/reviews/spread-map-levels/2026-10-26/world-1920.png",
+      "bytes": 762639,
+      "sha256": "01db6d8d75acd0e71bd8f700865a722697890d13442e385139a2aa65d6e97265"
     }
   ]
 }
