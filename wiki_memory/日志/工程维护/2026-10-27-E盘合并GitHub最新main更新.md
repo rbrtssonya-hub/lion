@@ -31,4 +31,8 @@ Windows PowerShell / Node `v24.16.0` / npm `12.0.1`：
 - `python "wiki_memory/工具/memory.py" index --project "." --memory-dir "wiki_memory" --apply`：刷新README及目录索引；`check`和`check --require-ready`均为159页、0错误、6条既有历史来源提示。
 - `git diff --cached --check`：通过；冲突文件均已解决。
 
-此记录只覆盖合并后的资源/核心测试、构建和工艺相关桌面生产回归；未运行全站E2E、其他浏览器、手机、正式部署或EXE更新。最终提交与远端状态以本轮Git核对为准。
+## Git交付
+
+合并提交为`12a6b13703bf491ffe094f55320f2aa7ea8f8a3f`，双亲为本地`34a3bbc`和GitHub更新`a914754`。`git -c http.version=HTTP/1.1 -c pack.window=0 -c pack.compression=1 push --progress origin main`成功；之后`git ls-remote origin refs/heads/main`确认远端头与该合并提交一致，工作区干净。GitHub接受本次资源并提示两个模型文件超过50 MB建议值（77.54 MB与50.49 MB），未超过100 MB硬限制。
+
+此记录只覆盖合并后的资源/核心测试、构建和工艺相关桌面生产回归；未运行全站E2E、其他浏览器、手机、正式部署或EXE更新。
