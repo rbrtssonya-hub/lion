@@ -5511,6 +5511,90 @@
       "path": "source/reviews/craft-carousel/2026-10-26/craft-zhuang-1920x1080.png",
       "bytes": 1962230,
       "sha256": "602c7e6bd6f0bbc6559630a3517a8e547f0fcdf4f5c8331f096b9144183373d3"
+    },
+    {
+      "from": "User-supplied Blender map",
+      "path": "source/models/spread-map/world-map.blend",
+      "bytes": 32886537,
+      "sha256": "822d76856403904e83644a8a8ec2916cd1fa88435e5929f28bab9003bdfc0d27"
+    },
+    {
+      "from": "Blender map camera still rendered from user-supplied source, 2026-10-28",
+      "path": "source/public/assets/spread-map/china.png",
+      "bytes": 926862,
+      "sha256": "4328bdc633d5b4d98cd03c60ad3dbfe26fa5e91919910622262d7896556b53fc"
+    },
+    {
+      "from": "Blender map camera still rendered from user-supplied source, 2026-10-28",
+      "path": "source/public/assets/spread-map/guangdong.png",
+      "bytes": 752523,
+      "sha256": "bbbe2d681a65d30eb5cf727f12be962504d17e0dd8876c9859e548a9aeb0e6cd"
+    },
+    {
+      "from": "Blender map camera still rendered from user-supplied source, 2026-10-28",
+      "path": "source/public/assets/spread-map/world.png",
+      "bytes": 776617,
+      "sha256": "08fe192ae6df99b11caaa6cf4bf98ed2adb735efa032e593558964e095cded91"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/capture.json",
+      "bytes": 4295,
+      "sha256": "9256cb1b8c7eb96e4cb392a036d6931d60bf18c420c7f5e8cd78c42a8f041c94"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/china-1366.png",
+      "bytes": 547221,
+      "sha256": "405a9779f0cdcc6f4bfe827eaecc5f7e6eb9a261f0da3f663543c2ae4537e3db"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/china-1440.png",
+      "bytes": 708093,
+      "sha256": "7974654d1e833df56c8c1073dea82390f11d9ca204cc49de1a57afb3baebee5e"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/china-1920.png",
+      "bytes": 1162252,
+      "sha256": "781af0e99b91d212e48b582bb1b6ba8895afad127a6ffc269d6940ba8261781f"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/guangdong-1366.png",
+      "bytes": 492626,
+      "sha256": "86577c07fc7ce29eedf9f11c8bcb843be9ca944ca0b74ba4e1dda91d1b29222d"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/guangdong-1440.png",
+      "bytes": 636388,
+      "sha256": "23765ba5f91676fdb383542af191dfc17a72b4ece0f68ab071d57f9ae4e0ae08"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/guangdong-1920.png",
+      "bytes": 1039847,
+      "sha256": "0c634989e3a4acc23a6218b04a0ea0ab33d1695757d17e5aaa4865701b3077d7"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/world-1366.png",
+      "bytes": 496210,
+      "sha256": "bbdcc19e0a312fc6e2d9599cf0d0bd80688cb0a8fc3893a4c8a04f07b586453a"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/world-1440.png",
+      "bytes": 641083,
+      "sha256": "1a29261cd07d5d1b1074f8424791a631987f9408fec8a9c16c67de247ef2eeb2"
+    },
+    {
+      "from": "Chrome production review of Blender map shots, 2026-10-28",
+      "path": "source/reviews/spread-map-levels/2026-10-28-blender/world-1920.png",
+      "bytes": 1058984,
+      "sha256": "1b81cdd79cf67e4b94069fc51eb1a4070472c02e7a23bed693bc733d79bc63f6"
     }
   ]
 }

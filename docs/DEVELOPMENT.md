@@ -2,6 +2,11 @@
 
 2026-10-26神态点击已扩展到全部八态：`ExpressionLion.jsx` 共用3秒分层播放、原图回退与清理；`face-profiles/` 保存各图独立的1254坐标、五部位变换与时序。进入神态时的整图短动作仍由 `useExpressionReaction` 维护，点击狮头后取消该整图动作并启动眉眼狮口，同时保留点击放大与原解读。静止/结束仍是原IMG，补绘仅填露出窗口；窗口蒙版超出轮廓4px覆盖静态羽化边缘，哀态眉根单独保留原图固定遮挡。新八态全覆盖测试 `expression-eight-face` 与已有 `expression-surprise-face`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 为相关验收入口。素材/提示词见[八态源记录](../source/design/expression-eight/README.md)，实跑与边界见[八态补验](../source/references/eight-state-face-motion-2026-10-26.md)。布局及章节转场沿用原版，未新增依赖。
 
+
+## 传章 Blender 地图（2026-10-28）
+
+用户提供的地图源工程归档在 `source/models/spread-map/world-map.blend`。`render-shots.py` 用 Blender 后台渲染第 1、100、200 帧，以原 20:13 画幅分别用于广东、中国、世界。网页展示的是三个停顿帧的静态图，切换有轻量入场效果，并非完整原始相机动画；城市点位为按原相机投影得到的近似位置。保留案例、键盘及照片切换。资源和截图已登记清单。验证与重建命令见 [任务日志](../wiki_memory/日志/功能添加/2026-10-28-传章Blender地图三镜头.md)。
+
 ## 小醒桌宠与讲解（2026-10-26）
 
 小醒位于四章之外，支持9层面部动作、鼠标/方向键移动、章节上下文、本地来源与离线女声讲解。可编辑源在 `source/characters/xiaoxing/`，运行层和音频在 `source/public/assets/xiaoxing/`。问答支持 `entry/model/action/state/spread` 页面上下文，由Node服务端读取DeepSeek配置；普通问候和闲聊允许无网页来源回答，醒狮/网站事实仍需可信资料来源；纯静态托管需要将 `/api/xiaoxing/chat` 反向代理到Node服务。设置与EXE边界见[问答说明](XIAOXING_AI.md)，实际验收与截图见[桌宠记录](../source/references/xiaoxing-assistant-2026-10-26.md)、[DeepSeek接入记录](../source/references/xiaoxing-deepseek-2026-10-26.md)和[问候修复记录](../source/references/xiaoxing-greeting-fix-2026-10-27.md)。

@@ -34,11 +34,11 @@
 .spread-level-tabs [aria-selected='true'] small { color: #a43728; }
 .spread-level-tabs button:focus-visible, .spread-map-actions button:focus-visible { outline: 2px solid #9d3426; outline-offset: 3px; }
 .spread-map-viewport { container-type: size; display: grid; flex: 1; min-height: 140px; place-items: center; }
-.spread-world { position: relative; width: min(100cqw, calc(100cqh * 5 / 3)); max-width: 100%; aspect-ratio: 5 / 3; margin: 0; animation: spread-map-unfold 300ms ease-out; }
-.spread-world-svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.spread-coastlines { fill: url(#spreadLandInk); stroke: #a794763b; stroke-width: 1.1; stroke-linejoin: round; }
-.spread-regional-land { stroke: #9b805b80; stroke-width: 1.5; }
-.spread-guangdong-highlight { fill: #ac4c333d; stroke: #9d3426aa; stroke-width: 1.4; stroke-linejoin: round; }
+.spread-world { position: relative; width: min(100cqw, calc(100cqh * 20 / 13)); max-width: 100%; aspect-ratio: 20 / 13; margin: 0; animation: spread-map-unfold 300ms ease-out; }
+.spread-map-render, .spread-map-fallback { position: absolute; inset: 0; width: 100%; height: 100%; }
+.spread-map-render { display: block; object-fit: contain; }
+.spread-map-fallback { display: grid; place-items: center; background: #e4dbcd; color: #75664f; font-size: 14px; }
+.spread-world-svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .spread-pin-lines path { fill: none; stroke: #b6a28b; stroke-width: 1.4; }
 .spread-pin-lines path[data-selected='true'] { stroke: #a44332; stroke-width: 1.7; }
 .spread-pin-halo { fill: #b65a4020; stroke: #ac634b35; stroke-width: 1; }
@@ -52,10 +52,6 @@
 .spread-map-place[aria-pressed='true'] { color: #fff6e8; border-color: #9d3426; background: #9d3426; box-shadow: 0 3px 12px #7f321920; }
 .spread-map-place[aria-pressed='true'] .spread-map-place-dot { background: #e4c59a; }
 .spread-map-place:focus-visible { outline: 2px solid #9d3426; outline-offset: 4px; }
-.spread-ocean { position: absolute; color: #99866a69; font-size: 12px; letter-spacing: .2em; pointer-events: none; }
-.spread-ocean--pacific { left: 2%; top: 63%; }
-.spread-ocean--atlantic { left: 40%; top: 40%; }
-.spread-ocean--indian { left: 65%; top: 69%; }
 .spread-map-note { margin: 0; padding-block: 11px; border-top: 1px solid #ad947b42; color: #89785f; font-size: 13px; line-height: 1.8; }
 .spread-map-attribution { display: block; width: fit-content; margin-top: 2px; color: #94846f; font-size: 11px; text-decoration-color: #b29b7b80; text-underline-offset: 3px; }
 .spread-map-actions { flex: none; display: flex; align-items: center; gap: 16px; padding: 10px 0 12px; }

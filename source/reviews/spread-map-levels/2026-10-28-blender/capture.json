@@ -1,0 +1,234 @@
+{
+  "origin": "http://127.0.0.1:4186",
+  "checks": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "level": "guangdong",
+      "width": 426.8125,
+      "height": 277.421875,
+      "labels": [
+        {
+          "name": "佛山",
+          "inside": true
+        },
+        {
+          "name": "广州",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "level": "china",
+      "width": 426.8125,
+      "height": 277.421875,
+      "labels": [
+        {
+          "name": "广东",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "level": "world",
+      "width": 426.8125,
+      "height": 277.421875,
+      "labels": [
+        {
+          "name": "岭南",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        },
+        {
+          "name": "新加坡",
+          "inside": true
+        },
+        {
+          "name": "旧金山",
+          "inside": true
+        },
+        {
+          "name": "埃德蒙顿",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "level": "guangdong",
+      "width": 523.9375,
+      "height": 340.546875,
+      "labels": [
+        {
+          "name": "佛山",
+          "inside": true
+        },
+        {
+          "name": "广州",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "level": "china",
+      "width": 523.9375,
+      "height": 340.546875,
+      "labels": [
+        {
+          "name": "广东",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "level": "world",
+      "width": 523.9375,
+      "height": 340.546875,
+      "labels": [
+        {
+          "name": "岭南",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        },
+        {
+          "name": "新加坡",
+          "inside": true
+        },
+        {
+          "name": "旧金山",
+          "inside": true
+        },
+        {
+          "name": "埃德蒙顿",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "level": "guangdong",
+      "width": 764.4375,
+      "height": 496.875,
+      "labels": [
+        {
+          "name": "佛山",
+          "inside": true
+        },
+        {
+          "name": "广州",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "level": "china",
+      "width": 764.4375,
+      "height": 496.875,
+      "labels": [
+        {
+          "name": "广东",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "level": "world",
+      "width": 764.4375,
+      "height": 496.875,
+      "labels": [
+        {
+          "name": "岭南",
+          "inside": true
+        },
+        {
+          "name": "香港",
+          "inside": true
+        },
+        {
+          "name": "新加坡",
+          "inside": true
+        },
+        {
+          "name": "旧金山",
+          "inside": true
+        },
+        {
+          "name": "埃德蒙顿",
+          "inside": true
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    "guangdong-1366.png",
+    "china-1366.png",
+    "world-1366.png",
+    "guangdong-1440.png",
+    "china-1440.png",
+    "world-1440.png",
+    "guangdong-1920.png",
+    "china-1920.png",
+    "world-1920.png"
+  ],
+  "errors": [],
+  "status": "passed"
+}

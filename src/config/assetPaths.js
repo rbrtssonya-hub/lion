@@ -1,4 +1,7 @@
 export const assetPaths = {
+  spreadMapGuangdong: 'assets/spread-map/guangdong.png',
+  spreadMapChina: 'assets/spread-map/china.png',
+  spreadMapWorld: 'assets/spread-map/world.png',
   xiaoxingReference: 'assets/xiaoxing/reference.png',
   xiaoxingBody: 'assets/xiaoxing/body.png',
   xiaoxingHead: 'assets/xiaoxing/head.png',
