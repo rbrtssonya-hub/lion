@@ -1,0 +1,1329 @@
+{
+  "version": 1,
+  "coordinateSystem": "GLTF_Y_UP",
+  "sourceSha256": "14d119ac20d0245d51e5a62c60721a1e74f71a850c0f3b72ada4c784e8a6a278",
+  "groups": [
+    {
+      "id": "hair-01",
+      "name": "粒子系统",
+      "kind": "CURVES",
+      "assetKey": "actionTheaterLionHair01",
+      "path": "assets/models/lion-action-theater-lion-hair-01.bin.gz",
+      "strands": 99854,
+      "pointsPerStrand": 5,
+      "bytes": 5424166,
+      "rawBytes": 7988320,
+      "sha256": "b98c4e33f199ba99084ced1f0bd2ef3d7e63538478b7842e2be75e88ae7cfe3f",
+      "rawSha256": "6ca7b5892ecdb4d3e2d16c61ec1d66a4edbb94c2e04ae07093fc54c1c4a0d24b",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.3704663813114166,
+          0.9001163244247437,
+          -2.1488728523254395
+        ],
+        "max": [
+          0.32257938385009766,
+          2.620948076248169,
+          -1.390652060508728
+        ]
+      },
+      "material": {
+        "name": "Fiber_Warm_Ivory",
+        "color": [
+          1.0,
+          0.9735051989555359,
+          0.9072781801223755
+        ],
+        "roughness": 0.7200000286102295,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-02",
+      "name": "粒子系统.001",
+      "kind": "CURVES",
+      "assetKey": "actionTheaterLionHair02",
+      "path": "assets/models/lion-action-theater-lion-hair-02.bin.gz",
+      "strands": 35567,
+      "pointsPerStrand": 5,
+      "bytes": 1898535,
+      "rawBytes": 2845360,
+      "sha256": "052709791c9e68cb405dd5b9cb815ccb0c4ed271fc3c9c0a80612df509dfa1db",
+      "rawSha256": "774d81cc126cc2f6adf79becc7039975cb50f92374fa5dba50eaeaf3a6cd51aa",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.9566850066184998,
+          1.3031949996948242,
+          0.340533971786499
+        ],
+        "max": [
+          0.9542912840843201,
+          2.3103199005126953,
+          2.0483481884002686
+        ]
+      },
+      "material": {
+        "name": "Blender_Default",
+        "color": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": false
+      }
+    },
+    {
+      "id": "hair-03",
+      "name": "粒子系统.002",
+      "kind": "CURVES",
+      "assetKey": "actionTheaterLionHair03",
+      "path": "assets/models/lion-action-theater-lion-hair-03.bin.gz",
+      "strands": 40000,
+      "pointsPerStrand": 5,
+      "bytes": 2135587,
+      "rawBytes": 3200000,
+      "sha256": "d6b3ed87a5ca0d1ab682f2219330f9e64f48f05bf209ffad61b5e4db833cd3a0",
+      "rawSha256": "9c614eb69a0c89cddf545862f647edfb1ef42e448538ae7167b552006041bfee",
+      "hasRootUV": false,
+      "displayMode": "STRAND",
+      "interpolation": "CATMULL_ROM",
+      "segmentsPerSourceSegment": 12,
+      "bounds": {
+        "min": [
+          -0.567084014415741,
+          0.901172399520874,
+          1.4521156549453735
+        ],
+        "max": [
+          0.5905723571777344,
+          1.451442837715149,
+          2.0509650707244873
+        ]
+      },
+      "material": {
+        "name": "Blender_Default",
+        "color": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": false
+      }
+    },
+    {
+      "id": "hair-04",
+      "name": "Lion_Ear_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair04",
+      "path": "assets/models/lion-action-theater-lion-hair-04.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5001163,
+      "rawBytes": 7600000,
+      "sha256": "2ab501902a0c9a5af751dcf4815e5c4e12b2ee47c3b7fa6e98764abdb9040301",
+      "rawSha256": "406a6d16b644f12c8d286b1bfdfc0a3be43c4e7f19b5a567a5053de146aaec33",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.4524475336074829,
+          2.5179052352905273,
+          0.9385309815406799
+        ],
+        "max": [
+          0.8338812589645386,
+          2.880084991455078,
+          1.3830682039260864
+        ]
+      },
+      "material": {
+        "name": "HighDetail_Head_Atlas_PBR.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-05",
+      "name": "Lion_Ear_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair05",
+      "path": "assets/models/lion-action-theater-lion-hair-05.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 4996227,
+      "rawBytes": 7600000,
+      "sha256": "7684f65edecd09134632fe7804d7b4c6bfbeb56949b17e9ff66ea1ca760b3394",
+      "rawSha256": "61e8558c9bad6ed71c9c41165704588a44da682dd56964349b26fc63d6fe4213",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.8345159292221069,
+          2.516533613204956,
+          0.9146043658256531
+        ],
+        "max": [
+          -0.4631701409816742,
+          2.878048896789551,
+          1.3565282821655273
+        ]
+      },
+      "material": {
+        "name": "HighDetail_Head_Atlas_PBR.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-06",
+      "name": "Lion_Hindpaw_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair06",
+      "path": "assets/models/lion-action-theater-lion-hair-06.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5121032,
+      "rawBytes": 7600000,
+      "sha256": "6d0ea1774c206edda97a75a674cb06a860e1a8d31489e3850d1ade9a2e7cd126",
+      "rawSha256": "70321cfbde8266bae21185bb71ae682f48e210725a8a18273fbc734335f6efd7",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.43596598505973816,
+          0.4416276812553406,
+          -1.7209795713424683
+        ],
+        "max": [
+          1.1108875274658203,
+          0.6788361668586731,
+          -0.9527905583381653
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-07",
+      "name": "Lion_Hindpaw_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair07",
+      "path": "assets/models/lion-action-theater-lion-hair-07.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5164154,
+      "rawBytes": 7600000,
+      "sha256": "79cdf6667f1ab6c794dcf97fd05be992491c938a3c8d1a799a73cacbee9b1986",
+      "rawSha256": "26f5c602ce7474f00e4d5823459a55745a937be2b1378f6523504ba9d2cc7680",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.229196548461914,
+          0.4189217686653137,
+          -1.5356050729751587
+        ],
+        "max": [
+          -0.6012563109397888,
+          0.6760333180427551,
+          -0.8941518664360046
+        ]
+      },
+      "material": {
+        "name": "Head_Ivory_Fringe_Base",
+        "color": [
+          0.7400000095367432,
+          0.7200000286102295,
+          0.6800000071525574
+        ],
+        "roughness": 0.8600000143051147,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-08",
+      "name": "Lion_Foreleg_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair08",
+      "path": "assets/models/lion-action-theater-lion-hair-08.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5084593,
+      "rawBytes": 7600000,
+      "sha256": "a30ee0a8b7d0400b423d4a00c7639f1951f6c868ee0bd30b1591c9cad47c7c45",
+      "rawSha256": "166e0b2361edca8418c110ed8d8899df524dc122dc3eea9c855287b34ffff741",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.9943374991416931,
+          0.6102188229560852,
+          1.220623254776001
+        ],
+        "max": [
+          -0.47128576040267944,
+          0.7151890993118286,
+          1.4719271659851074
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-09",
+      "name": "Lion_Brow_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair09",
+      "path": "assets/models/lion-action-theater-lion-hair-09.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5239487,
+      "rawBytes": 7600000,
+      "sha256": "51f05c3d0989c3fa431b8292b17f99e75d71651ffe7beeb2f3da1a4a1d3f9b4c",
+      "rawSha256": "680fbae03a1570aece8cc018dd9a6348b6f3f8456cea4f7282851a717813ba46",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.7092668414115906,
+          2.0924136638641357,
+          1.4747467041015625
+        ],
+        "max": [
+          -0.09088997542858124,
+          2.8292696475982666,
+          2.0696969032287598
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-10",
+      "name": "Lion_Brow_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair10",
+      "path": "assets/models/lion-action-theater-lion-hair-10.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5164613,
+      "rawBytes": 7600000,
+      "sha256": "a417150481857c387d71415fbdc9bc4ed51047f2b0191a014431dedfa86ebada",
+      "rawSha256": "b4391a9481c40e222f9f7ce25c539d1dbab7f71faf9ee6bab0456fa084f1912a",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.1269020289182663,
+          2.0987417697906494,
+          1.4764522314071655
+        ],
+        "max": [
+          0.7117301821708679,
+          2.833838939666748,
+          2.0730364322662354
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-11",
+      "name": "Lion_Nose.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair11",
+      "path": "assets/models/lion-action-theater-lion-hair-11.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7290319,
+      "rawBytes": 10640000,
+      "sha256": "9102f825cef81a6d00bea51ca31f116c02a775497312c842a83a3eb1fdb10027",
+      "rawSha256": "bb5f1f3ca788b1f5badc76829daea77986f42d02d74d8e5b02bdf86f0f2613a9",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.8632034659385681,
+          1.5865912437438965,
+          0.8397871851921082
+        ],
+        "max": [
+          0.7646028399467468,
+          3.054802894592285,
+          2.1444082260131836
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-12",
+      "name": "Lion_Ear_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair12",
+      "path": "assets/models/lion-action-theater-lion-hair-12.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5179306,
+      "rawBytes": 7600000,
+      "sha256": "0884011f6f791991fc96c06b243480073abd4caa5c0a44c807fd61aa92190154",
+      "rawSha256": "df8a6652c520838c37c06755d03f4da7b9db630e238ee9bc16aeb219f483a9f4",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.4277365207672119,
+          2.388903856277466,
+          0.6601288914680481
+        ],
+        "max": [
+          0.9983858466148376,
+          3.0556416511535645,
+          1.534186840057373
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-13",
+      "name": "Lion_Ear_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair13",
+      "path": "assets/models/lion-action-theater-lion-hair-13.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5178894,
+      "rawBytes": 7600000,
+      "sha256": "38b3ac139e53049a5776fc58ea7d306167c4074029d0b400f93502a2623e90fb",
+      "rawSha256": "5980a2c4ecc65fadbf1a57892e44eb9cd6ab19cd0a8742e95dfcc2a992fd595d",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.9989457726478577,
+          2.3886771202087402,
+          0.657940149307251
+        ],
+        "max": [
+          -0.432020902633667,
+          3.056142807006836,
+          1.537752628326416
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-14",
+      "name": "Lion_Nose.001 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair14",
+      "path": "assets/models/lion-action-theater-lion-hair-14.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5076534,
+      "rawBytes": 7600000,
+      "sha256": "c111495d961f3a5b8e3f2b03b62bc48e6c8df4d03dd9f3446c84a87d5ae28c7a",
+      "rawSha256": "c3f14cb3389aaa04da3756809cdb8b90344db1e2f5a93cf501e0ced6e7904afa",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.7182088494300842,
+          1.2811075448989868,
+          0.5177592635154724
+        ],
+        "max": [
+          0.7123768925666809,
+          1.645676612854004,
+          1.4387422800064087
+        ]
+      },
+      "material": {
+        "name": "Head_Scarlet_Velvet_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-15",
+      "name": "Lion_Body_Red_Trim.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair15",
+      "path": "assets/models/lion-action-theater-lion-hair-15.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 16066876,
+      "rawBytes": 22800000,
+      "sha256": "bd3f8306ea421aa1e763b2847103361c44d2f301a4162b94bf89e2f3e5b8ecd1",
+      "rawSha256": "0e7ed9968db5de80512336378567197edb632293194d1244b242910fe931e254",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.8434614539146423,
+          1.2239943742752075,
+          -1.4548306465148926
+        ],
+        "max": [
+          0.8450070023536682,
+          2.5137691497802734,
+          0.7430474162101746
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-16",
+      "name": "Lion_Foreleg_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair16",
+      "path": "assets/models/lion-action-theater-lion-hair-16.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7365772,
+      "rawBytes": 10640000,
+      "sha256": "3d8e10f17ae9b9d20aa0fec979cebd551c3ea3b6137ecbf1c6fa852d25894388",
+      "rawSha256": "8199c33a5c1af7da83aa64945d07d3a8ef29970b8d34f2d917a6fcec276379e9",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.1080644130706787,
+          0.5954016447067261,
+          0.5171046853065491
+        ],
+        "max": [
+          -0.38021495938301086,
+          1.5772652626037598,
+          1.3702479600906372
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-17",
+      "name": "Lion_Foreleg_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair17",
+      "path": "assets/models/lion-action-theater-lion-hair-17.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7260192,
+      "rawBytes": 10640000,
+      "sha256": "985c335980b13c438439158ebfc0f943a4339e0dd10bc5a57a192b66d6e1eda3",
+      "rawSha256": "2023eb1fff9abf8cf00ca0570980cfe1cb1d855bb1f271a361c0df1e0ff17d8c",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.3816819190979004,
+          0.6107263565063477,
+          0.5296749472618103
+        ],
+        "max": [
+          1.1077923774719238,
+          1.5778872966766357,
+          1.3700973987579346
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-18",
+      "name": "Lion_Hindleg_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair18",
+      "path": "assets/models/lion-action-theater-lion-hair-18.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7245035,
+      "rawBytes": 10640000,
+      "sha256": "7f9cb651a8ef5f55206658fc0424871c1213f9bb13b233886d41ae2dae44f1a3",
+      "rawSha256": "705392fddcbebdd98e4ef6c8cb0f672c4bcbf6e452728c6ba6654335928917cd",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.3465566635131836,
+          0.6015962958335876,
+          -1.7024085521697998
+        ],
+        "max": [
+          1.14017653465271,
+          1.535010576248169,
+          -0.7058396935462952
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-19",
+      "name": "Lion_Hindleg_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair19",
+      "path": "assets/models/lion-action-theater-lion-hair-19.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7332458,
+      "rawBytes": 10640000,
+      "sha256": "8c732bd44b009d9533ed1a049b2f33c3e83234a4b5e942f2f6af8aa70d58ac61",
+      "rawSha256": "dbfdf699d31e71e81d9970cb4829185e6ad43afed23626309fddf05d18778269",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.1424715518951416,
+          0.6077436804771423,
+          -1.6966917514801025
+        ],
+        "max": [
+          -0.35342201590538025,
+          1.4521442651748657,
+          -0.7072535753250122
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-20",
+      "name": "Lion_Body.001 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair20",
+      "path": "assets/models/lion-action-theater-lion-hair-20.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 16013208,
+      "rawBytes": 22800000,
+      "sha256": "1c631ebdff1bc0fc9c967bf00919f88eb531a4f8575e769650887b3cd3b4b7dd",
+      "rawSha256": "cfd2092c9a2ea29f23397e3f3f045495498d06426f803a67a99e436e66235983",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.9583966732025146,
+          0.6135852336883545,
+          -1.6149662733078003
+        ],
+        "max": [
+          0.9573563933372498,
+          2.463435173034668,
+          1.5926960706710815
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-21",
+      "name": "Lion_Tail.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair21",
+      "path": "assets/models/lion-action-theater-lion-hair-21.bin.gz",
+      "strands": 70000,
+      "pointsPerStrand": 9,
+      "bytes": 7245618,
+      "rawBytes": 10640000,
+      "sha256": "c3265f16e1bf7e3640e43d08e6c7a3964bc0e881ba4d89d89d2a3460e357316e",
+      "rawSha256": "8541c759a06e89315d3161b979ab84630a71988b721dedc9e1f9c3091ffb7775",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.6088013052940369,
+          1.089783787727356,
+          -1.6250531673431396
+        ],
+        "max": [
+          0.6000820994377136,
+          2.512890338897705,
+          -1.3563731908798218
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-22",
+      "name": "Lion_Forepaw_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair22",
+      "path": "assets/models/lion-action-theater-lion-hair-22.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15568740,
+      "rawBytes": 22800000,
+      "sha256": "5dc2999fb3d3783f4008cbeeeb1f615053628f358d7656c935467ac5745fa1f8",
+      "rawSha256": "05a70b2974fb1bff7ee9720799aa54c3acc56a160a261774e316a1a58b71a893",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.1136466264724731,
+          0.4254188537597656,
+          0.6131768822669983
+        ],
+        "max": [
+          -0.3872806131839752,
+          0.6797196269035339,
+          1.378487467765808
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-23",
+      "name": "Lion_Body.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair23",
+      "path": "assets/models/lion-action-theater-lion-hair-23.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5238915,
+      "rawBytes": 7600000,
+      "sha256": "e70c4d6a81aa9b1226710cd5316486b5823ed38d853a8f5a41826ce683a32251",
+      "rawSha256": "75315bc6938e54a36449d9bd9a461dc1da8e81c30f38275b1a5da91da69b7855",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.4531501233577728,
+          0.6138243079185486,
+          0.4718532860279083
+        ],
+        "max": [
+          0.7924805283546448,
+          0.9692867398262024,
+          1.2050856351852417
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-24",
+      "name": "Lion_Forepaw_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair24",
+      "path": "assets/models/lion-action-theater-lion-hair-24.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15421408,
+      "rawBytes": 22800000,
+      "sha256": "870d960967ad4974dd2f7a374256b9a273e0690f3afba8fd5c701918e2b4c5a5",
+      "rawSha256": "0a0cf382eb79c43550485659d0b0765004351945ef50ce76645ba4c041b3a9db",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.38493603467941284,
+          0.42567598819732666,
+          0.7893975377082825
+        ],
+        "max": [
+          1.1134644746780396,
+          0.676344096660614,
+          1.2498055696487427
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-25",
+      "name": "Lion_Hindpaw_L.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair25",
+      "path": "assets/models/lion-action-theater-lion-hair-25.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5099673,
+      "rawBytes": 7600000,
+      "sha256": "1882d513fbd7ddd35c2c97abf52cfc30a9e0de69066eefdc7b4f88f9b5f35bc5",
+      "rawSha256": "61761ad4bf2f62cbea005a07e4f7029ed91d7c8e4d6b483b8f462c8c21038071",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.7007158398628235,
+          0.418224960565567,
+          -1.567667007446289
+        ],
+        "max": [
+          1.2292816638946533,
+          0.6735408902168274,
+          -0.8968249559402466
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-26",
+      "name": "Lion_Hindleg_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair26",
+      "path": "assets/models/lion-action-theater-lion-hair-26.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5027271,
+      "rawBytes": 7600000,
+      "sha256": "e9e89da19849332a0992fcd105ec677f090296051f840a568bdc538e70253651",
+      "rawSha256": "cdb231c8647f314383ddd2c72965d8b644b909f425e2e6ae4b4bed272981ceb7",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.8254154324531555,
+          0.6070122122764587,
+          -1.3471494913101196
+        ],
+        "max": [
+          1.1852418184280396,
+          0.71403568983078,
+          -0.9548877477645874
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-27",
+      "name": "Lion_Body.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair27",
+      "path": "assets/models/lion-action-theater-lion-hair-27.bin.gz",
+      "strands": 150000,
+      "pointsPerStrand": 9,
+      "bytes": 15309848,
+      "rawBytes": 22800000,
+      "sha256": "7f00b7eb6d6f1fc356bfd11275193b346592b58cc5877801653c431d4e6fb16b",
+      "rawSha256": "c90baabc6e1e0aef9dbdae9716a63aa7a993dae2069011f24a9e4437847a7ed5",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.3363962173461914,
+          0.6481184363365173,
+          0.4310365319252014
+        ],
+        "max": [
+          0.6587348580360413,
+          0.949815034866333,
+          1.202917456626892
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-28",
+      "name": "Lion_Hindpaw_R.002 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair28",
+      "path": "assets/models/lion-action-theater-lion-hair-28.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5215580,
+      "rawBytes": 7600000,
+      "sha256": "4017d2333a98dd9ca34fa7bb3493a9fa20939ec8037224626d4f3674538dcfaa",
+      "rawSha256": "07df040b88b6fc067900ca02b92f5cb2be95dd8feab007a9340d3cd425dc0247",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.1311222314834595,
+          0.42214199900627136,
+          -1.7186696529388428
+        ],
+        "max": [
+          -0.43791821599006653,
+          0.6762649416923523,
+          -0.9551604390144348
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base.001",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-29",
+      "name": "Lion_Hindleg_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair29",
+      "path": "assets/models/lion-action-theater-lion-hair-29.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5092091,
+      "rawBytes": 7600000,
+      "sha256": "466cd1e9089b26b2674bf375c6f99fc4921ac7f5cb18d3f6895bbbabeb77ff20",
+      "rawSha256": "4706993d285d6f2a9065151ec6afc79cfed70744978eacb8411c4502c895a8b9",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.1842423677444458,
+          0.6005083322525024,
+          -1.3586863279342651
+        ],
+        "max": [
+          -0.8355075120925903,
+          0.7138364911079407,
+          -0.9386105537414551
+        ]
+      },
+      "material": {
+        "name": "Fiber_Warm_Ivory",
+        "color": [
+          1.0,
+          0.9735051989555359,
+          0.9072781801223755
+        ],
+        "roughness": 0.7200000286102295,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-30",
+      "name": "Lion_Forepaw_R.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair30",
+      "path": "assets/models/lion-action-theater-lion-hair-30.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5188223,
+      "rawBytes": 7600000,
+      "sha256": "8142eea5176c68a45d7b5db71be25b714a1e42d0d104c1320b8f785d25d929c6",
+      "rawSha256": "b688e4990b9d4784345b0a4891b31ea6a9f62835539a981b10d69c30b03fae2f",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -1.0744317770004272,
+          0.4114988148212433,
+          1.0399067401885986
+        ],
+        "max": [
+          -0.4102644920349121,
+          0.6695648431777954,
+          1.5250108242034912
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-31",
+      "name": "Lion_Forepaw_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair31",
+      "path": "assets/models/lion-action-theater-lion-hair-31.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5133420,
+      "rawBytes": 7600000,
+      "sha256": "019bf628112f6fbd49bf2b7e7db3e0de55dba36c876f3a5bf3ccf55fe43cb3e9",
+      "rawSha256": "125eec6b97f89922bf0819b4ca72f47891cb25db051a7057f1e3fa91506ffc39",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.40901869535446167,
+          0.4210658669471741,
+          0.8133426308631897
+        ],
+        "max": [
+          1.0739984512329102,
+          0.6691753268241882,
+          1.524192214012146
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-32",
+      "name": "Lion_Foreleg_L.003 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair32",
+      "path": "assets/models/lion-action-theater-lion-hair-32.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5048540,
+      "rawBytes": 7600000,
+      "sha256": "a69c68c397fb014762896323ce8c8ad1f80fa73dd23aca7c68bfb03683aa49fb",
+      "rawSha256": "d1fb192f93efd10a57f83b57f681c3424ccbb743306ca3c26aa17ba4b78e8e53",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          0.46250244975090027,
+          0.6057071685791016,
+          1.2181968688964844
+        ],
+        "max": [
+          0.9907791018486023,
+          0.7077762484550476,
+          1.4574590921401978
+        ]
+      },
+      "material": {
+        "name": "Lion_Atlas_PBR_Refined.001",
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roughness": 0.5,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    },
+    {
+      "id": "hair-33",
+      "name": "Lion_Body.004 / 粒子系统",
+      "kind": "PARTICLE_HAIR",
+      "assetKey": "actionTheaterLionHair33",
+      "path": "assets/models/lion-action-theater-lion-hair-33.bin.gz",
+      "strands": 50000,
+      "pointsPerStrand": 9,
+      "bytes": 5172053,
+      "rawBytes": 7600000,
+      "sha256": "455ddd6f0ce2754a6b235ac487525ef1b065608bf1e27a0fe6ab7974c6f359ad",
+      "rawSha256": "13579ea7b5ac2a0e8494e1299da285b48f30482a56f6287340b4800d1070312e",
+      "hasRootUV": true,
+      "displayMode": "STRAND",
+      "interpolation": "LINEAR",
+      "segmentsPerSourceSegment": 1,
+      "bounds": {
+        "min": [
+          -0.4405610263347626,
+          1.6851242780685425,
+          -1.4445596933364868
+        ],
+        "max": [
+          0.5030276775360107,
+          2.0939159393310547,
+          -0.9118158221244812
+        ]
+      },
+      "material": {
+        "name": "Velvet_Scarlet_Uniform_Base",
+        "color": [
+          0.20999999344348907,
+          0.0027000000700354576,
+          0.006000000052154064
+        ],
+        "roughness": 0.8799999952316284,
+        "metalness": 0.0,
+        "useSourceMaterial": true
+      }
+    }
+  ],
+  "totalStrands": 2295421,
+  "totalPoints": 19957105
+}

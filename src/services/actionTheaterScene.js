@@ -3,15 +3,12 @@ import {
   Box3,
   CanvasTexture,
   Color,
-  DirectionalLight,
-  HemisphereLight,
   Group,
   LinearFilter,
   MeshBasicMaterial,
   PCFSoftShadowMap,
   PerspectiveCamera,
   Scene,
-  SpotLight,
   SRGBColorSpace,
   Vector2,
   Vector3,
@@ -20,10 +17,9 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from './actionTheaterMath.js';
-import { createTheaterArchitecture } from './actionTheaterArchitecture.js';
-import { createTheaterReflection } from './actionTheaterReflection.js';
-import { createActionTheaterDrums } from './actionTheaterDrums.js';
+import { createActionTheaterWarmLighting } from './actionTheaterWarmLighting.js';
 import { media } from '../config/media.js';
 import { acquireFullLion } from './lionFullHair.js';
 import { createLionLightingControls } from './lionLightingSettings.js';
@@ -224,6 +220,9 @@ function makeScreenMaterial(texture, contain) {
 export function createActionTheater({
   container,
   modelUrl,
+  lionModelUrl = media.actionTheaterLionFull,
+  lionHairManifestUrl = media.actionTheaterLionHairManifest,
+  resolveLionAsset = key => media[key],
   screenDefinitions,
   onActiveScreen = () => {},
   onReady = () => {},
@@ -254,9 +253,10 @@ export function createActionTheater({
   let currentLightingSettings = lightingSettings;
   let lionRoot;
   let fullLion;
-  let architecture;
-  let reflection;
-  let drums;
+  let roomRoot;
+  let stageSurface;
+  let sourceSceneMetadata;
+  let warmLighting;
   let animationFrame = 0;
   let loadTimeout = 0;
   let disposed = false;
@@ -280,14 +280,17 @@ export function createActionTheater({
   let sampleFrames = 0;
   let sampleTime = 0;
   const composition = () => {
-    if (!architecture || !lionRoot) return null;
+    if (!stageSurface || !lionRoot) return null;
     const lionBox = new Box3().setFromObject(lionRoot);
-    const stageBox = new Box3().setFromObject(architecture.stageTopMesh);
+    const stageBox = new Box3().setFromObject(stageSurface);
     const nodes = [];
-    architecture.root.traverse(object => { if (object.isMesh) nodes.push(object); });
+    roomRoot.traverse(object => { if (object.isMesh) nodes.push(object); });
+    const stageSize = stageBox.getSize(new Vector3());
+    const stageRadius = Math.max(stageSize.x, stageSize.z) / 2;
+    const stageMaterial = (Array.isArray(stageSurface.material) ? stageSurface.material : [stageSurface.material]).find(Boolean);
     return {
       lion: { ...projectedBounds(lionRoot, camera), worldMinY: lionBox.min.y, worldHeight: lionBox.max.y - lionBox.min.y },
-      stage: { ...projectStage(), worldTopY: stageBox.max.y, radius: architecture.stageRadius },
+      stage: { ...projectStage(), worldTopY: stageBox.max.y, radius: stageRadius },
       screens: Object.fromEntries([...screenRecords].map(([id, { object }]) => {
         object.geometry.computeBoundingBox();
         const size = object.geometry.boundingBox.getSize(new Vector3()).multiply(object.scale).toArray().sort((a,b) => b-a);
@@ -298,32 +301,29 @@ export function createActionTheater({
         instancedDraws: nodes.filter(node => node.isInstancedMesh).length,
         instances: nodes.reduce((sum, node) => sum + (node.count ?? 1), 0),
         groups: Object.fromEntries(nodes.map(node => [node.name, node.count ?? 1])),
-        components: architecture.root.userData.componentCounts,
-        gridVisibleCount: activeScenes.reduce((sum, root) => { root.traverseVisible(node => { if (/Floor_Joint/.test(node.name)) sum += 1; }); return sum; }, 0),
-        stoneRoughness: architecture.materials.stone?.roughness,
+        components: {
+          sourceArchitectureMeshes: sourceSceneMetadata?.userData.webArchitectureMeshCount ?? 0,
+          sourceDrumSets: sourceSceneMetadata?.userData.webDrumSetCount ?? 0,
+          sourceDrumMeshes: sourceSceneMetadata?.userData.webDrumMeshCount ?? 0,
+        },
+        gridVisibleCount: nodes.filter(node => /Floor_Joint/.test(node.name)).length,
+        stoneRoughness: stageMaterial?.roughness,
       },
-      reflection: reflection?.diagnostics(),
-      lighting: { exposure: renderer.toneMappingExposure, lights: scene.children.filter(node => node.isLight).map(node => ({ type: node.type, name: node.name, color: `#${node.color.getHexString()}`, intensity: node.intensity, shadow: node.castShadow })) },
+      reflection: null,
+      lighting: {
+        exposure: renderer.toneMappingExposure,
+        source: warmLighting?.diagnostics,
+        lights: scene.children.flatMap(root => {
+          const result = [];
+          root.traverse(node => { if (node.isLight) result.push({ type: node.type, name: node.name, color: `#${node.color.getHexString()}`, intensity: node.intensity, shadow: node.castShadow }); });
+          return result;
+        }),
+      },
       quality: { pixelRatio: renderer.getPixelRatio(), reduced: qualityReduced, fov: camera.fov, width: frameWidth, height: frameHeight },
     };
   };
   const projectStage = () => {
-    const point = new Vector3();
-    const result = { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity };
-    // Both the actual instanced base and actual cylinder top contribute to the
-    // silhouette. A box's nonexistent front corners cannot stand in for a disc.
-    const add = value => {
-      point.copy(value).applyMatrix4(architecture.root.matrixWorld).project(camera);
-      result.left = Math.min(result.left, (point.x + 1) / 2);
-      result.right = Math.max(result.right, (point.x + 1) / 2);
-      result.top = Math.min(result.top, (1 - point.y) / 2);
-      result.bottom = Math.max(result.bottom, (1 - point.y) / 2);
-    };
-    architecture.stageBoundsPoints.forEach(add);
-    const top = projectedBounds(architecture.stageTopMesh, camera, { vertices: true });
-    result.left = Math.min(result.left, top.left); result.right = Math.max(result.right, top.right);
-    result.top = Math.min(result.top, top.top); result.bottom = Math.max(result.bottom, top.bottom);
-    return { ...result, inFront: true, visible: true, widthRatio: result.right - result.left, heightRatio: result.bottom - result.top };
+    return projectedBounds(stageSurface, camera, { vertices: true });
   };
 
   const canRender = () => !disposed && !failed && ready && visible && !document.hidden;
@@ -503,8 +503,8 @@ export function createActionTheater({
         if (sampleFrames >= 180) {
           if (sampleTime / sampleFrames > 1 / 35) {
             qualityReduced = true;
-            reflection.reduceQuality();
-            scene.children.filter(light => light.castShadow).forEach(light => {
+            scene.traverse(light => {
+              if (!light.isLight || !light.castShadow) return;
               light.shadow.mapSize.set(512, 512);
               light.shadow.map?.dispose(); light.shadow.map = null;
             });
@@ -629,14 +629,13 @@ export function createActionTheater({
     controls?.removeEventListener('end', onControlEnd);
     controls?.dispose();
     lighting?.dispose();
-    drums?.dispose();
+    warmLighting?.dispose();
     screenRecords.forEach((record) => {
       record.removeVideoListeners?.();
       record.videoTexture?.dispose();
     });
     publishDiagnostics();
     const placeholders = [...screenRecords.values()].map((record) => record.placeholder);
-    reflection?.dispose();
     fullLion?.release();
     fullLion = null;
     releaseResources(activeScenes, replacedMaterials, placeholders);
@@ -671,7 +670,7 @@ export function createActionTheater({
       requestFrame();
     },
     retryHdri: () => lighting?.retry(),
-    retryDrums: () => drums?.retry(),
+    retryDrums: () => Promise.resolve(),
     setVideo,
     setVisible(value) {
       if (disposed || visible === Boolean(value)) return;
@@ -737,63 +736,9 @@ export function createActionTheater({
       document.addEventListener('fullscreenchange', resize);
       resize();
 
-      scene.add(new HemisphereLight(0xfff4e8, 0x665a50, 0.35));
-      const key = new DirectionalLight(0xffedda, 2.2);
-      key.name = 'Theater_Warm_Front_Key';
-      key.position.set(2.5, 7.5, 5.5);
-      key.target.position.set(0, 1.7, 0);
-      key.castShadow = true;
-      key.shadow.mapSize.set(1024, 1024);
-      key.shadow.camera.left = -3.5;
-      key.shadow.camera.right = 3.5;
-      key.shadow.camera.top = 3.5;
-      key.shadow.camera.bottom = -3.5;
-      key.shadow.camera.near = 1;
-      key.shadow.camera.far = 17;
-      key.shadow.bias = -0.00035;
-      key.shadow.normalBias = 0.025;
-      key.shadow.radius = 2;
-      scene.add(key, key.target);
-      const fill = new DirectionalLight(0xeaf2ff, 1);
-      fill.name = 'Theater_Neutral_Front_Fill';
-      fill.position.set(-4, 3, 5);
-      fill.target.position.set(0, 1.7, 0);
-      scene.add(fill, fill.target);
-      const rim = new DirectionalLight(0xffe9cd, 1.1);
-      rim.name = 'Theater_Soft_Contour';
-      rim.position.set(-3, 5, -4);
-      scene.add(rim);
-      const side = new DirectionalLight(0xffdfbb, 0.4);
-      side.name = 'Theater_Gold_Bounce';
-      side.position.set(-6, 5, 2);
-      scene.add(side);
-      for (const [x, z] of [[-7,-7],[7,-7],[7,7],[-7,7]]) {
-        const wash = new SpotLight(0xffb66d, 75, 19, Math.PI / 3.6, 0.7, 1.3);
-        wash.name = 'Theater_Architectural_Warm_Wash';
-        wash.position.set(x*.7, 6, z*.7);
-        wash.target.position.set(x*1.2, 8.8, z*1.2);
-        scene.add(wash, wash.target);
-      }
-
       lighting = createLionLightingControls({
         renderer, scene, signal: loadController.signal, settings: currentLightingSettings,
         onStatus: onLightingStatus, requestDraw: requestFrame,
-      });
-      drums = createActionTheaterDrums({
-        scene, signal: loadController.signal,
-        onReady: () => {
-          if (disposed) return;
-          renderer.domElement.dataset.drumState = 'ready';
-          renderer.domElement.dataset.drumCount = String(drums.stats.count ?? 4);
-          onDrumStatus('ready');
-          lighting.refresh();
-          requestFrame();
-        },
-        onError: () => {
-          if (disposed) return;
-          renderer.domElement.dataset.drumState = 'error';
-          onDrumStatus('error');
-        },
       });
       renderer.domElement.dataset.drumState = 'loading';
       loadTimeout = setTimeout(() => fail(new Error('巨幕厅载入超时，请检查网络后重新载入')), 60_000);
@@ -801,21 +746,29 @@ export function createActionTheater({
       if (!response.ok) throw new Error(`巨幕厅请求失败：HTTP ${response.status}`);
       const buffer = await response.arrayBuffer();
       if (disposed) return;
-      const gltf = await new GLTFLoader().parseAsync(buffer, new URL('.', new URL(modelUrl, window.location.href)).href);
+      const sceneLoader = new GLTFLoader();
+      sceneLoader.setMeshoptDecoder(MeshoptDecoder);
+      const gltf = await sceneLoader.parseAsync(buffer, new URL('.', new URL(modelUrl, window.location.href)).href);
       const parsedScenes = gltf.scenes?.length ? gltf.scenes : [gltf.scene];
       if (disposed) { releaseResources(parsedScenes); return; }
       activeScenes.push(...parsedScenes);
       const room = gltf.scene;
+      roomRoot = room;
       scene.add(room);
       lionRoot = room.getObjectByName('Lion_RotationRoot');
       if (!lionRoot) throw new Error('巨幕厅缺少醒狮整体旋转节点');
+      stageSurface = room.getObjectByName('Theater_Stage_Polished_Stone_Top');
+      if (!stageSurface?.isMesh) throw new Error('暖金展厅缺少舞台石面');
+      sourceSceneMetadata = room.getObjectByName('Theater_Scene_Metadata');
+      if (!sourceSceneMetadata) throw new Error('暖金展厅缺少场景清单');
       room.updateMatrixWorld(true);
-      const previousLionBox = new Box3().setFromObject(lionRoot);
-      const previousLionHeight = previousLionBox.max.y - previousLionBox.min.y;
+      const targetLionHeight = Number(lionRoot.userData.webLionHeight);
+      if (!Number.isFinite(targetLionHeight) || targetLionHeight <= 0) throw new Error('暖金展厅没有可用的醒狮尺寸');
+      const stageBox = new Box3().setFromObject(stageSurface);
       const loadedLion = await acquireFullLion({
-        modelUrl: media.model,
-        manifestUrl: media.modelHair,
-        resolveAsset: key => media[key],
+        modelUrl: lionModelUrl,
+        manifestUrl: lionHairManifestUrl,
+        resolveAsset: resolveLionAsset,
         signal: loadController.signal,
       });
       if (disposed) { loadedLion.release(); return; }
@@ -830,20 +783,16 @@ export function createActionTheater({
       fullLion.root.position.sub(new Vector3(replacementCenter.x, replacementBox.min.y, replacementCenter.z));
       const lionMount = new Group();
       lionMount.name = 'Lion_Full_Source_Mount';
-      lionMount.scale.setScalar(previousLionHeight / replacementHeight);
+      lionMount.scale.setScalar(targetLionHeight / replacementHeight);
       lionMount.add(fullLion.root);
       lionRoot.add(lionMount);
-      lionRoot.userData.fullSourceModel = media.model;
-      lionRoot.userData.fullSourceHair = media.modelHair;
-      // The room's screen geometry and UVs stay intact. Its historical embedded
-      // lion is replaced by the same complete mesh/strand asset as structure.
-      const screenNames = new Set(screenDefinitions.map(item => item.objectName));
+      lionRoot.userData.fullSourceModel = lionModelUrl;
+      lionRoot.userData.fullSourceHair = lionHairManifestUrl;
       room.traverse((object) => {
         if (!object.isMesh && !object.userData.fullHair) return;
         let parent = object;
         let isLion = false;
         while (parent) { if (parent === lionRoot) { isLion = true; break; } parent = parent.parent; }
-        if (!isLion && !screenNames.has(object.name) && !object.name.startsWith('Room_')) object.visible = false;
         object.castShadow = isLion && !object.userData.fullHair;
         object.receiveShadow = !isLion;
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => {
@@ -854,21 +803,13 @@ export function createActionTheater({
           if (material.name === 'Floor_Polished_BrownBlack_Stone') material.color.setRGB(0.034, 0.019, 0.014);
         });
       });
-      architecture = createTheaterArchitecture({ stageRadius: 4.7 });
-      scene.add(architecture.root);
-      activeScenes.push(architecture.root);
-      lionRoot.scale.multiplyScalar(1.3);
+      warmLighting = createActionTheaterWarmLighting({ scene, roomRoot: room });
       room.updateMatrixWorld(true);
       const lionBox = new Box3().setFromObject(lionRoot);
-      lionRoot.position.y += architecture.stageTop - lionBox.min.y;
-      reflection = createTheaterReflection({ size: frameWidth < 1100 ? 512 : 768, floorY: .014 });
-      scene.add(reflection.object);
-      activeScenes.push(reflection.object);
+      lionRoot.position.y += stageBox.max.y - lionBox.min.y;
       for (const definition of screenDefinitions) {
         const object = room.getObjectByName(definition.objectName);
         if (!object?.isMesh) throw new Error(`巨幕厅缺少显示面：${definition.objectName}`);
-        object.scale.multiplyScalar(.9);
-        object.position.y = 4.85;
         const anchor = room.getObjectByName(definition.anchorName ?? definition.objectName.replace('Screen_', 'UI_Anchor_'));
         if (!anchor) throw new Error(`巨幕厅缺少解说锚点：${definition.id}`);
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => replacedMaterials.add(material));
@@ -885,6 +826,10 @@ export function createActionTheater({
       }
       pendingVideos.clear();
       room.updateMatrixWorld(true);
+      const drumCount = sourceSceneMetadata.userData.webDrumSetCount ?? 4;
+      renderer.domElement.dataset.drumState = 'ready';
+      renderer.domElement.dataset.drumCount = String(drumCount);
+      onDrumStatus('ready');
       lighting.refresh();
       await lighting.ready.catch(error => { if (error.name === 'AbortError' && loadController.signal.aborted) throw error; });
       if (disposed) return;

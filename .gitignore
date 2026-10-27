@@ -7,6 +7,7 @@ tmp/
 # Byte-identical user Blender sources (over GitHub's ordinary-file limit); runtime exports are tracked.
 source/models/user-lion-2026-10-20.blend
 source/models/lion-kobi-2026-10-26.blend
+source/models/action-theater-warm-gold-2026-10-27.blend
 
 # Local/editor noise
 .DS_Store

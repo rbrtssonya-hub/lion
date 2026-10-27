@@ -2583,10 +2583,10 @@
       "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76"
     },
     {
-      "from": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "from": "Blender 5.1.2 scene export; Meshopt optimized with @gltf-transform/cli 4.2.1",
       "path": "source/public/assets/models/lion-action-theater.glb",
-      "bytes": 31826708,
-      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+      "bytes": 52940156,
+      "sha256": "0240b2c8420247ed8925ffee26625ab3e1d5057cb76e9571e24a2d7556eb3c35"
     },
     {
       "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/探青采青.mp4",
@@ -5427,6 +5427,247 @@
       "path": "source/reviews/craft-mini-games/2026-10-26/game-rhythm-1920x1080.png",
       "bytes": 1134039,
       "sha256": "e939e423b692de596f9f684a9e721d45515a42d21f2be0956a8420c15ac42426"
+    },
+    {
+      "from": "user supplied 南风有狮_暖金灯光优化.blend; byte-identical local archive, localOnly because it exceeds GitHub per-file limit",
+      "path": "source/models/action-theater-warm-gold-2026-10-27.blend",
+      "bytes": 186110536,
+      "sha256": "14d119ac20d0245d51e5a62c60721a1e74f71a850c0f3b72ada4c784e8a6a278",
+      "localOnly": true
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-full.glb",
+      "bytes": 81310988,
+      "sha256": "fd7da351f6029a1962cf710d5bcfdd76860d73cb49161fd1b5c38cfa02137088"
+    },
+    {
+      "from": "warm-gold action theater source/export/lighting audit, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair.json",
+      "bytes": 39205,
+      "sha256": "17bde2a9987b6442fe42bb7e13a95d5e3d6f2a77e467846904fc31b24aa6b151"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-01.bin.gz",
+      "bytes": 5424166,
+      "sha256": "b98c4e33f199ba99084ced1f0bd2ef3d7e63538478b7842e2be75e88ae7cfe3f"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-02.bin.gz",
+      "bytes": 1898535,
+      "sha256": "052709791c9e68cb405dd5b9cb815ccb0c4ed271fc3c9c0a80612df509dfa1db"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-03.bin.gz",
+      "bytes": 2135587,
+      "sha256": "d6b3ed87a5ca0d1ab682f2219330f9e64f48f05bf209ffad61b5e4db833cd3a0"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-04.bin.gz",
+      "bytes": 5001163,
+      "sha256": "2ab501902a0c9a5af751dcf4815e5c4e12b2ee47c3b7fa6e98764abdb9040301"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-05.bin.gz",
+      "bytes": 4996227,
+      "sha256": "7684f65edecd09134632fe7804d7b4c6bfbeb56949b17e9ff66ea1ca760b3394"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-06.bin.gz",
+      "bytes": 5121032,
+      "sha256": "6d0ea1774c206edda97a75a674cb06a860e1a8d31489e3850d1ade9a2e7cd126"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-07.bin.gz",
+      "bytes": 5164154,
+      "sha256": "79cdf6667f1ab6c794dcf97fd05be992491c938a3c8d1a799a73cacbee9b1986"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-08.bin.gz",
+      "bytes": 5084593,
+      "sha256": "a30ee0a8b7d0400b423d4a00c7639f1951f6c868ee0bd30b1591c9cad47c7c45"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-09.bin.gz",
+      "bytes": 5239487,
+      "sha256": "51f05c3d0989c3fa431b8292b17f99e75d71651ffe7beeb2f3da1a4a1d3f9b4c"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-10.bin.gz",
+      "bytes": 5164613,
+      "sha256": "a417150481857c387d71415fbdc9bc4ed51047f2b0191a014431dedfa86ebada"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-11.bin.gz",
+      "bytes": 7290319,
+      "sha256": "9102f825cef81a6d00bea51ca31f116c02a775497312c842a83a3eb1fdb10027"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-12.bin.gz",
+      "bytes": 5179306,
+      "sha256": "0884011f6f791991fc96c06b243480073abd4caa5c0a44c807fd61aa92190154"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-13.bin.gz",
+      "bytes": 5178894,
+      "sha256": "38b3ac139e53049a5776fc58ea7d306167c4074029d0b400f93502a2623e90fb"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-14.bin.gz",
+      "bytes": 5076534,
+      "sha256": "c111495d961f3a5b8e3f2b03b62bc48e6c8df4d03dd9f3446c84a87d5ae28c7a"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-15.bin.gz",
+      "bytes": 16066876,
+      "sha256": "bd3f8306ea421aa1e763b2847103361c44d2f301a4162b94bf89e2f3e5b8ecd1"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-16.bin.gz",
+      "bytes": 7365772,
+      "sha256": "3d8e10f17ae9b9d20aa0fec979cebd551c3ea3b6137ecbf1c6fa852d25894388"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-17.bin.gz",
+      "bytes": 7260192,
+      "sha256": "985c335980b13c438439158ebfc0f943a4339e0dd10bc5a57a192b66d6e1eda3"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-18.bin.gz",
+      "bytes": 7245035,
+      "sha256": "7f9cb651a8ef5f55206658fc0424871c1213f9bb13b233886d41ae2dae44f1a3"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-19.bin.gz",
+      "bytes": 7332458,
+      "sha256": "8c732bd44b009d9533ed1a049b2f33c3e83234a4b5e942f2f6af8aa70d58ac61"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-20.bin.gz",
+      "bytes": 16013208,
+      "sha256": "1c631ebdff1bc0fc9c967bf00919f88eb531a4f8575e769650887b3cd3b4b7dd"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-21.bin.gz",
+      "bytes": 7245618,
+      "sha256": "c3265f16e1bf7e3640e43d08e6c7a3964bc0e881ba4d89d89d2a3460e357316e"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-22.bin.gz",
+      "bytes": 15568740,
+      "sha256": "5dc2999fb3d3783f4008cbeeeb1f615053628f358d7656c935467ac5745fa1f8"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-23.bin.gz",
+      "bytes": 5238915,
+      "sha256": "e70c4d6a81aa9b1226710cd5316486b5823ed38d853a8f5a41826ce683a32251"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-24.bin.gz",
+      "bytes": 15421408,
+      "sha256": "870d960967ad4974dd2f7a374256b9a273e0690f3afba8fd5c701918e2b4c5a5"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-25.bin.gz",
+      "bytes": 5099673,
+      "sha256": "1882d513fbd7ddd35c2c97abf52cfc30a9e0de69066eefdc7b4f88f9b5f35bc5"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-26.bin.gz",
+      "bytes": 5027271,
+      "sha256": "e9e89da19849332a0992fcd105ec677f090296051f840a568bdc538e70253651"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-27.bin.gz",
+      "bytes": 15309848,
+      "sha256": "7f00b7eb6d6f1fc356bfd11275193b346592b58cc5877801653c431d4e6fb16b"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-28.bin.gz",
+      "bytes": 5215580,
+      "sha256": "4017d2333a98dd9ca34fa7bb3493a9fa20939ec8037224626d4f3674538dcfaa"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-29.bin.gz",
+      "bytes": 5092091,
+      "sha256": "466cd1e9089b26b2674bf375c6f99fc4921ac7f5cb18d3f6895bbbabeb77ff20"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-30.bin.gz",
+      "bytes": 5188223,
+      "sha256": "8142eea5176c68a45d7b5db71be25b714a1e42d0d104c1320b8f785d25d929c6"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-31.bin.gz",
+      "bytes": 5133420,
+      "sha256": "019bf628112f6fbd49bf2b7e7db3e0de55dba36c876f3a5bf3ccf55fe43cb3e9"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-32.bin.gz",
+      "bytes": 5048540,
+      "sha256": "a69c68c397fb014762896323ce8c8ad1f80fa73dd23aca7c68bfb03683aa49fb"
+    },
+    {
+      "from": "user supplied warm-gold Blender scene; action-only full lion/hair export via scripts/export_full_lion.py, 2026-10-27",
+      "path": "source/public/assets/models/lion-action-theater-lion-hair-33.bin.gz",
+      "bytes": 5172053,
+      "sha256": "455ddd6f0ce2754a6b235ac487525ef1b065608bf1e27a0fe6ab7974c6f359ad"
+    },
+    {
+      "from": "warm-gold action theater source/export/lighting audit, 2026-10-27",
+      "path": "source/references/2026-10-27-action-theater-warm-gold.json",
+      "bytes": 2811,
+      "sha256": "c359511750bfcd645d84f02179ca6b7e099da9cf80ef047900952b09c8991e10"
+    },
+    {
+      "from": "warm-gold action theater source/export/lighting audit, 2026-10-27",
+      "path": "source/references/2026-10-27-action-theater-warm-gold-lights.json",
+      "bytes": 10273,
+      "sha256": "7bd058262964c09b6ea59935b48f4f1e84ba378179cb6b745845ae16469e2573"
+    },
+    {
+      "from": "warm-gold action theater source/export/lighting audit, 2026-10-27",
+      "path": "source/references/action-theater-warm-gold-lion-2026-10-27.json",
+      "bytes": 153645,
+      "sha256": "7bb6435b2640c3c3d4b8661815d961a2b4e97d6844b86a47d847452db9dbd151"
+    },
+    {
+      "from": "Chromium desktop browser review of the warm-gold action theater, 2026-10-27",
+      "path": "source/reviews/action-theater/2026-10-27-warm-gold/action-theater-initial-three-screens-1920.png",
+      "bytes": 2298424,
+      "sha256": "9cde4592cbb9e152351005a6ec0b08aaf21c84915636a9e929f75f582a969359"
     }
   ]
 }

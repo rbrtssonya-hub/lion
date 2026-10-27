@@ -60,6 +60,12 @@ export const assetPaths = {
   actionSettlePoster: 'assets/action/action-settle-poster.png',
   actionTheaterScene: 'assets/models/lion-action-theater.glb',
   actionTheaterDrum: 'assets/models/lion-action-drum.glb',
+  actionTheaterLionFull: 'assets/models/lion-action-theater-lion-full.glb',
+  actionTheaterLionHairManifest: 'assets/models/lion-action-theater-lion-hair.json',
+  ...Object.fromEntries(Array.from({ length: 33 }, (_, index) => {
+    const number = String(index + 1).padStart(2, '0');
+    return [`actionTheaterLionHair${number}`, `assets/models/lion-action-theater-lion-hair-${number}.bin.gz`];
+  })),
   actionTanqingVideo: 'assets/action/videos/tanqing.mp4',
   actionDoumaoVideo: 'assets/action/videos/doumao.mp4',
   actionTuqiuVideo: 'assets/action/videos/tuqiu.mp4',

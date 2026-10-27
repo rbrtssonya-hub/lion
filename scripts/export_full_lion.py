@@ -3,6 +3,7 @@
 Run with Blender 5.1+ --background --factory-startup --python-exit-code 1
 --python scripts/export_full_lion.py -- --input <source.blend>.
 An alternate byte-identical source archive can be set with --archive <project-path>.
+Optional collection and output arguments support chapter-specific model exports.
 Never saves a Blender file. The byte-identical local source archive is ignored
 by Git because it exceeds GitHub's ordinary-file limit.
 """
@@ -50,6 +51,14 @@ def main():
     parser.add_argument('--input', required=True)
     parser.add_argument('--archive', default='source/models/user-lion-2026-10-20.blend',
                         help='Project-relative path for the byte-identical local source archive')
+    parser.add_argument('--collection', default=None,
+                        help='Export only meshes, curves and particle hair from this collection')
+    parser.add_argument('--output-stem', default='lion-user',
+                        help='Output model/manifest/hair filename stem (without extension)')
+    parser.add_argument('--hair-key-prefix', default='lionHair',
+                        help='Runtime asset-key prefix used by the hair manifest')
+    parser.add_argument('--report', default='source/references/lion-structure-model.json',
+                        help='Repository-relative JSON audit report path')
     args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     if bpy.app.version < (5, 1, 0):
         raise RuntimeError('Use Blender 5.1+ to read this source without the older-version data-loss warning')
@@ -73,8 +82,25 @@ def main():
     bpy.ops.wm.open_mainfile(filepath=str(source), load_ui=False)
     bpy.context.view_layer.update()
     PUBLIC.mkdir(parents=True, exist_ok=True)
-    meshes = [o for o in bpy.context.scene.objects if o.type == 'MESH']
-    curves = [o for o in bpy.context.scene.objects if o.type == 'CURVES']
+    for value, label in ((args.output_stem, 'output stem'), (args.hair_key_prefix, 'hair key prefix')):
+        if not value or any(char not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_' for char in value):
+            raise RuntimeError(f'Invalid {label}: {value!r}')
+    report_path = Path(args.report)
+    if not report_path.is_absolute():
+        report_path = ROOT / report_path
+    report_path = report_path.resolve()
+    try:
+        report_path.relative_to(ROOT)
+    except ValueError as error:
+        raise RuntimeError('The audit report must stay inside the project root') from error
+    collection = bpy.data.collections.get(args.collection) if args.collection else None
+    if args.collection and collection is None:
+        raise RuntimeError(f'Source collection not found: {args.collection}')
+    source_objects = list(collection.all_objects) if collection else list(bpy.context.scene.objects)
+    meshes = [o for o in source_objects if o.type == 'MESH']
+    curves = [o for o in source_objects if o.type == 'CURVES']
+    if not meshes:
+        raise RuntimeError('The selected source contains no mesh objects')
 
     def mesh_fingerprint(obj):
         # Compare the authored arrays before and after every export operation.
@@ -124,10 +150,10 @@ def main():
             raw += np.asarray(uv, dtype='<f4').tobytes()
         compressed = gzip.compress(raw, compresslevel=6, mtime=0)
         number = len(manifest['groups']) + 1
-        filename = f'lion-user-hair-{number:02d}.bin.gz'
+        filename = f'{args.output_stem}-hair-{number:02d}.bin.gz'
         (PUBLIC / filename).write_bytes(compressed)
         radius = data[:,:,3].max(axis=1).max()
-        group = {'id':f'hair-{number:02d}','name':name,'kind':kind,'assetKey':f'lionHair{number:02d}','path':f'assets/models/{filename}','strands':count,'pointsPerStrand':points,'bytes':len(compressed),'rawBytes':len(raw),'sha256':sha(compressed),'rawSha256':sha(raw),'hasRootUV':uv is not None,'displayMode':'STRAND','interpolation':'CATMULL_ROM' if kind=='CURVES' else 'LINEAR','segmentsPerSourceSegment':12 if kind=='CURVES' else 1,'bounds':{'min':(positions.min(axis=(0,1))-radius).tolist(),'max':(positions.max(axis=(0,1))+radius).tolist()},'material':material_info(material)}
+        group = {'id':f'hair-{number:02d}','name':name,'kind':kind,'assetKey':f'{args.hair_key_prefix}{number:02d}','path':f'assets/models/{filename}','strands':count,'pointsPerStrand':points,'bytes':len(compressed),'rawBytes':len(raw),'sha256':sha(compressed),'rawSha256':sha(raw),'hasRootUV':uv is not None,'displayMode':'STRAND','interpolation':'CATMULL_ROM' if kind=='CURVES' else 'LINEAR','segmentsPerSourceSegment':12 if kind=='CURVES' else 1,'bounds':{'min':(positions.min(axis=(0,1))-radius).tolist(),'max':(positions.max(axis=(0,1))+radius).tolist()},'material':material_info(material)}
         manifest['groups'].append(group)
         report['hair_source'].append(dict(group, **source_meta))
         print(f'FULL_HAIR {number:02d}: {name}: {count} strands x {points}, gzip {len(compressed)} bytes', flush=True)
@@ -225,12 +251,14 @@ def main():
 
     manifest['totalStrands']=sum(g['strands'] for g in manifest['groups'])
     manifest['totalPoints']=sum(g['strands']*g['pointsPerStrand'] for g in manifest['groups'])
-    write_json(PUBLIC/'lion-user-hair.json',manifest)
+    manifest_path = PUBLIC / f'{args.output_stem}-hair.json'
+    write_json(manifest_path,manifest)
     bpy.ops.object.select_all(action='DESELECT')
-    for o in bpy.context.scene.objects:
-        if o.type in ('MESH','EMPTY'): o.select_set(True)
+    export_objects = [o for o in source_objects if o.type in ('MESH','EMPTY')]
+    for o in export_objects:
+        o.select_set(True)
     bpy.context.view_layer.objects.active=meshes[0]
-    target=PUBLIC/'lion-user-full.glb'
+    target=PUBLIC/f'{args.output_stem}-full.glb'
     export_settings={'export_format':'GLB','use_selection':True,'export_yup':True,'export_apply':True,'export_texcoords':True,'export_normals':True,'export_materials':'EXPORT','export_image_format':'AUTO','export_animations':True,'export_extras':True,'export_cameras':False,'export_lights':False}
 
     # Blender's bundled exporter otherwise calls Mesh.validate(), which repairs
@@ -295,10 +323,10 @@ def main():
     expected_triangles = {m['name']: m['triangles'] for m in report['evaluated_source_meshes']}
     if exported_triangles != expected_triangles:
         raise RuntimeError('GLB triangle counts differ from evaluated source meshes; refusing incomplete export')
-    report['export']={'path':target.relative_to(ROOT).as_posix(),'bytes':len(data),'sha256':sha(data),'settings':export_settings,'gltf_nodes':len(gltf['nodes']),'gltf_meshes':len(gltf['meshes']),'gltf_materials':len(gltf['materials']),'gltf_triangles':sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives']),'mesh_object_names':[o.name for o in meshes],'hair_manifest':(PUBLIC/'lion-user-hair.json').relative_to(ROOT).as_posix(),'hair_groups':len(manifest['groups']),'hair_strands':manifest['totalStrands'],'hair_points':manifest['totalPoints']}
+    report['export']={'path':target.relative_to(ROOT).as_posix(),'bytes':len(data),'sha256':sha(data),'settings':export_settings,'gltf_nodes':len(gltf['nodes']),'gltf_meshes':len(gltf['meshes']),'gltf_materials':len(gltf['materials']),'gltf_triangles':sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives']),'mesh_object_names':[o.name for o in meshes],'hair_manifest':manifest_path.relative_to(ROOT).as_posix(),'hair_groups':len(manifest['groups']),'hair_strands':manifest['totalStrands'],'hair_points':manifest['totalPoints']}
     report['source_unchanged']=sha(source.read_bytes())==source_hash==sha(archive.read_bytes())
     if not report['source_unchanged']: raise RuntimeError('Source or archive bytes changed')
-    write_json(ROOT/'source/references/lion-structure-model.json',report)
+    write_json(report_path,report)
     print(json.dumps({'source_unchanged':True,'export':report['export']},ensure_ascii=False),flush=True)
 
 
