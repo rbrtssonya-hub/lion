@@ -2,6 +2,7 @@ import { spreadMapLevels, spreadMapPoints } from '../../data/spread.js';
 import { useState } from 'react';
 import { media } from '../../config/media.js';
 import { handleHeritageTabs } from '../home/HeritageElements.jsx';
+import useSpreadMapMotion from './useSpreadMapMotion.js';
 
 // Approximate city positions projected through the source Blender camera at
 // frames 1, 100 and 200. The source is an illustrative map, not a survey.
@@ -14,11 +15,13 @@ const shots = {
 export default function SpreadMap({ activeId, photoIndex, level, onSelect, onLevelChange }) {
   const levelIndex = spreadMapLevels.findIndex(item => item.id === level);
   const current = spreadMapLevels[levelIndex];
-  const points = spreadMapPoints[level];
+  const { forwardRef, reverseRef, displayLevel, motion, direction } = useSpreadMapMotion(level);
+  const points = spreadMapPoints[displayLevel];
+  const inMotion = motion === 'loading' || motion === 'moving';
   const isSelected = point => point.placeId === activeId && (point.photoIndex === undefined || point.photoIndex === photoIndex);
-  const shot = shots[level];
+  const shot = shots[displayLevel];
   const [failedImage, setFailedImage] = useState(null);
-  return <section className="spread-map" aria-labelledby="spreadMapTitle" data-map-level={level}>
+  return <section className="spread-map" aria-labelledby="spreadMapTitle" data-map-level={level} data-map-motion={motion}>
     <div className="spread-map-heading">
       <h3 id="spreadMapTitle">所收录案例分布示意</h3>
       <span>{current.count}</span>
@@ -31,11 +34,13 @@ export default function SpreadMap({ activeId, photoIndex, level, onSelect, onLev
       </button>)}
     </div>
     <div className="spread-map-viewport" id="spreadMapView" role="tabpanel" aria-labelledby={`spread-level-${level}`}>
-    <div className="spread-world" key={level}>
+    <div className="spread-world" data-motion={motion} data-direction={direction} aria-busy={inMotion}>
+      <video ref={forwardRef} className="spread-map-video" data-direction="forward" src={media.spreadMapMotionForward} muted playsInline preload="auto" aria-hidden="true" />
+      <video ref={reverseRef} className="spread-map-video" data-direction="reverse" src={media.spreadMapMotionReverse} muted playsInline preload="auto" aria-hidden="true" />
       {failedImage === shot.image
         ? <div className="spread-map-fallback" role="status">地图画面暂未载入。</div>
         : <img className="spread-map-render" src={shot.image} alt="" onError={() => setFailedImage(shot.image)} />}
-      <svg className="spread-world-svg" viewBox="0 0 1000 650" aria-hidden="true" focusable="false">
+      <svg className="spread-world-svg" style={{ visibility: inMotion ? 'hidden' : 'visible' }} viewBox="0 0 1000 650" aria-hidden="true" focusable="false">
         <g className="spread-pin-lines">{points.map(place => {
           const [x, y, labelX, labelY] = shot.points[place.id];
           return <path key={place.id} data-selected={isSelected(place)} d={`M${x} ${y}L${labelX} ${labelY}`} />;
@@ -48,7 +53,7 @@ export default function SpreadMap({ activeId, photoIndex, level, onSelect, onLev
           </g>;
         })}</g>
       </svg>
-      <div className="spread-map-buttons" role="group" aria-label="选择案例地点">
+      <div className="spread-map-buttons" role="group" aria-label="选择案例地点" aria-hidden={inMotion} inert={inMotion || undefined}>
         {points.map(place => <button key={place.id} type="button"
           className="spread-map-place" data-place={place.id} aria-pressed={isSelected(place)}
           aria-label={`选择${place.name}案例`} aria-controls="spreadPlaceCard"
@@ -59,6 +64,7 @@ export default function SpreadMap({ activeId, photoIndex, level, onSelect, onLev
       </div>
     </div>
     </div>
+    <span className="sr-only" role="status">{inMotion ? '地图镜头移动中' : motion === 'failed' ? '地图动画未能载入，已显示静态画面' : ''}</span>
     <div className="spread-map-actions">
       <span>0{levelIndex + 1} <i>/ 03</i></span>
       {levelIndex > 0 && <button type="button" className="spread-map-previous" onClick={() => onLevelChange(spreadMapLevels[levelIndex - 1].id)}>返回{spreadMapLevels[levelIndex - 1].name}</button>}

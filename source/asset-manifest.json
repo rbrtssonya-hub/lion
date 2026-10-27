@@ -5595,6 +5595,54 @@
       "path": "source/reviews/spread-map-levels/2026-10-28-blender/world-1920.png",
       "bytes": 1058984,
       "sha256": "1b81cdd79cf67e4b94069fc51eb1a4070472c02e7a23bed693bc733d79bc63f6"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/public/assets/spread-map/motion-forward.mp4",
+      "bytes": 4037610,
+      "sha256": "58d63279e007ec27aeac92f992e846b6c242a2350de33d9bc56016f00207bc3a"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/public/assets/spread-map/motion-reverse.mp4",
+      "bytes": 4125734,
+      "sha256": "be71089231265de8f936548bf93ac5762e9281ccb67aa395bffec66acba77ad5"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28/capture.json",
+      "bytes": 697,
+      "sha256": "8cd7c00625a92211490af3b0d68d54ada9c74a5fcd05319ae7378536affe3eb0"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28/forward-china-world.png",
+      "bytes": 674420,
+      "sha256": "2f2bff38b91cffcdc54671713c9dc436a92e76e6ef0acfe0f747d4158e319689"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28/forward-china.png",
+      "bytes": 734678,
+      "sha256": "aa3d4fd258d180affe4f7ff56c56f4d35d909aff2753aad2afe0b454489a6218"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28/forward-guangdong-china.png",
+      "bytes": 685960,
+      "sha256": "04363baa3593a7f50ef2f479b25178507dfc533fc890002a41c77a0281c911b5"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28/reverse-world-china.png",
+      "bytes": 661778,
+      "sha256": "54cdf8ae898a4523a44c5bbe115a9ce924ab0f3e195b592552948d2285f46d07"
+    },
+    {
+      "from": "Blender map full camera motion render or Chrome motion review, 2026-10-28",
+      "path": "source/references/spread-map-motion/frame-comparison.json",
+      "bytes": 1175,
+      "sha256": "3bf64cc556bf37fd67c0bffd9c32a4ca8e69067820dc1675de56f35ac1c113fa"
     }
   ]
 }
