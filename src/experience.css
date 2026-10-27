@@ -92,9 +92,12 @@
 .control-name{font-size:17px}
 .reset-camera{bottom:49px}
 /* Camera and dissolve stay full-screen; only the finished artwork docks left. */
-.visual-frame{transform-origin:0 0}
-.model-layer{right:auto;bottom:auto}
-.artwork-layer{-webkit-mask-composite:source-in;mask-composite:intersect}
+.visual-frame{transform-origin:0 0;aspect-ratio:auto}
+.model-layer{right:auto;bottom:auto;z-index:3}
+.artwork-layer{overflow:hidden}
+.chapter-artwork{position:absolute;max-width:none;object-fit:contain}
+.variant-outgoing{position:absolute;object-fit:contain;max-width:none;pointer-events:none;animation:variant-out .35s ease-in-out forwards}
+@keyframes variant-out{to{opacity:0}}
 .chapter-controls{left:0;transform:none;will-change:transform}
 .artwork-credit{right:auto}
 @media(max-height:850px){.chapter-eyebrow{margin-bottom:12px}.cultural-panel h1{font-size:40px}.chapter-lead{font-size:15px;line-height:1.6;margin-bottom:12px}.editorial-rule{margin:12px 0}.chapter-english{margin-top:7px}.reader-tabs{gap:18px}.reader-tabs>small{font-size:7px}.chapter-reader{padding-top:14px}.reader-section-title h2{font-size:17px}.data-page .shape-trace{height:130px}}

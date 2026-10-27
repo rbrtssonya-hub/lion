@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import { LionWorld } from '../model/LionWorld.js';
 import { PARTS } from '../content/parts.js';
 
-export default function ModelCanvas({ worldRef, onSelect, onReady, onProgress, onError }) {
+export default function ModelCanvas({ worldRef, onSelect, onReady, onProgress, onError, getReferenceAspect }) {
   const host = useRef(null);
-  const callbacks = useRef({ onSelect, onReady, onProgress, onError });
-  callbacks.current = { onSelect, onReady, onProgress, onError };
+  const callbacks = useRef({ onSelect, onReady, onProgress, onError, getReferenceAspect });
+  callbacks.current = { onSelect, onReady, onProgress, onError, getReferenceAspect };
   useEffect(() => {
     let world;
     try {
@@ -13,6 +13,7 @@ export default function ModelCanvas({ worldRef, onSelect, onReady, onProgress, o
         cameraDirection: [5, 2.7, 7],
         fixedAspect: 1.5,
         overscan: true,
+        getReferenceAspect: () => callbacks.current.getReferenceAspect?.(),
         labels: false,
         onSelect: id => callbacks.current.onSelect(id),
         onReady: (...args) => callbacks.current.onReady(...args),

@@ -2,11 +2,9 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import gsap from 'gsap';
 import ModelCanvas from './ModelCanvas.jsx';
-import CulturalPanel from './CulturalPanel.jsx';
 import { PARTS } from '../content/parts.js';
 import { CHAPTERS } from '../content/chapters.js';
-import { frameLayout } from '../interaction/layout.mjs';
-import { analyzeTextureStudy } from '../analysis/textureStudy.js';
+import { frameLayout, nearestFullscreenVariant, fullscreenImageUrl } from '../interaction/layout.mjs';
 
 const imagePromises = new Map();
 function prepareImage(url) {
@@ -27,28 +25,64 @@ export default function AtlasExperience() {
   const [progress, setProgress] = useState(0);
   const [selected, setSelected] = useState(null);
   const [phase, setPhase] = useState('overview');
-  const [analysis, setAnalysis] = useState(null);
-  const [uvStudy, setUvStudy] = useState(null);
   const [error, setError] = useState(null);
-  const [layout, setLayout] = useState(() => frameLayout(window.innerWidth, window.innerHeight));
+  const [variant, setVariant] = useState(() => nearestFullscreenVariant(window.innerWidth, window.innerHeight));
+  const [layout, setLayout] = useState(() => frameLayout(window.innerWidth, window.innerHeight, nearestFullscreenVariant(window.innerWidth, window.innerHeight).aspect));
+  const [outgoing, setOutgoing] = useState(null);
   const world = useRef(null), registry = useRef(null);
   const frame = useRef(null), controls = useRef(null), modelLayer = useRef(null), imageLayer = useRef(null), image = useRef(null);
+  const variantRef = useRef(variant), resizeVersion = useRef(0);
   const presentation = useRef({ progress: 0 });
   const dissolve = useRef({ progress: 0 });
   const epoch = useRef(0), pendingTweens = useRef(new Set()), phaseRef = useRef('overview'), selectedRef = useRef(null), layoutRef = useRef(layout), disposed = useRef(false);
-  const cachedUv = useRef(new Map());
   layoutRef.current = layout;
   const part = PARTS.find(p => p.id === selected);
   const chapter = selected && CHAPTERS[selected];
+  const { artworkWidth, artworkHeight } = layout;
+  const artworkUrl = selected && fullscreenImageUrl(selected, variant.id);
+  const getReferenceAspect = useCallback(() => variantRef.current.aspect, []);
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const changePhase = next => { phaseRef.current = next; setPhase(next); };
   const changeSelected = id => { selectedRef.current = id; setSelected(id); };
 
+  const commitVariant = useCallback(next => {
+    variantRef.current = next;
+    setVariant(next);
+    setLayout(frameLayout(window.innerWidth, window.innerHeight, next.aspect));
+  }, []);
+
+  const syncViewport = useCallback(() => {
+    const width = window.innerWidth, height = window.innerHeight;
+    const current = variantRef.current;
+    setLayout(frameLayout(width, height, current.aspect));
+    const target = nearestFullscreenVariant(width, height);
+    const version = ++resizeVersion.current;
+    if (target.id === current.id) return;
+    if (!selectedRef.current && phaseRef.current === 'overview') {
+      commitVariant(target);
+      return;
+    }
+    // A flight or its handoff keeps the same registered image. Re-evaluate
+    // once it has finished, so resizing cannot swap assets mid-dissolve.
+    if (phaseRef.current !== 'study' || !selectedRef.current) return;
+    const id = selectedRef.current;
+    prepareImage(fullscreenImageUrl(id, target.id)).then(photo => {
+      if (disposed.current || version !== resizeVersion.current || phaseRef.current !== 'study' || selectedRef.current !== id || nearestFullscreenVariant(window.innerWidth, window.innerHeight).id !== target.id) return;
+      const actualAspect = photo.naturalWidth / photo.naturalHeight;
+      if (!Number.isFinite(actualAspect) || Math.abs(actualAspect - target.aspect) > .04) return;
+      setOutgoing({ id: version, url: fullscreenImageUrl(id, current.id), layout: layoutRef.current });
+      commitVariant({ ...target, aspect: actualAspect });
+    }).catch(() => {}); // Retain the decoded current image if an alternate fails.
+  }, [commitVariant]);
+
   const placeFrame = useCallback(() => {
     const l = layoutRef.current, p = presentation.current.progress;
     const mix = (a, b) => a + (b - a) * p;
-    gsap.set(frame.current, { x: mix(l.homeX, l.studyX), y: mix(l.homeY, l.studyY), scale: mix(1, l.studyScale) });
+    gsap.set(frame.current, { x: l.studyX, y: l.studyY, scale: mix(1, l.studyScale) });
     gsap.set(controls.current, { x: mix(l.homeNavX, l.studyNavX) });
+    // Keep the source-aligned image centered for handoff, then dock its own
+    // complete bounds to the upper left.
+    if (image.current) gsap.set(image.current, { x: -l.artworkX * p, y: -l.artworkY * p });
   }, []);
 
   const animate = useCallback((target, values) => new Promise(resolve => {
@@ -71,13 +105,6 @@ export default function AtlasExperience() {
     const p = dissolve.current.progress;
     gsap.set(imageLayer.current, { autoAlpha: p });
     gsap.set(modelLayer.current, { autoAlpha: 1 - p });
-    // During the overlap, soften the image edges so an opaque 3:2 rectangle
-    // cannot cut across the still-visible model. Restore every image pixel as
-    // the model disappears; reversing the same progress also reverses this.
-    const feather = Math.min(48, Math.max(0, (1 - p) * 240));
-    imageLayer.current.style.maskImage = p > 0 && feather > .01
-      ? `linear-gradient(to right, transparent, black ${feather}px, black calc(100% - ${feather}px), transparent), linear-gradient(to bottom, transparent, black ${feather}px, black calc(100% - ${feather}px), transparent)`
-      : 'none';
   }, []);
   const crossfade = useCallback((progress, duration) => animate(dissolve.current, {
     progress, duration, ease: 'sine.inOut', onUpdate: placeDissolve,
@@ -85,6 +112,8 @@ export default function AtlasExperience() {
 
   const begin = useCallback(() => {
     epoch.current++;
+    resizeVersion.current++;
+    if (!disposed.current) setOutgoing(null);
     gsap.killTweensOf(modelLayer.current);
     [...pendingTweens.current].forEach(job => { job.tween?.kill(); job.finish(false); });
     world.current?.cancelFlight();
@@ -113,20 +142,17 @@ export default function AtlasExperience() {
       placeDissolve();
       changeSelected(id);
       changePhase('travel');
-      setAnalysis(reg.analyze(id));
-      setUvStudy(cachedUv.current.get(id) || null);
       gsap.set(imageLayer.current, { autoAlpha: 0 });
-      const uv = id === 'body'
-        ? (cachedUv.current.has(id) ? Promise.resolve(cachedUv.current.get(id)) : analyzeTextureStudy(reg.get(id).meshes.filter(m => !m.userData.derivedHair), 2200).then(data => { cachedUv.current.set(id, data); return data; }))
-        : Promise.resolve(null);
-      const [flight, photo, uvResult] = await Promise.all([
+      const activeVariant = variantRef.current;
+      const [flight, photo] = await Promise.all([
         w.flyToPart(id, { duration: reduced() ? .01 : 2.15 }),
-        prepareImage(CHAPTERS[id].image),
-        uv,
+        prepareImage(fullscreenImageUrl(id, activeVariant.id)),
       ]);
       if (!current() || !flight.completed) return;
-      if (Math.abs(photo.naturalWidth / photo.naturalHeight - 1.5) > .002) throw new Error('图版比例需要检查，请稍后重试。');
-      setUvStudy(uvResult);
+      if (!photo.naturalWidth || !photo.naturalHeight) throw new Error('图版尺寸需要检查，请稍后重试。');
+      const actualAspect = photo.naturalWidth / photo.naturalHeight;
+      if (Math.abs(actualAspect - activeVariant.aspect) > .04) throw new Error('图版比例与登记构图不一致，请稍后重试。');
+      if (actualAspect !== activeVariant.aspect) commitVariant({ ...activeVariant, aspect: actualAspect });
       await image.current?.decode();
       if (!current()) return;
       changePhase('handoff');
@@ -157,7 +183,7 @@ export default function AtlasExperience() {
       changePhase('overview');
       w.setInteractive(true);
     }
-  }, [arrange, begin, crossfade, placeDissolve]);
+  }, [arrange, begin, commitVariant, crossfade, placeDissolve]);
 
   const returnHome = useCallback(async () => {
     if (!registry.current || phaseRef.current === 'overview' || phaseRef.current === 'returning') return;
@@ -173,8 +199,6 @@ export default function AtlasExperience() {
     await w.restoreOverview({ duration: reduced() ? .01 : 1.65 });
     if (!current()) return;
     changeSelected(null);
-    setAnalysis(null);
-    setUvStudy(null);
     changePhase('overview');
     w.setInteractive(true);
   }, [arrange, begin, crossfade]);
@@ -187,9 +211,12 @@ export default function AtlasExperience() {
 
   useLayoutEffect(() => {
     placeFrame();
-  }, [layout, placeFrame]);
+    world.current?.resize(false);
+  }, [layout, variant, placeFrame]);
   useEffect(() => {
-    const resize = () => setLayout(frameLayout(window.innerWidth, window.innerHeight));
+    if (phase === 'overview' || phase === 'study') syncViewport();
+  }, [phase, syncViewport]);
+  useEffect(() => {
     const keys = event => {
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
       if (event.key === 'Escape') returnHome();
@@ -198,22 +225,25 @@ export default function AtlasExperience() {
         select(PARTS[(index + (event.key === 'ArrowRight' ? 1 : 5) + 6) % 6].id);
       }
     };
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', syncViewport);
     window.addEventListener('keydown', keys);
-    return () => { window.removeEventListener('resize', resize); window.removeEventListener('keydown', keys); };
-  }, [select, returnHome]);
+    return () => { window.removeEventListener('resize', syncViewport); window.removeEventListener('keydown', keys); };
+  }, [select, returnHome, syncViewport]);
   useEffect(() => () => { disposed.current = true; begin(); }, [begin]);
 
   return <main className="lion-experience" data-phase={phase} data-ready={ready} data-selected={selected || ''} aria-busy={!['overview', 'study'].includes(phase)}>
     {selected && <button className="return-home" onClick={returnHome}><ArrowLeft size={14}/>返回整体</button>}
-    <div className="visual-frame" ref={frame} style={{ width: layout.width, height: layout.height }}>
-      <div className="model-layer" ref={modelLayer} style={{ left: -layout.homeX, top: -layout.homeY, width: layout.viewportWidth, height: layout.viewportHeight }} aria-hidden={phase === 'study' || phase === 'arranging'}><ModelCanvas worldRef={world} onSelect={select} onReady={onReady} onProgress={setProgress} onError={setError}/></div>
+    <div className="visual-frame" ref={frame} style={{ width: layout.viewportWidth, height: layout.viewportHeight }}>
+      <div className="model-layer" ref={modelLayer} aria-hidden={phase === 'study' || phase === 'arranging'}><ModelCanvas worldRef={world} onSelect={select} onReady={onReady} onProgress={setProgress} onError={setError} getReferenceAspect={getReferenceAspect}/></div>
       <div className="artwork-layer" ref={imageLayer} aria-hidden={phase === 'overview' || phase === 'travel'}>
-        {chapter && <img ref={image} className="chapter-artwork" src={chapter.image} width="1536" height="1024" alt={chapter.imageAlt} draggable="false"/>}
+        {chapter && <>
+          <img ref={image} className="chapter-artwork" src={artworkUrl} alt={chapter.imageAlt} draggable="false" style={{ width: artworkWidth, height: artworkHeight, left: layout.artworkX, top: layout.artworkY }}/>
+          {outgoing && <img key={outgoing.id} className="variant-outgoing" src={outgoing.url} alt="" aria-hidden="true" draggable="false" onAnimationEnd={() => setOutgoing(previous => previous?.id === outgoing.id ? null : previous)} style={{ width: outgoing.layout.artworkWidth, height: outgoing.layout.artworkHeight, left: outgoing.layout.artworkX * (1 - presentation.current.progress), top: outgoing.layout.artworkY * (1 - presentation.current.progress) }}/>}
+        </>}
       </div>
     </div>
-    {phase === 'study' && <div className="artwork-credit" style={{ left: 18, top: layout.studyHeight + 15, width: layout.studyWidth - 36 }}><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
-    {part && <div className="cultural-column" inert={phase !== 'study'} aria-hidden={phase !== 'study'} style={{ left: layout.textX, top: layout.textY, width: layout.textWidth, height: layout.textHeight }}><CulturalPanel key={part.id} part={part} analysis={analysis} uvStudy={uvStudy} visible={phase === 'study'}/></div>}
+    {phase === 'study' && <div className="artwork-credit" style={{ left: 18, top: artworkHeight * layout.studyScale + 15, width: artworkWidth * layout.studyScale - 36 }}><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
+    {part && <div className="cultural-column" aria-hidden="true" style={{ left: layout.textX, top: layout.textY, width: layout.textWidth, height: layout.textHeight }}/>}
     {!ready && <div className="initial-loader" role="status"><span>{error ? '载入未完成' : '载入醒狮'}</span><i><b style={{ width: `${Math.max(3, progress)}%` }}/></i><small>{error || `${Math.round(progress)}%`}</small>{error && <button onClick={() => location.reload()}>重新载入</button>}</div>}
     {ready && error && <div className="experience-error" role="alert">{error}<button onClick={() => setError(null)}>关闭</button></div>}
     <nav className="chapter-controls" ref={controls} style={{ width: layout.navWidth }} aria-label="六个造型研究控件">

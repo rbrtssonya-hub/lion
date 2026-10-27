@@ -33,6 +33,8 @@ async function startSamples() {
       const canvas = window.__LION_ATLAS__.renderer.domElement;
       return { t, phase: document.querySelector('.lion-experience').dataset.phase,
         viewport: { width: innerWidth, height: innerHeight }, frame: rect('.visual-frame'), nav: rect('.chapter-controls'),
+        artworkRect: rect('.artwork-layer'), imageRect: rect('.chapter-artwork'), edgeCount: document.querySelectorAll('.artwork-edge, .artwork-extension').length,
+        artworkMask: getComputedStyle(artwork).maskImage, artworkFilter: getComputedStyle(artwork).filter,
         canvas: { ...rect('.canvas-host canvas'), bufferWidth: canvas.width, bufferHeight: canvas.height, clientWidth: canvas.clientWidth, clientHeight: canvas.clientHeight, pixelRatio: window.__LION_ATLAS__.renderer.getPixelRatio() },
         modelOpacity: Number(getComputedStyle(model).opacity), modelVisibility: getComputedStyle(model).visibility,
         artworkOpacity: Number(getComputedStyle(artwork).opacity), active: window.__LION_ATLAS__.active,
@@ -62,16 +64,14 @@ async function stopSamples() {
 
 function assertFullScreen(sample, label) {
   const { width, height } = sample.viewport;
-  const fullWidth = Math.floor(Math.min(width, height * 1.5) / 3) * 3;
-  closeNumber(sample.frame.width, fullWidth, `${label}: largest complete 3:2 screen width`);
-  closeNumber(sample.frame.height, fullWidth / 1.5, `${label}: largest complete 3:2 screen height`);
+  closeNumber(sample.frame.width, width, `${label}: frame fills screen width`);
+  closeNumber(sample.frame.height, height, `${label}: frame fills screen height`);
   closeNumber(sample.frame.x + sample.frame.width / 2, width / 2, `${label}: screen-centered x`);
   closeNumber(sample.frame.y + sample.frame.height / 2, height / 2, `${label}: screen-centered y`);
 }
 
 function assertCanvas(sample, label) {
-  const referenceWidth = Math.floor(Math.min(sample.viewport.width, sample.viewport.height * 1.5) / 3) * 3;
-  const scale = sample.frame.width / referenceWidth;
+  const scale = sample.frame.width / sample.viewport.width;
   closeNumber(sample.canvas.width, sample.viewport.width * scale, `${label}: canvas extends over the window width`);
   closeNumber(sample.canvas.height, sample.viewport.height * scale, `${label}: canvas extends over the window height`);
   closeNumber(sample.canvas.clientWidth, sample.viewport.width, `${label}: unscaled canvas matches window width`);
@@ -90,7 +90,7 @@ function assertTransition(samples, id) {
   const stages = ['travel', 'handoff', 'arranging', 'study'];
   const first = stages.map(stage => samples.findIndex(sample => sample.phase === stage));
   assert.ok(first.every(index => index >= 0), `${id}: all four stages were observed: ${first}`);
-  assert.ok(first.every((index, i) => i === 0 || index > first[i - 1]), `${id}: flight → dissolve → image movement → culture`);
+  assert.ok(first.every((index, i) => i === 0 || index > first[i - 1]), `${id}: flight → dissolve → image movement → study`);
   for (const sample of samples.filter(sample => ['travel', 'handoff'].includes(sample.phase))) {
     assertFullScreen(sample, `${id} ${sample.phase}`);
     assertCanvas(sample, `${id} ${sample.phase}`);
@@ -98,6 +98,13 @@ function assertTransition(samples, id) {
       assert.equal(sample.modelVisibility, 'visible', 'the model occupies the full stage until the dissolve finishes');
       assert.equal(sample.active, true, 'real camera keeps rendering throughout the dissolve');
     }
+    closeNumber(sample.artworkRect.x, 0, `${id} ${sample.phase}: artwork starts at left edge`);
+    closeNumber(sample.artworkRect.y, 0, `${id} ${sample.phase}: artwork starts at top edge`);
+    closeNumber(sample.artworkRect.width, sample.viewport.width, `${id} ${sample.phase}: artwork spans window width`);
+    closeNumber(sample.artworkRect.height, sample.viewport.height, `${id} ${sample.phase}: artwork spans window height`);
+    assert.equal(sample.edgeCount,0,'no stretched or blurred edge extensions');
+    assert.equal(sample.artworkMask,'none','no mask cuts the picture');
+    assert.equal(sample.artworkFilter,'none','no blur effect on the artwork');
     assert.equal(sample.panelVisibility, 'hidden', 'culture waits for the image to finish moving');
   }
   const dissolve = samples.filter(sample => sample.phase === 'handoff');
@@ -111,10 +118,10 @@ function assertTransition(samples, id) {
     assert.equal(sample.active, false, 'model is paused before image movement starts');
     assert.ok(sample.artworkOpacity > .999, 'image replacement finishes before movement');
     assert.equal(sample.panelVisibility, 'hidden', 'text remains hidden during movement');
-    closeNumber(sample.frame.width / sample.frame.height, 1.5, 'moving image keeps its full 3:2 composition', .0001);
+    closeNumber(sample.frame.width / sample.frame.height, sample.viewport.width / sample.viewport.height, 'moving image keeps its full-window composition', .0001);
   }
   assert.ok(moving[0].frame.width - moving.at(-1).frame.width > 100, 'GSAP visibly scales the image after conversion');
-  assert.ok(moving[0].frame.x - moving.at(-1).frame.x > 10, 'GSAP visibly moves the image toward the left edge');
+  closeNumber(moving.at(-1).frame.x, 0, 'image remains anchored to the left edge');
   assert.ok(moving[0].nav.x - moving.at(-1).nav.x > 50, 'bottom art controls animate left with the image');
   const final = samples.at(-1);
   assert.equal(final.phase, 'study');
@@ -152,7 +159,7 @@ try {
     await page.waitForTimeout(260);
     const during = await pose();
     assert.notDeepEqual(during.position, before.position, `${id}: camera actually travels`);
-    assert.equal(await page.locator('.cultural-panel').getAttribute('aria-hidden'), 'true', 'cultural text waits for image handoff');
+    assert.equal(await page.locator('.cultural-panel').count(), 0, 'no cultural content is rendered');
     await phase('handoff');
     const endpoint = await pose(), expected = poses.parts.find(p => p.id === id);
     closeArray(endpoint.position, expected.position);
@@ -170,33 +177,29 @@ try {
     await phase('study');
     const samples = await stopSamples();
     assertTransition(samples, id);
-    const firstChar = await page.locator('.title-character').last().evaluate(element => getComputedStyle(element).transform);
     const imageState = await page.evaluate(() => {
       const img = document.querySelector('.chapter-artwork'), model = document.querySelector('.model-layer'), w = window.__LION_ATLAS__;
       const bounds = img.getBoundingClientRect(), frame = document.querySelector('.visual-frame').getBoundingClientRect();
       return { src: new URL(img.src).pathname, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, fit: getComputedStyle(img).objectFit,
-        imageBounds: { width: bounds.width, height: bounds.height }, frameBounds: { width: frame.width, height: frame.height },
+        imageBounds: { x: bounds.x, y: bounds.y, right: bounds.right, bottom: bounds.bottom, width: bounds.width, height: bounds.height }, frameBounds: { x: frame.x, y: frame.y, right: frame.right, bottom: frame.bottom, width: frame.width, height: frame.height },
         modelOpacity: getComputedStyle(model).opacity, modelVisibility: getComputedStyle(model).visibility, active: w.active,
         frame: w.renderer.info.render.frame, unchanged: w.meshes.every(m => m.position.equals(m.userData.atlasOriginal.position)) };
     });
-    assert.equal(imageState.src, `/images/chapters/${id}.png`, 'one dedicated artwork per control');
+    assert.equal(imageState.src, `/images/fullscreen/16x10/${id}.png`, 'one dedicated 16:10 full-window artwork per control');
     assert.equal(imageState.fit, 'contain', 'full artwork, no cropping');
-    assert.equal(imageState.naturalWidth / imageState.naturalHeight, 1.5);
-    assert.equal(imageState.imageBounds.width, imageState.frameBounds.width);
-    assert.equal(imageState.imageBounds.height, imageState.frameBounds.height);
+    assert.ok(imageState.naturalWidth / imageState.naturalHeight > 1.5, 'artwork is landscape');
+    closeNumber(imageState.imageBounds.width / imageState.imageBounds.height, imageState.naturalWidth / imageState.naturalHeight, 'artwork container tracks its original proportions within one-pixel generator variation', .002);
+    assert.ok(imageState.imageBounds.x >= imageState.frameBounds.x - .3 && imageState.imageBounds.right <= imageState.frameBounds.right + .3 && imageState.imageBounds.y >= imageState.frameBounds.y - .3 && imageState.imageBounds.bottom <= imageState.frameBounds.bottom + .3, 'complete image bounds remain inside the frame');
     assert.equal(imageState.modelVisibility, 'hidden', 'real model completely hidden after handoff');
     assert.equal(imageState.modelOpacity, '0');
     assert.equal(imageState.active, false, '3D animation loop pauses while viewing the image');
     assert.ok(imageState.unchanged, 'source model is never separated or displaced');
-    await page.waitForTimeout(2550);
-    const lastChar = await page.locator('.title-character').last().evaluate(element => getComputedStyle(element).transform);
-    assert.notEqual(firstChar, lastChar, 'GSAP actually animates the cultural typography');
+    await page.waitForTimeout(300);
     const afterFrame = await page.evaluate(() => window.__LION_ATLAS__.renderer.info.render.frame);
     assert.equal(afterFrame, imageState.frame, 'hidden model does not keep rendering');
-    assert.equal(await page.locator('.cultural-panel').getAttribute('aria-hidden'), 'false');
-    const culturalVisibility = await page.locator('.cultural-panel').evaluate(element => ({ opacity: getComputedStyle(element).opacity, visibility: getComputedStyle(element).visibility }));
-    assert.equal(culturalVisibility.visibility, 'visible', 'cultural text actually paints on the right');
-    assert.ok(Number(culturalVisibility.opacity) > .98, 'cultural text reaches full opacity');
+    assert.equal(await page.locator('.cultural-panel').count(), 0, 'cultural content is absent');
+    assert.equal(await page.locator('.cultural-column').evaluate(el => el.children.length), 0, 'reserved right column is empty');
+    assert.equal((await page.locator('.cultural-column').textContent()).trim(), '', 'reserved right column has no text');
     const studyLayout = await page.evaluate(() => {
       const frame = document.querySelector('.visual-frame').getBoundingClientRect(), column = document.querySelector('.cultural-column').getBoundingClientRect();
       return { frame: { x: frame.x, y: frame.y, width: frame.width, height: frame.height, right: frame.right }, column: { x: column.x, width: column.width, right: column.right }, viewportWidth: innerWidth };
@@ -205,7 +208,7 @@ try {
     assert.ok(studyLayout.frame.right < studyLayout.column.x, 'image and reader have a clear gap');
     assert.ok(studyLayout.column.right <= studyLayout.viewportWidth, 'reader stays in the viewport');
     await page.screenshot({ path: `${output}/screenshots/${id}-final.png` });
-    chapters.push({ id, endpoint, image: imageState, samples, studyLayout, textMotion: { firstChar, lastChar } });
+    chapters.push({ id, endpoint, image: imageState, samples, studyLayout });
   }
   // Return restores the original overview instead of recomputing an arbitrary pose.
   await page.getByRole('button', { name: '返回整体', exact: true }).click();
@@ -264,14 +267,15 @@ try {
     for (const resizedStage of ['travel', 'handoff', 'arranging']) {
       await page.locator('[data-part="trim"]').click();
       await phase(resizedStage);
-      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.setViewportSize({ width: 1920, height: 1080 });
       await phase('study');
+      await page.waitForFunction(() => document.querySelector('.chapter-artwork')?.src.includes('/16x9/'), null, {timeout:30000});
       const final = await layoutSnapshot();
       assertCanvas(final, `${resizedStage} resize: scaled study canvas`);
       closeNumber(final.frame.x, 0, `${resizedStage} resize: final left`);
       closeNumber(final.frame.y, 0, `${resizedStage} resize: final top`);
-      closeNumber(final.frame.width, Math.floor(Math.min(1440 * .62, (900 - 148) * 1.5) / 3) * 3, `${resizedStage} resize: recomputed image width`);
-      closeNumber(final.frame.width / final.frame.height, 1.5, `${resizedStage} resize: image aspect`, .0001);
+      closeNumber(final.frame.width, Math.min(1920 * .62, (1080 - 148) * 1920 / 1080), `${resizedStage} resize: recomputed image width`);
+      closeNumber(final.frame.width / final.frame.height, 1920 / 1080, `${resizedStage} resize: frame aspect`, .0001);
       assert.ok(final.nav.x >= -.3 && final.nav.right <= final.frame.right + .3, 'resized controls stay beneath the image');
       await page.waitForTimeout(1400);
       const settled = await layoutSnapshot();
@@ -286,7 +290,7 @@ try {
       closeArray((await pose()).position, homePose.position);
       resizes.push({ stage: resizedStage, final, settled, returned });
       await page.setViewportSize({ width: 1536, height: 960 });
-      await page.waitForFunction(() => Math.abs(document.querySelector('.visual-frame').getBoundingClientRect().width - 1440) < .3);
+      await page.waitForFunction(() => Math.abs(document.querySelector('.visual-frame').getBoundingClientRect().width - 1536) < .3);
     }
 
     // Real model surface, not just HTML navigation, starts the same experience.
@@ -318,7 +322,7 @@ try {
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(() => document.querySelector('.lion-experience')?.dataset.ready === 'true', null, {timeout:180000});
   intentionalFailure = true;
-  await page.route('**/images/chapters/crown.png', route => route.fulfill({status:503,body:'intentional network failure'}));
+  await page.route('**/images/fullscreen/16x10/crown.png', route => route.fulfill({status:503,body:'intentional network failure'}));
   await page.locator('[data-part="crown"]').click();
   await page.getByRole('alert').waitFor();
   await phase('overview');
@@ -326,10 +330,10 @@ try {
   assert.equal(await page.evaluate(() => window.__LION_ATLAS__.interactive), true);
   const center = await page.locator('.visual-frame').evaluate(el=>{const b=el.getBoundingClientRect();return b.left+b.width/2});
   assert.ok(Math.abs(center - (await page.evaluate(()=>innerWidth))/2) < 1, 'failed load cannot leave a stale frame tween running');
-  await page.unroute('**/images/chapters/crown.png');
+  await page.unroute('**/images/fullscreen/16x10/crown.png');
   assert.deepEqual(errors, [], 'no browser errors');
   assert.deepEqual(failedResponses, [], 'all real artwork and model requests succeed');
-  const result = { quick, baseURL, homePose, chapters, resizes, errors, failedResponses, checks: ['home model only',quick?'brows dedicated image':'six dedicated images','actual full-screen camera travel','matching 3:2 endpoint','stationary full-screen dissolve before image movement','GSAP image scale and top-left movement after model pause','art navigation follows image left','wider right-hand reader after image movement','uncropped full artwork','3D hidden and paused','visible GSAP cultural text','source geometry unchanged','return overview',...(!quick?['travel/handoff/arranging/return cancellation','resize during travel/handoff/arranging','real model click','1280px desktop layout']:[]),'failed image recovery'] };
+  const result = { quick, baseURL, homePose, chapters, resizes, errors, failedResponses, checks: ['home model only',quick?'brows dedicated image':'six dedicated images','actual full-screen camera travel','matching 3:2 endpoint','stationary full-screen dissolve before image movement','GSAP image scale and top-left placement after model pause','art navigation follows image left','empty reserved right column','uncropped proportional full artwork','3D hidden and paused','source geometry unchanged','return overview',...(!quick?['travel/handoff/arranging/return cancellation','resize during travel/handoff/arranging','real model click','1280px desktop layout']:[]),'failed image recovery'] };
   await writeFile(`${output}/${quick?'quick':'browser'}-results.json`,JSON.stringify(result,null,2));
   console.log(JSON.stringify({quick,chapters:chapters.map(c=>c.id),errors,checks:result.checks},null,2));
 } catch (error) {

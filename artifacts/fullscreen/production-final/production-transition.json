@@ -1,0 +1,8710 @@
+{
+  "url": "http://127.0.0.1:4215",
+  "scope": "production brows full-window flight, dissolve, picture docking, and empty reserved right area; DOM-only black-box sampling",
+  "errors": [],
+  "failedResponses": [],
+  "samples": [
+    {
+      "t": 2945.1,
+      "phase": "overview",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": null,
+      "edgeCount": 0,
+      "column": null,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": null,
+      "natural": null
+    },
+    {
+      "t": 2967.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "t": 3006.2,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3045.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3084,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3123,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3161.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3200.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3239.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3278.6,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3317.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3356.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3395.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3434.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3473,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3511.8,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3550.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3589.6,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3628.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3667.4,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3706.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3745.2,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3784.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3823,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3861.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3900.8,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3939.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 3978.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4017.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4056.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4095.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4134,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4173,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4211.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4250.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4289.6,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4328.4,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4367.4,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4406.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4445.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4484,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4522.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4561.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4600.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4639.6,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4678.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4717.4,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4756.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4795.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4834.1,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4872.9,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4911.8,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4950.7,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 4989.6,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5028.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5067.5,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5106.3,
+      "phase": "travel",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5122.9,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5161.9,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.9966,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.0034,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5200.7,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.9864,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.0136,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5239.7,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.9697,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.0303,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5278.6,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.9465,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.0535,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5317.4,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.9173,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.0827,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5356.3,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.8824,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.1176,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5395.3,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.8434,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.1566,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5434.2,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.7987,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.2013,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5473,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.75,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.25,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5511.9,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.6979,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.3021,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5550.7,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.6431,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.3569,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5589.6,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.5863,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.4137,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5628.6,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.5284,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.4716,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5667.4,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.4701,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.5299,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5706.3,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.4137,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.5863,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5745.2,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.3569,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.6431,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5784.1,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.3021,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.6979,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5822.9,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.25,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.75,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5861.9,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.2013,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.7987,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5900.7,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.1566,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.8434,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5939.6,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.1167,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.8833,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 5978.5,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.0819,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.9181,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6017.4,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.0528,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.9472,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6056.3,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.0298,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.9702,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6095.2,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.0132,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.9868,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6134.1,
+      "phase": "handoff",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0.0034,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 0.9966,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6172.9,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "nav": {
+        "x": 318,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1218,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.578125,
+        "y": 0,
+        "width": 1534.828125,
+        "height": 960,
+        "right": 1535.40625,
+        "bottom": 960
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 960,
+        "right": 1536,
+        "bottom": 960
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6211.8,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1535.846435546875,
+        "height": 959.9039916992188,
+        "right": 1535.846435546875,
+        "bottom": 959.9039916992188
+      },
+      "nav": {
+        "x": 317.9544982910156,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1217.9544982910156,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5779671669006348,
+        "y": 0,
+        "width": 1534.674560546875,
+        "height": 959.9039916992188,
+        "right": 1535.2525277137756,
+        "bottom": 959.9039916992188
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1535.846435546875,
+        "height": 959.9039916992188,
+        "right": 1535.846435546875,
+        "bottom": 959.9039916992188
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6250.8,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1535.23193359375,
+        "height": 959.5199584960938,
+        "right": 1535.23193359375,
+        "bottom": 959.5199584960938
+      },
+      "nav": {
+        "x": 317.63580322265625,
+        "y": 838,
+        "width": 899.9999389648438,
+        "height": 104,
+        "right": 1217.6357421875,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5771362781524658,
+        "y": 0,
+        "width": 1534.0606689453125,
+        "height": 959.5199584960938,
+        "right": 1534.637805223465,
+        "bottom": 959.5199584960938
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1535.23193359375,
+        "height": 959.5199584960938,
+        "right": 1535.23193359375,
+        "bottom": 959.5199584960938
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6289.7,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1533.5423583984375,
+        "height": 958.4639892578125,
+        "right": 1533.5423583984375,
+        "bottom": 958.4639892578125
+      },
+      "nav": {
+        "x": 316.77081298828125,
+        "y": 838,
+        "width": 899.9999389648438,
+        "height": 104,
+        "right": 1216.770751953125,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5748038291931152,
+        "y": 0,
+        "width": 1532.372314453125,
+        "height": 958.4639892578125,
+        "right": 1532.9471182823181,
+        "bottom": 958.4639892578125
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1533.5423583984375,
+        "height": 958.4639892578125,
+        "right": 1533.5423583984375,
+        "bottom": 958.4639892578125
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6328.5,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1530.3167724609375,
+        "height": 956.447998046875,
+        "right": 1530.3167724609375,
+        "bottom": 956.447998046875
+      },
+      "nav": {
+        "x": 315.1416931152344,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1215.1416931152344,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5703070163726807,
+        "y": 0,
+        "width": 1529.149169921875,
+        "height": 956.447998046875,
+        "right": 1529.7194769382477,
+        "bottom": 956.447998046875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1530.3167724609375,
+        "height": 956.447998046875,
+        "right": 1530.3167724609375,
+        "bottom": 956.447998046875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6367.4,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1524.787109375,
+        "height": 952.9920043945312,
+        "right": 1524.787109375,
+        "bottom": 952.9920043945312
+      },
+      "nav": {
+        "x": 312.39581298828125,
+        "y": 838,
+        "width": 899.9999389648438,
+        "height": 104,
+        "right": 1212.395751953125,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5627864003181458,
+        "y": 0,
+        "width": 1523.6239013671875,
+        "height": 952.9920043945312,
+        "right": 1524.1866877675056,
+        "bottom": 952.9920043945312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1524.787109375,
+        "height": 952.9920043945312,
+        "right": 1524.787109375,
+        "bottom": 952.9920043945312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6406.4,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1516.6463623046875,
+        "height": 947.9039916992188,
+        "right": 1516.6463623046875,
+        "bottom": 947.9039916992188
+      },
+      "nav": {
+        "x": 308.2908020019531,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1208.2908020019531,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5517838001251221,
+        "y": 0,
+        "width": 1515.4893798828125,
+        "height": 947.9039916992188,
+        "right": 1516.0411636829376,
+        "bottom": 947.9039916992188
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1516.6463623046875,
+        "height": 947.9039916992188,
+        "right": 1516.6463623046875,
+        "bottom": 947.9039916992188
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6445.2,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1505.12646484375,
+        "height": 940.7039794921875,
+        "right": 1505.12646484375,
+        "bottom": 940.7039794921875
+      },
+      "nav": {
+        "x": 302.5538024902344,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1202.5538024902344,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5364217162132263,
+        "y": 0,
+        "width": 1503.9781494140625,
+        "height": 940.7039794921875,
+        "right": 1504.5145711302757,
+        "bottom": 940.7039794921875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1505.12646484375,
+        "height": 940.7039794921875,
+        "right": 1505.12646484375,
+        "bottom": 940.7039794921875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6484.1,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1489.766357421875,
+        "height": 931.10400390625,
+        "right": 1489.766357421875,
+        "bottom": 931.10400390625
+      },
+      "nav": {
+        "x": 294.9117126464844,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1194.9117126464844,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.5162050724029541,
+        "y": 0,
+        "width": 1488.6297607421875,
+        "height": 931.10400390625,
+        "right": 1489.1459658145905,
+        "bottom": 931.10400390625
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1489.766357421875,
+        "height": 931.10400390625,
+        "right": 1489.766357421875,
+        "bottom": 931.10400390625
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6523,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1470.1055908203125,
+        "height": 918.8159790039062,
+        "right": 1470.1055908203125,
+        "bottom": 918.8159790039062
+      },
+      "nav": {
+        "x": 285.09100341796875,
+        "y": 838,
+        "width": 900.0000610351562,
+        "height": 104,
+        "right": 1185.091064453125,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.49063336849212646,
+        "y": 0,
+        "width": 1468.98388671875,
+        "height": 918.8159790039062,
+        "right": 1469.4745200872421,
+        "bottom": 918.8159790039062
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1470.1055908203125,
+        "height": 918.8159790039062,
+        "right": 1470.1055908203125,
+        "bottom": 918.8159790039062
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6561.9,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1445.6832275390625,
+        "height": 903.552001953125,
+        "right": 1445.6832275390625,
+        "bottom": 903.552001953125
+      },
+      "nav": {
+        "x": 272.8185119628906,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1172.8185119628906,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.45951735973358154,
+        "y": 0,
+        "width": 1444.580322265625,
+        "height": 903.552001953125,
+        "right": 1445.0398396253586,
+        "bottom": 903.552001953125
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1445.6832275390625,
+        "height": 903.552001953125,
+        "right": 1445.6832275390625,
+        "bottom": 903.552001953125
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6600.8,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1415.57763671875,
+        "height": 884.7359619140625,
+        "right": 1415.57763671875,
+        "bottom": 884.7359619140625
+      },
+      "nav": {
+        "x": 257.8214111328125,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1157.8214111328125,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.42248445749282837,
+        "y": 0,
+        "width": 1414.49755859375,
+        "height": 884.7359619140625,
+        "right": 1414.9200430512428,
+        "bottom": 884.7359619140625
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1415.57763671875,
+        "height": 884.7359619140625,
+        "right": 1415.57763671875,
+        "bottom": 884.7359619140625
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6639.6,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1379.6351318359375,
+        "height": 862.27197265625,
+        "right": 1379.6351318359375,
+        "bottom": 862.27197265625
+      },
+      "nav": {
+        "x": 239.8260040283203,
+        "y": 838,
+        "width": 900.0000610351562,
+        "height": 104,
+        "right": 1139.8260650634766,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.37960177659988403,
+        "y": 0,
+        "width": 1378.58251953125,
+        "height": 862.27197265625,
+        "right": 1378.9621213078499,
+        "bottom": 862.27197265625
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1379.6351318359375,
+        "height": 862.27197265625,
+        "right": 1379.6351318359375,
+        "bottom": 862.27197265625
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6678.5,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1338.3167724609375,
+        "height": 836.447998046875,
+        "right": 1338.3167724609375,
+        "bottom": 836.447998046875
+      },
+      "nav": {
+        "x": 219.1479949951172,
+        "y": 838,
+        "width": 899.9999389648438,
+        "height": 104,
+        "right": 1119.147933959961,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.33233559131622314,
+        "y": 0,
+        "width": 1337.2957763671875,
+        "height": 836.447998046875,
+        "right": 1337.6281119585037,
+        "bottom": 836.447998046875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1338.3167724609375,
+        "height": 836.447998046875,
+        "right": 1338.3167724609375,
+        "bottom": 836.447998046875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6717.5,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1288.857666015625,
+        "height": 805.5360107421875,
+        "right": 1288.857666015625,
+        "bottom": 805.5360107421875
+      },
+      "nav": {
+        "x": 194.431396484375,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1094.431396484375,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.27876999974250793,
+        "y": 0,
+        "width": 1287.874267578125,
+        "height": 805.5360107421875,
+        "right": 1288.1530375778675,
+        "bottom": 805.5360107421875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1288.857666015625,
+        "height": 805.5360107421875,
+        "right": 1288.857666015625,
+        "bottom": 805.5360107421875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6756.2,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1232.17919921875,
+        "height": 770.1119995117188,
+        "right": 1232.17919921875,
+        "bottom": 770.1119995117188
+      },
+      "nav": {
+        "x": 166.07359313964844,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1066.0735931396484,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.22126682102680206,
+        "y": 0,
+        "width": 1231.2391357421875,
+        "height": 770.1119995117188,
+        "right": 1231.4604025632143,
+        "bottom": 770.1119995117188
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1232.17919921875,
+        "height": 770.1119995117188,
+        "right": 1232.17919921875,
+        "bottom": 770.1119995117188
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6795.2,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1178.265625,
+        "height": 736.4159545898438,
+        "right": 1178.265625,
+        "bottom": 736.4159545898438
+      },
+      "nav": {
+        "x": 139.1428985595703,
+        "y": 838,
+        "width": 900.0000610351562,
+        "height": 104,
+        "right": 1039.1429595947266,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.17046880722045898,
+        "y": 0,
+        "width": 1177.3665771484375,
+        "height": 736.4159545898438,
+        "right": 1177.537045955658,
+        "bottom": 736.4159545898438
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1178.265625,
+        "height": 736.4159545898438,
+        "right": 1178.265625,
+        "bottom": 736.4159545898438
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6834.1,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1131.87841796875,
+        "height": 707.4239501953125,
+        "right": 1131.87841796875,
+        "bottom": 707.4239501953125
+      },
+      "nav": {
+        "x": 115.91069793701172,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 1015.9106979370117,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.12971282005310059,
+        "y": 0,
+        "width": 1131.0147705078125,
+        "height": 707.4239501953125,
+        "right": 1131.1444833278656,
+        "bottom": 707.4239501953125
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1131.87841796875,
+        "height": 707.4239501953125,
+        "right": 1131.87841796875,
+        "bottom": 707.4239501953125
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6873,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1092.24951171875,
+        "height": 682.656005859375,
+        "right": 1092.24951171875,
+        "bottom": 682.656005859375
+      },
+      "nav": {
+        "x": 96.10379791259766,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 996.1037979125977,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.09715402871370316,
+        "y": 0,
+        "width": 1091.416259765625,
+        "height": 682.656005859375,
+        "right": 1091.5134137943387,
+        "bottom": 682.656005859375
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1092.24951171875,
+        "height": 682.656005859375,
+        "right": 1092.24951171875,
+        "bottom": 682.656005859375
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6911.9,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1058.91845703125,
+        "height": 661.8240356445312,
+        "right": 1058.91845703125,
+        "bottom": 661.8240356445312
+      },
+      "nav": {
+        "x": 79.44879913330078,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 979.4487991333008,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.07137014716863632,
+        "y": 0,
+        "width": 1058.1104736328125,
+        "height": 661.8240356445312,
+        "right": 1058.1818437799811,
+        "bottom": 661.8240356445312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1058.91845703125,
+        "height": 661.8240356445312,
+        "right": 1058.91845703125,
+        "bottom": 661.8240356445312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6950.8,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1031.2703857421875,
+        "height": 644.5440063476562,
+        "right": 1031.2703857421875,
+        "bottom": 644.5440063476562
+      },
+      "nav": {
+        "x": 65.67310333251953,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 965.6731033325195,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.051110342144966125,
+        "y": 0,
+        "width": 1030.483642578125,
+        "height": 644.5440063476562,
+        "right": 1030.53475292027,
+        "bottom": 644.5440063476562
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1031.2703857421875,
+        "height": 644.5440063476562,
+        "right": 1031.2703857421875,
+        "bottom": 644.5440063476562
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 6989.6,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1008.9984130859375,
+        "height": 630.6239624023438,
+        "right": 1008.9984130859375,
+        "bottom": 630.6239624023438
+      },
+      "nav": {
+        "x": 54.502899169921875,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 954.5028991699219,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.035357654094696045,
+        "y": 0,
+        "width": 1008.2285766601562,
+        "height": 630.6239624023438,
+        "right": 1008.263934314251,
+        "bottom": 630.6239624023438
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1008.9984130859375,
+        "height": 630.6239624023438,
+        "right": 1008.9984130859375,
+        "bottom": 630.6239624023438
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7028.5,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 991.795166015625,
+        "height": 619.8719482421875,
+        "right": 991.795166015625,
+        "bottom": 619.8719482421875
+      },
+      "nav": {
+        "x": 45.8650016784668,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 945.8650016784668,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.02371332235634327,
+        "y": 0,
+        "width": 991.0384521484375,
+        "height": 619.8719482421875,
+        "right": 991.0621654707938,
+        "bottom": 619.8719482421875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 991.795166015625,
+        "height": 619.8719482421875,
+        "right": 991.795166015625,
+        "bottom": 619.8719482421875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7067.4,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 978.124755859375,
+        "height": 611.3280029296875,
+        "right": 978.124755859375,
+        "bottom": 611.3280029296875
+      },
+      "nav": {
+        "x": 39.03739929199219,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 939.0373992919922,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.014725995250046253,
+        "y": 0,
+        "width": 977.3785400390625,
+        "height": 611.3280029296875,
+        "right": 977.3932660343125,
+        "bottom": 611.3280029296875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 978.124755859375,
+        "height": 611.3280029296875,
+        "right": 978.124755859375,
+        "bottom": 611.3280029296875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7106.3,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 967.9872436523438,
+        "height": 604.9920043945312,
+        "right": 967.9872436523438,
+        "bottom": 604.9920043945312
+      },
+      "nav": {
+        "x": 34.00320053100586,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 934.0032005310059,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.008271376602351665,
+        "y": 0,
+        "width": 967.2487182617188,
+        "height": 604.9920043945312,
+        "right": 967.2569896383211,
+        "bottom": 604.9920043945312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 967.9872436523438,
+        "height": 604.9920043945312,
+        "right": 967.9872436523438,
+        "bottom": 604.9920043945312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7145.2,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 960.9215698242188,
+        "height": 600.5759887695312,
+        "right": 960.9215698242188,
+        "bottom": 600.5759887695312
+      },
+      "nav": {
+        "x": 30.48889923095703,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 930.488899230957,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.003831783076748252,
+        "y": 0,
+        "width": 960.1884155273438,
+        "height": 600.5759887695312,
+        "right": 960.1922473104205,
+        "bottom": 600.5759887695312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 960.9215698242188,
+        "height": 600.5759887695312,
+        "right": 960.9215698242188,
+        "bottom": 600.5759887695312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7184.2,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 956.4671630859375,
+        "height": 597.7919921875,
+        "right": 956.4671630859375,
+        "bottom": 597.7919921875
+      },
+      "nav": {
+        "x": 28.22130012512207,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 928.2213001251221,
+        "bottom": 942
+      },
+      "image": {
+        "x": 0.0010118883801624179,
+        "y": 0,
+        "width": 955.7373657226562,
+        "height": 597.7919921875,
+        "right": 955.7383776110364,
+        "bottom": 597.7919921875
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 956.4671630859375,
+        "height": 597.7919921875,
+        "right": 956.4671630859375,
+        "bottom": 597.7919921875
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7223,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 953.85595703125,
+        "height": 596.1599731445312,
+        "right": 953.85595703125,
+        "bottom": 596.1599731445312
+      },
+      "nav": {
+        "x": 26.927499771118164,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.9274997711182,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0006054828991182148,
+        "y": 0,
+        "width": 953.1282348632812,
+        "height": 596.1599731445312,
+        "right": 953.1276293803821,
+        "bottom": 596.1599731445312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 953.85595703125,
+        "height": 596.1599731445312,
+        "right": 953.85595703125,
+        "bottom": 596.1599731445312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7261.9,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.627197265625,
+        "height": 595.3919677734375,
+        "right": 952.627197265625,
+        "bottom": 595.3919677734375
+      },
+      "nav": {
+        "x": 26.334199905395508,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.3341999053955,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0013489185366779566,
+        "y": 0,
+        "width": 951.9003295898438,
+        "height": 595.3919677734375,
+        "right": 951.8989806713071,
+        "bottom": 595.3919677734375
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.627197265625,
+        "height": 595.3919677734375,
+        "right": 952.627197265625,
+        "bottom": 595.3919677734375
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7300.7,
+      "phase": "arranging",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.16819953918457,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1681995391846,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7323,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7361.9,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7400.7,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7439.6,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7478.5,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7517.5,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "t": 7540.700000000186,
+      "phase": "study",
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "nav": {
+        "x": 26.15999984741211,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 926.1599998474121,
+        "bottom": 942
+      },
+      "image": {
+        "x": -0.0015345144784078002,
+        "y": 0,
+        "width": 951.5934448242188,
+        "height": 595.2000122070312,
+        "right": 951.5919103097403,
+        "bottom": 595.2000122070312
+      },
+      "edgeCount": 0,
+      "column": {
+        "x": 986.109375,
+        "y": 72,
+        "width": 516.09375,
+        "height": 864,
+        "right": 1502.203125,
+        "bottom": 936
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 952.3200073242188,
+        "height": 595.2000122070312,
+        "right": 952.3200073242188,
+        "bottom": 595.2000122070312
+      },
+      "model": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "artwork": {
+        "opacity": 1,
+        "visibility": "visible",
+        "mask": "none",
+        "filter": "none"
+      },
+      "panel": {
+        "opacity": 0,
+        "visibility": "hidden",
+        "mask": "none",
+        "filter": "none"
+      },
+      "fit": "contain",
+      "natural": {
+        "width": 1586,
+        "height": 992
+      }
+    }
+  ],
+  "passed": true,
+  "stageSamples": {
+    "travel": 56,
+    "handoff": 27,
+    "arranging": 30,
+    "study": 7
+  }
+}
