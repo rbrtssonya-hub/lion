@@ -22,7 +22,7 @@ async function openCraft(page, viewport = { width: 1366, height: 768 }) {
   await page.goto('/#/model');
   await expect(page.getByRole('tab', { name: '工艺', exact: true })).toBeVisible();
   await page.getByRole('tab', { name: '工艺', exact: true }).click();
-  const photo = page.locator('.model-craft-photo img');
+  const photo = page.locator('img.model-craft-photo');
   await expect(photo).toBeVisible();
   await expect.poll(() => photo.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
   await page.evaluate(() => document.fonts.ready);
@@ -241,7 +241,7 @@ test('按住空格时Tab失焦会取消蓄力和敲鼓按键锁，返回舞台�
 });
 
 for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768]]) {
-  test(`工艺小游戏入口在 ${width}×${height} 一屏可见，保留照片许可`, async ({ page }) => {
+  test(`工艺小游戏入口在 ${width}×${height} 一屏可见，保留示意标注与资料来源`, async ({ page }) => {
     await openCraft(page, { width, height });
     for (const game of Object.values(games)) {
       const entry = page.getByRole('button', { name: game.entry, exact: true });
@@ -249,11 +249,12 @@ for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768]]) {
       await expect(entry).toBeInViewport({ ratio: 1 });
       await entry.click({ trial: true });
     }
-    await expect(page.getByRole('heading', { name: '扎、扑、画、装', exact: true })).toBeInViewport();
+    await expect(page.locator('#model-craft-title')).toBeInViewport();
     await expect(page.locator('.model-craft-note')).toBeInViewport({ ratio: 1 });
-    await expect(page.getByRole('link', { name: '照片来源', exact: true })).toHaveAttribute('href', /commons\.wikimedia\.org\/wiki\/File:2020_/);
-    await expect(page.getByRole('link', { name: 'CC BY 2.0', exact: true })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/2.0/');
-    await expect(page.getByRole('link', { name: 'CC BY 2.0', exact: true })).toBeInViewport();
+    const source = page.getByRole('link', { name: /南海博物馆 · 佛鹤狮头制作/ });
+    await expect(source).toHaveAttribute('href', 'https://www.nhmuseum.org/fei-yi/1575.html');
+    await expect(source).toBeInViewport();
+    await expect(page.locator('.model-craft-figure figcaption')).toContainText('AI辅助绘制');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
     await screenshot(page, `craft-entries-${width}x${height}.png`);
     for (const kind of Object.keys(games)) {

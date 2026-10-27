@@ -27,7 +27,7 @@ async function openModel(page, viewport = { width: 1366, height: 768 }) {
   await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
 }
 
-test('造章页签可用键盘切换，保留原部位并暂停隐藏模型，工艺照片保留来源许可', async ({ page }) => {
+test('造章页签可用键盘切换，保留原部位并暂停隐藏模型，工艺示意注明来源与边界', async ({ page }) => {
   await openModel(page);
   const formTab = page.getByRole('tab', { name: '观形', exact: true });
   await expect(formTab).toHaveAttribute('aria-selected', 'true');
@@ -59,13 +59,13 @@ test('造章页签可用键盘切换，保留原部位并暂停隐藏模型，�
   await typesTab.press('End');
   const craftTab = page.getByRole('tab', { name: '工艺', exact: true });
   await expect(craftTab).toBeFocused();
-  await expect(page.getByRole('heading', { name: '扎、扑、画、装', exact: true })).toBeVisible();
-  const photo = page.getByRole('img', { name: '广州青砖建筑前陈列的黄色醒狮狮头，能看到彩绘、眉眼和额头镜饰' });
+  await expect(page.locator('#model-craft-title')).toHaveText(/扎.*竹篾立骨/);
+  const photo = page.getByRole('img', { name: /扎工序示意：双手在工作台上绑扎竹篾狮头骨架/ });
   await expect(photo).toBeVisible();
   await expect.poll(() => photo.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
-  await expect(page.getByRole('link', { name: '照片来源' })).toHaveAttribute('href', /commons\.wikimedia\.org\/wiki\/File:2020_/);
-  await expect(page.getByRole('link', { name: 'CC BY 2.0' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/2.0/');
-  await expect(page.getByText(/照片看不见内部竹架/)).toBeVisible();
+  await expect(page.getByRole('link', { name: /南海博物馆 · 佛鹤狮头制作/ })).toHaveAttribute('href', 'https://www.nhmuseum.org/fei-yi/1575.html');
+  await expect(page.locator('.model-craft-figure figcaption')).toContainText('AI辅助绘制');
+  await expect(page.locator('.model-craft-note')).toContainText('具体做法随师傅与工坊而异');
 
   await craftTab.press('Home');
   await expect(formTab).toBeFocused();
@@ -81,11 +81,11 @@ test('造章工艺在短电脑窗口保持图片与正文可读并允许局部�
   await page.getByRole('tab', { name: '工艺', exact: true }).click();
   const panel = page.getByRole('tabpanel', { name: '工艺', exact: true });
   await expect(panel).toBeVisible();
-  await expect(page.getByRole('heading', { name: '扎、扑、画、装', exact: true })).toBeInViewport();
+  await expect(page.locator('#model-craft-title')).toBeInViewport();
   const bounds = await panel.evaluate(node => ({ width: node.clientWidth, contentWidth: node.scrollWidth, height: node.clientHeight, contentHeight: node.scrollHeight, overflowY: getComputedStyle(node).overflowY }));
   expect(bounds.contentWidth).toBeLessThanOrEqual(bounds.width + 1);
   expect(bounds.overflowY).toMatch(/auto|scroll/);
-  await page.getByRole('link', { name: '照片来源' }).scrollIntoViewIfNeeded();
-  await expect(page.getByRole('link', { name: '照片来源' })).toBeInViewport();
+  await page.getByRole('link', { name: /南海博物馆 · 佛鹤狮头制作/ }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole('link', { name: /南海博物馆 · 佛鹤狮头制作/ })).toBeInViewport();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
