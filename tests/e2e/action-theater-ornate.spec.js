@@ -3,21 +3,19 @@ import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { scene, openTheater, jsonAttribute } from './action-theater.helpers.js';
 
-const reviewDir = resolve(process.env.ACTION_THEATER_REVIEW_DIR || 'source/reviews/action-theater/2026-10-27-warm-gold');
+const reviewDir = resolve(process.env.ACTION_THEATER_REVIEW_DIR || 'source/reviews/action-theater/2026-10-19-ornate');
 const composition = page => jsonAttribute(scene(page), 'data-composition');
 
 // These values are projected from current world geometry, rather than design
 // constants. A screenshot review remains necessary to assess visual occlusion.
-test('暖金Blender展厅保留完整狮子与抛光舞台的原始构图', async ({ page }, testInfo) => {
+test('红金剧场初始真实投影满足主狮和低矮完整舞台的构图比例', async ({ page }, testInfo) => {
   await openTheater(page);
-  await expect.poll(async () => (await composition(page))?.lion?.heightRatio).toBeGreaterThanOrEqual(.28);
+  await expect.poll(async () => (await composition(page))?.lion?.heightRatio).toBeGreaterThanOrEqual(.32);
   const current = await composition(page);
-  expect(current.lion.heightRatio).toBeLessThanOrEqual(.48);
-  expect(current.stage.widthRatio).toBeGreaterThanOrEqual(.48);
-  expect(current.stage.widthRatio).toBeLessThanOrEqual(.82);
+  expect(current.lion.heightRatio).toBeLessThanOrEqual(.42);
+  expect(current.stage.widthRatio).toBeGreaterThanOrEqual(.60);
+  expect(current.stage.widthRatio).toBeLessThanOrEqual(.75);
   expect(Math.abs(current.lion.worldMinY - current.stage.worldTopY)).toBeLessThan(.025);
-  expect(current.architecture.components).toMatchObject({ sourceArchitectureMeshes: 1438, sourceDrumSets: 4, sourceDrumMeshes: 28 });
-  expect(current.lighting.source).toMatchObject({ sourceLights: 21, areaLights: 13, spotLights: 4, pointLights: 4 });
   for (const bounds of [current.lion, current.stage]) {
     expect(bounds.left).toBeGreaterThanOrEqual(0);
     expect(bounds.right).toBeLessThanOrEqual(1);
@@ -34,9 +32,7 @@ test('初始三面真巨幕可见且后方第四屏保持16比9可供环绕观�
   const current = await composition(page);
   expect(Object.keys(current.screens).sort()).toEqual(['doumao', 'meihuazhuang', 'tanqing', 'tuqiu']);
   for (const screen of Object.values(current.screens)) {
-    // Meshopt's position quantization introduces sub-millimeter
-    // bounds drift while preserving the screen's visible 16:9 composition.
-    expect(screen.worldWidth / screen.worldHeight).toBeCloseTo(16 / 9, 3);
+    expect(screen.worldWidth / screen.worldHeight).toBeCloseTo(16 / 9, 5);
     expect(screen.worldWidth).toBeGreaterThan(12);
     expect(screen.worldHeight).toBeGreaterThan(7);
   }
@@ -48,19 +44,30 @@ test('初始三面真巨幕可见且后方第四屏保持16比9可供环绕观�
   expect(current.screens.tuqiu.visible).toBe(false);
 });
 
-test('源Blender梁架、鼓与石材进入网页场景，暖金灯光参与渲染', async ({ page }) => {
+test('真实梁架红柱与重复金饰采用实例，石材反射实际更新并在平面模式暂停', async ({ page }) => {
   await openTheater(page);
+  await expect.poll(async () => (await composition(page))?.reflection?.passes).toBeGreaterThan(0);
   const current = await composition(page);
   const components = current.architecture.components;
-  expect(components.sourceArchitectureMeshes).toBe(1438);
-  expect(components.sourceDrumSets).toBe(4);
-  expect(current.architecture.meshBatches).toBeGreaterThan(10);
-  expect(current.architecture.instancedDraws).toBe(0);
+  expect(components.Theater_Column_Red_Lacquer).toBeGreaterThanOrEqual(4);
+  expect(components.Theater_Continuous_RedGold_Beam).toBeGreaterThanOrEqual(12);
+  expect(components.Theater_Continuous_Carved_Lintel).toBeGreaterThan(100);
+  expect(components.Theater_Screen_Thick_Black_Upright).toBe(8);
+  expect(components.Theater_Screen_Thick_Black_Crossbar).toBe(8);
+  expect(current.architecture.instancedDraws).toBeGreaterThan(0);
   expect(current.architecture.gridVisibleCount).toBe(0);
-  expect(current.architecture.stoneRoughness).toBeGreaterThan(0);
-  expect(current.lighting.lights.some(light => light.name === '暖光_檐口_北')).toBe(true);
-  expect(current.lighting.lights.some(light => light.name === 'Lantern_Corner_NE_Light')).toBe(true);
-  expect(current.lighting.lights.some(light => light.name === 'Theater_Web_Soft_Key_Shadow' && light.shadow)).toBe(true);
+  expect(current.architecture.stoneRoughness).toBeGreaterThan(.1);
+  expect(current.reflection.enabled).toBe(true);
+  expect(current.reflection.size).toBeLessThanOrEqual(1024);
+  expect(current.reflection.maxHz).toBeLessThanOrEqual(20);
+  expect(current.reflection.blurTaps).toBeGreaterThan(1);
+  const firstPasses = current.reflection.passes;
+  await expect.poll(async () => (await composition(page)).reflection.passes).toBeGreaterThan(firstPasses);
+  await page.getByRole('button', { name: '平面观看', exact: true }).click();
+  await expect(scene(page)).toHaveAttribute('data-render-state', 'inactive');
+  const pausedPasses = (await composition(page)).reflection.passes;
+  await page.waitForTimeout(350);
+  expect((await composition(page)).reflection.passes).toBe(pausedPasses);
 });
 
 test('三种桌面画幅信息面板避开主狮头部并保留完整操作区域', async ({ page }, testInfo) => {

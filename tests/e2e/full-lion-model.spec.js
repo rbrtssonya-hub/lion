@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { assetPaths } from '../../src/config/assetPaths.js';
 
-test('结构与巨幕绘制各自的完整源狮，动作厅使用暖金场景专属毛发', async ({ page }) => {
-  test.setTimeout(90_000);
+test('结构与巨幕都实际绘制完整新狮，跨章复用全部模型与毛发请求', async ({ page }) => {
   const requests = [], errors = [];
   page.on('request', request => requests.push(new URL(request.url()).pathname));
   page.on('pageerror', error => errors.push(error.message));
@@ -24,17 +23,15 @@ test('结构与巨幕绘制各自的完整源狮，动作厅使用暖金场景�
   await page.locator('.site-header [data-route="action"]').click();
   const theater = page.locator('#chapterStage canvas');
   await expect(theater).toHaveAttribute('data-scene-ready', 'true', { timeout: 45_000 });
-  for (const [key, value] of [['groups', '33'], ['strands', '2295421'], ['points', '19957105']]) {
+  for (const [key, value] of [['groups', '33'], ['strands', '2289801'], ['points', '19929005']]) {
     await expect(theater).toHaveAttribute(`data-full-hair-${key}`, value);
     await expect(theater).toHaveAttribute(`data-full-hair-drawn-${key}`, value);
   }
-  await expect(theater).toHaveAttribute('data-source-model', new RegExp('lion-action-theater-lion-full\\.glb$'));
-  await expect(theater).toHaveAttribute('data-render-lines', '25380208');
+  await expect(theater).toHaveAttribute('data-source-model', new RegExp('lion-user-full\\.glb$'));
   await expect(page.locator('#chapterStage video')).toHaveCount(4);
   for (const [key, path] of Object.entries(assetPaths)) {
-    if (key === 'model' || key === 'modelHair' || /^lionHair\d+$/.test(key)
-      || key === 'actionTheaterLionFull' || key === 'actionTheaterLionHairManifest' || /^actionTheaterLionHair\d+$/.test(key)) {
-      expect(requests.filter(request => request.endsWith(`/${path}`)), `${key}: each chapter source is fetched once`).toHaveLength(1);
+    if (key === 'model' || key === 'modelHair' || /^lionHair\d+$/.test(key)) {
+      expect(requests.filter(request => request.endsWith(`/${path}`)), `${key}: download once for both chapters`).toHaveLength(1);
     }
   }
   expect(errors).toEqual([]);

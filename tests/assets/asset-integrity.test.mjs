@@ -15,12 +15,9 @@ const localSourcePath = 'source/models/user-lion-2026-10-20.blend';
 const userSourceSha256 = 'dcfd8b97a27c371381aa7a0b1c26f5081fc4a35976a571979596aec353d6f770';
 const activeSourcePath = 'source/models/lion-kobi-2026-10-26.blend';
 const activeSourceSha256 = 'cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53';
-const actionTheaterSourcePath = 'source/models/action-theater-warm-gold-2026-10-27.blend';
-const actionTheaterSourceSha256 = '14d119ac20d0245d51e5a62c60721a1e74f71a850c0f3b72ada4c784e8a6a278';
 const localOnlySources = new Map([
   [localSourcePath, { bytes: 136_543_222, sha256: userSourceSha256 }],
   [activeSourcePath, { bytes: 136_175_747, sha256: activeSourceSha256 }],
-  [actionTheaterSourcePath, { bytes: 186_110_536, sha256: actionTheaterSourceSha256 }],
 ]);
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
@@ -281,32 +278,6 @@ test('complete user hair preserves all 33 groups, source points, radii and emitt
   assert.equal(manifest.totalPoints, sourcePoints);
   assert.equal(report.export.hair_strands, manifest.totalStrands);
   assert.equal(report.export.hair_points, sourcePoints);
-});
-
-test('warm-gold action lion preserves its 33 authored strand groups and source provenance', () => {
-  const report = readJson(resolve(sourceRoot, 'references/action-theater-warm-gold-lion-2026-10-27.json'));
-  const manifest = readJson(containedPath(publicRoot, assetPaths.actionTheaterLionHairManifest));
-  assert.equal(report.source_sha256, actionTheaterSourceSha256);
-  assert.equal(manifest.sourceSha256, actionTheaterSourceSha256);
-  assert.equal(manifest.version, 1);
-  assert.equal(manifest.coordinateSystem, 'GLTF_Y_UP');
-  assert.equal(manifest.groups.length, 33);
-  assert.equal(report.hair_source.length, 33);
-  assert.equal(report.export.hair_groups, 33);
-  assert.equal(report.export.hair_strands, 2_295_421);
-  assert.equal(report.export.hair_points, 19_957_105);
-  const auditById = new Map(report.hair_source.map(group => [group.id, group]));
-  let strands = 0;
-  let points = 0;
-  for (const group of manifest.groups) {
-    assert.match(group.path, /^assets\/models\/lion-action-theater-lion-hair-\d{2}\.bin\.gz$/);
-    assert.equal(assetPaths[group.assetKey], group.path, `${group.name}: use the central action asset key`);
-    assert.equal(auditById.get(group.id)?.sha256, group.sha256, `${group.name}: source report hash`);
-    strands += group.strands;
-    points += group.strands * group.pointsPerStrand;
-  }
-  assert.equal(strands, 2_295_421);
-  assert.equal(points, 19_957_105);
 });
 
 test('all six structure regions describe real model meshes or finite surface volumes', () => {

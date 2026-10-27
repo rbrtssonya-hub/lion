@@ -129,12 +129,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         lightingSettings: lightingSettingsRef.current,
         onLightingStatus: next => { if (!cancelled) setLightingStatus(next); },
         onDrumStatus: next => { if (!cancelled) setDrumState(next); },
-        container: containerRef.current,
-        modelUrl: assets.actionTheaterScene,
-        lionModelUrl: assets.actionTheaterLionFull,
-        lionHairManifestUrl: assets.actionTheaterLionHairManifest,
-        resolveLionAsset: key => assets[key],
-        screenDefinitions: clips,
+        container: containerRef.current, modelUrl: assets.actionTheaterScene, screenDefinitions: clips,
         onActiveScreen: id => {
           if (cancelled) return;
           if (requestedScreen.current !== id) setSequenceMode('idle');
@@ -169,7 +164,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
       if (sceneRef.current === handle) sceneRef.current = null;
       handle?.dispose();
     };
-  }, [assets.actionTheaterScene, assets.actionTheaterLionFull, assets.actionTheaterLionHairManifest, clips, playback.getVideo, sceneVersion]);
+  }, [assets.actionTheaterScene, clips, playback.getVideo, sceneVersion]);
 
   useEffect(() => { sceneRef.current?.setVisible(visible && !flatMode); }, [visible, flatMode]);
   useEffect(() => { sceneRef.current?.setLightingSettings(lightingSettingsRef.current); },
