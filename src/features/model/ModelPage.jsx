@@ -339,7 +339,7 @@ export default function ModelPage({ active = true, onReady, onObserve, onPartCha
       </div>
       <div id="model-reading-panel-craft" className="model-journey-panel model-craft-panel" role="tabpanel"
         aria-labelledby="model-reading-tab-craft" tabIndex={0} hidden={readingTab !== 'craft'}>
-        <CraftSection active={active && readingTab === 'craft'} />
+        <CraftSection active={active && readingTab === 'craft'} settings={lightingSettings} />
       </div>
     </section>
   );

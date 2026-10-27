@@ -158,4 +158,8 @@ export const assetPaths = {
   lionBookLicense: 'assets/licenses/threeui-LICENSE.txt',
   lionBookFontLicense: 'assets/licenses/threeui-FONT-LICENSES.txt',
   lionGamePoses: 'assets/lion-games/lion-poses.png',
+  craftFrame: 'assets/craft/zha.png',
+  craftPaper: 'assets/craft/pu.png',
+  craftPaint: 'assets/craft/hua.png',
+  craftFinish: 'assets/craft/zhuang.png',
 };
