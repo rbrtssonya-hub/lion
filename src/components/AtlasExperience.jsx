@@ -34,6 +34,7 @@ export default function AtlasExperience() {
   const world = useRef(null), registry = useRef(null);
   const frame = useRef(null), controls = useRef(null), modelLayer = useRef(null), imageLayer = useRef(null), image = useRef(null);
   const presentation = useRef({ progress: 0 });
+  const dissolve = useRef({ progress: 0 });
   const epoch = useRef(0), pendingTweens = useRef(new Set()), phaseRef = useRef('overview'), selectedRef = useRef(null), layoutRef = useRef(layout), disposed = useRef(false);
   const cachedUv = useRef(new Map());
   layoutRef.current = layout;
@@ -66,6 +67,22 @@ export default function AtlasExperience() {
     progress, duration, ease: 'power2.inOut', onUpdate: placeFrame,
   }), [animate, placeFrame]);
 
+  const placeDissolve = useCallback(() => {
+    const p = dissolve.current.progress;
+    gsap.set(imageLayer.current, { autoAlpha: p });
+    gsap.set(modelLayer.current, { autoAlpha: 1 - p });
+    // During the overlap, soften the image edges so an opaque 3:2 rectangle
+    // cannot cut across the still-visible model. Restore every image pixel as
+    // the model disappears; reversing the same progress also reverses this.
+    const feather = Math.min(48, Math.max(0, (1 - p) * 240));
+    imageLayer.current.style.maskImage = p > 0 && feather > .01
+      ? `linear-gradient(to right, transparent, black ${feather}px, black calc(100% - ${feather}px), transparent), linear-gradient(to bottom, transparent, black ${feather}px, black calc(100% - ${feather}px), transparent)`
+      : 'none';
+  }, []);
+  const crossfade = useCallback((progress, duration) => animate(dissolve.current, {
+    progress, duration, ease: 'sine.inOut', onUpdate: placeDissolve,
+  }), [animate, placeDissolve]);
+
   const begin = useCallback(() => {
     epoch.current++;
     gsap.killTweensOf(modelLayer.current);
@@ -88,12 +105,12 @@ export default function AtlasExperience() {
         await arrange(0, reduced() ? .01 : (presentation.current.progress > .001 ? .85 : 0));
         if (!current()) return;
         w.setActive(true);
-        gsap.set(modelLayer.current, { autoAlpha: 1 });
-        await animate(imageLayer.current, { autoAlpha: 0, duration: reduced() ? .01 : .42, ease: 'sine.inOut' });
+        await crossfade(0, reduced() ? .01 : .42);
         if (!current()) return;
       }
       w.setActive(true);
-      gsap.set(modelLayer.current, { autoAlpha: 1 });
+      dissolve.current.progress = 0;
+      placeDissolve();
       changeSelected(id);
       changePhase('travel');
       setAnalysis(reg.analyze(id));
@@ -114,7 +131,7 @@ export default function AtlasExperience() {
       if (!current()) return;
       changePhase('handoff');
       // One identical viewport, no crop, zoom or frame replacement during the dissolve.
-      await animate(imageLayer.current, { autoAlpha: 1, duration: reduced() ? .03 : 1.05, ease: 'sine.inOut' });
+      await crossfade(1, reduced() ? .03 : 1.05);
       if (!current()) return;
       gsap.set(modelLayer.current, { autoAlpha: 0 });
       w.setActive(false);
@@ -129,8 +146,8 @@ export default function AtlasExperience() {
       setError(failure.message || '图版载入失败，请重试。');
       changePhase('returning');
       w.setActive(true);
-      gsap.set(modelLayer.current, { autoAlpha: 1 });
-      gsap.set(imageLayer.current, { autoAlpha: 0 });
+      dissolve.current.progress = 0;
+      placeDissolve();
       await Promise.all([
         w.restoreOverview({ duration: reduced() ? .01 : .8 }),
         arrange(0, reduced() ? .01 : .8),
@@ -140,7 +157,7 @@ export default function AtlasExperience() {
       changePhase('overview');
       w.setInteractive(true);
     }
-  }, [animate, arrange, begin]);
+  }, [arrange, begin, crossfade, placeDissolve]);
 
   const returnHome = useCallback(async () => {
     if (!registry.current || phaseRef.current === 'overview' || phaseRef.current === 'returning') return;
@@ -151,8 +168,7 @@ export default function AtlasExperience() {
     await arrange(0, reduced() ? .01 : (presentation.current.progress > .001 ? .85 : 0));
     if (!current()) return;
     w.setActive(true);
-    gsap.set(modelLayer.current, { autoAlpha: 1 });
-    await animate(imageLayer.current, { autoAlpha: 0, duration: reduced() ? .02 : .65, ease: 'sine.inOut' });
+    await crossfade(0, reduced() ? .02 : .65);
     if (!current()) return;
     await w.restoreOverview({ duration: reduced() ? .01 : 1.65 });
     if (!current()) return;
@@ -161,7 +177,7 @@ export default function AtlasExperience() {
     setUvStudy(null);
     changePhase('overview');
     w.setInteractive(true);
-  }, [animate, arrange, begin]);
+  }, [arrange, begin, crossfade]);
 
   const onReady = useCallback(reg => {
     registry.current = reg;
@@ -191,7 +207,7 @@ export default function AtlasExperience() {
   return <main className="lion-experience" data-phase={phase} data-ready={ready} data-selected={selected || ''} aria-busy={!['overview', 'study'].includes(phase)}>
     {selected && <button className="return-home" onClick={returnHome}><ArrowLeft size={14}/>返回整体</button>}
     <div className="visual-frame" ref={frame} style={{ width: layout.width, height: layout.height }}>
-      <div className="model-layer" ref={modelLayer} aria-hidden={phase === 'study'}><ModelCanvas worldRef={world} onSelect={select} onReady={onReady} onProgress={setProgress} onError={setError}/></div>
+      <div className="model-layer" ref={modelLayer} style={{ left: -layout.homeX, top: -layout.homeY, width: layout.viewportWidth, height: layout.viewportHeight }} aria-hidden={phase === 'study' || phase === 'arranging'}><ModelCanvas worldRef={world} onSelect={select} onReady={onReady} onProgress={setProgress} onError={setError}/></div>
       <div className="artwork-layer" ref={imageLayer} aria-hidden={phase === 'overview' || phase === 'travel'}>
         {chapter && <img ref={image} className="chapter-artwork" src={chapter.image} width="1536" height="1024" alt={chapter.imageAlt} draggable="false"/>}
       </div>

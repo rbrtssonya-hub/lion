@@ -12,6 +12,7 @@ export default function ModelCanvas({ worldRef, onSelect, onReady, onProgress, o
       world = new LionWorld(host.current, {
         cameraDirection: [5, 2.7, 7],
         fixedAspect: 1.5,
+        overscan: true,
         labels: false,
         onSelect: id => callbacks.current.onSelect(id),
         onReady: (...args) => callbacks.current.onReady(...args),

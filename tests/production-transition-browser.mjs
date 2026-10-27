@@ -29,12 +29,12 @@ try {
     const style = selector => {
       const el = document.querySelector(selector);
       const css = el && getComputedStyle(el);
-      return { opacity: css ? Number(css.opacity) : 0, visibility: css?.visibility || 'hidden' };
+      return { opacity: css ? Number(css.opacity) : 0, visibility: css?.visibility || 'hidden', mask: css?.maskImage || 'none' };
     };
     const state = window.__PRODUCTION_TRANSITION__ = { running: true, samples: [], last: -100 };
     state.capture = t => ({ t, phase: document.querySelector('.lion-experience').dataset.phase,
       viewport: { width: innerWidth, height: innerHeight }, frame: rect('.visual-frame'), nav: rect('.chapter-controls'),
-      image: rect('.chapter-artwork'), column: rect('.cultural-column'),
+      image: rect('.chapter-artwork'), column: rect('.cultural-column'), canvas: rect('.canvas-host canvas'),
       model: style('.model-layer'), artwork: style('.artwork-layer'), panel: style('.cultural-panel'),
       fit: document.querySelector('.chapter-artwork') ? getComputedStyle(document.querySelector('.chapter-artwork')).objectFit : null,
     });
@@ -73,11 +73,16 @@ try {
     near(sample.frame.x, 48, 'stationary screen-centred left');
     near(sample.frame.y, 0, 'stationary screen-centred top');
     near(sample.nav.x, 318, 'navigation remains centred until conversion finishes');
+    near(sample.canvas.x, 0, '3D canvas starts at window left');
+    near(sample.canvas.y, 0, '3D canvas starts at window top');
+    near(sample.canvas.width, sample.viewport.width, '3D canvas fills window width');
+    near(sample.canvas.height, sample.viewport.height, '3D canvas fills window height');
     assert.equal(sample.panel.visibility, 'hidden', 'cultural text stays hidden before picture movement');
     if (sample.phase === 'travel' || sample.artwork.opacity < .999) assert.equal(sample.model.visibility, 'visible');
   }
   const dissolve = samples.filter(sample => sample.phase === 'handoff');
   assert.ok(dissolve.some(sample => sample.artwork.opacity > .08 && sample.artwork.opacity < .92), 'production paints an intermediate image dissolve');
+  assert.ok(dissolve.some(sample => sample.model.opacity > .08 && sample.model.opacity < .92 && sample.artwork.mask !== 'none'), 'model fades with the picture and its edges are softened');
   const moving = samples.filter(sample => sample.phase === 'arranging');
   assert.ok(moving.length >= 3, 'production picture movement is observed across multiple frames');
   for (const sample of moving) {
@@ -85,6 +90,7 @@ try {
     assert.equal(sample.model.opacity, 0);
     assert.equal(sample.artwork.visibility, 'visible');
     assert.ok(sample.artwork.opacity > .999, 'picture is fully converted before movement');
+    assert.equal(sample.artwork.mask, 'none', 'complete image is restored before movement');
     assert.equal(sample.panel.visibility, 'hidden', 'text waits for docking');
     near(sample.frame.width / sample.frame.height, 1.5, 'moving image keeps 3:2', .0001);
     near(sample.image.width, sample.frame.width, 'whole image fills moving aperture');

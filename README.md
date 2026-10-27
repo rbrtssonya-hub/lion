@@ -30,7 +30,7 @@ npm run preview
 
 1. 在首页拖动模型旋转，滚轮缩放；右下角复位按钮恢复整体视角。
 2. 点击下方六个控件，或点击模型中已有映射的可识别表面。
-3. 相机在全屏最大完整 3:2 画幅中飞向对应局部；此时不为右栏预留空间，也不移动画幅。到达登记终点后，原地淡入相应生成图片。
+3. 相机在覆盖窗口的三维视口中飞向对应局部，中央最大完整 3:2 区域保持原构图；此时不为右栏预留空间。到达登记终点后，原地淡入相应生成图片。
 4. 图片完全显示后，三维层设为 `visibility: hidden`、`opacity: 0`，并调用 `setActive(false)` 停止其 RAF 渲染循环。随后 GSAP 等比缩小图片并移到页面 `(0,0)`，六个图标同步移到左侧图片区下方。完整图片使用 `contain`，不做网页裁切。
 5. 图片移动结束，右侧标题才通过 GSAP 逐字进入。右栏占常用桌面宽度约三分之一，并独立使用屏幕高度。默认“文化图解”页呈现艺术图、编号点击区、分项解说、文化背景和来源；点击图中编号或图下分项，解说更新并自动滚入阅读区。
 6. “形态数据”页呈现实际网格分析、图例、方法、构件数量、宽高比、三轴尺寸及样本口径；织锦另有实际 UV 与按三角表面积估计的贴图色带。右侧内容可独立滚动，页签切换会回到内容顶部。
@@ -68,7 +68,7 @@ npm run preview
 
 ## 画幅与相机交接
 
-`src/interaction/layout.mjs` 令画幅宽度取 3 的整数倍、高度取对应 2 的整数倍；Three.js 相机使用精确 `aspect = 1.5`。首页、运镜与淡化使用屏幕可容纳的最大完整 3:2 画幅，屏幕比例多出的区域保持纸底。图片替换完成后才通过 `x / y / scale` 等比移到左上角；内部画幅尺寸与相机取景不变，不裁图。导航以左侧图片区居中，右栏不受左侧导航高度限制。
+`src/interaction/layout.mjs` 令图片画幅宽度取 3 的整数倍、高度取对应 2 的整数倍；Three.js 相机保留精确 `aspect = 1.5` 的中央构图，并向外扩展渲染至窗口边缘。转图时整窗模型随图片交接淡出，避免在原画幅边缘硬截断。图片替换完成后才通过 `x / y / scale` 等比移到左上角；内部画幅尺寸与相机取景不变，不裁图。导航以左侧图片区居中，右栏不受左侧导航高度限制。
 
 动画只驱动一个 0–1 的排版进度，每帧根据当前窗口计算位置，避免窗口变化后旧 tween 写回过期坐标。`LionWorld.resize()` 使用未缩放的 `clientWidth / clientHeight`，不会把 GSAP 的显示缩放再次写入画布尺寸。
 
@@ -149,6 +149,8 @@ npm run test:browser
 
 `handoff-browser.mjs` 覆盖首页无文化内容、六个独立主图 URL、真实相机运动、登记终点、完整画幅、模型隐藏与暂停、GSAP 文字变化、返回与中断、真实表面点击、桌面窗口及图片失败恢复。新增逐帧采样验证“全屏运镜 → 全屏淡化 → 仅图片移动 → 文字进入”的严格顺序，结果默认写入 `artifacts/transition/`；可用 `ATLAS_EVIDENCE` 指定目录。
 
+`node tests/viewport-browser.mjs` 针对开发服务检查真实织锦镜头在旧画幅左右的扩展像素、中央投影及转图和返回中间帧；输出目录默认是 `artifacts/viewport/`。
+
 新增图文界面检查：
 
 ```powershell
@@ -164,7 +166,7 @@ node tests/production-transition-browser.mjs
 
 图文脚本默认访问 `5175`，检查六张艺术入口、六章文化图解、编号/分项解说、自动滚动、页签与键盘、数据图、五种桌面版面和十二张独立资产。`production-transition-browser.mjs` 默认访问 `4175`，在生产普通动态模式下独立采样四阶段与标题动画。两者均支持 `ATLAS_URL / ATLAS_EVIDENCE`。构建运行 `npm run build`；旧 `tests/production.mjs` 仍可用于主图静态加载回归，其地址变量为 `ATLAS_PRODUCTION_URL`，默认 `4173`。
 
-本轮全屏交接与贴角排版的验证入口为 [transition 验证记录](artifacts/transition/VERIFICATION.md)，相应 JSON 与截图位于同目录。`artifacts/handoff/` 保留先前交接记录；`artifacts/enrichment/` 保留先前图文界面记录。只将对应版本、对应范围内实际完成的检查作为通过证据。
+本轮整窗视口和画面交接验证见 [viewport 验证记录](artifacts/viewport/VERIFICATION.md)；先前全屏交接与贴角排版的验证见 [transition 验证记录](artifacts/transition/VERIFICATION.md)。`artifacts/handoff/` 和 `artifacts/enrichment/` 保留更早记录。只将对应版本、对应范围内实际完成的检查作为通过证据。
 
 六张相机主图的完整提示词已汇总于 [主图 IMAGE_PROMPTS.md](artifacts/handoff/IMAGE_PROMPTS.md)，路径、大小与 SHA-256 见 `artifacts/handoff/asset-manifest.json`。十二张新增图标与文化图解使用独立的 [新增素材 IMAGE_PROMPTS.md](artifacts/enrichment/IMAGE_PROMPTS.md) 和清单。
 

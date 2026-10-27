@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { computeBoundsTree, disposeBoundsTree, acceleratedRaycast } from 'three-mesh-bvh';
 import { PartRegistry } from './PartRegistry.js';
+import { frameLayout } from '../interaction/layout.mjs';
 import adaptation from '../content/model-adaptation.json';
 import { gsap } from 'gsap';
 
@@ -414,10 +415,16 @@ export class LionWorld {
     if (!width || !height) return;
     this.width = width;
     this.height = height;
-    // CSS can round a 3:2 rectangle to fractional pixels. Preserve the exact
-    // registered optical aperture instead of deriving it from those roundings.
-    this.camera.aspect = this.options.fixedAspect || 1.5;
-    this.camera.updateProjectionMatrix();
+    if (this.options.overscan) {
+      // Extend the registered 3:2 aperture to the viewport edges while keeping
+      // the rays inside that aperture identical to the six artwork references.
+      const aperture = frameLayout(width, height);
+      this.camera.setViewOffset(aperture.width, aperture.height, -aperture.homeX, -aperture.homeY, width, height);
+    } else {
+      this.camera.clearViewOffset();
+      this.camera.aspect = this.options.fixedAspect || 1.5;
+      this.camera.updateProjectionMatrix();
+    }
     this.renderer.setSize(width, height, false);
     // The handoff frame remains 3:2. Resizing its CSS pixel size must never
     // silently reframe a generated image's registered camera endpoint.

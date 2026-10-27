@@ -7,6 +7,7 @@ export function frameLayout(width, height) {
   const studyHeight = studyWidth / 1.5;
   const navWidth = Math.min(900, studyWidth);
   return {
+    viewportWidth: width, viewportHeight: height,
     width: frameWidth, height: frameHeight,
     homeX: (width - frameWidth) / 2,
     homeY: (height - frameHeight) / 2,

@@ -70,8 +70,16 @@ function assertFullScreen(sample, label) {
 }
 
 function assertCanvas(sample, label) {
-  closeNumber(sample.canvas.width, sample.frame.width, `${label}: canvas fills frame width`);
-  closeNumber(sample.canvas.height, sample.frame.height, `${label}: canvas fills frame height`);
+  const referenceWidth = Math.floor(Math.min(sample.viewport.width, sample.viewport.height * 1.5) / 3) * 3;
+  const scale = sample.frame.width / referenceWidth;
+  closeNumber(sample.canvas.width, sample.viewport.width * scale, `${label}: canvas extends over the window width`);
+  closeNumber(sample.canvas.height, sample.viewport.height * scale, `${label}: canvas extends over the window height`);
+  closeNumber(sample.canvas.clientWidth, sample.viewport.width, `${label}: unscaled canvas matches window width`);
+  closeNumber(sample.canvas.clientHeight, sample.viewport.height, `${label}: unscaled canvas matches window height`);
+  if (['overview', 'travel', 'handoff'].includes(sample.phase)) {
+    closeNumber(sample.canvas.x, 0, `${label}: no internal left canvas edge`);
+    closeNumber(sample.canvas.y, 0, `${label}: no internal top canvas edge`);
+  }
   closeNumber(sample.canvas.bufferWidth, Math.floor(sample.canvas.clientWidth * sample.canvas.pixelRatio), `${label}: drawing buffer width follows the unscaled layout size`, 1.1);
   closeNumber(sample.canvas.bufferHeight, Math.floor(sample.canvas.clientHeight * sample.canvas.pixelRatio), `${label}: drawing buffer height follows the unscaled layout size`, 1.1);
 }
@@ -94,6 +102,7 @@ function assertTransition(samples, id) {
   }
   const dissolve = samples.filter(sample => sample.phase === 'handoff');
   assert.ok(dissolve.some(sample => sample.artworkOpacity > .08 && sample.artworkOpacity < .92), `${id}: actual intermediate full-screen image dissolve`);
+  assert.ok(dissolve.some(sample => sample.modelOpacity > .08 && sample.modelOpacity < .92), `${id}: expanded model fades progressively with the picture`);
   const moving = samples.filter(sample => sample.phase === 'arranging');
   assert.ok(moving.length >= 3, `${id}: post-dissolve animation is observable over several frames`);
   for (const sample of moving) {
