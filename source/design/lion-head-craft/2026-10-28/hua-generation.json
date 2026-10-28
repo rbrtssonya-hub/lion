@@ -1,0 +1,45 @@
+{
+  "asset": "hua.png",
+  "stage": "画",
+  "date": "2026-10-28",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate with style references",
+  "requested_model": "image 2",
+  "model_selection_note": "The user requested image 2. The built-in imagegen schema exposes no model selector; no model identity is claimed as independently verified.",
+  "prompt": "Use case: illustration-story\nAsset type: landscape 3:2 craft-process illustration for a Chinese lion-head making exhibition website, requested target 1536 x 1024 pixels.\nPrimary request: Generate a NEW composition showing the PAINTING stage of handmade southern Chinese lion head craftsmanship. This is an artistic process concept illustration, not a documentary photograph or technical standard.\nInput images: Image 1 hua.png is a STYLE AND LION ORNAMENT reference only. Image 2 zha.png is a WATERCOLOR MEDIUM, PALETTE AND MATERIAL reference only. Neither is an edit target. Rebuild the camera angle, scene, staging and background completely; do not preserve their composition.\nScene/backdrop: An intimate painting corner inside a deeply warm traditional workshop. Soft unfocused hanging papers bearing ornamental red, gold and black curves, with dark ochre wooden shelves behind. No readable writing. Warm gentle natural sunlight, ivory paper texture, atmospheric watercolor washes.\nSubject: A dry paper-covered lion-head shell, already largely painted in vivid cinnabar red, muted metallic-gold paint, ivory and ink black. No fur, no fluffy pompoms, no mirror decorations and no installed moving eyeball mechanism yet. An artisan's two anatomically natural hands only, without human face or body: one hand holds a thin pointed paintbrush delicately touching a curving black-and-red line near the eyebrow and eye ring, while the second hand steadies the shell near its side. The brush tip clearly meets the surface.\nComposition/framing: Strikingly distinct close-up, camera a little above the eye level of the shell. The lion head faces the LEFT FRONT, the reverse of the references. The near large circular hollow eye ring, sweeping raised brow, forehead and scrolling red-gold-black cheek ornaments dominate the image. Keep enough of the curved shell outline and protruding nose/jaw edge to unmistakably read as a lion head, not an abstract pattern. Tightly crop some back portion of the shell and artisan forearms at the right edge. The face is the hero, the artisan's hands support its story. In the shallow lower foreground, small ceramic dishes with red and gold pigments and one resting brush, partly cropped. One coherent single scene, no panels, no split view, no collage.\nStyle/medium: Exquisitely crafted realistic watercolor and gouache hand painting, controlled fine edges around brushwork, natural paper fibers and slight pigment granulation, warm sunlight and ivory parchment, restrained authentic handcraft texture. Match the warm painterly family of the references without copying their layout.\nColor palette: Ivory, golden cream, ochre wood, cinnabar red, muted gold and ink black, a small muted indigo sleeve at frame edge.\nConstraints: The head shell must appear dry and solid under its paint. Eye opening remains hollow and unmechanized. Human hands have plausible fingers and joints. Foreground pigment tools remain visually secondary. The picture must be clearly different from a full-head view on the same wooden table with a left lattice window and right red cabinet.\nAvoid: no left lattice-window/right-red-cabinet setup, no photorealistic camera look, no 3D render, no fur or fuzzy trims, no pompoms, no mirror discs, no detached limbs, no extra hands or extra fingers, no complete human face, no human wearing the head, no lion body, no machinery, no text, no logo, no numbers, no watermark, no border.",
+  "native_output_path": "C:/Users/ALLEN/.codex/generated_images/01a18000-6ff9-76c0-994c-b13bf8fc425d/exec-ef12f2f5-543d-44b6-9296-418dfb99adfe.png",
+  "saved_path": "source/design/lion-head-craft/2026-10-28/hua.png",
+  "reference_images": [
+    {
+      "path": "source/design/lion-head-craft/hua.png",
+      "role": "style and lion ornament reference only; not an edit target; inspected before generation"
+    },
+    {
+      "path": "source/design/lion-head-craft/zha.png",
+      "role": "watercolor medium, palette and material reference only; not an edit target; inspected before generation"
+    }
+  ],
+  "dimensions": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": "3:2"
+  },
+  "transparent_background": false,
+  "sha256": "32AB8C2A8BD4E7080CD21D6074E2DF5C45FC726380961F6563137CA632DE525B",
+  "ai_assisted": true,
+  "status": "accepted after visual inspection",
+  "visual_verification": {
+    "passes": [
+      "New left-facing close-up composition distinct from the old right-facing wide view",
+      "Large hollow circular eye opening, raised brow, forehead and red-gold-black scrolling paint read clearly",
+      "Two natural artisan hands; fine brush tip visibly touches the eyebrow paint",
+      "Warm watercolor/gouache paper texture and palette consistent with references",
+      "Foreground small pigment bowls and brushes; background hanging ornament papers and warm shelving",
+      "No readable text, logos, watermark, panels, human faces, fur, pompoms, mirrors or installed eyeball mechanics"
+    ],
+    "limitations": [
+      "AI-assisted craft concept illustration, not documentary proof or a validated technical standard",
+      "The built-in tool does not expose a verifiable model name"
+    ]
+  }
+}

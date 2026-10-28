@@ -1,0 +1,39 @@
+{
+  "stage": "zhuang",
+  "label": "装",
+  "date": "2026-10-28",
+  "tool": "image_gen.imagegen (built-in)",
+  "generation_mode": "new composition from style references",
+  "transparent_background": false,
+  "prompt": "Use case: illustration-story\nAsset type: 南风有狮网页“造→工艺”装阶段的独立艺术配图，AI辅助传统工艺示意。\nPrimary request: 重新设计构图，创作一张全新横向3:2、目标1536x1024的细腻写实水彩/水粉手绘图；不是修改旧图，绝对不得复制参考图的机位、布局、背景或桌面模板。只用参考图的成熟温暖手绘笔触、纸纹、柔金光线和朱红金黑米白配色。\nInput images: Image 1 (zha.png) is only a style/color/material reference, NOT an edit target, NOT a composition reference. Image 2 (zhuang.png) is only a style/color/material and traditional lion-head reference, NOT an edit target, NOT a composition reference. Do not reproduce the old left-window/right-red-cabinet workshop setting.\nScene/backdrop: 镜头拉开到岭南老工坊通向院落的宽门口，中景，后方有柔焦灰砖院落、偏侧垂落的竹帘与少量悬挂备用白绒；门口洒进暖金色阳光。画面是一个自然连续场景，没有拼贴或分格。\nSubject and action: 一只成人舞狮道具尺寸的南方醒狮狮头，近乎完成，安放在一座矮木台/简洁支架上。狮头完整可见，正面略偏三分之一朝左，与旧图朝右明显不同；醒狮形制而非动物标本，有朱红底、贴金与黑彩绘卷纹，额头小圆镜，明亮有神的巨大圆眼，口部结构真实。一双匠人自然手臂从画面右侧进入，不出现脸和人体；两只手共同进行一个清晰合理的安装动作：一手托住正在安装的蓬松奶白上眉条，另一手在外侧眉端轻轻按合固定。上眉毛只有末端未完全贴合，清楚可见正在装饰的工序。双手解剖自然，每只手正常五指，无多余手臂。只有狮头，不出现狮身、四脚或吉祥物。\nProps: 矮台边放着一条备用奶白绒毛条、一两颗小红绒球和一把闭合剪刀，疏朗自然，不堆砌。狮头上的额镜和大眼已经安装，精美彩绘已完成，突出最后装绒带来的神采与细软毛绒质感。\nStyle/medium: 与参考图一致的细腻成熟写实水彩与水粉手绘，温暖米白水彩纸纹、轻微渗色和自然干笔边缘，写实结构，清晰但柔和，手工气息；不是摄影、塑料3D或卡通。奶白毛绒逐缕柔软，赭色木材有自然纹理，红金黑彩绘节制精美。\nComposition/framing: 完全新的镜头与摆放，中景横幅，狮头约占画面宽度55%，留出院落门口的空间和光线，让观者看清完整狮头、双手安装点和备用绒料。正面三分之二略朝画面左，成人道具比例，不是桌上迷你玩具；画面静雅、有主次。\nLighting/mood and palette: 暖金阳光、赭木、灰砖、米白纸纹为环境主调，朱红金黑用于狮头点缀；温暖安静的岭南手艺现场。\nConstraints: single continuous illustration; full bleed landscape 3:2; opaque background; no text, numbers, letters, captions, logos, watermarks or signatures. No human faces, no repeated limbs, no animal body, no toy mascot, no collage. Do not copy the old camera or left window and right red cabinet. Recompose the scene from scratch while matching only its painterly aesthetic.",
+  "native_output_path": "C:/Users/ALLEN/.codex/generated_images/01a18005-59ef-72c3-b40e-442509442cb2/exec-8c675db1-dac1-4ad8-aa3b-d86919d2b810.png",
+  "workspace_output_path": "source/design/lion-head-craft/2026-10-28/zhuang.png",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": "3:2"
+  },
+  "references": [
+    {
+      "path": "source/design/lion-head-craft/zha.png",
+      "role": "style, palette, paper texture and hand-painted material reference only; not edit target or composition reference"
+    },
+    {
+      "path": "source/design/lion-head-craft/zhuang.png",
+      "role": "style, palette, traditional lion head and fur material reference only; not edit target or composition reference"
+    }
+  ],
+  "ai_assisted": true,
+  "historical_scope": "AI-assisted illustration of a lion-head craft stage; not a documentary photograph or verified historical reconstruction.",
+  "visual_check": {
+    "status": "passed",
+    "findings": [
+      "New courtyard doorway setting, bamboo blind and hanging white fur replace the old window and red cabinet layout.",
+      "Full-sized red-gold-black lion head faces slightly left; complete head on a low wooden support.",
+      "Two natural hands from the right jointly attach one cream-white eyebrow strip; no face or extra limbs visible.",
+      "Forehead mirror and bright eyes present; loose cream fur, two red pom-poms and scissors visible.",
+      "Warm detailed watercolor/gouache texture matches the references; no text, logo, watermark, collage or lion body observed."
+    ]
+  },
+  "bytes": 3169315
+}

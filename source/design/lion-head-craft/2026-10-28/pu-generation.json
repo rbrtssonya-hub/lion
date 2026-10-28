@@ -1,0 +1,30 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "generate-new-image",
+  "model_requested_by_user": "image 2",
+  "model_selection_note": "Built-in tool does not expose a model selector; no explicit model parameter was set.",
+  "generated_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "references": [
+    {
+      "path": "F:/数媒竞赛/信息可视化codex/source/design/lion-head-craft/zha.png",
+      "role": "style reference only; not an edit target; source composition must not be copied"
+    }
+  ],
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "aspect_ratio": "3:2",
+  "transparent_background": false,
+  "ai_assisted": true,
+  "usage_note": "AI-assisted craft illustration; not a documentary photograph or authoritative construction diagram.",
+  "stage": "pu",
+  "title": "扑：纸胚贴覆",
+  "native_output_path": "C:/Users/ALLEN/.codex/generated_images/01a17ffd-6772-78a0-89c9-1f9b9f1d6e23/exec-96de2568-5e01-45d1-8590-fd68a51c2052.png",
+  "final_saved_path": "F:/数媒竞赛/信息可视化codex/source/design/lion-head-craft/2026-10-28/pu.png",
+  "bytes": 3047576,
+  "sha256": "56d03aa3502a77c2b35f1ffd4237e982a5ade75a1649333fc2b55533656b3780",
+  "final_prompt": "Use case: illustration-story\nAsset type: one finished art image for the paper-pasting stage of a Cantonese lion-head craft exhibition.\nPrimary request: Generate an entirely NEW single continuous landscape illustration, aspect ratio 3:2, target 1536 x 1024 pixels. Depict an artisan applying a thin sheet of ivory gauze paper to a curved Southern Chinese lion dance head shell. It is an unfinished full-size adult prop head, not a toy.\nInput image 1 is STYLE REFERENCE ONLY: match its refined, warm, mature watercolor and gouache painting with rice-paper granulation, golden natural light and finely observed handmade material texture. DO NOT copy the reference composition, left window, right red cupboard, front three-quarter camera view or hand pose. This is new artwork, not an edit of the reference.\nDistinct new composition: intimate low camera near tabletop height, looking along the SIDE PROFILE of the lion head facing toward the right. The rounded cream-paper forehead and side cheek fill the middle of the image, with the snout and open jaw profile readable on the right. About two thirds of the bamboo frame has already been wrapped in plain warm ivory paper; leave a small unfinished patch along the lower back/near side where the bamboo ribs and paper edge are visible. An artisan's two anatomically plausible hands enter from the LEFT and upper-left, using fingertips to stretch and gently smooth one translucent strip of fibrous gauze paper across the curved near cheek and brow. The action and tension of the wet paper must read clearly; fingers never pass through the shell. No face portrait is needed. Simple faded indigo or oatmeal sleeves.\nSetting/backdrop: a humble quiet workshop opening onto a sunlit courtyard, with softly blurred off-white limewash wall, a shadowed doorway and pale stone threshold in the distance. Absolutely no red cupboard and no wooden lattice window. Keep the background atmospheric, spare and different from the input image.\nForeground: a shallow unmarked earthenware bowl of white rice-starch paste near the bottom-left, a short paste brush resting beside it, and a small loose stack of thin torn ivory paper strips. A few subtly visible bamboo ribs under the paper communicate the craft stage.\nStyle/medium: clearly hand-painted watercolor and gouache, delicate brushwork, softly feathered distant edges, cream rice-paper grain, warm ochre wood and honey sunlight, quiet neutral background, convincing hands and fibrous wet paper. Painterly exhibition illustration, not photograph, not 3D render, not cartoon.\nConstraints: single continuous image, no collage or panels or borders. No text, numbers, labels, characters, logos, watermark. UNPAINTED paper shell only, no colorful pigments, no colored facial patterns, no fur, no feathers, no decorative finished lion parts. Opaque background. Distinct side-on low camera composition.",
+  "visual_review": "Passed visual review: continuous landscape, intimate side-oriented low camera, hands stretching and smoothing fibrous ivory paper on a partly covered lion head, exposed bamboo patch, paste bowl/brush/paper sheets, courtyard doorway and limewash backdrop; no colored finish, fur or visible text. Distinct composition from zha and old source."
+}

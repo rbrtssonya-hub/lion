@@ -1,0 +1,30 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "generate-new-image",
+  "model_requested_by_user": "image 2",
+  "model_selection_note": "Built-in tool does not expose a model selector; no explicit model parameter was set.",
+  "generated_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "references": [
+    {
+      "path": "F:/数媒竞赛/信息可视化codex/source/design/lion-head-craft/zha.png",
+      "role": "style reference only; not an edit target; source composition must not be copied"
+    }
+  ],
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "aspect_ratio": "3:2",
+  "transparent_background": false,
+  "ai_assisted": true,
+  "usage_note": "AI-assisted craft illustration; not a documentary photograph or authoritative construction diagram.",
+  "stage": "zha",
+  "title": "扎：竹篾骨架扎结",
+  "native_output_path": "C:/Users/ALLEN/.codex/generated_images/01a17ffd-6772-78a0-89c9-1f9b9f1d6e23/exec-e5743bb7-1954-4432-9426-f271adc335b8.png",
+  "final_saved_path": "F:/数媒竞赛/信息可视化codex/source/design/lion-head-craft/2026-10-28/zha.png",
+  "bytes": 3549341,
+  "sha256": "6b80832afda261498dfdd9a4ffb9d1b664c431e23b1f58cf1689d9946e57c7ed",
+  "final_prompt": "Use case: illustration-story\nAsset type: one finished art image for the bamboo-frame stage of a Cantonese lion-head craft exhibition.\nPrimary request: Generate an entirely NEW single continuous landscape illustration, aspect ratio 3:2, target 1536 x 1024 pixels. Depict the authentic bamboo tying process of a full-size adult Southern Chinese lion dance prop head.\nInput image 1 is STYLE REFERENCE ONLY: use its mature, refined hand-painted watercolor and gouache treatment, finely observed craftsmanship, cream rice-paper texture, warm golden daylight and ochre wooden materials. Do not edit the reference, and DO NOT reproduce its composition, viewing angle, left window, right red cupboard, workshop wall or the same table arrangement.\nNew scene/composition: A clearly elevated oblique overhead view looking down onto an old broad timber workbench and part of a softly rendered gray stone workshop floor. A large bare curved bamboo-strip lion-head skeleton rests diagonally across the tabletop, its rounded eye hoops, brow, snout and open jaw readable as a traditional Southern lion head. The sweeping intersecting bamboo arcs are the visual focus. Two anatomically plausible experienced artisan hands enter together from the near/right edge, one stabilizing a crossing and the other pulling a thin hemp binding tight around it. Their sleeves are simple faded indigo cloth. Show the tied joints clearly and make the work physically credible.\nForeground details: several thin split bamboo strips, a small hemp-twine spool and a modest bamboo-working hand tool lie on the near-left edge. In the upper distant edge, a few bundled bamboo lengths can lean against a plain material rack. Keep background quiet.\nStyle/medium: beautifully controlled hand-painted watercolor and gouache illustration with subtle granulation, soft edges in background and crisp fine brushwork on bamboo grain, rope fibers, hand wrinkles and wood wear; realistic anatomy and structure but clearly painted, not photography, not 3D render, not cartoon. Warm ivory, honey gold, ochre, faded indigo and quiet gray; sophisticated exhibition-quality composition.\nLighting: diagonal warm sunlight, gentle dimensional shadows, calm human craft atmosphere.\nConstraints: one continuous scene only; no panels, no montage, no borders, no labels, no visible text, numbers, Chinese calligraphy, logos or watermark. BARE BAMBOO FRAME ONLY: no attached paper, no paint colors, no fur, no feathers, no finished decorative lion covering. Different camera and setting from the reference. Opaque background.",
+  "visual_review": "Passed visual review: continuous landscape, elevated oblique angle, two plausible hands tying a visible joint, sweeping bare bamboo frame, gray stone floor and bamboo storage, warm watercolor/gouache treatment; no attached paper, pigments, fur or visible text. Viewpoint and arrangement differ clearly from old source."
+}
