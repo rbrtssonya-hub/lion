@@ -180,13 +180,14 @@ try {
     const imageState = await page.evaluate(() => {
       const img = document.querySelector('.chapter-artwork'), model = document.querySelector('.model-layer'), w = window.__LION_ATLAS__;
       const bounds = img.getBoundingClientRect(), frame = document.querySelector('.visual-frame').getBoundingClientRect();
-      return { src: new URL(img.src).pathname, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, fit: getComputedStyle(img).objectFit,
+      return { src: new URL(img.src).pathname, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, fit: getComputedStyle(img).objectFit, letterbox: getComputedStyle(document.querySelector('.artwork-layer')).backgroundColor,
         imageBounds: { x: bounds.x, y: bounds.y, right: bounds.right, bottom: bounds.bottom, width: bounds.width, height: bounds.height }, frameBounds: { x: frame.x, y: frame.y, right: frame.right, bottom: frame.bottom, width: frame.width, height: frame.height },
         modelOpacity: getComputedStyle(model).opacity, modelVisibility: getComputedStyle(model).visibility, active: w.active,
         frame: w.renderer.info.render.frame, unchanged: w.meshes.every(m => m.position.equals(m.userData.atlasOriginal.position)) };
     });
     assert.equal(imageState.src, `/images/fullscreen/16x10/${id}.png`, 'one dedicated 16:10 full-window artwork per control');
     assert.equal(imageState.fit, 'contain', 'full artwork, no cropping');
+    assert.equal(imageState.letterbox, 'rgb(238, 234, 225)', 'unused viewport area is a solid paper color');
     assert.ok(imageState.naturalWidth / imageState.naturalHeight > 1.5, 'artwork is landscape');
     closeNumber(imageState.imageBounds.width / imageState.imageBounds.height, imageState.naturalWidth / imageState.naturalHeight, 'artwork container tracks its original proportions within one-pixel generator variation', .002);
     assert.ok(imageState.imageBounds.x >= imageState.frameBounds.x - .3 && imageState.imageBounds.right <= imageState.frameBounds.right + .3 && imageState.imageBounds.y >= imageState.frameBounds.y - .3 && imageState.imageBounds.bottom <= imageState.frameBounds.bottom + .3, 'complete image bounds remain inside the frame');
@@ -198,8 +199,11 @@ try {
     const afterFrame = await page.evaluate(() => window.__LION_ATLAS__.renderer.info.render.frame);
     assert.equal(afterFrame, imageState.frame, 'hidden model does not keep rendering');
     assert.equal(await page.locator('.cultural-panel').count(), 0, 'cultural content is absent');
-    assert.equal(await page.locator('.cultural-column').evaluate(el => el.children.length), 0, 'reserved right column is empty');
-    assert.equal((await page.locator('.cultural-column').textContent()).trim(), '', 'reserved right column has no text');
+    assert.equal(await page.locator('.cultural-column').evaluate(el => el.children.length), 0, 'right-column underlay stays free of cultural text');
+    assert.equal((await page.locator('.cultural-column').textContent()).trim(), '', 'right-column underlay has no text');
+    assert.equal(await page.locator('.lion-breakdown-stage').isVisible(), true, 'matching breakdown artwork appears after handoff');
+    assert.equal(await page.locator('.lion-breakdown-image-button img').evaluate(el => getComputedStyle(el).objectFit), 'contain', 'right breakdown artwork remains uncropped');
+    assert.equal(await page.locator('.lion-breakdown-stage').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(238, 234, 225)', 'unused information-plate area is a solid paper color');
     const studyLayout = await page.evaluate(() => {
       const frame = document.querySelector('.visual-frame').getBoundingClientRect(), column = document.querySelector('.cultural-column').getBoundingClientRect();
       return { frame: { x: frame.x, y: frame.y, width: frame.width, height: frame.height, right: frame.right }, column: { x: column.x, width: column.width, right: column.right }, viewportWidth: innerWidth };
@@ -333,7 +337,7 @@ try {
   await page.unroute('**/images/fullscreen/16x10/crown.png');
   assert.deepEqual(errors, [], 'no browser errors');
   assert.deepEqual(failedResponses, [], 'all real artwork and model requests succeed');
-  const result = { quick, baseURL, homePose, chapters, resizes, errors, failedResponses, checks: ['home model only',quick?'brows dedicated image':'six dedicated images','actual full-screen camera travel','matching 3:2 endpoint','stationary full-screen dissolve before image movement','GSAP image scale and top-left placement after model pause','art navigation follows image left','empty reserved right column','uncropped proportional full artwork','3D hidden and paused','source geometry unchanged','return overview',...(!quick?['travel/handoff/arranging/return cancellation','resize during travel/handoff/arranging','real model click','1280px desktop layout']:[]),'failed image recovery'] };
+  const result = { quick, baseURL, homePose, chapters, resizes, errors, failedResponses, checks: ['home model only',quick?'brows dedicated image':'six dedicated images','actual full-screen camera travel','matching 3:2 endpoint','stationary full-screen dissolve before image movement','GSAP image scale and top-left placement after model pause','art navigation follows image left','right breakdown image appears after handoff','uncropped proportional artwork in both columns','3D hidden and paused','source geometry unchanged','return overview',...(!quick?['travel/handoff/arranging/return cancellation','resize during travel/handoff/arranging','real model click','1280px desktop layout']:[]),'failed image recovery'] };
   await writeFile(`${output}/${quick?'quick':'browser'}-results.json`,JSON.stringify(result,null,2));
   console.log(JSON.stringify({quick,chapters:chapters.map(c=>c.id),errors,checks:result.checks},null,2));
 } catch (error) {

@@ -94,7 +94,7 @@
 /* Camera and dissolve stay full-screen; only the finished artwork docks left. */
 .visual-frame{transform-origin:0 0;aspect-ratio:auto}
 .model-layer{right:auto;bottom:auto;z-index:3}
-.artwork-layer{overflow:hidden}
+.artwork-layer{overflow:hidden;background:var(--paper)}
 .chapter-artwork{position:absolute;max-width:none;object-fit:contain}
 .variant-outgoing{position:absolute;object-fit:contain;max-width:none;pointer-events:none;animation:variant-out .35s ease-in-out forwards}
 @keyframes variant-out{to{opacity:0}}

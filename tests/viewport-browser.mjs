@@ -131,7 +131,7 @@ try {
       reference.clearViewOffset(); reference.aspect=1.5; reference.updateProjectionMatrix();
       const apertureWidth=img.height*1.5, apertureX=(innerWidth-apertureWidth)/2;
       const projection=w.registry.all().map(part => {const actual=part.center.clone().project(camera), old=part.center.clone().project(reference); return {id:part.id,actual:[(actual.x+1)*innerWidth/2,(1-actual.y)*innerHeight/2],expected:[apertureX+(old.x+1)*apertureWidth/2,img.y+(1-old.y)*img.height/2]};});
-      return {size:{width:innerWidth,height:innerHeight},image:img,frame,edgeCount:edges.length,canvas,src:new URL(image.src).pathname,natural:{width:image.naturalWidth,height:image.naturalHeight},fit:getComputedStyle(image).objectFit,mask:getComputedStyle(image).maskImage,filter:getComputedStyle(image).filter,projection};
+      return {size:{width:innerWidth,height:innerHeight},image:img,frame,letterbox:getComputedStyle(document.querySelector('.artwork-layer')).backgroundColor,edgeCount:edges.length,canvas,src:new URL(image.src).pathname,natural:{width:image.naturalWidth,height:image.naturalHeight},fit:getComputedStyle(image).objectFit,mask:getComputedStyle(image).maskImage,filter:getComputedStyle(image).filter,projection};
     });
     near(geometry.frame.x,0,'artwork left edge',.5); near(geometry.frame.y,0,'artwork top edge',.5);
     near(geometry.frame.width,size.width,'artwork window width',.5); near(geometry.frame.height,size.height,'artwork window height',.5);
@@ -142,10 +142,13 @@ try {
     assert.equal(geometry.fit,'contain');
     assert.equal(geometry.mask,'none','the original image is fully unmasked');
     assert.equal(geometry.filter,'none','the original image is not blurred');
+    assert.equal(geometry.letterbox,'rgb(238, 234, 225)','unused viewport area is a solid paper color');
     near(geometry.image.width/geometry.image.height,geometry.natural.width/geometry.natural.height,'image preserves source aspect',.001);
     for (const p of geometry.projection) {near(p.actual[0],p.expected[0],`${p.id} registered x`,.5);near(p.actual[1],p.expected[1],`${p.id} registered y`,.5);}
     await phase('study');
-    assert.equal(await page.locator('.cultural-column').evaluate(el=>el.children.length),0,'reserved right column is empty');
+    assert.equal(await page.locator('.cultural-column').evaluate(el=>el.children.length),0,'right-column underlay stays free of cultural text');
+    assert.equal(await page.locator('.lion-breakdown-stage').isVisible(),true,'right breakdown artwork remains visible');
+    assert.equal(await page.locator('.lion-breakdown-image-button img').evaluate(el=>getComputedStyle(el).objectFit),'contain','right breakdown artwork stays uncropped');
     await page.screenshot({path:`${output}/screenshots/study-${size.width}x${size.height}.png`});
     result.desktops.push(geometry);
     await page.keyboard.press('Escape');

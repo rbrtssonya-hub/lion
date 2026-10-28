@@ -2,8 +2,11 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import gsap from 'gsap';
 import ModelCanvas from './ModelCanvas.jsx';
+import LionBreakdownStage from './LionBreakdownStage.jsx';
+import LionDetailModal from './LionDetailModal.jsx';
 import { PARTS } from '../content/parts.js';
 import { CHAPTERS } from '../content/chapters.js';
+import { LION_BREAKDOWNS } from '../content/lionBreakdowns.js';
 import { frameLayout, nearestFullscreenVariant, fullscreenImageUrl } from '../interaction/layout.mjs';
 
 const imagePromises = new Map();
@@ -29,12 +32,14 @@ export default function AtlasExperience() {
   const [variant, setVariant] = useState(() => nearestFullscreenVariant(window.innerWidth, window.innerHeight));
   const [layout, setLayout] = useState(() => frameLayout(window.innerWidth, window.innerHeight, nearestFullscreenVariant(window.innerWidth, window.innerHeight).aspect));
   const [outgoing, setOutgoing] = useState(null);
+  const [detailOpen, setDetailOpen] = useState(false);
   const world = useRef(null), registry = useRef(null);
   const frame = useRef(null), controls = useRef(null), modelLayer = useRef(null), imageLayer = useRef(null), image = useRef(null);
   const variantRef = useRef(variant), resizeVersion = useRef(0);
   const presentation = useRef({ progress: 0 });
   const dissolve = useRef({ progress: 0 });
   const epoch = useRef(0), pendingTweens = useRef(new Set()), phaseRef = useRef('overview'), selectedRef = useRef(null), layoutRef = useRef(layout), disposed = useRef(false);
+  const detailOpenRef = useRef(false);
   layoutRef.current = layout;
   const part = PARTS.find(p => p.id === selected);
   const chapter = selected && CHAPTERS[selected];
@@ -44,6 +49,8 @@ export default function AtlasExperience() {
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const changePhase = next => { phaseRef.current = next; setPhase(next); };
   const changeSelected = id => { selectedRef.current = id; setSelected(id); };
+  const openDetails = () => { detailOpenRef.current = true; setDetailOpen(true); };
+  const closeDetails = () => { detailOpenRef.current = false; setDetailOpen(false); };
 
   const commitVariant = useCallback(next => {
     variantRef.current = next;
@@ -122,7 +129,7 @@ export default function AtlasExperience() {
 
   const select = useCallback(async id => {
     const w = world.current, reg = registry.current;
-    if (!w || !reg || !CHAPTERS[id]) return;
+    if (!w || !reg || !CHAPTERS[id] || !LION_BREAKDOWNS[id]) return;
     if (selectedRef.current === id && phaseRef.current !== 'returning') return;
     const request = begin(), current = () => epoch.current === request && !disposed.current;
     setError(null);
@@ -147,6 +154,7 @@ export default function AtlasExperience() {
       const [flight, photo] = await Promise.all([
         w.flyToPart(id, { duration: reduced() ? .01 : 2.15 }),
         prepareImage(fullscreenImageUrl(id, activeVariant.id)),
+        prepareImage(LION_BREAKDOWNS[id].image),
       ]);
       if (!current() || !flight.completed) return;
       if (!photo.naturalWidth || !photo.naturalHeight) throw new Error('图版尺寸需要检查，请稍后重试。');
@@ -219,6 +227,7 @@ export default function AtlasExperience() {
   useEffect(() => {
     const keys = event => {
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+      if (detailOpenRef.current) return;
       if (event.key === 'Escape') returnHome();
       if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
         const index = PARTS.findIndex(p => p.id === selectedRef.current);
@@ -244,6 +253,13 @@ export default function AtlasExperience() {
     </div>
     {phase === 'study' && <div className="artwork-credit" style={{ left: 18, top: artworkHeight * layout.studyScale + 15, width: artworkWidth * layout.studyScale - 36 }}><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
     {part && <div className="cultural-column" aria-hidden="true" style={{ left: layout.textX, top: layout.textY, width: layout.textWidth, height: layout.textHeight }}/>}
+    {phase === 'study' && part && <LionBreakdownStage
+      part={part}
+      breakdown={LION_BREAKDOWNS[part.id]}
+      style={{ left: layout.textX, top: layout.textY, width: layout.textWidth, height: layout.textHeight }}
+      onOpen={openDetails}
+    />}
+    {detailOpen && part && <LionDetailModal part={part} breakdown={LION_BREAKDOWNS[part.id]} onClose={closeDetails}/>}
     {!ready && <div className="initial-loader" role="status"><span>{error ? '载入未完成' : '载入醒狮'}</span><i><b style={{ width: `${Math.max(3, progress)}%` }}/></i><small>{error || `${Math.round(progress)}%`}</small>{error && <button onClick={() => location.reload()}>重新载入</button>}</div>}
     {ready && error && <div className="experience-error" role="alert">{error}<button onClick={() => setError(null)}>关闭</button></div>}
     <nav className="chapter-controls" ref={controls} style={{ width: layout.navWidth }} aria-label="六个造型研究控件">

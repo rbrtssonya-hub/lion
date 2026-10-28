@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "test": "tests/handoff-browser.mjs",
+  "url": "http://127.0.0.1:5173",
+  "chapters": [
+    "brows",
+    "crown",
+    "beard",
+    "body",
+    "trim",
+    "mouth"
+  ],
+  "checks": [
+    "home model only",
+    "six dedicated images",
+    "actual full-screen camera travel",
+    "matching 3:2 endpoint",
+    "stationary full-screen dissolve before image movement",
+    "GSAP image scale and top-left placement after model pause",
+    "art navigation follows image left",
+    "right breakdown image appears after handoff",
+    "uncropped proportional artwork in both columns",
+    "3D hidden and paused",
+    "source geometry unchanged",
+    "return overview",
+    "travel/handoff/arranging/return cancellation",
+    "resize during travel/handoff/arranging",
+    "real model click",
+    "1280px desktop layout",
+    "failed image recovery"
+  ],
+  "errors": [],
+  "failedResponses": []
+}
