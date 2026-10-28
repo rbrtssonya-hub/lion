@@ -1,0 +1,56 @@
+{
+  "generatedBy": "built-in image_gen",
+  "generatedAt": "2026-10-28",
+  "format": "PNG",
+  "intendedAspect": "2:3",
+  "images": [
+    {
+      "id": "brows",
+      "path": "/images/lion-info/01-mei-mu.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "2612825440b837ddfff01e7e17164f0ec4c715d169a7204bad2c321e6b89fec4",
+      "bytes": 3136110
+    },
+    {
+      "id": "crown",
+      "path": "/images/lion-info/02-e-guan.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "6c97cf1318b3202fba25b01266e3718eaf082dfe16de209913da2503bd720db5",
+      "bytes": 3163068
+    },
+    {
+      "id": "beard",
+      "path": "/images/lion-info/03-fan-xu.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "426b13fabb5af44c3c5fe389f629c8ff843a0a366a1352da87ed1b68739617c6",
+      "bytes": 3064318
+    },
+    {
+      "id": "body",
+      "path": "/images/lion-info/04-zhi-jin.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "d1a16f607e9e28cadce7fe78a075a9d0a1b7ed4fd6d4904a5c053beebc4bdc93",
+      "bytes": 3502330
+    },
+    {
+      "id": "trim",
+      "path": "/images/lion-info/05-yun-bian.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "35550297dc7b09a94d59b4348c5a6d2b852dfdd163b40f4781fe0d398c48cc6a",
+      "bytes": 2772553
+    },
+    {
+      "id": "mouth",
+      "path": "/images/lion-info/06-kou-chi.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "cdf88a3c47d49d0ef639e4ec2c5582ae90348e0cc03a0df86013a7e32774fe8c",
+      "bytes": 2686873
+    }
+  ]
+}

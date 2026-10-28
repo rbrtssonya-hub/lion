@@ -1,0 +1,284 @@
+{
+  "quick": false,
+  "baseURL": "http://127.0.0.1:5175",
+  "homePose": {
+    "position": [
+      4.668968681667408,
+      4.1358233818243075,
+      6.536556154334372
+    ],
+    "target": [
+      1.1102230246251565e-16,
+      1.6145802937239067,
+      -2.220446049250313e-16
+    ],
+    "fov": 34,
+    "aspect": 1.5,
+    "selected": null
+  },
+  "chapters": [
+    {
+      "id": "brows",
+      "endpoint": {
+        "position": [
+          0.9751404413397706,
+          2.525370580679079,
+          4.839923857159317
+        ],
+        "target": [
+          0.16869950414048412,
+          2.390963757812531,
+          2.151787399828359
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "brows"
+      },
+      "image": {
+        "src": "/images/chapters/brows.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 890,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "id": "crown",
+      "endpoint": {
+        "position": [
+          0.8775163515066804,
+          4.818548997325409,
+          4.101426561004063
+        ],
+        "target": [
+          0.0015624736969092057,
+          2.859178481171972,
+          1.7962847772941382
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "crown"
+      },
+      "image": {
+        "src": "/images/chapters/crown.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 1539,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "id": "beard",
+      "endpoint": {
+        "position": [
+          1.9941298260793991,
+          0.7075588009651624,
+          4.864712411811997
+        ],
+        "target": [
+          -0.001337276623412209,
+          1.2729411467309588,
+          1.5389339073073118
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "beard"
+      },
+      "image": {
+        "src": "/images/chapters/beard.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 2191,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "id": "body",
+      "endpoint": {
+        "position": [
+          5.115616080437197,
+          3.194860862102577,
+          -0.4041777542330811
+        ],
+        "target": [
+          0.00641704685864386,
+          1.355549210014299,
+          0.004558168453202782
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "body"
+      },
+      "image": {
+        "src": "/images/chapters/body.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 2833,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "id": "trim",
+      "endpoint": {
+        "position": [
+          2.4187882986590794,
+          4.35087034403602,
+          -3.7018090493935283
+        ],
+        "target": [
+          -0.008708478466339264,
+          1.9233735669106002,
+          -0.8459304880695047
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "trim"
+      },
+      "image": {
+        "src": "/images/chapters/trim.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 3483,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "id": "mouth",
+      "endpoint": {
+        "position": [
+          0.332514778288257,
+          1.1376025902777558,
+          3.480398595175399
+        ],
+        "target": [
+          0.0002652044499577011,
+          1.4034022493483946,
+          2.151400299822204
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "mouth"
+      },
+      "image": {
+        "src": "/images/chapters/mouth.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 4134,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 60.225)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "checks": [
+    "home model only",
+    "six dedicated images",
+    "actual camera travel",
+    "matching 3:2 endpoint",
+    "uncropped full artwork",
+    "3D hidden and paused",
+    "visible GSAP cultural text",
+    "source geometry unchanged",
+    "return overview",
+    "transition cancellation",
+    "real model click",
+    "1280px desktop layout",
+    "failed image recovery"
+  ]
+}

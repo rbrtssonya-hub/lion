@@ -1,5 +1,15 @@
 # 工程开发说明
 
+## 观形外部试验融合（2026-10-28）
+
+`src/features/model/atlas/` 接入“炫技5”的六部位入口、完整运镜与图像交接、左上图版及右侧文化浮窗。布局通过 ResizeObserver 读取副导航下方的实际容器，主图完整等比、研究态上沿紧贴副导航；底部控件避让小醒。形制和工艺继续使用现有模块。
+
+`src/services/lionAtlasScene.js` 只为当前 `lionScene.js` 增加六部位相机构图和可取消运镜，模型、33组全量毛发、AgX、HDRI及漫反射保持原实现。不要以外部35MB GLB、采样毛发或外部Three版本替换本工程89MB完整模型与渲染。全局导航和原观形图片背景保持。图版与字体通过 `src/config/media.js` 集中解析，历史源码/记忆/提示词/审查资料见 [导入说明](../source/archives/xuanji5/IMPORT.md)，不参与构建。
+
+外部五次提交采用保留作者、时间、顺序和消息的兼容历史纳入主线，只把重复的130MiB Blender原件替换为来源指针；[历史说明及恢复脚本](../source/archives/xuanji5/git-history/README.md)可精确恢复全部原提交号。不要将包含超大blob的原历史直接推送到GitHub。
+
+相关验证入口为 `npm test`、`npm run build` 及 `tests/e2e/structure-atlas-integration.spec.js`。旧结构测试中依赖旧投影标签或右栏目录的断言不代表现用图版交互。实际合并结果见工程记忆本轮日志。
+
 2026-10-26神态点击已扩展到全部八态：`ExpressionLion.jsx` 共用3秒分层播放、原图回退与清理；`face-profiles/` 保存各图独立的1254坐标、五部位变换与时序。进入神态时的整图短动作仍由 `useExpressionReaction` 维护，点击狮头后取消该整图动作并启动眉眼狮口，同时保留点击放大与原解读。静止/结束仍是原IMG，补绘仅填露出窗口；窗口蒙版超出轮廓4px覆盖静态羽化边缘，哀态眉根单独保留原图固定遮挡。新八态全覆盖测试 `expression-eight-face` 与已有 `expression-surprise-face`、`expression-reactions`、`expression-motion`、`expression-click-feedback` 为相关验收入口。素材/提示词见[八态源记录](../source/design/expression-eight/README.md)，实跑与边界见[八态补验](../source/references/eight-state-face-motion-2026-10-26.md)。布局及章节转场沿用原版，未新增依赖。
 
 

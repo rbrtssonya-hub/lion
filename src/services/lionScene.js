@@ -5,6 +5,7 @@ import {
   Group,
   HemisphereLight,
   PerspectiveCamera,
+  Quaternion,
   Raycaster,
   Scene,
   SRGBColorSpace,
@@ -116,6 +117,7 @@ export async function createLionScene({
   onAutoRotateChange = () => {},
   onSelectPart = () => {},
   onProjectParts = () => {},
+  atlas,
 }) {
   if (signal?.aborted || !container.isConnected || !interactionElement?.isConnected) throw aborted();
   activeScenes.get(container)?.();
@@ -154,6 +156,9 @@ export async function createLionScene({
   let modelScenes = [];
   let fullLion;
   let viewTween = null;
+  let isInteractive = true;
+  let savedOverview = null;
+  let atlasRegistry = null;
   let modelGroup;
   let modelRoot;
   let pointerDown = null;
@@ -180,13 +185,19 @@ export async function createLionScene({
       animationFrame = window.requestAnimationFrame(draw);
     }
   };
+  const cancelFlight = () => {
+    const previous = viewTween;
+    viewTween = null;
+    previous?.resolve?.({ completed: false });
+    if (controls) controls.enableDamping = true;
+  };
 
   const report = (status) => {
     if (!disposed && !signal?.aborted) onStatus(status);
   };
   const stopRotation = () => {
     if (disposed) return;
-    viewTween = null;
+    cancelFlight();
     manuallyAdjusted = true;
     controls.autoRotate = false;
     onAutoRotateChange(false);
@@ -204,6 +215,7 @@ export async function createLionScene({
 
   const classifyHit = (hit) => {
     const objectPart = meshParts.get(hit.object);
+    if (atlas) return objectPart ?? null;
     if (objectPart && objectPart !== 'outer_shell') return objectPart;
     // Some visible features share the head shell. These measured surface
     // regions label that surface; they do not claim independent geometry.
@@ -228,22 +240,25 @@ export async function createLionScene({
     return hit ? { id: classifyHit(hit), point: hit.point.toArray() } : null;
   };
   const onPointerDown = (event) => {
+    if (!isInteractive) return;
     if (!event.isPrimary) { pointerDown = null; return; }
     if (event.button !== 0) return;
     pointerDown = { id: event.pointerId, x: event.clientX, y: event.clientY, dragged: false };
   };
   const onPointerMove = (event) => {
+    if (!isInteractive) return;
     pointerPosition = { x: event.clientX, y: event.clientY };
     pointerNeedsCheck = true;
     if (pointerDown && Math.hypot(event.clientX - pointerDown.x, event.clientY - pointerDown.y) > 6) pointerDown.dragged = true;
     if (!pointerDown) requestDraw();
   };
   const onPointerUp = (event) => {
+    if (!isInteractive) return;
     const start = pointerDown;
     pointerDown = null;
     if (!start || start.id !== event.pointerId || start.dragged || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 6) return;
     const selected = pick(event.clientX, event.clientY);
-    if (selected) onSelectPart(selected.id, selected.point);
+    if (selected?.id) onSelectPart(selected.id, selected.point);
   };
   const clearPointer = () => {
     pointerDown = null;
@@ -309,16 +324,28 @@ export async function createLionScene({
     if (!frame.width || !frame.height) return;
     // Frame the lion in the left column while rendering beyond that column.
     // Negative offsets extend its frustum across the page without a nested crop.
-    camera.setViewOffset(
-      frame.width, frame.height,
-      canvasBounds.left - frame.left, canvasBounds.top - frame.top,
-      width, height,
-    );
+    if (atlas) {
+      // Register the complete generated picture with the same central 3:2
+      // camera aperture used by the external experiment. The page owns the
+      // host's origin below its secondary navigation.
+      const candidate = Number(atlas.getReferenceAspect?.());
+      const referenceAspect = Number.isFinite(candidate) && candidate > 0 ? candidate : 1720 / 914;
+      const pictureHeight = Math.min(height, width / referenceAspect);
+      const apertureWidth = pictureHeight * 1.5;
+      camera.setViewOffset(apertureWidth, pictureHeight,
+        -(width - apertureWidth) / 2, -(height - pictureHeight) / 2, width, height);
+    } else {
+      camera.setViewOffset(
+        frame.width, frame.height,
+        canvasBounds.left - frame.left, canvasBounds.top - frame.top,
+        width, height,
+      );
+    }
     const pixelBudget = Math.sqrt(2_600_000 / (width * height));
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5, pixelBudget, maxRenderSize / Math.max(width, height)));
     renderer.setSize(width, height, false);
     if (modelReady) fitOverview(focusedPart === 'overall' && !viewTween && !manuallyAdjusted);
-    if (modelReady && focusedPart === 'overall' && viewTween) {
+    if (!atlas && modelReady && focusedPart === 'overall' && viewTween) {
       viewTween.toCamera.copy(initialCameraPosition);
       viewTween.toTarget.copy(initialTarget);
     }
@@ -328,6 +355,7 @@ export async function createLionScene({
   const dispose = () => {
     if (disposed) return;
     disposed = true;
+    cancelFlight();
     loadController.abort();
     clearTimeout(loadTimeout);
     clearTimeout(settlingTimer);
@@ -440,17 +468,31 @@ export async function createLionScene({
         if (viewTween) {
           const elapsed = performance.now() - viewTween.startedAt;
           const progress = viewTween.duration === 0 ? 1 : Math.min(1, elapsed / viewTween.duration);
-          const eased = 1 - ((1 - progress) ** 3);
-          camera.position.lerpVectors(viewTween.fromCamera, viewTween.toCamera, eased);
+          const eased = viewTween.orbit
+            ? (progress < .5 ? 4 * progress ** 3 : 1 - ((-2 * progress + 2) ** 3) / 2)
+            : 1 - ((1 - progress) ** 3);
           controls.target.lerpVectors(viewTween.fromTarget, viewTween.toTarget, eased);
-          if (progress >= 1) viewTween = null;
+          if (viewTween.orbit) {
+            const { fromDirection, rotation, fromRadius, toRadius } = viewTween.orbit;
+            const turn = new Quaternion().slerpQuaternions(new Quaternion(), rotation, eased);
+            const direction = fromDirection.clone().applyQuaternion(turn);
+            const radius = fromRadius + (toRadius - fromRadius) * eased
+              + Math.sin(Math.PI * eased) * Math.max(fromRadius, toRadius) * .10;
+            camera.position.copy(controls.target).addScaledVector(direction, radius);
+          } else camera.position.lerpVectors(viewTween.fromCamera, viewTween.toCamera, eased);
+          if (progress >= 1) {
+            const finished = viewTween;
+            viewTween = null;
+            controls.enableDamping = true;
+            finished.resolve?.({ completed: true });
+          }
         }
         const cameraChanged = controls.update();
         renderer.render(scene, camera);
         const now = performance.now();
         if (modelReady) updatePartAnchors();
         if (modelReady && (now - lastDiagnostics >= 160 || (!cameraChanged && !viewTween))) { updateDiagnostics(); lastDiagnostics = now; }
-        if (pointerNeedsCheck && pointerPosition && !pointerDown && !interacting && !viewTween
+        if (isInteractive && pointerNeedsCheck && pointerPosition && !pointerDown && !interacting && !viewTween
             && now - lastCameraChange > 100 && now - lastPointerCheck > 100) {
           interactionElement.style.cursor = pick(pointerPosition.x, pointerPosition.y) ? 'pointer' : '';
           lastPointerCheck = now;
@@ -512,8 +554,11 @@ export async function createLionScene({
       if (!object.geometry.boundsTree) computeBoundsTree.call(object.geometry, { indirect: true, maxLeafTris: 12 });
       object.raycast = acceleratedRaycast;
       pickMeshes.push(object);
-      const part = hotspots.find((item) => item.objectNames?.some((prefix) => object.name.startsWith(prefix)));
+      const part = atlas
+        ? atlas.parts.find(item => item.matches(object))
+        : hotspots.find((item) => item.objectNames?.some((prefix) => object.name.startsWith(prefix)));
       if (part) meshParts.set(object, part.id);
+      else if (atlas?.headAlias?.test(object.name)) meshParts.set(object, 'brows');
     });
     const box = new Box3().setFromObject(model);
     const center = box.getCenter(new Vector3());
@@ -531,6 +576,22 @@ export async function createLionScene({
     modelGroup.position.y = -0.066;
     scene.add(modelGroup);
     modelGroup.updateMatrixWorld(true);
+    if (atlas) {
+      const parts = new Map();
+      for (const definition of atlas.parts) {
+        const meshes = pickMeshes.filter(mesh => definition.matches(mesh));
+        const bounds = new Box3();
+        meshes.forEach(mesh => bounds.union(new Box3().setFromObject(mesh)));
+        const framingBounds = definition.referenceBounds
+          ? new Box3(new Vector3(...definition.referenceBounds.min), new Vector3(...definition.referenceBounds.max)).applyMatrix4(modelRoot.matrixWorld)
+          : bounds;
+        if (!bounds.isEmpty()) parts.set(definition.id, {
+          id: definition.id, meshes, bounds, framingBounds,
+          center: bounds.getCenter(new Vector3()), size: bounds.getSize(new Vector3()),
+        });
+      }
+      atlasRegistry = { get: id => parts.get(id), all: () => [...parts.values()] };
+    }
     lighting.refresh();
     // A missing environment is reported separately and can be retried without
     // discarding the complete model or its camera/selection state.
@@ -540,7 +601,7 @@ export async function createLionScene({
     // tail and paws. The transparent canvas still extends across the page.
     const fittedBox = new Box3().setFromObject(modelGroup);
     const overviewTarget = fittedBox.getCenter(new Vector3());
-    const direction = new Vector3(1.05, 0.48, 2.3).normalize();
+    const direction = atlas ? new Vector3(5, 2.7, 7).normalize() : new Vector3(1.05, 0.48, 2.3).normalize();
     const right = new Vector3().crossVectors(new Vector3(0, 1, 0), direction).normalize();
     const up = new Vector3().crossVectors(direction, right).normalize();
     const fitPoints = [];
@@ -570,7 +631,12 @@ export async function createLionScene({
           relative.dot(direction) + Math.abs(relative.dot(up)) / (verticalTan * 0.86),
           relative.dot(direction) + Math.abs(relative.dot(right)) / (horizontalTan * 0.86));
       });
-      initialCameraPosition.copy(overviewTarget).addScaledVector(direction, Math.max(2.2, fitDistance));
+      // The atlas scales its editorial camera poses into this scene's existing
+      // 1.78-unit model. It never rescales meshes or alters rendering materials.
+      const distance = atlas
+        ? Math.max(size.x, size.y, size.z) * modelGroup.scale.x / (2 * verticalTan) * .99
+        : Math.max(2.2, fitDistance);
+      initialCameraPosition.copy(overviewTarget).addScaledVector(direction, distance);
       overviewDistance = initialCameraPosition.distanceTo(overviewTarget);
       applyCameraLimits();
       initialTarget.copy(overviewTarget);
@@ -591,17 +657,115 @@ export async function createLionScene({
     clearTimeout(loadTimeout);
     report({ phase: 'ready', message: '模型已载入 · 可交互' });
 
+    const flyCameraTo = (position, target, { duration = 2.2 } = {}) => {
+      cancelFlight();
+      if (disposed || !modelReady) return Promise.resolve({ completed: false });
+      controls.autoRotate = false;
+      controls.enableDamping = false;
+      controls.update();
+      controls.enableDamping = false;
+      const fromVector = camera.position.clone().sub(controls.target);
+      const toVector = position.clone().sub(target);
+      // Editorial camera endpoints are not manual zooms. Avoid clamping close
+      // part poses to the overview's saved interaction range during the flight.
+      focusDistance = toVector.length();
+      applyCameraLimits();
+      return new Promise(resolve => {
+        viewTween = {
+          fromCamera: camera.position.clone(), fromTarget: controls.target.clone(),
+          toCamera: position.clone(), toTarget: target.clone(),
+          startedAt: performance.now(), duration: reducedMotion.matches ? 0 : Math.max(0, duration * 1000),
+          resolve,
+          orbit: {
+            fromDirection: fromVector.clone().normalize(),
+            rotation: new Quaternion().setFromUnitVectors(fromVector.clone().normalize(), toVector.clone().normalize()),
+            fromRadius: fromVector.length(), toRadius: toVector.length(),
+          },
+        };
+        isActive = true;
+        requestDraw();
+      });
+    };
+    const getPartPose = id => {
+      const part = atlasRegistry?.get(id), framing = atlas?.framings[id];
+      if (!part || !framing) return null;
+      const bounds = part.framingBounds ?? part.bounds;
+      const size = bounds.getSize(new Vector3());
+      const target = bounds.getCenter(new Vector3()).add(new Vector3(...framing.offset).multiply(size));
+      const distance = Math.max(size.x, size.y, size.z, .65 * 1.78 / 5.2)
+        / (2 * Math.tan(camera.fov * Math.PI / 360)) * framing.distanceFactor;
+      const position = target.clone().addScaledVector(new Vector3(...framing.direction).normalize(), distance);
+      return { id, position, target };
+    };
+
     return {
+      registry: atlasRegistry,
+      cancelFlight,
+      resize,
+      getCameraPose: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), fov: camera.fov, aspect: camera.aspect, selected: focusedPart }),
+      getPartPose(id) {
+        const pose = getPartPose(id);
+        return pose && { ...pose, position: pose.position.toArray(), target: pose.target.toArray() };
+      },
+      setInteractive(value) {
+        if (disposed) return;
+        isInteractive = Boolean(value);
+        controls.enabled = isInteractive;
+        controls.autoRotate = false;
+        clearPointer();
+      },
+      flyToPart(id, options) {
+        const pose = getPartPose(id);
+        if (!pose) return Promise.resolve({ completed: false });
+        if (focusedPart === 'overall' && !savedOverview) savedOverview = {
+          position: camera.position.clone(), target: controls.target.clone(),
+        };
+        focusedPart = id;
+        manuallyAdjusted = false;
+        return flyCameraTo(pose.position, pose.target, options);
+      },
+      restoreOverview(options) {
+        const pose = savedOverview ?? { position: initialCameraPosition, target: initialTarget };
+        focusedPart = 'overall';
+        manuallyAdjusted = false;
+        return flyCameraTo(pose.position, pose.target, options).then(result => {
+          if (result.completed) { savedOverview = null; focusDistance = null; applyCameraLimits(); }
+          return result;
+        });
+      },
       setLightingSettings(value) {
         if (disposed) return;
         lighting?.update(value);
         const next = resolveViewSettings(value);
         if (JSON.stringify(next) === JSON.stringify(viewSettings)) return;
         viewSettings = next;
-        viewTween = null;
+        if (!atlas) cancelFlight();
         camera.fov = next.structureFov;
         camera.updateProjectionMatrix();
         fitOverview(false);
+        if (atlas) {
+          const pose = focusedPart === 'overall'
+            ? (savedOverview ?? { position: initialCameraPosition, target: initialTarget })
+            : getPartPose(focusedPart);
+          if (viewTween && pose) {
+            // A settings preview may change FOV while React is awaiting this
+            // flight. Keep its resolver alive and update its registered end.
+            viewTween.toCamera.copy(pose.position);
+            viewTween.toTarget.copy(pose.target);
+            if (viewTween.orbit) {
+              const end = pose.position.clone().sub(pose.target);
+              viewTween.orbit.rotation.setFromUnitVectors(viewTween.orbit.fromDirection, end.clone().normalize());
+              viewTween.orbit.toRadius = end.length();
+            }
+          } else if (pose && focusedPart !== 'overall') {
+            camera.position.copy(pose.position);
+            controls.target.copy(pose.target);
+          }
+          if (pose && focusedPart !== 'overall') {
+            focusDistance = pose.position.distanceTo(pose.target);
+            applyCameraLimits();
+          }
+        }
         controls.update();
         requestDraw();
       },
@@ -627,6 +791,7 @@ export async function createLionScene({
         const nextTarget = point ? new Vector3(...point.map(Number)) : modelRoot.localToWorld(new Vector3(...target.map(Number)));
         const nextDistance = Number(distance);
         if (!nextTarget.toArray().every(Number.isFinite) || !Number.isFinite(nextDistance) || nextDistance <= 0) return;
+        cancelFlight();
         focusDistance = Math.min(8, Math.max(0.4, nextDistance));
         applyCameraLimits();
 
@@ -654,6 +819,8 @@ export async function createLionScene({
       },
       resetView() {
         if (disposed || !modelReady) return;
+        cancelFlight();
+        savedOverview = null;
         focusDistance = null;
         fitOverview(false);
         controls.autoRotate = false;

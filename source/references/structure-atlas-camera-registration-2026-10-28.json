@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-28",
+  "scope": "Six editorial camera endpoints, reconstructed in the experiment's normalization using source-space registered bounds; this proves the composition input mapping, not renderer pixel equality.",
+  "sourceCommit": "869abd37bd991d3169d544f34bf964adab0e693b",
+  "sourceBlendSha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53",
+  "cameraSnapshot": "source/archives/xuanji5/public/data/handoff-cameras.json",
+  "service": "src/services/lionAtlasScene.js",
+  "externalOriginalBounds": {
+    "source": "Original experiment public/models/lion.glb: POSITION accessor bounds transformed by complete source node hierarchy, before LionWorld normalization; sampled hair geometry included.",
+    "min": [-0.46174177527427673, -0.0015393942594528198, -0.8112925291061401],
+    "max": [0.46157728135585785, 0.9999999776482582, 0.8015119731426239]
+  },
+  "normalization": "sourceScale=5.2/max(source bounds size); translation=(-center.x,-min.y,-center.z) applied before scalar multiplication; normalized part target=center+offset*size; distance=max(size.x,size.y,size.z,0.65)/(2*tan(fov/2))*distanceFactor",
+  "currentEngineMapping": "Registered source-space bounds pass through the current modelRoot.matrixWorld. This applies the current model's uniform scale and translation to camera target and distance together. Current native mesh bounds remain distinct from framingBounds; no meshes, strand data, materials, lighting or tone mapping are changed.",
+  "fov": 34,
+  "referenceApertureAspect": 1.5,
+  "tolerance": 0.00001,
+  "verificationCommand": "node source/references/structure-atlas-camera-registration-2026-10-28.mjs",
+  "results": [
+    { "id": "brows", "targetError": 6.304854800243424e-16, "positionError": 4.440892098500626e-16 },
+    { "id": "body", "targetError": 2.220446049250313e-16, "positionError": 2.220446049250313e-16 },
+    { "id": "crown", "targetError": 2.7755575615628914e-17, "positionError": 0 },
+    { "id": "trim", "targetError": 2.220446049250313e-16, "positionError": 9.930136612989092e-16 },
+    { "id": "beard", "targetError": 0, "positionError": 0 },
+    { "id": "mouth", "targetError": 0, "positionError": 0 }
+  ],
+  "passed": true,
+  "limits": "Mathematical registration at the default 34-degree FOV. Does not claim identical native geometry, sampled/full-hair silhouettes, ImageGen artwork or WebGL/Blender color output. Browser transitions and layout require separate regression evidence."
+}

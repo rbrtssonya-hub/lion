@@ -1,0 +1,44 @@
+.research-visuals{--rv-ink:var(--ink,#342e27);--rv-muted:var(--muted,#8b8174);--rv-accent:var(--accent,#a3412f);--rv-teal:var(--teal,#486c66);--rv-line:var(--line,#cfc7b8);color:var(--rv-ink);container-type:inline-size;min-width:0}
+.rv-panel-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.rv-figure{margin:0;min-width:0;padding:18px 0 16px;border-top:1px solid var(--rv-line)}
+.rv-figure-heading{display:flex;align-items:flex-start;gap:10px;min-height:39px}
+.rv-figure-number{font:11px/1.4 'Courier New',monospace;color:var(--rv-accent);padding-top:3px}
+.rv-figure-heading h4{font-size:14px;font-weight:500;letter-spacing:.08em;margin:0 0 3px;color:var(--rv-ink)}
+.rv-figure-heading div>span{font:8px/1.4 'Courier New',monospace;letter-spacing:.09em;color:var(--rv-muted)}
+.rv-source{margin-left:auto;white-space:nowrap;font-size:9px;letter-spacing:.05em;line-height:1.7;color:var(--rv-teal);padding-top:1px}
+.rv-source-design{color:var(--rv-accent)}
+.rv-svg{width:100%;height:auto;display:block;overflow:visible;margin:8px 0 5px}
+.rv-svg text{font-family:'Courier New','Microsoft YaHei',monospace;fill:var(--rv-muted)}
+.rv-svg path,.rv-svg circle,.rv-svg rect{vector-effect:non-scaling-stroke}
+.rv-grid-line{stroke:var(--rv-line);stroke-width:.45;opacity:.35}
+.rv-axis{stroke:var(--rv-line);stroke-width:.8}
+.rv-micro{font-size:8px;letter-spacing:.03em}
+.rv-data{font-size:10px;letter-spacing:.03em;fill:var(--rv-ink)!important}
+.rv-empty{font-size:11px;letter-spacing:.08em}
+.rv-dashed{stroke:var(--rv-muted);stroke-width:.7;stroke-dasharray:3 4;fill:none;opacity:.55}
+.rv-area{fill:var(--rv-accent);fill-opacity:.08;stroke:none}
+.rv-muted-area{fill:var(--rv-teal);fill-opacity:.07;stroke:none}
+.rv-accent-stroke{fill:none;stroke:var(--rv-accent);stroke-width:1.25;stroke-linejoin:round;stroke-linecap:round}
+.rv-muted-stroke{fill:none;stroke:var(--rv-muted);stroke-width:.65;stroke-linejoin:round}
+.rv-teal-stroke{fill:none;stroke:var(--rv-teal);stroke-width:1.2;stroke-linejoin:round}
+.rv-point,.rv-accent-fill{fill:var(--rv-accent);stroke:none}
+.rv-teal-point,.rv-teal-fill{fill:var(--rv-teal);stroke:none}
+.rv-polar-grid{fill:none;stroke:var(--rv-line);stroke-width:.55}
+.rv-uv-boundary{fill:none;stroke:var(--rv-accent);stroke-width:.9;stroke-dasharray:4 3}
+.rv-caption{font-size:10px;line-height:1.85;color:var(--rv-muted);margin:0;max-width:49em;letter-spacing:.015em}
+.rv-parameter{padding:17px 0 13px;border-top:1px solid var(--rv-line)}
+.rv-parameter label{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;font-size:11px;letter-spacing:.06em}
+.rv-parameter label>span{display:flex;align-items:center;gap:10px}
+.rv-parameter small{font-size:8px;color:var(--rv-accent);border-left:1px solid var(--rv-line);padding-left:10px}
+.rv-parameter output{font:12px 'Courier New',monospace;color:var(--rv-accent)}
+.rv-parameter input{grid-column:1/-1;width:100%;height:12px;accent-color:var(--rv-accent);cursor:pointer;margin:3px 0 0}
+.rv-parameter p{font-size:9px;color:var(--rv-muted);margin:8px 0 0;letter-spacing:.03em}
+.rv-method-note{display:grid;grid-template-columns:90px 1fr;gap:10px;padding-top:14px;border-top:1px solid var(--rv-line)}
+.rv-method-note>span{font:8px/1.9 'Courier New',monospace;letter-spacing:.06em;color:var(--rv-muted)}
+.rv-method-note p{font-size:9px;line-height:1.9;color:var(--rv-muted);margin:0}
+.rv-waiting{min-height:250px;padding:65px 15px;text-align:center;border-top:1px solid var(--rv-line)}
+.rv-waiting p{font-size:12px;color:var(--rv-muted);letter-spacing:.06em}
+.rv-waiting small{font:8px 'Courier New',monospace;color:var(--rv-muted);letter-spacing:.12em}
+.rv-loading-mark{font:36px Georgia,serif;font-weight:300;line-height:1;color:var(--rv-accent)}
+@container (max-width:540px){.rv-panel-grid{grid-template-columns:minmax(0,1fr);gap:4px}.rv-figure{padding:16px 0 13px}.rv-svg{max-height:230px}.rv-caption{font-size:10px}.rv-method-note{grid-template-columns:72px 1fr}}
+@media(prefers-reduced-motion:no-preference){.rv-svg .rv-accent-stroke,.rv-svg .rv-teal-stroke{transition:opacity .25s ease}}

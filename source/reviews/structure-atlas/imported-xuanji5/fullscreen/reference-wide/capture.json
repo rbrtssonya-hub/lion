@@ -1,0 +1,225 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1020
+  },
+  "records": [
+    {
+      "id": "brows",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          0.9751404413397706,
+          2.525370580679079,
+          4.839923857159317
+        ],
+        "target": [
+          0.16869950414048412,
+          2.390963757812531,
+          2.151787399828359
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "brows"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    },
+    {
+      "id": "crown",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          0.8775163515066804,
+          4.818548997325409,
+          4.101426561004063
+        ],
+        "target": [
+          0.0015624736969092057,
+          2.859178481171972,
+          1.7962847772941382
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "crown"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    },
+    {
+      "id": "beard",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          1.9941298260793991,
+          0.7075588009651624,
+          4.864712411811997
+        ],
+        "target": [
+          -0.0013372766234122089,
+          1.2729411467309588,
+          1.5389339073073118
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "beard"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    },
+    {
+      "id": "body",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          5.115616080437197,
+          3.194860862102577,
+          -0.4041777542330811
+        ],
+        "target": [
+          0.00641704685864386,
+          1.355549210014299,
+          0.004558168453202782
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "body"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    },
+    {
+      "id": "trim",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          2.4187882986590794,
+          4.35087034403602,
+          -3.7018090493935283
+        ],
+        "target": [
+          -0.008708478466339264,
+          1.9233735669106002,
+          -0.8459304880695047
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "trim"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    },
+    {
+      "id": "mouth",
+      "result": {
+        "completed": true
+      },
+      "pose": {
+        "position": [
+          0.332514778288257,
+          1.1376025902777558,
+          3.480398595175399
+        ],
+        "target": [
+          0.0002652044499577011,
+          1.4034022493483946,
+          2.151400299822204
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "mouth"
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1020
+      },
+      "view": {
+        "enabled": true,
+        "fullWidth": 1530,
+        "fullHeight": 1020,
+        "offsetX": -195,
+        "offsetY": 0,
+        "width": 1920,
+        "height": 1020
+      }
+    }
+  ],
+  "errors": []
+}

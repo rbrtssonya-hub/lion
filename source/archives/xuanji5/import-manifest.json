@@ -1,0 +1,2960 @@
+{
+  "source": "C:/Users/Administrator/Desktop/炫技5",
+  "importedAt": "2026-10-28",
+  "originalHead": "869abd37bd991d3169d544f34bf964adab0e693b",
+  "originalCommits": [
+    {
+      "sha": "512896277e046de289e2521be85b33e60ea7cf24",
+      "authorDate": "2026-10-26T21:59:08+08:00",
+      "committerDate": "2026-10-26T21:59:08+08:00",
+      "subject": "chore: initialize lion atlas project and standard wiki memory"
+    },
+    {
+      "sha": "2a781ac3cb7bb77fd626baa5be8ee606d802c87c",
+      "authorDate": "2026-10-26T22:23:47+08:00",
+      "committerDate": "2026-10-26T22:23:47+08:00",
+      "subject": "fix: complete full-screen handoff before docking artwork"
+    },
+    {
+      "sha": "7a492fe5eefe843b3f89f9dc0b30c0f89656de60",
+      "authorDate": "2026-10-27T21:52:04+08:00",
+      "committerDate": "2026-10-27T21:52:04+08:00",
+      "subject": "fix: preserve full-window model during image handoff"
+    },
+    {
+      "sha": "56e01b67107eed84271a4239cc14bf1d090dee4e",
+      "authorDate": "2026-10-28T04:56:29+08:00",
+      "committerDate": "2026-10-28T04:56:29+08:00",
+      "subject": "feat: add clear full-window chapter artwork"
+    },
+    {
+      "sha": "869abd37bd991d3169d544f34bf964adab0e693b",
+      "authorDate": "2026-10-28T10:17:23+08:00",
+      "committerDate": "2026-10-28T10:17:23+08:00",
+      "subject": "feat: add lion info plates and cultural modal"
+    }
+  ],
+  "files": [
+    {
+      "original": ".gitattributes",
+      "destination": "source/archives/xuanji5/.gitattributes.source",
+      "category": "historical-source",
+      "bytes": 163,
+      "sha256": "03492a9712827b2bf2d13714e5f1cafa5f02d2109a506ed4ccc4f3dfff0d63df"
+    },
+    {
+      "original": ".gitignore",
+      "destination": "source/archives/xuanji5/.gitignore.source",
+      "category": "historical-source",
+      "bytes": 50,
+      "sha256": "d61d2426610d931b78c95c660ebe7b1a5948be55f66372cdae3bc38791c4f372"
+    },
+    {
+      "original": "AGENTS.md",
+      "destination": "source/archives/xuanji5/AGENTS.source.md",
+      "category": "historical-source",
+      "bytes": 2986,
+      "sha256": "887dd2fc33e67f622c846a1046a1bb48baa9a6c3e797f7d8071f200268fcf365"
+    },
+    {
+      "original": "MODEL_AUDIT.md",
+      "destination": "source/archives/xuanji5/MODEL_AUDIT.md",
+      "category": "historical-source",
+      "bytes": 9461,
+      "sha256": "b1fb9332c35491195ba89d4c40b56ed8a4c92e775012a0569a13543097bcab5c"
+    },
+    {
+      "original": "README.md",
+      "destination": "source/archives/xuanji5/README.md",
+      "category": "historical-source",
+      "bytes": 5695,
+      "sha256": "f4459fe98e2635f7cf9bd1015789a48bf454aa6bf085af350264ca6355290ade"
+    },
+    {
+      "original": "VISUALIZATION_DESIGN.md",
+      "destination": "source/archives/xuanji5/VISUALIZATION_DESIGN.md",
+      "category": "historical-source",
+      "bytes": 20684,
+      "sha256": "9e9ec61fe9fea8cde431fa5195dbbd06b45182a3142193543f3c4cf5f2038810"
+    },
+    {
+      "original": "artifacts/IMAGE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/IMAGE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 8292,
+      "sha256": "16181d6f2d20c3d3b0be76f09d175039f97ca81a4e038c78304e4628a16dd960"
+    },
+    {
+      "original": "artifacts/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 1908,
+      "sha256": "a1b3ccae10d76705c3cc4e454d3b55abf42a201601fb597827151342e8bda14a"
+    },
+    {
+      "original": "artifacts/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/browser-results.json",
+      "category": "historical-review",
+      "bytes": 1079,
+      "sha256": "29722ee6599b950107dda59ba653e5caf644417eb65c50e18d2ae6d37af95985"
+    },
+    {
+      "original": "artifacts/desktop-1280-body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-1280-body.png",
+      "category": "historical-review",
+      "bytes": 1358374,
+      "sha256": "b06f802e3cbf963dc2e235b5c02d8a6a9114c693d883ede8e33ac8b8e9d0dce4"
+    },
+    {
+      "original": "artifacts/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1171561,
+      "sha256": "84b6bc48555ff5ef02ed25943ca5003e006b93335b62ec9da0c86e1a6e390725"
+    },
+    {
+      "original": "artifacts/desktop-beard-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-beard-parameter.png",
+      "category": "historical-review",
+      "bytes": 1656859,
+      "sha256": "c007540a32a91052f1c02993c6da92e2b5813721df4d98a71306d948ea3ea429"
+    },
+    {
+      "original": "artifacts/desktop-beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-beard.png",
+      "category": "historical-review",
+      "bytes": 1755106,
+      "sha256": "7ae9778ea792fc082cf9d8416bc77adf0f9038bd391d9c25b0fdac1de7723e1b"
+    },
+    {
+      "original": "artifacts/desktop-body-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-body-parameter.png",
+      "category": "historical-review",
+      "bytes": 1686388,
+      "sha256": "0039d2f499d4b834a8a2e802c53239fdbdfeb099360574d6832c0fc968fc15e7"
+    },
+    {
+      "original": "artifacts/desktop-body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-body.png",
+      "category": "historical-review",
+      "bytes": 1834758,
+      "sha256": "4a3c81c9b0fd5a19ccbc8225e26909f3942e3878f6cf0e8ba4d3d68d2a96677b"
+    },
+    {
+      "original": "artifacts/desktop-brows-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-brows-parameter.png",
+      "category": "historical-review",
+      "bytes": 1614231,
+      "sha256": "3aac67eca9eec2cf7b247eab05e3a36fbf1497cc1e6e590952f97202d99d8281"
+    },
+    {
+      "original": "artifacts/desktop-brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-brows.png",
+      "category": "historical-review",
+      "bytes": 1746968,
+      "sha256": "724e18d877377fdef67d5d023bdb34deab3e8517fd24d5b6466ea5fd54dcbfc3"
+    },
+    {
+      "original": "artifacts/desktop-crown-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-crown-parameter.png",
+      "category": "historical-review",
+      "bytes": 1623863,
+      "sha256": "9dcafaba0fb848c96265a84f8776888cd1b6f01f88ca2bbfb60dc1ad41f7a0ac"
+    },
+    {
+      "original": "artifacts/desktop-crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-crown.png",
+      "category": "historical-review",
+      "bytes": 1750479,
+      "sha256": "1d6f9f44d16bba818040f9907bedc47cabeac391209c98a0e7fc440d0ebc430b"
+    },
+    {
+      "original": "artifacts/desktop-mouth-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-mouth-parameter.png",
+      "category": "historical-review",
+      "bytes": 1529495,
+      "sha256": "d6c2ce3de6b331cc444a0f6b0e62daccfcfb28310bfea8d040d907700ffc37e9"
+    },
+    {
+      "original": "artifacts/desktop-mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-mouth.png",
+      "category": "historical-review",
+      "bytes": 1637705,
+      "sha256": "e6ab330c4c7e109fc5ee6fe965cd6729e245bed3d424d6bb3aa447af4726597c"
+    },
+    {
+      "original": "artifacts/desktop-overview.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-overview.png",
+      "category": "historical-review",
+      "bytes": 1550799,
+      "sha256": "c756b153ffbee2e6e34c8ea5dbf0de430b96b7d74f41b555b4dc60c345ca52e0"
+    },
+    {
+      "original": "artifacts/desktop-trim-parameter.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-trim-parameter.png",
+      "category": "historical-review",
+      "bytes": 1646259,
+      "sha256": "cf16c5809b31f09bfa83f0b88cd0792d6a6806ea242e52a8f1df8d22ea50beaa"
+    },
+    {
+      "original": "artifacts/desktop-trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/desktop-trim.png",
+      "category": "historical-review",
+      "bytes": 1794645,
+      "sha256": "057fcd4b10906b4aed2ac838ae7c76e43ef818fac9ca3213b1742631bbc486b2"
+    },
+    {
+      "original": "artifacts/enrichment/IMAGE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/IMAGE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 25144,
+      "sha256": "a5f6f003d9e0d9f08a9aee36951492e2ddfb5e93cb20fd5653456001c01873d6"
+    },
+    {
+      "original": "artifacts/enrichment/PROMPTS_BEARD_BODY.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/PROMPTS_BEARD_BODY.md",
+      "category": "historical-review",
+      "bytes": 7869,
+      "sha256": "242c05a2add641cd674c7df74bf494bdc0422c7f9460699926ccf3b32788be90"
+    },
+    {
+      "original": "artifacts/enrichment/PROMPTS_BROWS_CROWN.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/PROMPTS_BROWS_CROWN.md",
+      "category": "historical-review",
+      "bytes": 8999,
+      "sha256": "a0984df66929c6478704e5b84ad94b46c4abbdd271f06b44e0ed96cb5d132aa9"
+    },
+    {
+      "original": "artifacts/enrichment/PROMPTS_TRIM_MOUTH.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/PROMPTS_TRIM_MOUTH.md",
+      "category": "historical-review",
+      "bytes": 7355,
+      "sha256": "8f3f6478b67dd46230ad7edf1f1fc2fafff81389a11bc6eee23fc0c136e3f074"
+    },
+    {
+      "original": "artifacts/enrichment/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 4385,
+      "sha256": "c3228ca36b2ecd0153c42abcb7ac55721c6fa7899af5f4cd4afe8759cae71e99"
+    },
+    {
+      "original": "artifacts/enrichment/asset-manifest.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/asset-manifest.json",
+      "category": "historical-review",
+      "bytes": 10720,
+      "sha256": "cdcf75dbe887a46de57b277460124f1fd275d8ec544e32bdf5c6b4f14e5333cd"
+    },
+    {
+      "original": "artifacts/enrichment/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/browser-results.json",
+      "category": "historical-review",
+      "bytes": 20578,
+      "sha256": "cdc7287e0dd2c9bfe601f40dbf4317a03bea9b96347392a61e947f7fe38df16d"
+    },
+    {
+      "original": "artifacts/enrichment/production-assets.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production-assets.json",
+      "category": "historical-review",
+      "bytes": 2525,
+      "sha256": "76e9b6c3773ace8bf3db1cbd8890446f11b32430f93d62a5a64b361fd7c54f92"
+    },
+    {
+      "original": "artifacts/enrichment/production/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/browser-results.json",
+      "category": "historical-review",
+      "bytes": 20578,
+      "sha256": "a3226300f8b15174c32f43330a6f452ff3406bb62bda1b74c1023e5f46ec3177"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/beard-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/beard-culture.png",
+      "category": "historical-review",
+      "bytes": 1768797,
+      "sha256": "283ee5c6262a815f923f333469ddbca718f0c90621930b098ad9401eba649935"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/beard-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/beard-data.png",
+      "category": "historical-review",
+      "bytes": 1716340,
+      "sha256": "5358f73717f67534ebb9decd7890f462944eede8fd2ef8d2ecc25baa7741c383"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/body-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/body-culture.png",
+      "category": "historical-review",
+      "bytes": 1904025,
+      "sha256": "9d48830588df25d5098d9b2ebe6e47ac4dd958fde447dc6eaa9a0ef322ba0ced"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/body-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/body-data.png",
+      "category": "historical-review",
+      "bytes": 1844713,
+      "sha256": "e9b256ded95a84d7bdb04f99c909c7617476c762fa6572284380d1569dccd33f"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/brows-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1790188,
+      "sha256": "a002d22fdd3aaa4940761c3163be5e65c7b1e5745cc8210dadb65e8522efe815"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/brows-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-culture.png",
+      "category": "historical-review",
+      "bytes": 1841110,
+      "sha256": "ce577266016382a196a967267a1d5a86977330ef5781da753d146539b9fc077d"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/brows-detail-in-view.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-detail-in-view.png",
+      "category": "historical-review",
+      "bytes": 1838839,
+      "sha256": "75c1b83267a462fdc97838050d84e76f8ccfe8bddaeffac4b3ddf488014aaeea"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/crown-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/crown-culture.png",
+      "category": "historical-review",
+      "bytes": 1788014,
+      "sha256": "d52f62dd11f4e9e24a6f7f3194ff285a84834b78068ebe5c9959a5a6952cb240"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/crown-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/crown-data.png",
+      "category": "historical-review",
+      "bytes": 1720089,
+      "sha256": "bacd00d7f5bd415edd93887d8f3bfd7ac9675aff93cf5bd34b56f57f714287b3"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1360867,
+      "sha256": "ef1a43392a08d295081eec4a245e193c7d148d832d46e442c53cba27945eaa8f"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/desktop-1920.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/desktop-1920.png",
+      "category": "historical-review",
+      "bytes": 2716005,
+      "sha256": "52d2f8e019f58aa452376530aee118bc0bb67c299336ab57d7be8bf2fbb9bac7"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/home-art-navigation.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/home-art-navigation.png",
+      "category": "historical-review",
+      "bytes": 974036,
+      "sha256": "b915d638a3f492ac904251520364120f9f943a719de9c93d3c1095b161aefe22"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/mouth-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/mouth-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1727049,
+      "sha256": "b2ed17fcac6ea11cc013968088d3c8b4ba00688dc512e80486cc496b0d4434d3"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/mouth-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/mouth-culture.png",
+      "category": "historical-review",
+      "bytes": 1780502,
+      "sha256": "1501ad42910f4b3ab01b3f44bda5686a852827ff20a0f469d337e9cfa55e1544"
+    },
+    {
+      "original": "artifacts/enrichment/production/screenshots/trim-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/trim-culture.png",
+      "category": "historical-review",
+      "bytes": 1822288,
+      "sha256": "8d93b03b75411b330896de680ea8cc01ae3560bca2ca661569e50690c3c1f7b0"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/beard-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/beard-culture.png",
+      "category": "historical-review",
+      "bytes": 1768619,
+      "sha256": "94b3de747009172227584a9a67bd56aed266faefd5789101311b1472d6ac913e"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/beard-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/beard-data.png",
+      "category": "historical-review",
+      "bytes": 1718233,
+      "sha256": "e6a2100d4ece54fd0cee3a6fac9fc793865b1976752efc763e3c2d584e078ff0"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/body-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/body-culture.png",
+      "category": "historical-review",
+      "bytes": 1904006,
+      "sha256": "c367dce4dfaa5005483106674df93b68a20514e73069f6e3cd57e5308b52d6bc"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/body-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/body-data.png",
+      "category": "historical-review",
+      "bytes": 1844158,
+      "sha256": "0037b89b732489314e68a1e094e6670d8c390d034bc8f53ed203f325a6b5f7b7"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/brows-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1790188,
+      "sha256": "a002d22fdd3aaa4940761c3163be5e65c7b1e5745cc8210dadb65e8522efe815"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/brows-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-culture.png",
+      "category": "historical-review",
+      "bytes": 1841110,
+      "sha256": "ce577266016382a196a967267a1d5a86977330ef5781da753d146539b9fc077d"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/brows-detail-in-view.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-detail-in-view.png",
+      "category": "historical-review",
+      "bytes": 1838839,
+      "sha256": "75c1b83267a462fdc97838050d84e76f8ccfe8bddaeffac4b3ddf488014aaeea"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/crown-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/crown-culture.png",
+      "category": "historical-review",
+      "bytes": 1788187,
+      "sha256": "35dbf8fc1b2c9f4407e11953e5e3f99da31be3428f469fe510d45ab8753d6744"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/crown-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/crown-data.png",
+      "category": "historical-review",
+      "bytes": 1719456,
+      "sha256": "ba6b69dca4c1818d9937db528d801b296d5a68e0397e112746ce9870d02bf679"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1361185,
+      "sha256": "39058eebe84e11426bf9c9558a4f96389ec9b2519bf485afb673cf0cc909c648"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/desktop-1920.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/desktop-1920.png",
+      "category": "historical-review",
+      "bytes": 2715646,
+      "sha256": "fb636174d5a565525c51db6238ccb8b42eaf8c3ef2e6efc9f5d4cdc70ad0fcb2"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/home-art-navigation.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/home-art-navigation.png",
+      "category": "historical-review",
+      "bytes": 963703,
+      "sha256": "21747edde80221cb9a3f2d91f05d5a588e8cbdc92d9559f89c859309a4989c0e"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/mouth-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/mouth-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1729329,
+      "sha256": "d679193937495e326c7c269ba470a825a22a49b9a6c6f486e76e2ed2a47d0d94"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/mouth-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/mouth-culture.png",
+      "category": "historical-review",
+      "bytes": 1781280,
+      "sha256": "6074b5613b0f3e4135ac5f2ec1b62f2de449c8437dcd35771335af3b6325f4a5"
+    },
+    {
+      "original": "artifacts/enrichment/screenshots/trim-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/trim-culture.png",
+      "category": "historical-review",
+      "bytes": 1820744,
+      "sha256": "ac52cfde670fad19bd2a7f352257f5b4a62bb4ea05111b24cb6b12ef708de8af"
+    },
+    {
+      "original": "artifacts/fullscreen/.gitignore",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/.gitignore.source",
+      "category": "historical-review",
+      "bytes": 188,
+      "sha256": "2edf2ca22fa489a2d4339f65ff5ffd1fdb7d74461f1781c68b9e7c0583304528"
+    },
+    {
+      "original": "artifacts/fullscreen/16x9-crown-beard-mouth-prompts.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/16x9-crown-beard-mouth-prompts.md",
+      "category": "historical-review",
+      "bytes": 5595,
+      "sha256": "491b5f26f1f428e815e8439cdc006a2009240bfe48f02e52f28b6f36e7994d4c"
+    },
+    {
+      "original": "artifacts/fullscreen/IMAGE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/IMAGE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 7612,
+      "sha256": "8e8eedfd28359af98242a4677df4607cca675c43782770e3ded5739c775d0b8a"
+    },
+    {
+      "original": "artifacts/fullscreen/ULTRAWIDE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/ULTRAWIDE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 9805,
+      "sha256": "9f0d9092700cfd5be2c9f8eaf3dde5b7d73c5c38f32860cbf307d8b2afb8e435"
+    },
+    {
+      "original": "artifacts/fullscreen/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 2049,
+      "sha256": "d954286391104ec957f034d6a9906c4dfc48fa656e2a95c1150cbee40f778555"
+    },
+    {
+      "original": "artifacts/fullscreen/asset-manifest.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/asset-manifest.json",
+      "category": "historical-review",
+      "bytes": 5987,
+      "sha256": "1dcf7da04da96cee17922b236b6632a90ca7755e1a9e70ab2ac0b75d7e5b6f5f"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/BODY_TRIM_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/BODY_TRIM_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 3120,
+      "sha256": "3d78ada2369eb433ace3cb1a1e84ddf4cf6f378582b01a910ea8ac7f9b94c4d3"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/body.png",
+      "category": "historical-review",
+      "bytes": 2402766,
+      "sha256": "2972aa762fc730bb48c922d27c21866e4f6e9bf45c5887e65437adab21851b6f"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/brows-prompt.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows-prompt.md",
+      "category": "historical-review",
+      "bytes": 1802,
+      "sha256": "307c33a06918bbc4837c302e01aa305486f9379ef4dd8b16a860033e24528668"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/brows-wide-prompt.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows-wide-prompt.md",
+      "category": "historical-review",
+      "bytes": 1864,
+      "sha256": "44b563e304ca215c28b0431459390bd272952b4982363297bce402d24d0e8dad"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/brows-wide.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows-wide.png",
+      "category": "historical-review",
+      "bytes": 2195969,
+      "sha256": "e4a3075bb3f2d03ec4594550db4c19387eda57d053b59758ad81610ce4db559b"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows.png",
+      "category": "historical-review",
+      "bytes": 2166726,
+      "sha256": "eb81000adc40b907dddc482798eeed9e9c7c6dd93d8a0f2c3d069afddd550866"
+    },
+    {
+      "original": "artifacts/fullscreen/candidates/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/trim.png",
+      "category": "historical-review",
+      "bytes": 2222713,
+      "sha256": "555374cf4366428aec2ff1d90ddc83c333aa0708a71e51d163135a72b8c4c439"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/browser-results.json",
+      "category": "historical-review",
+      "bytes": 1425047,
+      "sha256": "36ad5f39e12a76977f952bff5e9782b4a9b32ef72c69cbb5eb72221b1e035659"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/arranging-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/arranging-resize.png",
+      "category": "historical-review",
+      "bytes": 2074855,
+      "sha256": "2045f028abe5cf4070471dc7a18b7fae568e0e43a5faafb30aba0ba25b84c76e"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/beard-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/beard-final.png",
+      "category": "historical-review",
+      "bytes": 1454189,
+      "sha256": "1439ac7b9c56977326a935098412d32192b809dc8a8f99b4ec73bd2cbc309cc7"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/body-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/body-final.png",
+      "category": "historical-review",
+      "bytes": 1591660,
+      "sha256": "d8a861ccb6da6fcc4934a646e52d9932b75da18880b7bd42058f77189ef17451"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/brows-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-final.png",
+      "category": "historical-review",
+      "bytes": 1483122,
+      "sha256": "0ff14b440cb5312a8a5d61522a08153bcfc1ae093eba5061277503c38d647e10"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/brows-image-moving.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-image-moving.png",
+      "category": "historical-review",
+      "bytes": 1980745,
+      "sha256": "d2203c3f29e09422533fa197eec205bc735461ff0db026ea2220fc015dbd096a"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/brows-mid-dissolve.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-mid-dissolve.png",
+      "category": "historical-review",
+      "bytes": 1721851,
+      "sha256": "06e24bbc48ae8e36c2804095b00e129ab8cf57601840f295880f168a606cd1b5"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/crown-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/crown-final.png",
+      "category": "historical-review",
+      "bytes": 1459230,
+      "sha256": "20939a0b3c42d609084dde55777aedd5430c7ed34958379b7a6dfc0942b9bff3"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1153608,
+      "sha256": "e94b53403d65e85aca6ca754d687c07fd48a7e88500ecf986cda2482166ec5c4"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/handoff-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/handoff-resize.png",
+      "category": "historical-review",
+      "bytes": 2074855,
+      "sha256": "2045f028abe5cf4070471dc7a18b7fae568e0e43a5faafb30aba0ba25b84c76e"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/home-model-only.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/home-model-only.png",
+      "category": "historical-review",
+      "bytes": 1298015,
+      "sha256": "1d616cb2f4e0de6b33ae27972cd780b987d6a7fba2979d7ee4de607b7826afe2"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/mouth-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/mouth-final.png",
+      "category": "historical-review",
+      "bytes": 1559432,
+      "sha256": "5f5366d4ad1db69adf30da3a614a39667b645a743b99ed226b4337ef8d478cd8"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/travel-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/travel-resize.png",
+      "category": "historical-review",
+      "bytes": 2074048,
+      "sha256": "60d24584f3536f9d6af6d5e0f528f53550e16fc327478e51fac0293943a924b7"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/handoff/screenshots/trim-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/trim-final.png",
+      "category": "historical-review",
+      "bytes": 1519185,
+      "sha256": "9cfee2b59eb4873f13e60ed34dbcfadfec9605aa33c4682fb6924e25f7d59ed7"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-endpoint.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-endpoint.png",
+      "category": "historical-review",
+      "bytes": 2589097,
+      "sha256": "bf9fbee79167707332602de4d3abe5873a0054d70a69e254730482861c0ae89f"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-handoff-0.2.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.2.png",
+      "category": "historical-review",
+      "bytes": 2629999,
+      "sha256": "94c366c4e967ed945c8b7080830f09bb34754d9890a1e99f2e97c912238e6ff1"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-handoff-0.5.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.5.png",
+      "category": "historical-review",
+      "bytes": 2725539,
+      "sha256": "3e7ac6fbca24dacbdfc49debc5766420c8cd759813f640c4537315955c683821"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-handoff-0.8.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.8.png",
+      "category": "historical-review",
+      "bytes": 2940221,
+      "sha256": "b9688de4972c9b3f86d8326a611cfd17d95a2d1f154899ef6a5605b6beeda365"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-return-0.2.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.2.png",
+      "category": "historical-review",
+      "bytes": 2658913,
+      "sha256": "b15edaf46d1ec27b98cca88379704978822b72b38168b93123c07f34b7f0408d"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-return-0.5.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.5.png",
+      "category": "historical-review",
+      "bytes": 2778426,
+      "sha256": "102ddcfcdff9857985d2030e3592dfd17df601e9d38889c89fb6cde7404a5a35"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/body-return-0.8.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.8.png",
+      "category": "historical-review",
+      "bytes": 3062238,
+      "sha256": "d4f5bfa954e1f45752061acd6a2c02b102c2103fd9dfc50f0d09251a071ffc5e"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-1536x960.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1536x960.png",
+      "category": "historical-review",
+      "bytes": 2070879,
+      "sha256": "1c11a09116c18cf7e9aaf415801cd5dcb017f12ef2a8e5345141a4920ef3f9b6"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-1700x1000.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1700x1000.png",
+      "category": "historical-review",
+      "bytes": 2257003,
+      "sha256": "346ead4ae2a97c0894ed0f410018b44bc762574725765b2b7feaec3d9f5b5a1f"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-1920x1020.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1920x1020.png",
+      "category": "historical-review",
+      "bytes": 2471189,
+      "sha256": "b2adba595079784c5030ad212317fed1e29b783ac6644943508e47a78d613ad9"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-1920x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1920x1080.png",
+      "category": "historical-review",
+      "bytes": 2729357,
+      "sha256": "b5838d2e5cbdcb443b2620306dbb398099297e7a37fb87f0d69885d4e674d6b7"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-2200x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-2200x1080.png",
+      "category": "historical-review",
+      "bytes": 2838825,
+      "sha256": "0aeea458342d500c9643b8d3c0827094bdde76a71b0008f777c158bf1173cb23"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/handoff-2560x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-2560x1080.png",
+      "category": "historical-review",
+      "bytes": 3158904,
+      "sha256": "dfee439074f6e9232097ee6807fe278a366edf32a99f859c954f616eb445a2b3"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/rapid-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/rapid-resize.png",
+      "category": "historical-review",
+      "bytes": 1874388,
+      "sha256": "481bb85ea79f9937f747dbdebc632bb9576b07c60e20c03b827cf807d8ca8f4d"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-1536x960.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1536x960.png",
+      "category": "historical-review",
+      "bytes": 1593428,
+      "sha256": "3b09b9808e5d2a8a7232c4c02fa7a9db567c4fb9aadc731e7edf2eac7b06b1c9"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-1700x1000.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1700x1000.png",
+      "category": "historical-review",
+      "bytes": 1724667,
+      "sha256": "f5260dbe678a52de44a259a6a1abfbe4a6aa7383e3f6db676964f4ba7ce1ceaf"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-1920x1020.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1920x1020.png",
+      "category": "historical-review",
+      "bytes": 1872675,
+      "sha256": "9d8bedcc14d2cbf2c2bcff616da63a1c747328bed83c1799876d51ad333b0094"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-1920x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1920x1080.png",
+      "category": "historical-review",
+      "bytes": 2090832,
+      "sha256": "49a1c40bf8a76ab6d92e0ebdff88a55044f95efdecba1c424db8b79a4975420c"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-2200x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-2200x1080.png",
+      "category": "historical-review",
+      "bytes": 2159622,
+      "sha256": "75ad28dbf71c95c65999e89b480187088de552f63d774c826899a7071ed2ad8f"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/screenshots/study-2560x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-2560x1080.png",
+      "category": "historical-review",
+      "bytes": 2379101,
+      "sha256": "558384a1bc975e1f72a12ddef30a979c7f544f87d3ebd5ab2ab815a1b70a0a1c"
+    },
+    {
+      "original": "artifacts/fullscreen/final-verification/viewport/viewport-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/viewport-results.json",
+      "category": "historical-review",
+      "bytes": 48803,
+      "sha256": "93d983efe9a7d829b59a3c30acc6bb63711677b82221dfa7621b639508b0d80d"
+    },
+    {
+      "original": "artifacts/fullscreen/production-final/production-transition.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/production-final/production-transition.json",
+      "category": "historical-review",
+      "bytes": 178941,
+      "sha256": "508f24df8ea7c4ee906d543a11da592d4eef6e250e18b0734e2d1eca03f4178c"
+    },
+    {
+      "original": "artifacts/fullscreen/production-final/screenshots/production-brows-transition-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/production-final/screenshots/production-brows-transition-final.png",
+      "category": "historical-review",
+      "bytes": 1482465,
+      "sha256": "850be939ff62540df1add8d3857b89206fd8051445a179f9a3aacd9ff4a7984d"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/beard.png",
+      "category": "historical-review",
+      "bytes": 1657194,
+      "sha256": "f97ed44e8c28485b2554332097068ad093a30ec254405181dc967e4281d924bd"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/body.png",
+      "category": "historical-review",
+      "bytes": 1938339,
+      "sha256": "438fe3bdaa14dbff7695a75b17de43932f884787d91c4d90ca54e0b208c8cf83"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/brows.png",
+      "category": "historical-review",
+      "bytes": 1541376,
+      "sha256": "91ad7ff15220df5ebb188548ddbee5500d04b2f3bf939effc1416ea365e2f622"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/capture.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/capture.json",
+      "category": "historical-review",
+      "bytes": 4427,
+      "sha256": "9f6ec76531a131d5addc4d56b24f70a6ae8c438057d95b1f6ffb9a6681ea57e8"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/capture.mjs",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/capture.mjs",
+      "category": "historical-review",
+      "bytes": 2776,
+      "sha256": "241a45a254a46a3d80ce3bd049c13cd159fa14fa87fd8291b0443f0e02ca83be"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/crown.png",
+      "category": "historical-review",
+      "bytes": 1531236,
+      "sha256": "b49be4e8e5298be3016245dc842f1cb6a96460a24e2ed0437c69248847856ae4"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/mouth.png",
+      "category": "historical-review",
+      "bytes": 1368126,
+      "sha256": "22d752893d7adf486baddbc6953c3dd92937417605379c3ffa0306db399f8f8f"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-16x10/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/trim.png",
+      "category": "historical-review",
+      "bytes": 1720566,
+      "sha256": "23089b50622408822e6623adbc5f83939dd0d4e1c3b93af1ff0ea7ce996748eb"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/beard.png",
+      "category": "historical-review",
+      "bytes": 2404810,
+      "sha256": "fc175ff87d6ba2004b890753a5788270154b4e4952262486ea1ef39c263e009e"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/body.png",
+      "category": "historical-review",
+      "bytes": 2745203,
+      "sha256": "c4a681a146a44c5019c8e49a673c6926dadeb0a2ebc5bb0488d85b8dd26171cb"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/brows.png",
+      "category": "historical-review",
+      "bytes": 2210536,
+      "sha256": "35c495d528bb94963c1844056b3a707bb74d9c0d83a77992fb3d185d30835d6c"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/capture.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/capture.json",
+      "category": "historical-review",
+      "bytes": 4452,
+      "sha256": "8d0d156952c1b56b3a90f564f103e30325b401e68cd1ebd31a99df348dcba08b"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/capture.mjs",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/capture.mjs",
+      "category": "historical-review",
+      "bytes": 2787,
+      "sha256": "1a65ac00fabfea41db2413210a79dd0da7bad2511bb9110cecd042751c24885d"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/crown.png",
+      "category": "historical-review",
+      "bytes": 2209390,
+      "sha256": "ef94430a3bf4220d5cbb5fbbd16925530f639b23f11125b150787f0df7787056"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/mouth.png",
+      "category": "historical-review",
+      "bytes": 2304057,
+      "sha256": "6d7664454b7d4bdf885cf90d2b0223ed821b3bb9a5431f69390833ee67e69306"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-ultrawide/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/trim.png",
+      "category": "historical-review",
+      "bytes": 2425923,
+      "sha256": "1ee488c66deb06fd073c1d8cf0155262e370328770a45ad666d2d98358ee89ef"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/beard.png",
+      "category": "historical-review",
+      "bytes": 2043928,
+      "sha256": "bb30e7e67ef3450a266a9f7d3c673faeee6991e5c0ffd06d13130d3d6a2123dc"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/body.png",
+      "category": "historical-review",
+      "bytes": 2368870,
+      "sha256": "840aa10adb7c61d971e5862c1b00770f040064abec5067e48dec65d134cbf1b3"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/brows.png",
+      "category": "historical-review",
+      "bytes": 1884581,
+      "sha256": "a1b09cfb7be1b8ba5348b955eed340f845488ed9fb711ca997fc6d3939d7a492"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/capture.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/capture.json",
+      "category": "historical-review",
+      "bytes": 4452,
+      "sha256": "725d5b3251ed8a56cdddc20f403f08e106f16c78fc894811c60c339478af213f"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/capture.mjs",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/capture.mjs",
+      "category": "historical-review",
+      "bytes": 2488,
+      "sha256": "84467ce23dbd617a92a7aeffc1ecffef8de73bd4bea234b623d40a95b35992e5"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/crown.png",
+      "category": "historical-review",
+      "bytes": 1873516,
+      "sha256": "e63fdee9ea6ca42cfbcaf3e0929a0cd01bf7447f8056e96bf8f3282901b5eeab"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/mouth.png",
+      "category": "historical-review",
+      "bytes": 1795552,
+      "sha256": "a338c51805c1254d18cda71d0c70098bdca7680520823d64d83ccc98121cc278"
+    },
+    {
+      "original": "artifacts/fullscreen/reference-wide/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/trim.png",
+      "category": "historical-review",
+      "bytes": 2078036,
+      "sha256": "3183832f0ffb32da049e708bc0ea3b8e95278d88fedb497e0e1f4715379408bc"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/beard.png",
+      "category": "historical-review",
+      "bytes": 2173692,
+      "sha256": "5defe56f38d4009b43387d50b8770f00015bd8b00e4d5446f8840296ee6fedce"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/body.png",
+      "category": "historical-review",
+      "bytes": 2555123,
+      "sha256": "2fe41f68c4ba07d6644a3c89d406470345f8a63094ef091748d6fd96cd0cb22a"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/brows.png",
+      "category": "historical-review",
+      "bytes": 2006577,
+      "sha256": "22ab25d5f59e7115525c1660536b9864a2a25072ddc08e53ebb14540f9d65fcd"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/capture.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/capture.json",
+      "category": "historical-review",
+      "bytes": 4452,
+      "sha256": "8622bae599bf72aa99d2611d2c3855cda5f6f212a979d6d7f6579039e73a5c09"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/capture.mjs",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/capture.mjs",
+      "category": "historical-review",
+      "bytes": 2478,
+      "sha256": "69475daa444ec34676f14e7290c3aeba50c07e78bb8d15d52795975e5d41f4f7"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/crown.png",
+      "category": "historical-review",
+      "bytes": 1997847,
+      "sha256": "3778a96e873f05782b60faba553a0e86e51d1e01d2ff0140d6b784ec4ef38497"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/mouth.png",
+      "category": "historical-review",
+      "bytes": 1865363,
+      "sha256": "c6319fb2f4d1e676beccc68394d09ce80942c9f0b2438ce1be0da2c28bd3653f"
+    },
+    {
+      "original": "artifacts/fullscreen/reference/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/trim.png",
+      "category": "historical-review",
+      "bytes": 2241398,
+      "sha256": "03c6f84a973c8abb4d75b1fea87b04b5b4c7410485dcc741fb60355c2f5bc476"
+    },
+    {
+      "original": "artifacts/handoff/IMAGE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/IMAGE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 20291,
+      "sha256": "2871aa8307ec67d30fbca0bbfb1df8f1b8e01544ba2dd8946bf332c5330a2102"
+    },
+    {
+      "original": "artifacts/handoff/PROMPTS_ONE.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/PROMPTS_ONE.md",
+      "category": "historical-review",
+      "bytes": 8855,
+      "sha256": "c85f9c87e95467e82c9010beca3d7ee42bb8d9882fe00042e3020c8d52cac2db"
+    },
+    {
+      "original": "artifacts/handoff/PROMPTS_TWO.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/PROMPTS_TWO.md",
+      "category": "historical-review",
+      "bytes": 11423,
+      "sha256": "7f3ce43315f61d7c798c0dae617cbf81b5950a88815c081463165f385c919d6b"
+    },
+    {
+      "original": "artifacts/handoff/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 3313,
+      "sha256": "413014ee2f0e43c23ae1f772a82a8a66c1378f52927e1587736c9570c4e3fdf5"
+    },
+    {
+      "original": "artifacts/handoff/api-verification.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/api-verification.json",
+      "category": "historical-review",
+      "bytes": 937,
+      "sha256": "77e13c2357c7d50381089074f48201a247d946399e088760aa9e5cf1812c21d4"
+    },
+    {
+      "original": "artifacts/handoff/asset-manifest.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/asset-manifest.json",
+      "category": "historical-review",
+      "bytes": 1597,
+      "sha256": "1b0fc4fa7a1f4117bf5c9d3902d035c98b2fb0eaf367a30dccb16de158caab4a"
+    },
+    {
+      "original": "artifacts/handoff/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/browser-results.json",
+      "category": "historical-review",
+      "bytes": 6804,
+      "sha256": "1edc7db240a613c35a3a911bdd747f8ecfe09a75dbee4b0c793c39af7a3dc190"
+    },
+    {
+      "original": "artifacts/handoff/capture-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/capture-results.json",
+      "category": "historical-review",
+      "bytes": 8436,
+      "sha256": "75bb9652e2e11c0823f5b1b74b9838ef55dd7bfca36cd7a9c2802193f73a1e24"
+    },
+    {
+      "original": "artifacts/handoff/home-camera-verified.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/home-camera-verified.png",
+      "category": "historical-review",
+      "bytes": 962829,
+      "sha256": "32be692aa6a43ddd0a113f89805ec1ea988f6cb832dc219995c533e71280364e"
+    },
+    {
+      "original": "artifacts/handoff/production-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/production-results.json",
+      "category": "historical-review",
+      "bytes": 1471,
+      "sha256": "6d2d8b1fd6e3093af2153d5385788a372228c6ed6a5c0f2a64973c8b406d9fa6"
+    },
+    {
+      "original": "artifacts/handoff/quick-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/quick-results.json",
+      "category": "historical-review",
+      "bytes": 1706,
+      "sha256": "e66ba928ba78c90d04d0b388684db41cb0e0ef18c629efeed28b415d6be528a1"
+    },
+    {
+      "original": "artifacts/handoff/references/beard.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/beard.png",
+      "category": "historical-review",
+      "bytes": 787084,
+      "sha256": "5c8c61b122ea092d5de99adccc6d71c338469b01f3fce2f8e42311805ee4ee48"
+    },
+    {
+      "original": "artifacts/handoff/references/body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/body.png",
+      "category": "historical-review",
+      "bytes": 1040415,
+      "sha256": "0c4c8d021843206c5f40eb4bcdd3c034d833bf1ba6c49995c4e527fb3dddaf8c"
+    },
+    {
+      "original": "artifacts/handoff/references/brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/brows.png",
+      "category": "historical-review",
+      "bytes": 717499,
+      "sha256": "67c5d62cb36898e1a3e861a08b3f9b349be4e4645164c909e6f6b9d6984e9e15"
+    },
+    {
+      "original": "artifacts/handoff/references/crown.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/crown.png",
+      "category": "historical-review",
+      "bytes": 711365,
+      "sha256": "9f0de1ba083210525ea0b27b563f06620614d89f641f654f2503814471e08f38"
+    },
+    {
+      "original": "artifacts/handoff/references/mouth.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/mouth.png",
+      "category": "historical-review",
+      "bytes": 496380,
+      "sha256": "127c0c67a5fee48f0bb20929e4f268190614dd48a83418617d11b8d7cdca3e63"
+    },
+    {
+      "original": "artifacts/handoff/references/trim.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/trim.png",
+      "category": "historical-review",
+      "bytes": 841254,
+      "sha256": "9c6861fab49189baed011b2a2462bd637f5899e51722a4aa5c79323e68ffbacb"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/beard-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/beard-final.png",
+      "category": "historical-review",
+      "bytes": 1767395,
+      "sha256": "135fe54ea8235cbcd0a74ad303eb9756a471f89e8dda075d7812c2d8d37619d5"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/body-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/body-final.png",
+      "category": "historical-review",
+      "bytes": 1904773,
+      "sha256": "603944b22820ad02c733fa0f14ed6fa51e331941b921f7f2a7dc7acf30fc4079"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/brows-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/brows-final.png",
+      "category": "historical-review",
+      "bytes": 1843747,
+      "sha256": "8a0c7380a3bdadc76bf0d6cd2396da60452ef69925bf83a4f6befbf460dfd95d"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/brows-mid-dissolve.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/brows-mid-dissolve.png",
+      "category": "historical-review",
+      "bytes": 1525519,
+      "sha256": "a9fdee83f0515348f757a6c8e4baa85ff8ca9796f27ae5089ec3b243faaf16d0"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/crown-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/crown-final.png",
+      "category": "historical-review",
+      "bytes": 1784959,
+      "sha256": "86a52b927f3caf8dbb0f1e8a9807b4778a11d587db81011ff9ba526330d51347"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1359475,
+      "sha256": "eed4695659b2cd5bb013a68c541663936c0ea1d653442aa6244990001d28149c"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/home-model-only.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/home-model-only.png",
+      "category": "historical-review",
+      "bytes": 990717,
+      "sha256": "599e181c4661a2bade2ad0761a6455a6e764446ee1361cb757f85223089c3b98"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/mouth-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/mouth-final.png",
+      "category": "historical-review",
+      "bytes": 1779123,
+      "sha256": "c13edebd84c94db270c7754337db139e645a5c42015a1a2956aec66a7455db07"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/production-body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/production-body.png",
+      "category": "historical-review",
+      "bytes": 1817494,
+      "sha256": "0de497717a4ea3962794334ec945fa6705742eefa5b4b389b5b52b9760aa8479"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/production-brows.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/production-brows.png",
+      "category": "historical-review",
+      "bytes": 1761984,
+      "sha256": "b608b26ff5c3aec08dbda081f1b0ef1b429fb16c4e5c0929ec4db279b0a6948c"
+    },
+    {
+      "original": "artifacts/handoff/screenshots/trim-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/trim-final.png",
+      "category": "historical-review",
+      "bytes": 1820852,
+      "sha256": "1ce85c031c23de2b9c054f84784f27a8428f51e56002066f6ae895a866bf45d1"
+    },
+    {
+      "original": "artifacts/lion-info/IMAGE_PROMPTS.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/IMAGE_PROMPTS.md",
+      "category": "historical-review",
+      "bytes": 8255,
+      "sha256": "7e42a647f03cc08ac04195a20cb9899ec02235fd52969f7adf098eb4f99a59cc"
+    },
+    {
+      "original": "artifacts/lion-info/asset-manifest.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/asset-manifest.json",
+      "category": "historical-review",
+      "bytes": 1593,
+      "sha256": "41aa0995563ac5869766aa165335c93ca79fc3cf236cefd1ba58404116cd8cb5"
+    },
+    {
+      "original": "artifacts/lion-info/validation/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/browser-results.json",
+      "category": "historical-review",
+      "bytes": 5371,
+      "sha256": "b369824681312f44b1fb4014087d380eb51db0c00c382ac8a991b24dac2f00d4"
+    },
+    {
+      "original": "artifacts/lion-info/validation/handoff/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/handoff/browser-results.json",
+      "category": "historical-review",
+      "bytes": 939,
+      "sha256": "a1881bfa391d4f8c8862d2cb7b7bb0362d14757471a74d325e59b88b25d1e7da"
+    },
+    {
+      "original": "artifacts/lion-info/validation/production/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/production/browser-results.json",
+      "category": "historical-review",
+      "bytes": 5371,
+      "sha256": "389e7885dfd62d8674edd6dd1ed866d181dc9e335dd4bf36f93605f693db89b1"
+    },
+    {
+      "original": "artifacts/lion-info/validation/screenshots/body-stage.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/screenshots/body-stage.png",
+      "category": "historical-review",
+      "bytes": 2187662,
+      "sha256": "c6f8963b326d0b2e3f390356ad769ad80e6d63c0df2784f36797f227fe7a9ecb"
+    },
+    {
+      "original": "artifacts/lion-info/validation/screenshots/brows-modal.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/screenshots/brows-modal.png",
+      "category": "historical-review",
+      "bytes": 923145,
+      "sha256": "3aef866ba6778e17ad25800d3c65887e9f8d417499ef43728877d0d29482ccbc"
+    },
+    {
+      "original": "artifacts/lion-info/validation/viewport/screenshots/study-2200x1080.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/viewport/screenshots/study-2200x1080.png",
+      "category": "historical-review",
+      "bytes": 3404294,
+      "sha256": "3e2148b48ba35cded5233226d67a80bd55a4b0ffd966a410333c5fd618c844e2"
+    },
+    {
+      "original": "artifacts/lion-info/validation/viewport/viewport-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/viewport/viewport-results.json",
+      "category": "historical-review",
+      "bytes": 647,
+      "sha256": "aa4840594d76ca8e3d5777835725090ef3f38dad2abfdba0d2a57c6a61f6bbcb"
+    },
+    {
+      "original": "artifacts/material-inspection.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/material-inspection.json",
+      "category": "historical-review",
+      "bytes": 29760,
+      "sha256": "5c1915373383d8f142d26ef1275a3d4df62b3704664c8a33819bfe73920adc89"
+    },
+    {
+      "original": "artifacts/mobile-body.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/mobile-body.png",
+      "category": "historical-review",
+      "bytes": 830790,
+      "sha256": "ae946c46d0a29442f381e3401cb218667e575241015acf0f51b8162f5160b321"
+    },
+    {
+      "original": "artifacts/mobile-overview.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/mobile-overview.png",
+      "category": "historical-review",
+      "bytes": 514940,
+      "sha256": "151348f1a8b89d3e13e70488a06fb5de3dd9a142562d93d599444c547656e56b"
+    },
+    {
+      "original": "artifacts/production-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/production-results.json",
+      "category": "historical-review",
+      "bytes": 409,
+      "sha256": "e46b14b1bb1017c85a14285169ee3cd15b70f727a187bef85158cd6f7d110f5e"
+    },
+    {
+      "original": "artifacts/production-study.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/production-study.png",
+      "category": "historical-review",
+      "bytes": 1834778,
+      "sha256": "00e8793dc1bad5e4afc543c31bc2b6067586fc83d6cf0a7cfaecb8a44e922547"
+    },
+    {
+      "original": "artifacts/qa-overview.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/qa-overview.png",
+      "category": "historical-review",
+      "bytes": 1547923,
+      "sha256": "469dc56ca150981557bb3b6e983b44963ff4eefe9b211c9633111bf0977b1d52"
+    },
+    {
+      "original": "artifacts/qa-shadow.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/qa-shadow.png",
+      "category": "historical-review",
+      "bytes": 1550799,
+      "sha256": "71ba73b8b1130dace99cbe3133d1b269b31699865214a638c0a5582d4a4f5cde"
+    },
+    {
+      "original": "artifacts/reference-01.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-01.jpg",
+      "category": "historical-review",
+      "bytes": 606308,
+      "sha256": "e40ce71eb1538114eb42b03a07c6a1f92f648b9404c1bcd72277a3dd681ab2ed"
+    },
+    {
+      "original": "artifacts/reference-02.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-02.jpg",
+      "category": "historical-review",
+      "bytes": 624809,
+      "sha256": "0399e430f59626bb3596db52eb4ead4b90d4a03510250778e20017ed08ad12df"
+    },
+    {
+      "original": "artifacts/reference-03.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-03.jpg",
+      "category": "historical-review",
+      "bytes": 583961,
+      "sha256": "285d3b50f2a528a2d8d6ffc7287d74c7fc095bb5fe68998d662c6eef0830ff39"
+    },
+    {
+      "original": "artifacts/reference-04.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-04.jpg",
+      "category": "historical-review",
+      "bytes": 617437,
+      "sha256": "2cbfc5de74d8dbf21019d76ab3dd575550573d323f6108cb9b53daaa4a124ec0"
+    },
+    {
+      "original": "artifacts/reference-05.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-05.jpg",
+      "category": "historical-review",
+      "bytes": 539354,
+      "sha256": "abda202d385eca184dd5bc2fd3782764bc96336f8e16c427f19b3e12d7d0ae93"
+    },
+    {
+      "original": "artifacts/reference-06.jpg",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/reference-06.jpg",
+      "category": "historical-review",
+      "bytes": 487261,
+      "sha256": "d696730068bc8f07f759bc37771d0ba5c4cb6382b8a3e28683d891fa5f29da13"
+    },
+    {
+      "original": "artifacts/transition/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 3959,
+      "sha256": "8f30ca2643a784705c3d7bb2d18006af1cc80a2fbefdef69ebc1645d366f99e5"
+    },
+    {
+      "original": "artifacts/transition/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/browser-results.json",
+      "category": "historical-review",
+      "bytes": 982752,
+      "sha256": "d17608450e453411ebe21858714e227ccd93a5513e662437933ec705c6daa586"
+    },
+    {
+      "original": "artifacts/transition/enrichment/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/browser-results.json",
+      "category": "historical-review",
+      "bytes": 23819,
+      "sha256": "a6f21ca5b0047d9070c199c5ac8962f2c31edf9ae8a3ba95e8c8611f52dbcd85"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/beard-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/beard-culture.png",
+      "category": "historical-review",
+      "bytes": 1830381,
+      "sha256": "8d231cf8847e509489b7f7e90b158585a459ac57089fbb4f20155b940037d69e"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/beard-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/beard-data.png",
+      "category": "historical-review",
+      "bytes": 1670705,
+      "sha256": "0445de4b6ca7f86bba18c0da8728430716455ce501003c21f05f38064858c538"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/body-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/body-culture.png",
+      "category": "historical-review",
+      "bytes": 1962991,
+      "sha256": "964e02e6f9f41e84e8e19da5beb14eafc29cae1422036143295a19f7a409eaaf"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/body-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/body-data.png",
+      "category": "historical-review",
+      "bytes": 1781031,
+      "sha256": "288ee4863b04adf71b8dfc7baddc39dc084c34404ef39efe7416b5805b789c1d"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/brows-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1744036,
+      "sha256": "813b7055e75a9f2e0ae5bf960a4901945aed61257a3e655e2f04d4b9e4134cfe"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/brows-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-culture.png",
+      "category": "historical-review",
+      "bytes": 1886531,
+      "sha256": "19e96dabe134c5c09afe0965e922c1d6529584e360aae050b83c707bb99274ca"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/brows-detail-in-view.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-detail-in-view.png",
+      "category": "historical-review",
+      "bytes": 1872650,
+      "sha256": "18f87191c3fd7757413a2b5f8fca11e4926f9a264997e405ed1e6a9d18225b34"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/crown-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/crown-culture.png",
+      "category": "historical-review",
+      "bytes": 1880996,
+      "sha256": "a8e787cf6760a14bd5a3f1c3d058adfc6df3fb64ddccbf07dc13bcce62791c57"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/crown-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/crown-data.png",
+      "category": "historical-review",
+      "bytes": 1676944,
+      "sha256": "b5719895100988939d68a328205673aa63b64c299a887a9806f7046f2c5e4c45"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1425393,
+      "sha256": "52529d17d5422a563238f5c00adc2a093c50a57d60babf5e49d897cd9b860cca"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/desktop-1536.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1536.png",
+      "category": "historical-review",
+      "bytes": 1962963,
+      "sha256": "ba126155317f96eb987277354f66662ad03edd41d92d9aa6d08cc947a0f985fb"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/desktop-1600.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1600.png",
+      "category": "historical-review",
+      "bytes": 1886184,
+      "sha256": "acb4375eadc3c3c0d24edd85a69939887a9ee3c6cc2838bc20c9fbcc8f205ec4"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/desktop-1920.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1920.png",
+      "category": "historical-review",
+      "bytes": 2755733,
+      "sha256": "02c39afb074fccda547623d6d54f22776d742007980168337131d02cd2999f75"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/desktop-2560.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-2560.png",
+      "category": "historical-review",
+      "bytes": 4562265,
+      "sha256": "e2d08f291321ee9f0f4278af766b5acb239656800c2fc6e041c052015753403e"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/home-art-navigation.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/home-art-navigation.png",
+      "category": "historical-review",
+      "bytes": 1254047,
+      "sha256": "465df664a90efde3401e7f2ddbbda1a85561639fde18f0d394f0acffc84f8248"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/mouth-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/mouth-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1689523,
+      "sha256": "bd60a40b03958b539ff3c3946da2193d02ec733f2364bf2910448cf9c4e16584"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/mouth-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/mouth-culture.png",
+      "category": "historical-review",
+      "bytes": 1848344,
+      "sha256": "4830ac3c5c3652ac1d7e660bbd791cd25ba25ad55893347e046ce6bf127be437"
+    },
+    {
+      "original": "artifacts/transition/enrichment/screenshots/trim-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/trim-culture.png",
+      "category": "historical-review",
+      "bytes": 1903476,
+      "sha256": "dfbdf2ec6b39c44997d3307b9c6de4f41e7da09454862a775e39470848c9e330"
+    },
+    {
+      "original": "artifacts/transition/forced-interruptions.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/forced-interruptions.json",
+      "category": "historical-review",
+      "bytes": 5460,
+      "sha256": "6a8b6d98f38ee8db5a3032b5b0c51e94cdb87ef4eff7ae637e116c9e1f3c679f"
+    },
+    {
+      "original": "artifacts/transition/production/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/browser-results.json",
+      "category": "historical-review",
+      "bytes": 23819,
+      "sha256": "e6243193d3dab6c059dcdad3530dd5decb9fc5e5b97c676dc5f0bc716eaddc30"
+    },
+    {
+      "original": "artifacts/transition/production/production-transition.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/production-transition.json",
+      "category": "historical-review",
+      "bytes": 194751,
+      "sha256": "1a46ce62a17170b3520beb4165ca1a47f8a75df53647895c0ebfe7fa42cd5c2f"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/beard-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/beard-culture.png",
+      "category": "historical-review",
+      "bytes": 1839583,
+      "sha256": "290ba950f914c049b0d79871aaa8240407d36d9afd9abca607e14b84870fd5e4"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/beard-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/beard-data.png",
+      "category": "historical-review",
+      "bytes": 1672085,
+      "sha256": "fefdc173c31b780d3841064c77480afb3bd5c63fcd8e42f53fe920cf1a40f8b2"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/body-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/body-culture.png",
+      "category": "historical-review",
+      "bytes": 1981000,
+      "sha256": "264b96df68ee6d12842577849adcceb5c88e0d16c54bde0302bcd041f6821b3d"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/body-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/body-data.png",
+      "category": "historical-review",
+      "bytes": 1783968,
+      "sha256": "828a2c9aa775c4d39441160f02f4a1710191ad3fa589ee3820c1896753c7e4ac"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/brows-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1748806,
+      "sha256": "ffc8d060cddb0c92908db8b8d726481f50857d428a5943a4cdb1cb8ae7dcf9ce"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/brows-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-culture.png",
+      "category": "historical-review",
+      "bytes": 1900730,
+      "sha256": "6e837b6ae88a7e24e3c35fd1e96c71866c2b5d00527178533508ccf56a155f70"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/brows-detail-in-view.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-detail-in-view.png",
+      "category": "historical-review",
+      "bytes": 1887396,
+      "sha256": "684cd8da8af6d77edc4b9f00625948507dd234f5b4a6533a7fa18b203cb9b332"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/crown-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/crown-culture.png",
+      "category": "historical-review",
+      "bytes": 1880797,
+      "sha256": "52d87b636e3d1d0e16bf80ee371e22e076f4ff64c71f648eccb44d2e7db3d4d3"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/crown-data.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/crown-data.png",
+      "category": "historical-review",
+      "bytes": 1676646,
+      "sha256": "328212f8b239651e455ef633a3afdbf7c5938ab7125b11f86ad0fc77c4e86cc9"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1424626,
+      "sha256": "17308ef6934fdc8cc64e5c74a295ecf4a3055cfded093f34923c31f18bf5f8a4"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/desktop-1536.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1536.png",
+      "category": "historical-review",
+      "bytes": 1962760,
+      "sha256": "403ff5913e332af833ae76fdd5f6973ad61183f95823c16d15844d9c6967c009"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/desktop-1600.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1600.png",
+      "category": "historical-review",
+      "bytes": 1885742,
+      "sha256": "c63b6d07731a971782eff60e1172d8b20f6a15fab13defe059b12352d325233f"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/desktop-1920.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1920.png",
+      "category": "historical-review",
+      "bytes": 2754759,
+      "sha256": "4fb82d58558a01074191c96a1bd8d073c4bac9faa8ded491f6dfb23d3ea1f484"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/desktop-2560.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-2560.png",
+      "category": "historical-review",
+      "bytes": 4560363,
+      "sha256": "3995a25760350bd7fd0b41c9028824c3d3e96d0a265d1e4117c1504e74b0e8df"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/home-art-navigation.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/home-art-navigation.png",
+      "category": "historical-review",
+      "bytes": 1245463,
+      "sha256": "ff3aca86e5d13bbabb5856951e443d3f55aaa59d011d69e923fb3dd0263c2900"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/mouth-culture-reading.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/mouth-culture-reading.png",
+      "category": "historical-review",
+      "bytes": 1688961,
+      "sha256": "bf1822fb8661cddc19dd91a43832d3a76f9c78a87226119740e3b25503070396"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/mouth-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/mouth-culture.png",
+      "category": "historical-review",
+      "bytes": 1855712,
+      "sha256": "d2bcb027424591992e83fb6b83b20d09efe2f947e43dd519ef553b9a7de4dbf8"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/production-brows-transition-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/production-brows-transition-final.png",
+      "category": "historical-review",
+      "bytes": 1901986,
+      "sha256": "3c0f9467316576c1793728d4e56a2f87874f29d115aa40768e2fe491a6f98b61"
+    },
+    {
+      "original": "artifacts/transition/production/screenshots/trim-culture.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/trim-culture.png",
+      "category": "historical-review",
+      "bytes": 1903493,
+      "sha256": "b77cf3898c62c2bedcc8712566ed920c7de7ffb2f7f637c328de825d9d78627c"
+    },
+    {
+      "original": "artifacts/transition/screenshots/arranging-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/arranging-resize.png",
+      "category": "historical-review",
+      "bytes": 1707480,
+      "sha256": "523ffc52011ace759e6cdf830d764a9a62643b17190e22903f34fb57584b2c22"
+    },
+    {
+      "original": "artifacts/transition/screenshots/beard-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/beard-final.png",
+      "category": "historical-review",
+      "bytes": 1839239,
+      "sha256": "35eeb51822a0dc28ccbff721c4ae891a661dcacda8d3af78a33fbb0783b7ca72"
+    },
+    {
+      "original": "artifacts/transition/screenshots/body-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/body-final.png",
+      "category": "historical-review",
+      "bytes": 1983231,
+      "sha256": "6715e089f9c48013e1dbcb99a04626b1a5be972459fd665b5cf818518fee8f74"
+    },
+    {
+      "original": "artifacts/transition/screenshots/brows-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-final.png",
+      "category": "historical-review",
+      "bytes": 1901988,
+      "sha256": "5b4d65d3caba4a151dd1cb17fda3de9e736120f287d1c75d1f49544bb99dcd7f"
+    },
+    {
+      "original": "artifacts/transition/screenshots/brows-image-moving.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-image-moving.png",
+      "category": "historical-review",
+      "bytes": 2157950,
+      "sha256": "052efc32a59dd97a012e468649d8294a0ed7780f8bb3e2f2d5d73a4630a02012"
+    },
+    {
+      "original": "artifacts/transition/screenshots/brows-mid-dissolve.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-mid-dissolve.png",
+      "category": "historical-review",
+      "bytes": 2066935,
+      "sha256": "00de81b3c9fb51709f1eec0752c74ceb54123b576873b0a083fa6e0a4c5781d5"
+    },
+    {
+      "original": "artifacts/transition/screenshots/crown-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/crown-final.png",
+      "category": "historical-review",
+      "bytes": 1882040,
+      "sha256": "e05d1864ae1c515640be198623daecff572935f78ea37198e84ef8e1fc06306e"
+    },
+    {
+      "original": "artifacts/transition/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1444245,
+      "sha256": "e708208e404fd82dd8e14b36795e17c96f1f82abd5ce0e9af5de12ba7b290d5b"
+    },
+    {
+      "original": "artifacts/transition/screenshots/handoff-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/handoff-resize.png",
+      "category": "historical-review",
+      "bytes": 1707436,
+      "sha256": "d1be6478341d761822f844cc608068de6213c4940aab65acf8fa2bb53df66db8"
+    },
+    {
+      "original": "artifacts/transition/screenshots/home-model-only.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/home-model-only.png",
+      "category": "historical-review",
+      "bytes": 1297939,
+      "sha256": "83d257e3dafb06295c0d1db515fb6b75d06480d728ae196f1dec76601b5875ae"
+    },
+    {
+      "original": "artifacts/transition/screenshots/mouth-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/mouth-final.png",
+      "category": "historical-review",
+      "bytes": 1857394,
+      "sha256": "bb5d2ee8936ac25cd81ebf048da06bed1d294177240f7f58787acea539dfdff3"
+    },
+    {
+      "original": "artifacts/transition/screenshots/travel-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/travel-resize.png",
+      "category": "historical-review",
+      "bytes": 1708335,
+      "sha256": "e88bc81e68b680a8f0619de48a51d9fde15e27f0d15fb6bdc5ad8447bec59b5b"
+    },
+    {
+      "original": "artifacts/transition/screenshots/trim-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/trim-final.png",
+      "category": "historical-review",
+      "bytes": 1905897,
+      "sha256": "792284cd073273072dcc66954e6a75373acaa71df244ef2eaf2ebb78e53a41a5"
+    },
+    {
+      "original": "artifacts/viewport/VERIFICATION.md",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/VERIFICATION.md",
+      "category": "historical-review",
+      "bytes": 1792,
+      "sha256": "9d7bac4061bfc72b541255165e7f1c31476a4ee53260adfda7ddbb58efbffb28"
+    },
+    {
+      "original": "artifacts/viewport/handoff/browser-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/browser-results.json",
+      "category": "historical-review",
+      "bytes": 985366,
+      "sha256": "1c3a0655b66664605972a9268635c175933b7dab1536bc20ba30eb392a93f3a1"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/arranging-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/arranging-resize.png",
+      "category": "historical-review",
+      "bytes": 1759528,
+      "sha256": "d4faf3f5ca2bd190ca9d51a6380a0d28705678aae86ea71da0c676fc3bdda692"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/beard-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/beard-final.png",
+      "category": "historical-review",
+      "bytes": 1888744,
+      "sha256": "f940cc11e13723a9e3412ac33579325948c71a7dfe6bd036ee7a7b35a64c2d17"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/body-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/body-final.png",
+      "category": "historical-review",
+      "bytes": 2045749,
+      "sha256": "24ad142e1f2f1a6c4be204a9fe569657fe79e8a9ebd513a0a193317e1680a30b"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/brows-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-final.png",
+      "category": "historical-review",
+      "bytes": 1964575,
+      "sha256": "ec717ed831c8a8c5866aecee1e3878f9d519cfab14b5078c4c6c4e10c603701a"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/brows-image-moving.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-image-moving.png",
+      "category": "historical-review",
+      "bytes": 2328785,
+      "sha256": "7015467b1ef282c0a2d9af357fe8379e6a7c11baf89dd81f7ce57ec819ca476a"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/brows-mid-dissolve.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-mid-dissolve.png",
+      "category": "historical-review",
+      "bytes": 1979722,
+      "sha256": "7f18b06ea3cb35c674d360a9c0b582510c8db4cf4522e6fecc3a101317bb94b9"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/crown-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/crown-final.png",
+      "category": "historical-review",
+      "bytes": 1924707,
+      "sha256": "cff77c5c0aec86639b4281477ca856b051d453c291a25cf1fc02912e4253749e"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/desktop-1280.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/desktop-1280.png",
+      "category": "historical-review",
+      "bytes": 1493305,
+      "sha256": "2fe32bb11380199b8d6cc448250711da428eb10125a913c825357318970b410b"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/handoff-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/handoff-resize.png",
+      "category": "historical-review",
+      "bytes": 1759684,
+      "sha256": "bd0a92a966d72626faca4620caf2a510c29518869901e2e2d4d5e62312685721"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/home-model-only.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/home-model-only.png",
+      "category": "historical-review",
+      "bytes": 1297954,
+      "sha256": "ef4822d02864754325d1a886c4db2534b70866cb2d72dfd9b31b123d25102609"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/mouth-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/mouth-final.png",
+      "category": "historical-review",
+      "bytes": 1911619,
+      "sha256": "dba13a6551a1d45e4bc874bde3bab2537531d5d12ab36bcb874f6f5cdf90ed82"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/travel-resize.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/travel-resize.png",
+      "category": "historical-review",
+      "bytes": 1759622,
+      "sha256": "ad7028265369faa46f4cf2f26f3f448e0bf7190e7dc268740fdb22a271929870"
+    },
+    {
+      "original": "artifacts/viewport/handoff/screenshots/trim-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/trim-final.png",
+      "category": "historical-review",
+      "bytes": 1963998,
+      "sha256": "a6c933a6f2f4062d710b3ec557c3687a91aff754b7e336da91dcf74411d6d502"
+    },
+    {
+      "original": "artifacts/viewport/production/production-transition.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/production/production-transition.json",
+      "category": "historical-review",
+      "bytes": 245524,
+      "sha256": "574f28a37ce14b92c4b8da4effb9ef7acf70c9a6269616529603786cc594e623"
+    },
+    {
+      "original": "artifacts/viewport/production/screenshots/production-brows-transition-final.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/production/screenshots/production-brows-transition-final.png",
+      "category": "historical-review",
+      "bytes": 1964867,
+      "sha256": "3aa4d467f761b65aea0b9b11347f6a1c044ac62dedd1319e44d1e91c89e39229"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-endpoint.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-endpoint.png",
+      "category": "historical-review",
+      "bytes": 2589098,
+      "sha256": "312505fb802b192625d8c35f7cbcaeafd203aae3133fb7ec29181ed69c98c61c"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-handoff-0.2.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.2.png",
+      "category": "historical-review",
+      "bytes": 2742360,
+      "sha256": "7a0b9a775c1eeba9ea9f0c1b6dd842311ecbcc5d89e87a2a2f37d3a51aea56e0"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-handoff-0.5.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.5.png",
+      "category": "historical-review",
+      "bytes": 2894277,
+      "sha256": "a207c2837141a5f517726e29d218d7219008b0e7a57375bde3560e76d96d6ddd"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-handoff-0.8.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.8.png",
+      "category": "historical-review",
+      "bytes": 3096583,
+      "sha256": "c673a4bc2db1819d842c0a4cbbe6341f461ff323743976ddc4bf82585a6eee2d"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-return-0.2.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.2.png",
+      "category": "historical-review",
+      "bytes": 2800517,
+      "sha256": "ae318e334d6a4c333dee1992f9f9200c23a88d40822731883e7829cce3bdbe2a"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-return-0.5.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.5.png",
+      "category": "historical-review",
+      "bytes": 2963339,
+      "sha256": "f3d29f043404486110c7f19bdaacb404231a2f542ba9f97dd5173d2b907a8568"
+    },
+    {
+      "original": "artifacts/viewport/screenshots/body-return-0.8.png",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.8.png",
+      "category": "historical-review",
+      "bytes": 3191519,
+      "sha256": "117281aa879f9496ffd66186dfdc84d1d88280fe2688782ab18dde925b8e5b58"
+    },
+    {
+      "original": "artifacts/viewport/viewport-results.json",
+      "destination": "source/reviews/structure-atlas/imported-xuanji5/viewport/viewport-results.json",
+      "category": "historical-review",
+      "bytes": 32866,
+      "sha256": "02e63447064e182e9b6883c8ebccbd0c8b74712ea46067cc926972c1817ec6c5"
+    },
+    {
+      "original": "index.html",
+      "destination": "source/archives/xuanji5/index.html",
+      "category": "historical-source",
+      "bytes": 582,
+      "sha256": "f4ced385877d7e17f5c6e5aa5134a017d8dcec707c09d53be5844ec10d639927"
+    },
+    {
+      "original": "package-lock.json",
+      "destination": "source/archives/xuanji5/package-lock.json",
+      "category": "historical-source",
+      "bytes": 30812,
+      "sha256": "77f68ac389aa7c86413b08b13ef81152af6e0763eb0b0256181ca7bd4c242cb4"
+    },
+    {
+      "original": "package.json",
+      "destination": "source/archives/xuanji5/package.json",
+      "category": "historical-source",
+      "bytes": 630,
+      "sha256": "07132f1b986c1793d8f08e4c2aca03b29fb473a8af10a69c87294bbcc57112e7"
+    },
+    {
+      "original": "public/data/body-uv.json",
+      "destination": "source/archives/xuanji5/public/data/body-uv.json",
+      "category": "historical-source",
+      "bytes": 27684,
+      "sha256": "e712b1a05fe5c887d1924e25aadbae807484f1eeb94575bcd7c7ce88784c6ce6"
+    },
+    {
+      "original": "public/data/curves.json",
+      "destination": "source/archives/xuanji5/public/data/curves.json",
+      "category": "historical-source",
+      "bytes": 65764,
+      "sha256": "650b9ad31ef508c379b39f9581f3e3f7f06ffecf97a80b180de7a80e5d777f79"
+    },
+    {
+      "original": "public/data/export.log",
+      "destination": "source/archives/xuanji5/public/data/export.log.source.txt",
+      "category": "historical-source",
+      "bytes": 29986,
+      "sha256": "1d6708915f9bceea383139b21a379abb26381aac20163c007073f689cfd3d5a4"
+    },
+    {
+      "original": "public/data/gltf-validation.json",
+      "destination": "source/archives/xuanji5/public/data/gltf-validation.json",
+      "category": "historical-source",
+      "bytes": 35495,
+      "sha256": "f48fa0068c8d1d83e0e5dd1b380a74320185009e20727980cc24ccf2344f1385"
+    },
+    {
+      "original": "public/data/handoff-cameras.json",
+      "destination": "source/archives/xuanji5/public/data/handoff-cameras.json",
+      "category": "historical-source",
+      "bytes": 8436,
+      "sha256": "75bb9652e2e11c0823f5b1b74b9838ef55dd7bfca36cd7a9c2802193f73a1e24"
+    },
+    {
+      "original": "public/data/head-components.json",
+      "destination": "source/archives/xuanji5/public/data/head-components.json",
+      "category": "historical-source",
+      "bytes": 754209,
+      "sha256": "1fd1a4fb15b28e5a1d596def91c1a169d535aa81a78d60ac1010bdcebc635961"
+    },
+    {
+      "original": "public/data/model-audit.json",
+      "destination": "source/archives/xuanji5/public/data/model-audit.json",
+      "category": "historical-source",
+      "bytes": 1496744,
+      "sha256": "9c660207b35a6fa76a3fb801f8d27823918f433731a6f942f961942b57383863"
+    },
+    {
+      "original": "public/data/model-audit.raw.json",
+      "destination": "source/archives/xuanji5/public/data/model-audit.raw.json",
+      "category": "historical-source",
+      "bytes": 172637,
+      "sha256": "4905995a4afca094e443c91013efaaba9b440e10cc4d250182e543b336880d91"
+    },
+    {
+      "original": "public/draco/draco_decoder.wasm",
+      "destination": "source/archives/xuanji5/public/draco/draco_decoder.wasm",
+      "category": "historical-source",
+      "bytes": 285747,
+      "sha256": "c55a594e8ffd18426d36b27fea9618af3df5e173640a3e56d46f09d76f0574f2"
+    },
+    {
+      "original": "public/draco/draco_wasm_wrapper.js",
+      "destination": "source/archives/xuanji5/public/draco/draco_wasm_wrapper.js",
+      "category": "historical-source",
+      "bytes": 58763,
+      "sha256": "e8049906ef3f8f75d3456c22a3f31bfdfe5b5b5bd09ccdec613b9e9a49d554d8"
+    },
+    {
+      "original": "public/favicon.svg",
+      "destination": "source/archives/xuanji5/public/favicon.svg",
+      "category": "historical-source",
+      "bytes": 268,
+      "sha256": "9be9a933b3dc2b4ffb43070f2f2252c6b668751c2229a9ad1926605ce68bd834"
+    },
+    {
+      "original": "public/fonts/OFL.txt",
+      "destination": "source/public/assets/structure-atlas/fonts/OFL.txt",
+      "category": "runtime",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "original": "public/fonts/atlas-serif.woff2",
+      "destination": "source/public/assets/structure-atlas/fonts/atlas-serif.woff2",
+      "category": "runtime",
+      "bytes": 159528,
+      "sha256": "4cd173108470565a845870eceb21f3457d70865d3581ecb0eccb4d374c0b17d1"
+    },
+    {
+      "original": "public/images/chapters/beard.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/beard.png",
+      "category": "historical-source",
+      "bytes": 2649480,
+      "sha256": "cd2cd6c1325e6bd0fc7dff07e518c26e95962315a95fd8bee19192413c2308c6"
+    },
+    {
+      "original": "public/images/chapters/body.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/body.png",
+      "category": "historical-source",
+      "bytes": 3068388,
+      "sha256": "38ac2779f8060235d9bc3c2eabbbb56806fbb90762f2497208d51a00192dc555"
+    },
+    {
+      "original": "public/images/chapters/brows.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/brows.png",
+      "category": "historical-source",
+      "bytes": 3015495,
+      "sha256": "67d8c1ca47f1ccd040bd84f7d8ed272c3e01c6d35e536a377e9aa059b30a2cab"
+    },
+    {
+      "original": "public/images/chapters/crown.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/crown.png",
+      "category": "historical-source",
+      "bytes": 2697910,
+      "sha256": "c0fea154ba2cffc09d397236d3efee1708c9f856322208c64c75d2ef256e0aa3"
+    },
+    {
+      "original": "public/images/chapters/mouth.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/mouth.png",
+      "category": "historical-source",
+      "bytes": 2721115,
+      "sha256": "d2db855b45d98ce65eabe6e0275ef34e48ca8c66abbc01688f2204d6198c438b"
+    },
+    {
+      "original": "public/images/chapters/trim.png",
+      "destination": "source/archives/xuanji5/public/images/chapters/trim.png",
+      "category": "historical-source",
+      "bytes": 2849825,
+      "sha256": "655742832fc6209d747408122a84e9218e38e862c55fbf8367c69cfb8df3d8ed"
+    },
+    {
+      "original": "public/images/culture/beard.png",
+      "destination": "source/archives/xuanji5/public/images/culture/beard.png",
+      "category": "historical-source",
+      "bytes": 2345520,
+      "sha256": "7e72f959d2a53b2a0245f0a2ac1c8b6a472ccbf1c88c709565f5a78bc328b542"
+    },
+    {
+      "original": "public/images/culture/body.png",
+      "destination": "source/archives/xuanji5/public/images/culture/body.png",
+      "category": "historical-source",
+      "bytes": 3227645,
+      "sha256": "fe6db055b93cf4563a8a9346bea9f63cac60090412c7ec157ab83ce2d4655771"
+    },
+    {
+      "original": "public/images/culture/brows.png",
+      "destination": "source/archives/xuanji5/public/images/culture/brows.png",
+      "category": "historical-source",
+      "bytes": 2545782,
+      "sha256": "a25ce823b7289c5d3ff3a1109864bf3279d8cfbdb4ba5658f57ec025c36553d3"
+    },
+    {
+      "original": "public/images/culture/crown.png",
+      "destination": "source/archives/xuanji5/public/images/culture/crown.png",
+      "category": "historical-source",
+      "bytes": 2683358,
+      "sha256": "24291a15ab614d742930bc3f7817ab8a7a592558d81533ab27385475afdb4a8f"
+    },
+    {
+      "original": "public/images/culture/mouth.png",
+      "destination": "source/archives/xuanji5/public/images/culture/mouth.png",
+      "category": "historical-source",
+      "bytes": 2434358,
+      "sha256": "5a025c7415b810ffb415345135bf17a106244bc1f7723644eb818f860d739a7b"
+    },
+    {
+      "original": "public/images/culture/trim.png",
+      "destination": "source/archives/xuanji5/public/images/culture/trim.png",
+      "category": "historical-source",
+      "bytes": 2941838,
+      "sha256": "33767cf524f5fd921fe83ab0871e724d0573422f18fe356e0d7130bba9651b70"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/beard.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/beard.png",
+      "category": "runtime",
+      "bytes": 2289702,
+      "sha256": "4b5f81d00e89d51f6971ccaf6f4a91f75bdf1ac2107557ed4a2dd8f4d022fb04"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/body.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/body.png",
+      "category": "runtime",
+      "bytes": 2759575,
+      "sha256": "b0918835705984a70cecc42cd1be3e1032c6a44f94b6f4965b41d90168543aa7"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/brows.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/brows.png",
+      "category": "runtime",
+      "bytes": 2469462,
+      "sha256": "47fea9358e9f104db8ef7004857418f4ab30d6ad1f2b97e1aa13424ad5c27b94"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/crown.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/crown.png",
+      "category": "runtime",
+      "bytes": 2356416,
+      "sha256": "a051d6b738b5c562ab566bbbfd636836269e4ea678fceff1c8e1cde1cb6e3386"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/mouth.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/mouth.png",
+      "category": "runtime",
+      "bytes": 2612064,
+      "sha256": "b604054cb0249ea0c04f77b3effbd696095a7a73eb7036a34b383a9aa82d361e"
+    },
+    {
+      "original": "public/images/fullscreen/16x10/trim.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x10/trim.png",
+      "category": "runtime",
+      "bytes": 2600670,
+      "sha256": "5a704488ad67e504aac73ce474dfcc4c740d95f13c7efada9c0b1eb6fc1efa12"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/beard.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/beard.png",
+      "category": "runtime",
+      "bytes": 2158309,
+      "sha256": "44d2a51e1893aa50347857b6594560ef46a2bfd38a5043d7cf100b197b5beffc"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/body.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/body.png",
+      "category": "runtime",
+      "bytes": 2660068,
+      "sha256": "7a27cc4da199cc1552cd4f95fc872ebda795c8d99960f82735663a785e13643c"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/brows.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/brows.png",
+      "category": "runtime",
+      "bytes": 2166726,
+      "sha256": "eb81000adc40b907dddc482798eeed9e9c7c6dd93d8a0f2c3d069afddd550866"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/crown.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/crown.png",
+      "category": "runtime",
+      "bytes": 2243352,
+      "sha256": "b27758cc59f57c76e8730ae486eb088c6b122e854c7b0fb331ab7e2ecb255043"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/mouth.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/mouth.png",
+      "category": "runtime",
+      "bytes": 2448535,
+      "sha256": "4d5032b39e69ba1a6913201f4cc6e0f15aa1a094e823aea84e5573a83f63028c"
+    },
+    {
+      "original": "public/images/fullscreen/16x9/trim.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/16x9/trim.png",
+      "category": "runtime",
+      "bytes": 2676845,
+      "sha256": "ede3844ac585c9f76c99190e4f26562d81b254708c2e7237dcd9205c231d5eaa"
+    },
+    {
+      "original": "public/images/fullscreen/beard.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/beard.png",
+      "category": "runtime",
+      "bytes": 2344950,
+      "sha256": "2b981d0906f91173863b63231e789a05dce48829c371b7d13b36f1e1a52e57a4"
+    },
+    {
+      "original": "public/images/fullscreen/body.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/body.png",
+      "category": "runtime",
+      "bytes": 2402766,
+      "sha256": "2972aa762fc730bb48c922d27c21866e4f6e9bf45c5887e65437adab21851b6f"
+    },
+    {
+      "original": "public/images/fullscreen/brows.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/brows.png",
+      "category": "runtime",
+      "bytes": 2195969,
+      "sha256": "e4a3075bb3f2d03ec4594550db4c19387eda57d053b59758ad81610ce4db559b"
+    },
+    {
+      "original": "public/images/fullscreen/crown.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/crown.png",
+      "category": "runtime",
+      "bytes": 2207997,
+      "sha256": "6a8f409b7861102c14c60963048a56516dcdd0df1e2235b2de39b283afa5c3c9"
+    },
+    {
+      "original": "public/images/fullscreen/mouth.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/mouth.png",
+      "category": "runtime",
+      "bytes": 2371799,
+      "sha256": "0313ce7f8a014f5f8f02795a3fbc6cc06c10be0c4492e37c0cbdf260ab97de2f"
+    },
+    {
+      "original": "public/images/fullscreen/trim.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/trim.png",
+      "category": "runtime",
+      "bytes": 2222713,
+      "sha256": "555374cf4366428aec2ff1d90ddc83c333aa0708a71e51d163135a72b8c4c439"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/beard.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/beard.png",
+      "category": "runtime",
+      "bytes": 2043784,
+      "sha256": "601ad4d12030dc0c79acf042c247d40eb50d5a6d737d0c27d31a6a0cc5ce6c43"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/body.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/body.png",
+      "category": "runtime",
+      "bytes": 2219108,
+      "sha256": "d4d47181ba553c078e5ed866738727585d280e0c4a9a6f507c3da46e28d4c2aa"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/brows.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/brows.png",
+      "category": "runtime",
+      "bytes": 2061963,
+      "sha256": "0dce5bf734258527cc2ed61fabb0774a300832bcbfc5df45fc528a83b76dd20d"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/crown.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/crown.png",
+      "category": "runtime",
+      "bytes": 2118233,
+      "sha256": "4267fea706dae6e16fc4fb01d9d993665e5c704b5fe40e16bb2c9a0d5d8c23ba"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/mouth.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/mouth.png",
+      "category": "runtime",
+      "bytes": 2363619,
+      "sha256": "abcb798300ba82291eb233bad4b9b54f2a531a2706db4e884eabb57d02912920"
+    },
+    {
+      "original": "public/images/fullscreen/ultrawide/trim.png",
+      "destination": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/trim.png",
+      "category": "runtime",
+      "bytes": 2088453,
+      "sha256": "2299ae7beb8b9e4e0584e2390ec30f31e4b673a8882d5d8897931179b1139ac3"
+    },
+    {
+      "original": "public/images/gaze-study.png",
+      "destination": "source/archives/xuanji5/public/images/gaze-study.png",
+      "category": "historical-source",
+      "bytes": 3096938,
+      "sha256": "56bbed148b6515cc1de2902949199a0e7b1eea84e4f2495fe3438a870bbffc86"
+    },
+    {
+      "original": "public/images/lion-info/01-mei-mu.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/01-mei-mu.png",
+      "category": "runtime",
+      "bytes": 3136110,
+      "sha256": "2612825440b837ddfff01e7e17164f0ec4c715d169a7204bad2c321e6b89fec4"
+    },
+    {
+      "original": "public/images/lion-info/02-e-guan.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/02-e-guan.png",
+      "category": "runtime",
+      "bytes": 3163068,
+      "sha256": "6c97cf1318b3202fba25b01266e3718eaf082dfe16de209913da2503bd720db5"
+    },
+    {
+      "original": "public/images/lion-info/03-fan-xu.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/03-fan-xu.png",
+      "category": "runtime",
+      "bytes": 3064318,
+      "sha256": "426b13fabb5af44c3c5fe389f629c8ff843a0a366a1352da87ed1b68739617c6"
+    },
+    {
+      "original": "public/images/lion-info/04-zhi-jin.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/04-zhi-jin.png",
+      "category": "runtime",
+      "bytes": 3502330,
+      "sha256": "d1a16f607e9e28cadce7fe78a075a9d0a1b7ed4fd6d4904a5c053beebc4bdc93"
+    },
+    {
+      "original": "public/images/lion-info/05-yun-bian.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/05-yun-bian.png",
+      "category": "runtime",
+      "bytes": 2772553,
+      "sha256": "35550297dc7b09a94d59b4348c5a6d2b852dfdd163b40f4781fe0d398c48cc6a"
+    },
+    {
+      "original": "public/images/lion-info/06-kou-chi.png",
+      "destination": "source/public/assets/structure-atlas/images/lion-info/06-kou-chi.png",
+      "category": "runtime",
+      "bytes": 2686873,
+      "sha256": "cdf88a3c47d49d0ef639e4ec2c5582ae90348e0cc03a0df86013a7e32774fe8c"
+    },
+    {
+      "original": "public/images/mane-study.png",
+      "destination": "source/archives/xuanji5/public/images/mane-study.png",
+      "category": "historical-source",
+      "bytes": 2830442,
+      "sha256": "7cc3fff1798e5fb0105d5dddd2119bc518dc4a1b44ab43758ed8e1ea6e3320d7"
+    },
+    {
+      "original": "public/images/navigation/beard.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/beard.png",
+      "category": "runtime",
+      "bytes": 2621656,
+      "sha256": "4ffa8f175cb4e41df5c51787de5ec04e6fe0cb1fd9cd6885f129df4d50382310"
+    },
+    {
+      "original": "public/images/navigation/body.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/body.png",
+      "category": "runtime",
+      "bytes": 3000398,
+      "sha256": "2baff97e9e49ba07d50bfea2de94be2b287fd2f341af412dc05ee31601d0eddb"
+    },
+    {
+      "original": "public/images/navigation/brows.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/brows.png",
+      "category": "runtime",
+      "bytes": 2596149,
+      "sha256": "0cdfcaee1b47576f582b0f74e3bfbaad043471c5e73b414efcb2892d5097f038"
+    },
+    {
+      "original": "public/images/navigation/crown.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/crown.png",
+      "category": "runtime",
+      "bytes": 2105889,
+      "sha256": "a22f62c0ea72244415ddaa6ac3f57a469aecfee6342f9c1fff06dca7dc5b04fd"
+    },
+    {
+      "original": "public/images/navigation/mouth.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/mouth.png",
+      "category": "runtime",
+      "bytes": 2883102,
+      "sha256": "491e62a1d34fcd956d02dd8811e140a7da18db324e515f0523349313b213b1b1"
+    },
+    {
+      "original": "public/images/navigation/trim.png",
+      "destination": "source/public/assets/structure-atlas/images/navigation/trim.png",
+      "category": "runtime",
+      "bytes": 2568097,
+      "sha256": "5114277e3e5a331e5f06c3295e2c6974a24abc1d9b64774d25b201a401b95a21"
+    },
+    {
+      "original": "public/images/textile-study.png",
+      "destination": "source/archives/xuanji5/public/images/textile-study.png",
+      "category": "historical-source",
+      "bytes": 3144781,
+      "sha256": "8a40fd3d8da87740dec3daab67aa2c952d0f816f6fe587fc7b14b9a1ae842e35"
+    },
+    {
+      "original": "scripts/audit_blend.py",
+      "destination": "source/archives/xuanji5/scripts/audit_blend.py",
+      "category": "historical-source",
+      "bytes": 4012,
+      "sha256": "5d1948ce1726ddeb5c7143abc27aea15dd2755f02615249b3b49442dc6719bb9"
+    },
+    {
+      "original": "scripts/capture-handoff.mjs",
+      "destination": "source/archives/xuanji5/scripts/capture-handoff.mjs",
+      "category": "historical-source",
+      "bytes": 3729,
+      "sha256": "2787e9bb796c5af56f3da45e6b228659ba150ff56e3bdff407f7e5b45738423a"
+    },
+    {
+      "original": "scripts/export_lion.py",
+      "destination": "source/archives/xuanji5/scripts/export_lion.py",
+      "category": "historical-source",
+      "bytes": 10963,
+      "sha256": "0df325994e0b25e7f655e19950e1ade3b8525206a565871abf9ae995a1feb79f"
+    },
+    {
+      "original": "scripts/inspect_mesh.py",
+      "destination": "source/archives/xuanji5/scripts/inspect_mesh.py",
+      "category": "historical-source",
+      "bytes": 1470,
+      "sha256": "ec029c0efcd6151a0598a2c897f808a5a436f4ff480b8a56fdca57e92ac1c629"
+    },
+    {
+      "original": "scripts/inspect_render.py",
+      "destination": "source/archives/xuanji5/scripts/inspect_render.py",
+      "category": "historical-source",
+      "bytes": 1055,
+      "sha256": "b574e1844063ad38e28112698170768592ff2c4f70c0aefe1447441c22d5f031"
+    },
+    {
+      "original": "scripts/optimize_glb.py",
+      "destination": "source/archives/xuanji5/scripts/optimize_glb.py",
+      "category": "historical-source",
+      "bytes": 3771,
+      "sha256": "cad548acf63c7003e5b7695b4fc37d9be1f39f89bb724218936a866486c679bf"
+    },
+    {
+      "original": "scripts/preview-qa.mjs",
+      "destination": "source/archives/xuanji5/scripts/preview-qa.mjs",
+      "category": "historical-source",
+      "bytes": 2273,
+      "sha256": "0698a4358ae18c3fe61ca66a964d32e7e55d2dcc2ba9de6d63baef13fe5ebbf6"
+    },
+    {
+      "original": "scripts/probe_hair.py",
+      "destination": "source/archives/xuanji5/scripts/probe_hair.py",
+      "category": "historical-source",
+      "bytes": 763,
+      "sha256": "8eae39cd596c90c4feb80459846a0b2fee7d03913dff4a9c84ffa92542945ca7"
+    },
+    {
+      "original": "scripts/subset_font.py",
+      "destination": "source/archives/xuanji5/scripts/subset_font.py",
+      "category": "historical-source",
+      "bytes": 750,
+      "sha256": "06ed53b78e8feca7eb2f4cbbbb2a9c4b11d48126a97bb6f85c2f53407cef18ee"
+    },
+    {
+      "original": "source/设计感拉满的醒狮文化主题竞赛展版以“醒狮文化”为概念来源，将狮舞中的鬃毛、云纹、眼部神韵、鼓点节奏与民俗色彩进行抽象转译，生成一系列具有公共.mp4",
+      "destination": "source/archives/xuanji5/source/设计感拉满的醒狮文化主题竞赛展版以“醒狮文化”为概念来源，将狮舞中的鬃毛、云纹、眼部神韵、鼓点节奏与民俗色彩进行抽象转译，生成一系列具有公共.mp4",
+      "category": "historical-source",
+      "bytes": 10231796,
+      "sha256": "2e487a0e14d6ab0096c4307c0e67088b4729ca77d04af2aa74d8e000f6364aea"
+    },
+    {
+      "original": "src/App.jsx",
+      "destination": "source/archives/xuanji5/src/App.jsx",
+      "category": "historical-source",
+      "bytes": 61,
+      "sha256": "d25674aba8a3500559ce7cf0cc93f5349f865534a61196f7ccef187d2d23e1aa"
+    },
+    {
+      "original": "src/analysis/geometry.mjs",
+      "destination": "source/archives/xuanji5/src/analysis/geometry.mjs",
+      "category": "historical-source",
+      "bytes": 7872,
+      "sha256": "b7a3cca046ed67019d3fbe5dbfd7f36ce9319e1b429d276799074a480bf28276"
+    },
+    {
+      "original": "src/analysis/sampleGeometry.js",
+      "destination": "source/archives/xuanji5/src/analysis/sampleGeometry.js",
+      "category": "historical-source",
+      "bytes": 6179,
+      "sha256": "ece9ecc0c87085cc0e5c7666789ff39b39274424769f8c6acaa6e52cb04abcc2"
+    },
+    {
+      "original": "src/analysis/textureStudy.js",
+      "destination": "source/archives/xuanji5/src/analysis/textureStudy.js",
+      "category": "historical-source",
+      "bytes": 14537,
+      "sha256": "7d0dbc1d9d100dd0f2f70f91e1097f9eb0d18115e0a59516e720d1c22026c740"
+    },
+    {
+      "original": "src/components/AtlasExperience.jsx",
+      "destination": "source/archives/xuanji5/src/components/AtlasExperience.jsx",
+      "category": "historical-source",
+      "bytes": 15355,
+      "sha256": "28f5f6cd7dcec2ed2e79948716187129766e36e2f7082b634e004aaa48c1fc95"
+    },
+    {
+      "original": "src/components/CulturalPanel.jsx",
+      "destination": "source/archives/xuanji5/src/components/CulturalPanel.jsx",
+      "category": "historical-source",
+      "bytes": 13164,
+      "sha256": "d4dbf965dbc76e749dd43c3f5d8481f904e47fd32d64097f742b9c9c05a93218"
+    },
+    {
+      "original": "src/components/LionBreakdownStage.jsx",
+      "destination": "source/archives/xuanji5/src/components/LionBreakdownStage.jsx",
+      "category": "historical-source",
+      "bytes": 563,
+      "sha256": "66b162246d9f5cfda63ea0d36dcbeb9ec37cc525e7aac9286dfa7094fabc14a2"
+    },
+    {
+      "original": "src/components/LionDetailModal.jsx",
+      "destination": "source/archives/xuanji5/src/components/LionDetailModal.jsx",
+      "category": "historical-source",
+      "bytes": 3582,
+      "sha256": "81d7ca12c7b880fc17cc9876b0b440117132ee3dd3fc493717011ffb4b2b662a"
+    },
+    {
+      "original": "src/components/ModelCanvas.jsx",
+      "destination": "source/archives/xuanji5/src/components/ModelCanvas.jsx",
+      "category": "historical-source",
+      "bytes": 1396,
+      "sha256": "173f4715126371f6367b0cd86e16d328a610342e4aa713f2fc697b100681c888"
+    },
+    {
+      "original": "src/components/ModelStage.jsx",
+      "destination": "source/archives/xuanji5/src/components/ModelStage.jsx",
+      "category": "historical-source",
+      "bytes": 3859,
+      "sha256": "6b8dafbced5cc611c27cf380f093bc45b39da22ee1e12fddb2daa3d38e2047ea"
+    },
+    {
+      "original": "src/components/PartGlyph.jsx",
+      "destination": "source/archives/xuanji5/src/components/PartGlyph.jsx",
+      "category": "historical-source",
+      "bytes": 1678,
+      "sha256": "e54a23336192dedb2913bbd542610b9d329f5c94fefe5e058bf92fd32d2cc96a"
+    },
+    {
+      "original": "src/components/ResearchVisuals.jsx",
+      "destination": "source/archives/xuanji5/src/components/ResearchVisuals.jsx",
+      "category": "historical-source",
+      "bytes": 22392,
+      "sha256": "3ee7e4915448e3e3f7231f29e8ac0c61827a169794b6c2602bbad60fa526de7a"
+    },
+    {
+      "original": "src/components/lion-breakdown.css",
+      "destination": "source/archives/xuanji5/src/components/lion-breakdown.css",
+      "category": "historical-source",
+      "bytes": 5672,
+      "sha256": "fd38e97c68220481271f85db6654e8ff0e68ec96d32e1a2ae5cba966f71f889c"
+    },
+    {
+      "original": "src/components/research-visuals.css",
+      "destination": "source/archives/xuanji5/src/components/research-visuals.css",
+      "category": "historical-source",
+      "bytes": 4095,
+      "sha256": "ff8c500048a6f29f0854f4cd7eed179902fa0ffd794b74a56c7cd7ee96fde22d"
+    },
+    {
+      "original": "src/content/chapters.js",
+      "destination": "source/archives/xuanji5/src/content/chapters.js",
+      "category": "historical-source",
+      "bytes": 1400,
+      "sha256": "79ec942b17366063b79c6ca995941f70ebe81e60cc109e367a0ffaee651e7756"
+    },
+    {
+      "original": "src/content/culture.js",
+      "destination": "source/archives/xuanji5/src/content/culture.js",
+      "category": "historical-source",
+      "bytes": 10656,
+      "sha256": "e991f169d2b2b160a66a05a310e2f0f0e10b6ab55daef6b90decf02757e74eb9"
+    },
+    {
+      "original": "src/content/lionBreakdowns.js",
+      "destination": "source/archives/xuanji5/src/content/lionBreakdowns.js",
+      "category": "historical-source",
+      "bytes": 11933,
+      "sha256": "d7e35a51f422a4f8d016689bf8d30430c1b40f71c526c4e4274908e96f8bdb10"
+    },
+    {
+      "original": "src/content/model-adaptation.json",
+      "destination": "source/archives/xuanji5/src/content/model-adaptation.json",
+      "category": "historical-source",
+      "bytes": 936,
+      "sha256": "0be103af6966b7b2ba3a6eefcf253091d606cd816bbc2369354a1af02cd3c0fa"
+    },
+    {
+      "original": "src/content/parts.js",
+      "destination": "source/archives/xuanji5/src/content/parts.js",
+      "category": "historical-source",
+      "bytes": 5993,
+      "sha256": "8abd9272b4a5e2495ea5d454b9bebf52a4a80383bbdfa957edc5ae37e86970b4"
+    },
+    {
+      "original": "src/experience.css",
+      "destination": "source/archives/xuanji5/src/experience.css",
+      "category": "historical-source",
+      "bytes": 18026,
+      "sha256": "b3111a07e7f8fae69648c660c23f67909f52a3a193db3cade41fe752fb617e38"
+    },
+    {
+      "original": "src/interaction/layout.mjs",
+      "destination": "source/archives/xuanji5/src/interaction/layout.mjs",
+      "category": "historical-source",
+      "bytes": 2064,
+      "sha256": "609b31db6e3a2756b7ad0ba9d5cd737442616b798e96a88af8e0454bc22a4368"
+    },
+    {
+      "original": "src/main.jsx",
+      "destination": "source/archives/xuanji5/src/main.jsx",
+      "category": "historical-source",
+      "bytes": 194,
+      "sha256": "8353a315510c88bb12e4a0bce9fd8d0ff12ea1b06e10ef213555c28b9b70bcc4"
+    },
+    {
+      "original": "src/model/LionWorld.js",
+      "destination": "source/archives/xuanji5/src/model/LionWorld.js",
+      "category": "historical-source",
+      "bytes": 25630,
+      "sha256": "133251587abf8d99ab0243a446756377bd672db85c863a92628ce88e4ba4c593"
+    },
+    {
+      "original": "src/model/PartRegistry.js",
+      "destination": "source/archives/xuanji5/src/model/PartRegistry.js",
+      "category": "historical-source",
+      "bytes": 4165,
+      "sha256": "414e16cfb0d45dca4371dff079cddd23b5f85c75de72b0fa29b8603b1a500e1f"
+    },
+    {
+      "original": "src/styles.css",
+      "destination": "source/archives/xuanji5/src/styles.css",
+      "category": "historical-source",
+      "bytes": 25560,
+      "sha256": "aa3f2786f6fb72b5f435d0948c99cf05e0570ad5e046719a47e2f945814e8a50"
+    },
+    {
+      "original": "tests/browser.mjs",
+      "destination": "source/archives/xuanji5/tests/browser.mjs",
+      "category": "historical-source",
+      "bytes": 6528,
+      "sha256": "4055248fe752457daffe31a5cba580695c9c08fc7880994077df88ee08a09e44"
+    },
+    {
+      "original": "tests/enrichment-browser.mjs",
+      "destination": "source/archives/xuanji5/tests/enrichment-browser.mjs",
+      "category": "historical-source",
+      "bytes": 16247,
+      "sha256": "49bd9fb2f67f8531ea73af4fde36d8c3b6a313dc4a659e4521b1cde0cd5add35"
+    },
+    {
+      "original": "tests/geometry.test.mjs",
+      "destination": "source/archives/xuanji5/tests/geometry.test.mjs",
+      "category": "historical-source",
+      "bytes": 4418,
+      "sha256": "c6daf25861d55f9f36357d7465d8d67df6db17524fe47dfa2b69f54aad1422c9"
+    },
+    {
+      "original": "tests/handoff-browser.mjs",
+      "destination": "source/archives/xuanji5/tests/handoff-browser.mjs",
+      "category": "historical-source",
+      "bytes": 25507,
+      "sha256": "38576ee5eb5e64a59e637d8876b403e6030ab8af2489f85ade7001fcd2de0b2f"
+    },
+    {
+      "original": "tests/handoff.test.mjs",
+      "destination": "source/archives/xuanji5/tests/handoff.test.mjs",
+      "category": "historical-source",
+      "bytes": 5162,
+      "sha256": "2315cc357a37dda182e484be3fbdd7eb19c32ca6bc30ec2a480a64ec2c4d1c99"
+    },
+    {
+      "original": "tests/lion-breakdown-browser.mjs",
+      "destination": "source/archives/xuanji5/tests/lion-breakdown-browser.mjs",
+      "category": "historical-source",
+      "bytes": 12965,
+      "sha256": "c3bdebfd0f8dd83b124840097b60f7b200890aa7f248114d575cb2edaa399cf6"
+    },
+    {
+      "original": "tests/production-transition-browser.mjs",
+      "destination": "source/archives/xuanji5/tests/production-transition-browser.mjs",
+      "category": "historical-source",
+      "bytes": 9212,
+      "sha256": "05b459f1cb0eb0e78598e052ff4067ecd7f577850e3622b1c8696a87ff652cca"
+    },
+    {
+      "original": "tests/production.mjs",
+      "destination": "source/archives/xuanji5/tests/production.mjs",
+      "category": "historical-source",
+      "bytes": 3852,
+      "sha256": "37b94d8d2c836852f24b1135a0e6d07941a007fb7431f42717c3d36431f5e0ed"
+    },
+    {
+      "original": "tests/viewport-browser.mjs",
+      "destination": "source/archives/xuanji5/tests/viewport-browser.mjs",
+      "category": "historical-source",
+      "bytes": 16467,
+      "sha256": "37e121ec77e35cc4a83eb79a7f7ac7e1d6bbb52681edca9f48c112cd705baa97"
+    },
+    {
+      "original": "vite.config.js",
+      "destination": "source/archives/xuanji5/vite.config.js",
+      "category": "historical-source",
+      "bytes": 332,
+      "sha256": "eac2f594206d663cb313bb0edcd61b15ba1e3680708b1caf9c80ed92de903621"
+    },
+    {
+      "original": "wiki_memory/.memory.json",
+      "destination": "source/archives/xuanji5/wiki_memory/.memory.json",
+      "category": "historical-source",
+      "bytes": 201,
+      "sha256": "3cc917a02a9f8d085cee5d0ba1ef6e007f1b63d6c7c971a67666413c76fa97aa"
+    },
+    {
+      "original": "wiki_memory/AGENTS.md",
+      "destination": "source/archives/xuanji5/wiki_memory/AGENTS.source.md",
+      "category": "historical-source",
+      "bytes": 12577,
+      "sha256": "60c7152711e488ea1817164f92fc5ee9ba529cf7978ff2751c64f69ea872d517"
+    },
+    {
+      "original": "wiki_memory/README.md",
+      "destination": "source/archives/xuanji5/wiki_memory/README.md",
+      "category": "historical-source",
+      "bytes": 1484,
+      "sha256": "179d2c963e9a33f485c219ce9e23cd0c99105686cf4ab74d93646b1a63c07945"
+    },
+    {
+      "original": "wiki_memory/工具/memory.py",
+      "destination": "source/archives/xuanji5/wiki_memory/工具/memory.py",
+      "category": "historical-source",
+      "bytes": 70565,
+      "sha256": "5841cad4c54327005df79836f8870a81c06edf06aefa11912862c534e097d3e9"
+    },
+    {
+      "original": "wiki_memory/当前状态/已知问题.md",
+      "destination": "source/archives/xuanji5/wiki_memory/当前状态/已知问题.md",
+      "category": "historical-source",
+      "bytes": 2765,
+      "sha256": "d82bcb7ce8d2ad33fe3d876b2619916ed69dd771ffa290510b7d77a440cfb052"
+    },
+    {
+      "original": "wiki_memory/当前状态/当前待办.md",
+      "destination": "source/archives/xuanji5/wiki_memory/当前状态/当前待办.md",
+      "category": "historical-source",
+      "bytes": 1632,
+      "sha256": "cd967a06ba42e3651f36bb145472c92752543f43910a0b85a4a085a689b69342"
+    },
+    {
+      "original": "wiki_memory/当前状态/当前约束.md",
+      "destination": "source/archives/xuanji5/wiki_memory/当前状态/当前约束.md",
+      "category": "historical-source",
+      "bytes": 2747,
+      "sha256": "cfa2cfd31d9fd89c6ada41fc23b78f7e3ab8319f46927488b16595eecd3cd467"
+    },
+    {
+      "original": "wiki_memory/当前状态/系统架构.md",
+      "destination": "source/archives/xuanji5/wiki_memory/当前状态/系统架构.md",
+      "category": "historical-source",
+      "bytes": 3414,
+      "sha256": "3ba1888f0df35f3f8e954e0fd6b793c4ad9e7bee59a7d5b16c0feb919bd9066c"
+    },
+    {
+      "original": "wiki_memory/当前状态/项目概览.md",
+      "destination": "source/archives/xuanji5/wiki_memory/当前状态/项目概览.md",
+      "category": "historical-source",
+      "bytes": 2765,
+      "sha256": "038f11c098499fa6e0968aca641f4a01020fd5e01f6a807cf42839b0ec8436d2"
+    },
+    {
+      "original": "wiki_memory/日志/Bug处理/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/Bug处理/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "wiki_memory/日志/MOC_工作日志.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/MOC_工作日志.md",
+      "category": "historical-source",
+      "bytes": 1218,
+      "sha256": "cdf3e88d1a22042a75e7196ce66ef8f718597cc6c27bbd5559c436b13aba6d3b"
+    },
+    {
+      "original": "wiki_memory/日志/UI修改/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/UI修改/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "wiki_memory/日志/UI修改/2026-10-26-全屏运镜与左上贴图.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/UI修改/2026-10-26-全屏运镜与左上贴图.md",
+      "category": "historical-source",
+      "bytes": 2883,
+      "sha256": "51dc4e8750f08d7b2ba795245353ec99554988c564a169b0e048d6ef7b25cd4c"
+    },
+    {
+      "original": "wiki_memory/日志/UI修改/2026-10-27-整窗视口平滑转图.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/UI修改/2026-10-27-整窗视口平滑转图.md",
+      "category": "historical-source",
+      "bytes": 1298,
+      "sha256": "28dc9bebf9ba54667efeb9041863b9a1fffaf20a7fd4088a9c6d2b714ea1e453"
+    },
+    {
+      "original": "wiki_memory/日志/UI修改/2026-10-28-信息可视化图版与文化浮窗.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/UI修改/2026-10-28-信息可视化图版与文化浮窗.md",
+      "category": "historical-source",
+      "bytes": 3288,
+      "sha256": "38fb9693831c8a618f75ae71a50986f718b623cbfa671dbc23a3d31481121c2e"
+    },
+    {
+      "original": "wiki_memory/日志/UI修改/2026-10-28-清晰全屏图与空白右区.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/UI修改/2026-10-28-清晰全屏图与空白右区.md",
+      "category": "historical-source",
+      "bytes": 2392,
+      "sha256": "bdfcdb58d8a16771e86c99b6efd341a0e30b2527d1d1df20f0a89b6667fbdac1"
+    },
+    {
+      "original": "wiki_memory/日志/功能添加/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/功能添加/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "wiki_memory/日志/工程维护/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/工程维护/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "wiki_memory/日志/工程维护/2026-10-26-标准记忆与Git初始化.md",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/工程维护/2026-10-26-标准记忆与Git初始化.md",
+      "category": "historical-source",
+      "bytes": 3152,
+      "sha256": "149999554301e3e5ddc15a017c9770f7177a7131cd68e18bed6b2a14f6878866"
+    },
+    {
+      "original": "wiki_memory/日志/工程讨论/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/工程讨论/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "wiki_memory/日志/测试验证/.gitkeep",
+      "destination": "source/archives/xuanji5/wiki_memory/日志/测试验证/.gitkeep",
+      "category": "historical-source",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "启动网页.cmd",
+      "destination": "source/archives/xuanji5/启动网页.cmd",
+      "category": "historical-source",
+      "bytes": 96,
+      "sha256": "f44b635de99cb048e803b9d5e7636456d5915e180b2fa2f54a335a9b3f4b3977"
+    },
+    {
+      "original": "prompt/prompt_01.txt",
+      "destination": "source/archives/xuanji5/prompt/prompt_01.txt",
+      "category": "historical-source",
+      "trackedInOriginal": false,
+      "bytes": 32304,
+      "sha256": "712ae14ff4a2a5a543245d8f2d1de9da1c5f1e87b8451a7492d9270e86c02d7a"
+    }
+  ],
+  "excludedDuplicates": [
+    {
+      "original": "public/models/brocade.jpg",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/brocade.png",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/derived-preview.png",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/head-atlas.jpg",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/head-atlas.png",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/lion.glb",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "public/models/source-preview.png",
+      "reason": "External runtime model and model previews/textures retained only in original Git history; integrated page uses current lion model and rendering."
+    },
+    {
+      "original": "source/科比blend.blend",
+      "reason": "Byte-identical source already preserved as current localOnly model; no duplicate >100MiB file.",
+      "existing": "source/models/lion-kobi-2026-10-26.blend",
+      "bytes": 136175747,
+      "sha256": "cc5f72c3e1a5c330dd64daf6842720a91a8e21b6909a01b6f6200a8834545f53"
+    }
+  ],
+  "notes": [
+    "Historical source, tests, scripts, prompts, memory and reviews are archival evidence; they are not a second application entry or current project instructions.",
+    "AGENTS.md renamed AGENTS.source.md; .gitattributes/.gitignore renamed with .source suffix; export.log renamed export.log.source.txt. Original bytes preserved; archived policy/configuration does not become active.",
+    "Historical validation outputs describe the external project at that time and do not verify the integrated application.",
+    "Exact original Git history must be restored from the separate history bundle archive."
+  ]
+}

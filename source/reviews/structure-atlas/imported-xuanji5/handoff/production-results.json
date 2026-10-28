@@ -1,0 +1,75 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "production": true,
+  "views": [
+    {
+      "image": "/images/chapters/brows.png",
+      "width": 1536,
+      "height": 1024,
+      "fit": "contain",
+      "modelVisibility": "hidden",
+      "textVisibility": "visible",
+      "textOpacity": "1"
+    },
+    {
+      "image": "/images/chapters/body.png",
+      "width": 1536,
+      "height": 1024,
+      "fit": "contain",
+      "modelVisibility": "hidden",
+      "textVisibility": "visible",
+      "textOpacity": "1"
+    }
+  ],
+  "assets": [
+    {
+      "id": "brows",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "crown",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "beard",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "body",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "trim",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "mouth",
+      "status": 200,
+      "width": 1536,
+      "height": 1024
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "checks": [
+    "static GLB and Draco load",
+    "GSAP production bundle executes",
+    "pure model homepage",
+    "dedicated full-frame artwork",
+    "all six production images decode",
+    "model actually hidden",
+    "cultural text actually visible",
+    "return to full model",
+    "no development global"
+  ]
+}

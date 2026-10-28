@@ -1,0 +1,1178 @@
+{
+  "materials": [
+    {
+      "name": "web_Tongue",
+      "data": {
+        "source": "立方体",
+        "part": "mouth",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "Tongue_BaseColor_2K",
+      "normal": "Tongue_Normal_2K"
+    },
+    {
+      "name": "Mesh001",
+      "data": {
+        "source": "牙下",
+        "part": "mouth",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "f9ffff",
+      "rough": 1,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Mesh001_1",
+      "data": {
+        "source": "牙下",
+        "part": "mouth",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "000000",
+      "rough": 0.5,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Mesh002",
+      "data": {
+        "source": "上牙",
+        "part": "mouth",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "f9ffff",
+      "rough": 1,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Mesh002_1",
+      "data": {
+        "source": "上牙",
+        "part": "mouth",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "000000",
+      "rough": 0.5,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Head001",
+      "data": {
+        "source": "Lion_Head.001",
+        "part": "crown",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "e7c87a",
+      "rough": 0.5,
+      "metal": 0.870090663433075,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Forehead_Bead_09",
+      "data": {
+        "source": "Lion_Forehead_Bead_09",
+        "part": "crown",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "c79540",
+      "rough": 0.25,
+      "metal": 0.8799999952316284,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Crown",
+      "data": {
+        "source": "Lion_Crown",
+        "part": "crown",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "Lion_Body_Remaining_Mesh005",
+      "data": {
+        "source": "Lion_Body",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Body_Remaining_Mesh005_1",
+      "data": {
+        "source": "Lion_Body",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Remaining_Mesh005_2",
+      "data": {
+        "source": "Lion_Body",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 0.5799999833106995,
+      "metal": 0.11999999731779099,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "brocade_reference_synthesis",
+      "normal": "body_micro_weave_normal_2048"
+    },
+    {
+      "name": "web_Lion_Tail001",
+      "data": {
+        "source": "Lion_Tail.001",
+        "part": "tail",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Hindpaw_R001",
+      "data": {
+        "source": "Lion_Hindpaw_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Hindpaw_L001",
+      "data": {
+        "source": "Lion_Hindpaw_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Hindleg_R001",
+      "data": {
+        "source": "Lion_Hindleg_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Hindleg_L001",
+      "data": {
+        "source": "Lion_Hindleg_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Forepaw_R001",
+      "data": {
+        "source": "Lion_Forepaw_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Forepaw_L_Mesh004",
+      "data": {
+        "source": "Lion_Forepaw_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Forepaw_L_Mesh004_1",
+      "data": {
+        "source": "Lion_Forepaw_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Foreleg_R_Mesh004",
+      "data": {
+        "source": "Lion_Foreleg_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Foreleg_R_Mesh004_1",
+      "data": {
+        "source": "Lion_Foreleg_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Foreleg_R_Mesh004_2",
+      "data": {
+        "source": "Lion_Foreleg_R.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Foreleg_L_Mesh004",
+      "data": {
+        "source": "Lion_Foreleg_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Foreleg_L_Mesh004_1",
+      "data": {
+        "source": "Lion_Foreleg_L.001",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Ear_R001",
+      "data": {
+        "source": "Lion_Ear_R.001",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "web_Lion_Ear_L001",
+      "data": {
+        "source": "Lion_Ear_L.001",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "Lion_Brow_R_HeadSourceMesh003",
+      "data": {
+        "source": "Lion_Brow_R.001",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "Lion_Brow_R_HeadSourceMesh003_1",
+      "data": {
+        "source": "Lion_Brow_R.001",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Brow_L_HeadSourceMesh003",
+      "data": {
+        "source": "Lion_Brow_L.001",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "Lion_Brow_L_HeadSourceMesh003_1",
+      "data": {
+        "source": "Lion_Brow_L.001",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Red_Trim_Mesh002",
+      "data": {
+        "source": "Lion_Body_Red_Trim.001",
+        "part": "trim",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Red_Trim_Mesh002_1",
+      "data": {
+        "source": "Lion_Body_Red_Trim.001",
+        "part": "trim",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 0.5799999833106995,
+      "metal": 0.11999999731779099,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "brocade_reference_synthesis",
+      "normal": "body_micro_weave_normal_2048"
+    },
+    {
+      "name": "Lion_Body_Red_Trim_Mesh002_2",
+      "data": {
+        "source": "Lion_Body_Red_Trim.001",
+        "part": "trim",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Beard_HeadSourceMesh002",
+      "data": {
+        "source": "Lion_Beard.001",
+        "part": "beard",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Beard_HeadSourceMesh002_1",
+      "data": {
+        "source": "Lion_Beard.001",
+        "part": "beard",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Ear_L003",
+      "data": {
+        "source": "Lion_Ear_L.003",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Ear_R003",
+      "data": {
+        "source": "Lion_Ear_R.003",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindpaw_L003",
+      "data": {
+        "source": "Lion_Hindpaw_L.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindpaw_R003",
+      "data": {
+        "source": "Lion_Hindpaw_R.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Foreleg_R003",
+      "data": {
+        "source": "Lion_Foreleg_R.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh001",
+      "data": {
+        "source": "Lion_Nose.003",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "Head_BaseColor_Rear_Restored_2K"
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh001_1",
+      "data": {
+        "source": "Lion_Nose.003",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh001_2",
+      "data": {
+        "source": "Lion_Nose.003",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh001_3",
+      "data": {
+        "source": "Lion_Nose.003",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 0.5799999833106995,
+      "metal": 0.11999999731779099,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "brocade_reference_synthesis",
+      "normal": "body_micro_weave_normal_2048"
+    },
+    {
+      "name": "web_Lion_Brow_R002",
+      "data": {
+        "source": "Lion_Brow_R.002",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Brow_L002",
+      "data": {
+        "source": "Lion_Brow_L.002",
+        "part": "brows",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Nose002",
+      "data": {
+        "source": "Lion_Nose.002",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Ear_L002",
+      "data": {
+        "source": "Lion_Ear_L.002",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Ear_R002",
+      "data": {
+        "source": "Lion_Ear_R.002",
+        "part": "ears",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh006",
+      "data": {
+        "source": "Lion_Nose.001",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh006_1",
+      "data": {
+        "source": "Lion_Nose.001",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Nose_HeadSourceMesh006_2",
+      "data": {
+        "source": "Lion_Nose.001",
+        "part": "head",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Red_Trim_Mesh004",
+      "data": {
+        "source": "Lion_Body_Red_Trim.002",
+        "part": "trim",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Red_Trim_Mesh004_1",
+      "data": {
+        "source": "Lion_Body_Red_Trim.002",
+        "part": "trim",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 0.5799999833106995,
+      "metal": 0.11999999731779099,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "brocade_reference_synthesis",
+      "normal": "body_micro_weave_normal_2048"
+    },
+    {
+      "name": "web_Lion_Foreleg_R002",
+      "data": {
+        "source": "Lion_Foreleg_R.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Foreleg_L002",
+      "data": {
+        "source": "Lion_Foreleg_L.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindleg_L002",
+      "data": {
+        "source": "Lion_Hindleg_L.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindleg_R002",
+      "data": {
+        "source": "Lion_Hindleg_R.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Body001",
+      "data": {
+        "source": "Lion_Body.001",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Tail002",
+      "data": {
+        "source": "Lion_Tail.002",
+        "part": "tail",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Forepaw_R002",
+      "data": {
+        "source": "Lion_Forepaw_R.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Body002",
+      "data": {
+        "source": "Lion_Body.002",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Forepaw_L002",
+      "data": {
+        "source": "Lion_Forepaw_L.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindpaw_L002",
+      "data": {
+        "source": "Lion_Hindpaw_L.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Hindleg_L003",
+      "data": {
+        "source": "Lion_Hindleg_L.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Body003",
+      "data": {
+        "source": "Lion_Body.003",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindpaw_R002",
+      "data": {
+        "source": "Lion_Hindpaw_R.002",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Hindleg_R003",
+      "data": {
+        "source": "Lion_Hindleg_R.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_Lion_Forepaw_R003",
+      "data": {
+        "source": "Lion_Forepaw_R.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Forepaw_L003",
+      "data": {
+        "source": "Lion_Forepaw_L.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_Lion_Foreleg_L003",
+      "data": {
+        "source": "Lion_Foreleg_L.003",
+        "part": "limbs",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "Lion_Body_Remaining_Mesh009",
+      "data": {
+        "source": "Lion_Body.004",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "Lion_Body_Remaining_Mesh009_1",
+      "data": {
+        "source": "Lion_Body.004",
+        "part": "body",
+        "derivation": "evaluated-native-mesh"
+      },
+      "color": "ffffff",
+      "rough": 0.5799999833106995,
+      "metal": 0.11999999731779099,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "brocade_reference_synthesis",
+      "normal": "body_micro_weave_normal_2048"
+    },
+    {
+      "name": "web_hair_tail_53",
+      "data": {
+        "source": "粒子系统",
+        "part": "tail",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_hair_beard_54",
+      "data": {
+        "source": "粒子系统.001",
+        "part": "beard",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_hair_beard_55",
+      "data": {
+        "source": "粒子系统.002",
+        "part": "beard",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_ears_HighDetail_Head_Atlas_PBR_001",
+      "data": {
+        "source": "Lion_Ear_L.003;Lion_Ear_R.003",
+        "part": "ears",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_refined"
+    },
+    {
+      "name": "web_velvet_limbs_Velvet_Scarlet_Uniform_Base_001",
+      "data": {
+        "source": "Lion_Foreleg_L.002;Lion_Foreleg_R.002;Lion_Forepaw_L.002;Lion_Forepaw_R.002;Lion_Hindleg_L.002;Lion_Hindleg_R.002;Lion_Hindpaw_L.003;Lion_Hindpaw_R.002",
+        "part": "limbs",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_limbs_Head_Ivory_Fringe_Base",
+      "data": {
+        "source": "Lion_Hindpaw_R.003",
+        "part": "limbs",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "dfddd7",
+      "rough": 0.8600000143051147,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_limbs_Lion_Atlas_PBR_Refined_001",
+      "data": {
+        "source": "Lion_Foreleg_L.003;Lion_Foreleg_R.003;Lion_Forepaw_L.003;Lion_Forepaw_R.003;Lion_Hindleg_L.003;Lion_Hindpaw_L.002",
+        "part": "limbs",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "ffffff",
+      "rough": 1,
+      "metal": 1,
+      "emissive": "000000",
+      "emissiveIntensity": 1,
+      "map": "lion_basecolor_scarlet"
+    },
+    {
+      "name": "web_velvet_brows_Head_Scarlet_Velvet_Base_001",
+      "data": {
+        "source": "Lion_Brow_L.002;Lion_Brow_R.002",
+        "part": "brows",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_head_Head_Scarlet_Velvet_Base",
+      "data": {
+        "source": "Lion_Nose.001;Lion_Nose.002",
+        "part": "head",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_ears_Head_Scarlet_Velvet_Base_001",
+      "data": {
+        "source": "Lion_Ear_L.002;Lion_Ear_R.002",
+        "part": "ears",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_trim_Velvet_Scarlet_Uniform_Base_001",
+      "data": {
+        "source": "Lion_Body_Red_Trim.002",
+        "part": "trim",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_body_Velvet_Scarlet_Uniform_Base",
+      "data": {
+        "source": "Lion_Body.001;Lion_Body.002;Lion_Body.003;Lion_Body.004",
+        "part": "body",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_tail_Velvet_Scarlet_Uniform_Base",
+      "data": {
+        "source": "Lion_Tail.002",
+        "part": "tail",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "7e0912",
+      "rough": 0.8799999952316284,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    },
+    {
+      "name": "web_velvet_limbs_Fiber_Warm_Ivory",
+      "data": {
+        "source": "Lion_Hindleg_R.003",
+        "part": "limbs",
+        "derivation": "sampled-original-hair-ribbon"
+      },
+      "color": "fffcf4",
+      "rough": 0.7200000286102295,
+      "metal": 0,
+      "emissive": "000000",
+      "emissiveIntensity": 1
+    }
+  ],
+  "stats": {
+    "frame": 580,
+    "calls": 161,
+    "triangles": 2270738,
+    "points": 0,
+    "lines": 0
+  }
+}
