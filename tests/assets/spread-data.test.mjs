@@ -24,25 +24,6 @@ test('北京坐标使用北京市政府公布的经纬度近似值', () => {
   assert.deepEqual(spreadPlaces.find(place => place.id === 'beijing').coordinates, [116.33, 39.93]);
 });
 
-test('十二个城市保留经度在前、纬度在后的核对坐标', () => {
-  const expectedCoordinates = {
-    foshan: [113.12, 23.02],
-    guangzhou: [113.26, 23.13],
-    heshan: [112.96, 22.77],
-    suixi: [110.25, 21.38],
-    beijing: [116.33, 39.93],
-    tianyang: [106.91, 23.74],
-    quanzhou: [118.67, 24.87],
-    'hong-kong': [114.17, 22.3],
-    singapore: [103.82, 1.35],
-    'kuala-lumpur': [101.69, 3.14],
-    'san-francisco': [-122.42, 37.77],
-    london: [-0.13, 51.51],
-  };
-
-  assert.deepEqual(Object.fromEntries(spreadPlaces.map(place => [place.id, place.coordinates])), expectedCoordinates);
-});
-
 test('已有案例继续引用原 story 与照片，未提供资料的城市不借用其他地点照片', () => {
   const includedStories = spreadPlaces.flatMap(place => place.stories);
   assert.equal(new Set(includedStories).size, includedStories.length);

@@ -4,14 +4,14 @@ import { spreadMapLevels, spreadMapPoints } from '../../data/spread.js';
 import { handleHeritageTabs } from '../home/HeritageElements.jsx';
 import useSpreadMapMotion from './useSpreadMapMotion.js';
 
-// Pin dots are image-calibrated overlays on the Blender renders; canonical
-// city coordinates remain in spread.js. Stamp labels stay offset for legibility.
+// Points are approximate projections over the Blender renders. The four stamp
+// labels are deliberately offset from nearby city anchors to keep them legible.
 const shots = {
   guangdong: {
     image: media.spreadMapGuangdong,
     points: {
       foshan: [468, 323, 340, 365],
-      guangzhou: [505, 293, 600, 220],
+      guangzhou: [480, 314, 600, 220],
       heshan: [455, 344, 580, 430],
       suixi: [222, 458, 280, 525],
     },
@@ -19,7 +19,7 @@ const shots = {
   china: {
     image: media.spreadMapChina,
     points: {
-      beijing: [628, 198, 720, 145],
+      beijing: [638, 210, 720, 145],
       tianyang: [532, 368, 430, 420],
       quanzhou: [662, 357, 760, 425],
       'hong-kong': [612, 382, 865, 520],
