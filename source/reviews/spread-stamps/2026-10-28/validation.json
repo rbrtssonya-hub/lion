@@ -178,7 +178,15 @@
     "originalCommits": 10,
     "originalTip": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
     "historyRefVerifiedOnGitHub": "refs/heads/codex/xuanji3-history",
-    "mainDelivery": "Integration merge prepared with original tip as second parent; final main commit/push recorded in task memory."
+    "mainDelivery": {
+      "integrationCommit": "6f925e00d70d9f16581fff1baae6e67856ce754b",
+      "parents": [
+        "a7a261fa0940a055014eb2ba2be5696b5070c61d",
+        "8764e9b484a372fc17e0595fc2a017be2cbc3d48"
+      ],
+      "push": "Succeeded to configured origin/main without force; ls-remote verified exact integration commit",
+      "originalTenCommitsReachableFromMain": true
+    }
   },
   "preserved": [
     "Existing Three 0.160.0, model assets, fur and model render pipeline",
