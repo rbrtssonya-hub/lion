@@ -1,0 +1,251 @@
+{
+  "baseURL": "http://127.0.0.1:4175",
+  "chapters": [
+    {
+      "id": "brows",
+      "stageImage": {
+        "src": "/images/lion-info/01-mei-mu.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 1006,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    },
+    {
+      "id": "crown",
+      "stageImage": {
+        "src": "/images/lion-info/02-e-guan.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 973,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    },
+    {
+      "id": "beard",
+      "stageImage": {
+        "src": "/images/lion-info/03-fan-xu.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 973,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    },
+    {
+      "id": "body",
+      "stageImage": {
+        "src": "/images/lion-info/04-zhi-jin.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 1006,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    },
+    {
+      "id": "trim",
+      "stageImage": {
+        "src": "/images/lion-info/05-yun-bian.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 935,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    },
+    {
+      "id": "mouth",
+      "stageImage": {
+        "src": "/images/lion-info/06-kou-chi.png",
+        "width": 1024,
+        "height": 1536,
+        "fit": "contain",
+        "filter": "none"
+      },
+      "sections": 5,
+      "scrollMetrics": {
+        "total": 987,
+        "height": 862,
+        "overflow": "auto"
+      },
+      "dialogClosed": true
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "assets": [
+    {
+      "name": "01-mei-mu",
+      "bytes": 3136110,
+      "sha256": "2612825440b837ddfff01e7e17164f0ec4c715d169a7204bad2c321e6b89fec4"
+    },
+    {
+      "name": "02-e-guan",
+      "bytes": 3163068,
+      "sha256": "6c97cf1318b3202fba25b01266e3718eaf082dfe16de209913da2503bd720db5"
+    },
+    {
+      "name": "03-fan-xu",
+      "bytes": 3064318,
+      "sha256": "426b13fabb5af44c3c5fe389f629c8ff843a0a366a1352da87ed1b68739617c6"
+    },
+    {
+      "name": "04-zhi-jin",
+      "bytes": 3502330,
+      "sha256": "d1a16f607e9e28cadce7fe78a075a9d0a1b7ed4fd6d4904a5c053beebc4bdc93"
+    },
+    {
+      "name": "05-yun-bian",
+      "bytes": 2772553,
+      "sha256": "35550297dc7b09a94d59b4348c5a6d2b852dfdd163b40f4781fe0d398c48cc6a"
+    },
+    {
+      "name": "06-kou-chi",
+      "bytes": 2686873,
+      "sha256": "cdf88a3c47d49d0ef639e4ec2c5582ae90348e0cc03a0df86013a7e32774fe8c"
+    }
+  ],
+  "desktopLayouts": [
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "background": "rgb(238, 234, 225)",
+      "stage": {
+        "left": 821.75,
+        "top": 72,
+        "right": 1251.828125,
+        "bottom": 776,
+        "width": 430.078125,
+        "height": 704
+      },
+      "frame": {
+        "right": 793.5999755859375
+      },
+      "renderedImage": {
+        "width": 430.078125,
+        "height": 645.1171875
+      }
+    },
+    {
+      "viewport": [
+        1536,
+        960
+      ],
+      "background": "rgb(238, 234, 225)",
+      "stage": {
+        "left": 986.109375,
+        "top": 72,
+        "right": 1502.203125,
+        "bottom": 936,
+        "width": 516.09375,
+        "height": 864
+      },
+      "frame": {
+        "right": 952.3200073242188
+      },
+      "renderedImage": {
+        "width": 516.09375,
+        "height": 774.140625
+      }
+    },
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "background": "rgb(238, 234, 225)",
+      "stage": {
+        "left": 1232.625,
+        "top": 72,
+        "right": 1877.734375,
+        "bottom": 1056,
+        "width": 645.109375,
+        "height": 984
+      },
+      "frame": {
+        "right": 1190.4000244140625
+      },
+      "renderedImage": {
+        "width": 645.109375,
+        "height": 967.6640625
+      }
+    },
+    {
+      "viewport": [
+        2560,
+        1440
+      ],
+      "background": "rgb(238, 234, 225)",
+      "stage": {
+        "left": 1635.1875,
+        "top": 72,
+        "right": 2511.984375,
+        "bottom": 1416,
+        "width": 876.796875,
+        "height": 1344
+      },
+      "frame": {
+        "right": 1587.199951171875
+      },
+      "renderedImage": {
+        "width": 876.796875,
+        "height": 1315.1953125
+      }
+    }
+  ],
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "layout": {
+      "width": 374,
+      "height": 828,
+      "columns": "372px",
+      "rows": "253.188px 572.812px"
+    },
+    "scroll": {
+      "total": 1025,
+      "height": 573,
+      "overflow": "auto"
+    },
+    "sourcesReachable": true,
+    "reducedMotion": true
+  },
+  "passed": true
+}

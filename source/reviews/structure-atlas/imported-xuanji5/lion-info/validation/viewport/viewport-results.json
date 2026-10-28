@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "test": "tests/viewport-browser.mjs",
+  "url": "http://127.0.0.1:5173",
+  "desktopViewports": [
+    "1920x1020",
+    "1920x1080",
+    "1536x960",
+    "2560x1080",
+    "1700x1000",
+    "2200x1080"
+  ],
+  "checks": [
+    "full source image remains uncropped and unmasked",
+    "image filter is none",
+    "empty image area uses solid #eeeae1 paper color",
+    "camera registration remains aligned across tested viewports",
+    "right information plate remains fully contained and uses matching paper color",
+    "handoff and return preserve model geometry"
+  ],
+  "errors": [],
+  "failedResponses": []
+}

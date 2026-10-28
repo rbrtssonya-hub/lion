@@ -1,0 +1,532 @@
+# 项目任务：广府醒狮交互式信息可视化拆解展位
+
+## 一、项目目标
+
+请在当前已有的 React + Vite + Three.js 网页项目中，完善广府醒狮文化信息可视化页面。
+
+这不是一个重新设计整个网站的任务，而是在现有页面基础上，完成右侧信息可视化展位、六张 ImageGen 拆解图片、部件讲解浮窗以及相应的交互逻辑。
+
+开始修改之前，必须先检查现有项目结构、页面组件、图片资源、醒狮模型资源和底部导航的实现方式。理解现有代码后再实施，尽量沿用现有组件、状态管理、样式体系和资源路径。
+
+不要直接重建项目，不要删除现有功能，不要重新制作醒狮模型，也不要随意改变左侧已经完成的主视觉。
+
+## 二、核心设计理念
+
+整个页面采用两层信息体验。
+
+第一层是视觉浏览层：
+
+- 左侧继续展示现有的醒狮主体或当前选中的局部特写。
+- 底部继续保留六个部件导航。
+- 右侧原本的绿色占位区域改为信息可视化拆解图片展位。
+- 右侧在默认状态下只展示图片，不出现标题、正文、图注、说明、按钮或其他文字 UI。
+- 图片应当具有足够高的美术质量，像一张经过专业设计的文化展陈信息图，而不是普通商品图片或程序生成的技术草图。
+
+第二层是深入阅读层：
+
+- 用户点击右侧拆解图片后，弹出与当前部件对应的文化讲解浮窗。
+- 浮窗中可以展示较丰富的中文内容，包括结构组成、造型特点、材质与工艺、视觉功能、文化内涵以及在醒狮表演中的作用。
+- 用户可以在浮窗中阅读详细内容，关闭浮窗后返回原页面。
+- 浮窗中的文化文字不应直接显示在右侧展位上。
+
+设计原则：
+
+**左侧展示醒狮的视觉形态，右侧展示醒狮的视觉结构，浮窗负责解释醒狮的文化内涵。**
+
+## 三、必须使用 ImageGen 生成六张真实图片资产
+
+这是本次任务的关键要求。
+
+请调用当前环境中实际可用的 ImageGen 图像生成能力，分别生成六张独立的信息可视化拆解图片。
+
+不要只输出生成提示词，也不要只创建六个空白图片占位符。必须实际生成图片、保存图片文件、接入网页并检查显示效果。
+
+如果当前 Codex 执行环境无法调用 ImageGen，请明确报告这一能力缺失，不要声称已经生成图片，也不要偷偷改用程序绘图代替。
+
+### 3.1 图片资源
+
+建议将六张图片保存到：
+
+- `public/assets/lion-info/01-mei-mu.png`
+- `public/assets/lion-info/02-e-guan.png`
+- `public/assets/lion-info/03-fan-xu.png`
+- `public/assets/lion-info/04-zhi-jin.png`
+- `public/assets/lion-info/05-yun-bian.png`
+- `public/assets/lion-info/06-kou-chi.png`
+
+如果当前项目已经有统一的资源管理规范，可以沿用现有规范，但必须保证六张图片均为真实生成并保存的资产，且路径正确。
+
+### 3.2 参考素材
+
+优先查找项目内已有的醒狮模型、模型截图、材质贴图、局部特写和设计参考图。
+
+如果能够取得现有模型的不同视角，请优先使用实际模型截图作为 ImageGen 的视觉参考。
+
+六张图片必须尽可能延续现有醒狮的具体造型特征，包括：
+
+- 鲜艳而深沉的中国红色绒毛。
+- 暖白色的繁须和毛发。
+- 红、金、青绿等颜色组成的传统织锦。
+- 金色金属质感的装饰环、珠饰和配件。
+- 现有模型实际具有的眼睛、额冠、口部及身体边饰结构。
+
+不要因为追求视觉效果而随意改变现有模型的颜色、造型和装饰体系。
+
+如果某个结构在现有模型中无法确认，就不要虚构精确的机械结构或传统构件名称。图片是具有艺术表现力的信息可视化拆解图，不是未经验证的工程图纸。
+
+### 3.3 六张图片的统一规范
+
+六张图片必须分别调用 ImageGen 生成，不能一次生成一张包含六个小图的拼图，再将其当成六张独立资产使用。
+
+统一要求：
+
+1. 竖版构图，优先采用约 2:3 的纵向比例，适配右侧较高的展位。
+2. 使用暖米白、象牙白或浅暖灰的纸张质感背景。
+3. 主体采用高质量三维渲染与精细的真实材质表现。
+4. 以醒狮红、暗朱红、暖白、旧金色和低饱和青绿色作为主要色彩。
+5. 允许使用细腻的朱红色辅助线、轮廓线、结构引线、圆形放大视窗和淡淡的设计草图。
+6. 采用高端文化展览、设计研究档案和精致产品拆解图的视觉语言。
+7. 保持足够的留白，让主要部件具有清晰的空间关系。
+8. 六张图应使用统一的光照、纸张背景、线条风格和配色体系，但构图与可视化方法必须根据各自部件的特点进行变化。
+
+严格禁止：
+
+- 生成可读文字、中文标题、英文标题、数字编号、图例、品牌标志或水印。
+- 生成网页按钮、浏览器界面、卡片式 UI 或整张网页截图。
+- 在图中出现大面积绿色占位矩形。
+- 使用低质量、模糊、过度塑料化或过于卡通的主体。
+- 将六张图设计成完全相同的构图，只替换中心物体。
+- 使用程序绘制复杂的信息图来冒充 ImageGen 生成的成品。
+
+图片中可以有精致的结构引线和辅助几何线，但不要出现文字标签。所有准确的部件名称与文化说明均由网页浮窗负责。
+
+如果生成结果出现错误文字、明显变形或不符合现有模型的装饰，应重新生成并检查，不能直接使用有明显问题的成品。
+
+## 四、六张 ImageGen 图片的具体生成要求
+
+请分别使用本文末尾提供的六条完整 ImageGen 提示词。
+
+生成时，每次只生成一张独立图片，并检查图片内容是否与对应部件匹配。
+
+### 图片 01：眉目
+
+文件名：`01-mei-mu.png`
+
+表现重点：
+
+- 醒狮眼部和眉部的结构拆解。
+- 红色眉部绒毛、眼眶装饰、金属装饰环、珠饰及眼部主体的空间层次。
+- 适当的爆炸拆解效果和局部放大视窗。
+- 重点呈现绒毛、金属与眼部表面之间的材质差异。
+
+### 图片 02：额冠
+
+文件名：`02-e-guan.png`
+
+表现重点：
+
+- 额冠中心装饰及其周围的环形结构。
+- 金色环形饰件、珠饰、中心装饰和织锦底层之间的层次。
+- 采用径向展开、同心结构或中心轴线构图。
+- 强调装饰的秩序、对称性和精致的材质层次。
+
+### 图片 03：繁须
+
+文件名：`03-fan-xu.png`
+
+表现重点：
+
+- 暖白色胡须、鬃毛及红色绒毛边饰。
+- 毛束层次、毛发方向、长短变化和柔性材质。
+- 使用流线、毛发走向和局部放大呈现其流动感。
+- 避免将繁须画成普通动物的写实胡须，应符合现有醒狮模型的造型。
+
+### 图片 04：织锦
+
+文件名：`04-zhi-jin.png`
+
+表现重点：
+
+- 从现有醒狮模型中提取的真实织锦纹样。
+- 纹样单元、重复构成、布料弯曲和色彩层次。
+- 使用布料局部、平面纹样提取和微观材质放大等视觉手法。
+- 不能凭空增加不属于现有模型的传统纹样。
+
+### 图片 05：云边
+
+文件名：`05-yun-bian.png`
+
+表现重点：
+
+- 现有模型中红色波浪形绒毛边饰或相应云形边饰。
+- 轮廓起伏、重复节奏、曲线走向和边缘结构。
+- 使用轮廓提取、曲线辅助线和三维局部展示。
+- 必须区分实际的云纹装饰与云形绒毛包边，不要混为一谈。
+
+### 图片 06：口齿
+
+文件名：`06-kou-chi.png`
+
+表现重点：
+
+- 醒狮口部、牙齿、口腔内部装饰、舌部装饰及周围绒毛。
+- 通过适当的空间错位表现不同可见部件之间的关系。
+- 使用局部放大强调牙齿边缘、红色口部、舌部装饰与白色繁须的材质细节。
+- 如果现有模型确实具有可动下颚，可以表现开合状态；如果没有，就只展示静态结构，不得虚构机械机构。
+
+## 五、右侧信息可视化展位的网页实现
+
+右侧区域是整个任务的视觉重点之一。
+
+请定位现有页面中的绿色占位容器，将其替换为一个图片展位组件，例如 `LionBreakdownStage`。
+
+组件名称可以根据项目现有命名规范调整。
+
+### 5.1 默认状态
+
+右侧展位只展示当前选中部件对应的一张 ImageGen 图片。
+
+例如：
+
+- 选中“眉目”，展示 `01-mei-mu.png`。
+- 选中“额冠”，展示 `02-e-guan.png`。
+- 选中“繁须”，展示 `03-fan-xu.png`。
+- 选中“织锦”，展示 `04-zhi-jin.png`。
+- 选中“云边”，展示 `05-yun-bian.png`。
+- 选中“口齿”，展示 `06-kou-chi.png`。
+
+右侧展位不得出现额外的可见文字。
+
+不添加图片标题、说明文字、序号、图注、操作提示、标签、按钮或装饰性文案。
+
+鼠标悬停时可以采用非常轻微的缩放、亮度变化或轮廓变化，让用户感知图片可以交互，但不要在图片上叠加明显的文字提示。
+
+### 5.2 图片显示规则
+
+- 图片应完整显示，不要因为容器裁切而丢失主要拆解部件。
+- 优先使用适当的 `object-fit: contain` 或等效的完整适配方案。
+- 保留统一的暖米白背景和精致的视觉边界。
+- 图片比例变化时，保持主体构图稳定。
+- 不要重新绘制图片中的复杂线条、材质和拆解结构。
+- 使用真实图片资源，不得用 CSS 渐变、SVG、Canvas 或 Three.js 重新构造图片内容。
+
+程序只负责展示和交互，不负责创造复杂图像。
+
+### 5.3 点击交互
+
+点击右侧整张拆解图片，打开当前选中部件对应的文化讲解浮窗。
+
+整张图片都应可点击，不能只设置一个很小的热点，导致用户难以触发。
+
+可以使用图片外层的可访问交互容器实现点击功能。
+
+如果后续能够根据生成图片中清晰分离的组件可靠地设置透明热区，可以进一步支持点击具体子部件；但这不是首要任务，不要为了实现复杂热点而牺牲稳定性或擅自绘制可见标签。
+
+默认要求是：点击整张图即可进入当前部件的详细讲解。
+
+## 六、文化讲解浮窗
+
+请实现一个具有高品质文化展陈视觉风格的浮窗，而不是浏览器默认弹窗，也不是简单的 Toast 提示。
+
+建议使用居中的模态浮窗，带有柔和的背景遮罩、轻微的背景模糊和克制的进入动画。
+
+### 6.1 浮窗布局
+
+桌面端可以采用左右双栏布局：
+
+- 左侧约占 40%：展示当前部件对应的信息可视化拆解图片，作为视觉锚点。
+- 右侧约占 60%：展示详细文化讲解。
+- 整体宽度建议约为视口的 75%—85%，同时设置合理的最大宽度。
+- 高度不得超出屏幕可用区域，正文区域允许独立滚动。
+- 标题区域与正文区域应有清晰的层级关系。
+- 关闭按钮应易于找到，但不能喧宾夺主。
+
+移动端改为纵向布局，保证图片与正文都可以完整查看。
+
+浮窗内部的文化文字可以较为丰富，但不要把所有内容堆成一大段。应通过标题、短段落、细分章节、重点语句和适当的留白组织阅读节奏。
+
+### 6.2 浮窗内容结构
+
+每个部件至少包含以下内容模块：
+
+1. 部件名称与简短导语。
+2. 形态构成：解释该部件在当前模型中的外观与组成。
+3. 造型功能：解释该部件如何参与醒狮整体的形象表达。
+4. 材质与工艺：介绍可确认的材质特征、装饰方式和视觉质感。
+5. 文化观察：解释其与广府醒狮审美、民俗装饰和表演文化之间的联系。
+6. 细节观察：指出观众可以从模型中进一步观察的具体特征。
+
+文化内容应当有实际信息量，不要反复使用“精美”“生动”“独特”等空泛形容词凑字数。
+
+特别注意：不能把对当前模型的视觉推测直接写成已经得到证实的历史事实。对于特定纹样的象征寓意、工艺来源和具体制作机制，如果没有可靠依据，就应采用审慎的表述，或只讨论可观察到的造型特点。
+
+### 6.3 六个部件的讲解方向
+
+#### 眉目
+
+重点解释：
+
+- 红色眉部绒毛、眼眶装饰、眼部主体之间的层次关系。
+- 软质绒毛、光滑眼部表面与金属质感装饰形成的视觉对比。
+- 夸张的眼部造型如何增强醒狮的表情表现力。
+- 眼部细节如何影响整只醒狮的精神面貌和视觉焦点。
+- 传统舞狮审美中对神态表现的重视。
+
+避免将醒狮眼部简单解释成真实动物眼睛的解剖结构。
+
+#### 额冠
+
+重点解释：
+
+- 中心装饰、环形饰件、珠饰与织锦底层之间的组合关系。
+- 额冠如何形成醒狮头部的视觉中心。
+- 环形、对称和层叠结构如何组织装饰层次。
+- 金属质感、彩绘和织物之间的视觉关系。
+- 传统民俗装饰中繁复装饰与整体形象之间的联系。
+
+不要在没有依据的情况下，为每一个装饰环或珠饰指定固定的吉祥寓意。
+
+#### 繁须
+
+重点解释：
+
+- 白色繁须、毛束和红色绒毛边饰的层次关系。
+- 毛发的长度、密度、方向和弯曲如何塑造体积。
+- 白色与红色的对比如何强化醒狮头部的视觉层次。
+- 繁须在整体轮廓、表情和动态观感中的作用。
+- 实际表演中柔性装饰可能呈现的摆动与流动效果。
+
+区分当前三维模型的材质表现与真实醒狮道具的制作工艺，不要把推测写成确定事实。
+
+#### 织锦
+
+重点解释：
+
+- 模型中实际存在的纹样、颜色和布料结构。
+- 纹样单元如何重复、排列并形成整体图案。
+- 红、金、青绿等颜色如何形成视觉节奏。
+- 织锦如何丰富醒狮大面积红色表面的层次。
+- 传统织物装饰与民俗审美之间的关系。
+
+如果无法确认具体工艺是织造、刺绣、印花还是三维贴图，应以可观察的纹样和材质表现为主，不得擅自断言。
+
+#### 云边
+
+重点解释：
+
+- 红色波浪形绒毛边饰的轮廓与排列方式。
+- 曲线的起伏和重复如何产生装饰节奏。
+- 边饰如何分隔醒狮身体上的不同视觉区域。
+- 线条、绒毛和织锦之间如何形成材质对比。
+- 实际云纹与云形轮廓装饰之间的区别。
+
+不要将所有波浪形边饰都直接认定为传统云纹。
+
+#### 口齿
+
+重点解释：
+
+- 口部轮廓、牙齿、舌部装饰和周围繁须之间的关系。
+- 红色口部与暖白牙齿、白色毛发之间的对比。
+- 口部如何参与醒狮表情的塑造。
+- 如果当前模型支持口部动画，可以说明开合状态与表演表现之间的关系。
+- 口部装饰如何与整只醒狮的视觉风格相协调。
+
+如果模型没有可动结构，不要虚构真实道具的机械开合机制。
+
+## 七、交互状态与代码结构
+
+请使用清晰、可维护的组件结构，具体名称可根据现有项目调整。
+
+可以参考以下职责划分：
+
+- `LionBreakdownStage`：负责右侧图片展示和点击交互。
+- `LionDetailModal`：负责浮窗布局、显示、关闭和正文滚动。
+- `lionBreakdownData`：保存六个部件的图片路径、标题、导语和讲解内容。
+- 现有页面组件：负责同步底部导航、左侧主视觉与右侧展位的当前选中状态。
+
+不要为了这些功能引入不必要的大型依赖。如果项目已有动画库，可以沿用；否则使用轻量的 CSS 过渡即可。
+
+交互要求：
+
+1. 点击底部任一部件，左侧现有内容和右侧拆解图同步切换。
+2. 点击右侧图片，打开当前部件的浮窗。
+3. 点击关闭按钮，关闭浮窗。
+4. 点击浮窗以外的遮罩区域，可以关闭浮窗。
+5. 按下 Escape 键，可以关闭浮窗。
+6. 打开浮窗时，不能改变当前选中的部件。
+7. 关闭浮窗后，应返回打开前的页面状态。
+8. 浮窗打开时，避免背景页面继续响应不必要的滚动操作。
+9. 交互元素应具备基本的键盘可操作性、可访问名称和清晰的焦点状态。
+10. 动画应轻柔克制，并兼容减少动态效果的系统偏好。
+
+不要在右侧展位中额外添加显眼的交互控件。所有较复杂的阅读和说明都放在浮窗中。
+
+## 八、视觉与排版要求
+
+整套页面应延续现有的广府醒狮视觉语言：
+
+- 暖米白纸张背景。
+- 醒狮红与暗朱红。
+- 旧金色、暖铜色。
+- 低饱和青绿色。
+- 精细但克制的辅助线。
+- 有质感的三维图像与充足留白。
+
+右侧原本的纯绿色占位区域应彻底替换为实际拆解图片展位。
+
+不要把页面改成常见的后台管理系统、数据仪表盘或普通商品详情页。
+
+不要在右侧图片旁边增加一栏文化文字，也不要为了展示更多信息而挤压图片。
+
+页面主体的视觉层级应该是：
+
+1. 左侧醒狮主体。
+2. 右侧拆解图片。
+3. 底部六个元素导航。
+4. 用户主动打开后出现的文化讲解浮窗。
+
+## 九、实施与验收
+
+请按照以下顺序执行：
+
+第一步：检查现有项目，确认目标页面、六个部件导航、醒狮模型和资源管理方式。
+
+第二步：查找可用于 ImageGen 的模型参考图片，准备六条生成提示词。
+
+第三步：分别调用 ImageGen 生成六张独立图片，检查质量、构图、模型特征和统一性。
+
+第四步：将六张图片保存到项目资源目录，并确认文件真实存在。
+
+第五步：修改现有页面，使用六张图片替换右侧绿色占位区域。
+
+第六步：实现图片点击、文化讲解浮窗、关闭逻辑以及导航状态同步。
+
+第七步：检查桌面端和移动端的排版、图片比例、浮窗滚动和交互状态。
+
+第八步：运行项目已有的构建或检查命令，修复本次修改引入的错误。
+
+验收标准：
+
+- 六张独立的 ImageGen 图片已实际生成。
+- 六张图片均已保存到项目中，并且网页能够正常加载。
+- 六张图的视觉风格统一，但信息可视化表达各不相同。
+- 右侧默认状态只有拆解图片，没有可见文字 UI。
+- 点击右侧图片，可以打开对应部件的讲解浮窗。
+- 六个底部导航均能正确切换对应图片和讲解内容。
+- 浮窗内容具有实际信息量，文化事实表述谨慎。
+- 原有醒狮主体和页面功能没有被无故破坏。
+- 没有用程序绘制复杂图片来代替 ImageGen。
+- 项目可以正常运行，资源路径没有错误。
+
+完成后，请简要汇报修改了哪些组件、六张图片保存在哪里、浮窗交互如何工作，以及构建检查是否通过。不要仅汇报计划，必须以实际完成的结果为准。
+
+---
+
+# 附录：六张 ImageGen 拆解图片提示词
+
+以下六条提示词必须分别调用 ImageGen。每条都应生成一张独立图片，不得合并成拼图。
+
+## Prompt 01 — 眉目 / Eye Assembly
+
+Create a premium, high-end Chinese cultural exhibition infographic focused on the eye and eyebrow assembly of an ornate Cantonese lion dance head.
+
+Use the existing lion head model or supplied model screenshots as the primary visual reference. Preserve the actual design language: rich crimson-red plush eyebrows, a dramatic expressive eye, warm ivory and red eye-rim details, dark glossy eye surfaces, antique gold decorative rings and small metallic ornaments. Do not invent unrelated components.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory handmade-paper background, subtle vermilion technical sketch lines, restrained antique-gold accents, delicate construction arcs and elegant circular macro-detail insets.
+
+Present one dominant eye assembly as a sophisticated three-dimensional exploded-view study. Separate only the visibly identifiable layers in a coherent spatial sequence: the outer red plush eyebrow, the surrounding decorative rim, the ornamental ring and bead details, and the central eye assembly. Use realistic spacing between components so their relationships can be understood immediately.
+
+Show a few exquisite close-up details of plush fibers, glossy surfaces and metallic ornamentation. Use refined lighting, realistic materials, intricate but believable craftsmanship, elegant negative space and editorial-quality composition. The result should feel like a beautifully art-directed cultural design research plate, not a mechanical engineering diagram.
+
+Maintain a clear visual hierarchy and generous breathing room. Fine red leader lines may connect the components visually, but do not add labels.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. High visual fidelity and polished professional art direction.
+
+## Prompt 02 — 额冠 / Forehead Crest
+
+Create a premium Chinese cultural exhibition infographic showing the decorative structure of the forehead crest of the supplied Cantonese lion dance head.
+
+Use the actual lion model and reference screenshots to preserve its specific forehead ornament, concentric gold rings, small gold beads, central decorative elements and patterned textile backing. Maintain the same red, warm ivory, antique gold, coral and muted jade-green palette as the other images in this series.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory handmade-paper background, subtle vermilion construction sketches, elegant concentric circles, delicate radial guidelines and restrained gold accents.
+
+Present the forehead crest as a refined three-dimensional radial exploded view. The main ornament should remain visually recognizable as part of the actual lion head. Separate the visible decorative layers into a harmonious spatial arrangement: the central ornament, surrounding rings, bead-like details and patterned backing. Show the relationships between these layers without turning the object into an invented mechanical device.
+
+Include one or two beautiful macro-detail insets focusing on the gold finish, bead details and textile surface. Use realistic materials, finely controlled highlights, sophisticated depth and carefully balanced negative space.
+
+The overall composition should resemble a museum-grade decorative object study combined with an elegant contemporary cultural infographic. It should communicate symmetry, layering, ornament and craftsmanship through visual form alone.
+
+Use subtle red technical lines and graceful circular construction geometry. Keep the main object dominant and all secondary details clearly separated.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. Preserve the actual model's recognizable design and maintain consistency with the complete six-image series.
+
+## Prompt 03 — 繁须 / Flowing Beard and Fur
+
+Create a premium, visually sophisticated Chinese cultural exhibition infographic exploring the flowing white beard, whiskers and plush fur details of the supplied Cantonese lion dance model.
+
+Use the existing lion model or reference images to preserve the real design: long warm-white flowing beard fibers, red plush trim, soft layered fur bundles and the characteristic transitions between the white mane and crimson decorative edges. Do not replace these features with ordinary animal anatomy.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory paper background with delicate vermilion contour sketches, subtle flowing curves and restrained antique-gold accents. Match the same lighting, color palette, material quality and editorial style used across the other five images.
+
+Build the main composition around an elegant three-dimensional study of flowing beard and fur layers. Show several clearly separated tufts and layered bundles, with their lengths, density and directions made visually understandable. Use graceful directional curves to suggest the flow of the fibers. Include a refined macro-detail view of individual strands and another view of the transition between white fibers and red plush trim.
+
+The image should express softness, volume, rhythm and movement through realistic materials rather than explanatory text. Use exquisite fiber detail, gentle shadows, natural-looking strand variation and sophisticated studio lighting.
+
+Allow subtle technical leader lines and abstract directional guides, but avoid a crowded diagram. Keep the main fur structure large, elegant and easy to recognize. The composition should feel tactile, art-directed and appropriate for a high-end digital exhibition about traditional lion dance craftsmanship.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. Do not invent mechanisms or unsupported anatomical structures.
+
+## Prompt 04 — 织锦 / Brocade Pattern Study
+
+Create a premium Chinese cultural exhibition infographic studying the actual patterned textile and decorative brocade on the supplied Cantonese lion dance model.
+
+Use the existing model's textile appearance as the primary reference. Preserve its specific combination of crimson red, coral, antique gold and muted jade green, along with the visible floral or ornamental motifs. Do not invent unrelated historical emblems or replace the original pattern with generic decoration.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory handmade-paper background, delicate vermilion sketch lines, understated gold accents and a refined editorial art direction consistent with the other images in this series.
+
+Create an elegant visual study combining one dominant curved or draped brocade panel with several carefully arranged pattern studies. Show the relationship between the original three-dimensional fabric surface, a cleanly extracted flat pattern sample and a magnified view of the textile's visible surface detail.
+
+Use a sophisticated composition to demonstrate pattern repetition, ornamental rhythm, color relationships and the way the fabric bends around the lion head or body. If the reference reveals embroidered or woven details, reproduce them faithfully; otherwise, do not invent a specific manufacturing technique.
+
+The material should feel rich and tactile, with realistic fabric folds, subtle surface relief, precise ornamental detail and carefully controlled highlights. The pattern sample should be visually connected to the main textile, not presented as an unrelated decorative tile.
+
+Keep the image spacious, elegant and highly legible at a glance. The result should resemble a beautifully art-directed textile research plate for a contemporary museum exhibition, combining three-dimensional material realism and refined graphic analysis.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. Preserve the actual reference pattern as closely as possible.
+
+## Prompt 05 — 云边 / Decorative Edge and Contour Study
+
+Create a premium Chinese cultural exhibition infographic studying the red plush wave-shaped decorative edging and visible contour details of the supplied Cantonese lion dance model.
+
+Use the actual model as the primary visual reference. Preserve the real crimson plush edging, its repeated curves and its relationship to the patterned fabric and white fur. Do not automatically turn every wavy edge into a traditional cloud motif unless such a motif is clearly present in the reference.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory handmade-paper background, restrained vermilion contour drawings, elegant curved construction lines, subtle antique-gold details and a consistent high-end cultural exhibition aesthetic.
+
+Build the composition around a dominant three-dimensional section of the actual decorative edging. Show its repeated wave rhythm, rounded plush volume, curvature, edge transitions and relationship to the underlying patterned textile.
+
+Include a carefully simplified contour study beside or behind the main object, showing how the repeated silhouette creates visual rhythm. Add a close-up of the plush surface and the boundary between the red trim and the fabric beneath it. Use delicate guide curves and spatial separation to make the form easy to understand without labels.
+
+The main object should feel physically tactile, with realistic fibers, natural shadows, rich red tones and sophisticated studio lighting. The contour diagram should be elegant and restrained, more like a designer's formal analysis than a technical engineering schematic.
+
+Use generous negative space. Keep the main decorative structure recognizable and avoid excessive secondary ornaments. Match the paper texture, palette, line quality and rendering style of the other five images.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. Do not confuse plush edging with independently verified traditional cloud-pattern symbolism.
+
+## Prompt 06 — 口齿 / Mouth Assembly
+
+Create a premium Chinese cultural exhibition infographic focused on the mouth, teeth and tongue decoration of the supplied Cantonese lion dance head.
+
+Use the actual lion model or supplied reference screenshots to preserve its recognizable mouth design: rich red mouth contours, ivory teeth, visible tongue ornament, surrounding white beard and crimson plush details. Maintain the original model's decorative language and do not transform the lion head into a realistic animal skull or an invented mechanical mouth.
+
+Portrait composition, approximately 2:3 aspect ratio. Warm ivory handmade-paper background, delicate vermilion technical sketches, restrained antique-gold accents and the same refined art direction as the other five images.
+
+Present the mouth assembly as an elegant three-dimensional exploded-view study. Separate the clearly visible upper mouth contour, teeth row, interior decorative surface, tongue ornament and lower mouth components into a coherent spatial arrangement. Preserve the original forms and proportions wherever possible.
+
+Include a refined macro-detail view of the ivory teeth, the red mouth border and the tongue's ornamental surface. Emphasize the contrast between soft white beard fibers, rich red plush material, smooth ivory surfaces and metallic or painted decorative details.
+
+The image should explain the mouth's visual construction through spatial separation and carefully arranged details, not through written labels. If the reference model has a genuine articulated jaw, a subtle secondary view may illustrate its actual opening states. If no such mechanism is visible or supported by the model, keep the study static and do not invent gears, hinges or internal machinery.
+
+Use realistic material rendering, soft but directional lighting, elegant shadows, clear component separation and generous negative space. The final image should resemble a sophisticated museum-quality object decomposition plate.
+
+Absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no legends, no logos, no watermarks, no UI, no green placeholder blocks, no collage grid. One standalone finished infographic image. Preserve the real lion model's visual identity and the shared six-image design language.

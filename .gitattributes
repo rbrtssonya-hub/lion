@@ -43,3 +43,8 @@ source/reviews/xiaoxing/**/capture.json -text
 
 # Keep the encoded map frame comparison byte-identical to its asset record.
 source/references/spread-map-motion/frame-comparison.json -text
+
+# Retain imported source and historic review evidence byte for byte.
+source/archives/xuanji5/** -text
+source/reviews/structure-atlas/imported-xuanji5/** -text
+source/public/assets/structure-atlas/fonts/OFL.txt -text

@@ -5643,6 +5643,1656 @@
       "path": "source/references/spread-map-motion/frame-comparison.json",
       "bytes": 1175,
       "sha256": "3bf64cc556bf37fd67c0bffd9c32a4ca8e69067820dc1675de56f35ac1c113fa"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/beard.png",
+      "bytes": 2649480,
+      "sha256": "cd2cd6c1325e6bd0fc7dff07e518c26e95962315a95fd8bee19192413c2308c6"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/body.png",
+      "bytes": 3068388,
+      "sha256": "38ac2779f8060235d9bc3c2eabbbb56806fbb90762f2497208d51a00192dc555"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/brows.png",
+      "bytes": 3015495,
+      "sha256": "67d8c1ca47f1ccd040bd84f7d8ed272c3e01c6d35e536a377e9aa059b30a2cab"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/crown.png",
+      "bytes": 2697910,
+      "sha256": "c0fea154ba2cffc09d397236d3efee1708c9f856322208c64c75d2ef256e0aa3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/mouth.png",
+      "bytes": 2721115,
+      "sha256": "d2db855b45d98ce65eabe6e0275ef34e48ca8c66abbc01688f2204d6198c438b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/chapters/trim.png",
+      "bytes": 2849825,
+      "sha256": "655742832fc6209d747408122a84e9218e38e862c55fbf8367c69cfb8df3d8ed"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/beard.png",
+      "bytes": 2345520,
+      "sha256": "7e72f959d2a53b2a0245f0a2ac1c8b6a472ccbf1c88c709565f5a78bc328b542"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/body.png",
+      "bytes": 3227645,
+      "sha256": "fe6db055b93cf4563a8a9346bea9f63cac60090412c7ec157ab83ce2d4655771"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/brows.png",
+      "bytes": 2545782,
+      "sha256": "a25ce823b7289c5d3ff3a1109864bf3279d8cfbdb4ba5658f57ec025c36553d3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/crown.png",
+      "bytes": 2683358,
+      "sha256": "24291a15ab614d742930bc3f7817ab8a7a592558d81533ab27385475afdb4a8f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/mouth.png",
+      "bytes": 2434358,
+      "sha256": "5a025c7415b810ffb415345135bf17a106244bc1f7723644eb818f860d739a7b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/culture/trim.png",
+      "bytes": 2941838,
+      "sha256": "33767cf524f5fd921fe83ab0871e724d0573422f18fe356e0d7130bba9651b70"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/gaze-study.png",
+      "bytes": 3096938,
+      "sha256": "56bbed148b6515cc1de2902949199a0e7b1eea84e4f2495fe3438a870bbffc86"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/mane-study.png",
+      "bytes": 2830442,
+      "sha256": "7cc3fff1798e5fb0105d5dddd2119bc518dc4a1b44ab43758ed8e1ea6e3320d7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/public/images/textile-study.png",
+      "bytes": 3144781,
+      "sha256": "8a40fd3d8da87740dec3daab67aa2c952d0f816f6fe587fc7b14b9a1ae842e35"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/archives/xuanji5/source/设计感拉满的醒狮文化主题竞赛展版以“醒狮文化”为概念来源，将狮舞中的鬃毛、云纹、眼部神韵、鼓点节奏与民俗色彩进行抽象转译，生成一系列具有公共.mp4",
+      "bytes": 10231796,
+      "sha256": "2e487a0e14d6ab0096c4307c0e67088b4729ca77d04af2aa74d8e000f6364aea"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/fonts/atlas-serif.woff2",
+      "bytes": 159528,
+      "sha256": "4cd173108470565a845870eceb21f3457d70865d3581ecb0eccb4d374c0b17d1"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/beard.png",
+      "bytes": 2289702,
+      "sha256": "4b5f81d00e89d51f6971ccaf6f4a91f75bdf1ac2107557ed4a2dd8f4d022fb04"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/body.png",
+      "bytes": 2759575,
+      "sha256": "b0918835705984a70cecc42cd1be3e1032c6a44f94b6f4965b41d90168543aa7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/brows.png",
+      "bytes": 2469462,
+      "sha256": "47fea9358e9f104db8ef7004857418f4ab30d6ad1f2b97e1aa13424ad5c27b94"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/crown.png",
+      "bytes": 2356416,
+      "sha256": "a051d6b738b5c562ab566bbbfd636836269e4ea678fceff1c8e1cde1cb6e3386"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/mouth.png",
+      "bytes": 2612064,
+      "sha256": "b604054cb0249ea0c04f77b3effbd696095a7a73eb7036a34b383a9aa82d361e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x10/trim.png",
+      "bytes": 2600670,
+      "sha256": "5a704488ad67e504aac73ce474dfcc4c740d95f13c7efada9c0b1eb6fc1efa12"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/beard.png",
+      "bytes": 2158309,
+      "sha256": "44d2a51e1893aa50347857b6594560ef46a2bfd38a5043d7cf100b197b5beffc"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/body.png",
+      "bytes": 2660068,
+      "sha256": "7a27cc4da199cc1552cd4f95fc872ebda795c8d99960f82735663a785e13643c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/brows.png",
+      "bytes": 2166726,
+      "sha256": "eb81000adc40b907dddc482798eeed9e9c7c6dd93d8a0f2c3d069afddd550866"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/crown.png",
+      "bytes": 2243352,
+      "sha256": "b27758cc59f57c76e8730ae486eb088c6b122e854c7b0fb331ab7e2ecb255043"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/mouth.png",
+      "bytes": 2448535,
+      "sha256": "4d5032b39e69ba1a6913201f4cc6e0f15aa1a094e823aea84e5573a83f63028c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/16x9/trim.png",
+      "bytes": 2676845,
+      "sha256": "ede3844ac585c9f76c99190e4f26562d81b254708c2e7237dcd9205c231d5eaa"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/beard.png",
+      "bytes": 2344950,
+      "sha256": "2b981d0906f91173863b63231e789a05dce48829c371b7d13b36f1e1a52e57a4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/body.png",
+      "bytes": 2402766,
+      "sha256": "2972aa762fc730bb48c922d27c21866e4f6e9bf45c5887e65437adab21851b6f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/brows.png",
+      "bytes": 2195969,
+      "sha256": "e4a3075bb3f2d03ec4594550db4c19387eda57d053b59758ad81610ce4db559b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/crown.png",
+      "bytes": 2207997,
+      "sha256": "6a8f409b7861102c14c60963048a56516dcdd0df1e2235b2de39b283afa5c3c9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/mouth.png",
+      "bytes": 2371799,
+      "sha256": "0313ce7f8a014f5f8f02795a3fbc6cc06c10be0c4492e37c0cbdf260ab97de2f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/trim.png",
+      "bytes": 2222713,
+      "sha256": "555374cf4366428aec2ff1d90ddc83c333aa0708a71e51d163135a72b8c4c439"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/beard.png",
+      "bytes": 2043784,
+      "sha256": "601ad4d12030dc0c79acf042c247d40eb50d5a6d737d0c27d31a6a0cc5ce6c43"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/body.png",
+      "bytes": 2219108,
+      "sha256": "d4d47181ba553c078e5ed866738727585d280e0c4a9a6f507c3da46e28d4c2aa"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/brows.png",
+      "bytes": 2061963,
+      "sha256": "0dce5bf734258527cc2ed61fabb0774a300832bcbfc5df45fc528a83b76dd20d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/crown.png",
+      "bytes": 2118233,
+      "sha256": "4267fea706dae6e16fc4fb01d9d993665e5c704b5fe40e16bb2c9a0d5d8c23ba"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/mouth.png",
+      "bytes": 2363619,
+      "sha256": "abcb798300ba82291eb233bad4b9b54f2a531a2706db4e884eabb57d02912920"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/fullscreen/ultrawide/trim.png",
+      "bytes": 2088453,
+      "sha256": "2299ae7beb8b9e4e0584e2390ec30f31e4b673a8882d5d8897931179b1139ac3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/01-mei-mu.png",
+      "bytes": 3136110,
+      "sha256": "2612825440b837ddfff01e7e17164f0ec4c715d169a7204bad2c321e6b89fec4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/02-e-guan.png",
+      "bytes": 3163068,
+      "sha256": "6c97cf1318b3202fba25b01266e3718eaf082dfe16de209913da2503bd720db5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/03-fan-xu.png",
+      "bytes": 3064318,
+      "sha256": "426b13fabb5af44c3c5fe389f629c8ff843a0a366a1352da87ed1b68739617c6"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/04-zhi-jin.png",
+      "bytes": 3502330,
+      "sha256": "d1a16f607e9e28cadce7fe78a075a9d0a1b7ed4fd6d4904a5c053beebc4bdc93"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/05-yun-bian.png",
+      "bytes": 2772553,
+      "sha256": "35550297dc7b09a94d59b4348c5a6d2b852dfdd163b40f4781fe0d398c48cc6a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/lion-info/06-kou-chi.png",
+      "bytes": 2686873,
+      "sha256": "cdf88a3c47d49d0ef639e4ec2c5582ae90348e0cc03a0df86013a7e32774fe8c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/beard.png",
+      "bytes": 2621656,
+      "sha256": "4ffa8f175cb4e41df5c51787de5ec04e6fe0cb1fd9cd6885f129df4d50382310"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/body.png",
+      "bytes": 3000398,
+      "sha256": "2baff97e9e49ba07d50bfea2de94be2b287fd2f341af412dc05ee31601d0eddb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/brows.png",
+      "bytes": 2596149,
+      "sha256": "0cdfcaee1b47576f582b0f74e3bfbaad043471c5e73b414efcb2892d5097f038"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/crown.png",
+      "bytes": 2105889,
+      "sha256": "a22f62c0ea72244415ddaa6ac3f57a469aecfee6342f9c1fff06dca7dc5b04fd"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/mouth.png",
+      "bytes": 2883102,
+      "sha256": "491e62a1d34fcd956d02dd8811e140a7da18db324e515f0523349313b213b1b1"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/images/navigation/trim.png",
+      "bytes": 2568097,
+      "sha256": "5114277e3e5a331e5f06c3295e2c6974a24abc1d9b64774d25b201a401b95a21"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/beard-study-1920.png",
+      "bytes": 2847256,
+      "sha256": "2688a9508abcc1c9624482a87238473649aa187ce6fcce032c891e929895e300"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/body-study-1920.png",
+      "bytes": 2948737,
+      "sha256": "7869bc96fc4c41dbfcc125c4851cff735e16f5ed60488b7100e19acb62b0ec6c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/body-study-settings-push-1920.png",
+      "bytes": 2690835,
+      "sha256": "6daf2314193a5d66efdfdd834cbd18fff5edc16a960579b4bc930f81599e3131"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/brows-cultural-modal-1920.png",
+      "bytes": 1553907,
+      "sha256": "5a7af72d5ca8aec0464b131d9a24562c40e5784fe70fb7517ade634fdd53f85d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/brows-study-1920.png",
+      "bytes": 2809684,
+      "sha256": "68031723d16e770807fb8b48cf7a8ccb78025b2deca157e6a82bc22c8defcc40"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/crown-study-1920.png",
+      "bytes": 2814777,
+      "sha256": "f2808b1ff4a1eb4f7e1b8f557f652e76f271fbb5662a66fd3de5cc729f5eed68"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/mouth-study-1920.png",
+      "bytes": 2749553,
+      "sha256": "02e45556339f3e3036aa1bced4f429c6bc84eb588e7863427b13d40940b3cb95"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/overview-1920.png",
+      "bytes": 2689934,
+      "sha256": "2d9a7d483a444bdf9fa4be88e69c16f62c5e2ddc7127ccd5b8fae5daf3ea2416"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/trim-study-1366.png",
+      "bytes": 1396684,
+      "sha256": "477e670d835b911e89685036d69bfbb6fe2f8c3c59c2fcd63d0689a27152e1e9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/trim-study-1920.png",
+      "bytes": 2732196,
+      "sha256": "8411d2bc5ddfb572a88b9f6d5adc9d4efe425be8767490c32c3ba5cedfc93ba1"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/2026-10-28/trim-study-2560.png",
+      "bytes": 3256423,
+      "sha256": "08a315588e28d86bbf184c8c17eb6564861587212903ba2ec28e49d5016cb278"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-1280-body.png",
+      "bytes": 1358374,
+      "sha256": "b06f802e3cbf963dc2e235b5c02d8a6a9114c693d883ede8e33ac8b8e9d0dce4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-1280.png",
+      "bytes": 1171561,
+      "sha256": "84b6bc48555ff5ef02ed25943ca5003e006b93335b62ec9da0c86e1a6e390725"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-beard-parameter.png",
+      "bytes": 1656859,
+      "sha256": "c007540a32a91052f1c02993c6da92e2b5813721df4d98a71306d948ea3ea429"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-beard.png",
+      "bytes": 1755106,
+      "sha256": "7ae9778ea792fc082cf9d8416bc77adf0f9038bd391d9c25b0fdac1de7723e1b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-body-parameter.png",
+      "bytes": 1686388,
+      "sha256": "0039d2f499d4b834a8a2e802c53239fdbdfeb099360574d6832c0fc968fc15e7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-body.png",
+      "bytes": 1834758,
+      "sha256": "4a3c81c9b0fd5a19ccbc8225e26909f3942e3878f6cf0e8ba4d3d68d2a96677b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-brows-parameter.png",
+      "bytes": 1614231,
+      "sha256": "3aac67eca9eec2cf7b247eab05e3a36fbf1497cc1e6e590952f97202d99d8281"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-brows.png",
+      "bytes": 1746968,
+      "sha256": "724e18d877377fdef67d5d023bdb34deab3e8517fd24d5b6466ea5fd54dcbfc3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-crown-parameter.png",
+      "bytes": 1623863,
+      "sha256": "9dcafaba0fb848c96265a84f8776888cd1b6f01f88ca2bbfb60dc1ad41f7a0ac"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-crown.png",
+      "bytes": 1750479,
+      "sha256": "1d6f9f44d16bba818040f9907bedc47cabeac391209c98a0e7fc440d0ebc430b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-mouth-parameter.png",
+      "bytes": 1529495,
+      "sha256": "d6c2ce3de6b331cc444a0f6b0e62daccfcfb28310bfea8d040d907700ffc37e9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-mouth.png",
+      "bytes": 1637705,
+      "sha256": "e6ab330c4c7e109fc5ee6fe965cd6729e245bed3d424d6bb3aa447af4726597c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-overview.png",
+      "bytes": 1550799,
+      "sha256": "c756b153ffbee2e6e34c8ea5dbf0de430b96b7d74f41b555b4dc60c345ca52e0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-trim-parameter.png",
+      "bytes": 1646259,
+      "sha256": "cf16c5809b31f09bfa83f0b88cd0792d6a6806ea242e52a8f1df8d22ea50beaa"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/desktop-trim.png",
+      "bytes": 1794645,
+      "sha256": "057fcd4b10906b4aed2ac838ae7c76e43ef818fac9ca3213b1742631bbc486b2"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/beard-culture.png",
+      "bytes": 1768797,
+      "sha256": "283ee5c6262a815f923f333469ddbca718f0c90621930b098ad9401eba649935"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/beard-data.png",
+      "bytes": 1716340,
+      "sha256": "5358f73717f67534ebb9decd7890f462944eede8fd2ef8d2ecc25baa7741c383"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/body-culture.png",
+      "bytes": 1904025,
+      "sha256": "9d48830588df25d5098d9b2ebe6e47ac4dd958fde447dc6eaa9a0ef322ba0ced"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/body-data.png",
+      "bytes": 1844713,
+      "sha256": "e9b256ded95a84d7bdb04f99c909c7617476c762fa6572284380d1569dccd33f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-culture-reading.png",
+      "bytes": 1790188,
+      "sha256": "a002d22fdd3aaa4940761c3163be5e65c7b1e5745cc8210dadb65e8522efe815"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-culture.png",
+      "bytes": 1841110,
+      "sha256": "ce577266016382a196a967267a1d5a86977330ef5781da753d146539b9fc077d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/brows-detail-in-view.png",
+      "bytes": 1838839,
+      "sha256": "75c1b83267a462fdc97838050d84e76f8ccfe8bddaeffac4b3ddf488014aaeea"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/crown-culture.png",
+      "bytes": 1788014,
+      "sha256": "d52f62dd11f4e9e24a6f7f3194ff285a84834b78068ebe5c9959a5a6952cb240"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/crown-data.png",
+      "bytes": 1720089,
+      "sha256": "bacd00d7f5bd415edd93887d8f3bfd7ac9675aff93cf5bd34b56f57f714287b3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/desktop-1280.png",
+      "bytes": 1360867,
+      "sha256": "ef1a43392a08d295081eec4a245e193c7d148d832d46e442c53cba27945eaa8f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/desktop-1920.png",
+      "bytes": 2716005,
+      "sha256": "52d2f8e019f58aa452376530aee118bc0bb67c299336ab57d7be8bf2fbb9bac7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/home-art-navigation.png",
+      "bytes": 974036,
+      "sha256": "b915d638a3f492ac904251520364120f9f943a719de9c93d3c1095b161aefe22"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/mouth-culture-reading.png",
+      "bytes": 1727049,
+      "sha256": "b2ed17fcac6ea11cc013968088d3c8b4ba00688dc512e80486cc496b0d4434d3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/mouth-culture.png",
+      "bytes": 1780502,
+      "sha256": "1501ad42910f4b3ab01b3f44bda5686a852827ff20a0f469d337e9cfa55e1544"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/production/screenshots/trim-culture.png",
+      "bytes": 1822288,
+      "sha256": "8d93b03b75411b330896de680ea8cc01ae3560bca2ca661569e50690c3c1f7b0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/beard-culture.png",
+      "bytes": 1768619,
+      "sha256": "94b3de747009172227584a9a67bd56aed266faefd5789101311b1472d6ac913e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/beard-data.png",
+      "bytes": 1718233,
+      "sha256": "e6a2100d4ece54fd0cee3a6fac9fc793865b1976752efc763e3c2d584e078ff0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/body-culture.png",
+      "bytes": 1904006,
+      "sha256": "c367dce4dfaa5005483106674df93b68a20514e73069f6e3cd57e5308b52d6bc"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/body-data.png",
+      "bytes": 1844158,
+      "sha256": "0037b89b732489314e68a1e094e6670d8c390d034bc8f53ed203f325a6b5f7b7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-culture-reading.png",
+      "bytes": 1790188,
+      "sha256": "a002d22fdd3aaa4940761c3163be5e65c7b1e5745cc8210dadb65e8522efe815"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-culture.png",
+      "bytes": 1841110,
+      "sha256": "ce577266016382a196a967267a1d5a86977330ef5781da753d146539b9fc077d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/brows-detail-in-view.png",
+      "bytes": 1838839,
+      "sha256": "75c1b83267a462fdc97838050d84e76f8ccfe8bddaeffac4b3ddf488014aaeea"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/crown-culture.png",
+      "bytes": 1788187,
+      "sha256": "35dbf8fc1b2c9f4407e11953e5e3f99da31be3428f469fe510d45ab8753d6744"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/crown-data.png",
+      "bytes": 1719456,
+      "sha256": "ba6b69dca4c1818d9937db528d801b296d5a68e0397e112746ce9870d02bf679"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/desktop-1280.png",
+      "bytes": 1361185,
+      "sha256": "39058eebe84e11426bf9c9558a4f96389ec9b2519bf485afb673cf0cc909c648"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/desktop-1920.png",
+      "bytes": 2715646,
+      "sha256": "fb636174d5a565525c51db6238ccb8b42eaf8c3ef2e6efc9f5d4cdc70ad0fcb2"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/home-art-navigation.png",
+      "bytes": 963703,
+      "sha256": "21747edde80221cb9a3f2d91f05d5a588e8cbdc92d9559f89c859309a4989c0e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/mouth-culture-reading.png",
+      "bytes": 1729329,
+      "sha256": "d679193937495e326c7c269ba470a825a22a49b9a6c6f486e76e2ed2a47d0d94"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/mouth-culture.png",
+      "bytes": 1781280,
+      "sha256": "6074b5613b0f3e4135ac5f2ec1b62f2de449c8437dcd35771335af3b6325f4a5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/enrichment/screenshots/trim-culture.png",
+      "bytes": 1820744,
+      "sha256": "ac52cfde670fad19bd2a7f352257f5b4a62bb4ea05111b24cb6b12ef708de8af"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/body.png",
+      "bytes": 2402766,
+      "sha256": "2972aa762fc730bb48c922d27c21866e4f6e9bf45c5887e65437adab21851b6f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows-wide.png",
+      "bytes": 2195969,
+      "sha256": "e4a3075bb3f2d03ec4594550db4c19387eda57d053b59758ad81610ce4db559b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/brows.png",
+      "bytes": 2166726,
+      "sha256": "eb81000adc40b907dddc482798eeed9e9c7c6dd93d8a0f2c3d069afddd550866"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/candidates/trim.png",
+      "bytes": 2222713,
+      "sha256": "555374cf4366428aec2ff1d90ddc83c333aa0708a71e51d163135a72b8c4c439"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/arranging-resize.png",
+      "bytes": 2074855,
+      "sha256": "2045f028abe5cf4070471dc7a18b7fae568e0e43a5faafb30aba0ba25b84c76e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/beard-final.png",
+      "bytes": 1454189,
+      "sha256": "1439ac7b9c56977326a935098412d32192b809dc8a8f99b4ec73bd2cbc309cc7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/body-final.png",
+      "bytes": 1591660,
+      "sha256": "d8a861ccb6da6fcc4934a646e52d9932b75da18880b7bd42058f77189ef17451"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-final.png",
+      "bytes": 1483122,
+      "sha256": "0ff14b440cb5312a8a5d61522a08153bcfc1ae093eba5061277503c38d647e10"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-image-moving.png",
+      "bytes": 1980745,
+      "sha256": "d2203c3f29e09422533fa197eec205bc735461ff0db026ea2220fc015dbd096a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/brows-mid-dissolve.png",
+      "bytes": 1721851,
+      "sha256": "06e24bbc48ae8e36c2804095b00e129ab8cf57601840f295880f168a606cd1b5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/crown-final.png",
+      "bytes": 1459230,
+      "sha256": "20939a0b3c42d609084dde55777aedd5430c7ed34958379b7a6dfc0942b9bff3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/desktop-1280.png",
+      "bytes": 1153608,
+      "sha256": "e94b53403d65e85aca6ca754d687c07fd48a7e88500ecf986cda2482166ec5c4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/handoff-resize.png",
+      "bytes": 2074855,
+      "sha256": "2045f028abe5cf4070471dc7a18b7fae568e0e43a5faafb30aba0ba25b84c76e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/home-model-only.png",
+      "bytes": 1298015,
+      "sha256": "1d616cb2f4e0de6b33ae27972cd780b987d6a7fba2979d7ee4de607b7826afe2"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/mouth-final.png",
+      "bytes": 1559432,
+      "sha256": "5f5366d4ad1db69adf30da3a614a39667b645a743b99ed226b4337ef8d478cd8"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/travel-resize.png",
+      "bytes": 2074048,
+      "sha256": "60d24584f3536f9d6af6d5e0f528f53550e16fc327478e51fac0293943a924b7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/handoff/screenshots/trim-final.png",
+      "bytes": 1519185,
+      "sha256": "9cfee2b59eb4873f13e60ed34dbcfadfec9605aa33c4682fb6924e25f7d59ed7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-endpoint.png",
+      "bytes": 2589097,
+      "sha256": "bf9fbee79167707332602de4d3abe5873a0054d70a69e254730482861c0ae89f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.2.png",
+      "bytes": 2629999,
+      "sha256": "94c366c4e967ed945c8b7080830f09bb34754d9890a1e99f2e97c912238e6ff1"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.5.png",
+      "bytes": 2725539,
+      "sha256": "3e7ac6fbca24dacbdfc49debc5766420c8cd759813f640c4537315955c683821"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-handoff-0.8.png",
+      "bytes": 2940221,
+      "sha256": "b9688de4972c9b3f86d8326a611cfd17d95a2d1f154899ef6a5605b6beeda365"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.2.png",
+      "bytes": 2658913,
+      "sha256": "b15edaf46d1ec27b98cca88379704978822b72b38168b93123c07f34b7f0408d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.5.png",
+      "bytes": 2778426,
+      "sha256": "102ddcfcdff9857985d2030e3592dfd17df601e9d38889c89fb6cde7404a5a35"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/body-return-0.8.png",
+      "bytes": 3062238,
+      "sha256": "d4f5bfa954e1f45752061acd6a2c02b102c2103fd9dfc50f0d09251a071ffc5e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1536x960.png",
+      "bytes": 2070879,
+      "sha256": "1c11a09116c18cf7e9aaf415801cd5dcb017f12ef2a8e5345141a4920ef3f9b6"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1700x1000.png",
+      "bytes": 2257003,
+      "sha256": "346ead4ae2a97c0894ed0f410018b44bc762574725765b2b7feaec3d9f5b5a1f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1920x1020.png",
+      "bytes": 2471189,
+      "sha256": "b2adba595079784c5030ad212317fed1e29b783ac6644943508e47a78d613ad9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-1920x1080.png",
+      "bytes": 2729357,
+      "sha256": "b5838d2e5cbdcb443b2620306dbb398099297e7a37fb87f0d69885d4e674d6b7"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-2200x1080.png",
+      "bytes": 2838825,
+      "sha256": "0aeea458342d500c9643b8d3c0827094bdde76a71b0008f777c158bf1173cb23"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/handoff-2560x1080.png",
+      "bytes": 3158904,
+      "sha256": "dfee439074f6e9232097ee6807fe278a366edf32a99f859c954f616eb445a2b3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/rapid-resize.png",
+      "bytes": 1874388,
+      "sha256": "481bb85ea79f9937f747dbdebc632bb9576b07c60e20c03b827cf807d8ca8f4d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1536x960.png",
+      "bytes": 1593428,
+      "sha256": "3b09b9808e5d2a8a7232c4c02fa7a9db567c4fb9aadc731e7edf2eac7b06b1c9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1700x1000.png",
+      "bytes": 1724667,
+      "sha256": "f5260dbe678a52de44a259a6a1abfbe4a6aa7383e3f6db676964f4ba7ce1ceaf"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1920x1020.png",
+      "bytes": 1872675,
+      "sha256": "9d8bedcc14d2cbf2c2bcff616da63a1c747328bed83c1799876d51ad333b0094"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-1920x1080.png",
+      "bytes": 2090832,
+      "sha256": "49a1c40bf8a76ab6d92e0ebdff88a55044f95efdecba1c424db8b79a4975420c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-2200x1080.png",
+      "bytes": 2159622,
+      "sha256": "75ad28dbf71c95c65999e89b480187088de552f63d774c826899a7071ed2ad8f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/final-verification/viewport/screenshots/study-2560x1080.png",
+      "bytes": 2379101,
+      "sha256": "558384a1bc975e1f72a12ddef30a979c7f544f87d3ebd5ab2ab815a1b70a0a1c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/production-final/screenshots/production-brows-transition-final.png",
+      "bytes": 1482465,
+      "sha256": "850be939ff62540df1add8d3857b89206fd8051445a179f9a3aacd9ff4a7984d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/beard.png",
+      "bytes": 2173692,
+      "sha256": "5defe56f38d4009b43387d50b8770f00015bd8b00e4d5446f8840296ee6fedce"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/body.png",
+      "bytes": 2555123,
+      "sha256": "2fe41f68c4ba07d6644a3c89d406470345f8a63094ef091748d6fd96cd0cb22a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/brows.png",
+      "bytes": 2006577,
+      "sha256": "22ab25d5f59e7115525c1660536b9864a2a25072ddc08e53ebb14540f9d65fcd"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/crown.png",
+      "bytes": 1997847,
+      "sha256": "3778a96e873f05782b60faba553a0e86e51d1e01d2ff0140d6b784ec4ef38497"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/mouth.png",
+      "bytes": 1865363,
+      "sha256": "c6319fb2f4d1e676beccc68394d09ce80942c9f0b2438ce1be0da2c28bd3653f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference/trim.png",
+      "bytes": 2241398,
+      "sha256": "03c6f84a973c8abb4d75b1fea87b04b5b4c7410485dcc741fb60355c2f5bc476"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/beard.png",
+      "bytes": 1657194,
+      "sha256": "f97ed44e8c28485b2554332097068ad093a30ec254405181dc967e4281d924bd"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/body.png",
+      "bytes": 1938339,
+      "sha256": "438fe3bdaa14dbff7695a75b17de43932f884787d91c4d90ca54e0b208c8cf83"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/brows.png",
+      "bytes": 1541376,
+      "sha256": "91ad7ff15220df5ebb188548ddbee5500d04b2f3bf939effc1416ea365e2f622"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/crown.png",
+      "bytes": 1531236,
+      "sha256": "b49be4e8e5298be3016245dc842f1cb6a96460a24e2ed0437c69248847856ae4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/mouth.png",
+      "bytes": 1368126,
+      "sha256": "22d752893d7adf486baddbc6953c3dd92937417605379c3ffa0306db399f8f8f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-16x10/trim.png",
+      "bytes": 1720566,
+      "sha256": "23089b50622408822e6623adbc5f83939dd0d4e1c3b93af1ff0ea7ce996748eb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/beard.png",
+      "bytes": 2404810,
+      "sha256": "fc175ff87d6ba2004b890753a5788270154b4e4952262486ea1ef39c263e009e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/body.png",
+      "bytes": 2745203,
+      "sha256": "c4a681a146a44c5019c8e49a673c6926dadeb0a2ebc5bb0488d85b8dd26171cb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/brows.png",
+      "bytes": 2210536,
+      "sha256": "35c495d528bb94963c1844056b3a707bb74d9c0d83a77992fb3d185d30835d6c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/crown.png",
+      "bytes": 2209390,
+      "sha256": "ef94430a3bf4220d5cbb5fbbd16925530f639b23f11125b150787f0df7787056"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/mouth.png",
+      "bytes": 2304057,
+      "sha256": "6d7664454b7d4bdf885cf90d2b0223ed821b3bb9a5431f69390833ee67e69306"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-ultrawide/trim.png",
+      "bytes": 2425923,
+      "sha256": "1ee488c66deb06fd073c1d8cf0155262e370328770a45ad666d2d98358ee89ef"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/beard.png",
+      "bytes": 2043928,
+      "sha256": "bb30e7e67ef3450a266a9f7d3c673faeee6991e5c0ffd06d13130d3d6a2123dc"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/body.png",
+      "bytes": 2368870,
+      "sha256": "840aa10adb7c61d971e5862c1b00770f040064abec5067e48dec65d134cbf1b3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/brows.png",
+      "bytes": 1884581,
+      "sha256": "a1b09cfb7be1b8ba5348b955eed340f845488ed9fb711ca997fc6d3939d7a492"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/crown.png",
+      "bytes": 1873516,
+      "sha256": "e63fdee9ea6ca42cfbcaf3e0929a0cd01bf7447f8056e96bf8f3282901b5eeab"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/mouth.png",
+      "bytes": 1795552,
+      "sha256": "a338c51805c1254d18cda71d0c70098bdca7680520823d64d83ccc98121cc278"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/fullscreen/reference-wide/trim.png",
+      "bytes": 2078036,
+      "sha256": "3183832f0ffb32da049e708bc0ea3b8e95278d88fedb497e0e1f4715379408bc"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/home-camera-verified.png",
+      "bytes": 962829,
+      "sha256": "32be692aa6a43ddd0a113f89805ec1ea988f6cb832dc219995c533e71280364e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/beard.png",
+      "bytes": 787084,
+      "sha256": "5c8c61b122ea092d5de99adccc6d71c338469b01f3fce2f8e42311805ee4ee48"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/body.png",
+      "bytes": 1040415,
+      "sha256": "0c4c8d021843206c5f40eb4bcdd3c034d833bf1ba6c49995c4e527fb3dddaf8c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/brows.png",
+      "bytes": 717499,
+      "sha256": "67c5d62cb36898e1a3e861a08b3f9b349be4e4645164c909e6f6b9d6984e9e15"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/crown.png",
+      "bytes": 711365,
+      "sha256": "9f0de1ba083210525ea0b27b563f06620614d89f641f654f2503814471e08f38"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/mouth.png",
+      "bytes": 496380,
+      "sha256": "127c0c67a5fee48f0bb20929e4f268190614dd48a83418617d11b8d7cdca3e63"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/references/trim.png",
+      "bytes": 841254,
+      "sha256": "9c6861fab49189baed011b2a2462bd637f5899e51722a4aa5c79323e68ffbacb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/beard-final.png",
+      "bytes": 1767395,
+      "sha256": "135fe54ea8235cbcd0a74ad303eb9756a471f89e8dda075d7812c2d8d37619d5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/body-final.png",
+      "bytes": 1904773,
+      "sha256": "603944b22820ad02c733fa0f14ed6fa51e331941b921f7f2a7dc7acf30fc4079"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/brows-final.png",
+      "bytes": 1843747,
+      "sha256": "8a0c7380a3bdadc76bf0d6cd2396da60452ef69925bf83a4f6befbf460dfd95d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/brows-mid-dissolve.png",
+      "bytes": 1525519,
+      "sha256": "a9fdee83f0515348f757a6c8e4baa85ff8ca9796f27ae5089ec3b243faaf16d0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/crown-final.png",
+      "bytes": 1784959,
+      "sha256": "86a52b927f3caf8dbb0f1e8a9807b4778a11d587db81011ff9ba526330d51347"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/desktop-1280.png",
+      "bytes": 1359475,
+      "sha256": "eed4695659b2cd5bb013a68c541663936c0ea1d653442aa6244990001d28149c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/home-model-only.png",
+      "bytes": 990717,
+      "sha256": "599e181c4661a2bade2ad0761a6455a6e764446ee1361cb757f85223089c3b98"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/mouth-final.png",
+      "bytes": 1779123,
+      "sha256": "c13edebd84c94db270c7754337db139e645a5c42015a1a2956aec66a7455db07"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/production-body.png",
+      "bytes": 1817494,
+      "sha256": "0de497717a4ea3962794334ec945fa6705742eefa5b4b389b5b52b9760aa8479"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/production-brows.png",
+      "bytes": 1761984,
+      "sha256": "b608b26ff5c3aec08dbda081f1b0ef1b429fb16c4e5c0929ec4db279b0a6948c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/handoff/screenshots/trim-final.png",
+      "bytes": 1820852,
+      "sha256": "1ce85c031c23de2b9c054f84784f27a8428f51e56002066f6ae895a866bf45d1"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/screenshots/body-stage.png",
+      "bytes": 2187662,
+      "sha256": "c6f8963b326d0b2e3f390356ad769ad80e6d63c0df2784f36797f227fe7a9ecb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/screenshots/brows-modal.png",
+      "bytes": 923145,
+      "sha256": "3aef866ba6778e17ad25800d3c65887e9f8d417499ef43728877d0d29482ccbc"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/lion-info/validation/viewport/screenshots/study-2200x1080.png",
+      "bytes": 3404294,
+      "sha256": "3e2148b48ba35cded5233226d67a80bd55a4b0ffd966a410333c5fd618c844e2"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/mobile-body.png",
+      "bytes": 830790,
+      "sha256": "ae946c46d0a29442f381e3401cb218667e575241015acf0f51b8162f5160b321"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/mobile-overview.png",
+      "bytes": 514940,
+      "sha256": "151348f1a8b89d3e13e70488a06fb5de3dd9a142562d93d599444c547656e56b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/production-study.png",
+      "bytes": 1834778,
+      "sha256": "00e8793dc1bad5e4afc543c31bc2b6067586fc83d6cf0a7cfaecb8a44e922547"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/qa-overview.png",
+      "bytes": 1547923,
+      "sha256": "469dc56ca150981557bb3b6e983b44963ff4eefe9b211c9633111bf0977b1d52"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/qa-shadow.png",
+      "bytes": 1550799,
+      "sha256": "71ba73b8b1130dace99cbe3133d1b269b31699865214a638c0a5582d4a4f5cde"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-01.jpg",
+      "bytes": 606308,
+      "sha256": "e40ce71eb1538114eb42b03a07c6a1f92f648b9404c1bcd72277a3dd681ab2ed"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-02.jpg",
+      "bytes": 624809,
+      "sha256": "0399e430f59626bb3596db52eb4ead4b90d4a03510250778e20017ed08ad12df"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-03.jpg",
+      "bytes": 583961,
+      "sha256": "285d3b50f2a528a2d8d6ffc7287d74c7fc095bb5fe68998d662c6eef0830ff39"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-04.jpg",
+      "bytes": 617437,
+      "sha256": "2cbfc5de74d8dbf21019d76ab3dd575550573d323f6108cb9b53daaa4a124ec0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-05.jpg",
+      "bytes": 539354,
+      "sha256": "abda202d385eca184dd5bc2fd3782764bc96336f8e16c427f19b3e12d7d0ae93"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/reference-06.jpg",
+      "bytes": 487261,
+      "sha256": "d696730068bc8f07f759bc37771d0ba5c4cb6382b8a3e28683d891fa5f29da13"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/beard-culture.png",
+      "bytes": 1830381,
+      "sha256": "8d231cf8847e509489b7f7e90b158585a459ac57089fbb4f20155b940037d69e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/beard-data.png",
+      "bytes": 1670705,
+      "sha256": "0445de4b6ca7f86bba18c0da8728430716455ce501003c21f05f38064858c538"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/body-culture.png",
+      "bytes": 1962991,
+      "sha256": "964e02e6f9f41e84e8e19da5beb14eafc29cae1422036143295a19f7a409eaaf"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/body-data.png",
+      "bytes": 1781031,
+      "sha256": "288ee4863b04adf71b8dfc7baddc39dc084c34404ef39efe7416b5805b789c1d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-culture-reading.png",
+      "bytes": 1744036,
+      "sha256": "813b7055e75a9f2e0ae5bf960a4901945aed61257a3e655e2f04d4b9e4134cfe"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-culture.png",
+      "bytes": 1886531,
+      "sha256": "19e96dabe134c5c09afe0965e922c1d6529584e360aae050b83c707bb99274ca"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/brows-detail-in-view.png",
+      "bytes": 1872650,
+      "sha256": "18f87191c3fd7757413a2b5f8fca11e4926f9a264997e405ed1e6a9d18225b34"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/crown-culture.png",
+      "bytes": 1880996,
+      "sha256": "a8e787cf6760a14bd5a3f1c3d058adfc6df3fb64ddccbf07dc13bcce62791c57"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/crown-data.png",
+      "bytes": 1676944,
+      "sha256": "b5719895100988939d68a328205673aa63b64c299a887a9806f7046f2c5e4c45"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1280.png",
+      "bytes": 1425393,
+      "sha256": "52529d17d5422a563238f5c00adc2a093c50a57d60babf5e49d897cd9b860cca"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1536.png",
+      "bytes": 1962963,
+      "sha256": "ba126155317f96eb987277354f66662ad03edd41d92d9aa6d08cc947a0f985fb"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1600.png",
+      "bytes": 1886184,
+      "sha256": "acb4375eadc3c3c0d24edd85a69939887a9ee3c6cc2838bc20c9fbcc8f205ec4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-1920.png",
+      "bytes": 2755733,
+      "sha256": "02c39afb074fccda547623d6d54f22776d742007980168337131d02cd2999f75"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/desktop-2560.png",
+      "bytes": 4562265,
+      "sha256": "e2d08f291321ee9f0f4278af766b5acb239656800c2fc6e041c052015753403e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/home-art-navigation.png",
+      "bytes": 1254047,
+      "sha256": "465df664a90efde3401e7f2ddbbda1a85561639fde18f0d394f0acffc84f8248"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/mouth-culture-reading.png",
+      "bytes": 1689523,
+      "sha256": "bd60a40b03958b539ff3c3946da2193d02ec733f2364bf2910448cf9c4e16584"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/mouth-culture.png",
+      "bytes": 1848344,
+      "sha256": "4830ac3c5c3652ac1d7e660bbd791cd25ba25ad55893347e046ce6bf127be437"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/enrichment/screenshots/trim-culture.png",
+      "bytes": 1903476,
+      "sha256": "dfbdf2ec6b39c44997d3307b9c6de4f41e7da09454862a775e39470848c9e330"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/beard-culture.png",
+      "bytes": 1839583,
+      "sha256": "290ba950f914c049b0d79871aaa8240407d36d9afd9abca607e14b84870fd5e4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/beard-data.png",
+      "bytes": 1672085,
+      "sha256": "fefdc173c31b780d3841064c77480afb3bd5c63fcd8e42f53fe920cf1a40f8b2"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/body-culture.png",
+      "bytes": 1981000,
+      "sha256": "264b96df68ee6d12842577849adcceb5c88e0d16c54bde0302bcd041f6821b3d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/body-data.png",
+      "bytes": 1783968,
+      "sha256": "828a2c9aa775c4d39441160f02f4a1710191ad3fa589ee3820c1896753c7e4ac"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-culture-reading.png",
+      "bytes": 1748806,
+      "sha256": "ffc8d060cddb0c92908db8b8d726481f50857d428a5943a4cdb1cb8ae7dcf9ce"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-culture.png",
+      "bytes": 1900730,
+      "sha256": "6e837b6ae88a7e24e3c35fd1e96c71866c2b5d00527178533508ccf56a155f70"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/brows-detail-in-view.png",
+      "bytes": 1887396,
+      "sha256": "684cd8da8af6d77edc4b9f00625948507dd234f5b4a6533a7fa18b203cb9b332"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/crown-culture.png",
+      "bytes": 1880797,
+      "sha256": "52d87b636e3d1d0e16bf80ee371e22e076f4ff64c71f648eccb44d2e7db3d4d3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/crown-data.png",
+      "bytes": 1676646,
+      "sha256": "328212f8b239651e455ef633a3afdbf7c5938ab7125b11f86ad0fc77c4e86cc9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1280.png",
+      "bytes": 1424626,
+      "sha256": "17308ef6934fdc8cc64e5c74a295ecf4a3055cfded093f34923c31f18bf5f8a4"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1536.png",
+      "bytes": 1962760,
+      "sha256": "403ff5913e332af833ae76fdd5f6973ad61183f95823c16d15844d9c6967c009"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1600.png",
+      "bytes": 1885742,
+      "sha256": "c63b6d07731a971782eff60e1172d8b20f6a15fab13defe059b12352d325233f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-1920.png",
+      "bytes": 2754759,
+      "sha256": "4fb82d58558a01074191c96a1bd8d073c4bac9faa8ded491f6dfb23d3ea1f484"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/desktop-2560.png",
+      "bytes": 4560363,
+      "sha256": "3995a25760350bd7fd0b41c9028824c3d3e96d0a265d1e4117c1504e74b0e8df"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/home-art-navigation.png",
+      "bytes": 1245463,
+      "sha256": "ff3aca86e5d13bbabb5856951e443d3f55aaa59d011d69e923fb3dd0263c2900"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/mouth-culture-reading.png",
+      "bytes": 1688961,
+      "sha256": "bf1822fb8661cddc19dd91a43832d3a76f9c78a87226119740e3b25503070396"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/mouth-culture.png",
+      "bytes": 1855712,
+      "sha256": "d2bcb027424591992e83fb6b83b20d09efe2f947e43dd519ef553b9a7de4dbf8"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/production-brows-transition-final.png",
+      "bytes": 1901986,
+      "sha256": "3c0f9467316576c1793728d4e56a2f87874f29d115aa40768e2fe491a6f98b61"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/production/screenshots/trim-culture.png",
+      "bytes": 1903493,
+      "sha256": "b77cf3898c62c2bedcc8712566ed920c7de7ffb2f7f637c328de825d9d78627c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/arranging-resize.png",
+      "bytes": 1707480,
+      "sha256": "523ffc52011ace759e6cdf830d764a9a62643b17190e22903f34fb57584b2c22"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/beard-final.png",
+      "bytes": 1839239,
+      "sha256": "35eeb51822a0dc28ccbff721c4ae891a661dcacda8d3af78a33fbb0783b7ca72"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/body-final.png",
+      "bytes": 1983231,
+      "sha256": "6715e089f9c48013e1dbcb99a04626b1a5be972459fd665b5cf818518fee8f74"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-final.png",
+      "bytes": 1901988,
+      "sha256": "5b4d65d3caba4a151dd1cb17fda3de9e736120f287d1c75d1f49544bb99dcd7f"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-image-moving.png",
+      "bytes": 2157950,
+      "sha256": "052efc32a59dd97a012e468649d8294a0ed7780f8bb3e2f2d5d73a4630a02012"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/brows-mid-dissolve.png",
+      "bytes": 2066935,
+      "sha256": "00de81b3c9fb51709f1eec0752c74ceb54123b576873b0a083fa6e0a4c5781d5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/crown-final.png",
+      "bytes": 1882040,
+      "sha256": "e05d1864ae1c515640be198623daecff572935f78ea37198e84ef8e1fc06306e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/desktop-1280.png",
+      "bytes": 1444245,
+      "sha256": "e708208e404fd82dd8e14b36795e17c96f1f82abd5ce0e9af5de12ba7b290d5b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/handoff-resize.png",
+      "bytes": 1707436,
+      "sha256": "d1be6478341d761822f844cc608068de6213c4940aab65acf8fa2bb53df66db8"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/home-model-only.png",
+      "bytes": 1297939,
+      "sha256": "83d257e3dafb06295c0d1db515fb6b75d06480d728ae196f1dec76601b5875ae"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/mouth-final.png",
+      "bytes": 1857394,
+      "sha256": "bb5d2ee8936ac25cd81ebf048da06bed1d294177240f7f58787acea539dfdff3"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/travel-resize.png",
+      "bytes": 1708335,
+      "sha256": "e88bc81e68b680a8f0619de48a51d9fde15e27f0d15fb6bdc5ad8447bec59b5b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/transition/screenshots/trim-final.png",
+      "bytes": 1905897,
+      "sha256": "792284cd073273072dcc66954e6a75373acaa71df244ef2eaf2ebb78e53a41a5"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/arranging-resize.png",
+      "bytes": 1759528,
+      "sha256": "d4faf3f5ca2bd190ca9d51a6380a0d28705678aae86ea71da0c676fc3bdda692"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/beard-final.png",
+      "bytes": 1888744,
+      "sha256": "f940cc11e13723a9e3412ac33579325948c71a7dfe6bd036ee7a7b35a64c2d17"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/body-final.png",
+      "bytes": 2045749,
+      "sha256": "24ad142e1f2f1a6c4be204a9fe569657fe79e8a9ebd513a0a193317e1680a30b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-final.png",
+      "bytes": 1964575,
+      "sha256": "ec717ed831c8a8c5866aecee1e3878f9d519cfab14b5078c4c6c4e10c603701a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-image-moving.png",
+      "bytes": 2328785,
+      "sha256": "7015467b1ef282c0a2d9af357fe8379e6a7c11baf89dd81f7ce57ec819ca476a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/brows-mid-dissolve.png",
+      "bytes": 1979722,
+      "sha256": "7f18b06ea3cb35c674d360a9c0b582510c8db4cf4522e6fecc3a101317bb94b9"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/crown-final.png",
+      "bytes": 1924707,
+      "sha256": "cff77c5c0aec86639b4281477ca856b051d453c291a25cf1fc02912e4253749e"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/desktop-1280.png",
+      "bytes": 1493305,
+      "sha256": "2fe32bb11380199b8d6cc448250711da428eb10125a913c825357318970b410b"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/handoff-resize.png",
+      "bytes": 1759684,
+      "sha256": "bd0a92a966d72626faca4620caf2a510c29518869901e2e2d4d5e62312685721"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/home-model-only.png",
+      "bytes": 1297954,
+      "sha256": "ef4822d02864754325d1a886c4db2534b70866cb2d72dfd9b31b123d25102609"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/mouth-final.png",
+      "bytes": 1911619,
+      "sha256": "dba13a6551a1d45e4bc874bde3bab2537531d5d12ab36bcb874f6f5cdf90ed82"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/travel-resize.png",
+      "bytes": 1759622,
+      "sha256": "ad7028265369faa46f4cf2f26f3f448e0bf7190e7dc268740fdb22a271929870"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/handoff/screenshots/trim-final.png",
+      "bytes": 1963998,
+      "sha256": "a6c933a6f2f4062d710b3ec557c3687a91aff754b7e336da91dcf74411d6d502"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/production/screenshots/production-brows-transition-final.png",
+      "bytes": 1964867,
+      "sha256": "3aa4d467f761b65aea0b9b11347f6a1c044ac62dedd1319e44d1e91c89e39229"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-endpoint.png",
+      "bytes": 2589098,
+      "sha256": "312505fb802b192625d8c35f7cbcaeafd203aae3133fb7ec29181ed69c98c61c"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.2.png",
+      "bytes": 2742360,
+      "sha256": "7a0b9a775c1eeba9ea9f0c1b6dd842311ecbcc5d89e87a2a2f37d3a51aea56e0"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.5.png",
+      "bytes": 2894277,
+      "sha256": "a207c2837141a5f517726e29d218d7219008b0e7a57375bde3560e76d96d6ddd"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-handoff-0.8.png",
+      "bytes": 3096583,
+      "sha256": "c673a4bc2db1819d842c0a4cbbe6341f461ff323743976ddc4bf82585a6eee2d"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.2.png",
+      "bytes": 2800517,
+      "sha256": "ae318e334d6a4c333dee1992f9f9200c23a88d40822731883e7829cce3bdbe2a"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.5.png",
+      "bytes": 2963339,
+      "sha256": "f3d29f043404486110c7f19bdaacb404231a2f542ba9f97dd5173d2b907a8568"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/reviews/structure-atlas/imported-xuanji5/viewport/screenshots/body-return-0.8.png",
+      "bytes": 3191519,
+      "sha256": "117281aa879f9496ffd66186dfdc84d1d88280fe2688782ab18dde925b8e5b58"
+    },
+    {
+      "from": "炫技5@869abd37 original archive or integrated production review 2026-10-28",
+      "path": "source/public/assets/structure-atlas/fonts/OFL.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
     }
   ]
 }

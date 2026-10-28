@@ -1,0 +1,230 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "interruptedStage": "handoff",
+      "click": "Playwright force click: no animation-stability wait",
+      "before": {
+        "phase": "handoff",
+        "selected": "crown",
+        "active": true,
+        "modelVisibility": "visible",
+        "frame": {
+          "x": 48,
+          "y": 0,
+          "width": 1440,
+          "height": 960
+        },
+        "pose": {
+          "position": [
+            0.8775163515066804,
+            4.818548997325409,
+            4.101426561004063
+          ],
+          "target": [
+            0.0015624736969092057,
+            2.859178481171972,
+            1.7962847772941382
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "crown"
+        }
+      },
+      "switched": {
+        "phase": "switching",
+        "selected": "crown",
+        "active": true,
+        "modelVisibility": "visible",
+        "frame": {
+          "x": 48,
+          "y": 0,
+          "width": 1440,
+          "height": 960
+        },
+        "pose": {
+          "position": [
+            0.8775163515066804,
+            4.818548997325409,
+            4.101426561004063
+          ],
+          "target": [
+            0.0015624736969092057,
+            2.859178481171972,
+            1.7962847772941382
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "crown"
+        }
+      },
+      "final": {
+        "phase": "study",
+        "selected": "beard",
+        "active": false,
+        "modelVisibility": "hidden",
+        "frame": {
+          "x": 0,
+          "y": 0,
+          "width": 950.9759521484375,
+          "height": 633.9839477539062
+        },
+        "pose": {
+          "position": [
+            1.994129826079399,
+            0.7075588009651624,
+            4.864712411811997
+          ],
+          "target": [
+            -0.001337276623412223,
+            1.2729411467309588,
+            1.5389339073073118
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "beard"
+        }
+      },
+      "returned": {
+        "phase": "overview",
+        "selected": "",
+        "active": true,
+        "modelVisibility": "visible",
+        "frame": {
+          "x": 48,
+          "y": 0,
+          "width": 1440,
+          "height": 960
+        },
+        "pose": {
+          "position": [
+            4.668968681667406,
+            4.1358233818243075,
+            6.536556154334373
+          ],
+          "target": [
+            1.1102230246251565e-16,
+            1.6145802937239067,
+            -2.220446049250313e-16
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": null
+        }
+      }
+    },
+    {
+      "interruptedStage": "arranging",
+      "click": "Playwright force click: no animation-stability wait",
+      "before": {
+        "phase": "arranging",
+        "selected": "crown",
+        "active": false,
+        "modelVisibility": "hidden",
+        "frame": {
+          "x": 46.9900016784668,
+          "y": 0,
+          "width": 1429.7760009765625,
+          "height": 953.1840209960938
+        },
+        "pose": {
+          "position": [
+            0.877516351506681,
+            4.818548997325408,
+            4.101426561004064
+          ],
+          "target": [
+            0.0015624736969092057,
+            2.859178481171972,
+            1.7962847772941382
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "crown"
+        }
+      },
+      "switched": {
+        "phase": "switching",
+        "selected": "crown",
+        "active": false,
+        "modelVisibility": "hidden",
+        "frame": {
+          "x": 46.91239929199219,
+          "y": 0,
+          "width": 1428.9119873046875,
+          "height": 952.6079711914062
+        },
+        "pose": {
+          "position": [
+            0.877516351506681,
+            4.818548997325408,
+            4.101426561004064
+          ],
+          "target": [
+            0.0015624736969092057,
+            2.859178481171972,
+            1.7962847772941382
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "crown"
+        }
+      },
+      "final": {
+        "phase": "study",
+        "selected": "beard",
+        "active": false,
+        "modelVisibility": "hidden",
+        "frame": {
+          "x": 0,
+          "y": 0,
+          "width": 950.9759521484375,
+          "height": 633.9839477539062
+        },
+        "pose": {
+          "position": [
+            1.9941298260793994,
+            0.7075588009651623,
+            4.864712411811998
+          ],
+          "target": [
+            -0.001337276623412223,
+            1.2729411467309588,
+            1.5389339073073118
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": "beard"
+        }
+      },
+      "returned": {
+        "phase": "overview",
+        "selected": "",
+        "active": true,
+        "modelVisibility": "visible",
+        "frame": {
+          "x": 48,
+          "y": 0,
+          "width": 1440,
+          "height": 960
+        },
+        "pose": {
+          "position": [
+            4.668968681667403,
+            4.135823381824306,
+            6.536556154334373
+          ],
+          "target": [
+            1.1102230246251565e-16,
+            1.6145802937239067,
+            -2.220446049250313e-16
+          ],
+          "fov": 34,
+          "aspect": 1.5,
+          "selected": null
+        }
+      }
+    }
+  ],
+  "errors": []
+}

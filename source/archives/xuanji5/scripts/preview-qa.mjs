@@ -1,0 +1,35 @@
+import { chromium } from '@playwright/test';
+import { writeFile } from 'node:fs/promises';
+const browser = await chromium.launch({ channel: 'chromium', headless: true, args: ['--enable-unsafe-swiftshader'] });
+const page = await browser.newPage({ viewport: { width: 1536, height: 960 }, deviceScaleFactor: 1 });
+page.on('console', msg => { if (msg.type() === 'error') console.log('ERROR', msg.text()); });
+page.on('pageerror', err => console.log('PAGE ERROR', err.message));
+page.on('response', res => { if (res.status() >= 400) console.log('HTTP', res.status(), res.url()); });
+await page.goto('http://127.0.0.1:5173');
+await page.waitForFunction(() => window.__LION_ATLAS__?.registry, { timeout: 180000 });
+await page.waitForTimeout(1300);
+await page.screenshot({ path: 'artifacts/qa-overview.png' });
+await page.evaluate(() => {
+  const w = window.__LION_ATLAS__;
+  w.renderer.shadowMap.enabled = true;
+  w.renderer.shadowMap.type = 1;
+  const light = w.scene.children.find(object => object.isDirectionalLight);
+  light.castShadow = true;
+  light.shadow.mapSize.set(1024,1024);
+  light.shadow.camera.left = light.shadow.camera.bottom = -4.2;
+  light.shadow.camera.right = light.shadow.camera.top = 4.2;
+  light.shadow.camera.near = .1;
+  light.shadow.camera.far = 20;
+  light.shadow.bias = -.0003;
+  light.shadow.normalBias = .018;
+  w.meshes.forEach(m => { m.castShadow = !m.userData.derivedHair; m.receiveShadow = true; m.material.needsUpdate = true; });
+});
+await page.waitForTimeout(1500);
+await page.screenshot({ path: 'artifacts/qa-shadow.png' });
+const inspection = await page.evaluate(() => {
+  const world = window.__LION_ATLAS__;
+  return { materials: world.meshes.map(m => ({ name: m.name, data: { source: m.userData.sourceName, part: m.userData.atlasPart, derivation: m.userData.derivation }, color: m.material.color?.getHexString(), rough: m.material.roughness, metal: m.material.metalness, emissive: m.material.emissive?.getHexString(), emissiveIntensity: m.material.emissiveIntensity, map: m.material.map?.name, normal: m.material.normalMap?.name })), stats: world.renderer.info.render };
+});
+await writeFile('artifacts/material-inspection.json', JSON.stringify(inspection, null, 2));
+console.log(JSON.stringify(inspection.stats));
+await browser.close();

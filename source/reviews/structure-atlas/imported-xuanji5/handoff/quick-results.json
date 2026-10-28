@@ -1,0 +1,76 @@
+{
+  "quick": true,
+  "baseURL": "http://127.0.0.1:5175",
+  "homePose": {
+    "position": [
+      4.668968681667408,
+      4.1358233818243075,
+      6.536556154334372
+    ],
+    "target": [
+      1.1102230246251565e-16,
+      1.6145802937239067,
+      -2.220446049250313e-16
+    ],
+    "fov": 34,
+    "aspect": 1.5,
+    "selected": null
+  },
+  "chapters": [
+    {
+      "id": "brows",
+      "endpoint": {
+        "position": [
+          0.9751404413397706,
+          2.525370580679079,
+          4.839923857159317
+        ],
+        "target": [
+          0.16869950414048412,
+          2.390963757812531,
+          2.151787399828359
+        ],
+        "fov": 34,
+        "aspect": 1.5,
+        "selected": "brows"
+      },
+      "image": {
+        "src": "/images/chapters/brows.png",
+        "naturalWidth": 1536,
+        "naturalHeight": 1024,
+        "fit": "contain",
+        "imageBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "frameBounds": {
+          "width": 990,
+          "height": 660
+        },
+        "modelOpacity": "0",
+        "modelVisibility": "hidden",
+        "active": false,
+        "frame": 878,
+        "unchanged": true
+      },
+      "textMotion": {
+        "firstChar": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, 0, 64.3328)",
+        "lastChar": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "checks": [
+    "home model only",
+    "brows dedicated image",
+    "actual camera travel",
+    "matching 3:2 endpoint",
+    "uncropped full artwork",
+    "3D hidden and paused",
+    "visible GSAP cultural text",
+    "source geometry unchanged",
+    "return overview",
+    "failed image recovery"
+  ]
+}

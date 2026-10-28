@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-10-27
+updated: 2026-10-28
 topic: memory-navigation
 sources:
   - "AGENTS.md"
@@ -51,6 +51,6 @@ React/Vite、source 资源整理与 Windows 启动脚本已随 `c1a359b` 提交�
 - [[当前状态/项目概览.md|项目概览]] — active
 
 - [[决策/MOC_决策.md|工程决策目录]] — 5 页，按主题或模块检索。
-- [[知识/MOC_知识.md|稳定知识目录]] — 2 页，按主题或模块检索。
+- [[知识/MOC_知识.md|稳定知识目录]] — 3 页，按主题或模块检索。
 
 <!-- wiki-memory:auto:end -->

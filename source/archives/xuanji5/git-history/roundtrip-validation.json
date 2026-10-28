@@ -1,0 +1,130 @@
+{
+  "verifiedAt": "2026-10-28",
+  "environment": {
+    "os": "nt",
+    "python": "3.14.2",
+    "git": "git version 2.54.0.windows.1"
+  },
+  "fixture": "Fresh bare repository; git fetch requested compatibility SHA only, no local clone/hardlink sharing or object alternates",
+  "beforeRestoration": {
+    "originalCommitPresent": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "largeBlobPresent": false,
+    "alternatesExists": false
+  },
+  "readOnlyVerification": {
+    "mode": "verify",
+    "originalHead": "869abd37bd991d3169d544f34bf964adab0e693b",
+    "originalCommitCount": 5,
+    "archivedSmallObjectCount": 123,
+    "requiredBlobCount": 467,
+    "sharedBlobsVerified": 466,
+    "originalModelAlreadyPresent": false,
+    "sourceModelVerified": true,
+    "ref": null,
+    "refsChanged": false
+  },
+  "restoration": {
+    "mode": "restore",
+    "originalHead": "869abd37bd991d3169d544f34bf964adab0e693b",
+    "originalCommitCount": 5,
+    "archivedSmallObjectCount": 123,
+    "requiredBlobCount": 467,
+    "sharedBlobsVerified": 466,
+    "originalModelAlreadyPresent": false,
+    "sourceModelVerified": true,
+    "ref": "refs/archive/xuanji5-original",
+    "refsChanged": true
+  },
+  "originalCommitChain": [
+    "512896277e046de289e2521be85b33e60ea7cf24",
+    "2a781ac3cb7bb77fd626baa5be8ee606d802c87c",
+    "7a492fe5eefe843b3f89f9dc0b30c0f89656de60",
+    "56e01b67107eed84271a4239cc14bf1d090dee4e",
+    "869abd37bd991d3169d544f34bf964adab0e693b"
+  ],
+  "rawOriginalObjectsVerified": 123,
+  "compatibleBlobCount": 467,
+  "maximumCompatibleBlobBytes": 35159152,
+  "historicalTreeDifferences": [
+    {
+      "original": "512896277e046de289e2521be85b33e60ea7cf24",
+      "compatible": "a0b21abebc170d469973ee986b2fd79f91532c20",
+      "changes": [
+        "D\t\"source/\\347\\247\\221\\346\\257\\224blend.blend\"",
+        "A\t\"source/\\347\\247\\221\\346\\257\\224blend.blend.source.txt\""
+      ]
+    },
+    {
+      "original": "2a781ac3cb7bb77fd626baa5be8ee606d802c87c",
+      "compatible": "49f7ea05432492ea68da44b3c877d70a3f392e7d",
+      "changes": [
+        "D\t\"source/\\347\\247\\221\\346\\257\\224blend.blend\"",
+        "A\t\"source/\\347\\247\\221\\346\\257\\224blend.blend.source.txt\""
+      ]
+    },
+    {
+      "original": "7a492fe5eefe843b3f89f9dc0b30c0f89656de60",
+      "compatible": "575dc6303d67a102d4e934c905d1031c4301aaf2",
+      "changes": [
+        "D\t\"source/\\347\\247\\221\\346\\257\\224blend.blend\"",
+        "A\t\"source/\\347\\247\\221\\346\\257\\224blend.blend.source.txt\""
+      ]
+    },
+    {
+      "original": "56e01b67107eed84271a4239cc14bf1d090dee4e",
+      "compatible": "7810363711c42fb3e5d303c6e00127a2bde3640a",
+      "changes": [
+        "D\t\"source/\\347\\247\\221\\346\\257\\224blend.blend\"",
+        "A\t\"source/\\347\\247\\221\\346\\257\\224blend.blend.source.txt\""
+      ]
+    },
+    {
+      "original": "869abd37bd991d3169d544f34bf964adab0e693b",
+      "compatible": "460ec43bc3b1f4d30dd8208f2f237fc3ec78dde9",
+      "changes": [
+        "D\t\"source/\\347\\247\\221\\346\\257\\224blend.blend\"",
+        "A\t\"source/\\347\\247\\221\\346\\257\\224blend.blend.source.txt\""
+      ]
+    }
+  ],
+  "elapsedSeconds": 13.065,
+  "result": "passed",
+  "commitMetadataChecks": [
+    {
+      "original": "512896277e046de289e2521be85b33e60ea7cf24",
+      "compatible": "a0b21abebc170d469973ee986b2fd79f91532c20",
+      "identityAndTimestampsPreserved": true,
+      "messagePreservedWithOriginalCommitTrailer": true
+    },
+    {
+      "original": "2a781ac3cb7bb77fd626baa5be8ee606d802c87c",
+      "compatible": "49f7ea05432492ea68da44b3c877d70a3f392e7d",
+      "identityAndTimestampsPreserved": true,
+      "messagePreservedWithOriginalCommitTrailer": true
+    },
+    {
+      "original": "7a492fe5eefe843b3f89f9dc0b30c0f89656de60",
+      "compatible": "575dc6303d67a102d4e934c905d1031c4301aaf2",
+      "identityAndTimestampsPreserved": true,
+      "messagePreservedWithOriginalCommitTrailer": true
+    },
+    {
+      "original": "56e01b67107eed84271a4239cc14bf1d090dee4e",
+      "compatible": "7810363711c42fb3e5d303c6e00127a2bde3640a",
+      "identityAndTimestampsPreserved": true,
+      "messagePreservedWithOriginalCommitTrailer": true
+    },
+    {
+      "original": "869abd37bd991d3169d544f34bf964adab0e693b",
+      "compatible": "460ec43bc3b1f4d30dd8208f2f237fc3ec78dde9",
+      "identityAndTimestampsPreserved": true,
+      "messagePreservedWithOriginalCommitTrailer": true
+    }
+  ]
+}

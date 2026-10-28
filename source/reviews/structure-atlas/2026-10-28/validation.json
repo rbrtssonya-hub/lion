@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-28",
+  "baseline": "main@3ce34b0 plus task changes",
+  "environment": { "node": "24.16.0", "npm": "12.0.1", "git": "2.54.0.windows.1", "browser": "Playwright Chromium on Windows" },
+  "build": { "command": "npm run build", "result": "passed", "modules": 395, "modelChunk": "ModelPage-DsowhB33.js", "appChunk": "index-CaCqxFBe.js", "warning": "Existing Three-related chunk exceeds 500kB" },
+  "core": { "command": "npm test", "passed": 139, "failed": 0, "durationMs": 5419.722 },
+  "integrationBrowser": {
+    "port": 42865,
+    "command": "npx playwright test --config playwright.preview.config.js tests/e2e/structure-atlas-integration.spec.js --workers=1",
+    "passed": 6, "failed": 0, "durationSeconds": 44,
+    "coverage": ["six parts and modal/focus", "33 complete hair groups and original background", "secondary-navigation image origin", "real image bounds and six entry hit targets", "1366 and 2560 desktop and settings push", "reduced and normal motion aspect changes without stale overlay", "flight interruption and hidden activity", "HDRI changes actual pixels and cancel restores", "real WEBGL_lose_context then in-place retry"]
+  },
+  "relatedBrowser": {
+    "port": 42866,
+    "command": "npx playwright test --config playwright.preview.config.js tests/e2e/craft-carousel.spec.js tests/e2e/craft-mini-games.spec.js tests/e2e/view-scene-settings.spec.js tests/e2e/action-theater.spec.js tests/e2e/spread-map-stamps.spec.js --grep '四道工序|上一道下一道|小游戏弹层|鼓点采青直接|梅花桩鼠标|结构真实滚轮|动作真实拖拽|巨幕厅实际|三个地图层级|点击没有' --workers=1",
+    "passed": 10, "failed": 0, "durationSeconds": 51.3
+  },
+  "memory": { "command": "python wiki_memory/工具/memory.py check --project . --memory-dir wiki_memory --require-ready", "pages": 166, "errors": 0, "historicalSourceWarnings": 6 },
+  "import": { "copiedFiles": 411, "bytes": 540869915, "sha256Verified": 411, "runtimeFiles": 38, "historicalSourceFiles": 103, "historicalReviewFiles": 270, "omittedDuplicateModelFiles": 8 },
+  "protected": { "originalAssetRecordsPreserved": 940, "currentAssetRecords": 1215, "modelSha256": "13f851f565caa12564d9434f0e529b8bf734e32d1500e6fd1ae5326c06b44ad5", "modelBytes": 89080256, "hairGroups": 33, "hairStrands": 2289801, "hairPoints": 19929005, "currentModelHairBackgroundUnchanged": true },
+  "history": { "compatibleTip": "460ec43bc3b1f4d30dd8208f2f237fc3ec78dde9", "commits": 5, "freshIndependentRepositoryRoundtrip": "passed", "originalCommitAndTreeObjectsVerified": 123, "maximumCompatibleBlobBytes": 35159152, "details": "source/archives/xuanji5/git-history/roundtrip-validation.json" },
+  "cameraRegistration": { "result": "passed", "maximumEndpointError": 9.930136612989092e-16 },
+  "earlierRuns": [
+    "First browser run: 4 passed, 1 failed due to obsolete state main-navigation selector; corrected harness and full rerun passed.",
+    "Review found reduced-motion aspect-switch stale overlay; fixed implementation and strengthened assertions; final 6 passed.",
+    "Core check during intentional screenshot recapture reported changed screenshot size. After recapture, refreshed only this task's screenshot records; final 139 passed."
+  ],
+  "notCovered": ["phone", "other browsers or machines", "public deployment", "rebuilt offline EXE", "full-repository browser suite"]
+}

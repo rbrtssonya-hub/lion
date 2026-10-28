@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "importedAt": "2026-10-28",
+  "originalHead": "869abd37bd991d3169d544f34bf964adab0e693b",
+  "compatibleHead": "460ec43bc3b1f4d30dd8208f2f237fc3ec78dde9",
+  "commits": [
+    {
+      "original": "512896277e046de289e2521be85b33e60ea7cf24",
+      "compatible": "a0b21abebc170d469973ee986b2fd79f91532c20",
+      "subject": "chore: initialize lion atlas project and standard wiki memory"
+    },
+    {
+      "original": "2a781ac3cb7bb77fd626baa5be8ee606d802c87c",
+      "compatible": "49f7ea05432492ea68da44b3c877d70a3f392e7d",
+      "subject": "fix: complete full-screen handoff before docking artwork"
+    },
+    {
+      "original": "7a492fe5eefe843b3f89f9dc0b30c0f89656de60",
+      "compatible": "575dc6303d67a102d4e934c905d1031c4301aaf2",
+      "subject": "fix: preserve full-window model during image handoff"
+    },
+    {
+      "original": "56e01b67107eed84271a4239cc14bf1d090dee4e",
+      "compatible": "7810363711c42fb3e5d303c6e00127a2bde3640a",
+      "subject": "feat: add clear full-window chapter artwork"
+    },
+    {
+      "original": "869abd37bd991d3169d544f34bf964adab0e693b",
+      "compatible": "460ec43bc3b1f4d30dd8208f2f237fc3ec78dde9",
+      "subject": "feat: add lion info plates and cultural modal"
+    }
+  ],
+  "onlyTreeChange": {
+    "originalPath": "source/科比blend.blend",
+    "compatiblePath": "source/科比blend.blend.source.txt",
+    "originalBlob": "42b92d0080e75e9b8b7c06ffc8af2f2495c44fec",
+    "pointerBlob": "f83a3b9cdcef6e00168ce69d86c3fc3cde3412cf"
+  },
+  "preserved": [
+    "Original author and committer identities/timestamps",
+    "Original commit subjects/messages plus an Original-Commit trailer",
+    "All original blobs except the duplicate oversized Blender source",
+    "Five-commit topology"
+  ],
+  "restorationArchive": "archive-original-history.json",
+  "restoreScript": "restore_original_history.py"
+}

@@ -1,0 +1,882 @@
+{
+  "url": "http://127.0.0.1:5176",
+  "scope": "six navigation artworks, all six enriched culture/data panels, and flush top-left desktop study layout",
+  "errors": [],
+  "failedResponses": [],
+  "chapters": [
+    {
+      "id": "brows",
+      "hero": {
+        "src": "/images/chapters/brows.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/brows.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 3,
+      "details": [
+        "收\n静观\n\n视线收敛，眉弧包住眼眶。先看较低的眼睑，再看弧线与瞳孔之间留下的空间。",
+        "醒\n睁眼\n\n眼睑抬起，眼部露出的面积增加。表演中的“睁眼”让观众感知醒狮由静而动的精神。",
+        "望\n凝视\n\n眉眼朝向与头部姿态一起引导注意力。神态并非孤立的五官变化，还要联系舞者的身段。"
+      ],
+      "sources": [
+        {
+          "text": "中国非物质文化遗产网 · 广东醒狮",
+          "href": "https://www.ihchina.cn/project_details/12869",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 943,
+          "overflow": "auto"
+        },
+        "afterScroll": 361
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M218.93,40.59 L223.53,31.85 L225.90,22.14 L223.42,13.26 L214.64,8.07 L105.66,8.00 L97.14,13.35 L94.10,22.01 L96.19,31.71 L100.49,40.53 L106.51,47.96 L110.60,54.31 L114.79,59.86 L121.50,63.53 L125.40,67.70 L130.51,70.48 L134.00,74.32 L138.65,76.69 L143.91,77.47 L148.81,78.00 L153.99,75.65 L171.45,77.60 L176.62,77.73 L181.70,76.62 L186.59,74.54 L188.88,69.59 L194.34,67.25 L202.43,65.27 L206.18,60.05 L210.01,54.35 L214.64,48.01 Z",
+            "length": 339.5247497558594
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 1.675,
+            "bar": 100
+          },
+          {
+            "value": 0.864,
+            "bar": 51.5858
+          },
+          {
+            "value": 0.758,
+            "bar": 45.2431
+          }
+        ]
+      }
+    },
+    {
+      "id": "crown",
+      "hero": {
+        "src": "/images/chapters/crown.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/crown.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 4,
+      "details": [
+        "骨\n扎架\n\n弯曲、交接的竹篾建立立体轮廓。此时看见的是形体的支撑关系，还没有完整的外表面。",
+        "面\n裱糊\n\n纱纸与浆糊覆盖框架，把疏密的篾条连接成可彩绘的表面。这个环节也称“扑”。",
+        "色\n彩绘\n\n在成形表面组织色块与纹线。额头、眼眶与鼻部的轮廓，因色彩的衬托变得鲜明。",
+        "饰\n装饰\n\n再加入绒饰、镜面等配饰，让材料质感与彩绘相互呼应。图中额冠属于装饰层次的观察入口。"
+      ],
+      "sources": [
+        {
+          "text": "南海博物馆 · 佛鹤狮头制作",
+          "href": "https://www.nhmuseum.org/fei-yi/1575.html",
+          "target": "_blank",
+          "reachable": true
+        },
+        {
+          "text": "澳门政府新闻局 · 扎作狮头 澳门传艺",
+          "href": "https://www.gcs.gov.mo/news/detail/zh-hans/M24AXfoWOo",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 968,
+          "overflow": "auto"
+        },
+        "afterScroll": 386
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M116.4209969562254 60.999999999999986h56.7750066623941v14h-56.7750066623941Z",
+            "length": 141.55001831054688
+          },
+          {
+            "d": "M111.25720848792096 60.887921116810375h67.3432107058859v14h-67.3432107058859Z",
+            "length": 162.68643188476562
+          },
+          {
+            "d": "M100.19149971257758 7.999999999999982h150v14h-150Z",
+            "length": 328
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 0.63,
+            "bar": 50.711
+          },
+          {
+            "value": 0.925,
+            "bar": 74.4412
+          },
+          {
+            "value": 1.242,
+            "bar": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": "beard",
+      "hero": {
+        "src": "/images/chapters/beard.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/beard.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 3,
+      "details": [
+        "垂\n垂落\n\n静止时，须束向下聚拢。先沿线条找到共同的垂落方向，再观察束与束之间留下的空隙。",
+        "引\n牵引\n\n头部抬起，须饰的方向随之改变。长线把局部动作放大，使观众更容易感到动作的延续。",
+        "随\n回摆\n\n转向时，纤维形成不同方向的弧线。图中淡线是动势的绘画表达，用来比较流向。"
+      ],
+      "sources": [
+        {
+          "text": "中国非物质文化遗产网 · 广东醒狮",
+          "href": "https://www.ihchina.cn/project_details/12869",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 943,
+          "overflow": "auto"
+        },
+        "afterScroll": 361
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M140.09579098502545 9H179.90420901497455",
+            "length": 39.80841064453125
+          },
+          {
+            "d": "M135.48691212866513 14.153846153846153H184.51308787133487",
+            "length": 49.02618408203125
+          },
+          {
+            "d": "M112.3710684042741 19.307692307692307H207.6289315957259",
+            "length": 95.25786590576172
+          },
+          {
+            "d": "M116.7688722510789 24.46153846153846H203.2311277489211",
+            "length": 86.46224975585938
+          },
+          {
+            "d": "M110.04660375873438 29.615384615384617H209.95339624126564",
+            "length": 99.90679931640625
+          },
+          {
+            "d": "M103.25995100568497 34.769230769230774H216.74004899431503",
+            "length": 113.4801025390625
+          },
+          {
+            "d": "M97.45845540328999 39.92307692307692H222.54154459671003",
+            "length": 125.08309173583984
+          },
+          {
+            "d": "M91.54105588819174 45.07692307692307H228.45894411180825",
+            "length": 136.91787719726562
+          },
+          {
+            "d": "M72.17918420658687 50.23076923076923H247.82081579341315",
+            "length": 175.64163208007812
+          },
+          {
+            "d": "M67.14387012905506 55.38461538461539H252.85612987094493",
+            "length": 185.71224975585938
+          },
+          {
+            "d": "M60.18979741231412 60.53846153846154H259.81020258768586",
+            "length": 199.62042236328125
+          },
+          {
+            "d": "M58.949919208765465 65.6923076923077H261.05008079123456",
+            "length": 202.10015869140625
+          },
+          {
+            "d": "M55.81775339150852 70.84615384615384H264.1822466084915",
+            "length": 208.364501953125
+          },
+          {
+            "d": "M56.46164641269942 76H263.53835358730055",
+            "length": 207.07672119140625
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 1.407,
+            "bar": 100
+          },
+          {
+            "value": 0.528,
+            "bar": 37.5206
+          },
+          {
+            "value": 0.662,
+            "bar": 47.0305
+          }
+        ]
+      }
+    },
+    {
+      "id": "body",
+      "hero": {
+        "src": "/images/chapters/body.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/body.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 3,
+      "details": [
+        "点\n单元\n\n先辨认一块可重复的装饰形。这里的图案是围绕当前作品展开的设计示意，不赋予它特定历史寓意。",
+        "面\n重复\n\n单元按方向铺排，产生间距与密度。重复让局部纹线组合成较大尺度的视觉秩序。",
+        "体\n披覆\n\n布面形成褶皱，平面的图案也随之转向、遮挡。看纹样的连续性，便能读出柔软表面的起伏。"
+      ],
+      "sources": [
+        {
+          "text": "澳门政府新闻局 · 扎作狮头 澳门传艺",
+          "href": "https://www.gcs.gov.mo/news/detail/zh-hans/M24AXfoWOo",
+          "target": "_blank",
+          "reachable": true
+        },
+        {
+          "text": "中国非物质文化遗产网 · 广东醒狮",
+          "href": "https://www.ihchina.cn/project_details/12869",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 968,
+          "overflow": "auto"
+        },
+        "afterScroll": 386
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M118 5H200V81H118Z",
+            "length": 316
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 2.264,
+            "bar": 57.9479
+          },
+          {
+            "value": 2.201,
+            "bar": 56.3285
+          },
+          {
+            "value": 3.907,
+            "bar": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": "trim",
+      "hero": {
+        "src": "/images/chapters/trim.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/trim.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 3,
+      "details": [
+        "展\n舒展\n\n褶皱较浅时，连续边缘的重复容易辨认。把视线沿布边移动，比较相邻弧段的间距。",
+        "叠\n折叠\n\n布面转折使部分边缘收拢、遮挡。相同的装饰在不同姿态中，呈现不同的可见长度。",
+        "势\n起伏\n\n较深的褶皱把连续轮廓压缩成疏密相间的节奏。这里讨论的是视觉关系，不给起伏规定固定周期。"
+      ],
+      "sources": [
+        {
+          "text": "中国非物质文化遗产网 · 广东醒狮",
+          "href": "https://www.ihchina.cn/project_details/12869",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 943,
+          "overflow": "auto"
+        },
+        "afterScroll": 361
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M10.00,35.29 L21.11,33.64 L32.22,32.11 L43.33,28.76 L54.44,26.48 L65.56,24.53 L76.67,22.56 L87.78,20.91 L98.89,19.52 L110.00,18.53 L121.11,18.01 L132.22,18.18 L143.33,19.10 L154.44,19.52 L165.56,19.91 L176.67,20.00 L187.78,19.67 L198.89,18.81 L210.00,18.58 L221.11,18.22 L232.22,17.84 L243.33,17.68 L254.44,17.47 L265.56,17.02 L276.67,17.57 L287.78,18.37 L298.89,18.66 L310.00,19.21",
+            "length": 301.73931884765625
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 1.988,
+            "bar": 74.2641
+          },
+          {
+            "value": 1.554,
+            "bar": 58.0682
+          },
+          {
+            "value": 2.677,
+            "bar": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": "mouth",
+      "hero": {
+        "src": "/images/chapters/mouth.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 950.9759521484375,
+        "displayHeight": 633.9839477539062
+      },
+      "art": {
+        "src": "/images/culture/mouth.png",
+        "width": 1536,
+        "height": 1024,
+        "fit": "contain",
+        "displayWidth": 499.40625,
+        "displayHeight": 332.9375
+      },
+      "zones": 3,
+      "details": [
+        "藏\n敛口\n\n上下轮廓靠拢，口内露出较少。眼睛、嘴部与头姿之间的关系，比单独观察牙齿更能说明神态。",
+        "启\n微启\n\n牙弧之间出现空间，口部的层次开始显现。比较象牙色牙齿与红色口内形成的明暗对照。",
+        "露\n张口\n\n开口更大时，牙弧与舌面的相对位置更明显。这组艺术图用不同的开口状态，观察口部的层次变化。"
+      ],
+      "sources": [
+        {
+          "text": "南海博物馆 · 南海醒狮（采青技艺）",
+          "href": "https://www.nhmuseum.org/fei-yi/1580.html",
+          "target": "_blank",
+          "reachable": true
+        },
+        {
+          "text": "中国非物质文化遗产网 · 广东醒狮",
+          "href": "https://www.ihchina.cn/project_details/12869",
+          "target": "_blank",
+          "reachable": true
+        }
+      ],
+      "reader": {
+        "beforeScroll": {
+          "top": 27,
+          "height": 582,
+          "total": 968,
+          "overflow": "auto"
+        },
+        "afterScroll": 386
+      },
+      "chart": {
+        "paths": [
+          {
+            "d": "M121.08301889127586 50.87959743411345h77.43819729835036v14h-77.43819729835036Z",
+            "length": 182.87637329101562
+          },
+          {
+            "d": "M91.68584034209701 61h137.02326205376812v14h-137.02326205376812Z",
+            "length": 302.0465393066406
+          },
+          {
+            "d": "M85.19788245954896 8h150v14h-150Z",
+            "length": 328
+          }
+        ],
+        "dimensions": [
+          {
+            "value": 0.898,
+            "bar": 100
+          },
+          {
+            "value": 0.346,
+            "bar": 38.4843
+          },
+          {
+            "value": 0.5,
+            "bar": 55.7168
+          }
+        ]
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "page": {
+        "width": 1280,
+        "height": 800
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 792.0000610351562,
+        "height": 528,
+        "right": 792.0000610351562,
+        "bottom": 528
+      },
+      "column": {
+        "x": 820.15625,
+        "y": 72,
+        "width": 431.671875,
+        "height": 704,
+        "right": 1251.828125,
+        "bottom": 776
+      },
+      "nav": {
+        "x": 0,
+        "y": 678,
+        "width": 792,
+        "height": 104,
+        "right": 792,
+        "bottom": 782
+      },
+      "reader": {
+        "x": 820.15625,
+        "y": 318.796875,
+        "width": 431.671875,
+        "height": 457.203125,
+        "right": 1251.828125,
+        "bottom": 776
+      },
+      "tabs": {
+        "x": 820.15625,
+        "y": 278.796875,
+        "width": 431.671875,
+        "height": 40,
+        "right": 1251.828125,
+        "bottom": 318.796875
+      }
+    },
+    {
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "page": {
+        "width": 1536,
+        "height": 960
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 950.9759521484375,
+        "height": 633.9839477539062,
+        "right": 950.9759521484375,
+        "bottom": 633.9839477539062
+      },
+      "column": {
+        "x": 984.78125,
+        "y": 72,
+        "width": 517.40625,
+        "height": 864,
+        "right": 1502.1875,
+        "bottom": 936
+      },
+      "nav": {
+        "x": 25.5,
+        "y": 838,
+        "width": 900,
+        "height": 104,
+        "right": 925.5,
+        "bottom": 942
+      },
+      "reader": {
+        "x": 984.78125,
+        "y": 354.34375,
+        "width": 517.40625,
+        "height": 581.65625,
+        "right": 1502.1875,
+        "bottom": 936
+      },
+      "tabs": {
+        "x": 984.78125,
+        "y": 314.34375,
+        "width": 517.40625,
+        "height": 40,
+        "right": 1502.1875,
+        "bottom": 354.34375
+      }
+    },
+    {
+      "viewport": {
+        "width": 1600,
+        "height": 800
+      },
+      "page": {
+        "width": 1600,
+        "height": 800
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 978,
+        "height": 652,
+        "right": 978,
+        "bottom": 652
+      },
+      "column": {
+        "x": 1013.1875,
+        "y": 72,
+        "width": 551.59375,
+        "height": 704,
+        "right": 1564.78125,
+        "bottom": 776
+      },
+      "nav": {
+        "x": 39,
+        "y": 678,
+        "width": 900,
+        "height": 104,
+        "right": 939,
+        "bottom": 782
+      },
+      "reader": {
+        "x": 1013.1875,
+        "y": 318.796875,
+        "width": 551.59375,
+        "height": 457.203125,
+        "right": 1564.78125,
+        "bottom": 776
+      },
+      "tabs": {
+        "x": 1013.1875,
+        "y": 278.796875,
+        "width": 551.59375,
+        "height": 40,
+        "right": 1564.78125,
+        "bottom": 318.796875
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "page": {
+        "width": 1920,
+        "height": 1080
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1187.9459228515625,
+        "height": 791.9639892578125,
+        "right": 1187.9459228515625,
+        "bottom": 791.9639892578125
+      },
+      "column": {
+        "x": 1230.234375,
+        "y": 72,
+        "width": 647.515625,
+        "height": 984,
+        "right": 1877.75,
+        "bottom": 1056
+      },
+      "nav": {
+        "x": 144,
+        "y": 958,
+        "width": 900,
+        "height": 104,
+        "right": 1044,
+        "bottom": 1062
+      },
+      "reader": {
+        "x": 1230.234375,
+        "y": 371.34375,
+        "width": 647.515625,
+        "height": 684.65625,
+        "right": 1877.75,
+        "bottom": 1056
+      },
+      "tabs": {
+        "x": 1230.234375,
+        "y": 331.34375,
+        "width": 647.515625,
+        "height": 40,
+        "right": 1877.75,
+        "bottom": 371.34375
+      }
+    },
+    {
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "page": {
+        "width": 2560,
+        "height": 1440
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1586.9520263671875,
+        "height": 1057.968017578125,
+        "right": 1586.9520263671875,
+        "bottom": 1057.968017578125
+      },
+      "column": {
+        "x": 1635,
+        "y": 72,
+        "width": 877,
+        "height": 1344,
+        "right": 2512,
+        "bottom": 1416
+      },
+      "nav": {
+        "x": 343.5,
+        "y": 1318,
+        "width": 900,
+        "height": 104,
+        "right": 1243.5,
+        "bottom": 1422
+      },
+      "reader": {
+        "x": 1635,
+        "y": 371.34375,
+        "width": 877,
+        "height": 1044.65625,
+        "right": 2512,
+        "bottom": 1416
+      },
+      "tabs": {
+        "x": 1635,
+        "y": 331.34375,
+        "width": 877,
+        "height": 40,
+        "right": 2512,
+        "bottom": 371.34375
+      }
+    }
+  ],
+  "navigation": [
+    {
+      "id": "brows",
+      "src": "/images/navigation/brows.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    },
+    {
+      "id": "crown",
+      "src": "/images/navigation/crown.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    },
+    {
+      "id": "beard",
+      "src": "/images/navigation/beard.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    },
+    {
+      "id": "body",
+      "src": "/images/navigation/body.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    },
+    {
+      "id": "trim",
+      "src": "/images/navigation/trim.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    },
+    {
+      "id": "mouth",
+      "src": "/images/navigation/mouth.png",
+      "width": 1254,
+      "height": 1254,
+      "fit": "contain",
+      "displayWidth": 76,
+      "displayHeight": 72
+    }
+  ],
+  "bodyPalette": [
+    {
+      "color": "rgb(128, 14, 17)",
+      "flex": 0.334936,
+      "width": 162.234375
+    },
+    {
+      "color": "rgb(185, 18, 14)",
+      "flex": 0.297926,
+      "width": 144.3125
+    },
+    {
+      "color": "rgb(217, 151, 70)",
+      "flex": 0.108059,
+      "width": 52.34375
+    },
+    {
+      "color": "rgb(164, 93, 45)",
+      "flex": 0.100088,
+      "width": 48.484375
+    },
+    {
+      "color": "rgb(236, 204, 131)",
+      "flex": 0.0800664,
+      "width": 38.78125
+    },
+    {
+      "color": "rgb(44, 48, 30)",
+      "flex": 0.0789243,
+      "width": 38.234375
+    }
+  ],
+  "assets": [
+    {
+      "group": "navigation",
+      "id": "brows",
+      "sha256": "0cdfcaee1b47576f582b0f74e3bfbaad043471c5e73b414efcb2892d5097f038"
+    },
+    {
+      "group": "navigation",
+      "id": "crown",
+      "sha256": "a22f62c0ea72244415ddaa6ac3f57a469aecfee6342f9c1fff06dca7dc5b04fd"
+    },
+    {
+      "group": "navigation",
+      "id": "beard",
+      "sha256": "4ffa8f175cb4e41df5c51787de5ec04e6fe0cb1fd9cd6885f129df4d50382310"
+    },
+    {
+      "group": "navigation",
+      "id": "body",
+      "sha256": "2baff97e9e49ba07d50bfea2de94be2b287fd2f341af412dc05ee31601d0eddb"
+    },
+    {
+      "group": "navigation",
+      "id": "trim",
+      "sha256": "5114277e3e5a331e5f06c3295e2c6974a24abc1d9b64774d25b201a401b95a21"
+    },
+    {
+      "group": "navigation",
+      "id": "mouth",
+      "sha256": "491e62a1d34fcd956d02dd8811e140a7da18db324e515f0523349313b213b1b1"
+    },
+    {
+      "group": "culture",
+      "id": "brows",
+      "sha256": "a25ce823b7289c5d3ff3a1109864bf3279d8cfbdb4ba5658f57ec025c36553d3"
+    },
+    {
+      "group": "culture",
+      "id": "crown",
+      "sha256": "24291a15ab614d742930bc3f7817ab8a7a592558d81533ab27385475afdb4a8f"
+    },
+    {
+      "group": "culture",
+      "id": "beard",
+      "sha256": "7e72f959d2a53b2a0245f0a2ac1c8b6a472ccbf1c88c709565f5a78bc328b542"
+    },
+    {
+      "group": "culture",
+      "id": "body",
+      "sha256": "fe6db055b93cf4563a8a9346bea9f63cac60090412c7ec157ab83ce2d4655771"
+    },
+    {
+      "group": "culture",
+      "id": "trim",
+      "sha256": "33767cf524f5fd921fe83ab0871e724d0573422f18fe356e0d7130bba9651b70"
+    },
+    {
+      "group": "culture",
+      "id": "mouth",
+      "sha256": "5a025c7415b810ffb415345135bf17a106244bc1f7723644eb818f860d739a7b"
+    }
+  ],
+  "passed": true
+}
