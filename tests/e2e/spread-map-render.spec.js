@@ -85,16 +85,19 @@ test('地图画面载入失败时保留案例操作，切到其他镜头可恢�
   await expect(page.getByText('地图画面暂未载入')).toHaveCount(0);
 });
 
-test('三个镜头的地理标记与 Blender 投影对齐', async ({ page }) => {
-  // Blender 帧 1、100、200 中对应城市的近似投影坐标，按 1000×650 画幅记录。
-  for (const [name, x, y] of [['广东', 468, 323], ['中国', 638, 210], ['世界', 755, 314]]) {
+test('十二个城市圆点在对应层级显示并落在校准锚点', async ({ page }) => {
+  const expectedByLevel = [
+    { name: '广东', points: [[468, 323], [505, 293], [455, 344], [222, 458]] },
+    { name: '中国', points: [[628, 198], [532, 368], [662, 357], [612, 382]] },
+    { name: '世界', points: [[755, 314], [749, 310], [200, 225], [500, 191]] },
+  ];
+
+  for (const { name, points } of expectedByLevel) {
     await page.getByRole('tab', { name, exact: true }).click();
-    const point = await page.locator('.spread-pin-dot').first().evaluate(dot => {
-      const mark = dot.getBoundingClientRect();
-      const frame = dot.closest('.spread-world').getBoundingClientRect();
-      return { x: (mark.left + mark.width / 2 - frame.left) / frame.width, y: (mark.top + mark.height / 2 - frame.top) / frame.height };
-    });
-    expect(Math.abs(point.x * 1000 - x)).toBeLessThanOrEqual(1.5);
-    expect(Math.abs(point.y * 650 - y)).toBeLessThanOrEqual(1.5);
+    const actual = await page.locator('.spread-pin-dot').evaluateAll(dots => dots.map(dot => [
+      Number(dot.getAttribute('cx')),
+      Number(dot.getAttribute('cy')),
+    ]));
+    expect(actual).toEqual(points);
   }
 });

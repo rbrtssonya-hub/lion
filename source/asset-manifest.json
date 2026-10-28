@@ -5453,28 +5453,28 @@
       "sha256": "8616f153acf2d963c9d6e06a04bdfccdfcd3bd9855cc6819cf906010a6306745"
     },
     {
-      "from": "imagegen craft process conceptual illustration 2026-10-26 to 2026-10-27; provenance source/design/lion-head-craft/README.md",
+      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
       "path": "source/public/assets/craft/hua.png",
-      "bytes": 3075746,
-      "sha256": "75cc35c7e9e98992352f2dd8f05a20860a905dfb59d8c79175d23043c3e1db4f"
+      "bytes": 3075784,
+      "sha256": "32ab8c2a8bd4e7080cd21d6074e2df5c45fc726380961f6563137ca632de525b"
     },
     {
-      "from": "imagegen craft process conceptual illustration 2026-10-26 to 2026-10-27; provenance source/design/lion-head-craft/README.md",
+      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
       "path": "source/public/assets/craft/pu.png",
-      "bytes": 2892798,
-      "sha256": "240095c9b86eb04a805dc12343a3e2ccf31bcee769eb2e1cd9df6b6f99320613"
+      "bytes": 3047576,
+      "sha256": "56d03aa3502a77c2b35f1ffd4237e982a5ade75a1649333fc2b55533656b3780"
     },
     {
-      "from": "imagegen craft process conceptual illustration 2026-10-26 to 2026-10-27; provenance source/design/lion-head-craft/README.md",
+      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
       "path": "source/public/assets/craft/zha.png",
-      "bytes": 3253259,
-      "sha256": "c7a32ad39cd755ee3476ea49cf3256c3cc5dfd8e181e2d5645e339b921f11baa"
+      "bytes": 3549341,
+      "sha256": "6b80832afda261498dfdd9a4ffb9d1b664c431e23b1f58cf1689d9946e57c7ed"
     },
     {
-      "from": "imagegen craft process conceptual illustration 2026-10-26 to 2026-10-27; provenance source/design/lion-head-craft/README.md",
+      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
       "path": "source/public/assets/craft/zhuang.png",
-      "bytes": 3000281,
-      "sha256": "8616f153acf2d963c9d6e06a04bdfccdfcd3bd9855cc6819cf906010a6306745"
+      "bytes": 3169315,
+      "sha256": "be06491c616469082e3741d07be7041fa13470c0e66e42242b7437282c55d351"
     },
     {
       "from": "actual Chrome production craft depth carousel review 2026-10-27",
@@ -7293,6 +7293,66 @@
       "path": "source/public/assets/structure-atlas/fonts/OFL.txt",
       "bytes": 5171,
       "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "from": "built-in image_gen original, varied-scene craft illustration 2026-10-28; full prompt and native output in sibling generation JSON",
+      "path": "source/design/lion-head-craft/2026-10-28/zha.png",
+      "bytes": 3549341,
+      "sha256": "6b80832afda261498dfdd9a4ffb9d1b664c431e23b1f58cf1689d9946e57c7ed"
+    },
+    {
+      "from": "built-in image_gen original, varied-scene craft illustration 2026-10-28; full prompt and native output in sibling generation JSON",
+      "path": "source/design/lion-head-craft/2026-10-28/pu.png",
+      "bytes": 3047576,
+      "sha256": "56d03aa3502a77c2b35f1ffd4237e982a5ade75a1649333fc2b55533656b3780"
+    },
+    {
+      "from": "built-in image_gen original, varied-scene craft illustration 2026-10-28; full prompt and native output in sibling generation JSON",
+      "path": "source/design/lion-head-craft/2026-10-28/hua.png",
+      "bytes": 3075784,
+      "sha256": "32ab8c2a8bd4e7080cd21d6074e2df5c45fc726380961f6563137ca632de525b"
+    },
+    {
+      "from": "built-in image_gen original, varied-scene craft illustration 2026-10-28; full prompt and native output in sibling generation JSON",
+      "path": "source/design/lion-head-craft/2026-10-28/zhuang.png",
+      "bytes": 3169315,
+      "sha256": "be06491c616469082e3741d07be7041fa13470c0e66e42242b7437282c55d351"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-zha-1920x1080.png",
+      "bytes": 2029649,
+      "sha256": "1843c09731f857588fb1dba938f26a47be2a75d6627c5423e5e9c69a004a314b"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-zha-1440x900.png",
+      "bytes": 1316250,
+      "sha256": "000eaae229a5348aa218a2e3e5f7fbe81494218dfa6e3a1e202822fe57d9d04c"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-zha-1366x768.png",
+      "bytes": 1111396,
+      "sha256": "8d2c1ab41e50d327a72a1046d1c8b76a396e871bae4342fa4ae73f0f98176402"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-pu-1920x1080.png",
+      "bytes": 1950497,
+      "sha256": "cc99e095703ae94c9463bd2878ca8b1c32662cb431f404d886a13739ead9af1e"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-hua-1920x1080.png",
+      "bytes": 1980195,
+      "sha256": "4d2fd755d4a725d311fabca3748372fec3250c35dbe9b3a1584df1f636bd5a46"
+    },
+    {
+      "from": "actual Chrome production craft depth carousel screenshot review 2026-10-28",
+      "path": "source/reviews/craft-carousel/2026-10-28/craft-zhuang-1920x1080.png",
+      "bytes": 1980226,
+      "sha256": "709cb323ff5a7e3b178c8964d61a24211f9bb55319c6124c2d63574c4a14723a"
     }
   ]
 }
