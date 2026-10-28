@@ -20,6 +20,10 @@ test('地图按用户指定的三组收录十二个城市，编号与层级顺�
   }
 });
 
+test('北京坐标使用北京市政府公布的经纬度近似值', () => {
+  assert.deepEqual(spreadPlaces.find(place => place.id === 'beijing').coordinates, [116.33, 39.93]);
+});
+
 test('已有案例继续引用原 story 与照片，未提供资料的城市不借用其他地点照片', () => {
   const includedStories = spreadPlaces.flatMap(place => place.stories);
   assert.equal(new Set(includedStories).size, includedStories.length);

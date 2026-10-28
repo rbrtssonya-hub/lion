@@ -19,7 +19,7 @@ const shots = {
   china: {
     image: media.spreadMapChina,
     points: {
-      beijing: [637, 212, 720, 145],
+      beijing: [638, 210, 720, 145],
       tianyang: [532, 368, 430, 420],
       quanzhou: [662, 357, 760, 425],
       'hong-kong': [612, 382, 865, 520],

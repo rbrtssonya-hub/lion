@@ -87,14 +87,14 @@ test('地图画面载入失败时保留案例操作，切到其他镜头可恢�
 
 test('三个镜头的地理标记与 Blender 投影对齐', async ({ page }) => {
   // Blender 帧 1、100、200 中对应城市的近似投影坐标，按 1000×650 画幅记录。
-  for (const [name, x, y] of [['广东', 468, 323], ['中国', 637, 212], ['世界', 755, 314]]) {
+  for (const [name, x, y] of [['广东', 468, 323], ['中国', 638, 210], ['世界', 755, 314]]) {
     await page.getByRole('tab', { name, exact: true }).click();
     const point = await page.locator('.spread-pin-dot').first().evaluate(dot => {
       const mark = dot.getBoundingClientRect();
       const frame = dot.closest('.spread-world').getBoundingClientRect();
       return { x: (mark.left + mark.width / 2 - frame.left) / frame.width, y: (mark.top + mark.height / 2 - frame.top) / frame.height };
     });
-    expect(point.x).toBeCloseTo(x / 1000, 2);
-    expect(point.y).toBeCloseTo(y / 650, 2);
+    expect(Math.abs(point.x * 1000 - x)).toBeLessThanOrEqual(1.5);
+    expect(Math.abs(point.y * 650 - y)).toBeLessThanOrEqual(1.5);
   }
 });

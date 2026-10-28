@@ -30,7 +30,8 @@ export const spreadPlaces = [
   },
   {
     id: 'beijing', level: 'china', serial: '05', name: '北京', location: '北京市', english: 'BEIJING',
-    coordinates: [116.40, 39.90], stories: [], photoYears: [],
+    // Source: https://www.beijing.gov.cn/renwen/bjgk/ (116°20′E, 39°56′N).
+    coordinates: [116.33, 39.93], stories: [], photoYears: [],
   },
   {
     id: 'tianyang', level: 'china', serial: '06', name: '田阳', location: '广西壮族自治区百色市田阳区', english: 'TIANYANG',
