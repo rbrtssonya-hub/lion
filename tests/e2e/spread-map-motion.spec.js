@@ -86,7 +86,7 @@ test('广东直达世界沿原视频连续运行并经过中国停顿，最后�
   expect(transition.middle).toBeLessThan(transition.end);
   expect(transition.end).toBe(1);
   await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'singapore');
 });
 
 test('中国镜头返回广东时倒放原运动；快速改目标从当前画面反向', async ({ page }) => {
@@ -198,7 +198,7 @@ test('减少动态偏好直接到目标静帧且案例仍可操作', async ({ pa
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /world\.png/);
   await expect(video(page, 'forward')).toBeHidden();
   await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'singapore');
 });
 
 test('动画文件不可用时回退目标静帧并保留案例与后续切换', async ({ page }) => {
@@ -208,7 +208,7 @@ test('动画文件不可用时回退目标静帧并保留案例与后续切换',
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed', { timeout: 15_000 });
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /china\.png/);
   await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'hong-kong');
   await tab(page, '世界').click();
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed', { timeout: 15_000 });
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /world\.png/);
@@ -224,7 +224,7 @@ test('播放中发生媒体错误后停止镜头并恢复目标案例操作', as
   await expect(forward).toHaveAttribute('data-visible', 'false');
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /china\.png/);
   await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'hong-kong');
 });
 
 test('镜头播放期间离开传章会暂停并释放视频', async ({ page }) => {
@@ -329,7 +329,7 @@ test('地图媒体请求停滞时超时回退静图并恢复案例操作', async
     await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /china\.png/);
     await expect(video(page, 'forward', 60)).toHaveAttribute('data-visible', 'false');
     await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
-    await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+    await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'hong-kong');
     release();
     await expect(map(page)).toHaveAttribute('data-map-motion', 'failed');
     await expect.poll(() => video(page, 'forward', 60).evaluate(element => element.paused)).toBe(true);
@@ -365,7 +365,7 @@ test('播放请求悬而未决时超时回退，晚到的成功不会重启动�
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed');
   await expect.poll(() => video(page, 'forward', 60).evaluate(element => element.paused)).toBe(true);
   await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'hong-kong');
 });
 
 test('视频元数据尚未载入时取消目标不会在稍后启动旧运镜', async ({ page }) => {

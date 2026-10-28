@@ -68,7 +68,7 @@ test('快速切换镜头后画面、选中层级和案例保持一致', async ({
   await expect(page.getByRole('tab', { name: '中国', exact: true })).toHaveAttribute('aria-selected', 'true');
   await inspectRenderedMap(page, levels[1]);
   await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'hong-kong');
   await page.getByRole('tab', { name: '世界', exact: true }).click();
   await inspectRenderedMap(page, levels[2]);
   await expect(page.getByRole('button', { name: '选择新加坡邮票', exact: true })).toHaveAttribute('aria-pressed', 'true');
@@ -79,7 +79,7 @@ test('地图画面载入失败时保留案例操作，切到其他镜头可恢�
   await page.reload();
   await expect(page.getByRole('status').filter({ hasText: '地图画面暂未载入' })).toBeVisible();
   await page.getByRole('button', { name: '选择广州邮票', exact: true }).click();
-  await expect(page.locator('.spread-photo-caption')).toContainText('广东广州');
+  await expect(page.locator('.spread-stamp-hit[data-stamp="guangzhou"]')).toHaveAttribute('data-map-selected', 'true');
   await page.getByRole('tab', { name: '中国', exact: true }).click();
   await inspectRenderedMap(page, levels[1]);
   await expect(page.getByText('地图画面暂未载入')).toHaveCount(0);

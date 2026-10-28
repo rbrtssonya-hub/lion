@@ -52,3 +52,7 @@ source/references/spread-map-motion/performance-after-60.json -text
 source/archives/xuanji5/** -text
 source/reviews/structure-atlas/imported-xuanji5/** -text
 source/public/assets/structure-atlas/fonts/OFL.txt -text
+
+# Preserve both original stamp editions and their authenticated research records.
+source/archives/xuanji3/** -text
+source/reviews/spread-stamps/imported-xuanji3/** -text

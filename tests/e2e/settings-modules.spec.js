@@ -52,7 +52,7 @@ test('settings separate common, home, chapter and source controls into focused p
 });
 
 test('common material applies only on command to selected surfaces, preserving dimensions and old preferences', async ({page}) => {
-  await open(page, {bookTitleWidth:57, bookTitleLayoutVersion:1, cultureBodyHeight:250, headerBlur:23, modelOverlayTransparency:27, expressionOverviewFontSize:25});
+  await open(page, {bookTitleWidth:57, bookTitleLayoutVersion:1, cultureBodyHeight:250, headerBlur:23, modelOverlayTransparency:27, expressionOverviewFontSize:25, spreadOverlayTransparency:5});
   await number(page, '公共透明度', 65); await number(page, '公共模糊强度', 9); await number(page, '公共圆角', 20);
   const color = panel(page).getByLabel('公共底色',{exact:true});
   await color.fill('#e6d4b8');
@@ -64,14 +64,29 @@ test('common material applies only on command to selected surfaces, preserving d
   await save(page);
   await expect.poll(() => stored(page)).toMatchObject({archivePanelTransparency:65,bookTitleTransparency:65,bookDetailsTransparency:65,cultureTitleTransparency:65,cultureBodyTransparency:65,bookTitleBlur:9,bookTitleRadius:20,bookTitleColor:'#e6d4b8',bookTitleWidth:57,cultureBodyHeight:250,headerBlur:23,modelOverlayTransparency:27,expressionOverviewFontSize:25});
   await expect(page.locator('[data-surface="bookTitle"]')).toHaveCSS('--surface-opacity','0.35');
-  await expect(panel(page).locator('.developer-settings-feedback')).toContainText('已应用到4处底板');
+  await expect(panel(page).locator('.developer-settings-page:not([hidden]) .developer-settings-feedback')).toContainText('已应用到4处底板');
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('chapters');
   await number(page, '公共透明度', 80);
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
   await save(page);
-  await expect.poll(() => stored(page)).toMatchObject({modelOverlayTransparency:80,expressionOverlayTransparency:80,actionOverlayTransparency:80,videoOverlayTransparency:80,bookTitleTransparency:65,bookTitleWidth:57});
+  await expect.poll(() => stored(page)).toMatchObject({modelOverlayTransparency:80,expressionOverlayTransparency:80,actionOverlayTransparency:80,videoOverlayTransparency:80,bookTitleTransparency:65,bookTitleWidth:57,spreadOverlayTransparency:5});
+  await tab(page, '章节'); await tab(page, '传章');
+  await expect(panel(page).getByRole('spinbutton', {name:'邮票区域宽度数值',exact:true})).toBeVisible();
+  await expect(panel(page).getByRole('spinbutton', {name:'传章案例底板宽度数值',exact:true})).toHaveCount(0);
+  await expect(panel(page).getByRole('spinbutton', {name:'传章案例底板透明度数值',exact:true})).toHaveCount(0);
+  await expect(panel(page).getByLabel('传章案例底板底色', {exact:true})).toHaveCount(0);
+  await number(page, '邮票区域宽度', 78);
+  await save(page, false);
+  await expect.poll(() => stored(page)).toMatchObject({spreadOverlayWidth:78,spreadOverlayTransparency:5});
+  await page.locator('.site-navigation [data-route="spread"]').click();
+  const stampBoard = page.locator('#spreadPlaceCard.spread-stamp-board');
+  await expect(stampBoard).toBeVisible();
+  await expect.poll(() => stampBoard.evaluate(element => {
+    const columns = getComputedStyle(element.parentElement).gridTemplateColumns.split(/\s+/).map(Number.parseFloat);
+    return element.getBoundingClientRect().width / columns.at(-1);
+  })).toBeCloseTo(.78, 2);
   await page.reload(); await expect(page.locator('#startupLoading')).toHaveCount(0,{timeout:60000});
-  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:65,modelOverlayTransparency:80,bookTitleWidth:57,headerBlur:23});
+  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:65,modelOverlayTransparency:80,bookTitleWidth:57,headerBlur:23,spreadOverlayWidth:78,spreadOverlayTransparency:5});
 });
 
 test('shared material and independent panels reset correctly, with scoped keyboard navigation', async ({page}) => {
@@ -80,7 +95,7 @@ test('shared material and independent panels reset correctly, with scoped keyboa
   await panel(page).getByRole('combobox',{name:'应用范围',exact:true}).selectOption('all');
   await panel(page).getByRole('button',{name:'应用公共材质',exact:true}).click();
   await save(page);
-  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:100,cultureSourceCardTransparency:100,videoOverlayTransparency:100});
+  await expect.poll(() => stored(page)).toMatchObject({bookTitleTransparency:100,cultureSourceCardTransparency:100,videoOverlayTransparency:100,spreadOverlayTransparency:5});
   const common = panel(page).getByRole('tab',{name:'公共模块',exact:true});
   await common.focus(); await common.press('ArrowDown');
   await expect(panel(page).getByRole('tab',{name:'外观',exact:true})).toBeFocused();

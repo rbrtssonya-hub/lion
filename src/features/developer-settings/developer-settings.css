@@ -548,6 +548,15 @@
 .developer-settings-source-control input[type='text'] { padding: 8px; border: 1px solid rgba(157,104,60,.3); border-radius: 5px; background: #fffaf0; color: #713221; }
 .developer-settings-panel :is(select, input[type='number']) { max-width: 100%; }
 
+.developer-stamp-controls { display: grid; gap: 14px; min-width: 0; }
+.developer-stamp-field, .developer-stamp-preset { display: grid; gap: 8px; min-width: 0; }
+.developer-stamp-field > .developer-settings-note { margin: 0; }
+.developer-stamp-transfer { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.developer-stamp-transfer > button:last-of-type { grid-column: 1 / -1; }
+.developer-stamp-import { display: grid; gap: 9px; min-width: 0; color: #613022; font: 13px/1.6 var(--sans); }
+.developer-stamp-import textarea { box-sizing: border-box; width: 100%; max-width: 100%; min-width: 0; min-height: 160px; padding: 10px; resize: vertical; border: 1px solid #b98a5d77; border-radius: 5px; background: #fffaf0; color: #613022; font: 11px/1.7 monospace; }
+.developer-stamp-import > div { display: grid; gap: 8px; }
+
 @media (prefers-reduced-motion: reduce) {
   .developer-settings-tabs > button,
   .developer-settings-switch > span,
@@ -555,3 +564,4 @@
     transition: none;
   }
 }
+.developer-stamp-unused-color { margin: 0; padding: 0; border: 0; opacity: .65; }

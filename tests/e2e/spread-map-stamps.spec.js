@@ -32,10 +32,11 @@ test('三个地图层级各显示对应四枚编号邮票城市标识', async ({
   }
 });
 
-test('点击没有配套实景的邮票仍选中城市并显示资料整理状态', async ({ page }) => {
+test('地图选中城市后对应地域艺术邮票高亮，旧资料占位不再出现', async ({ page }) => {
   const stamp = page.getByRole('button', { name: '选择鹤山邮票', exact: true });
   await stamp.click();
   await expect(stamp).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('鹤山');
-  await expect(page.locator('.spread-empty')).toContainText('醒狮文化资料正在整理');
+  await expect(page.locator('.spread-stamp-hit[data-map-selected="true"]')).toHaveAttribute('data-place', 'heshan');
+  await expect(page.locator('.spread-stamp-note')).toContainText('AI辅助艺术邮票');
+  await expect(page.locator('.spread-empty, .spread-case, .spread-photo')).toHaveCount(0);
 });

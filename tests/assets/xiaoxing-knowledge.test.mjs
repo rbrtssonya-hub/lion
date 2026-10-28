@@ -101,8 +101,8 @@ test('spread guide describes the actual Guangdong, China, world levels and avoid
   const answer = answerLocally('地图怎么从广东看到中国和世界？', 'spread');
   assert.equal(retrieveKnowledge('地图怎么从广东看到中国和世界？', 'entry')[0]?.id, 'spread-map-levels');
   assert.match(answer.answer, /广东.*中国.*世界/);
-  assert.match(answer.answer, /五地.*八幅/);
-  assert.match(answer.answer, /拍摄年份.*不表示传播先后/);
+  assert.match(answer.answer, /四个城市.*十二个城市/);
+  assert.match(answer.answer, /AI辅助艺术.*不是历史发行/);
 });
 
 test('chapter-guide intent follows explicit chapter and otherwise current route', () => {

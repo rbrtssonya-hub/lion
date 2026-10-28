@@ -1,0 +1,1034 @@
+{
+  "auditedAt": "2026-10-28",
+  "sourceEdition": "runGo.cmd -> scripts/start-edition.mjs regional -> editions/regional",
+  "sourceGitTip": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+  "scope": "Static source/contract audit and two CPU optical contract tests; no GPU or visual claim from this audit.",
+  "files": [
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\SurfaceTexture.js",
+      "current": "src/services/spread-stamps/SurfaceTexture.js",
+      "sourceBytes": 3347,
+      "currentBytes": 3347,
+      "sourceSha256": "77ecad3842fe7bf54062b6dfe5829e3f09b2487d1f9c7bd80223e0f7eabed47b",
+      "currentSha256": "77ecad3842fe7bf54062b6dfe5829e3f09b2487d1f9c7bd80223e0f7eabed47b",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\ncsLighting.js",
+      "current": "src/services/spread-stamps/ncsLighting.js",
+      "sourceBytes": 936,
+      "currentBytes": 936,
+      "sourceSha256": "cf2c800d29ca06b5f4d5a9e8d3083afa3ca39c485bc2e0badac883adc91c4984",
+      "currentSha256": "cf2c800d29ca06b5f4d5a9e8d3083afa3ca39c485bc2e0badac883adc91c4984",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\dappledShaders.js",
+      "current": "src/services/spread-stamps/dappledShaders.js",
+      "sourceBytes": 4705,
+      "currentBytes": 4705,
+      "sourceSha256": "110de25826a61f9af58eae2dbcf2ec7ac2daf320a34493c54f8cb140caa95e19",
+      "currentSha256": "110de25826a61f9af58eae2dbcf2ec7ac2daf320a34493c54f8cb140caa95e19",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\motion.js",
+      "current": "src/services/spread-stamps/motion.js",
+      "sourceBytes": 1054,
+      "currentBytes": 1054,
+      "sourceSha256": "d789578c7868a5f986588ebc65559d3deb4b973e8355be530668dc8fefdd8bce",
+      "currentSha256": "d789578c7868a5f986588ebc65559d3deb4b973e8355be530668dc8fefdd8bce",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\artwork.js",
+      "current": "src/services/spread-stamps/artwork.js",
+      "sourceBytes": 6026,
+      "currentBytes": 6026,
+      "sourceSha256": "473dd60b6359d762b7ad39719f5b3b5a31dd51b1907c4a3c5fb17259a8835ac5",
+      "currentSha256": "473dd60b6359d762b7ad39719f5b3b5a31dd51b1907c4a3c5fb17259a8835ac5",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\DappledLight.js",
+      "current": "src/services/spread-stamps/DappledLight.js",
+      "sourceBytes": 15077,
+      "currentBytes": 16107,
+      "sourceSha256": "e74c636f061634ec182851db6270312d4d794826701bfb018bdb860524cca6a4",
+      "currentSha256": "446fc81fe458ae4cabaa3fb8b0decd95a5f870a499fb32ea619ff2175568a846",
+      "rawByteIdentical": false,
+      "lineEndingNormalizedIdentical": false,
+      "classification": "module paths, diagnostics and explicit transparent host option",
+      "effectOnSourceContract": "Retains fieldTarget/blurTarget and their original update/blur math. transparentBackground:true only clears the main framebuffer instead of drawing outputScene; original static-paper ShaderMaterial/GLSL remains available when false. Adds clear/pass counters."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\StampMaterial.js",
+      "current": "src/services/spread-stamps/StampMaterial.js",
+      "sourceBytes": 16813,
+      "currentBytes": 16906,
+      "sourceSha256": "06ff78052160372688d15262a02c36432991c34606846a79a6794deefba160b9",
+      "currentSha256": "6e2c6143da0d0a169e0ca44c1ec1cbaf40924824d07d3ccee40076d8c5e68387",
+      "rawByteIdentical": false,
+      "lineEndingNormalizedIdentical": false,
+      "classification": "diagnostic material names only",
+      "effectOnSourceContract": "Both paper and shadow ShaderMaterial bodies, uniforms and all GLSL are identical."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\rendering\\StampGallery.js",
+      "current": "src/services/spread-stamps/StampGallery.js",
+      "sourceBytes": 26094,
+      "currentBytes": 31505,
+      "sourceSha256": "c668ed2b3a04a29f6608a5791a910e892926dbeb58ec59586fa1873c2497cb0f",
+      "currentSha256": "1802378452ab573f9ec50ff5878f401e806ec971211cdc6f152fac24499d3f6a",
+      "rawByteIdentical": false,
+      "lineEndingNormalizedIdentical": false,
+      "classification": "host integration and lifecycle",
+      "effectOnSourceContract": "Retains source stamp shading, interpolation, optical handoff, pointer raycast, projection and render order; adds local board/lifecycle/diagnostics APIs. User-required transparent host uses WebGLRenderer alpha:true, clearColor(0,0), and the Dappled transparent option; constructor failure now returns null."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\config.js",
+      "current": "src/services/spread-stamps/config.js",
+      "sourceBytes": 8501,
+      "currentBytes": 1933,
+      "sourceSha256": "3fa088f933bdf4d54a9a033ca6d929653e62c914b3d5e933e95a586f8904c8f3",
+      "currentSha256": "b2248fe0afa254a1450502aa49cc95f63886f139f6a2102aab56ce13ecb36e07",
+      "rawByteIdentical": false,
+      "lineEndingNormalizedIdentical": false,
+      "classification": "catalog and local-board layout adapter",
+      "effectOnSourceContract": "Imports the single relocated stamp catalog; preserves exhibition timing/DPR constants, uses enlarged 2x2 board poses and host-relative focus instead of the source full-page gallery grid."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\parameters.js",
+      "current": "src/config/spread-stamps/parameters.js",
+      "sourceBytes": 9067,
+      "currentBytes": 9067,
+      "sourceSha256": "2a7b1a06992091c4e798f956af54f3db39416ca8bb004c2fdd9b389d6993fba3",
+      "currentSha256": "2a7b1a06992091c4e798f956af54f3db39416ca8bb004c2fdd9b389d6993fba3",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    },
+    {
+      "source": "C:\\Users\\Administrator\\Desktop\\炫技3\\editions\\regional\\src\\lightPresets.js",
+      "current": "src/config/spread-stamps/lightPresets.js",
+      "sourceBytes": 2435,
+      "currentBytes": 2435,
+      "sourceSha256": "02fb7509879e3826e0f3c059023316debbd10e108b4834228d7c6d0bd9d50106",
+      "currentSha256": "02fb7509879e3826e0f3c059023316debbd10e108b4834228d7c6d0bd9d50106",
+      "rawByteIdentical": true,
+      "lineEndingNormalizedIdentical": true,
+      "classification": "byte-identical",
+      "effectOnSourceContract": "No changed executable content."
+    }
+  ],
+  "shaderTemplates": [
+    {
+      "file": "StampMaterial.js",
+      "template": "paperVertex",
+      "sourceSha256": "562cbb1b6fafed71da4351222074bd312ad05efd7e2762d188b9b7bd665a2153",
+      "currentSha256": "562cbb1b6fafed71da4351222074bd312ad05efd7e2762d188b9b7bd665a2153",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 288
+    },
+    {
+      "file": "StampMaterial.js",
+      "template": "paperFragment",
+      "sourceSha256": "c74840eeb7d5a5172a2da923b060b80a28cc98fdb8629bc580cbd962deb390da",
+      "currentSha256": "c74840eeb7d5a5172a2da923b060b80a28cc98fdb8629bc580cbd962deb390da",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 11195
+    },
+    {
+      "file": "StampMaterial.js",
+      "template": "shadowVertex",
+      "sourceSha256": "5d4f4d25bc59c594e8022b8713c1838cd41eb430635b37ac0bcfd866862b42b0",
+      "currentSha256": "5d4f4d25bc59c594e8022b8713c1838cd41eb430635b37ac0bcfd866862b42b0",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 115
+    },
+    {
+      "file": "StampMaterial.js",
+      "template": "shadowFragment",
+      "sourceSha256": "4db6c1c9b29fdfab396a8816a3ad6f07043f5fa3aaef17640852e1d7cace9eda",
+      "currentSha256": "4db6c1c9b29fdfab396a8816a3ad6f07043f5fa3aaef17640852e1d7cace9eda",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 939
+    },
+    {
+      "file": "dappledShaders.js",
+      "template": "SCREEN_VERTEX",
+      "sourceSha256": "d12b72167041e99c4163bf72c2b06db2f13a809faadc2b747556d9579ac97644",
+      "currentSha256": "d12b72167041e99c4163bf72c2b06db2f13a809faadc2b747556d9579ac97644",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 102
+    },
+    {
+      "file": "dappledShaders.js",
+      "template": "DAPPLED_FIELD_FRAGMENT",
+      "sourceSha256": "319776759d025396137978efac8b29140df9bb9beaa96980aa5aa5023241c685",
+      "currentSha256": "319776759d025396137978efac8b29140df9bb9beaa96980aa5aa5023241c685",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 2105
+    },
+    {
+      "file": "dappledShaders.js",
+      "template": "DAPPLED_BLUR_FRAGMENT",
+      "sourceSha256": "6e0734dcf7b6cb150240b312bc622ff3bca247eaf434e2d9202fb3c20bfe7001",
+      "currentSha256": "6e0734dcf7b6cb150240b312bc622ff3bca247eaf434e2d9202fb3c20bfe7001",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 824
+    },
+    {
+      "file": "dappledShaders.js",
+      "template": "DAPPLED_OUTPUT_FRAGMENT",
+      "sourceSha256": "fdfb05b66097ef263dfa3c6f49b9df1d6391fff089214053dc8d902e930d5ed6",
+      "currentSha256": "fdfb05b66097ef263dfa3c6f49b9df1d6391fff089214053dc8d902e930d5ed6",
+      "runtimeTemplateTextIdentical": true,
+      "normalizedBytes": 662
+    }
+  ],
+  "allEightRuntimeGlslTemplatesIdentical": true,
+  "contracts": {
+    "parameterCount": 52,
+    "parameterFields": [
+      {
+        "key": "tiltEnabled",
+        "label": "指针微偏转",
+        "value": true,
+        "hint": "",
+        "type": "boolean"
+      },
+      {
+        "key": "hoverTilt",
+        "label": "悬停偏转",
+        "value": 6,
+        "min": 0,
+        "max": 20,
+        "step": 0.5,
+        "unit": "°",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusTilt",
+        "label": "聚焦偏转",
+        "value": 6,
+        "min": 0,
+        "max": 20,
+        "step": 0.5,
+        "unit": "°",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "tiltResponse",
+        "label": "偏转缓动",
+        "value": 0.085,
+        "min": 0.02,
+        "max": 0.6,
+        "step": 0.005,
+        "unit": "s",
+        "hint": "原站约 195ms 达到90%偏转；数值越大，追踪越柔缓。",
+        "type": "number"
+      },
+      {
+        "key": "hoverPerspective",
+        "label": "悬停透视距离",
+        "value": 1200,
+        "min": 500,
+        "max": 4000,
+        "step": 50,
+        "unit": "px",
+        "hint": "原站画廊实测 1200px；距离越小，近大远小越明显。",
+        "type": "number"
+      },
+      {
+        "key": "hoverScale",
+        "label": "悬停缩放",
+        "value": 1.05,
+        "min": 1,
+        "max": 1.2,
+        "step": 0.005,
+        "unit": "×",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "hoverLift",
+        "label": "悬停抬升",
+        "value": 4,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "hoverResponse",
+        "label": "悬停缓动",
+        "value": 0.085,
+        "min": 0.02,
+        "max": 0.4,
+        "step": 0.005,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "blur",
+        "label": "其他邮票虚化",
+        "value": 11,
+        "min": 0,
+        "max": 22,
+        "step": 0.5,
+        "unit": "px",
+        "hint": "窄屏按 6/11 比例缩小。",
+        "type": "number"
+      },
+      {
+        "key": "blurResponse",
+        "label": "虚化缓动",
+        "value": 0.075,
+        "min": 0.02,
+        "max": 0.4,
+        "step": 0.005,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusTrackOutside",
+        "label": "票外继续追踪",
+        "value": false,
+        "hint": "开启后跟随票外指针，关闭时保持最后一次票内姿态。",
+        "type": "boolean"
+      },
+      {
+        "key": "resetTiltOnLeave",
+        "label": "移出后回正",
+        "value": false,
+        "hint": "原站聚焦时会保留最后一次偏转；开启可改为平滑回正。",
+        "type": "boolean"
+      },
+      {
+        "key": "perspective",
+        "label": "聚焦透视距离",
+        "value": 1400,
+        "min": 500,
+        "max": 4000,
+        "step": 50,
+        "unit": "px",
+        "hint": "原站聚焦实测 1400px。",
+        "type": "number"
+      },
+      {
+        "key": "focusShift",
+        "label": "向指针偏移",
+        "value": 0,
+        "min": 0,
+        "max": 20,
+        "step": 0.5,
+        "unit": "px",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusRoll",
+        "label": "平面微旋转",
+        "value": 0,
+        "min": 0,
+        "max": 3,
+        "step": 0.1,
+        "unit": "°",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "enterDuration",
+        "label": "进入时长",
+        "value": 0.46,
+        "min": 0.15,
+        "max": 1.5,
+        "step": 0.01,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "returnDuration",
+        "label": "返回时长",
+        "value": 0.56,
+        "min": 0.15,
+        "max": 1.5,
+        "step": 0.01,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusHeight",
+        "label": "聚焦高度",
+        "value": 0.565,
+        "min": 0.3,
+        "max": 0.8,
+        "step": 0.005,
+        "unit": "屏高",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusWidth",
+        "label": "聚焦宽度上限",
+        "value": 0.295,
+        "min": 0.2,
+        "max": 0.5,
+        "step": 0.005,
+        "unit": "屏宽",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusX",
+        "label": "水平位置",
+        "value": 0.479,
+        "min": 0.35,
+        "max": 0.65,
+        "step": 0.005,
+        "unit": "屏宽",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "focusY",
+        "label": "垂直位置",
+        "value": 0.5,
+        "min": 0.35,
+        "max": 0.65,
+        "step": 0.005,
+        "unit": "屏高",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "backgroundColor",
+        "label": "画廊纸色",
+        "value": "#fbf7f1",
+        "type": "color"
+      },
+      {
+        "key": "focusBackground",
+        "label": "聚焦底色",
+        "value": "#22201c",
+        "type": "color"
+      },
+      {
+        "key": "lightAlgorithm",
+        "label": "光影预设",
+        "type": "select",
+        "value": "local-add",
+        "options": [
+          {
+            "value": "legacy-multiply",
+            "label": "林隙旧笺 · 旧版留存"
+          },
+          {
+            "value": "local-add",
+            "label": "晴窗暖笺 · 本工程新版"
+          },
+          {
+            "value": "screen",
+            "label": "晨雾透光 · 滤色"
+          },
+          {
+            "value": "soft-light",
+            "label": "午后柔映 · 柔光"
+          },
+          {
+            "value": "diffuse-transmission",
+            "label": "琥珀漫照 · 指数漫照"
+          },
+          {
+            "value": "luminance",
+            "label": "暮色留白 · 亮度塑形"
+          }
+        ]
+      },
+      {
+        "key": "lightEnabled",
+        "label": "启用票面光影",
+        "value": true,
+        "hint": "",
+        "type": "boolean"
+      },
+      {
+        "key": "pinLight",
+        "label": "固定预览光影",
+        "value": false,
+        "hint": "照亮最近交互的邮票；未选择时使用主邮票。",
+        "type": "boolean"
+      },
+      {
+        "key": "lightAnimation",
+        "label": "光影流动",
+        "value": true,
+        "hint": "缓慢流动的光斑与指针位置共同影响票面。",
+        "type": "boolean"
+      },
+      {
+        "key": "lightFollowPointer",
+        "label": "光斑跟随指针",
+        "value": true,
+        "hint": "",
+        "type": "boolean"
+      },
+      {
+        "key": "lightIntensity",
+        "label": "光影强度",
+        "value": 1,
+        "min": 0,
+        "max": 2,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightContrast",
+        "label": "暖光明暗强度",
+        "value": 0.26,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "调节所选算法的光影合成强度；各算法的明暗响应不同。",
+        "type": "number"
+      },
+      {
+        "key": "shadowStrength",
+        "label": "票面暗部深度",
+        "value": 1,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightSpeed",
+        "label": "流动速度",
+        "value": 0.35,
+        "min": 0,
+        "max": 3,
+        "step": 0.05,
+        "unit": "×",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "pointerInfluence",
+        "label": "指针影响",
+        "value": 0.85,
+        "min": 0,
+        "max": 2,
+        "step": 0.05,
+        "unit": "×",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightResponse",
+        "label": "光斑跟随缓动",
+        "value": 0.16,
+        "min": 0,
+        "max": 0.8,
+        "step": 0.01,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightFadeIn",
+        "label": "光影渐入",
+        "value": 0.12,
+        "min": 0.02,
+        "max": 0.8,
+        "step": 0.01,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightFadeOut",
+        "label": "光影渐出",
+        "value": 0.16,
+        "min": 0.02,
+        "max": 0.8,
+        "step": 0.01,
+        "unit": "s",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightColor",
+        "label": "暖光颜色",
+        "value": "#ffd198",
+        "type": "color"
+      },
+      {
+        "key": "shadowColor",
+        "label": "票面暗部颜色",
+        "value": "#4e5c3c",
+        "type": "color"
+      },
+      {
+        "key": "contactShadowColor",
+        "label": "周围阴影颜色",
+        "value": "#635e53",
+        "type": "color"
+      },
+      {
+        "key": "contactShadowOpacity",
+        "label": "周围阴影浓度",
+        "value": 0.44,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "contactShadowSoftness",
+        "label": "周围阴影柔化",
+        "value": 1.4,
+        "min": 0,
+        "max": 3,
+        "step": 0.05,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "textureScale",
+        "label": "纸纹放大",
+        "value": 0.9,
+        "min": 0.4,
+        "max": 3,
+        "step": 0.05,
+        "unit": "×",
+        "hint": "数值越大，纸纹越大；不改变印刷图案与光斑密度。",
+        "type": "number"
+      },
+      {
+        "key": "surfaceRelief",
+        "label": "细微压纹",
+        "value": 0.22,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "只调节纸面细纹的明暗，不改变图案。",
+        "type": "number"
+      },
+      {
+        "key": "surfaceShine",
+        "label": "纸面高光",
+        "value": 0.45,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightGrain",
+        "label": "细微颗粒",
+        "value": 0.65,
+        "min": 0,
+        "max": 1.5,
+        "step": 0.05,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightCoverage",
+        "label": "覆盖范围",
+        "value": 0.708,
+        "min": 0.1,
+        "max": 1.6,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightScale",
+        "label": "光纹放大",
+        "value": 1,
+        "min": 0.2,
+        "max": 6,
+        "step": 0.05,
+        "unit": "×",
+        "hint": "倍数越大，光图纹理越大；对应原站 paintScale。",
+        "type": "number"
+      },
+      {
+        "key": "lightAngle",
+        "label": "倾斜角度",
+        "value": 44,
+        "min": -90,
+        "max": 90,
+        "step": 1,
+        "unit": "°",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightStretch",
+        "label": "光斑拉伸",
+        "value": 0.84,
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightScatter",
+        "label": "斑驳散布",
+        "value": 1,
+        "min": 0,
+        "max": 2,
+        "step": 0.02,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightWarp",
+        "label": "波纹扭曲",
+        "value": 0.118,
+        "min": 0,
+        "max": 0.5,
+        "step": 0.005,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      },
+      {
+        "key": "lightSoftness",
+        "label": "散焦柔化",
+        "value": 1.35,
+        "min": 0,
+        "max": 3,
+        "step": 0.05,
+        "unit": "",
+        "hint": "",
+        "type": "number"
+      }
+    ],
+    "parameterMetadataAndDefaultsEqual": true,
+    "namespaceFieldCount": 52,
+    "namespaceRoundTripDefaultsEqual": true,
+    "lightPresetCount": 6,
+    "lightPresetKeys": [
+      "lightAlgorithm",
+      "lightIntensity",
+      "lightContrast",
+      "shadowStrength",
+      "lightColor",
+      "shadowColor",
+      "contactShadowColor",
+      "contactShadowOpacity",
+      "contactShadowSoftness",
+      "textureScale",
+      "surfaceRelief",
+      "surfaceShine",
+      "lightGrain",
+      "lightCoverage",
+      "lightScale",
+      "lightAngle",
+      "lightStretch",
+      "lightScatter",
+      "lightWarp",
+      "lightSoftness"
+    ],
+    "lightPresets": [
+      {
+        "id": "legacy-multiply",
+        "index": 0,
+        "name": "林隙旧笺"
+      },
+      {
+        "id": "local-add",
+        "index": 1,
+        "name": "晴窗暖笺"
+      },
+      {
+        "id": "screen",
+        "index": 2,
+        "name": "晨雾透光"
+      },
+      {
+        "id": "soft-light",
+        "index": 3,
+        "name": "午后柔映"
+      },
+      {
+        "id": "diffuse-transmission",
+        "index": 4,
+        "name": "琥珀漫照"
+      },
+      {
+        "id": "luminance",
+        "index": 5,
+        "name": "暮色留白"
+      }
+    ],
+    "lightPresetDefinitionsEqual": true,
+    "exhibitionConstantsEqual": true,
+    "stampCount": 12,
+    "allStampMetadataEqualExceptImageRouteAndAddedPlaceId": true,
+    "stampMapping": [
+      {
+        "id": "foshan",
+        "placeId": "foshan",
+        "series": "guangdong",
+        "image": "assets/spread-stamps/stamps/01-foshan.png"
+      },
+      {
+        "id": "guangzhou",
+        "placeId": "guangzhou",
+        "series": "guangdong",
+        "image": "assets/spread-stamps/stamps/02-guangzhou.png"
+      },
+      {
+        "id": "heshan",
+        "placeId": "heshan",
+        "series": "guangdong",
+        "image": "assets/spread-stamps/stamps/03-heshan.png"
+      },
+      {
+        "id": "suixi",
+        "placeId": "suixi",
+        "series": "guangdong",
+        "image": "assets/spread-stamps/stamps/04-suixi.png"
+      },
+      {
+        "id": "beijing",
+        "placeId": "beijing",
+        "series": "china",
+        "image": "assets/spread-stamps/stamps/05-beijing.png"
+      },
+      {
+        "id": "tianyang",
+        "placeId": "tianyang",
+        "series": "china",
+        "image": "assets/spread-stamps/stamps/06-tianyang.png"
+      },
+      {
+        "id": "quanzhou",
+        "placeId": "quanzhou",
+        "series": "china",
+        "image": "assets/spread-stamps/stamps/07-quanzhou.png"
+      },
+      {
+        "id": "hongkong",
+        "placeId": "hong-kong",
+        "series": "china",
+        "image": "assets/spread-stamps/stamps/08-hongkong.png"
+      },
+      {
+        "id": "singapore",
+        "placeId": "singapore",
+        "series": "world",
+        "image": "assets/spread-stamps/stamps/09-singapore.png"
+      },
+      {
+        "id": "kualalumpur",
+        "placeId": "kuala-lumpur",
+        "series": "world",
+        "image": "assets/spread-stamps/stamps/10-kualalumpur.png"
+      },
+      {
+        "id": "sanfrancisco",
+        "placeId": "san-francisco",
+        "series": "world",
+        "image": "assets/spread-stamps/stamps/11-sanfrancisco.png"
+      },
+      {
+        "id": "london",
+        "placeId": "london",
+        "series": "world",
+        "image": "assets/spread-stamps/stamps/12-london.png"
+      }
+    ]
+  },
+  "opticalPipeline": [
+    {
+      "stage": "procedural optical field",
+      "evidence": "DappledLight fieldTarget at 384x480; original DAPPLED_FIELD_FRAGMENT preserves RGB palette plus shade alpha, elliptical field, warped Voronoi and pointer/time inputs."
+    },
+    {
+      "stage": "independent weighted lens",
+      "evidence": "blurTarget cloned from fieldTarget; field render then 50-tap DAPPLED_BLUR_FRAGMENT, RGB colour weighting and independently averaged alpha unchanged."
+    },
+    {
+      "stage": "optional static board paper / transparent host clear",
+      "evidence": "Original DAPPLED_OUTPUT_FRAGMENT and outputScene remain intact. Lion sets transparentBackground:true: main framebuffer is cleared to alpha zero; only the full-screen paper/focus colour draw is skipped. Optical field/lens still render offscreen and are sampled by each stamp."
+    },
+    {
+      "stage": "stamp print defocus",
+      "evidence": "48-tap disk with lodBias, alpha-aware accumulation and transparent UV gutter; independent transition from light activity retained."
+    },
+    {
+      "stage": "paper light compositor",
+      "evidence": "Six branches indexed 0..5: legacy multiply, local add, screen, soft-light, diffuse transmission and luminance. Shared light field, shallow normal textures, dielectric GGX, main/lamp colour and exposure remain identical."
+    },
+    {
+      "stage": "contact shadow",
+      "evidence": "Canvas alpha shadow plus 24-tap softening ShaderMaterial, independently configured colour/opacity/softness; exact original GLSL and source lifetime preserved."
+    },
+    {
+      "stage": "display colour pipeline",
+      "evidence": "Artwork/alpha textures NoColorSpace; field display-RGB colours separate from THREE.Color-converted linear main/lamp colours; direct clamped display gl_FragColor with toneMapped:false; no new global tone mapper or colour conversion."
+    },
+    {
+      "stage": "final transparent compositing",
+      "evidence": "Gallery calls background.render (offscreen field/lens plus transparent main clear), clearDepth, then original stamp/shadow scene. Contact-shadow alpha remains, while pixels outside stamps/shadows stay transparent."
+    }
+  ],
+  "hostAdaptations": [
+    "Twelve source postal prints relocated to configured media paths; hongkong/kualalumpur/sanfrancisco gain explicit map placeId aliases.",
+    "Source all-series/full-window grid is replaced by a stable four-stamp local board and seeded rotations; focus size and position use local board dimensions.",
+    "Original 52-parameter metadata, defaults, clamps, six presets, import/export schema and reset groups are retained; persisted site settings add the stamp namespace and use existing site save/cancel transactions.",
+    "Root old ParameterPanel drawer is archived; the requested controls live in the main settings page.",
+    "Gallery gains active/setSeries/setSelected/setLayout/diagnostics APIs and guards to avoid responding to keys outside the stamp host.",
+    "User explicitly requested stamps directly on the chapter background: no independent light rectangle, border or rounded panel; loading/fallback surfaces are transparent. The two source backdrop-colour inputs are disabled with an explanation, but all 52 schema/default/JSON fields remain for compatibility. The artistic light-field palette is separate and unchanged."
+  ],
+  "resources": {
+    "imageDownloads": "Only the 12 configured regional PNG prints. Source normal textures, optical field, blur targets and contact-shadow texture are procedural.",
+    "noDroppedSourceTextureAsset": true,
+    "sourceIntentionallyExcludedAssets": "Original source already intentionally excludes NCS height/displacement/environment assets and metal surface; migration does not introduce this omission."
+  },
+  "threeVersions": {
+    "externalDeclared": "0.185.1",
+    "currentDeclared": "0.160.0",
+    "note": "Current existing Three version retained. CPU and source equality do not prove cross-version GPU or pixel parity; browser shader/program and visual tests remain required."
+  },
+  "cpuVerification": {
+    "command": "node --test tmp/spread-stamp-renderer-tests/dappled-controls.test.mjs tmp/spread-stamp-renderer-tests/surface-texture.test.mjs",
+    "passed": 10,
+    "failed": 0,
+    "durationMs": 323.9816,
+    "coverage": [
+      "full public slider ranges",
+      "light disable/re-enable resource reuse",
+      "field scale/DPR/aspect",
+      "paused animation/pointer response/reduced motion",
+      "rapid hover field ownership",
+      "legacy aspect restoration",
+      "deterministic neutral paper normals",
+      "surface texture cleanup"
+    ],
+    "priorFixtureAttempt": "A wildcard included an unadapted motion.test.mjs import of tmp/src/config.js and produced 10 pass/1 fixture fail. Explicit intended optical test set passed without product changes.",
+    "scopeNote": "The earlier 10 passing CPU tests prove original optical/normal contracts; they do not independently exercise the new transparent host screen branch."
+  },
+  "findings": [
+    {
+      "id": "initial-webgl-constructor-noop-api",
+      "status": "addressed-in-latest-source",
+      "presentAtAudit": false,
+      "detail": "Constructor failure now returns null; host calls optional-chain both renderer object and methods, allowing settings/series use with static fallback."
+    },
+    {
+      "id": "transparent-fallback-note-overlap",
+      "status": "addressed-in-latest-source",
+      "presentAtAudit": false,
+      "detail": "Transparent fallback originally revealed the old AI caption behind the same-bottom-position error message. Latest host hides the original note in error state and renders separate stacked AI and error/retry lines inside fallback."
+    }
+  ],
+  "sourceFilesStableDuringAudit": true,
+  "gpuVerificationPerformed": false,
+  "conclusion": "All eight original GLSL templates, all 52 source fields, six algorithm definitions, both optical targets, field/lens math, paper response and contact shadows are retained. The user-requested transparent host intentionally skips only the original full-screen paper/focus fill. Both reported host fallback edges are addressed in the latest source; separate browser/alpha evidence remains required.",
+  "lionHeadAtAudit": "a7a261fa0940a055014eb2ba2be5696b5070c61d",
+  "auditRevision": "After user-required removal of independent stamp-board background",
+  "transparentHostChecks": {
+    "sourceIntent": "User request: directly show stamps without the independent panel background",
+    "rendererAlphaTrue": true,
+    "clearAlphaZero": true,
+    "originalOffscreenTargetsRetained": true,
+    "originalGlslTemplatesRetained": 8,
+    "onlySkippedSourceDraw": "static paper/focus-colour outputScene on main framebuffer when transparentBackground true",
+    "originalStaticPaperShaderDeleted": false,
+    "colourParameterContract": "backgroundColor and focusBackground retained in JSON and source definitions; disabled in host UI because no independent backdrop is drawn. Light palette parameters remain active.",
+    "gpuAlphaAndSixAlgorithmVerification": "Not run by this auditor; root/rendering agent is performing the separate transparent-browser checks."
+  },
+  "hostFilesAtAudit": [
+    {
+      "path": "src/features/spread/SpreadStampBoard.jsx",
+      "sha256": "edb4f07ab7b6c839efd93f395b2ab104410ad829e75e55e2f5c6e78e25a3fda9"
+    },
+    {
+      "path": "src/features/spread/stampLayout.js",
+      "sha256": "a579a2bd12d06f9c4d8832ee6f3cf6153ba6ce8fd8cfdb29689699e058e628e6"
+    },
+    {
+      "path": "src/features/spread/spread-stamps.css",
+      "sha256": "d2f9a5a4bd8444eb997303c72bfedf2f2c8702ef1901a09e23597d8c55c66481"
+    },
+    {
+      "path": "src/features/developer-settings/SpreadStampControls.jsx",
+      "sha256": "2a26e6cf92e72ac3835d633edc20c044c2c8548f418826020bc3cad505ca446e"
+    },
+    {
+      "path": "src/config/spreadStampSettings.js",
+      "sha256": "7cc9e92c1dc033fe87f91bacf5829c37916fb252a292e846de3a669b6f11ef24"
+    }
+  ],
+  "hostReadOnlyReview": {
+    "focusAndMapSync": "onState deduplicates focused stamp identity and avoids writing a returning old stamp over a new map selection; region switch resets focus immediately. Host close effect handles map changes, and fallback selected-card state clears for a different city/series.",
+    "fallback": "No-WebGL returns null with optional host method guards; image failure and context-loss paths expose a static, transparent fallback and a retry. Fallback focus/return and map selection do not require WebGL.",
+    "diagnostics": "getStampDiagnostics returns current primitive values and fresh arrays/objects; GPU query uses getUniform only. It exposes no renderer mutator or live Vector/Material reference through its observations.",
+    "settings": "All 52 source fields remain namespaced. Preview uses current values, begin/save/cancel existing edit-session snapshots, save-while-editing refreshes cancel baseline; algorithm/group/import replacements use functional settings updates. The two disabled backdrop controls are deliberate host semantics.",
+    "blockingDefectFoundAfterCurrentFixes": false,
+    "scopeLimit": "Static review only; no new browser/GPU, save/cancel interaction or alpha readback executed by this auditor."
+  },
+  "finalReadOnlyReview": {
+    "date": "2026-10-28",
+    "reviewedCurrentHostAfterFallbackCaptionStacking": true,
+    "metadataFields": 52,
+    "fieldMetadataIdenticalToSource": true,
+    "algorithms": 6,
+    "originalRuntimeGlslTemplates": 8,
+    "allRuntimeGlslTemplatesStillIdentical": true,
+    "hostHashesRefreshed": [],
+    "transparentHost": "alpha-enabled renderer clears main framebuffer to zero alpha; original optical field and weighted lens remain active; static paper/focus draw intentionally skipped per user request; original static shader retained",
+    "fallback": "Image/WebGL/context failure retains regional static artwork; root null-safe methods, focus/return/Escape, city clearing and retry remain coherent. The last two-line caption change hides the old note and stacks AI/error text without changing renderer state.",
+    "lifecycle": "RAF cancelled, ResizeObserver disconnected, native listeners removed, optical RTs/materials/artwork/normal/contact-shadow textures disposed, renderer/context released. No new leak found in current source.",
+    "blockingFindings": [],
+    "newBrowserOrBroadTestsRun": false,
+    "scope": "Static reread, exact metadata/GLSL comparisons and current hash refresh only; transparent GPU evidence remains the separately recorded 8/8 production run."
+  }
+}

@@ -1,0 +1,31 @@
+.spread-stamp-board {
+  position: relative; min-width: 0; min-height: 0;
+  width: var(--spreadOverlay-surface-width,100%); max-width: 100%; margin-inline: auto;
+  overflow: hidden; isolation: isolate; border: 0; border-radius: 0;
+  background: transparent;
+}
+.spread-stamp-host { position: absolute; inset: 0; overflow: hidden; touch-action: manipulation; }
+.spread-stamp-host > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.spread-stamp-controls { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.spread-stamp-hit { position: absolute; left: 0; top: 0; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; transform-origin: 0 0; pointer-events: auto; will-change: transform; }
+.spread-stamp-hit[hidden] { display: none; }
+.spread-stamp-hit:focus-visible { outline: 2px solid #a34e3e; outline-offset: 9px; border-radius: 2px; }
+.spread-stamp-hit[data-map-selected='true']::after { content: ''; position: absolute; left: 12%; right: 12%; bottom: -9px; height: 1px; background: #a04e3b70; }
+.spread-stamp-hover-label { position: absolute; z-index: 8; left: 0; top: 0; max-width: 90%; padding: 6px 12px; border-radius: 30px; background: #59433e; color: #fffaf2; font: 11px/1.4 var(--sans); white-space: nowrap; opacity: 0; pointer-events: none; }
+.spread-stamp-focus-ui { position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0; visibility: hidden; }
+.spread-stamp-focus-ui[aria-hidden='true'] { visibility: hidden !important; opacity: 0 !important; pointer-events: none; }
+.spread-stamp-focus-ui .close-focus { position: absolute; right: 18px; top: 16px; display: flex; align-items: center; gap: 9px; min-height: 34px; padding: 6px 12px; border: 1px solid #d4baa26b; border-radius: 30px; background: #faf5ec; color: #735644; font: 22px/1 var(--sans); cursor: pointer; pointer-events: auto; }
+.spread-stamp-focus-ui .close-focus span { font-size: 11px; }
+.spread-stamp-note { position: absolute; left: 16px; right: 16px; bottom: 10px; z-index: 4; display: flex; justify-content: space-between; gap: 10px; color: #9c8c78; font: 10px/1.5 var(--sans); pointer-events: none; }
+.spread-stamp-note small { font: inherit; }
+.spread-stamp-note[hidden] { display: none; }
+.spread-stamp-loading { position: absolute; inset: 0; z-index: 8; display: grid; place-items: center; margin: 0; background: transparent; color: #8a6850; font: 16px var(--brush); }
+.spread-stamp-fallback { position: absolute; inset: 0; z-index: 7; background: transparent; }
+.spread-stamp-fallback-item { position: absolute; padding: 0; border: 0; background: transparent; filter: drop-shadow(2px 5px 5px #54422f40); cursor: pointer; }
+.spread-stamp-fallback-item img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.spread-stamp-fallback-item.is-active { z-index: 3; filter: drop-shadow(2px 5px 8px #78502a88); }
+.spread-stamp-fallback-close { position: absolute; z-index: 4; top: 14px; right: 14px; padding: 8px 12px; border: 1px solid #b9957866; border-radius: 20px; background: #fbf7f1; color: #8a6048; cursor: pointer; font: 12px var(--sans); }
+.spread-stamp-error { position: absolute; left: 14px; right: 14px; bottom: 8px; display: flex; flex-direction: column; gap: 2px; margin: 0; color: #8a6048; font: 11px/1.6 var(--sans); }
+.spread-stamp-error button { margin-left: 8px; padding: 2px; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: #9d3426; font: inherit; cursor: pointer; }
+@container (max-width:760px) { .spread-stamp-board { height: 640px; min-height: 480px; } }
+@media (max-height:820px) { .spread-stamp-note { font-size: 9px; } .spread-stamp-note small { display: none; } }

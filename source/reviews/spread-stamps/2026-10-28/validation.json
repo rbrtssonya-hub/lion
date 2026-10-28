@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-28",
+  "environment": {
+    "os": "Windows",
+    "node": "24.16.0",
+    "npm": "12",
+    "browser": "installed Chrome via Playwright channel=chrome",
+    "workers": 1,
+    "desktopOnly": true
+  },
+  "baseline": "main@a7a261fa0940a055014eb2ba2be5696b5070c61d plus this integration worktree",
+  "source": "炫技3@8764e9b484a372fc17e0595fc2a017be2cbc3d48 runGo.cmd -> editions/regional",
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "modules": 412,
+    "durationSeconds": 2.11,
+    "entry": "index-BRyrnUxh.js",
+    "stampModule": "StampGallery-DKA7CUCJ.js",
+    "note": "Existing Three shared chunk remains 538.05kB; no dependency version changes."
+  },
+  "core": {
+    "command": "npm test",
+    "passed": 146,
+    "failed": 0,
+    "durationMs": 6238.617,
+    "assetManifestEntries": 2128
+  },
+  "finalProductionBrowser": {
+    "command": "PLAYWRIGHT_CHANNEL=chrome PLAYWRIGHT_PREVIEW_PORT=42882 npx playwright test --config playwright.preview.config.js tests/e2e/spread-stamps.spec.js tests/e2e/spread-stamp-settings.spec.js tests/e2e/settings-modules.spec.js tests/e2e/spread-map-levels.spec.js:104 --workers=1 --reporter=list,json --output=tmp/spread-stamps-final-review-playwright",
+    "startTime": "2026-10-28T14:23:46.438Z",
+    "duration": 89792.331,
+    "expected": 19,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "coverage": [
+      "12 original artworks/three regional groups/three alias mappings",
+      "complete fit and stable rotated layout at 1366/1920/2560 desktops and with settings pushed open",
+      "focus enlargement, keyboard return, city selection synchronization",
+      "real pointer light/blur, transparent normal and focused framebuffer",
+      "all six algorithms via GPU uniforms and 15 real pixel comparisons",
+      "52 source settings, source/full-site JSON roundtrip, saved baseline/cancel/late import",
+      "transparent chapter width and active public material scope",
+      "WebGL unavailable/context loss/static artwork/retry",
+      "hidden-page suspension and GPU/listener/ResizeObserver/RAF disposal",
+      "companion avoids controls at 1366x768"
+    ],
+    "actualGpuMeasurements": {
+      "actual-default-framebuffer-alpha": {
+        "rgba": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "progress": 1,
+        "defaultFramebuffer": true,
+        "width": 731,
+        "height": 757
+      },
+      "regional-light-passes": {
+        "passes": {
+          "opticalField": 49,
+          "weightedLens": 49,
+          "staticPaper": 0,
+          "transparentClear": 389
+        },
+        "owner": "suixi",
+        "backgroundDifference": 0
+      },
+      "six-algorithm-pixel-differences": [
+        {
+          "first": "legacy-multiply",
+          "second": "local-add",
+          "meanAbsolute": 15.712528935185185
+        },
+        {
+          "first": "legacy-multiply",
+          "second": "screen",
+          "meanAbsolute": 21.553819444444443
+        },
+        {
+          "first": "legacy-multiply",
+          "second": "soft-light",
+          "meanAbsolute": 11.506510416666666
+        },
+        {
+          "first": "legacy-multiply",
+          "second": "diffuse-transmission",
+          "meanAbsolute": 15.77170138888889
+        },
+        {
+          "first": "legacy-multiply",
+          "second": "luminance",
+          "meanAbsolute": 17.32769097222222
+        },
+        {
+          "first": "local-add",
+          "second": "screen",
+          "meanAbsolute": 8.187355324074074
+        },
+        {
+          "first": "local-add",
+          "second": "soft-light",
+          "meanAbsolute": 6.281828703703703
+        },
+        {
+          "first": "local-add",
+          "second": "diffuse-transmission",
+          "meanAbsolute": 14.265190972222221
+        },
+        {
+          "first": "local-add",
+          "second": "luminance",
+          "meanAbsolute": 15.817997685185185
+        },
+        {
+          "first": "screen",
+          "second": "soft-light",
+          "meanAbsolute": 11.504774305555555
+        },
+        {
+          "first": "screen",
+          "second": "diffuse-transmission",
+          "meanAbsolute": 10.71730324074074
+        },
+        {
+          "first": "screen",
+          "second": "luminance",
+          "meanAbsolute": 13.433883101851851
+        },
+        {
+          "first": "soft-light",
+          "second": "diffuse-transmission",
+          "meanAbsolute": 11.074797453703704
+        },
+        {
+          "first": "soft-light",
+          "second": "luminance",
+          "meanAbsolute": 12.836805555555555
+        },
+        {
+          "first": "diffuse-transmission",
+          "second": "luminance",
+          "meanAbsolute": 4.792390046296297
+        }
+      ]
+    }
+  },
+  "relatedMapRegressions": {
+    "command": "PLAYWRIGHT_CHANNEL=chrome PLAYWRIGHT_PREVIEW_PORT=42879 npx playwright test --config playwright.preview.config.js tests/e2e/spread-stamp-settings.spec.js tests/e2e/settings-modules.spec.js tests/e2e/spread-map-motion.spec.js tests/e2e/spread-map-render.spec.js tests/e2e/spread-map-stamps.spec.js tests/e2e/spread-map-levels.spec.js tests/e2e/spread-journey.spec.js --workers=1",
+    "initialPassed": 34,
+    "initialFailed": 2,
+    "failuresResolvedInFinalProductionRun": [
+      "Hidden stamp settings feedback made an old unscoped feedback selector ambiguous; scoped it to visible settings page.",
+      "Companion preferred fallback overlapped Guangdong tab by 3px at 1366x768; find a control-free spot with 8px clearance on existing entry/resize triggers."
+    ],
+    "mapMotionCoverage": "All 12 existing 60fps/24fps, playback-speed, reverse, interruption, background, stalled-media and late-play regressions passed. Map source files remain unchanged from baseline."
+  },
+  "sourceFidelity": {
+    "audit": "source/references/spread-stamp-source-audit-2026-10-28.json",
+    "exactOriginalGlslTemplates": 8,
+    "originalParameterFields": 52,
+    "algorithms": 6,
+    "originalMetadataEntries": 12,
+    "originalCpuOpticalChecksPassed": 10,
+    "intentionalHostOverride": "Skip static paper/focus background output only; keep source shader and JSON fields. Alpha-enabled canvas and fallback are transparent."
+  },
+  "importIndexVerification": {
+    "files": 1283,
+    "bytes": 553039765,
+    "allStagedSha256MatchOriginalWorktree": true,
+    "identicalOriginalGitBlobIds": 1035,
+    "note": "The remaining 248 original clean-checkout text files have source CRLF expansion; preserve those authenticated worktree bytes. Original commit payloads and full topology are separately preserved without rewriting."
+  },
+  "history": {
+    "originalCommits": 10,
+    "originalTip": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+    "historyRefVerifiedOnGitHub": "refs/heads/codex/xuanji3-history",
+    "mainDelivery": "Integration merge prepared with original tip as second parent; final main commit/push recorded in task memory."
+  },
+  "preserved": [
+    "Existing Three 0.160.0, model assets, fur and model render pipeline",
+    "Current map render/motion source and 60/24fps controls",
+    "Original external project and its pre-existing untracked prompt/ and source/Picture_01/"
+  ],
+  "earlierAttempts": [
+    "Earlier core run hit a Node fetch bad-port random fixture port; isolated contract and two subsequent full 146-case runs passed without product workaround.",
+    "First history push had negotiation handshake/HTTP408; safe HTTP1.1/postBuffer retry without force succeeded.",
+    "Initial GPU/settings evidence with the independent backdrop is historical; final 19-case run is the transparent version."
+  ],
+  "limitations": [
+    "Fixed spread chapter narration still describes old photos; existing selected-voice audio remains intact. Original GPT-SoVITS installation/model is absent, and no replacement voice was installed or claimed. Text FAQ is updated."
+  ],
+  "diffReview": {
+    "passed": true,
+    "scope": "Staged task changes; exact original archives/research and byte-identical dappledShaders.js excluded from whitespace-only check",
+    "sourceWhitespaceException": "Original dappledShaders.js ends with a blank line; preserve source bytes and exact shader templates rather than rewrite provenance for cosmetic EOF cleanup."
+  }
+}

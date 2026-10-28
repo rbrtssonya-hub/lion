@@ -33,7 +33,10 @@ export default function App() {
     beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsPage, setSettingsPage] = useState('common');
-  const sceneViewEditing = settingsOpen && (route === 'model' || route === 'action') && settingsPage === 'view';
+  const sceneViewEditing = settingsOpen && (
+    ((route === 'model' || route === 'action') && settingsPage === 'view')
+    || (route === 'spread' && settingsPage === 'stamp')
+  );
   const [discardPromptOpen, setDiscardPromptOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
@@ -43,6 +46,7 @@ export default function App() {
   const [observation, setObservation] = useState(null);
   const [assistantSource, setAssistantSource] = useState(null);
   const modelReturn = useRef(null);
+  const [stampPreview, setStampPreview] = useState(null);
   useLayoutEffect(() => { navigationCaptureRef.current = captureNavigation; }, [captureNavigation]);
   const navigateTo = useCallback((target, context) => {
     if (target === 'state' && route === 'model' && context?.expressionId) {
@@ -197,7 +201,7 @@ export default function App() {
           </Suspense>
           </ModelPreparationBoundary>
         </div>}
-        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} active observation={observation} onReturnToModel={returnToModel} onNavigate={navigateTo} />}
+        {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} active observation={observation} onReturnToModel={returnToModel} onNavigate={navigateTo} onStampPreviewReady={setStampPreview} />}
       </main>
     </div>
     <XiaoxingAssistant chapter={route} onNavigate={navigateFromAssistant} suppressed={settingsOpen} />
@@ -207,7 +211,7 @@ export default function App() {
       defaultValue={defaultDeveloperSettings.headerHeight} className="lion-topbar-resize-handle"
       onChange={value => previewSettings('headerHeight', value)} onCommit={commitSettings} onCancel={commitSettings} />
     <DeveloperSettingsPanel open={settingsOpen} settings={settings} onChange={changeSettings} onApplyMaterial={applySurfaceSettings}
-      activePage={settingsPage} onPageChange={setSettingsPage} sceneViewEditing={sceneViewEditing}
+      activePage={settingsPage} onPageChange={setSettingsPage} sceneViewEditing={sceneViewEditing} stampPreview={stampPreview}
       onClose={closeSettings} onReset={resetSettings} panelRef={panelRef} canPush={canPush}
       hasUnsavedChanges={hasUnsavedChanges} onSave={handleSaveSettings} onExport={exportSettings}
       discardPromptOpen={discardPromptOpen} onContinueEditing={() => setDiscardPromptOpen(false)} onDiscard={discardAndCloseSettings}

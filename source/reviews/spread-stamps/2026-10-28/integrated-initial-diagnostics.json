@@ -1,0 +1,902 @@
+{
+  "errors": [],
+  "consoles": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "failed": [],
+  "diagnostics": {
+    "phase": "hovering",
+    "selected": null,
+    "hovered": "foshan",
+    "linkedSelection": "foshan",
+    "series": "guangdong",
+    "progress": 0,
+    "reducedMotion": false,
+    "active": true,
+    "ready": true,
+    "disposed": false,
+    "renderedFrames": 204,
+    "renderedCalls": 1888,
+    "visibleIds": [
+      "foshan",
+      "guangzhou",
+      "heshan",
+      "suixi"
+    ],
+    "lightStates": [
+      {
+        "id": "foshan",
+        "amount": 1,
+        "blur": 0,
+        "target": [
+          0.4985036700918527,
+          0.4872280146945951
+        ],
+        "uv": [
+          0.4987281195780748,
+          0.48914381249040584
+        ]
+      },
+      {
+        "id": "guangzhou",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "heshan",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "suixi",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "beijing",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "tianyang",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "quanzhou",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "hongkong",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "singapore",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "kualalumpur",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "sanfrancisco",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "id": "london",
+        "amount": 0,
+        "blur": 11,
+        "target": [
+          0.5,
+          0.5
+        ],
+        "uv": [
+          0.5,
+          0.5
+        ]
+      }
+    ],
+    "poses": [
+      {
+        "id": "foshan",
+        "rotation": [
+          0.002676159817140968,
+          -0.0003120662687055739,
+          0.07911347991892623,
+          "ZXY"
+        ],
+        "center": [
+          -167.66367118447985,
+          192.47214000000002,
+          0
+        ],
+        "target": [
+          -0.002980013354204144,
+          0.02555544380411327
+        ],
+        "corners": [
+          [
+            102.66082518268861,
+            349.9835633338756
+          ],
+          [
+            77.82783755851533,
+            39.034293897281415
+          ],
+          [
+            317.76813129180044,
+            332.92749310480565
+          ],
+          [
+            293.08338429222215,
+            21.948896662879367
+          ]
+        ]
+      },
+      {
+        "id": "guangzhou",
+        "rotation": [
+          0,
+          0,
+          -0.050638855589391026,
+          "ZXY"
+        ],
+        "center": [
+          168.3960197311377,
+          181.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            421.81906504043013,
+            342.8031809360729
+          ],
+          [
+            437.1094614661025,
+            41.11143999999995
+          ],
+          [
+            630.6825779961729,
+            353.38883999999996
+          ],
+          [
+            645.9729744218454,
+            51.697099063927105
+          ]
+        ]
+      },
+      {
+        "id": "heshan",
+        "rotation": [
+          0,
+          0,
+          0.0376931356886215,
+          "ZXY"
+        ],
+        "center": [
+          -172.51510835719438,
+          -143.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            93.37752521018592,
+            677.8885600000001
+          ],
+          [
+            81.90086142708773,
+            373.556542619068
+          ],
+          [
+            304.0689218585235,
+            669.9431773809321
+          ],
+          [
+            292.59225807542526,
+            365.61116000000004
+          ]
+        ]
+      },
+      {
+        "id": "suixi",
+        "rotation": [
+          0,
+          0,
+          -0.082161854254428,
+          "ZXY"
+        ],
+        "center": [
+          166.8118842104344,
+          -150.47213999999997,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            417.88188234736117,
+            668.2682145913734
+          ],
+          [
+            442.2101190487107,
+            372.83344
+          ],
+          [
+            622.4136493721583,
+            685.11084
+          ],
+          [
+            646.7418860735077,
+            389.6760654086266
+          ]
+        ]
+      },
+      {
+        "id": "beijing",
+        "rotation": [
+          0,
+          0,
+          0.06875899406270654,
+          "ZXY"
+        ],
+        "center": [
+          -167.30489855511638,
+          188.47214000000002,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            54.688246872806054,
+            313.9411732498107
+          ],
+          [
+            39.05640144488358,
+            86.9570073207525
+          ],
+          [
+            357.33380144488365,
+            293.0987126792474
+          ],
+          [
+            341.7019560169611,
+            66.11454675018922
+          ]
+        ]
+      },
+      {
+        "id": "tianyang",
+        "rotation": [
+          0,
+          0,
+          -0.057092905266368656,
+          "ZXY"
+        ],
+        "center": [
+          165.0645690872999,
+          181.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            371.42586908729993,
+            302.97649554089645
+          ],
+          [
+            384.5084317680393,
+            74.08036755145095
+          ],
+          [
+            676.6207064065605,
+            320.419912448549
+          ],
+          [
+            689.7032690872999,
+            91.52378445910348
+          ]
+        ]
+      },
+      {
+        "id": "quanzhou",
+        "rotation": [
+          0,
+          0,
+          0.04800211639460288,
+          "ZXY"
+        ],
+        "center": [
+          -169.6782417009672,
+          -143.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            47.7515686303072,
+            644.3322005132884
+          ],
+          [
+            36.683058299032844,
+            413.92553326174414
+          ],
+          [
+            354.96045829903284,
+            629.5741867382559
+          ],
+          [
+            343.8919479677584,
+            399.1675194867117
+          ]
+        ]
+      },
+      {
+        "id": "hongkong",
+        "rotation": [
+          0,
+          0,
+          -0.07841639393147738,
+          "ZXY"
+        ],
+        "center": [
+          166.56093635615548,
+          -150.47213999999997,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            372.92223635615545,
+            629.874922538509
+          ],
+          [
+            390.6354291191867,
+            404.45176711078255
+          ],
+          [
+            673.4864435931242,
+            653.4925128892174
+          ],
+          [
+            691.1996363561556,
+            428.0693574614909
+          ]
+        ]
+      },
+      {
+        "id": "singapore",
+        "rotation": [
+          0,
+          0,
+          0.07811318117703564,
+          "ZXY"
+        ],
+        "center": [
+          -171.61888988973362,
+          188.47214000000002,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            125.67574787503582,
+            346.16656
+          ],
+          [
+            102.21251260117333,
+            46.40288547939322
+          ],
+          [
+            285.54970761935937,
+            333.65283452060663
+          ],
+          [
+            262.0864723454969,
+            33.88915999999988
+          ]
+        ]
+      },
+      {
+        "id": "kualalumpur",
+        "rotation": [
+          0,
+          0,
+          -0.057464041115441775,
+          "ZXY"
+        ],
+        "center": [
+          166.9895357584088,
+          181.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            442.97959127304324,
+            344.0929823820637
+          ],
+          [
+            460.4093243066737,
+            41.11143999999995
+          ],
+          [
+            604.569747210144,
+            353.38883999999996
+          ],
+          [
+            621.9994802437743,
+            50.407297617936216
+          ]
+        ]
+      },
+      {
+        "id": "sanfrancisco",
+        "rotation": [
+          0,
+          0,
+          0.05247941560566222,
+          "ZXY"
+        ],
+        "center": [
+          -165.95919249066168,
+          -143.24986,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            126.51425288656826,
+            677.8885600000001
+          ],
+          [
+            110.558064582923,
+            374.1211270952775
+          ],
+          [
+            288.52355043575363,
+            669.3785929047226
+          ],
+          [
+            272.56736213210837,
+            365.61116
+          ]
+        ]
+      },
+      {
+        "id": "london",
+        "rotation": [
+          0,
+          0,
+          -0.07703485357556564,
+          "ZXY"
+        ],
+        "center": [
+          171.14103775515662,
+          -150.47213999999997,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ],
+        "corners": [
+          [
+            445.08418803638216,
+            672.7636950776032
+          ],
+          [
+            468.235084765876,
+            372.83344
+          ],
+          [
+            605.0469907444373,
+            685.11084
+          ],
+          [
+            628.197887473931,
+            385.18058492239675
+          ]
+        ]
+      }
+    ],
+    "parameters": {
+      "tiltEnabled": true,
+      "hoverTilt": 6,
+      "focusTilt": 6,
+      "tiltResponse": 0.085,
+      "hoverPerspective": 1200,
+      "hoverScale": 1.05,
+      "hoverLift": 4,
+      "hoverResponse": 0.085,
+      "blur": 11,
+      "blurResponse": 0.075,
+      "focusTrackOutside": false,
+      "resetTiltOnLeave": false,
+      "perspective": 1400,
+      "focusShift": 0,
+      "focusRoll": 0,
+      "enterDuration": 0.46,
+      "returnDuration": 0.56,
+      "focusHeight": 0.565,
+      "focusWidth": 0.295,
+      "focusX": 0.479,
+      "focusY": 0.5,
+      "backgroundColor": "#fbf7f1",
+      "focusBackground": "#22201c",
+      "lightAlgorithm": "local-add",
+      "lightEnabled": true,
+      "pinLight": false,
+      "lightAnimation": true,
+      "lightFollowPointer": true,
+      "lightIntensity": 1,
+      "lightContrast": 0.26,
+      "shadowStrength": 1,
+      "lightSpeed": 0.35,
+      "pointerInfluence": 0.85,
+      "lightResponse": 0.16,
+      "lightFadeIn": 0.12,
+      "lightFadeOut": 0.16,
+      "lightColor": "#ffd198",
+      "shadowColor": "#4e5c3c",
+      "contactShadowColor": "#635e53",
+      "contactShadowOpacity": 0.44,
+      "contactShadowSoftness": 1.4,
+      "textureScale": 0.9,
+      "surfaceRelief": 0.22,
+      "surfaceShine": 0.45,
+      "lightGrain": 0.65,
+      "lightCoverage": 0.708,
+      "lightScale": 1,
+      "lightAngle": 44,
+      "lightStretch": 0.84,
+      "lightScatter": 1,
+      "lightWarp": 0.118,
+      "lightSoftness": 1.35
+    },
+    "camera": {
+      "type": "PerspectiveCamera",
+      "distance": 1200,
+      "fov": 35.01228595511986
+    },
+    "renderer": {
+      "programs": 5,
+      "geometries": 2,
+      "textures": 18
+    },
+    "materials": [
+      "da1d1e28-f022-4729-a4f8-0df1134b8a2f",
+      "bba338ca-0a94-4adf-936a-3777c1e00ba2",
+      "8e062e68-9d04-4f18-8839-80781b634a2f",
+      "8a25c0f0-3615-4e25-ac01-fefad6e91632",
+      "d838eda3-a8f9-42fe-ae83-8be46f6b363b",
+      "00b24a87-ea85-4e02-a5bd-ae7bae62777c",
+      "dbbee458-4120-4bca-bc14-f1fe80769c15",
+      "86f00ced-32a6-4277-b02b-8b3600f4f318",
+      "4fec76ae-e996-4845-b53e-a75f5aa44ce5",
+      "61095afa-3ac8-4687-b162-5ebd735d239a",
+      "88159e27-54d3-4e6d-80b5-fd81f718075e",
+      "82da4158-8c2c-4d9b-9245-f2fc12a1701c"
+    ],
+    "textures": [
+      "c09dc7c9-ba68-4574-ae77-2cc1ddb8b66e",
+      "59714e03-72f3-437a-bb52-8aac75c1460b",
+      "33cb64fd-cfbd-45cf-b61b-4758a1876670",
+      "50f5f197-6d93-491f-9905-af1e82338746",
+      "c22aade5-8477-4369-b737-99e54263e13d",
+      "f78ea3db-c14b-4250-9d54-2ff66e2157c8",
+      "3db0066b-59ce-41aa-a76c-57227201088a",
+      "55cb0b33-27f7-4a40-9759-30e3d5950558",
+      "b50b044f-81d3-4bd5-a99f-3aa05e9f7308",
+      "70de4a85-4604-445a-a417-011a7285f592",
+      "e97e44dc-1723-4cfe-a713-aca769d54ccd",
+      "42c0fbb9-309d-4829-808a-8892db82d1f1"
+    ],
+    "background": {
+      "active": true,
+      "time": 3.7895299999999934,
+      "fieldUpdates": 26,
+      "outputPasses": 204,
+      "passes": {
+        "opticalField": 26,
+        "weightedLens": 26,
+        "staticPaper": 204
+      },
+      "algorithm": "local-add",
+      "pointer": [
+        0.498732936268434,
+        0.4891836069781756
+      ],
+      "target": [
+        0.4987281195780748,
+        0.48914381249040584
+      ],
+      "owner": "foshan",
+      "aspect": 0.6923076923076923,
+      "width": 384,
+      "height": 480,
+      "texture": "31d36fb2-d431-4c1d-988d-7ac6481636c5",
+      "enabled": true,
+      "animate": true,
+      "followPointer": true,
+      "sizeNorm": 3,
+      "density": 8.9,
+      "parameters": {
+        "lightAlgorithm": "local-add",
+        "enabled": true,
+        "intensity": 1,
+        "speed": 0.35,
+        "color": "#4e5c3c",
+        "light": "#ffd198",
+        "background": "#fbf7f1",
+        "focusColor": "#22201c",
+        "softness": 1.35,
+        "coverage": 0.708,
+        "animate": true,
+        "density": 26.7,
+        "scale": 1,
+        "angle": 44,
+        "stretch": 0.84,
+        "scatter": 1,
+        "wave": 0.118,
+        "grain": 0.65,
+        "contrast": 0.26,
+        "study": 0,
+        "followPointer": true,
+        "responseTime": 0.16,
+        "pointerInfluence": 0.85,
+        "stampRatio": 0.786
+      }
+    },
+    "gpuUniforms": [
+      {
+        "name": "Regional stamp static paper",
+        "linked": true,
+        "uniforms": {
+          "uPaper": [
+            0.9843137264251709,
+            0.9686274528503418,
+            0.9450980424880981
+          ],
+          "uFocusColor": [
+            0.13333334028720856,
+            0.125490203499794,
+            0.10980392247438431
+          ],
+          "uFocus": 0,
+          "uPaperGrain": 0.6499999761581421
+        }
+      },
+      {
+        "name": "Regional stamp contact shadow",
+        "linked": true,
+        "uniforms": {
+          "uColor": [
+            0.38823530077934265,
+            0.3686274588108063,
+            0.32549020648002625
+          ],
+          "uOpacity": 0.4399999976158142,
+          "uSoftness": 1.399999976158142,
+          "uShadow": 0
+        }
+      },
+      {
+        "name": "Regional stamp six-algorithm paper",
+        "linked": true,
+        "uniforms": {
+          "uPointer": [
+            0.4987281262874603,
+            0.48914381861686707
+          ],
+          "uSize": [
+            215.86599731445312,
+            311.80645751953125
+          ],
+          "uActivity": 1,
+          "uOpacity": 1,
+          "uBlur": 0,
+          "uLightAlgorithm": 1,
+          "uLightColor": [
+            1,
+            0.8196078538894653,
+            0.5960784554481506
+          ],
+          "uShadowColor": [
+            0.30588236451148987,
+            0.3607843220233917,
+            0.23529411852359772
+          ],
+          "uLightStrength": 1,
+          "uLightContrast": 0.25999999046325684,
+          "uLightGrain": 0.6499999761581421,
+          "uSurfaceRelief": 0.2199999988079071,
+          "uSurfaceShine": 0.44999998807907104,
+          "uTextureScale": 0.8999999761581421,
+          "uShadowStrength": 1,
+          "uMainColor": [
+            1,
+            0.9046611785888672,
+            0.7912979125976562
+          ],
+          "uLampColor": [
+            1,
+            0.7454041838645935,
+            0.43415364623069763
+          ],
+          "uMainIntensity": 1.600000023841858,
+          "uLampIntensity": 0.6499999761581421,
+          "uLampHeight": 0.44999998807907104,
+          "uPaperRoughness": 0.6200000047683716,
+          "uCoatRoughness": 0.20000000298023224,
+          "uCoat": 0.550000011920929,
+          "uNormalScale": 1.600000023841858,
+          "uCoatNormalScale": 1.100000023841858,
+          "uSpecularIntensity": 0.6000000238418579,
+          "uSpecularColor": [
+            1,
+            0.9215818643569946,
+            0.8227857351303101
+          ],
+          "uExposure": 0.5699999928474426,
+          "uArtwork": 0,
+          "uDappled": 1,
+          "uSurfaceNormal": 2,
+          "uLegacySurfaceNormal": 3
+        }
+      },
+      {
+        "name": "Regional stamp optical field",
+        "linked": true,
+        "uniforms": {
+          "uAspect": 0.692307710647583,
+          "uTime": 3.7739899158477783,
+          "uPointer": [
+            0.49873292446136475,
+            0.48918360471725464
+          ],
+          "uRadius": 0.3540000021457672,
+          "uDensity": 8.899999618530273,
+          "uAngle": 0.767944872379303,
+          "uStretch": 0.8399999737739563,
+          "uScatter": 1,
+          "uWave": 0.11800000071525574,
+          "uBackground": [
+            1,
+            0.6666666865348816,
+            0.6470588445663452
+          ],
+          "uShadow": [
+            0.30588236451148987,
+            0.3607843220233917,
+            0.23529411852359772
+          ]
+        }
+      },
+      {
+        "name": "Regional stamp weighted lens",
+        "linked": true,
+        "uniforms": {
+          "uAspect": 0.692307710647583,
+          "uSoftness": 1.350000023841858,
+          "uField": 0
+        }
+      }
+    ]
+  }
+}

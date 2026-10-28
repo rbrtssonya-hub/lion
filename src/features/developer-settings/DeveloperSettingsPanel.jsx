@@ -5,6 +5,7 @@ import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { soundControlRanges } from '../../config/soundControlSettings.js';
 import { expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
 import HdriSourceControls from './HdriSourceControls.jsx';
+import SpreadStampControls from './SpreadStampControls.jsx';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
 import './developer-settings.css';
 import './surface-settings.css';
@@ -14,9 +15,10 @@ const pages = [
   { id:'appearance', label:'外观', title:'顶栏与设置面板', note:'全局界面材质；内容底板在首页、章节和资料中分别管理。', icon:'M4 5h12v10H4zM4 9h12M8 9v6' },
   { id:'navigation', label:'导航', title:'导航文字与位置', note:'统一管理顶部导航的字号、图案及品牌留白。', icon:'M4 6h12M4 10h8M4 14h12' },
   { id:'home', label:'首页', title:'首页阅读与书册', note:'按书册、文化图鉴分开管理，独立调整尺寸和材质。', icon:'M3 5q4-2 7 0 3-2 7 0v11q-4-2-7 0-3-2-7 0zM10 5v11' },
-  { id:'chapters', label:'章节', title:'章节专属设置', note:'观形、戏台、八态与远方实景的阅读底板分别管理。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
+  { id:'chapters', label:'章节', title:'章节专属设置', note:'观形、戏台与八态的阅读底板，以及传章地图与邮票区域布局。', icon:'M3 4h14v12H3zM7 4v12M12 4v12' },
   { id:'view', label:'视角', title:'结构与动作观看视角', note:'分别调整结构模型缩放边界和动作场景的观察范围。', icon:'M2 10q8-11 16 0-8 11-16 0M7 10a3 3 0 1 0 6 0 3 3 0 1 0-6 0' },
   { id:'hdri', label:'HDRI', title:'HDRI环境照明', note:'结构与动作共用同一套照明参数，调整后即时预览，保存设置后记住。', icon:'M3 10a7 7 0 1 1 14 0 7 7 0 1 1-14 0M3 10h14M10 3c-4 4-4 10 0 14 4-4 4-10 0-14' },
+  { id:'stamp', label:'邮票', title:'邮票光影与交互', note:'传章邮票的六种光影、纸纹、指针与聚焦参数；支持导入原邮票面板的参数 JSON。', icon:'M4 3h12v14H4zM7 6h6v8H7zM2 6h3m-3 4h3m-3 4h3m10-8h3m-3 4h3m-3 4h3' },
   { id:'sources', label:'资料', title:'参考资料底板', note:'外区与资料卡分别管理，来源与许可保持可读。', icon:'M5 3h10v14H5zM8 7h4M8 10h4M8 13h4' },
   { id:'animation', label:'动画', title:'全局过渡与粒子', note:'导航变速与两套首页导航的粒子开关；书册时长在首页。', icon:'M3 14c4 0 5-8 10-8h4m-3-3 3 3-3 3' },
   { id:'carousel', label:'轮播', title:'文化照片轮播', note:'只影响首页文化图鉴的照片与文字切换。', icon:'M5 4h10v12H5zM2 7v6M18 7v6m-10-3 4 2-4 2z' },
@@ -32,7 +34,7 @@ const easingOptions = [
 const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Color'].map(suffix => [suffix,surfaceDefaults[`cultureBody${suffix}`]]));
 
 export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle,
-  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, sceneViewEditing }) {
+  hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, sceneViewEditing, stampPreview }) {
   const panelId = useId(), scopeId = useId(), easingId = useId(), mapFrameRateId = useId();
   const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
   const [scope, setScope] = useState('home');
@@ -74,6 +76,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
   });
   const content = id => {
     switch (id) {
+      case 'stamp': return <SpreadStampControls settings={settings} onChange={onChange} preview={stampPreview} />;
       case 'common': return <>
         <SettingsGroup title="声音控件" note="首页 · 动作">
           {range('soundControlFontSize','音量文字字号',...soundControlRanges.soundControlFontSize)}
@@ -150,7 +153,10 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
           {range('spreadMapPlaybackRate','地图动画播放速度',0.5,1.5,0.1,'倍')}
           <p className="developer-settings-note">地图使用1000×650预渲染视频，非实时三维渲染。选择视频帧率；60帧画面更平滑但资源较大，实际播放流畅度还取决于设备与浏览器。播放速度只改变镜头运动快慢。</p>
         </SettingsGroup>}
-        {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : value === 'spread' ? ['spreadOverlay'] : ['expressionOverlay'])}
+        {value === 'spread' ? <SettingsGroup title="邮票区域" note="透明布局">
+          {range('spreadOverlayWidth','邮票区域宽度',40,100,1,'%')}
+          <p className="developer-settings-note">邮票直接呈现在章节背景上，区域高度随视口适配；六种光影、纸纹与聚焦参数在独立“邮票”页管理。</p>
+        </SettingsGroup> : surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
         </SettingsGroup>}
@@ -257,7 +263,7 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
       <span className="developer-settings-eyebrow">南风有狮 · 界面调整</span><h2>开发者参数设置</h2>
     </div>{!sceneViewEditing && <button className="developer-settings-close" type="button" aria-label="关闭开发者参数" onClick={onClose}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>}</div>
     <p className="developer-settings-intro">{sceneViewEditing
-      ? '可在主视口拖动、滚轮测试视角；保存后继续调整，点击“取消”退出。'
+      ? activePage === 'stamp' ? '可在传章直接悬停与聚焦邮票，测试光影；保存后继续调整，点击“取消”退出。' : '可在主视口拖动、滚轮测试视角；保存后继续调整，点击“取消”退出。'
       : '调整即时预览，保存后记住；取消可恢复进入设置前的参数。'}</p></div>
     <SettingsTabList id={panelId} label="设置分类" items={pages} value={activePage} onChange={selectPage} vertical/>
     <div className="developer-settings-scroll" ref={scrollRef} onScroll={() => { scrollPositions.current[activePage] = scrollRef.current.scrollTop; }}>

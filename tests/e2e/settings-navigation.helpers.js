@@ -1,11 +1,13 @@
 import { expect } from '@playwright/test';
 
-export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', '视角', 'HDRI', '资料', '动画', '轮播', '布局'];
+export const settingsPages = ['公共模块', '外观', '导航', '首页', '章节', '视角', 'HDRI', '邮票', '资料', '动画', '轮播', '布局'];
 export const settingsPanel = page => page.getByRole('region', { name: '开发者参数设置', exact: true });
 
 // Route by the unchanged accessible label or storage/surface prefix. Keep main
 // and nested tablists scoped so the heritage tabs cannot satisfy these clicks.
 const routes = [
+  [['spreadOverlay', '邮票区域'], ['章节', '传章']],
+  [['stamp', '邮票', '光影预设', '票面光影', '票面暗部', '悬停偏转', '聚焦偏转'], ['邮票']],
   [['soundControl', 'soundWave', '音量文字', '音量控件', '波浪线', '波峰', '波谷', '波长'], ['公共模块']],
   [['archivePanelTransparency', '首页阅读底板', '公共', '应用范围'], ['公共模块']],
   [['header', 'sidebar', '顶栏', '侧栏'], ['外观']],

@@ -4,6 +4,7 @@ import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { resolveViewSettings, viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { soundControlDefaults, soundControlRanges } from '../../config/soundControlSettings.js';
 import { expressionFeedbackDefaults, expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
+import { isSpreadStampSetting, normalizeSpreadStampSetting, spreadStampDefaults, spreadStampRanges } from '../../config/spreadStampSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
 const storageKey = 'nanfeng-lion:developer-settings:v1';
@@ -60,6 +61,7 @@ export const defaultDeveloperSettings = Object.freeze({
   ...viewDefaults,
   ...soundControlDefaults,
   ...expressionFeedbackDefaults,
+  ...spreadStampDefaults,
 });
 
 const ranges = {
@@ -89,10 +91,12 @@ const ranges = {
   ...viewRanges,
   ...soundControlRanges,
   ...expressionFeedbackRanges,
+  ...spreadStampRanges,
 };
 
 export function normalizeDeveloperSetting(name, value) {
   if (!Object.hasOwn(defaultDeveloperSettings, name)) return undefined;
+  if (isSpreadStampSetting(name)) return normalizeSpreadStampSetting(name, value);
   if (typeof defaultDeveloperSettings[name] === 'boolean') {
     return typeof value === 'boolean' ? value : defaultDeveloperSettings[name];
   }

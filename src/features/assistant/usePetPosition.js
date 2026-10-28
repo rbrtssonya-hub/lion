@@ -16,6 +16,29 @@ function defaultPosition(size, viewport, chapter) {
   return constrain({ x: viewport.width - size.width - 30, y: viewport.height - size.height - 124 }, viewport, size);
 }
 
+function avoidSpreadControls(candidate, size, viewport) {
+  const gap = 8;
+  const boxes = [...document.querySelectorAll('#spreadStage button, #spreadStage a, #spreadPlaceCard')]
+    .map(target => target.getBoundingClientRect()).filter(box => box.width > 0 && box.height > 0);
+  const isClear = point => boxes.every(box => point.x + size.width + gap <= box.left || point.x >= box.right + gap
+    || point.y + size.height + gap <= box.top || point.y >= box.bottom + gap);
+  if (isClear(candidate)) return candidate;
+
+  // The chapter's preferred spot can also intersect a control at shorter desktop heights.
+  const preferred = defaultPosition(size, viewport, 'spread');
+  const xs = [preferred.x, margin, viewport.width - size.width - margin,
+    ...boxes.flatMap(box => [box.left - size.width - gap, box.right + gap])];
+  const ys = [preferred.y, margin, viewport.height - size.height - margin,
+    ...boxes.flatMap(box => [box.top - size.height - gap, box.bottom + gap])];
+  let closest = preferred, distance = Infinity;
+  for (const x of xs) for (const y of ys) {
+    const point = constrain({ x, y }, viewport, size);
+    const nextDistance = (point.x - preferred.x) ** 2 + (point.y - preferred.y) ** 2;
+    if (nextDistance < distance && isClear(point)) { closest = point; distance = nextDistance; }
+  }
+  return closest;
+}
+
 function initialPosition(size, chapter) {
   const viewport = viewportSize();
   try {
@@ -81,12 +104,7 @@ export default function usePetPosition(size, chapter = 'entry') {
     const size = sizeRef.current;
     const viewport = viewportSize();
     const candidate = manualRef.current ? pointRef.current : defaultPosition(size, viewport, chapter);
-    const overlapsSpreadControl = chapter === 'spread' && [...document.querySelectorAll('#spreadStage button, #spreadStage a, #spreadPlaceCard')].some(target => {
-      const box = target.getBoundingClientRect();
-      return candidate.x < box.right && candidate.x + size.width > box.left
-        && candidate.y < box.bottom && candidate.y + size.height > box.top;
-    });
-    moveTo(overlapsSpreadControl ? defaultPosition(size, viewport, chapter) : candidate);
+    moveTo(chapter === 'spread' ? avoidSpreadControls(candidate, size, viewport) : candidate);
   }, [size.width, size.height, chapter, moveTo, viewport.width, viewport.height]);
 
   const onPointerDown = event => {

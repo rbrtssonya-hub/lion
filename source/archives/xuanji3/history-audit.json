@@ -1,0 +1,175 @@
+{
+  "auditedAt": "2026-10-28",
+  "lionHeadAtAudit": "a7a261fa0940a055014eb2ba2be5696b5070c61d",
+  "originalTip": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+  "commonAncestorPresent": false,
+  "originalCommitCount": 10,
+  "newCommitCountAtAudit": 10,
+  "originalShaPreserved": true,
+  "allCommitPayloadsVerified": true,
+  "connectivityCheck": {
+    "command": "git fsck --connectivity-only --no-reflogs --no-dangling 8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  "uniqueHistoryBlobCount": 910,
+  "uniqueHistoryBlobBytes": 339367248,
+  "maximumBlobBytes": 6262000,
+  "oversizedBlobsOver100MiB": [],
+  "largestBlobs": [
+    {
+      "sha": "f4cf96d68eeecafd94358930c8cd668f0321e3d5",
+      "bytes": 6262000,
+      "path": "source/紫外线镭射邮票使用 Fable 5 + Three.js 制作令人惊叹的光线效果来源：@loficosmos1#设计灵感[话题]# #会动的线条[话题]# #vibecoding[话题]#.mp4"
+    },
+    {
+      "sha": "0907f23801779e2387f6b201caab8a8a6d15b4c7",
+      "bytes": 3418142,
+      "path": "public/assets/stamps/07-quanzhou.png"
+    },
+    {
+      "sha": "c21b18170903a7777bc7e817c62baa6123f647cb",
+      "bytes": 3412614,
+      "path": "public/assets/stamps/12-london.png"
+    },
+    {
+      "sha": "9939d545d92b839b320ba7fff7d0da739e80423d",
+      "bytes": 3381304,
+      "path": "public/assets/stamps/01-foshan.png"
+    },
+    {
+      "sha": "23b040dce0e28b67651d404a1a3408f724ce7f30",
+      "bytes": 3366866,
+      "path": "public/assets/stamps/06-tianyang.png"
+    },
+    {
+      "sha": "93cb5ae99c93dd1af4cc0ebd6a30ca008c31d3ca",
+      "bytes": 3309324,
+      "path": "artifacts/region-stamps/contact-sheet.png"
+    },
+    {
+      "sha": "a06b16d272161265307e0690b6c85fad2df3bedb",
+      "bytes": 3253653,
+      "path": "public/assets/stamps/10-kualalumpur.png"
+    },
+    {
+      "sha": "f49fa7357da0244de48da7616720fc5f934fe296",
+      "bytes": 3251988,
+      "path": "public/assets/stamps/05-beijing.png"
+    },
+    {
+      "sha": "08793a526d7e47980aa3d169fa0e5eed818818f5",
+      "bytes": 3199245,
+      "path": "public/assets/stamps/03-heshan.png"
+    },
+    {
+      "sha": "87124c943d9c125c2666b2904f4708fa8f66400c",
+      "bytes": 3195027,
+      "path": "public/assets/stamps/02-guangzhou.png"
+    },
+    {
+      "sha": "2297e5499788986e75f44b2e7e6805d345a9e38a",
+      "bytes": 3184507,
+      "path": "public/assets/stamps/11-sanfrancisco.png"
+    },
+    {
+      "sha": "a85635cbdf0350e1928b3e8624daf5f3bd13853d",
+      "bytes": 3119445,
+      "path": "public/assets/stamps/09-singapore.png"
+    }
+  ],
+  "commits": [
+    {
+      "sha": "23451748af2af71fa55f38da0970142b1f8f3eec",
+      "parents": "",
+      "authorDate": "2026-10-26T15:22:15+08:00",
+      "committerDate": "2026-10-26T15:22:15+08:00",
+      "subject": "chore: initialize postal studies project baseline",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "7d8e63edcbc5ded77879e390d55f2d5315103248",
+      "parents": "23451748af2af71fa55f38da0970142b1f8f3eec",
+      "authorDate": "2026-10-26T16:17:15+08:00",
+      "committerDate": "2026-10-26T16:17:15+08:00",
+      "subject": "fix: refine stamp lighting and establish standard project memory",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "b9d9dfb4f55c696b097a055078ff25c925007deb",
+      "parents": "7d8e63edcbc5ded77879e390d55f2d5315103248",
+      "authorDate": "2026-10-26T17:44:55+08:00",
+      "committerDate": "2026-10-26T17:44:55+08:00",
+      "subject": "fix: unify stamp lighting and match NCS color pipeline",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "73cba51760e4dc35aea7db8a80f9692589fa566d",
+      "parents": "b9d9dfb4f55c696b097a055078ff25c925007deb",
+      "authorDate": "2026-10-26T18:15:37+08:00",
+      "committerDate": "2026-10-26T18:15:37+08:00",
+      "subject": "feat: create eight lion expression stamps with existing interactions",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "6a0c29744354eb293525fa5776a2413d42f1db5a",
+      "parents": "73cba51760e4dc35aea7db8a80f9692589fa566d",
+      "authorDate": "2026-10-27T00:27:20+08:00",
+      "committerDate": "2026-10-27T00:27:20+08:00",
+      "subject": "fix: show stamp lighting immediately during rapid hover switches",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "11d504905f4231abefbf3af46db8b6cc5d662995",
+      "parents": "6a0c29744354eb293525fa5776a2413d42f1db5a",
+      "authorDate": "2026-10-27T00:52:46+08:00",
+      "committerDate": "2026-10-27T00:52:46+08:00",
+      "subject": "style: apply blush accents to interface only",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "59890ef0823f93633e9a2fb7d80b58f417939b0d",
+      "parents": "11d504905f4231abefbf3af46db8b6cc5d662995",
+      "authorDate": "2026-10-28T11:37:54+08:00",
+      "committerDate": "2026-10-28T11:37:54+08:00",
+      "subject": "feat: add twelve regional lion stamps",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "74ba21c808371765aa8e93cb613580859274caf0",
+      "parents": "59890ef0823f93633e9a2fb7d80b58f417939b0d",
+      "authorDate": "2026-10-28T18:16:40+08:00",
+      "committerDate": "2026-10-28T18:16:40+08:00",
+      "subject": "feat: add six named stamp lighting algorithms",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "bfd742d39a7622d1fc8372bcabd59382dc8499d1",
+      "parents": "11d504905f4231abefbf3af46db8b6cc5d662995 74ba21c808371765aa8e93cb613580859274caf0",
+      "authorDate": "2026-10-28T19:48:32+08:00",
+      "committerDate": "2026-10-28T19:48:32+08:00",
+      "subject": "Merge regional worktree while preserving original stamp server",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    },
+    {
+      "sha": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+      "parents": "bfd742d39a7622d1fc8372bcabd59382dc8499d1",
+      "authorDate": "2026-10-28T19:52:09+08:00",
+      "committerDate": "2026-10-28T19:52:09+08:00",
+      "subject": "docs: record verified dual-edition publication",
+      "originalCommitPayloadVerified": true,
+      "reachableFromLionHeadAtAudit": false
+    }
+  ],
+  "sourceHeadAfterAudit": "8764e9b484a372fc17e0595fc2a017be2cbc3d48",
+  "sourceStatusAfterAudit": "?? prompt/\n?? source/Picture_01/\n"
+}

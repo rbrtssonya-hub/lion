@@ -13,12 +13,14 @@ export const surfaceDefinitions = Object.freeze([
   { prefix: 'spreadOverlay', label: '传章案例底板', color: '#f7f4ed', transparency: 5, blur: 0, radius: 10, automaticHeight: true },
 ]);
 
-// The same scope registry drives the UI and the atomic application action.
+// The same active scope registry drives the UI and atomic application action.
+// Keep the historical spread definition/defaults above for saved JSON while
+// excluding its now-transparent stamp area from paper-material application.
 export const surfaceScopes = Object.freeze({
   home: { label: '首页阅读 · 4处', prefixes: ['bookTitle', 'bookDetails', 'cultureTitle', 'cultureBody'] },
-  chapters: { label: '章节与视频 · 5处', prefixes: ['modelOverlay', 'actionOverlay', 'expressionOverlay', 'videoOverlay', 'spreadOverlay'] },
+  chapters: { label: '章节与视频 · 4处', prefixes: ['modelOverlay', 'actionOverlay', 'expressionOverlay', 'videoOverlay'] },
   sources: { label: '参考资料 · 2处', prefixes: ['cultureSources', 'cultureSourceCard'] },
-  all: { label: '全部内容底板 · 11处', prefixes: surfaceDefinitions.map(surface => surface.prefix) },
+  all: { label: '全部内容底板 · 10处', prefixes: surfaceDefinitions.filter(surface => surface.prefix !== 'spreadOverlay').map(surface => surface.prefix) },
 });
 
 export const surfaceDefaults = Object.freeze(Object.fromEntries(surfaceDefinitions.flatMap(surface => [

@@ -12,6 +12,7 @@ sources: []
 
 ## 当前有效
 
+- [[知识/传章地域邮票与光影.md|传章地域邮票与光影]] — active · spread-regional-stamps
 - [[知识/前端与三维生命周期.md|前端与三维生命周期]] — active · frontend-model-lifecycle
 - [[知识/观形图版与外部历史.md|观形图版与外部历史]] — active · structure-atlas-integration
 - [[知识/资源管理与辅助工具.md|资源管理与辅助工具]] — active · assets-and-offline-tools

@@ -1,5 +1,11 @@
 # 工程开发说明
 
+## 传章地域邮票（2026-10-28）
+
+`SpreadStampBoard`替换旧右侧图文，当前地图范围对应四枚地域邮票。`services/spread-stamps/`完整迁移炫技3的runGo地域版光学、纸纹、六合成算法、影子及交互，动态加载并沿用现有Three；`src/config/spreadStampSettings.js`将原52字段映射为独立持久设置。设置新增“邮票”页，支持原参数JSON与全站事务。用户后续取消底板，因此右板、WebGL、聚焦和fallback均透明，仅票面纸张及投影可见；原背景输出shader保留但不绘制，两独立底色控件不用于当前呈现。
+
+原源码/双版本/完整工程记忆见[炫技3导入说明](../source/archives/xuanji3/IMPORT.md)，10次原SHA历史不改写。验收入口为`spread-stamps.spec.js`、`spread-stamp-settings.spec.js`及原地图回归；须检查真实GPU六算法、透明像素、3组映射、设置保存取消和资源释放。最新事实与实际结果见[本轮记忆](../wiki_memory/知识/传章地域邮票与光影.md)。
+
 ## 观形外部试验融合（2026-10-28）
 
 `src/features/model/atlas/` 接入“炫技5”的六部位入口、完整运镜与图像交接、左上图版及右侧文化浮窗。布局通过 ResizeObserver 读取副导航下方的实际容器，主图完整等比、研究态上沿紧贴副导航；底部控件避让小醒。形制和工艺继续使用现有模块。
