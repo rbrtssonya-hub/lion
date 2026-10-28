@@ -1,0 +1,5619 @@
+{
+  "generatedAt": "2026-10-28T12:03:41.734Z",
+  "origin": "http://127.0.0.1:28474",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "channel": "chrome",
+  "headless": true,
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "architecture": "x64",
+    "cpu": "Intel(R) Core(TM) i7-14700KF",
+    "logicalCpus": 28,
+    "memoryBytes": 34138726400
+  },
+  "browser": {
+    "version": "156.0.8078.48",
+    "gpu": {
+      "devices": [
+        {
+          "vendorId": 4318,
+          "deviceId": 11269,
+          "subSysId": 2314604611,
+          "revision": 161,
+          "vendorString": "",
+          "deviceString": "NVIDIA GeForce RTX 5070 Ti",
+          "driverVendor": "NVIDIA",
+          "driverVersion": "32.0.16.1692"
+        },
+        {
+          "vendorId": 4318,
+          "deviceId": 11269,
+          "subSysId": 2314604611,
+          "revision": 161,
+          "vendorString": "",
+          "deviceString": "NVIDIA GeForce RTX 5070 Ti",
+          "driverVendor": "",
+          "driverVersion": "32.0.16.1692"
+        },
+        {
+          "vendorId": 4318,
+          "deviceId": 11269,
+          "subSysId": 2314604611,
+          "revision": 161,
+          "vendorString": "",
+          "deviceString": "NVIDIA GeForce RTX 5070 Ti",
+          "driverVendor": "",
+          "driverVersion": "32.0.16.1692"
+        },
+        {
+          "vendorId": 5140,
+          "deviceId": 140,
+          "subSysId": 0,
+          "revision": 0,
+          "vendorString": "",
+          "deviceString": "Microsoft Basic Render Driver",
+          "driverVendor": "",
+          "driverVersion": "10.0.26100.9711"
+        }
+      ],
+      "auxAttributes": {
+        "amdSwitchable": false,
+        "bgra8OverlaySupport": "SCALING",
+        "canSupportThreadedTextureMailbox": false,
+        "directComposition": true,
+        "directMLFeatureLevel": "Not supported",
+        "directRenderingVersion": "",
+        "displayType": "ANGLE_D3D11",
+        "dx12FeatureLevel": "Not supported",
+        "glExtensions": "GL_AMD_performance_monitor GL_ANGLE_base_vertex_base_instance_shader_builtin GL_ANGLE_blob_cache GL_ANGLE_client_arrays GL_ANGLE_clip_cull_distance GL_ANGLE_copy_texture_3d GL_ANGLE_depth_texture GL_ANGLE_framebuffer_blit GL_ANGLE_framebuffer_multisample GL_ANGLE_get_serialized_context_string GL_ANGLE_get_tex_level_parameter GL_ANGLE_instanced_arrays GL_ANGLE_memory_size GL_ANGLE_multiview_multisample GL_ANGLE_pack_reverse_row_order GL_ANGLE_polygon_mode GL_ANGLE_program_binary_readiness_query GL_ANGLE_program_cache_control GL_ANGLE_provoking_vertex GL_ANGLE_renderability_validation GL_ANGLE_request_extension GL_ANGLE_robust_client_memory GL_ANGLE_shader_pixel_local_storage GL_ANGLE_shader_pixel_local_storage_coherent GL_ANGLE_stencil_texturing GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ANGLE_texture_multisample GL_ANGLE_texture_usage GL_ANGLE_translated_shader_source GL_APPLE_clip_distance GL_ARM_rgba8 GL_CHROMIUM_bind_generates_resource GL_CHROMIUM_bind_uniform_location GL_CHROMIUM_copy_compressed_texture GL_CHROMIUM_copy_texture GL_CHROMIUM_lose_context GL_EXT_EGL_image_external_wrap_modes GL_EXT_base_instance GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_clip_control GL_EXT_clip_cull_distance GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_debug_label GL_EXT_debug_marker GL_EXT_depth_clamp GL_EXT_discard_framebuffer GL_EXT_disjoint_timer_query GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_frag_depth GL_EXT_instanced_arrays GL_EXT_map_buffer_range GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_read_format_bgra GL_EXT_render_snorm GL_EXT_robustness GL_EXT_sRGB GL_EXT_shader_texture_lod GL_EXT_texture_border_clamp GL_EXT_texture_compression_bptc GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc_srgb GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_EXT_texture_rg GL_EXT_texture_storage GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_KHR_debug GL_KHR_parallel_shader_compile GL_KHR_robustness GL_NV_EGL_stream_consumer_external GL_NV_fence GL_NV_framebuffer_blit GL_NV_pack_subimage GL_NV_pixel_buffer_object GL_NV_shader_noperspective_interpolation GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_depth24 GL_OES_depth32 GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fbo_render_mipmap GL_OES_get_program_binary GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_texture_border_clamp GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OVR_multiview GL_OVR_multiview2 ",
+        "glImplementationParts": "(gl=egl-angle,angle=d3d11)",
+        "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1692)",
+        "glResetNotificationStrategy": 33362,
+        "glVendor": "Google Inc. (NVIDIA)",
+        "glVersion": "OpenGL ES 3.0 (ANGLE 2.1.28973 git hash: 3b89d84e9d59)",
+        "glWsExtensions": "EGL_EXT_create_context_robustness EGL_ANGLE_d3d_share_handle_client_buffer EGL_ANGLE_d3d_texture_client_buffer EGL_ANGLE_surface_d3d_texture_2d_share_handle EGL_ANGLE_query_surface_pointer EGL_ANGLE_window_fixed_size EGL_ANGLE_keyed_mutex EGL_ANGLE_surface_orientation EGL_ANGLE_direct_composition EGL_NV_post_sub_buffer EGL_KHR_create_context EGL_KHR_image EGL_KHR_image_base EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_gl_renderbuffer_image EGL_KHR_get_all_proc_addresses EGL_KHR_stream EGL_KHR_stream_consumer_gltexture EGL_NV_stream_consumer_gltexture_yuv EGL_ANGLE_stream_producer_d3d_texture EGL_ANGLE_create_context_webgl_compatibility EGL_CHROMIUM_create_context_bind_generates_resource EGL_CHROMIUM_sync_control EGL_EXT_pixel_format_float EGL_KHR_surfaceless_context EGL_ANGLE_display_texture_share_group EGL_ANGLE_display_semaphore_share_group EGL_ANGLE_create_context_client_arrays EGL_ANGLE_program_cache_control EGL_ANGLE_robust_resource_initialization EGL_ANGLE_create_context_extensions_enabled EGL_ANDROID_blob_cache EGL_ANDROID_recordable EGL_ANGLE_image_d3d11_texture EGL_ANGLE_create_context_backwards_compatible EGL_KHR_no_config_context EGL_KHR_create_context_no_error EGL_KHR_reusable_sync EGL_ANGLE_memory_usage_report ",
+        "glWsVendor": "Google Inc. (NVIDIA)",
+        "glWsVersion": "1.5 (ANGLE 2.1.28973 git hash: 3b89d84e9d59)",
+        "inProcessGpu": false,
+        "initializationTime": 0.235445,
+        "isAsan": false,
+        "isClangCoverage": false,
+        "jpegDecodeAcceleratorSupported": false,
+        "maxMsaaSamples": "8",
+        "nv12OverlaySupport": "SCALING",
+        "optimus": false,
+        "p010OverlaySupport": "SCALING",
+        "passthroughCmdDecoder": true,
+        "pixelShaderVersion": "5.0",
+        "processCrashCount": 0,
+        "rgb10a2OverlaySupport": "SCALING",
+        "sandboxed": false,
+        "skiaBackendType": "GaneshGL",
+        "subpixelFontRendering": true,
+        "supportsD3dSharedImages": false,
+        "supportsDirectML": false,
+        "supportsDx12": false,
+        "supportsOverlays": true,
+        "supportsVulkan": false,
+        "targetCpuBits": 64,
+        "vertexShaderVersion": "5.0",
+        "visibilityCallbackCallCount": 0,
+        "vulkanVersion": "Not supported",
+        "yuy2OverlaySupport": "SCALING"
+      },
+      "featureStatus": {
+        "2d_canvas": "enabled",
+        "direct_rendering_display_compositor": "disabled_off_ok",
+        "gpu_compositing": "enabled",
+        "multiple_raster_threads": "enabled_on",
+        "opengl": "enabled_on",
+        "rasterization": "enabled",
+        "raw_draw": "disabled_off_ok",
+        "skia_graphite": "disabled_off",
+        "trees_in_viz": "disabled_off",
+        "video_decode": "enabled",
+        "video_encode": "enabled",
+        "webgl": "enabled",
+        "webgpu": "enabled",
+        "webnn": "disabled_off"
+      },
+      "driverBugWorkarounds": [
+        "disable_d3d11_vp9_ksvc_decoding",
+        "enable_webgl_timer_query_extensions",
+        "exit_on_context_lost",
+        "unpack_overlapping_rows_separately_unpack_buffer",
+        "use_g22_topleft_color_space_for_yuv_vp",
+        "disabled_extension_GL_KHR_blend_equation_advanced",
+        "disabled_extension_GL_KHR_blend_equation_advanced_coherent"
+      ],
+      "videoDecoding": [],
+      "videoEncoding": []
+    }
+  },
+  "samples": [
+    {
+      "fps": 24,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "devicePixelRatio": 1,
+        "screen": {
+          "width": 1440,
+          "height": 900
+        },
+        "visibilityState": "visible",
+        "webglVendor": "Google Inc. (NVIDIA)",
+        "webglRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "source": "http://127.0.0.1:28474/assets/spread-map/motion-forward.mp4",
+      "readyStateBeforeClick": 4,
+      "bufferedBeforeClick": [
+        [
+          0,
+          8.5
+        ]
+      ],
+      "qualityBefore": {
+        "totalVideoFrames": 4,
+        "droppedVideoFrames": 0,
+        "corruptedVideoFrames": 0
+      },
+      "clickAt": 684.1999999992549,
+      "samples": [
+        {
+          "now": 719.4,
+          "mediaTime": 0.041667,
+          "expectedDisplayTime": 725,
+          "presentationTime": 719.5,
+          "presentedFrames": 2,
+          "processingDuration": 0.0239
+        },
+        {
+          "now": 758.3,
+          "mediaTime": 0.083333,
+          "expectedDisplayTime": 763.9,
+          "presentationTime": 758.4,
+          "presentedFrames": 3,
+          "processingDuration": 0.0245
+        },
+        {
+          "now": 847.2,
+          "mediaTime": 0.166667,
+          "expectedDisplayTime": 847.2,
+          "presentationTime": 841.7,
+          "presentedFrames": 5,
+          "processingDuration": 0.0327
+        },
+        {
+          "now": 886.1,
+          "mediaTime": 0.208333,
+          "expectedDisplayTime": 891.7,
+          "presentationTime": 886.2,
+          "presentedFrames": 6,
+          "processingDuration": 0.0088
+        },
+        {
+          "now": 925.1,
+          "mediaTime": 0.25,
+          "expectedDisplayTime": 930.5,
+          "presentationTime": 925.1,
+          "presentedFrames": 7,
+          "processingDuration": 0.0095
+        },
+        {
+          "now": 969.5,
+          "mediaTime": 0.291667,
+          "expectedDisplayTime": 975,
+          "presentationTime": 969.5,
+          "presentedFrames": 8,
+          "processingDuration": 0.0096
+        },
+        {
+          "now": 1008.3,
+          "mediaTime": 0.333333,
+          "expectedDisplayTime": 1013.8,
+          "presentationTime": 1008.3,
+          "presentedFrames": 9,
+          "processingDuration": 0.4411
+        },
+        {
+          "now": 1052.8,
+          "mediaTime": 0.375,
+          "expectedDisplayTime": 1058.3,
+          "presentationTime": 1052.8,
+          "presentedFrames": 10,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 1091.6,
+          "mediaTime": 0.416667,
+          "expectedDisplayTime": 1097.2,
+          "presentationTime": 1091.7,
+          "presentedFrames": 11,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 1136.1,
+          "mediaTime": 0.458333,
+          "expectedDisplayTime": 1141.7,
+          "presentationTime": 1136.1,
+          "presentedFrames": 12,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 1175,
+          "mediaTime": 0.5,
+          "expectedDisplayTime": 1180.5,
+          "presentationTime": 1175,
+          "presentedFrames": 13,
+          "processingDuration": 0.6017
+        },
+        {
+          "now": 1219.4,
+          "mediaTime": 0.541667,
+          "expectedDisplayTime": 1224.9,
+          "presentationTime": 1219.4,
+          "presentedFrames": 14,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 1258.3,
+          "mediaTime": 0.583333,
+          "expectedDisplayTime": 1263.8,
+          "presentationTime": 1258.3,
+          "presentedFrames": 15,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 1302.8,
+          "mediaTime": 0.625,
+          "expectedDisplayTime": 1308.3,
+          "presentationTime": 1302.8,
+          "presentedFrames": 16,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 1341.6,
+          "mediaTime": 0.666667,
+          "expectedDisplayTime": 1347.2,
+          "presentationTime": 1341.7,
+          "presentedFrames": 17,
+          "processingDuration": 0.3336
+        },
+        {
+          "now": 1386.1,
+          "mediaTime": 0.708333,
+          "expectedDisplayTime": 1391.7,
+          "presentationTime": 1386.2,
+          "presentedFrames": 18,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 1425,
+          "mediaTime": 0.75,
+          "expectedDisplayTime": 1430.6,
+          "presentationTime": 1425,
+          "presentedFrames": 19,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 1469.4,
+          "mediaTime": 0.791667,
+          "expectedDisplayTime": 1474.9,
+          "presentationTime": 1469.5,
+          "presentedFrames": 20,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 1508.3,
+          "mediaTime": 0.833333,
+          "expectedDisplayTime": 1513.9,
+          "presentationTime": 1508.4,
+          "presentedFrames": 21,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 1552.8,
+          "mediaTime": 0.875,
+          "expectedDisplayTime": 1558.3,
+          "presentationTime": 1552.8,
+          "presentedFrames": 22,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 1591.6,
+          "mediaTime": 0.916667,
+          "expectedDisplayTime": 1597.2,
+          "presentationTime": 1591.6,
+          "presentedFrames": 23,
+          "processingDuration": 0.0835
+        },
+        {
+          "now": 1636.1,
+          "mediaTime": 0.958333,
+          "expectedDisplayTime": 1641.6,
+          "presentationTime": 1636.2,
+          "presentedFrames": 24,
+          "processingDuration": 0.2887
+        },
+        {
+          "now": 1674.9,
+          "mediaTime": 1,
+          "expectedDisplayTime": 1680.5,
+          "presentationTime": 1675.1,
+          "presentedFrames": 25,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 1719.5,
+          "mediaTime": 1.041667,
+          "expectedDisplayTime": 1724.9,
+          "presentationTime": 1719.4,
+          "presentedFrames": 26,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 1763.9,
+          "mediaTime": 1.083333,
+          "expectedDisplayTime": 1763.9,
+          "presentationTime": 1758.3,
+          "presentedFrames": 27,
+          "processingDuration": 0.2502
+        },
+        {
+          "now": 1808.3,
+          "mediaTime": 1.125,
+          "expectedDisplayTime": 1808.3,
+          "presentationTime": 1802.7,
+          "presentedFrames": 28,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 1841.7,
+          "mediaTime": 1.166667,
+          "expectedDisplayTime": 1847.2,
+          "presentationTime": 1841.7,
+          "presentedFrames": 29,
+          "processingDuration": 0.1668
+        },
+        {
+          "now": 1886.1,
+          "mediaTime": 1.208333,
+          "expectedDisplayTime": 1891.6,
+          "presentationTime": 1886.2,
+          "presentedFrames": 30,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 1924.9,
+          "mediaTime": 1.25,
+          "expectedDisplayTime": 1930.5,
+          "presentationTime": 1925.1,
+          "presentedFrames": 31,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 1975,
+          "mediaTime": 1.291667,
+          "expectedDisplayTime": 1975,
+          "presentationTime": 1969.5,
+          "presentedFrames": 32,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 2008.3,
+          "mediaTime": 1.333333,
+          "expectedDisplayTime": 2013.9,
+          "presentationTime": 2008.3,
+          "presentedFrames": 33,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 2052.8,
+          "mediaTime": 1.375,
+          "expectedDisplayTime": 2058.4,
+          "presentationTime": 2052.9,
+          "presentedFrames": 34,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 2091.7,
+          "mediaTime": 1.416667,
+          "expectedDisplayTime": 2097.2,
+          "presentationTime": 2091.8,
+          "presentedFrames": 35,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 2136.2,
+          "mediaTime": 1.458333,
+          "expectedDisplayTime": 2141.8,
+          "presentationTime": 2136.3,
+          "presentedFrames": 36,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 2175,
+          "mediaTime": 1.5,
+          "expectedDisplayTime": 2180.5,
+          "presentationTime": 2175.1,
+          "presentedFrames": 37,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 2219.4,
+          "mediaTime": 1.541667,
+          "expectedDisplayTime": 2225,
+          "presentationTime": 2219.5,
+          "presentedFrames": 38,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 2258.3,
+          "mediaTime": 1.583333,
+          "expectedDisplayTime": 2263.9,
+          "presentationTime": 2258.4,
+          "presentedFrames": 39,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 2302.8,
+          "mediaTime": 1.625,
+          "expectedDisplayTime": 2308.3,
+          "presentationTime": 2302.8,
+          "presentedFrames": 40,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 2341.6,
+          "mediaTime": 1.666667,
+          "expectedDisplayTime": 2347.2,
+          "presentationTime": 2341.7,
+          "presentedFrames": 41,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 2536.1,
+          "mediaTime": 1.833333,
+          "expectedDisplayTime": 2513.9,
+          "presentationTime": 2508.4,
+          "presentedFrames": 45,
+          "processingDuration": 0.1673
+        },
+        {
+          "now": 2552.8,
+          "mediaTime": 1.875,
+          "expectedDisplayTime": 2558.4,
+          "presentationTime": 2552.9,
+          "presentedFrames": 46,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 2591.6,
+          "mediaTime": 1.916667,
+          "expectedDisplayTime": 2597.2,
+          "presentationTime": 2591.7,
+          "presentedFrames": 47,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 2636.1,
+          "mediaTime": 1.958333,
+          "expectedDisplayTime": 2641.6,
+          "presentationTime": 2636.2,
+          "presentedFrames": 48,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 2830.6,
+          "mediaTime": 2.125,
+          "expectedDisplayTime": 2808.4,
+          "presentationTime": 2802.9,
+          "presentedFrames": 52,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 2841.7,
+          "mediaTime": 2.166667,
+          "expectedDisplayTime": 2847.2,
+          "presentationTime": 2841.8,
+          "presentedFrames": 53,
+          "processingDuration": 0.167
+        },
+        {
+          "now": 2886.1,
+          "mediaTime": 2.208333,
+          "expectedDisplayTime": 2891.6,
+          "presentationTime": 2886.2,
+          "presentedFrames": 54,
+          "processingDuration": 0.2056
+        },
+        {
+          "now": 2925,
+          "mediaTime": 2.25,
+          "expectedDisplayTime": 2930.5,
+          "presentationTime": 2925,
+          "presentedFrames": 55,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 2969.4,
+          "mediaTime": 2.291667,
+          "expectedDisplayTime": 2975,
+          "presentationTime": 2969.5,
+          "presentedFrames": 56,
+          "processingDuration": 0.122
+        },
+        {
+          "now": 3008.4,
+          "mediaTime": 2.333333,
+          "expectedDisplayTime": 3013.9,
+          "presentationTime": 3008.4,
+          "presentedFrames": 57,
+          "processingDuration": 0.1696
+        },
+        {
+          "now": 3052.7,
+          "mediaTime": 2.375,
+          "expectedDisplayTime": 3058.3,
+          "presentationTime": 3052.9,
+          "presentedFrames": 58,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 3091.7,
+          "mediaTime": 2.416667,
+          "expectedDisplayTime": 3097.3,
+          "presentationTime": 3091.8,
+          "presentedFrames": 59,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 3136.2,
+          "mediaTime": 2.458333,
+          "expectedDisplayTime": 3141.7,
+          "presentationTime": 3136.2,
+          "presentedFrames": 60,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 3175,
+          "mediaTime": 2.5,
+          "expectedDisplayTime": 3180.6,
+          "presentationTime": 3175.1,
+          "presentedFrames": 61,
+          "processingDuration": 0.1668
+        },
+        {
+          "now": 3219.5,
+          "mediaTime": 2.541667,
+          "expectedDisplayTime": 3225,
+          "presentationTime": 3219.5,
+          "presentedFrames": 62,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 3258.3,
+          "mediaTime": 2.583333,
+          "expectedDisplayTime": 3263.9,
+          "presentationTime": 3258.4,
+          "presentedFrames": 63,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 3302.7,
+          "mediaTime": 2.625,
+          "expectedDisplayTime": 3308.3,
+          "presentationTime": 3302.9,
+          "presentedFrames": 64,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 3341.7,
+          "mediaTime": 2.666667,
+          "expectedDisplayTime": 3347.2,
+          "presentationTime": 3341.7,
+          "presentedFrames": 65,
+          "processingDuration": 0.1672
+        },
+        {
+          "now": 3386.1,
+          "mediaTime": 2.708333,
+          "expectedDisplayTime": 3391.7,
+          "presentationTime": 3386.4,
+          "presentedFrames": 66,
+          "processingDuration": 0.0387
+        },
+        {
+          "now": 3425,
+          "mediaTime": 2.75,
+          "expectedDisplayTime": 3430.5,
+          "presentationTime": 3425,
+          "presentedFrames": 67,
+          "processingDuration": 0.25
+        },
+        {
+          "now": 3469.4,
+          "mediaTime": 2.791667,
+          "expectedDisplayTime": 3475,
+          "presentationTime": 3469.5,
+          "presentedFrames": 68,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 3508.4,
+          "mediaTime": 2.833333,
+          "expectedDisplayTime": 3513.9,
+          "presentationTime": 3508.5,
+          "presentedFrames": 69,
+          "processingDuration": 0.1667
+        },
+        {
+          "now": 3552.7,
+          "mediaTime": 2.875,
+          "expectedDisplayTime": 3558.3,
+          "presentationTime": 3552.8,
+          "presentedFrames": 70,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 3591.7,
+          "mediaTime": 2.916667,
+          "expectedDisplayTime": 3597.2,
+          "presentationTime": 3591.8,
+          "presentedFrames": 71,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 3636.1,
+          "mediaTime": 2.958333,
+          "expectedDisplayTime": 3641.6,
+          "presentationTime": 3636.2,
+          "presentedFrames": 72,
+          "processingDuration": 0.1223
+        },
+        {
+          "now": 3675,
+          "mediaTime": 3,
+          "expectedDisplayTime": 3680.6,
+          "presentationTime": 3675.1,
+          "presentedFrames": 73,
+          "processingDuration": 0.1671
+        },
+        {
+          "now": 3719.4,
+          "mediaTime": 3.041667,
+          "expectedDisplayTime": 3725,
+          "presentationTime": 3719.5,
+          "presentedFrames": 74,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 3758.4,
+          "mediaTime": 3.083333,
+          "expectedDisplayTime": 3763.8,
+          "presentationTime": 3758.4,
+          "presentedFrames": 75,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 3802.8,
+          "mediaTime": 3.125,
+          "expectedDisplayTime": 3808.3,
+          "presentationTime": 3802.8,
+          "presentedFrames": 76,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 3841.7,
+          "mediaTime": 3.166667,
+          "expectedDisplayTime": 3847.3,
+          "presentationTime": 3841.8,
+          "presentedFrames": 77,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 3886.1,
+          "mediaTime": 3.208333,
+          "expectedDisplayTime": 3891.7,
+          "presentationTime": 3886.2,
+          "presentedFrames": 78,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 3925,
+          "mediaTime": 3.25,
+          "expectedDisplayTime": 3930.6,
+          "presentationTime": 3925,
+          "presentedFrames": 79,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 3969.5,
+          "mediaTime": 3.291667,
+          "expectedDisplayTime": 3975,
+          "presentationTime": 3969.6,
+          "presentedFrames": 80,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 4008.4,
+          "mediaTime": 3.333333,
+          "expectedDisplayTime": 4013.9,
+          "presentationTime": 4008.4,
+          "presentedFrames": 81,
+          "processingDuration": 0.3336
+        },
+        {
+          "now": 4052.8,
+          "mediaTime": 3.375,
+          "expectedDisplayTime": 4058.3,
+          "presentationTime": 4052.8,
+          "presentedFrames": 82,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 4091.8,
+          "mediaTime": 3.416667,
+          "expectedDisplayTime": 4097.3,
+          "presentationTime": 4091.9,
+          "presentedFrames": 83,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 4136.1,
+          "mediaTime": 3.458333,
+          "expectedDisplayTime": 4141.7,
+          "presentationTime": 4136.2,
+          "presentedFrames": 84,
+          "processingDuration": 0.1223
+        },
+        {
+          "now": 4175,
+          "mediaTime": 3.5,
+          "expectedDisplayTime": 4180.6,
+          "presentationTime": 4175,
+          "presentedFrames": 85,
+          "processingDuration": 0.3342
+        },
+        {
+          "now": 4219.5,
+          "mediaTime": 3.541667,
+          "expectedDisplayTime": 4225.1,
+          "presentationTime": 4219.7,
+          "presentedFrames": 86,
+          "processingDuration": 0.0387
+        },
+        {
+          "now": 4258.4,
+          "mediaTime": 3.583333,
+          "expectedDisplayTime": 4263.9,
+          "presentationTime": 4258.5,
+          "presentedFrames": 87,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 4302.9,
+          "mediaTime": 3.625,
+          "expectedDisplayTime": 4308.3,
+          "presentationTime": 4303,
+          "presentedFrames": 88,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 4341.7,
+          "mediaTime": 3.666667,
+          "expectedDisplayTime": 4347.3,
+          "presentationTime": 4341.9,
+          "presentedFrames": 89,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 4386.2,
+          "mediaTime": 3.708333,
+          "expectedDisplayTime": 4391.8,
+          "presentationTime": 4386.3,
+          "presentedFrames": 90,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 4425,
+          "mediaTime": 3.75,
+          "expectedDisplayTime": 4430.5,
+          "presentationTime": 4425.1,
+          "presentedFrames": 91,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 4469.5,
+          "mediaTime": 3.791667,
+          "expectedDisplayTime": 4475,
+          "presentationTime": 4469.5,
+          "presentedFrames": 92,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 4508.4,
+          "mediaTime": 3.833333,
+          "expectedDisplayTime": 4513.9,
+          "presentationTime": 4508.4,
+          "presentedFrames": 93,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 4552.8,
+          "mediaTime": 3.875,
+          "expectedDisplayTime": 4558.3,
+          "presentationTime": 4552.9,
+          "presentedFrames": 94,
+          "processingDuration": 0.039
+        },
+        {
+          "now": 4591.7,
+          "mediaTime": 3.916667,
+          "expectedDisplayTime": 4597.2,
+          "presentationTime": 4591.8,
+          "presentedFrames": 95,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 4636.1,
+          "mediaTime": 3.958333,
+          "expectedDisplayTime": 4641.7,
+          "presentationTime": 4636.2,
+          "presentedFrames": 96,
+          "processingDuration": 0.2887
+        },
+        {
+          "now": 4675,
+          "mediaTime": 4,
+          "expectedDisplayTime": 4680.5,
+          "presentationTime": 4675.1,
+          "presentedFrames": 97,
+          "processingDuration": 0.167
+        },
+        {
+          "now": 4719.5,
+          "mediaTime": 4.041667,
+          "expectedDisplayTime": 4725,
+          "presentationTime": 4719.6,
+          "presentedFrames": 98,
+          "processingDuration": 0.0385
+        },
+        {
+          "now": 4758.5,
+          "mediaTime": 4.083333,
+          "expectedDisplayTime": 4764,
+          "presentationTime": 4758.5,
+          "presentedFrames": 99,
+          "processingDuration": 0.083
+        },
+        {
+          "now": 4802.8,
+          "mediaTime": 4.125,
+          "expectedDisplayTime": 4808.3,
+          "presentationTime": 4802.9,
+          "presentedFrames": 100,
+          "processingDuration": 0.1219
+        },
+        {
+          "now": 4841.7,
+          "mediaTime": 4.166667,
+          "expectedDisplayTime": 4847.2,
+          "presentationTime": 4841.8,
+          "presentedFrames": 101,
+          "processingDuration": 0.3333
+        },
+        {
+          "now": 4886.1,
+          "mediaTime": 4.208333,
+          "expectedDisplayTime": 4891.8,
+          "presentationTime": 4886.2,
+          "presentedFrames": 102,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 4925,
+          "mediaTime": 4.25,
+          "expectedDisplayTime": 4930.5,
+          "presentationTime": 4925,
+          "presentedFrames": 103,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 4969.5,
+          "mediaTime": 4.291667,
+          "expectedDisplayTime": 4975,
+          "presentationTime": 4969.5,
+          "presentedFrames": 104,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 5008.3,
+          "mediaTime": 4.333333,
+          "expectedDisplayTime": 5013.9,
+          "presentationTime": 5008.4,
+          "presentedFrames": 105,
+          "processingDuration": 0.3332
+        },
+        {
+          "now": 5052.8,
+          "mediaTime": 4.375,
+          "expectedDisplayTime": 5058.4,
+          "presentationTime": 5052.9,
+          "presentedFrames": 106,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 5091.7,
+          "mediaTime": 4.416667,
+          "expectedDisplayTime": 5097.2,
+          "presentationTime": 5091.8,
+          "presentedFrames": 107,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 5136.1,
+          "mediaTime": 4.458333,
+          "expectedDisplayTime": 5141.7,
+          "presentationTime": 5136.2,
+          "presentedFrames": 108,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 5175.1,
+          "mediaTime": 4.5,
+          "expectedDisplayTime": 5180.5,
+          "presentationTime": 5175.1,
+          "presentedFrames": 109,
+          "processingDuration": 0.3336
+        },
+        {
+          "now": 5219.5,
+          "mediaTime": 4.541667,
+          "expectedDisplayTime": 5225,
+          "presentationTime": 5219.5,
+          "presentedFrames": 110,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 5258.4,
+          "mediaTime": 4.583333,
+          "expectedDisplayTime": 5264,
+          "presentationTime": 5258.5,
+          "presentedFrames": 111,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 5302.8,
+          "mediaTime": 4.625,
+          "expectedDisplayTime": 5308.4,
+          "presentationTime": 5302.9,
+          "presentedFrames": 112,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 5341.8,
+          "mediaTime": 4.666667,
+          "expectedDisplayTime": 5347.4,
+          "presentationTime": 5341.9,
+          "presentedFrames": 113,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 5386.2,
+          "mediaTime": 4.708333,
+          "expectedDisplayTime": 5391.8,
+          "presentationTime": 5386.3,
+          "presentedFrames": 114,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 5425,
+          "mediaTime": 4.75,
+          "expectedDisplayTime": 5430.6,
+          "presentationTime": 5425.1,
+          "presentedFrames": 115,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 5469.5,
+          "mediaTime": 4.791667,
+          "expectedDisplayTime": 5475.1,
+          "presentationTime": 5469.5,
+          "presentedFrames": 116,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 5508.4,
+          "mediaTime": 4.833333,
+          "expectedDisplayTime": 5514,
+          "presentationTime": 5508.4,
+          "presentedFrames": 117,
+          "processingDuration": 0.3337
+        },
+        {
+          "now": 5552.8,
+          "mediaTime": 4.875,
+          "expectedDisplayTime": 5558.4,
+          "presentationTime": 5552.9,
+          "presentedFrames": 118,
+          "processingDuration": 0.0387
+        },
+        {
+          "now": 5591.7,
+          "mediaTime": 4.916667,
+          "expectedDisplayTime": 5597.2,
+          "presentationTime": 5591.8,
+          "presentedFrames": 119,
+          "processingDuration": 0.2499
+        },
+        {
+          "now": 5636.1,
+          "mediaTime": 4.958333,
+          "expectedDisplayTime": 5641.7,
+          "presentationTime": 5636.3,
+          "presentedFrames": 120,
+          "processingDuration": 0.122
+        },
+        {
+          "now": 5675,
+          "mediaTime": 5,
+          "expectedDisplayTime": 5680.6,
+          "presentationTime": 5675.1,
+          "presentedFrames": 121,
+          "processingDuration": 0.1666
+        },
+        {
+          "now": 5719.5,
+          "mediaTime": 5.041667,
+          "expectedDisplayTime": 5725.1,
+          "presentationTime": 5719.6,
+          "presentedFrames": 122,
+          "processingDuration": 0.039
+        },
+        {
+          "now": 5758.4,
+          "mediaTime": 5.083333,
+          "expectedDisplayTime": 5764,
+          "presentationTime": 5758.4,
+          "presentedFrames": 123,
+          "processingDuration": 0.2497
+        },
+        {
+          "now": 5802.9,
+          "mediaTime": 5.125,
+          "expectedDisplayTime": 5808.4,
+          "presentationTime": 5803,
+          "presentedFrames": 124,
+          "processingDuration": 0.1223
+        },
+        {
+          "now": 5841.7,
+          "mediaTime": 5.166667,
+          "expectedDisplayTime": 5847.3,
+          "presentationTime": 5841.8,
+          "presentedFrames": 125,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 5886.2,
+          "mediaTime": 5.208333,
+          "expectedDisplayTime": 5891.7,
+          "presentationTime": 5886.3,
+          "presentedFrames": 126,
+          "processingDuration": 0.2056
+        },
+        {
+          "now": 5925.1,
+          "mediaTime": 5.25,
+          "expectedDisplayTime": 5930.5,
+          "presentationTime": 5925.1,
+          "presentedFrames": 127,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 5969.5,
+          "mediaTime": 5.291667,
+          "expectedDisplayTime": 5975.1,
+          "presentationTime": 5969.6,
+          "presentedFrames": 128,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 6008.4,
+          "mediaTime": 5.333333,
+          "expectedDisplayTime": 6013.9,
+          "presentationTime": 6008.5,
+          "presentedFrames": 129,
+          "processingDuration": 0.1668
+        },
+        {
+          "now": 6052.8,
+          "mediaTime": 5.375,
+          "expectedDisplayTime": 6058.4,
+          "presentationTime": 6052.9,
+          "presentedFrames": 130,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 6091.7,
+          "mediaTime": 5.416667,
+          "expectedDisplayTime": 6097.3,
+          "presentationTime": 6091.7,
+          "presentedFrames": 131,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 6136.2,
+          "mediaTime": 5.458333,
+          "expectedDisplayTime": 6141.7,
+          "presentationTime": 6136.3,
+          "presentedFrames": 132,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 6175.1,
+          "mediaTime": 5.5,
+          "expectedDisplayTime": 6180.6,
+          "presentationTime": 6175.2,
+          "presentedFrames": 133,
+          "processingDuration": 0.1673
+        },
+        {
+          "now": 6219.5,
+          "mediaTime": 5.541667,
+          "expectedDisplayTime": 6225.1,
+          "presentationTime": 6219.6,
+          "presentedFrames": 134,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 6258.4,
+          "mediaTime": 5.583333,
+          "expectedDisplayTime": 6263.9,
+          "presentationTime": 6258.5,
+          "presentedFrames": 135,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 6302.8,
+          "mediaTime": 5.625,
+          "expectedDisplayTime": 6308.4,
+          "presentationTime": 6302.8,
+          "presentedFrames": 136,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 6341.7,
+          "mediaTime": 5.666667,
+          "expectedDisplayTime": 6347.2,
+          "presentationTime": 6341.7,
+          "presentedFrames": 137,
+          "processingDuration": 0.167
+        },
+        {
+          "now": 6386.2,
+          "mediaTime": 5.708333,
+          "expectedDisplayTime": 6391.7,
+          "presentationTime": 6386.3,
+          "presentedFrames": 138,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 6425,
+          "mediaTime": 5.75,
+          "expectedDisplayTime": 6430.6,
+          "presentationTime": 6425.1,
+          "presentedFrames": 139,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 6469.5,
+          "mediaTime": 5.791667,
+          "expectedDisplayTime": 6475,
+          "presentationTime": 6469.5,
+          "presentedFrames": 140,
+          "processingDuration": 0.2889
+        },
+        {
+          "now": 6508.4,
+          "mediaTime": 5.833333,
+          "expectedDisplayTime": 6514,
+          "presentationTime": 6508.4,
+          "presentedFrames": 141,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 6552.9,
+          "mediaTime": 5.875,
+          "expectedDisplayTime": 6558.4,
+          "presentationTime": 6552.9,
+          "presentedFrames": 142,
+          "processingDuration": 0.2056
+        },
+        {
+          "now": 6591.8,
+          "mediaTime": 5.916667,
+          "expectedDisplayTime": 6597.4,
+          "presentationTime": 6591.9,
+          "presentedFrames": 143,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 6636.1,
+          "mediaTime": 5.958333,
+          "expectedDisplayTime": 6641.7,
+          "presentationTime": 6636.2,
+          "presentedFrames": 144,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 6675.1,
+          "mediaTime": 6,
+          "expectedDisplayTime": 6680.7,
+          "presentationTime": 6675.1,
+          "presentedFrames": 145,
+          "processingDuration": 0.1671
+        },
+        {
+          "now": 6719.6,
+          "mediaTime": 6.041667,
+          "expectedDisplayTime": 6725.1,
+          "presentationTime": 6719.7,
+          "presentedFrames": 146,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 6758.4,
+          "mediaTime": 6.083333,
+          "expectedDisplayTime": 6764,
+          "presentationTime": 6758.5,
+          "presentedFrames": 147,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 6802.8,
+          "mediaTime": 6.125,
+          "expectedDisplayTime": 6808.4,
+          "presentationTime": 6802.9,
+          "presentedFrames": 148,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 6841.7,
+          "mediaTime": 6.166667,
+          "expectedDisplayTime": 6847.3,
+          "presentationTime": 6841.8,
+          "presentedFrames": 149,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 6886.1,
+          "mediaTime": 6.208333,
+          "expectedDisplayTime": 6891.7,
+          "presentationTime": 6886.3,
+          "presentedFrames": 150,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 6925.1,
+          "mediaTime": 6.25,
+          "expectedDisplayTime": 6930.7,
+          "presentationTime": 6925.1,
+          "presentedFrames": 151,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 6969.6,
+          "mediaTime": 6.291667,
+          "expectedDisplayTime": 6975.1,
+          "presentationTime": 6969.6,
+          "presentedFrames": 152,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 7008.4,
+          "mediaTime": 6.333333,
+          "expectedDisplayTime": 7013.9,
+          "presentationTime": 7008.4,
+          "presentedFrames": 153,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 7052.9,
+          "mediaTime": 6.375,
+          "expectedDisplayTime": 7058.5,
+          "presentationTime": 7052.9,
+          "presentedFrames": 154,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 7091.8,
+          "mediaTime": 6.416667,
+          "expectedDisplayTime": 7097.3,
+          "presentationTime": 7091.9,
+          "presentedFrames": 155,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 7136.2,
+          "mediaTime": 6.458333,
+          "expectedDisplayTime": 7141.7,
+          "presentationTime": 7136.3,
+          "presentedFrames": 156,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 7175.1,
+          "mediaTime": 6.5,
+          "expectedDisplayTime": 7180.7,
+          "presentationTime": 7175.2,
+          "presentedFrames": 157,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 7219.5,
+          "mediaTime": 6.541667,
+          "expectedDisplayTime": 7225.1,
+          "presentationTime": 7219.6,
+          "presentedFrames": 158,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 7258.4,
+          "mediaTime": 6.583333,
+          "expectedDisplayTime": 7263.9,
+          "presentationTime": 7258.6,
+          "presentedFrames": 159,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 7302.9,
+          "mediaTime": 6.625,
+          "expectedDisplayTime": 7308.5,
+          "presentationTime": 7303,
+          "presentedFrames": 160,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 7341.9,
+          "mediaTime": 6.666667,
+          "expectedDisplayTime": 7347.4,
+          "presentationTime": 7341.9,
+          "presentedFrames": 161,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 7386.2,
+          "mediaTime": 6.708333,
+          "expectedDisplayTime": 7391.9,
+          "presentationTime": 7386.4,
+          "presentedFrames": 162,
+          "processingDuration": 0.2054
+        },
+        {
+          "now": 7425.1,
+          "mediaTime": 6.75,
+          "expectedDisplayTime": 7430.6,
+          "presentationTime": 7425.2,
+          "presentedFrames": 163,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 7469.5,
+          "mediaTime": 6.791667,
+          "expectedDisplayTime": 7475,
+          "presentationTime": 7469.6,
+          "presentedFrames": 164,
+          "processingDuration": 0.2889
+        },
+        {
+          "now": 7508.3,
+          "mediaTime": 6.833333,
+          "expectedDisplayTime": 7513.9,
+          "presentationTime": 7508.5,
+          "presentedFrames": 165,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 7552.9,
+          "mediaTime": 6.875,
+          "expectedDisplayTime": 7558.5,
+          "presentationTime": 7553,
+          "presentedFrames": 166,
+          "processingDuration": 0.2055
+        },
+        {
+          "now": 7591.7,
+          "mediaTime": 6.916667,
+          "expectedDisplayTime": 7597.2,
+          "presentationTime": 7591.8,
+          "presentedFrames": 167,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 7636.1,
+          "mediaTime": 6.958333,
+          "expectedDisplayTime": 7641.7,
+          "presentationTime": 7636.2,
+          "presentedFrames": 168,
+          "processingDuration": 0.289
+        },
+        {
+          "now": 7675.1,
+          "mediaTime": 7,
+          "expectedDisplayTime": 7680.6,
+          "presentationTime": 7675.2,
+          "presentedFrames": 169,
+          "processingDuration": 0.1669
+        },
+        {
+          "now": 7719.6,
+          "mediaTime": 7.041667,
+          "expectedDisplayTime": 7725.1,
+          "presentationTime": 7719.7,
+          "presentedFrames": 170,
+          "processingDuration": 0.0391
+        },
+        {
+          "now": 7758.4,
+          "mediaTime": 7.083333,
+          "expectedDisplayTime": 7763.9,
+          "presentationTime": 7758.5,
+          "presentedFrames": 171,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 7802.8,
+          "mediaTime": 7.125,
+          "expectedDisplayTime": 7808.4,
+          "presentationTime": 7803,
+          "presentedFrames": 172,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 7841.7,
+          "mediaTime": 7.166667,
+          "expectedDisplayTime": 7847.3,
+          "presentationTime": 7841.7,
+          "presentedFrames": 173,
+          "processingDuration": 0.3334
+        },
+        {
+          "now": 7886.2,
+          "mediaTime": 7.208333,
+          "expectedDisplayTime": 7891.7,
+          "presentationTime": 7886.3,
+          "presentedFrames": 174,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 7925.1,
+          "mediaTime": 7.25,
+          "expectedDisplayTime": 7930.7,
+          "presentationTime": 7925.2,
+          "presentedFrames": 175,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 7969.5,
+          "mediaTime": 7.291667,
+          "expectedDisplayTime": 7975.2,
+          "presentationTime": 7969.7,
+          "presentedFrames": 176,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 8008.5,
+          "mediaTime": 7.333333,
+          "expectedDisplayTime": 8014,
+          "presentationTime": 8008.6,
+          "presentedFrames": 177,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 8052.9,
+          "mediaTime": 7.375,
+          "expectedDisplayTime": 8058.4,
+          "presentationTime": 8052.9,
+          "presentedFrames": 178,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 8091.7,
+          "mediaTime": 7.416667,
+          "expectedDisplayTime": 8097.3,
+          "presentationTime": 8091.8,
+          "presentedFrames": 179,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8136.1,
+          "mediaTime": 7.458333,
+          "expectedDisplayTime": 8141.7,
+          "presentationTime": 8136.3,
+          "presentedFrames": 180,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 8175.1,
+          "mediaTime": 7.5,
+          "expectedDisplayTime": 8180.7,
+          "presentationTime": 8175.2,
+          "presentedFrames": 181,
+          "processingDuration": 0.3334
+        },
+        {
+          "now": 8219.7,
+          "mediaTime": 7.541667,
+          "expectedDisplayTime": 8225.2,
+          "presentationTime": 8219.8,
+          "presentedFrames": 182,
+          "processingDuration": 0.039
+        },
+        {
+          "now": 8258.5,
+          "mediaTime": 7.583333,
+          "expectedDisplayTime": 8264,
+          "presentationTime": 8258.6,
+          "presentedFrames": 183,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 8302.9,
+          "mediaTime": 7.625,
+          "expectedDisplayTime": 8308.3,
+          "presentationTime": 8302.9,
+          "presentedFrames": 184,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 8341.7,
+          "mediaTime": 7.666667,
+          "expectedDisplayTime": 8347.3,
+          "presentationTime": 8341.8,
+          "presentedFrames": 185,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 8386.2,
+          "mediaTime": 7.708333,
+          "expectedDisplayTime": 8391.8,
+          "presentationTime": 8386.3,
+          "presentedFrames": 186,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 8425,
+          "mediaTime": 7.75,
+          "expectedDisplayTime": 8430.6,
+          "presentationTime": 8425.2,
+          "presentedFrames": 187,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8469.5,
+          "mediaTime": 7.791667,
+          "expectedDisplayTime": 8475.1,
+          "presentationTime": 8469.5,
+          "presentedFrames": 188,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 8508.4,
+          "mediaTime": 7.833333,
+          "expectedDisplayTime": 8514,
+          "presentationTime": 8508.4,
+          "presentedFrames": 189,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 8552.9,
+          "mediaTime": 7.875,
+          "expectedDisplayTime": 8558.4,
+          "presentationTime": 8552.9,
+          "presentedFrames": 190,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 8591.8,
+          "mediaTime": 7.916667,
+          "expectedDisplayTime": 8597.4,
+          "presentationTime": 8591.9,
+          "presentedFrames": 191,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8636.2,
+          "mediaTime": 7.958333,
+          "expectedDisplayTime": 8641.8,
+          "presentationTime": 8636.3,
+          "presentedFrames": 192,
+          "processingDuration": 0.2888
+        },
+        {
+          "now": 8675.1,
+          "mediaTime": 8,
+          "expectedDisplayTime": 8680.7,
+          "presentationTime": 8675.1,
+          "presentedFrames": 193,
+          "processingDuration": 0.1668
+        },
+        {
+          "now": 8719.6,
+          "mediaTime": 8.041667,
+          "expectedDisplayTime": 8725.1,
+          "presentationTime": 8719.8,
+          "presentedFrames": 194,
+          "processingDuration": 0.0389
+        },
+        {
+          "now": 8758.4,
+          "mediaTime": 8.083333,
+          "expectedDisplayTime": 8763.9,
+          "presentationTime": 8758.5,
+          "presentedFrames": 195,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8802.9,
+          "mediaTime": 8.125,
+          "expectedDisplayTime": 8808.4,
+          "presentationTime": 8803,
+          "presentedFrames": 196,
+          "processingDuration": 0.1222
+        },
+        {
+          "now": 8841.8,
+          "mediaTime": 8.166667,
+          "expectedDisplayTime": 8847.3,
+          "presentationTime": 8841.8,
+          "presentedFrames": 197,
+          "processingDuration": 0.3335
+        },
+        {
+          "now": 8886.2,
+          "mediaTime": 8.208333,
+          "expectedDisplayTime": 8891.8,
+          "presentationTime": 8886.3,
+          "presentedFrames": 198,
+          "processingDuration": 0.0388
+        },
+        {
+          "now": 8925.1,
+          "mediaTime": 8.25,
+          "expectedDisplayTime": 8930.6,
+          "presentationTime": 8925.2,
+          "presentedFrames": 199,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 8969.5,
+          "mediaTime": 8.291667,
+          "expectedDisplayTime": 8975.1,
+          "presentationTime": 8969.7,
+          "presentedFrames": 200,
+          "processingDuration": 0.1221
+        },
+        {
+          "now": 9008.5,
+          "mediaTime": 8.333333,
+          "expectedDisplayTime": 9014,
+          "presentationTime": 9008.5,
+          "presentedFrames": 201,
+          "processingDuration": 0.3336
+        },
+        {
+          "now": 9052.8,
+          "mediaTime": 8.375,
+          "expectedDisplayTime": 9058.4,
+          "presentationTime": 9053,
+          "presentedFrames": 202,
+          "processingDuration": 0.0387
+        },
+        {
+          "now": 9091.7,
+          "mediaTime": 8.416667,
+          "expectedDisplayTime": 9097.3,
+          "presentationTime": 9091.8,
+          "presentedFrames": 203,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 9136.2,
+          "mediaTime": 8.458333,
+          "expectedDisplayTime": 9141.8,
+          "presentationTime": 9136.2,
+          "presentedFrames": 204,
+          "processingDuration": 0.2887
+        }
+      ],
+      "sawMotion": true,
+      "firstVisibleAt": 704.3999999985099,
+      "finishedAt": 9148.800000000745,
+      "failure": null,
+      "qualityAfter": {
+        "totalVideoFrames": 204,
+        "droppedVideoFrames": 0,
+        "corruptedVideoFrames": 0
+      },
+      "finalMediaTime": 8.4621,
+      "finalPaused": true,
+      "videoWidth": 1000,
+      "videoHeight": 650,
+      "summary": {
+        "firstFrameCallbackWaitMs": 35.200000000745035,
+        "firstVisibleAttributeWaitMs": 20.199999999254942,
+        "finishedWaitMs": 8464.60000000149,
+        "callbackCount": 196,
+        "elapsedBetweenCallbacksMs": 8416.800000000001,
+        "callbackRatePerSecond": 23.1679498146564,
+        "mediaTimeStart": 0.041667,
+        "mediaTimeEnd": 8.458333,
+        "medianIntervalMs": 44.29999999999927,
+        "p95IntervalMs": 44.5,
+        "maxIntervalMs": 194.5,
+        "longFrameThresholdMs": 62.5,
+        "longFrameCount": 3,
+        "qualityDelta": {
+          "totalVideoFrames": 200,
+          "droppedVideoFrames": 0,
+          "corruptedVideoFrames": 0
+        }
+      }
+    },
+    {
+      "fps": 60,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "devicePixelRatio": 1,
+        "screen": {
+          "width": 1440,
+          "height": 900
+        },
+        "visibilityState": "visible",
+        "webglVendor": "Google Inc. (NVIDIA)",
+        "webglRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "source": "http://127.0.0.1:28474/assets/spread-map/motion-forward-60.mp4",
+      "readyStateBeforeClick": 4,
+      "bufferedBeforeClick": [
+        [
+          0,
+          8.5
+        ]
+      ],
+      "qualityBefore": {
+        "totalVideoFrames": 4,
+        "droppedVideoFrames": 0,
+        "corruptedVideoFrames": 0
+      },
+      "clickAt": 323.69999999925494,
+      "samples": [
+        {
+          "now": 335.5,
+          "mediaTime": 0.016667,
+          "expectedDisplayTime": 341.1,
+          "presentationTime": 335.6,
+          "presentedFrames": 2,
+          "processingDuration": 0.0082
+        },
+        {
+          "now": 380,
+          "mediaTime": 0.05,
+          "expectedDisplayTime": 385.6,
+          "presentationTime": 380.1,
+          "presentedFrames": 4,
+          "processingDuration": 0.0017
+        },
+        {
+          "now": 529.9,
+          "mediaTime": 0.216667,
+          "expectedDisplayTime": 552.2,
+          "presentationTime": 546.7,
+          "presentedFrames": 14,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 557.8,
+          "mediaTime": 0.233333,
+          "expectedDisplayTime": 568.9,
+          "presentationTime": 563.3,
+          "presentedFrames": 15,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 574.4,
+          "mediaTime": 0.25,
+          "expectedDisplayTime": 585.6,
+          "presentationTime": 580.1,
+          "presentedFrames": 16,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 596.7,
+          "mediaTime": 0.266667,
+          "expectedDisplayTime": 602.3,
+          "presentationTime": 596.7,
+          "presentedFrames": 17,
+          "processingDuration": 0.1386
+        },
+        {
+          "now": 613.4,
+          "mediaTime": 0.283333,
+          "expectedDisplayTime": 618.9,
+          "presentationTime": 613.5,
+          "presentedFrames": 18,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 630,
+          "mediaTime": 0.3,
+          "expectedDisplayTime": 635.5,
+          "presentationTime": 630,
+          "presentedFrames": 19,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 646.6,
+          "mediaTime": 0.316667,
+          "expectedDisplayTime": 652.3,
+          "presentationTime": 646.8,
+          "presentedFrames": 20,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 663.4,
+          "mediaTime": 0.333333,
+          "expectedDisplayTime": 668.9,
+          "presentationTime": 663.4,
+          "presentedFrames": 21,
+          "processingDuration": 0.1337
+        },
+        {
+          "now": 680,
+          "mediaTime": 0.416667,
+          "expectedDisplayTime": 752.2,
+          "presentationTime": 746.8,
+          "presentedFrames": 26,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 763.3,
+          "mediaTime": 0.433333,
+          "expectedDisplayTime": 768.9,
+          "presentationTime": 763.4,
+          "presentedFrames": 27,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 780,
+          "mediaTime": 0.45,
+          "expectedDisplayTime": 785.6,
+          "presentationTime": 780.1,
+          "presentedFrames": 28,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 796.6,
+          "mediaTime": 0.466667,
+          "expectedDisplayTime": 802.2,
+          "presentationTime": 796.7,
+          "presentedFrames": 29,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 813.3,
+          "mediaTime": 0.483333,
+          "expectedDisplayTime": 818.9,
+          "presentationTime": 813.4,
+          "presentedFrames": 30,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 830,
+          "mediaTime": 0.5,
+          "expectedDisplayTime": 835.6,
+          "presentationTime": 830.1,
+          "presentedFrames": 31,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 846.8,
+          "mediaTime": 0.516667,
+          "expectedDisplayTime": 852.3,
+          "presentationTime": 846.9,
+          "presentedFrames": 32,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 863.4,
+          "mediaTime": 0.533333,
+          "expectedDisplayTime": 868.9,
+          "presentationTime": 863.5,
+          "presentedFrames": 33,
+          "processingDuration": 0.1339
+        },
+        {
+          "now": 880,
+          "mediaTime": 0.55,
+          "expectedDisplayTime": 885.6,
+          "presentationTime": 880.1,
+          "presentedFrames": 34,
+          "processingDuration": 0.0164
+        },
+        {
+          "now": 896.6,
+          "mediaTime": 0.566667,
+          "expectedDisplayTime": 902.2,
+          "presentationTime": 896.7,
+          "presentedFrames": 35,
+          "processingDuration": 0.033
+        },
+        {
+          "now": 907.8,
+          "mediaTime": 0.583333,
+          "expectedDisplayTime": 918.8,
+          "presentationTime": 913.4,
+          "presentedFrames": 36,
+          "processingDuration": 0.0497
+        },
+        {
+          "now": 930,
+          "mediaTime": 0.6,
+          "expectedDisplayTime": 935.5,
+          "presentationTime": 930,
+          "presentedFrames": 37,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 946.6,
+          "mediaTime": 0.616667,
+          "expectedDisplayTime": 952.2,
+          "presentationTime": 946.7,
+          "presentedFrames": 38,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 963.3,
+          "mediaTime": 0.633333,
+          "expectedDisplayTime": 968.8,
+          "presentationTime": 963.4,
+          "presentedFrames": 39,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 980,
+          "mediaTime": 0.65,
+          "expectedDisplayTime": 985.5,
+          "presentationTime": 980.1,
+          "presentedFrames": 40,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 996.7,
+          "mediaTime": 0.666667,
+          "expectedDisplayTime": 1002.3,
+          "presentationTime": 996.7,
+          "presentedFrames": 41,
+          "processingDuration": 0.1333
+        },
+        {
+          "now": 1013.4,
+          "mediaTime": 0.683333,
+          "expectedDisplayTime": 1018.9,
+          "presentationTime": 1013.4,
+          "presentedFrames": 42,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1030,
+          "mediaTime": 0.7,
+          "expectedDisplayTime": 1035.5,
+          "presentationTime": 1030.1,
+          "presentedFrames": 43,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 1046.7,
+          "mediaTime": 0.716667,
+          "expectedDisplayTime": 1052.2,
+          "presentationTime": 1046.8,
+          "presentedFrames": 44,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1063.4,
+          "mediaTime": 0.733333,
+          "expectedDisplayTime": 1068.9,
+          "presentationTime": 1063.4,
+          "presentedFrames": 45,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 1080,
+          "mediaTime": 0.75,
+          "expectedDisplayTime": 1085.6,
+          "presentationTime": 1080.1,
+          "presentedFrames": 46,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1096.7,
+          "mediaTime": 0.766667,
+          "expectedDisplayTime": 1102.3,
+          "presentationTime": 1096.7,
+          "presentedFrames": 47,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1113.3,
+          "mediaTime": 0.783333,
+          "expectedDisplayTime": 1118.9,
+          "presentationTime": 1113.4,
+          "presentedFrames": 48,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1130,
+          "mediaTime": 0.8,
+          "expectedDisplayTime": 1135.6,
+          "presentationTime": 1130.1,
+          "presentedFrames": 49,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 1146.7,
+          "mediaTime": 0.816667,
+          "expectedDisplayTime": 1152.3,
+          "presentationTime": 1146.9,
+          "presentedFrames": 50,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1163.3,
+          "mediaTime": 0.833333,
+          "expectedDisplayTime": 1168.9,
+          "presentationTime": 1163.4,
+          "presentedFrames": 51,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1180.1,
+          "mediaTime": 0.85,
+          "expectedDisplayTime": 1185.6,
+          "presentationTime": 1180.1,
+          "presentedFrames": 52,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1196.7,
+          "mediaTime": 0.866667,
+          "expectedDisplayTime": 1202.2,
+          "presentationTime": 1196.7,
+          "presentedFrames": 53,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 1207.8,
+          "mediaTime": 0.883333,
+          "expectedDisplayTime": 1218.9,
+          "presentationTime": 1213.5,
+          "presentedFrames": 54,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 1230,
+          "mediaTime": 0.9,
+          "expectedDisplayTime": 1235.6,
+          "presentationTime": 1230,
+          "presentedFrames": 55,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1246.6,
+          "mediaTime": 0.916667,
+          "expectedDisplayTime": 1252.2,
+          "presentationTime": 1246.7,
+          "presentedFrames": 56,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 1263.3,
+          "mediaTime": 0.933333,
+          "expectedDisplayTime": 1268.8,
+          "presentationTime": 1263.4,
+          "presentedFrames": 57,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 1280,
+          "mediaTime": 0.95,
+          "expectedDisplayTime": 1285.6,
+          "presentationTime": 1280.1,
+          "presentedFrames": 58,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 1296.7,
+          "mediaTime": 0.966667,
+          "expectedDisplayTime": 1302.3,
+          "presentationTime": 1296.7,
+          "presentedFrames": 59,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 1313.3,
+          "mediaTime": 0.983333,
+          "expectedDisplayTime": 1318.9,
+          "presentationTime": 1313.4,
+          "presentedFrames": 60,
+          "processingDuration": 0.1166
+        },
+        {
+          "now": 1330,
+          "mediaTime": 1,
+          "expectedDisplayTime": 1335.5,
+          "presentationTime": 1330.1,
+          "presentedFrames": 61,
+          "processingDuration": 0.0668
+        },
+        {
+          "now": 1346.6,
+          "mediaTime": 1.016667,
+          "expectedDisplayTime": 1352.2,
+          "presentationTime": 1346.7,
+          "presentedFrames": 62,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1363.3,
+          "mediaTime": 1.033333,
+          "expectedDisplayTime": 1368.9,
+          "presentationTime": 1363.4,
+          "presentedFrames": 63,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1380,
+          "mediaTime": 1.05,
+          "expectedDisplayTime": 1385.5,
+          "presentationTime": 1380.1,
+          "presentedFrames": 64,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1396.7,
+          "mediaTime": 1.066667,
+          "expectedDisplayTime": 1402.2,
+          "presentationTime": 1396.7,
+          "presentedFrames": 65,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 1413.3,
+          "mediaTime": 1.083333,
+          "expectedDisplayTime": 1418.9,
+          "presentationTime": 1413.4,
+          "presentedFrames": 66,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1424.4,
+          "mediaTime": 1.1,
+          "expectedDisplayTime": 1435.6,
+          "presentationTime": 1430.1,
+          "presentedFrames": 67,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1446.6,
+          "mediaTime": 1.116667,
+          "expectedDisplayTime": 1452.2,
+          "presentationTime": 1446.8,
+          "presentedFrames": 68,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1463.4,
+          "mediaTime": 1.133333,
+          "expectedDisplayTime": 1468.9,
+          "presentationTime": 1463.4,
+          "presentedFrames": 69,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 1480,
+          "mediaTime": 1.15,
+          "expectedDisplayTime": 1485.6,
+          "presentationTime": 1480.1,
+          "presentedFrames": 70,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1496.7,
+          "mediaTime": 1.166667,
+          "expectedDisplayTime": 1502.2,
+          "presentationTime": 1496.7,
+          "presentedFrames": 71,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1513.4,
+          "mediaTime": 1.183333,
+          "expectedDisplayTime": 1518.9,
+          "presentationTime": 1513.4,
+          "presentedFrames": 72,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1530,
+          "mediaTime": 1.2,
+          "expectedDisplayTime": 1535.6,
+          "presentationTime": 1530.1,
+          "presentedFrames": 73,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 1546.6,
+          "mediaTime": 1.216667,
+          "expectedDisplayTime": 1552.2,
+          "presentationTime": 1546.7,
+          "presentedFrames": 74,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1563.3,
+          "mediaTime": 1.233333,
+          "expectedDisplayTime": 1568.9,
+          "presentationTime": 1563.5,
+          "presentedFrames": 75,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 1580.1,
+          "mediaTime": 1.25,
+          "expectedDisplayTime": 1585.6,
+          "presentationTime": 1580.3,
+          "presentedFrames": 76,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 1596.6,
+          "mediaTime": 1.266667,
+          "expectedDisplayTime": 1602.2,
+          "presentationTime": 1596.7,
+          "presentedFrames": 77,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 1613.3,
+          "mediaTime": 1.283333,
+          "expectedDisplayTime": 1618.8,
+          "presentationTime": 1613.4,
+          "presentedFrames": 78,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1630.1,
+          "mediaTime": 1.3,
+          "expectedDisplayTime": 1635.6,
+          "presentationTime": 1630.1,
+          "presentedFrames": 79,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1646.6,
+          "mediaTime": 1.316667,
+          "expectedDisplayTime": 1652.2,
+          "presentationTime": 1646.9,
+          "presentedFrames": 80,
+          "processingDuration": 0.1166
+        },
+        {
+          "now": 1663.4,
+          "mediaTime": 1.333333,
+          "expectedDisplayTime": 1668.9,
+          "presentationTime": 1663.5,
+          "presentedFrames": 81,
+          "processingDuration": 0.0002
+        },
+        {
+          "now": 1674.4,
+          "mediaTime": 1.35,
+          "expectedDisplayTime": 1685.6,
+          "presentationTime": 1680.2,
+          "presentedFrames": 82,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 1696.7,
+          "mediaTime": 1.366667,
+          "expectedDisplayTime": 1702.2,
+          "presentationTime": 1696.8,
+          "presentedFrames": 83,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1713.3,
+          "mediaTime": 1.383333,
+          "expectedDisplayTime": 1718.9,
+          "presentationTime": 1713.4,
+          "presentedFrames": 84,
+          "processingDuration": 0.1168
+        },
+        {
+          "now": 1730,
+          "mediaTime": 1.4,
+          "expectedDisplayTime": 1735.6,
+          "presentationTime": 1730.1,
+          "presentedFrames": 85,
+          "processingDuration": 0.0667
+        },
+        {
+          "now": 1746.7,
+          "mediaTime": 1.416667,
+          "expectedDisplayTime": 1752.2,
+          "presentationTime": 1746.8,
+          "presentedFrames": 86,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1763.3,
+          "mediaTime": 1.433333,
+          "expectedDisplayTime": 1768.9,
+          "presentationTime": 1763.4,
+          "presentedFrames": 87,
+          "processingDuration": 0.0999
+        },
+        {
+          "now": 1780,
+          "mediaTime": 1.45,
+          "expectedDisplayTime": 1785.6,
+          "presentationTime": 1780.1,
+          "presentedFrames": 88,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 1796.7,
+          "mediaTime": 1.466667,
+          "expectedDisplayTime": 1802.2,
+          "presentationTime": 1796.8,
+          "presentedFrames": 89,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 1813.4,
+          "mediaTime": 1.483333,
+          "expectedDisplayTime": 1818.9,
+          "presentationTime": 1813.4,
+          "presentedFrames": 90,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 1830,
+          "mediaTime": 1.5,
+          "expectedDisplayTime": 1835.6,
+          "presentationTime": 1830.1,
+          "presentedFrames": 91,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1846.7,
+          "mediaTime": 1.516667,
+          "expectedDisplayTime": 1852.3,
+          "presentationTime": 1846.8,
+          "presentedFrames": 92,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1863.4,
+          "mediaTime": 1.533333,
+          "expectedDisplayTime": 1868.9,
+          "presentationTime": 1863.4,
+          "presentedFrames": 93,
+          "processingDuration": 0.0668
+        },
+        {
+          "now": 1880,
+          "mediaTime": 1.55,
+          "expectedDisplayTime": 1885.6,
+          "presentationTime": 1880,
+          "presentedFrames": 94,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 1896.7,
+          "mediaTime": 1.566667,
+          "expectedDisplayTime": 1902.2,
+          "presentationTime": 1896.8,
+          "presentedFrames": 95,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 1913.3,
+          "mediaTime": 1.583333,
+          "expectedDisplayTime": 1918.9,
+          "presentationTime": 1913.4,
+          "presentedFrames": 96,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 1930,
+          "mediaTime": 1.6,
+          "expectedDisplayTime": 1935.6,
+          "presentationTime": 1930.1,
+          "presentedFrames": 97,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 1946.7,
+          "mediaTime": 1.616667,
+          "expectedDisplayTime": 1952.2,
+          "presentationTime": 1946.7,
+          "presentedFrames": 98,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 1963.3,
+          "mediaTime": 1.633333,
+          "expectedDisplayTime": 1968.9,
+          "presentationTime": 1963.4,
+          "presentedFrames": 99,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 1980,
+          "mediaTime": 1.65,
+          "expectedDisplayTime": 1985.5,
+          "presentationTime": 1980.1,
+          "presentedFrames": 100,
+          "processingDuration": 0.1166
+        },
+        {
+          "now": 1996.6,
+          "mediaTime": 1.666667,
+          "expectedDisplayTime": 2002.3,
+          "presentationTime": 1996.7,
+          "presentedFrames": 101,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 2013.3,
+          "mediaTime": 1.683333,
+          "expectedDisplayTime": 2018.9,
+          "presentationTime": 2013.4,
+          "presentedFrames": 102,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 2030,
+          "mediaTime": 1.7,
+          "expectedDisplayTime": 2035.5,
+          "presentationTime": 2030.1,
+          "presentedFrames": 103,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 2046.7,
+          "mediaTime": 1.716667,
+          "expectedDisplayTime": 2052.2,
+          "presentationTime": 2046.7,
+          "presentedFrames": 104,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2063.4,
+          "mediaTime": 1.733333,
+          "expectedDisplayTime": 2068.9,
+          "presentationTime": 2063.5,
+          "presentedFrames": 105,
+          "processingDuration": 0.0668
+        },
+        {
+          "now": 2080,
+          "mediaTime": 1.75,
+          "expectedDisplayTime": 2085.6,
+          "presentationTime": 2080.1,
+          "presentedFrames": 106,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 2096.7,
+          "mediaTime": 1.766667,
+          "expectedDisplayTime": 2102.2,
+          "presentationTime": 2096.8,
+          "presentedFrames": 107,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2113.4,
+          "mediaTime": 1.783333,
+          "expectedDisplayTime": 2118.9,
+          "presentationTime": 2113.4,
+          "presentedFrames": 108,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2130,
+          "mediaTime": 1.8,
+          "expectedDisplayTime": 2135.6,
+          "presentationTime": 2130,
+          "presentedFrames": 109,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 2146.6,
+          "mediaTime": 1.816667,
+          "expectedDisplayTime": 2152.2,
+          "presentationTime": 2146.8,
+          "presentedFrames": 110,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 2163.4,
+          "mediaTime": 1.833333,
+          "expectedDisplayTime": 2168.9,
+          "presentationTime": 2163.5,
+          "presentedFrames": 111,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 2180,
+          "mediaTime": 1.85,
+          "expectedDisplayTime": 2185.6,
+          "presentationTime": 2180.1,
+          "presentedFrames": 112,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2191.2,
+          "mediaTime": 2.033333,
+          "expectedDisplayTime": 2368.9,
+          "presentationTime": 2363.6,
+          "presentedFrames": 123,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 2380,
+          "mediaTime": 2.05,
+          "expectedDisplayTime": 2385.6,
+          "presentationTime": 2380.1,
+          "presentedFrames": 124,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2568.9,
+          "mediaTime": 2.233333,
+          "expectedDisplayTime": 2569,
+          "presentationTime": 2563.5,
+          "presentedFrames": 135,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2580,
+          "mediaTime": 2.25,
+          "expectedDisplayTime": 2585.6,
+          "presentationTime": 2580.1,
+          "presentedFrames": 136,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 2596.8,
+          "mediaTime": 2.266667,
+          "expectedDisplayTime": 2602.3,
+          "presentationTime": 2596.8,
+          "presentedFrames": 137,
+          "processingDuration": 0.1351
+        },
+        {
+          "now": 2613.4,
+          "mediaTime": 2.283333,
+          "expectedDisplayTime": 2618.9,
+          "presentationTime": 2613.4,
+          "presentedFrames": 138,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 2630,
+          "mediaTime": 2.3,
+          "expectedDisplayTime": 2635.6,
+          "presentationTime": 2630.1,
+          "presentedFrames": 139,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 2646.7,
+          "mediaTime": 2.316667,
+          "expectedDisplayTime": 2652.3,
+          "presentationTime": 2646.8,
+          "presentedFrames": 140,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2663.3,
+          "mediaTime": 2.333333,
+          "expectedDisplayTime": 2668.9,
+          "presentationTime": 2663.5,
+          "presentedFrames": 141,
+          "processingDuration": 0.1342
+        },
+        {
+          "now": 2680.1,
+          "mediaTime": 2.35,
+          "expectedDisplayTime": 2685.6,
+          "presentationTime": 2680.1,
+          "presentedFrames": 142,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 2696.7,
+          "mediaTime": 2.366667,
+          "expectedDisplayTime": 2702.2,
+          "presentationTime": 2696.8,
+          "presentedFrames": 143,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2713.4,
+          "mediaTime": 2.383333,
+          "expectedDisplayTime": 2718.9,
+          "presentationTime": 2713.5,
+          "presentedFrames": 144,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2730,
+          "mediaTime": 2.4,
+          "expectedDisplayTime": 2735.6,
+          "presentationTime": 2730.1,
+          "presentedFrames": 145,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 2746.7,
+          "mediaTime": 2.416667,
+          "expectedDisplayTime": 2752.3,
+          "presentationTime": 2746.8,
+          "presentedFrames": 146,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 2763.4,
+          "mediaTime": 2.433333,
+          "expectedDisplayTime": 2768.9,
+          "presentationTime": 2763.5,
+          "presentedFrames": 147,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 2780,
+          "mediaTime": 2.45,
+          "expectedDisplayTime": 2785.5,
+          "presentationTime": 2780.1,
+          "presentedFrames": 148,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 2796.7,
+          "mediaTime": 2.466667,
+          "expectedDisplayTime": 2802.2,
+          "presentationTime": 2796.8,
+          "presentedFrames": 149,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 2813.4,
+          "mediaTime": 2.483333,
+          "expectedDisplayTime": 2818.9,
+          "presentationTime": 2813.5,
+          "presentedFrames": 150,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 2830,
+          "mediaTime": 2.5,
+          "expectedDisplayTime": 2835.5,
+          "presentationTime": 2830.1,
+          "presentedFrames": 151,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2846.8,
+          "mediaTime": 2.516667,
+          "expectedDisplayTime": 2852.3,
+          "presentationTime": 2846.9,
+          "presentedFrames": 152,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2863.3,
+          "mediaTime": 2.533333,
+          "expectedDisplayTime": 2868.9,
+          "presentationTime": 2863.4,
+          "presentedFrames": 153,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 2880.1,
+          "mediaTime": 2.55,
+          "expectedDisplayTime": 2885.6,
+          "presentationTime": 2880.1,
+          "presentedFrames": 154,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 2896.7,
+          "mediaTime": 2.566667,
+          "expectedDisplayTime": 2902.3,
+          "presentationTime": 2896.7,
+          "presentedFrames": 155,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2913.4,
+          "mediaTime": 2.583333,
+          "expectedDisplayTime": 2918.9,
+          "presentationTime": 2913.5,
+          "presentedFrames": 156,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 2930,
+          "mediaTime": 2.6,
+          "expectedDisplayTime": 2935.6,
+          "presentationTime": 2930.1,
+          "presentedFrames": 157,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 2946.6,
+          "mediaTime": 2.616667,
+          "expectedDisplayTime": 2952.3,
+          "presentationTime": 2946.7,
+          "presentedFrames": 158,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 2963.3,
+          "mediaTime": 2.633333,
+          "expectedDisplayTime": 2968.9,
+          "presentationTime": 2963.4,
+          "presentedFrames": 159,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 2980,
+          "mediaTime": 2.65,
+          "expectedDisplayTime": 2985.6,
+          "presentationTime": 2980.1,
+          "presentedFrames": 160,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 2996.7,
+          "mediaTime": 2.666667,
+          "expectedDisplayTime": 3002.3,
+          "presentationTime": 2996.8,
+          "presentedFrames": 161,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 3013.4,
+          "mediaTime": 2.683333,
+          "expectedDisplayTime": 3018.9,
+          "presentationTime": 3013.4,
+          "presentedFrames": 162,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 3030.1,
+          "mediaTime": 2.7,
+          "expectedDisplayTime": 3035.6,
+          "presentationTime": 3030.1,
+          "presentedFrames": 163,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 3046.7,
+          "mediaTime": 2.716667,
+          "expectedDisplayTime": 3052.2,
+          "presentationTime": 3046.8,
+          "presentedFrames": 164,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3063.4,
+          "mediaTime": 2.733333,
+          "expectedDisplayTime": 3068.9,
+          "presentationTime": 3063.4,
+          "presentedFrames": 165,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 3080,
+          "mediaTime": 2.75,
+          "expectedDisplayTime": 3085.6,
+          "presentationTime": 3080.1,
+          "presentedFrames": 166,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 3096.8,
+          "mediaTime": 2.766667,
+          "expectedDisplayTime": 3102.4,
+          "presentationTime": 3096.9,
+          "presentedFrames": 167,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 3113.4,
+          "mediaTime": 2.783333,
+          "expectedDisplayTime": 3119,
+          "presentationTime": 3113.6,
+          "presentedFrames": 168,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3130,
+          "mediaTime": 2.8,
+          "expectedDisplayTime": 3135.6,
+          "presentationTime": 3130.1,
+          "presentedFrames": 169,
+          "processingDuration": 0.1341
+        },
+        {
+          "now": 3146.9,
+          "mediaTime": 2.816667,
+          "expectedDisplayTime": 3152.3,
+          "presentationTime": 3146.9,
+          "presentedFrames": 170,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 3163.4,
+          "mediaTime": 2.833333,
+          "expectedDisplayTime": 3169,
+          "presentationTime": 3163.6,
+          "presentedFrames": 171,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 3180,
+          "mediaTime": 2.85,
+          "expectedDisplayTime": 3185.6,
+          "presentationTime": 3180.1,
+          "presentedFrames": 172,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 3196.9,
+          "mediaTime": 2.866667,
+          "expectedDisplayTime": 3202.4,
+          "presentationTime": 3197,
+          "presentedFrames": 173,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 3213.3,
+          "mediaTime": 2.883333,
+          "expectedDisplayTime": 3218.9,
+          "presentationTime": 3213.5,
+          "presentedFrames": 174,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 3230.1,
+          "mediaTime": 2.9,
+          "expectedDisplayTime": 3235.6,
+          "presentationTime": 3230.2,
+          "presentedFrames": 175,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 3246.7,
+          "mediaTime": 2.916667,
+          "expectedDisplayTime": 3252.2,
+          "presentationTime": 3246.8,
+          "presentedFrames": 176,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3263.4,
+          "mediaTime": 2.933333,
+          "expectedDisplayTime": 3269,
+          "presentationTime": 3263.4,
+          "presentedFrames": 177,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 3280.1,
+          "mediaTime": 2.95,
+          "expectedDisplayTime": 3285.6,
+          "presentationTime": 3280.1,
+          "presentedFrames": 178,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 3296.7,
+          "mediaTime": 2.966667,
+          "expectedDisplayTime": 3302.2,
+          "presentationTime": 3296.8,
+          "presentedFrames": 179,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 3313.4,
+          "mediaTime": 2.983333,
+          "expectedDisplayTime": 3318.9,
+          "presentationTime": 3313.5,
+          "presentedFrames": 180,
+          "processingDuration": 0.1168
+        },
+        {
+          "now": 3330,
+          "mediaTime": 3,
+          "expectedDisplayTime": 3335.6,
+          "presentationTime": 3330.1,
+          "presentedFrames": 181,
+          "processingDuration": 0.068
+        },
+        {
+          "now": 3346.7,
+          "mediaTime": 3.016667,
+          "expectedDisplayTime": 3352.2,
+          "presentationTime": 3346.8,
+          "presentedFrames": 182,
+          "processingDuration": 0.0162
+        },
+        {
+          "now": 3363.4,
+          "mediaTime": 3.033333,
+          "expectedDisplayTime": 3369,
+          "presentationTime": 3363.5,
+          "presentedFrames": 183,
+          "processingDuration": 0.0329
+        },
+        {
+          "now": 3380,
+          "mediaTime": 3.05,
+          "expectedDisplayTime": 3385.6,
+          "presentationTime": 3380.1,
+          "presentedFrames": 184,
+          "processingDuration": 0.0495
+        },
+        {
+          "now": 3396.7,
+          "mediaTime": 3.066667,
+          "expectedDisplayTime": 3402.3,
+          "presentationTime": 3396.8,
+          "presentedFrames": 185,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 3413.4,
+          "mediaTime": 3.083333,
+          "expectedDisplayTime": 3419,
+          "presentationTime": 3413.6,
+          "presentedFrames": 186,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 3430.1,
+          "mediaTime": 3.1,
+          "expectedDisplayTime": 3435.6,
+          "presentationTime": 3430.2,
+          "presentedFrames": 187,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 3446.8,
+          "mediaTime": 3.116667,
+          "expectedDisplayTime": 3452.4,
+          "presentationTime": 3446.9,
+          "presentedFrames": 188,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3463.4,
+          "mediaTime": 3.133333,
+          "expectedDisplayTime": 3468.9,
+          "presentationTime": 3463.4,
+          "presentedFrames": 189,
+          "processingDuration": 0.133
+        },
+        {
+          "now": 3480.2,
+          "mediaTime": 3.15,
+          "expectedDisplayTime": 3485.7,
+          "presentationTime": 3480.3,
+          "presentedFrames": 190,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 3496.7,
+          "mediaTime": 3.166667,
+          "expectedDisplayTime": 3502.3,
+          "presentationTime": 3496.8,
+          "presentedFrames": 191,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 3513.5,
+          "mediaTime": 3.183333,
+          "expectedDisplayTime": 3519.1,
+          "presentationTime": 3513.6,
+          "presentedFrames": 192,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3530,
+          "mediaTime": 3.2,
+          "expectedDisplayTime": 3535.6,
+          "presentationTime": 3530.2,
+          "presentedFrames": 193,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 3546.8,
+          "mediaTime": 3.216667,
+          "expectedDisplayTime": 3552.4,
+          "presentationTime": 3546.9,
+          "presentedFrames": 194,
+          "processingDuration": 0.017
+        },
+        {
+          "now": 3563.4,
+          "mediaTime": 3.233333,
+          "expectedDisplayTime": 3568.9,
+          "presentationTime": 3563.5,
+          "presentedFrames": 195,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 3580,
+          "mediaTime": 3.25,
+          "expectedDisplayTime": 3585.6,
+          "presentationTime": 3580.2,
+          "presentedFrames": 196,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3596.7,
+          "mediaTime": 3.266667,
+          "expectedDisplayTime": 3602.3,
+          "presentationTime": 3596.9,
+          "presentedFrames": 197,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 3613.4,
+          "mediaTime": 3.283333,
+          "expectedDisplayTime": 3618.9,
+          "presentationTime": 3613.6,
+          "presentedFrames": 198,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 3630.1,
+          "mediaTime": 3.3,
+          "expectedDisplayTime": 3635.6,
+          "presentationTime": 3630.2,
+          "presentedFrames": 199,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 3646.7,
+          "mediaTime": 3.316667,
+          "expectedDisplayTime": 3652.3,
+          "presentationTime": 3646.7,
+          "presentedFrames": 200,
+          "processingDuration": 0.0502
+        },
+        {
+          "now": 3663.4,
+          "mediaTime": 3.333333,
+          "expectedDisplayTime": 3669,
+          "presentationTime": 3663.6,
+          "presentedFrames": 201,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 3680,
+          "mediaTime": 3.35,
+          "expectedDisplayTime": 3685.6,
+          "presentationTime": 3680.1,
+          "presentedFrames": 202,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 3696.7,
+          "mediaTime": 3.366667,
+          "expectedDisplayTime": 3702.2,
+          "presentationTime": 3696.8,
+          "presentedFrames": 203,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 3713.3,
+          "mediaTime": 3.383333,
+          "expectedDisplayTime": 3718.9,
+          "presentationTime": 3713.4,
+          "presentedFrames": 204,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 3730,
+          "mediaTime": 3.4,
+          "expectedDisplayTime": 3735.6,
+          "presentationTime": 3730.1,
+          "presentedFrames": 205,
+          "processingDuration": 0.1337
+        },
+        {
+          "now": 3746.7,
+          "mediaTime": 3.416667,
+          "expectedDisplayTime": 3752.3,
+          "presentationTime": 3746.8,
+          "presentedFrames": 206,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 3763.3,
+          "mediaTime": 3.433333,
+          "expectedDisplayTime": 3769,
+          "presentationTime": 3763.4,
+          "presentedFrames": 207,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 3780.1,
+          "mediaTime": 3.45,
+          "expectedDisplayTime": 3785.6,
+          "presentationTime": 3780.2,
+          "presentedFrames": 208,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 3796.7,
+          "mediaTime": 3.466667,
+          "expectedDisplayTime": 3802.2,
+          "presentationTime": 3796.8,
+          "presentedFrames": 209,
+          "processingDuration": 0.1333
+        },
+        {
+          "now": 3813.4,
+          "mediaTime": 3.483333,
+          "expectedDisplayTime": 3819,
+          "presentationTime": 3813.4,
+          "presentedFrames": 210,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 3830,
+          "mediaTime": 3.5,
+          "expectedDisplayTime": 3835.6,
+          "presentationTime": 3830.1,
+          "presentedFrames": 211,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 3846.7,
+          "mediaTime": 3.516667,
+          "expectedDisplayTime": 3852.3,
+          "presentationTime": 3846.8,
+          "presentedFrames": 212,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 3863.3,
+          "mediaTime": 3.533333,
+          "expectedDisplayTime": 3868.9,
+          "presentationTime": 3863.4,
+          "presentedFrames": 213,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 3880,
+          "mediaTime": 3.55,
+          "expectedDisplayTime": 3885.6,
+          "presentationTime": 3880.1,
+          "presentedFrames": 214,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 3896.8,
+          "mediaTime": 3.566667,
+          "expectedDisplayTime": 3902.3,
+          "presentationTime": 3896.9,
+          "presentedFrames": 215,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 3913.4,
+          "mediaTime": 3.583333,
+          "expectedDisplayTime": 3919,
+          "presentationTime": 3913.5,
+          "presentedFrames": 216,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 3930,
+          "mediaTime": 3.6,
+          "expectedDisplayTime": 3935.6,
+          "presentationTime": 3930.1,
+          "presentedFrames": 217,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 3946.7,
+          "mediaTime": 3.616667,
+          "expectedDisplayTime": 3952.3,
+          "presentationTime": 3946.8,
+          "presentedFrames": 218,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 3963.4,
+          "mediaTime": 3.633333,
+          "expectedDisplayTime": 3969,
+          "presentationTime": 3963.6,
+          "presentedFrames": 219,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 3980.2,
+          "mediaTime": 3.65,
+          "expectedDisplayTime": 3985.6,
+          "presentationTime": 3980.2,
+          "presentedFrames": 220,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 3996.8,
+          "mediaTime": 3.666667,
+          "expectedDisplayTime": 4002.3,
+          "presentationTime": 3996.9,
+          "presentedFrames": 221,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 4013.4,
+          "mediaTime": 3.683333,
+          "expectedDisplayTime": 4019,
+          "presentationTime": 4013.6,
+          "presentedFrames": 222,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 4030,
+          "mediaTime": 3.7,
+          "expectedDisplayTime": 4035.6,
+          "presentationTime": 4030.1,
+          "presentedFrames": 223,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4046.7,
+          "mediaTime": 3.716667,
+          "expectedDisplayTime": 4052.3,
+          "presentationTime": 4046.9,
+          "presentedFrames": 224,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4063.4,
+          "mediaTime": 3.733333,
+          "expectedDisplayTime": 4068.9,
+          "presentationTime": 4063.5,
+          "presentedFrames": 225,
+          "processingDuration": 0.134
+        },
+        {
+          "now": 4080.1,
+          "mediaTime": 3.75,
+          "expectedDisplayTime": 4085.6,
+          "presentationTime": 4080.2,
+          "presentedFrames": 226,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 4096.7,
+          "mediaTime": 3.766667,
+          "expectedDisplayTime": 4102.3,
+          "presentationTime": 4096.8,
+          "presentedFrames": 227,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4113.5,
+          "mediaTime": 3.783333,
+          "expectedDisplayTime": 4119.1,
+          "presentationTime": 4113.6,
+          "presentedFrames": 228,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4130,
+          "mediaTime": 3.8,
+          "expectedDisplayTime": 4135.6,
+          "presentationTime": 4130.1,
+          "presentedFrames": 229,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 4146.8,
+          "mediaTime": 3.816667,
+          "expectedDisplayTime": 4152.3,
+          "presentationTime": 4146.9,
+          "presentedFrames": 230,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 4163.3,
+          "mediaTime": 3.833333,
+          "expectedDisplayTime": 4169,
+          "presentationTime": 4163.5,
+          "presentedFrames": 231,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 4180.1,
+          "mediaTime": 3.85,
+          "expectedDisplayTime": 4185.7,
+          "presentationTime": 4180.3,
+          "presentedFrames": 232,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 4196.7,
+          "mediaTime": 3.866667,
+          "expectedDisplayTime": 4202.2,
+          "presentationTime": 4196.7,
+          "presentedFrames": 233,
+          "processingDuration": 0.0667
+        },
+        {
+          "now": 4213.5,
+          "mediaTime": 3.883333,
+          "expectedDisplayTime": 4219,
+          "presentationTime": 4213.5,
+          "presentedFrames": 234,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 4230.1,
+          "mediaTime": 3.9,
+          "expectedDisplayTime": 4235.6,
+          "presentationTime": 4230.2,
+          "presentedFrames": 235,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4246.7,
+          "mediaTime": 3.916667,
+          "expectedDisplayTime": 4252.2,
+          "presentationTime": 4246.8,
+          "presentedFrames": 236,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 4263.4,
+          "mediaTime": 3.933333,
+          "expectedDisplayTime": 4268.9,
+          "presentationTime": 4263.4,
+          "presentedFrames": 237,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 4280,
+          "mediaTime": 3.95,
+          "expectedDisplayTime": 4285.6,
+          "presentationTime": 4280.1,
+          "presentedFrames": 238,
+          "processingDuration": 0.0834
+        },
+        {
+          "now": 4296.7,
+          "mediaTime": 3.966667,
+          "expectedDisplayTime": 4302.3,
+          "presentationTime": 4296.8,
+          "presentedFrames": 239,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 4313.4,
+          "mediaTime": 3.983333,
+          "expectedDisplayTime": 4318.9,
+          "presentationTime": 4313.5,
+          "presentedFrames": 240,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4330,
+          "mediaTime": 4,
+          "expectedDisplayTime": 4335.6,
+          "presentationTime": 4330.2,
+          "presentedFrames": 241,
+          "processingDuration": 0.0667
+        },
+        {
+          "now": 4346.8,
+          "mediaTime": 4.016667,
+          "expectedDisplayTime": 4352.3,
+          "presentationTime": 4346.9,
+          "presentedFrames": 242,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 4363.4,
+          "mediaTime": 4.033333,
+          "expectedDisplayTime": 4369,
+          "presentationTime": 4363.5,
+          "presentedFrames": 243,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4380.1,
+          "mediaTime": 4.05,
+          "expectedDisplayTime": 4385.6,
+          "presentationTime": 4380.1,
+          "presentedFrames": 244,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 4396.7,
+          "mediaTime": 4.066667,
+          "expectedDisplayTime": 4402.3,
+          "presentationTime": 4398.9,
+          "presentedFrames": 245,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 4413.4,
+          "mediaTime": 4.083333,
+          "expectedDisplayTime": 4418.9,
+          "presentationTime": 4413.4,
+          "presentedFrames": 246,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 4430.1,
+          "mediaTime": 4.1,
+          "expectedDisplayTime": 4435.6,
+          "presentationTime": 4430.2,
+          "presentedFrames": 247,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 4446.7,
+          "mediaTime": 4.116667,
+          "expectedDisplayTime": 4452.2,
+          "presentationTime": 4446.8,
+          "presentedFrames": 248,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 4463.4,
+          "mediaTime": 4.133333,
+          "expectedDisplayTime": 4469,
+          "presentationTime": 4463.5,
+          "presentedFrames": 249,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 4480.1,
+          "mediaTime": 4.15,
+          "expectedDisplayTime": 4485.7,
+          "presentationTime": 4480.3,
+          "presentedFrames": 250,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 4496.8,
+          "mediaTime": 4.166667,
+          "expectedDisplayTime": 4502.3,
+          "presentationTime": 4496.8,
+          "presentedFrames": 251,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4513.4,
+          "mediaTime": 4.183333,
+          "expectedDisplayTime": 4519,
+          "presentationTime": 4513.5,
+          "presentedFrames": 252,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4530,
+          "mediaTime": 4.2,
+          "expectedDisplayTime": 4535.6,
+          "presentationTime": 4530.1,
+          "presentedFrames": 253,
+          "processingDuration": 0.1359
+        },
+        {
+          "now": 4546.8,
+          "mediaTime": 4.216667,
+          "expectedDisplayTime": 4552.3,
+          "presentationTime": 4546.9,
+          "presentedFrames": 254,
+          "processingDuration": 0.0145
+        },
+        {
+          "now": 4563.4,
+          "mediaTime": 4.233333,
+          "expectedDisplayTime": 4568.9,
+          "presentationTime": 4563.5,
+          "presentedFrames": 255,
+          "processingDuration": 0.0313
+        },
+        {
+          "now": 4580,
+          "mediaTime": 4.25,
+          "expectedDisplayTime": 4585.6,
+          "presentationTime": 4580.1,
+          "presentedFrames": 256,
+          "processingDuration": 0.0478
+        },
+        {
+          "now": 4596.6,
+          "mediaTime": 4.266667,
+          "expectedDisplayTime": 4602.3,
+          "presentationTime": 4596.7,
+          "presentedFrames": 257,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 4613.4,
+          "mediaTime": 4.283333,
+          "expectedDisplayTime": 4618.9,
+          "presentationTime": 4613.4,
+          "presentedFrames": 258,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 4630.1,
+          "mediaTime": 4.3,
+          "expectedDisplayTime": 4635.6,
+          "presentationTime": 4630.2,
+          "presentedFrames": 259,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4646.8,
+          "mediaTime": 4.316667,
+          "expectedDisplayTime": 4652.4,
+          "presentationTime": 4646.9,
+          "presentedFrames": 260,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4663.4,
+          "mediaTime": 4.333333,
+          "expectedDisplayTime": 4669,
+          "presentationTime": 4663.5,
+          "presentedFrames": 261,
+          "processingDuration": 0.1313
+        },
+        {
+          "now": 4680,
+          "mediaTime": 4.35,
+          "expectedDisplayTime": 4685.6,
+          "presentationTime": 4680.1,
+          "presentedFrames": 262,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 4696.7,
+          "mediaTime": 4.366667,
+          "expectedDisplayTime": 4702.3,
+          "presentationTime": 4696.8,
+          "presentedFrames": 263,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4713.5,
+          "mediaTime": 4.383333,
+          "expectedDisplayTime": 4719,
+          "presentationTime": 4713.6,
+          "presentedFrames": 264,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 4730.1,
+          "mediaTime": 4.4,
+          "expectedDisplayTime": 4735.6,
+          "presentationTime": 4730.1,
+          "presentedFrames": 265,
+          "processingDuration": 0.1337
+        },
+        {
+          "now": 4746.8,
+          "mediaTime": 4.416667,
+          "expectedDisplayTime": 4752.3,
+          "presentationTime": 4746.9,
+          "presentedFrames": 266,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 4763.4,
+          "mediaTime": 4.433333,
+          "expectedDisplayTime": 4768.9,
+          "presentationTime": 4763.4,
+          "presentedFrames": 267,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4780.1,
+          "mediaTime": 4.45,
+          "expectedDisplayTime": 4785.6,
+          "presentationTime": 4780.2,
+          "presentedFrames": 268,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 4796.7,
+          "mediaTime": 4.466667,
+          "expectedDisplayTime": 4802.3,
+          "presentationTime": 4796.8,
+          "presentedFrames": 269,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 4813.5,
+          "mediaTime": 4.483333,
+          "expectedDisplayTime": 4819.1,
+          "presentationTime": 4813.6,
+          "presentedFrames": 270,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 4830.1,
+          "mediaTime": 4.5,
+          "expectedDisplayTime": 4835.6,
+          "presentationTime": 4830.2,
+          "presentedFrames": 271,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4846.7,
+          "mediaTime": 4.516667,
+          "expectedDisplayTime": 4852.3,
+          "presentationTime": 4846.8,
+          "presentedFrames": 272,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4863.4,
+          "mediaTime": 4.533333,
+          "expectedDisplayTime": 4869,
+          "presentationTime": 4863.5,
+          "presentedFrames": 273,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 4880,
+          "mediaTime": 4.55,
+          "expectedDisplayTime": 4885.6,
+          "presentationTime": 4880.3,
+          "presentedFrames": 274,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 4896.7,
+          "mediaTime": 4.566667,
+          "expectedDisplayTime": 4902.3,
+          "presentationTime": 4896.8,
+          "presentedFrames": 275,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 4913.4,
+          "mediaTime": 4.583333,
+          "expectedDisplayTime": 4919,
+          "presentationTime": 4913.5,
+          "presentedFrames": 276,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 4930.2,
+          "mediaTime": 4.6,
+          "expectedDisplayTime": 4935.7,
+          "presentationTime": 4930.3,
+          "presentedFrames": 277,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 4946.8,
+          "mediaTime": 4.616667,
+          "expectedDisplayTime": 4952.2,
+          "presentationTime": 4946.8,
+          "presentedFrames": 278,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 4963.4,
+          "mediaTime": 4.633333,
+          "expectedDisplayTime": 4969,
+          "presentationTime": 4963.5,
+          "presentedFrames": 279,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 4980.2,
+          "mediaTime": 4.65,
+          "expectedDisplayTime": 4985.6,
+          "presentationTime": 4980.3,
+          "presentedFrames": 280,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 4996.8,
+          "mediaTime": 4.666667,
+          "expectedDisplayTime": 5002.3,
+          "presentationTime": 4996.8,
+          "presentedFrames": 281,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 5013.5,
+          "mediaTime": 4.683333,
+          "expectedDisplayTime": 5019.1,
+          "presentationTime": 5013.5,
+          "presentedFrames": 282,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5030,
+          "mediaTime": 4.7,
+          "expectedDisplayTime": 5035.6,
+          "presentationTime": 5030.1,
+          "presentedFrames": 283,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5046.7,
+          "mediaTime": 4.716667,
+          "expectedDisplayTime": 5052.3,
+          "presentationTime": 5046.8,
+          "presentedFrames": 284,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5063.4,
+          "mediaTime": 4.733333,
+          "expectedDisplayTime": 5068.9,
+          "presentationTime": 5063.4,
+          "presentedFrames": 285,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 5080.1,
+          "mediaTime": 4.75,
+          "expectedDisplayTime": 5085.5,
+          "presentationTime": 5080.1,
+          "presentedFrames": 286,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 5096.7,
+          "mediaTime": 4.766667,
+          "expectedDisplayTime": 5102.2,
+          "presentationTime": 5096.8,
+          "presentedFrames": 287,
+          "processingDuration": 0.0331
+        },
+        {
+          "now": 5113.5,
+          "mediaTime": 4.783333,
+          "expectedDisplayTime": 5119,
+          "presentationTime": 5113.6,
+          "presentedFrames": 288,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5130.1,
+          "mediaTime": 4.8,
+          "expectedDisplayTime": 5135.7,
+          "presentationTime": 5130.2,
+          "presentedFrames": 289,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 5146.7,
+          "mediaTime": 4.816667,
+          "expectedDisplayTime": 5152.2,
+          "presentationTime": 5146.8,
+          "presentedFrames": 290,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 5163.5,
+          "mediaTime": 4.833333,
+          "expectedDisplayTime": 5169,
+          "presentationTime": 5163.5,
+          "presentedFrames": 291,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5180.1,
+          "mediaTime": 4.85,
+          "expectedDisplayTime": 5185.6,
+          "presentationTime": 5180.1,
+          "presentedFrames": 292,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5196.7,
+          "mediaTime": 4.866667,
+          "expectedDisplayTime": 5202.3,
+          "presentationTime": 5196.9,
+          "presentedFrames": 293,
+          "processingDuration": 0.1333
+        },
+        {
+          "now": 5213.4,
+          "mediaTime": 4.883333,
+          "expectedDisplayTime": 5219,
+          "presentationTime": 5213.5,
+          "presentedFrames": 294,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5230,
+          "mediaTime": 4.9,
+          "expectedDisplayTime": 5235.6,
+          "presentationTime": 5230.2,
+          "presentedFrames": 295,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5246.7,
+          "mediaTime": 4.916667,
+          "expectedDisplayTime": 5252.3,
+          "presentationTime": 5246.8,
+          "presentedFrames": 296,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 5263.5,
+          "mediaTime": 4.933333,
+          "expectedDisplayTime": 5269,
+          "presentationTime": 5263.6,
+          "presentedFrames": 297,
+          "processingDuration": 0.1337
+        },
+        {
+          "now": 5280.1,
+          "mediaTime": 4.95,
+          "expectedDisplayTime": 5285.6,
+          "presentationTime": 5280.1,
+          "presentedFrames": 298,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 5296.7,
+          "mediaTime": 4.966667,
+          "expectedDisplayTime": 5302.3,
+          "presentationTime": 5296.8,
+          "presentedFrames": 299,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5313.4,
+          "mediaTime": 4.983333,
+          "expectedDisplayTime": 5319,
+          "presentationTime": 5313.6,
+          "presentedFrames": 300,
+          "processingDuration": 0.1166
+        },
+        {
+          "now": 5330.1,
+          "mediaTime": 5,
+          "expectedDisplayTime": 5335.7,
+          "presentationTime": 5330.2,
+          "presentedFrames": 301,
+          "processingDuration": 0.0668
+        },
+        {
+          "now": 5346.7,
+          "mediaTime": 5.016667,
+          "expectedDisplayTime": 5352.3,
+          "presentationTime": 5346.8,
+          "presentedFrames": 302,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5363.4,
+          "mediaTime": 5.033333,
+          "expectedDisplayTime": 5368.9,
+          "presentationTime": 5363.5,
+          "presentedFrames": 303,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5380,
+          "mediaTime": 5.05,
+          "expectedDisplayTime": 5385.6,
+          "presentationTime": 5380.1,
+          "presentedFrames": 304,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5396.8,
+          "mediaTime": 5.066667,
+          "expectedDisplayTime": 5402.3,
+          "presentationTime": 5396.8,
+          "presentedFrames": 305,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 5413.4,
+          "mediaTime": 5.083333,
+          "expectedDisplayTime": 5418.9,
+          "presentationTime": 5413.5,
+          "presentedFrames": 306,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 5430,
+          "mediaTime": 5.1,
+          "expectedDisplayTime": 5435.6,
+          "presentationTime": 5430.2,
+          "presentedFrames": 307,
+          "processingDuration": 0.0331
+        },
+        {
+          "now": 5446.7,
+          "mediaTime": 5.116667,
+          "expectedDisplayTime": 5452.3,
+          "presentationTime": 5446.8,
+          "presentedFrames": 308,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 5463.5,
+          "mediaTime": 5.133333,
+          "expectedDisplayTime": 5469,
+          "presentationTime": 5463.5,
+          "presentedFrames": 309,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 5480.1,
+          "mediaTime": 5.15,
+          "expectedDisplayTime": 5485.6,
+          "presentationTime": 5480.1,
+          "presentedFrames": 310,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 5496.7,
+          "mediaTime": 5.166667,
+          "expectedDisplayTime": 5502.3,
+          "presentationTime": 5496.8,
+          "presentedFrames": 311,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 5513.4,
+          "mediaTime": 5.183333,
+          "expectedDisplayTime": 5518.9,
+          "presentationTime": 5513.5,
+          "presentedFrames": 312,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 5530.1,
+          "mediaTime": 5.2,
+          "expectedDisplayTime": 5535.7,
+          "presentationTime": 5530.1,
+          "presentedFrames": 313,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 5546.7,
+          "mediaTime": 5.216667,
+          "expectedDisplayTime": 5552.3,
+          "presentationTime": 5546.8,
+          "presentedFrames": 314,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5563.4,
+          "mediaTime": 5.233333,
+          "expectedDisplayTime": 5568.9,
+          "presentationTime": 5563.5,
+          "presentedFrames": 315,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5580,
+          "mediaTime": 5.25,
+          "expectedDisplayTime": 5585.6,
+          "presentationTime": 5580.2,
+          "presentedFrames": 316,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 5596.7,
+          "mediaTime": 5.266667,
+          "expectedDisplayTime": 5602.4,
+          "presentationTime": 5596.8,
+          "presentedFrames": 317,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 5613.4,
+          "mediaTime": 5.283333,
+          "expectedDisplayTime": 5618.9,
+          "presentationTime": 5613.5,
+          "presentedFrames": 318,
+          "processingDuration": 0.0164
+        },
+        {
+          "now": 5630.1,
+          "mediaTime": 5.3,
+          "expectedDisplayTime": 5635.7,
+          "presentationTime": 5630.1,
+          "presentedFrames": 319,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 5646.7,
+          "mediaTime": 5.316667,
+          "expectedDisplayTime": 5652.3,
+          "presentationTime": 5646.8,
+          "presentedFrames": 320,
+          "processingDuration": 0.0497
+        },
+        {
+          "now": 5663.4,
+          "mediaTime": 5.333333,
+          "expectedDisplayTime": 5668.9,
+          "presentationTime": 5663.5,
+          "presentedFrames": 321,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 5680.1,
+          "mediaTime": 5.35,
+          "expectedDisplayTime": 5685.6,
+          "presentationTime": 5680.1,
+          "presentedFrames": 322,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5696.7,
+          "mediaTime": 5.366667,
+          "expectedDisplayTime": 5702.3,
+          "presentationTime": 5696.8,
+          "presentedFrames": 323,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5713.4,
+          "mediaTime": 5.383333,
+          "expectedDisplayTime": 5719,
+          "presentationTime": 5713.4,
+          "presentedFrames": 324,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5730.1,
+          "mediaTime": 5.4,
+          "expectedDisplayTime": 5735.6,
+          "presentationTime": 5730.1,
+          "presentedFrames": 325,
+          "processingDuration": 0.1333
+        },
+        {
+          "now": 5746.7,
+          "mediaTime": 5.416667,
+          "expectedDisplayTime": 5752.3,
+          "presentationTime": 5746.8,
+          "presentedFrames": 326,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5763.4,
+          "mediaTime": 5.433333,
+          "expectedDisplayTime": 5769,
+          "presentationTime": 5763.5,
+          "presentedFrames": 327,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 5780.1,
+          "mediaTime": 5.45,
+          "expectedDisplayTime": 5785.6,
+          "presentationTime": 5780.2,
+          "presentedFrames": 328,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5796.7,
+          "mediaTime": 5.466667,
+          "expectedDisplayTime": 5802.3,
+          "presentationTime": 5796.9,
+          "presentedFrames": 329,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 5813.4,
+          "mediaTime": 5.483333,
+          "expectedDisplayTime": 5819,
+          "presentationTime": 5813.5,
+          "presentedFrames": 330,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 5830.1,
+          "mediaTime": 5.5,
+          "expectedDisplayTime": 5835.7,
+          "presentationTime": 5830.2,
+          "presentedFrames": 331,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5846.7,
+          "mediaTime": 5.516667,
+          "expectedDisplayTime": 5852.3,
+          "presentationTime": 5846.8,
+          "presentedFrames": 332,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5863.4,
+          "mediaTime": 5.533333,
+          "expectedDisplayTime": 5868.9,
+          "presentationTime": 5863.5,
+          "presentedFrames": 333,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 5880.1,
+          "mediaTime": 5.55,
+          "expectedDisplayTime": 5885.6,
+          "presentationTime": 5880.2,
+          "presentedFrames": 334,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5896.8,
+          "mediaTime": 5.566667,
+          "expectedDisplayTime": 5902.2,
+          "presentationTime": 5896.8,
+          "presentedFrames": 335,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5913.4,
+          "mediaTime": 5.583333,
+          "expectedDisplayTime": 5919,
+          "presentationTime": 5913.5,
+          "presentedFrames": 336,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 5930.1,
+          "mediaTime": 5.6,
+          "expectedDisplayTime": 5935.6,
+          "presentationTime": 5930.1,
+          "presentedFrames": 337,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 5946.8,
+          "mediaTime": 5.616667,
+          "expectedDisplayTime": 5952.3,
+          "presentationTime": 5946.8,
+          "presentedFrames": 338,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 5963.4,
+          "mediaTime": 5.633333,
+          "expectedDisplayTime": 5969,
+          "presentationTime": 5963.5,
+          "presentedFrames": 339,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 5980.1,
+          "mediaTime": 5.65,
+          "expectedDisplayTime": 5985.7,
+          "presentationTime": 5980.3,
+          "presentedFrames": 340,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 5996.7,
+          "mediaTime": 5.666667,
+          "expectedDisplayTime": 6002.3,
+          "presentationTime": 5996.9,
+          "presentedFrames": 341,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6013.4,
+          "mediaTime": 5.683333,
+          "expectedDisplayTime": 6018.9,
+          "presentationTime": 6013.6,
+          "presentedFrames": 342,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6030.1,
+          "mediaTime": 5.7,
+          "expectedDisplayTime": 6035.6,
+          "presentationTime": 6030.2,
+          "presentedFrames": 343,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 6046.7,
+          "mediaTime": 5.716667,
+          "expectedDisplayTime": 6052.3,
+          "presentationTime": 6046.8,
+          "presentedFrames": 344,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 6063.4,
+          "mediaTime": 5.733333,
+          "expectedDisplayTime": 6069,
+          "presentationTime": 6063.5,
+          "presentedFrames": 345,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 6080.2,
+          "mediaTime": 5.75,
+          "expectedDisplayTime": 6085.8,
+          "presentationTime": 6080.2,
+          "presentedFrames": 346,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 6096.8,
+          "mediaTime": 5.766667,
+          "expectedDisplayTime": 6102.3,
+          "presentationTime": 6096.8,
+          "presentedFrames": 347,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6113.4,
+          "mediaTime": 5.783333,
+          "expectedDisplayTime": 6118.9,
+          "presentationTime": 6113.4,
+          "presentedFrames": 348,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 6130,
+          "mediaTime": 5.8,
+          "expectedDisplayTime": 6135.6,
+          "presentationTime": 6130.1,
+          "presentedFrames": 349,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 6146.7,
+          "mediaTime": 5.816667,
+          "expectedDisplayTime": 6152.3,
+          "presentationTime": 6146.8,
+          "presentedFrames": 350,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 6163.5,
+          "mediaTime": 5.833333,
+          "expectedDisplayTime": 6169,
+          "presentationTime": 6163.6,
+          "presentedFrames": 351,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 6180.1,
+          "mediaTime": 5.85,
+          "expectedDisplayTime": 6185.6,
+          "presentationTime": 6180.2,
+          "presentedFrames": 352,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 6196.8,
+          "mediaTime": 5.866667,
+          "expectedDisplayTime": 6202.4,
+          "presentationTime": 6196.9,
+          "presentedFrames": 353,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6213.5,
+          "mediaTime": 5.883333,
+          "expectedDisplayTime": 6219,
+          "presentationTime": 6213.5,
+          "presentedFrames": 354,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 6230.1,
+          "mediaTime": 5.9,
+          "expectedDisplayTime": 6235.6,
+          "presentationTime": 6230.1,
+          "presentedFrames": 355,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6246.7,
+          "mediaTime": 5.916667,
+          "expectedDisplayTime": 6252.4,
+          "presentationTime": 6246.9,
+          "presentedFrames": 356,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 6263.4,
+          "mediaTime": 5.933333,
+          "expectedDisplayTime": 6268.9,
+          "presentationTime": 6263.5,
+          "presentedFrames": 357,
+          "processingDuration": 0.1333
+        },
+        {
+          "now": 6280.1,
+          "mediaTime": 5.95,
+          "expectedDisplayTime": 6285.6,
+          "presentationTime": 6280.1,
+          "presentedFrames": 358,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6296.7,
+          "mediaTime": 5.966667,
+          "expectedDisplayTime": 6302.3,
+          "presentationTime": 6296.8,
+          "presentedFrames": 359,
+          "processingDuration": 0.0334
+        },
+        {
+          "now": 6313.6,
+          "mediaTime": 5.983333,
+          "expectedDisplayTime": 6319.1,
+          "presentationTime": 6313.6,
+          "presentedFrames": 360,
+          "processingDuration": 0.1166
+        },
+        {
+          "now": 6330.1,
+          "mediaTime": 6,
+          "expectedDisplayTime": 6335.6,
+          "presentationTime": 6330.2,
+          "presentedFrames": 361,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 6346.7,
+          "mediaTime": 6.016667,
+          "expectedDisplayTime": 6352.3,
+          "presentationTime": 6346.8,
+          "presentedFrames": 362,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6363.5,
+          "mediaTime": 6.033333,
+          "expectedDisplayTime": 6369,
+          "presentationTime": 6363.6,
+          "presentedFrames": 363,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6380.2,
+          "mediaTime": 6.05,
+          "expectedDisplayTime": 6385.6,
+          "presentationTime": 6380.2,
+          "presentedFrames": 364,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 6396.8,
+          "mediaTime": 6.066667,
+          "expectedDisplayTime": 6402.4,
+          "presentationTime": 6396.9,
+          "presentedFrames": 365,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6413.3,
+          "mediaTime": 6.083333,
+          "expectedDisplayTime": 6419,
+          "presentationTime": 6413.4,
+          "presentedFrames": 366,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6430,
+          "mediaTime": 6.1,
+          "expectedDisplayTime": 6435.6,
+          "presentationTime": 6430.2,
+          "presentedFrames": 367,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6446.7,
+          "mediaTime": 6.116667,
+          "expectedDisplayTime": 6452.4,
+          "presentationTime": 6446.8,
+          "presentedFrames": 368,
+          "processingDuration": 0.0503
+        },
+        {
+          "now": 6463.5,
+          "mediaTime": 6.133333,
+          "expectedDisplayTime": 6469,
+          "presentationTime": 6463.5,
+          "presentedFrames": 369,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6480,
+          "mediaTime": 6.15,
+          "expectedDisplayTime": 6485.6,
+          "presentationTime": 6480.2,
+          "presentedFrames": 370,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 6496.8,
+          "mediaTime": 6.166667,
+          "expectedDisplayTime": 6502.4,
+          "presentationTime": 6496.9,
+          "presentedFrames": 371,
+          "processingDuration": 0.0335
+        },
+        {
+          "now": 6513.4,
+          "mediaTime": 6.183333,
+          "expectedDisplayTime": 6519,
+          "presentationTime": 6513.5,
+          "presentedFrames": 372,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 6530,
+          "mediaTime": 6.2,
+          "expectedDisplayTime": 6535.6,
+          "presentationTime": 6530.2,
+          "presentedFrames": 373,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 6546.7,
+          "mediaTime": 6.216667,
+          "expectedDisplayTime": 6552.3,
+          "presentationTime": 6546.8,
+          "presentedFrames": 374,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 6563.4,
+          "mediaTime": 6.233333,
+          "expectedDisplayTime": 6569,
+          "presentationTime": 6563.5,
+          "presentedFrames": 375,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 6580.1,
+          "mediaTime": 6.25,
+          "expectedDisplayTime": 6585.7,
+          "presentationTime": 6580.2,
+          "presentedFrames": 376,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 6596.8,
+          "mediaTime": 6.266667,
+          "expectedDisplayTime": 6602.3,
+          "presentationTime": 6596.8,
+          "presentedFrames": 377,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 6613.4,
+          "mediaTime": 6.283333,
+          "expectedDisplayTime": 6618.9,
+          "presentationTime": 6613.5,
+          "presentedFrames": 378,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 6630,
+          "mediaTime": 6.3,
+          "expectedDisplayTime": 6635.7,
+          "presentationTime": 6630.1,
+          "presentedFrames": 379,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6646.7,
+          "mediaTime": 6.316667,
+          "expectedDisplayTime": 6652.3,
+          "presentationTime": 6646.8,
+          "presentedFrames": 380,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 6663.5,
+          "mediaTime": 6.333333,
+          "expectedDisplayTime": 6669.1,
+          "presentationTime": 6663.5,
+          "presentedFrames": 381,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 6680.1,
+          "mediaTime": 6.35,
+          "expectedDisplayTime": 6685.6,
+          "presentationTime": 6680.2,
+          "presentedFrames": 382,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6696.7,
+          "mediaTime": 6.366667,
+          "expectedDisplayTime": 6702.3,
+          "presentationTime": 6696.8,
+          "presentedFrames": 383,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6713.4,
+          "mediaTime": 6.383333,
+          "expectedDisplayTime": 6719,
+          "presentationTime": 6713.6,
+          "presentedFrames": 384,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 6730.1,
+          "mediaTime": 6.4,
+          "expectedDisplayTime": 6735.6,
+          "presentationTime": 6730.3,
+          "presentedFrames": 385,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 6746.7,
+          "mediaTime": 6.416667,
+          "expectedDisplayTime": 6752.3,
+          "presentationTime": 6746.9,
+          "presentedFrames": 386,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6763.4,
+          "mediaTime": 6.433333,
+          "expectedDisplayTime": 6768.9,
+          "presentationTime": 6763.5,
+          "presentedFrames": 387,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6780.2,
+          "mediaTime": 6.45,
+          "expectedDisplayTime": 6785.7,
+          "presentationTime": 6780.3,
+          "presentedFrames": 388,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 6796.8,
+          "mediaTime": 6.466667,
+          "expectedDisplayTime": 6802.3,
+          "presentationTime": 6796.9,
+          "presentedFrames": 389,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6813.5,
+          "mediaTime": 6.483333,
+          "expectedDisplayTime": 6819,
+          "presentationTime": 6813.6,
+          "presentedFrames": 390,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 6830.1,
+          "mediaTime": 6.5,
+          "expectedDisplayTime": 6835.6,
+          "presentationTime": 6830.2,
+          "presentedFrames": 391,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 6846.8,
+          "mediaTime": 6.516667,
+          "expectedDisplayTime": 6852.3,
+          "presentationTime": 6846.8,
+          "presentedFrames": 392,
+          "processingDuration": 0.0506
+        },
+        {
+          "now": 6863.5,
+          "mediaTime": 6.533333,
+          "expectedDisplayTime": 6869.1,
+          "presentationTime": 6863.6,
+          "presentedFrames": 393,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 6880.1,
+          "mediaTime": 6.55,
+          "expectedDisplayTime": 6885.6,
+          "presentationTime": 6880.1,
+          "presentedFrames": 394,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 6896.9,
+          "mediaTime": 6.566667,
+          "expectedDisplayTime": 6902.4,
+          "presentationTime": 6896.9,
+          "presentedFrames": 395,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 6913.4,
+          "mediaTime": 6.583333,
+          "expectedDisplayTime": 6918.9,
+          "presentationTime": 6913.5,
+          "presentedFrames": 396,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 6930.1,
+          "mediaTime": 6.6,
+          "expectedDisplayTime": 6935.6,
+          "presentationTime": 6930.1,
+          "presentedFrames": 397,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 6946.9,
+          "mediaTime": 6.616667,
+          "expectedDisplayTime": 6952.4,
+          "presentationTime": 6946.9,
+          "presentedFrames": 398,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 6963.5,
+          "mediaTime": 6.633333,
+          "expectedDisplayTime": 6969,
+          "presentationTime": 6963.5,
+          "presentedFrames": 399,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 6980.2,
+          "mediaTime": 6.65,
+          "expectedDisplayTime": 6985.7,
+          "presentationTime": 6980.3,
+          "presentedFrames": 400,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 6996.8,
+          "mediaTime": 6.666667,
+          "expectedDisplayTime": 7002.3,
+          "presentationTime": 6996.8,
+          "presentedFrames": 401,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7013.4,
+          "mediaTime": 6.683333,
+          "expectedDisplayTime": 7018.9,
+          "presentationTime": 7013.5,
+          "presentedFrames": 402,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 7030.1,
+          "mediaTime": 6.7,
+          "expectedDisplayTime": 7035.6,
+          "presentationTime": 7030.2,
+          "presentedFrames": 403,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7046.9,
+          "mediaTime": 6.716667,
+          "expectedDisplayTime": 7052.4,
+          "presentationTime": 7046.9,
+          "presentedFrames": 404,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 7063.5,
+          "mediaTime": 6.733333,
+          "expectedDisplayTime": 7069.1,
+          "presentationTime": 7063.6,
+          "presentedFrames": 405,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 7080.1,
+          "mediaTime": 6.75,
+          "expectedDisplayTime": 7085.6,
+          "presentationTime": 7080.2,
+          "presentedFrames": 406,
+          "processingDuration": 0.0168
+        },
+        {
+          "now": 7096.7,
+          "mediaTime": 6.766667,
+          "expectedDisplayTime": 7102.3,
+          "presentationTime": 7096.9,
+          "presentedFrames": 407,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7113.5,
+          "mediaTime": 6.783333,
+          "expectedDisplayTime": 7119,
+          "presentationTime": 7113.7,
+          "presentedFrames": 408,
+          "processingDuration": 0.0501
+        },
+        {
+          "now": 7130.1,
+          "mediaTime": 6.8,
+          "expectedDisplayTime": 7135.6,
+          "presentationTime": 7130.1,
+          "presentedFrames": 409,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 7146.8,
+          "mediaTime": 6.816667,
+          "expectedDisplayTime": 7152.3,
+          "presentationTime": 7146.9,
+          "presentedFrames": 410,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 7163.6,
+          "mediaTime": 6.833333,
+          "expectedDisplayTime": 7169.1,
+          "presentationTime": 7163.7,
+          "presentedFrames": 411,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7180.1,
+          "mediaTime": 6.85,
+          "expectedDisplayTime": 7185.7,
+          "presentationTime": 7180.2,
+          "presentedFrames": 412,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7196.7,
+          "mediaTime": 6.866667,
+          "expectedDisplayTime": 7202.2,
+          "presentationTime": 7196.8,
+          "presentedFrames": 413,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 7213.4,
+          "mediaTime": 6.883333,
+          "expectedDisplayTime": 7218.9,
+          "presentationTime": 7213.5,
+          "presentedFrames": 414,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 7230,
+          "mediaTime": 6.9,
+          "expectedDisplayTime": 7235.6,
+          "presentationTime": 7230.2,
+          "presentedFrames": 415,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 7246.8,
+          "mediaTime": 6.916667,
+          "expectedDisplayTime": 7252.3,
+          "presentationTime": 7246.8,
+          "presentedFrames": 416,
+          "processingDuration": 0.0502
+        },
+        {
+          "now": 7263.4,
+          "mediaTime": 6.933333,
+          "expectedDisplayTime": 7268.9,
+          "presentationTime": 7263.5,
+          "presentedFrames": 417,
+          "processingDuration": 0.1343
+        },
+        {
+          "now": 7280.2,
+          "mediaTime": 6.95,
+          "expectedDisplayTime": 7285.8,
+          "presentationTime": 7280.3,
+          "presentedFrames": 418,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 7296.7,
+          "mediaTime": 6.966667,
+          "expectedDisplayTime": 7302.3,
+          "presentationTime": 7296.8,
+          "presentedFrames": 419,
+          "processingDuration": 0.0331
+        },
+        {
+          "now": 7313.4,
+          "mediaTime": 6.983333,
+          "expectedDisplayTime": 7319,
+          "presentationTime": 7313.4,
+          "presentedFrames": 420,
+          "processingDuration": 0.1165
+        },
+        {
+          "now": 7330.1,
+          "mediaTime": 7,
+          "expectedDisplayTime": 7335.7,
+          "presentationTime": 7330.1,
+          "presentedFrames": 421,
+          "processingDuration": 0.0664
+        },
+        {
+          "now": 7346.7,
+          "mediaTime": 7.016667,
+          "expectedDisplayTime": 7352.4,
+          "presentationTime": 7346.8,
+          "presentedFrames": 422,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 7363.4,
+          "mediaTime": 7.033333,
+          "expectedDisplayTime": 7368.9,
+          "presentationTime": 7363.4,
+          "presentedFrames": 423,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7380,
+          "mediaTime": 7.05,
+          "expectedDisplayTime": 7385.6,
+          "presentationTime": 7380.1,
+          "presentedFrames": 424,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7396.7,
+          "mediaTime": 7.066667,
+          "expectedDisplayTime": 7402.3,
+          "presentationTime": 7396.8,
+          "presentedFrames": 425,
+          "processingDuration": 0.133
+        },
+        {
+          "now": 7413.5,
+          "mediaTime": 7.083333,
+          "expectedDisplayTime": 7419.1,
+          "presentationTime": 7413.6,
+          "presentedFrames": 426,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 7430.1,
+          "mediaTime": 7.1,
+          "expectedDisplayTime": 7435.6,
+          "presentationTime": 7430.1,
+          "presentedFrames": 427,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7446.8,
+          "mediaTime": 7.116667,
+          "expectedDisplayTime": 7452.4,
+          "presentationTime": 7446.9,
+          "presentedFrames": 428,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 7463.5,
+          "mediaTime": 7.133333,
+          "expectedDisplayTime": 7469,
+          "presentationTime": 7463.6,
+          "presentedFrames": 429,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7480.1,
+          "mediaTime": 7.15,
+          "expectedDisplayTime": 7485.6,
+          "presentationTime": 7480.1,
+          "presentedFrames": 430,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 7496.7,
+          "mediaTime": 7.166667,
+          "expectedDisplayTime": 7502.3,
+          "presentationTime": 7496.9,
+          "presentedFrames": 431,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7513.5,
+          "mediaTime": 7.183333,
+          "expectedDisplayTime": 7519,
+          "presentationTime": 7513.6,
+          "presentedFrames": 432,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 7530.1,
+          "mediaTime": 7.2,
+          "expectedDisplayTime": 7535.6,
+          "presentationTime": 7530.1,
+          "presentedFrames": 433,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7546.8,
+          "mediaTime": 7.216667,
+          "expectedDisplayTime": 7552.4,
+          "presentationTime": 7546.9,
+          "presentedFrames": 434,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 7563.5,
+          "mediaTime": 7.233333,
+          "expectedDisplayTime": 7569,
+          "presentationTime": 7563.7,
+          "presentedFrames": 435,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7580.1,
+          "mediaTime": 7.25,
+          "expectedDisplayTime": 7585.6,
+          "presentationTime": 7580.2,
+          "presentedFrames": 436,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7596.8,
+          "mediaTime": 7.266667,
+          "expectedDisplayTime": 7602.3,
+          "presentationTime": 7596.8,
+          "presentedFrames": 437,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7613.4,
+          "mediaTime": 7.283333,
+          "expectedDisplayTime": 7619,
+          "presentationTime": 7613.6,
+          "presentedFrames": 438,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 7630.1,
+          "mediaTime": 7.3,
+          "expectedDisplayTime": 7635.6,
+          "presentationTime": 7630.2,
+          "presentedFrames": 439,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 7646.7,
+          "mediaTime": 7.316667,
+          "expectedDisplayTime": 7652.3,
+          "presentationTime": 7646.8,
+          "presentedFrames": 440,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7663.4,
+          "mediaTime": 7.333333,
+          "expectedDisplayTime": 7668.9,
+          "presentationTime": 7663.5,
+          "presentedFrames": 441,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7680,
+          "mediaTime": 7.35,
+          "expectedDisplayTime": 7685.6,
+          "presentationTime": 7680.2,
+          "presentedFrames": 442,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 7696.8,
+          "mediaTime": 7.366667,
+          "expectedDisplayTime": 7702.3,
+          "presentationTime": 7696.9,
+          "presentedFrames": 443,
+          "processingDuration": 0.0335
+        },
+        {
+          "now": 7713.5,
+          "mediaTime": 7.383333,
+          "expectedDisplayTime": 7719.1,
+          "presentationTime": 7713.6,
+          "presentedFrames": 444,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7730.2,
+          "mediaTime": 7.4,
+          "expectedDisplayTime": 7735.7,
+          "presentationTime": 7730.3,
+          "presentedFrames": 445,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 7746.8,
+          "mediaTime": 7.416667,
+          "expectedDisplayTime": 7752.4,
+          "presentationTime": 7746.8,
+          "presentedFrames": 446,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 7763.4,
+          "mediaTime": 7.433333,
+          "expectedDisplayTime": 7768.9,
+          "presentationTime": 7763.5,
+          "presentedFrames": 447,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7780.1,
+          "mediaTime": 7.45,
+          "expectedDisplayTime": 7785.6,
+          "presentationTime": 7780.1,
+          "presentedFrames": 448,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 7796.7,
+          "mediaTime": 7.466667,
+          "expectedDisplayTime": 7802.3,
+          "presentationTime": 7796.8,
+          "presentedFrames": 449,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 7813.4,
+          "mediaTime": 7.483333,
+          "expectedDisplayTime": 7819,
+          "presentationTime": 7813.5,
+          "presentedFrames": 450,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 7830.1,
+          "mediaTime": 7.5,
+          "expectedDisplayTime": 7835.7,
+          "presentationTime": 7830.3,
+          "presentedFrames": 451,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 7846.8,
+          "mediaTime": 7.516667,
+          "expectedDisplayTime": 7852.3,
+          "presentationTime": 7846.9,
+          "presentedFrames": 452,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 7863.5,
+          "mediaTime": 7.533333,
+          "expectedDisplayTime": 7869.1,
+          "presentationTime": 7863.6,
+          "presentedFrames": 453,
+          "processingDuration": 0.1336
+        },
+        {
+          "now": 7880.1,
+          "mediaTime": 7.55,
+          "expectedDisplayTime": 7885.7,
+          "presentationTime": 7880.2,
+          "presentedFrames": 454,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 7896.7,
+          "mediaTime": 7.566667,
+          "expectedDisplayTime": 7902.3,
+          "presentationTime": 7896.9,
+          "presentedFrames": 455,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 7913.4,
+          "mediaTime": 7.583333,
+          "expectedDisplayTime": 7919,
+          "presentationTime": 7913.6,
+          "presentedFrames": 456,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 7930.1,
+          "mediaTime": 7.6,
+          "expectedDisplayTime": 7935.6,
+          "presentationTime": 7930.2,
+          "presentedFrames": 457,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 7946.8,
+          "mediaTime": 7.616667,
+          "expectedDisplayTime": 7952.4,
+          "presentationTime": 7946.9,
+          "presentedFrames": 458,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 7963.4,
+          "mediaTime": 7.633333,
+          "expectedDisplayTime": 7969,
+          "presentationTime": 7963.5,
+          "presentedFrames": 459,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 7980.1,
+          "mediaTime": 7.65,
+          "expectedDisplayTime": 7985.6,
+          "presentationTime": 7980.1,
+          "presentedFrames": 460,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 7996.7,
+          "mediaTime": 7.666667,
+          "expectedDisplayTime": 8002.3,
+          "presentationTime": 7996.9,
+          "presentedFrames": 461,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 8013.4,
+          "mediaTime": 7.683333,
+          "expectedDisplayTime": 8019,
+          "presentationTime": 8013.5,
+          "presentedFrames": 462,
+          "processingDuration": 0.0832
+        },
+        {
+          "now": 8030.2,
+          "mediaTime": 7.7,
+          "expectedDisplayTime": 8035.8,
+          "presentationTime": 8030.2,
+          "presentedFrames": 463,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8046.8,
+          "mediaTime": 7.716667,
+          "expectedDisplayTime": 8052.3,
+          "presentationTime": 8046.8,
+          "presentedFrames": 464,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8063.4,
+          "mediaTime": 7.733333,
+          "expectedDisplayTime": 8069,
+          "presentationTime": 8063.6,
+          "presentedFrames": 465,
+          "processingDuration": 0.0667
+        },
+        {
+          "now": 8080.1,
+          "mediaTime": 7.75,
+          "expectedDisplayTime": 8085.8,
+          "presentationTime": 8080.3,
+          "presentedFrames": 466,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8096.8,
+          "mediaTime": 7.766667,
+          "expectedDisplayTime": 8102.4,
+          "presentationTime": 8096.9,
+          "presentedFrames": 467,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8113.5,
+          "mediaTime": 7.783333,
+          "expectedDisplayTime": 8119.1,
+          "presentationTime": 8113.6,
+          "presentedFrames": 468,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8130.1,
+          "mediaTime": 7.8,
+          "expectedDisplayTime": 8135.7,
+          "presentationTime": 8130.2,
+          "presentedFrames": 469,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 8146.8,
+          "mediaTime": 7.816667,
+          "expectedDisplayTime": 8152.4,
+          "presentationTime": 8146.9,
+          "presentedFrames": 470,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8163.4,
+          "mediaTime": 7.833333,
+          "expectedDisplayTime": 8169,
+          "presentationTime": 8163.5,
+          "presentedFrames": 471,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8180.2,
+          "mediaTime": 7.85,
+          "expectedDisplayTime": 8185.7,
+          "presentationTime": 8180.2,
+          "presentedFrames": 472,
+          "processingDuration": 0.0498
+        },
+        {
+          "now": 8196.7,
+          "mediaTime": 7.866667,
+          "expectedDisplayTime": 8202.3,
+          "presentationTime": 8196.9,
+          "presentedFrames": 473,
+          "processingDuration": 0.0667
+        },
+        {
+          "now": 8213.4,
+          "mediaTime": 7.883333,
+          "expectedDisplayTime": 8219,
+          "presentationTime": 8213.6,
+          "presentedFrames": 474,
+          "processingDuration": 0.0833
+        },
+        {
+          "now": 8230.1,
+          "mediaTime": 7.9,
+          "expectedDisplayTime": 8235.6,
+          "presentationTime": 8230.2,
+          "presentedFrames": 475,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8246.8,
+          "mediaTime": 7.916667,
+          "expectedDisplayTime": 8252.3,
+          "presentationTime": 8246.8,
+          "presentedFrames": 476,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8263.4,
+          "mediaTime": 7.933333,
+          "expectedDisplayTime": 8268.9,
+          "presentationTime": 8263.5,
+          "presentedFrames": 477,
+          "processingDuration": 0.0669
+        },
+        {
+          "now": 8280.1,
+          "mediaTime": 7.95,
+          "expectedDisplayTime": 8285.6,
+          "presentationTime": 8280.2,
+          "presentedFrames": 478,
+          "processingDuration": 0.0835
+        },
+        {
+          "now": 8296.8,
+          "mediaTime": 7.966667,
+          "expectedDisplayTime": 8302.4,
+          "presentationTime": 8296.8,
+          "presentedFrames": 479,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8313.5,
+          "mediaTime": 7.983333,
+          "expectedDisplayTime": 8319,
+          "presentationTime": 8313.5,
+          "presentedFrames": 480,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 8330.2,
+          "mediaTime": 8,
+          "expectedDisplayTime": 8335.6,
+          "presentationTime": 8330.2,
+          "presentedFrames": 481,
+          "processingDuration": 0.0668
+        },
+        {
+          "now": 8346.7,
+          "mediaTime": 8.016667,
+          "expectedDisplayTime": 8352.3,
+          "presentationTime": 8346.9,
+          "presentedFrames": 482,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 8363.5,
+          "mediaTime": 8.033333,
+          "expectedDisplayTime": 8369.1,
+          "presentationTime": 8363.6,
+          "presentedFrames": 483,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8380.2,
+          "mediaTime": 8.05,
+          "expectedDisplayTime": 8385.7,
+          "presentationTime": 8380.3,
+          "presentedFrames": 484,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8396.8,
+          "mediaTime": 8.066667,
+          "expectedDisplayTime": 8402.3,
+          "presentationTime": 8396.8,
+          "presentedFrames": 485,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 8413.5,
+          "mediaTime": 8.083333,
+          "expectedDisplayTime": 8419.1,
+          "presentationTime": 8413.6,
+          "presentedFrames": 486,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 8430.1,
+          "mediaTime": 8.1,
+          "expectedDisplayTime": 8435.6,
+          "presentationTime": 8430.2,
+          "presentedFrames": 487,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8446.7,
+          "mediaTime": 8.116667,
+          "expectedDisplayTime": 8452.3,
+          "presentationTime": 8446.9,
+          "presentedFrames": 488,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8463.4,
+          "mediaTime": 8.133333,
+          "expectedDisplayTime": 8469,
+          "presentationTime": 8463.5,
+          "presentedFrames": 489,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 8480,
+          "mediaTime": 8.15,
+          "expectedDisplayTime": 8485.6,
+          "presentationTime": 8480.1,
+          "presentedFrames": 490,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 8496.8,
+          "mediaTime": 8.166667,
+          "expectedDisplayTime": 8502.3,
+          "presentationTime": 8496.8,
+          "presentedFrames": 491,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8513.5,
+          "mediaTime": 8.183333,
+          "expectedDisplayTime": 8519,
+          "presentationTime": 8513.6,
+          "presentedFrames": 492,
+          "processingDuration": 0.0499
+        },
+        {
+          "now": 8530.1,
+          "mediaTime": 8.2,
+          "expectedDisplayTime": 8535.6,
+          "presentationTime": 8530.2,
+          "presentedFrames": 493,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 8546.7,
+          "mediaTime": 8.216667,
+          "expectedDisplayTime": 8552.4,
+          "presentationTime": 8546.8,
+          "presentedFrames": 494,
+          "processingDuration": 0.0167
+        },
+        {
+          "now": 8563.5,
+          "mediaTime": 8.233333,
+          "expectedDisplayTime": 8568.9,
+          "presentationTime": 8563.5,
+          "presentedFrames": 495,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8580.1,
+          "mediaTime": 8.25,
+          "expectedDisplayTime": 8585.7,
+          "presentationTime": 8580.3,
+          "presentedFrames": 496,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 8596.8,
+          "mediaTime": 8.266667,
+          "expectedDisplayTime": 8602.3,
+          "presentationTime": 8596.9,
+          "presentedFrames": 497,
+          "processingDuration": 0.1334
+        },
+        {
+          "now": 8613.4,
+          "mediaTime": 8.283333,
+          "expectedDisplayTime": 8619,
+          "presentationTime": 8613.5,
+          "presentedFrames": 498,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 8630.1,
+          "mediaTime": 8.3,
+          "expectedDisplayTime": 8635.6,
+          "presentationTime": 8630.1,
+          "presentedFrames": 499,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8646.8,
+          "mediaTime": 8.316667,
+          "expectedDisplayTime": 8652.4,
+          "presentationTime": 8646.8,
+          "presentedFrames": 500,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 8663.4,
+          "mediaTime": 8.333333,
+          "expectedDisplayTime": 8669,
+          "presentationTime": 8663.6,
+          "presentedFrames": 501,
+          "processingDuration": 0.1335
+        },
+        {
+          "now": 8680.1,
+          "mediaTime": 8.35,
+          "expectedDisplayTime": 8685.6,
+          "presentationTime": 8680.1,
+          "presentedFrames": 502,
+          "processingDuration": 0.0166
+        },
+        {
+          "now": 8696.7,
+          "mediaTime": 8.366667,
+          "expectedDisplayTime": 8702.3,
+          "presentationTime": 8696.9,
+          "presentedFrames": 503,
+          "processingDuration": 0.0333
+        },
+        {
+          "now": 8713.4,
+          "mediaTime": 8.383333,
+          "expectedDisplayTime": 8719,
+          "presentationTime": 8713.5,
+          "presentedFrames": 504,
+          "processingDuration": 0.05
+        },
+        {
+          "now": 8730.1,
+          "mediaTime": 8.4,
+          "expectedDisplayTime": 8735.7,
+          "presentationTime": 8730.2,
+          "presentedFrames": 505,
+          "processingDuration": 0.1337
+        },
+        {
+          "now": 8746.8,
+          "mediaTime": 8.416667,
+          "expectedDisplayTime": 8752.3,
+          "presentationTime": 8746.8,
+          "presentedFrames": 506,
+          "processingDuration": 0.0165
+        },
+        {
+          "now": 8763.5,
+          "mediaTime": 8.433333,
+          "expectedDisplayTime": 8768.9,
+          "presentationTime": 8763.6,
+          "presentedFrames": 507,
+          "processingDuration": 0.0332
+        },
+        {
+          "now": 8780.1,
+          "mediaTime": 8.45,
+          "expectedDisplayTime": 8785.6,
+          "presentationTime": 8780.3,
+          "presentedFrames": 508,
+          "processingDuration": 0.0498
+        }
+      ],
+      "sawMotion": true,
+      "firstVisibleAt": 335.8999999985099,
+      "finishedAt": 8787.099999997765,
+      "failure": null,
+      "qualityAfter": {
+        "totalVideoFrames": 510,
+        "droppedVideoFrames": 0,
+        "corruptedVideoFrames": 0
+      },
+      "finalMediaTime": 8.4609,
+      "finalPaused": true,
+      "videoWidth": 1000,
+      "videoHeight": 650,
+      "summary": {
+        "firstFrameCallbackWaitMs": 11.800000000745058,
+        "firstVisibleAttributeWaitMs": 12.199999999254942,
+        "finishedWaitMs": 8463.39999999851,
+        "callbackCount": 473,
+        "elapsedBetweenCallbacksMs": 8444.6,
+        "callbackRatePerSecond": 55.893707221182765,
+        "mediaTimeStart": 0.016667,
+        "mediaTimeEnd": 8.45,
+        "medianIntervalMs": 16.699999999999818,
+        "p95IntervalMs": 16.800000000000182,
+        "maxIntervalMs": 188.9000000000001,
+        "longFrameThresholdMs": 25,
+        "longFrameCount": 6,
+        "qualityDelta": {
+          "totalVideoFrames": 506,
+          "droppedVideoFrames": 0,
+          "corruptedVideoFrames": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "status": "measured"
+}

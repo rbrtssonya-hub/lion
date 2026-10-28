@@ -50,7 +50,7 @@ export default function SpreadPage({ onNavigate, settings }) {
       <p>狮行万里 · 从岭南到世界<br /><span>FROM LINGNAN TO THE WORLD</span></p>
     </header>
     <div className="spread-layout">
-      <SpreadMap activeId={place.id} level={mapLevel} onSelect={selectPlace} onLevelChange={changeMapLevel} />
+      <SpreadMap activeId={place.id} level={mapLevel} settings={settings} onSelect={selectPlace} onLevelChange={changeMapLevel} />
       <article id="spreadPlaceCard" className={`spread-case${story ? '' : ' spread-case--empty'}`} data-surface="spreadOverlay" aria-labelledby="spreadPlaceTitle">
         <header className="spread-place-heading">
           <div><p className="spread-place-kicker">{collection?.collection}<span>{place.english}</span></p><div className="spread-place-title-row"><h2 id="spreadPlaceTitle">{place.name}</h2><span>{place.location}</span></div></div>

@@ -19,6 +19,7 @@ sources: []
 | 2026-10-28 | ui | completed | [工艺四阶段配图换景](UI%E4%BF%AE%E6%94%B9/2026-10-28-%E5%B7%A5%E8%89%BA%E5%9B%9B%E9%98%B6%E6%AE%B5%E9%85%8D%E5%9B%BE%E6%8D%A2%E6%99%AF.md) |
 | 2026-10-28 | ui | completed | [传章地图城市邮票标识](UI%E4%BF%AE%E6%94%B9/2026-10-28-%E4%BC%A0%E7%AB%A0%E5%9C%B0%E5%9B%BE%E5%9F%8E%E5%B8%82%E9%82%AE%E7%A5%A8%E6%A0%87%E8%AF%86.md) |
 | 2026-10-28 | bug | completed | [传章广州北京点位合并回退](Bug%E5%A4%84%E7%90%86/2026-10-28-%E4%BC%A0%E7%AB%A0%E5%B9%BF%E5%B7%9E%E5%8C%97%E4%BA%AC%E7%82%B9%E4%BD%8D%E5%90%88%E5%B9%B6%E5%9B%9E%E9%80%80.md) |
+| 2026-10-28 | bug | completed | [传章地图流畅度与停稳修复](Bug%E5%A4%84%E7%90%86/2026-10-28-%E4%BC%A0%E7%AB%A0%E5%9C%B0%E5%9B%BE%E6%B5%81%E7%95%85%E5%BA%A6%E4%B8%8E%E5%81%9C%E7%A8%B3%E4%BF%AE%E5%A4%8D.md) |
 | 2026-10-28 | bug | completed | [传章北京标点位置校准](Bug%E5%A4%84%E7%90%86/2026-10-28-%E4%BC%A0%E7%AB%A0%E5%8C%97%E4%BA%AC%E6%A0%87%E7%82%B9%E4%BD%8D%E7%BD%AE%E6%A0%A1%E5%87%86.md) |
 | 2026-10-27 | maintenance | completed | [工艺轮播支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-27-%E5%B7%A5%E8%89%BA%E8%BD%AE%E6%92%AD%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5main.md) |
 | 2026-10-27 | maintenance | completed | [工艺双小游戏支线合入 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-27-%E5%B7%A5%E8%89%BA%E5%8F%8C%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%94%AF%E7%BA%BF%E5%90%88%E5%85%A5main.md) |

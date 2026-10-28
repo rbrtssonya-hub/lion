@@ -36,16 +36,18 @@ const shots = {
   },
 };
 
-export default function SpreadMap({ activeId, level, onSelect, onLevelChange }) {
+export default function SpreadMap({ activeId, level, onSelect, onLevelChange, settings }) {
   const levelIndex = spreadMapLevels.findIndex(item => item.id === level);
   const current = spreadMapLevels[levelIndex];
-  const { forwardRef, reverseRef, displayLevel, motion, direction } = useSpreadMapMotion(level);
+  const frameRate = settings?.spreadMapFrameRate === 24 ? 24 : 60;
+  const playbackRate = settings?.spreadMapPlaybackRate ?? 1;
+  const { videosRef, displayLevel, motion, visibleVideo } = useSpreadMapMotion(level, frameRate, playbackRate);
   const points = spreadMapPoints[displayLevel];
   const inMotion = motion === 'loading' || motion === 'moving';
   const isSelected = point => point.placeId === activeId;
   const shot = shots[displayLevel];
   const [failedImage, setFailedImage] = useState(null);
-  return <section className="spread-map" aria-labelledby="spreadMapTitle" data-map-level={level} data-map-motion={motion}>
+  return <section className="spread-map" aria-labelledby="spreadMapTitle" data-map-level={level} data-map-motion={motion} data-map-frame-rate={frameRate}>
     <div className="spread-map-heading">
       <h3 id="spreadMapTitle">所收录案例分布示意</h3>
       <span>{current.collection} · {current.count}</span>
@@ -58,13 +60,20 @@ export default function SpreadMap({ activeId, level, onSelect, onLevelChange }) 
       </button>)}
     </div>
     <div className="spread-map-viewport" id="spreadMapView" role="tabpanel" aria-labelledby={`spread-level-${level}`}>
-      <div className="spread-world" data-motion={motion} data-direction={direction} aria-busy={inMotion}>
-        <video ref={forwardRef} className="spread-map-video" data-direction="forward" src={media.spreadMapMotionForward} muted playsInline preload="auto" aria-hidden="true" />
-        <video ref={reverseRef} className="spread-map-video" data-direction="reverse" src={media.spreadMapMotionReverse} muted playsInline preload="auto" aria-hidden="true" />
+      <div className="spread-world" data-motion={motion} aria-busy={inMotion}>
+        {[
+          ['forward', 24, media.spreadMapMotionForward], ['reverse', 24, media.spreadMapMotionReverse],
+          ['forward', 60, media.spreadMapMotionForward60], ['reverse', 60, media.spreadMapMotionReverse60],
+        ].map(([direction, fps, src]) => {
+          const key = `${direction}-${fps}`;
+          return <video key={key} ref={element => { if (element) videosRef.current[key] = element; else delete videosRef.current[key]; }}
+            className="spread-map-video" data-direction={direction} data-frame-rate={fps} data-visible={visibleVideo === key}
+            src={src} muted playsInline preload={fps === frameRate ? 'auto' : 'none'} aria-hidden="true" />;
+        })}
         {failedImage === shot.image
           ? <div className="spread-map-fallback" role="status">地图画面暂未载入。</div>
           : <img className="spread-map-render" src={shot.image} alt="" onError={() => setFailedImage(shot.image)} />}
-        <svg className="spread-world-svg" style={{ visibility: inMotion ? 'hidden' : 'visible' }} viewBox="0 0 1000 650" aria-hidden="true" focusable="false">
+        <svg className="spread-world-svg" viewBox="0 0 1000 650" aria-hidden="true" focusable="false">
           <g className="spread-pin-lines">{points.map(place => {
             const [x, y, labelX, labelY] = shot.points[place.id];
             return <path key={place.id} data-selected={isSelected(place)} d={`M${x} ${y}L${labelX} ${labelY}`} />;

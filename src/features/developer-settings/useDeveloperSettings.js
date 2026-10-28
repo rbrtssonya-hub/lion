@@ -51,6 +51,8 @@ export const defaultDeveloperSettings = Object.freeze({
   carouselResumeDelay: 3,
   carouselTransitionDuration: 800,
   carouselFocusScale: 104,
+  spreadMapFrameRate: 60,
+  spreadMapPlaybackRate: 1,
   panelWidth: 340,
   pushPage: true,
   ...surfaceDefaults,
@@ -81,6 +83,7 @@ const ranges = {
   compactNavGap: [4, 36, 1], compactNavInset: [16, 160, 1],
   carouselInterval: [2, 30, 1], carouselResumeDelay: [1, 15, 1],
   carouselTransitionDuration: [300, 1600, 50], carouselFocusScale: [101, 110, 1],
+  spreadMapPlaybackRate: [0.5, 1.5, 0.1],
   ...surfaceRanges,
   ...hdriRanges,
   ...viewRanges,
@@ -100,6 +103,7 @@ export function normalizeDeveloperSetting(name, value) {
   if (name === 'navigationEasing') {
     return ['smooth', 'swift', 'soft'].includes(value) ? value : defaultDeveloperSettings.navigationEasing;
   }
+  if (name === 'spreadMapFrameRate') return value === 24 || value === 60 ? value : defaultDeveloperSettings.spreadMapFrameRate;
   if (name === 'hdriSource') return ['default', 'forest', 'url', 'local'].includes(value) ? value : hdriDefaults.hdriSource;
   if (name === 'hdriUrl') {
     if (typeof value !== 'string') return '';

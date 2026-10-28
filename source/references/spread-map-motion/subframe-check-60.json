@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "blender_version": "5.2.3 LTS",
+  "camera_check": "In the source scene set frame 21.4, render a low-resolution single sample, compare camera frame, translation and orthographic scale before and after rendering; then set frame 21.8.",
+  "camera_results": [
+    {
+      "stage": "before_render",
+      "frame": 21.399999618530273,
+      "camera_translation": [
+        22.692882537841797,
+        4.579682350158691,
+        4.780424118041992
+      ],
+      "ortho_scale": 2.4235832691192627
+    },
+    {
+      "stage": "after_render",
+      "frame": 21.399999618530273,
+      "camera_translation": [
+        22.692882537841797,
+        4.579682350158691,
+        4.780424118041992
+      ],
+      "ortho_scale": 2.4235832691192627
+    },
+    {
+      "stage": "next_subframe",
+      "frame": 21.799999237060547,
+      "camera_translation": [
+        22.690349578857422,
+        4.572447299957275,
+        4.809062480926514
+      ],
+      "ortho_scale": 2.441596031188965
+    }
+  ],
+  "pixel_check": "Compare actual 1000x650 60fps subframe PNGs against neighboring cached integer Blender renders using mean absolute RGB error.",
+  "pixel_results": [
+    {
+      "sequence_frame": 52,
+      "blender_frame": 21.400000000000002,
+      "left_integer_frame": 21,
+      "right_integer_frame": 22,
+      "mean_abs_rgb_to_left": 3.4194435897435898,
+      "mean_abs_rgb_to_right": 4.8333810256410255
+    },
+    {
+      "sequence_frame": 53,
+      "blender_frame": 21.8,
+      "left_integer_frame": 21,
+      "right_integer_frame": 22,
+      "mean_abs_rgb_to_left": 5.312141025641026,
+      "mean_abs_rgb_to_right": 2.489894871794872
+    },
+    {
+      "sequence_frame": 54,
+      "blender_frame": 22.200000000000003,
+      "left_integer_frame": 22,
+      "right_integer_frame": 23,
+      "mean_abs_rgb_to_left": 2.592951794871795,
+      "mean_abs_rgb_to_right": 6.219203076923077
+    },
+    {
+      "sequence_frame": 55,
+      "blender_frame": 22.6,
+      "left_integer_frame": 22,
+      "right_integer_frame": 23,
+      "mean_abs_rgb_to_left": 5.251533333333334,
+      "mean_abs_rgb_to_right": 4.490012307692307
+    }
+  ]
+}

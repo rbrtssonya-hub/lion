@@ -40,6 +40,8 @@ export const assetPaths = {
 
   spreadMapMotionForward: 'assets/spread-map/motion-forward.mp4',
   spreadMapMotionReverse: 'assets/spread-map/motion-reverse.mp4',
+  spreadMapMotionForward60: 'assets/spread-map/motion-forward-60.mp4',
+  spreadMapMotionReverse60: 'assets/spread-map/motion-reverse-60.mp4',
   spreadMapGuangdong: 'assets/spread-map/guangdong.png',
   spreadMapChina: 'assets/spread-map/china.png',
   spreadMapWorld: 'assets/spread-map/world.png',

@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "comparison": "decoded RGB versus Blender PNG, mean absolute per-channel error; reverse compares against sequence frame 511-n",
+  "videos": {
+    "forward": {
+      "probe": {
+        "width": 1000,
+        "height": 650,
+        "r_frame_rate": "60/1",
+        "nb_read_frames": "510"
+      },
+      "mean_absolute_rgb_error": 2.0690948376068374,
+      "max_frame_mean_absolute_rgb_error": 2.5526615384615385,
+      "frames_checked": 510,
+      "samples": {
+        "1": 1.673268717948718,
+        "52": 1.8486276923076923,
+        "53": 1.7920702564102564,
+        "250": 1.8643779487179488,
+        "400": 2.2432625641025643,
+        "510": 1.8021692307692307
+      }
+    },
+    "reverse": {
+      "probe": {
+        "width": 1000,
+        "height": 650,
+        "r_frame_rate": "60/1",
+        "nb_read_frames": "510"
+      },
+      "mean_absolute_rgb_error": 2.0783847360482657,
+      "max_frame_mean_absolute_rgb_error": 2.5861748717948716,
+      "frames_checked": 510,
+      "samples": {
+        "1": 1.8374015384615385,
+        "52": 1.9938692307692307,
+        "53": 1.9203835897435897,
+        "250": 1.857105641025641,
+        "400": 2.1439928205128207,
+        "510": 1.6388671794871794
+      }
+    }
+  }
+}

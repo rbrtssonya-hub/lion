@@ -7353,6 +7353,78 @@
       "path": "source/reviews/craft-carousel/2026-10-28/craft-zhuang-1920x1080.png",
       "bytes": 1980226,
       "sha256": "709cb323ff5a7e3b178c8964d61a24211f9bb55319c6124c2d63574c4a14723a"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/public/assets/spread-map/motion-forward-60.mp4",
+      "bytes": 4387829,
+      "sha256": "21c5ca880f503f2fd8a11d1ac3c73e1306367e48993f9a1af5509ab03565bfa9"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/public/assets/spread-map/motion-reverse-60.mp4",
+      "bytes": 4323859,
+      "sha256": "c952caea2676d10178c77517e57919066e7b688cb746f9dda30f160df353c236"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/references/spread-map-motion/frame-comparison-60.json",
+      "bytes": 1245,
+      "sha256": "41cbbaa8052b95f9fc6e7f1e8568368829b91b518b81023661f578464f6b86e0"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/references/spread-map-motion/subframe-check-60.json",
+      "bytes": 2138,
+      "sha256": "a2f1ca3ba276413040adf93e6421764a643acd41da3450721006206d68b9ffef"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/references/spread-map-motion/performance-60.json",
+      "bytes": 165794,
+      "sha256": "0869e27fc1f4820a06d494229292ef9356526279cf9f08b6dae9d46d798b3e26"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/capture.json",
+      "bytes": 698,
+      "sha256": "da687e8d806b5cdba8edc1221d0fa3bc289e7caea34c37d9dcfb5e434bbc1ba8"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/forward-guangdong-china.png",
+      "bytes": 707651,
+      "sha256": "9a7d1f72a02d547c5ddc3dfefdd6eca542bd885fc32f7943ba4033155117b64b"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/forward-china.png",
+      "bytes": 763257,
+      "sha256": "e66a094a5e8d05d3a55c14c809c949386a3c0fb41967b4ab7718544d44b96dd2"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/forward-china-world.png",
+      "bytes": 674679,
+      "sha256": "8b211ffdda44f13b3a104c82e5e9cde9f5a6dbdc658e2badef5230b03b330175"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/reverse-world-china.png",
+      "bytes": 639421,
+      "sha256": "4156f1882de15986847391b96e95addaa6d1264ebf61c1bdf64f50080d56cc8e"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/references/spread-map-motion/performance-after-60.json",
+      "bytes": 175310,
+      "sha256": "0faa2ce0dfcca1e7768bfcbb07859243a850d25884895da4488164ef7035efae"
+    },
+    {
+      "from": "Blender 60 fps map camera render and desktop review, 2026-10-28",
+      "path": "source/reviews/spread-map-motion/2026-10-28-60fps/settings-24.png",
+      "bytes": 783189,
+      "sha256": "4c8f172f9057e302594f8b81a719b8fb1932e367f1e0cde9d29e3a13006d6532"
     }
   ]
 }

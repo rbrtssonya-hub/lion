@@ -1,0 +1,39 @@
+{
+  "origin": "http://127.0.0.1:28474",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "samples": [
+    {
+      "name": "forward-guangdong-china",
+      "time": 1.9369,
+      "width": 1000,
+      "height": 650,
+      "paused": false
+    },
+    {
+      "name": "forward-china",
+      "time": 4.1541,
+      "width": 1000,
+      "height": 650,
+      "paused": false
+    },
+    {
+      "name": "forward-china-world",
+      "time": 6.2043,
+      "width": 1000,
+      "height": 650,
+      "paused": false
+    },
+    {
+      "name": "reverse-world-china",
+      "time": 2.0085,
+      "width": 1000,
+      "height": 650,
+      "paused": false
+    }
+  ],
+  "errors": [],
+  "status": "passed"
+}

@@ -28,6 +28,7 @@ export default function App() {
   const navigationCaptureRef = useRef(null);
   const beforeRouteChange = useCallback(() => navigationCaptureRef.current?.(), []);
   const [route, navigate] = useChapterRoute(beforeRouteChange);
+  const [modelReady, setModelReady] = useState(false);
   const { settings, changeSettings, previewSettings, commitSettings, resetSettings, applySurfaceSettings,
     beginSettingsEditing, saveSettings, discardSettings, hasUnsavedChanges, settingsFeedback, exportSettings } = useDeveloperSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -189,13 +190,13 @@ export default function App() {
         <div className="prewarmed-page" data-active={route === 'entry'} inert={route !== 'entry'} aria-hidden={route !== 'entry'}>
           <HomePage onNavigate={navigateTo} settings={settings} assistantSource={assistantSource} playbackEnabled={route === 'entry'} />
         </div>
-        <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
+        {(route !== 'spread' || modelReady) && <div className="prewarmed-page" data-active={route === 'model'} inert={route !== 'model'} aria-hidden={route !== 'model'}>
           <ModelPreparationBoundary>
           <Suspense fallback={<div className="page-loading" role="status">正在加载章节…</div>}>
-            <ModelPage lightingSettings={settings} active={route === 'model'} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
+            <ModelPage lightingSettings={settings} active={route === 'model'} onReady={setModelReady} onObserve={context => navigateTo('state', context)} onPartChange={modelPartChanged} />
           </Suspense>
           </ModelPreparationBoundary>
-        </div>
+        </div>}
         {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} active observation={observation} onReturnToModel={returnToModel} onNavigate={navigateTo} />}
       </main>
     </div>

@@ -37,20 +37,24 @@
 .spread-world { position: relative; width: min(100cqw, calc(100cqh * 20 / 13)); max-width: 100%; aspect-ratio: 20 / 13; margin: 0; animation: spread-map-unfold 300ms ease-out; }
 .spread-map-render, .spread-map-fallback, .spread-map-video { position: absolute; inset: 0; width: 100%; height: 100%; }
 .spread-map-render { display: block; object-fit: contain; }
-.spread-map-video { display: block; object-fit: contain; visibility: hidden; pointer-events: none; }
-.spread-world[data-motion='moving'][data-direction='forward'] .spread-map-video[data-direction='forward'],
-.spread-world[data-motion='moving'][data-direction='reverse'] .spread-map-video[data-direction='reverse'] { visibility: visible; z-index: 1; }
+.spread-map-video { display: block; object-fit: contain; opacity: 0; visibility: hidden; pointer-events: none; z-index: 1; transition: opacity 120ms ease, visibility 0s linear 120ms; }
+.spread-map-video[data-visible='true'] { opacity: 1; visibility: visible; transition: opacity 120ms ease; }
 .spread-world[data-motion='loading'] .spread-map-buttons,
-.spread-world[data-motion='moving'] .spread-map-buttons { visibility: hidden; }
+.spread-world[data-motion='moving'] .spread-map-buttons,
+.spread-world[data-motion='loading'] .spread-world-svg,
+.spread-world[data-motion='moving'] .spread-world-svg { visibility: hidden; }
 .spread-map-fallback { display: grid; place-items: center; background: #e4dbcd; color: #75664f; font-size: 14px; }
-.spread-world-svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.spread-world-svg { position: absolute; z-index: 2; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .spread-pin-lines path { fill: none; stroke: #b6a28b; stroke-width: 1.2; stroke-dasharray: 2 2; }
 .spread-pin-lines path[data-selected='true'] { stroke: #a44332; stroke-width: 1.6; stroke-dasharray: none; }
 .spread-pin-halo { fill: #b65a4020; stroke: #ac634b35; stroke-width: 1; }
 .spread-pin-dot { fill: #a74632; stroke: #f9f3e6; stroke-width: 2; }
 .spread-pins [data-selected='true'] .spread-pin-halo { fill: #a7362d25; stroke: #a7362d70; animation: spread-pin-pulse 520ms ease-out both; }
 .spread-pins [data-selected='true'] .spread-pin-dot { fill: #922e23; }
-.spread-map-buttons { position: absolute; inset: 0; }
+.spread-map-buttons { position: absolute; z-index: 2; inset: 0; }
+.spread-world[data-motion='idle'] .spread-map-buttons,
+.spread-world[data-motion='idle'] .spread-world-svg { animation: spread-map-points-appear 300ms ease-out both; }
+@keyframes spread-map-points-appear { from { opacity: 0; } to { opacity: 1; } }
 .spread-map-place {
   position: absolute; display: grid; align-content: center; justify-items: center; gap: 4px;
   width: clamp(50px, 3.8vw, 56px); height: clamp(60px, 4.7vw, 68px); padding: 6px 4px;

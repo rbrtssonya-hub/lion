@@ -33,7 +33,7 @@ const defaultMaterial = Object.fromEntries(['Transparency','Blur','Radius','Colo
 
 export default function DeveloperSettingsPanel({ open, settings, onChange, onApplyMaterial, onClose, onReset, panelRef, canPush, onKeyDown, resizeHandle,
   hasUnsavedChanges, onSave, onExport, discardPromptOpen, onContinueEditing, onDiscard, activePage, onPageChange, sceneViewEditing }) {
-  const panelId = useId(), scopeId = useId(), easingId = useId();
+  const panelId = useId(), scopeId = useId(), easingId = useId(), mapFrameRateId = useId();
   const [subpages, setSubpages] = useState({home:'book',chapters:'model'});
   const [scope, setScope] = useState('home');
   const [material, setMaterial] = useState(defaultMaterial);
@@ -140,6 +140,16 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup>
       </> : surfaces(['cultureTitle','cultureBody'])}</SettingsSubpages>;
       case 'chapters': return <SettingsSubpages label="章节设置分区" items={chapterPages} value={subpages.chapters} onChange={id => selectSubpage('chapters',id)}>{value => <>
+        {value === 'spread' && <SettingsGroup title="地图动画" note="预渲染视频">
+          <div className="developer-settings-select-control"><label htmlFor={mapFrameRateId}>地图动画帧率</label>
+            <select id={mapFrameRateId} value={settings.spreadMapFrameRate} onChange={event => onChange('spreadMapFrameRate', Number(event.target.value))}>
+              <option value={60}>60 帧/秒 · 更平滑</option>
+              <option value={24}>24 帧/秒 · 原始</option>
+            </select>
+          </div>
+          {range('spreadMapPlaybackRate','地图动画播放速度',0.5,1.5,0.1,'倍')}
+          <p className="developer-settings-note">地图使用1000×650预渲染视频，非实时三维渲染。选择视频帧率；60帧画面更平滑但资源较大，实际播放流畅度还取决于设备与浏览器。播放速度只改变镜头运动快慢。</p>
+        </SettingsGroup>}
         {surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : value === 'spread' ? ['spreadOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
