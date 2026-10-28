@@ -67,18 +67,18 @@ test('快速切换镜头后画面、选中层级和案例保持一致', async ({
   await expect(page.locator('.spread-map')).toHaveAttribute('data-map-level', 'china');
   await expect(page.getByRole('tab', { name: '中国', exact: true })).toHaveAttribute('aria-selected', 'true');
   await inspectRenderedMap(page, levels[1]);
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
   await page.getByRole('tab', { name: '世界', exact: true }).click();
   await inspectRenderedMap(page, levels[2]);
-  await expect(page.getByRole('button', { name: '选择香港案例', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '选择新加坡邮票', exact: true })).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('地图画面载入失败时保留案例操作，切到其他镜头可恢复显示', async ({ page }) => {
   await page.route('**/guangdong.png', route => route.abort());
   await page.reload();
   await expect(page.getByRole('status').filter({ hasText: '地图画面暂未载入' })).toBeVisible();
-  await page.getByRole('button', { name: '选择广州案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择广州邮票', exact: true }).click();
   await expect(page.locator('.spread-photo-caption')).toContainText('广东广州');
   await page.getByRole('tab', { name: '中国', exact: true }).click();
   await inspectRenderedMap(page, levels[1]);
@@ -86,8 +86,8 @@ test('地图画面载入失败时保留案例操作，切到其他镜头可恢�
 });
 
 test('三个镜头的地理标记与 Blender 投影对齐', async ({ page }) => {
-  // Blender 帧 1、100、200 中对应地点的近似投影坐标，按 1000×650 画幅记录。
-  for (const [name, x, y] of [['广东', 468, 323], ['中国', 602, 374], ['世界', 778, 260]]) {
+  // Blender 帧 1、100、200 中对应城市的近似投影坐标，按 1000×650 画幅记录。
+  for (const [name, x, y] of [['广东', 468, 323], ['中国', 637, 212], ['世界', 755, 314]]) {
     await page.getByRole('tab', { name, exact: true }).click();
     const point = await page.locator('.spread-pin-dot').first().evaluate(dot => {
       const mark = dot.getBoundingClientRect();

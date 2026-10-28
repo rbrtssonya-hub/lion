@@ -11,16 +11,17 @@ test.beforeEach(async ({ page }) => {
   await expect(page.locator('#spreadStage')).toBeVisible();
 });
 
-test('地图从广东的广州佛山开始，城市选择和实景照片对应', async ({ page }) => {
+test('广东层只显示佛山、广州、鹤山、遂溪四枚邮票，已有照片保持对应', async ({ page }) => {
   await expect(page.locator('.spread-map')).toHaveAttribute('data-map-level', 'guangdong');
   await expect(page.getByRole('tab', { name: '广东', exact: true })).toHaveAttribute('aria-selected', 'true');
-  await expect(page.getByRole('button', { name: '选择广州案例', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: '选择佛山案例', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button', { name: '选择新加坡案例', exact: true })).toHaveCount(0);
-  await page.getByRole('button', { name: '选择广州案例', exact: true }).click();
+  await expect(page.getByRole('button', { name: '选择广州邮票', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: '选择佛山邮票', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.spread-map-place')).toHaveCount(4);
+  await expect(page.getByRole('button', { name: '选择新加坡邮票', exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: '选择广州邮票', exact: true }).click();
   await expect(page.locator('.spread-photo-caption')).toContainText('广东广州');
   await expect(page.locator('.spread-photo-credit')).toContainText('Zhizhou Deng');
-  await page.getByRole('button', { name: '选择佛山案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择佛山邮票', exact: true }).click();
   await expect(page.locator('.spread-photo-caption')).toContainText('广东佛山');
   await expect(page.locator('.spread-photo-credit')).toContainText('David Chen');
 });
@@ -28,15 +29,16 @@ test('地图从广东的广州佛山开始，城市选择和实景照片对应',
 test('逐级从广东到中国到世界，回到广东时恢复可见地点与对应照片', async ({ page }) => {
   await page.getByRole('button', { name: '查看中国范围', exact: true }).click();
   await expect(page.locator('.spread-map')).toHaveAttribute('data-map-level', 'china');
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
   await expect(page.locator('.spread-photo-caption')).toContainText('香港九龙公园');
   await page.getByRole('button', { name: '走向世界', exact: true }).click();
   await expect(page.locator('.spread-map')).toHaveAttribute('data-map-level', 'world');
-  await expect(page.getByRole('button', { name: '选择香港案例', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: '选择新加坡案例', exact: true }).click();
+  await expect(page.getByRole('button', { name: '选择香港邮票', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: '选择新加坡邮票', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
   await page.getByRole('tab', { name: '广东', exact: true }).click();
-  await expect(page.getByRole('button', { name: '选择佛山案例', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '选择佛山邮票', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.spread-photo-caption')).toContainText('广东佛山');
 });
 
@@ -59,7 +61,7 @@ test('三个范围可用键盘切换，地图标签和章内控制在电脑视�
         return r.left < frame.left - 1 || r.right > frame.right + 1 || r.top < frame.top - 1 || r.bottom > frame.bottom + 1;
       }).map(node => node.textContent));
       expect(outliers).toEqual([]);
-      await expect(page.locator('.spread-photo-credit')).toBeInViewport();
+      await expect(page.locator('#spreadPlaceCard')).toBeInViewport();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
   }
@@ -69,7 +71,7 @@ test('小醒进入传章后避让地图和案例卡操作', async ({ page }) => 
   await page.addInitScript(() => localStorage.setItem('nanfeng-xiaoxing-position-v1', JSON.stringify({ x: 1100, y: 450, width: 1366, height: 768 })));
   await page.reload();
   await page.getByRole('tab', { name: '世界', exact: true }).click();
-  await page.getByRole('button', { name: '选择新加坡案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
   const overlaps = await page.evaluate(() => {
     const pet = document.querySelector('.xiaoxing-pet').getBoundingClientRect();
     const targets = [...document.querySelectorAll('#spreadStage button, #spreadStage a, #spreadPlaceCard')];

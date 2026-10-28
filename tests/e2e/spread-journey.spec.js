@@ -20,24 +20,26 @@ async function openSpread(page) {
 test('地图点击与键盘选择切换真实地点，选中态和当前照片同步', async ({ page }) => {
   await openSpread(page);
   await expect(page.getByText('所收录案例分布示意', { exact: true })).toBeVisible();
-  const hongKong = page.getByRole('button', { name: '选择香港案例', exact: true });
+  await page.getByRole('tab', { name: '中国', exact: true }).click();
+  const hongKong = page.getByRole('button', { name: '选择香港邮票', exact: true });
   await hongKong.focus();
   await page.keyboard.press('Enter');
   await expect(hongKong).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
   await expect(page.locator('.spread-photo-caption')).toContainText('香港九龙公园');
   await expect(page.locator('.spread-photo-year')).toHaveText('拍摄年 · 2009');
-  const singapore = page.getByRole('button', { name: '选择新加坡案例', exact: true });
+  await page.getByRole('tab', { name: '世界', exact: true }).click();
+  const singapore = page.getByRole('button', { name: '选择新加坡邮票', exact: true });
   await singapore.focus();
   await page.keyboard.press('Space');
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
-  await page.getByRole('button', { name: '选择旧金山案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择旧金山邮票', exact: true }).click();
   await expect(page.locator('.spread-photo-caption')).toContainText('美国旧金山唐人街');
 });
 
 test('同地点照片切换保留原图注、作者、CC许可与来源', async ({ page }) => {
   await openSpread(page);
-  await page.getByRole('button', { name: '选择新加坡案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
   await expect(page.locator('.spread-photo')).toHaveAttribute('alt', /安祥路/);
   await expect(page.locator('.spread-photo-credit a').first()).toHaveText('Red Eyes Black Dragon 92');
   await page.getByRole('button', { name: '下一幅照片', exact: true }).click();
@@ -55,10 +57,12 @@ test('同地点照片切换保留原图注、作者、CC许可与来源', async 
 test('图片失败仍显示说明与原始许可，可切换到下一幅正常照片', async ({ page }) => {
   await page.route(`**/${assetPaths.cultureFoshan}`, route => route.abort());
   await openSpread(page);
+  await page.getByRole('tab', { name: '广东', exact: true }).click();
+  await page.getByRole('button', { name: '选择佛山邮票', exact: true }).click();
   await expect(page.getByText('实景照片暂未载入')).toBeVisible();
   await expect(page.locator('.spread-photo-caption')).toContainText('广东佛山');
   await expect(page.locator('.spread-photo-credit')).toContainText('David Chen');
-  await page.getByRole('button', { name: '下一幅照片', exact: true }).click();
+  await page.getByRole('button', { name: '选择广州邮票', exact: true }).click();
   await expect(page.locator('.spread-photo')).toHaveAttribute('alt', /广州青砖/);
   await expect.poll(() => page.locator('.spread-photo').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
   await expect(page.getByText('实景照片暂未载入')).toHaveCount(0);
@@ -79,16 +83,17 @@ test('三个电脑窗口地图与图文同屏、无横向溢出，设置推开�
     await expect(page.getByRole('button', { name: '返回戏台', exact: true })).toBeInViewport();
   }
   await page.setViewportSize({ width: 1366, height: 768 });
-  await page.getByRole('button', { name: '选择埃德蒙顿案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择旧金山邮票', exact: true }).click();
   await page.locator('.site-navigation [data-action="settings"]').click();
   await expect(page.getByRole('region', { name: '开发者参数设置' })).toBeVisible();
   await expect.poll(() => page.locator('#spreadStage').evaluate(stage => stage.scrollWidth - stage.clientWidth)).toBeLessThanOrEqual(1);
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('埃德蒙顿');
-  await expect(page.locator('.spread-photo-credit')).toContainText('Kurt Bauschardt');
+  await expect(page.locator('#spreadPlaceTitle')).toHaveText('旧金山');
+  await expect(page.locator('.spread-photo-credit')).toContainText('Mattsjc');
   await expect(page.locator('.spread-photo-credit')).toBeInViewport();
   // The shared settings guard intentionally closes the panel on outside click.
   await page.locator('.settings-outside-guard').click({ position: { x: 20, y: 140 } });
   await expect(page.getByRole('region', { name: '开发者参数设置' })).toHaveCount(0);
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
+  await page.getByRole('tab', { name: '中国', exact: true }).click();
+  await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
 });

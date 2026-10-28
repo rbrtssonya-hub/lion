@@ -61,7 +61,7 @@ test('广东直达世界沿原视频连续运行并经过中国停顿，最后�
   await expect(map(page)).toHaveAttribute('data-map-motion', 'idle', { timeout: 12_000 });
   expect(await playbackTime(forward)).toBeGreaterThanOrEqual(worldTime - 0.15);
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /world\.png/);
-  await page.getByRole('button', { name: '选择新加坡案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
 });
 
@@ -108,8 +108,8 @@ test('减少动态偏好直接到目标静帧且案例仍可操作', async ({ pa
   await expect(map(page)).toHaveAttribute('data-map-motion', 'idle');
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /world\.png/);
   await expect(video(page, 'forward')).toBeHidden();
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
-  await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
+  await page.getByRole('button', { name: '选择新加坡邮票', exact: true }).click();
+  await expect(page.locator('#spreadPlaceTitle')).toHaveText('新加坡');
 });
 
 test('动画文件不可用时回退目标静帧并保留案例与后续切换', async ({ page }) => {
@@ -118,7 +118,7 @@ test('动画文件不可用时回退目标静帧并保留案例与后续切换',
   await tab(page, '中国').click();
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed', { timeout: 15_000 });
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /china\.png/);
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
   await tab(page, '世界').click();
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed', { timeout: 15_000 });
@@ -133,7 +133,7 @@ test('播放中发生媒体错误后停止镜头并恢复目标案例操作', as
   await expect(map(page)).toHaveAttribute('data-map-motion', 'failed');
   await expect.poll(() => forward.evaluate(element => element.paused)).toBe(true);
   await expect(page.locator('.spread-map-render')).toHaveAttribute('src', /china\.png/);
-  await page.getByRole('button', { name: '选择香港案例', exact: true }).click();
+  await page.getByRole('button', { name: '选择香港邮票', exact: true }).click();
   await expect(page.locator('#spreadPlaceTitle')).toHaveText('香港');
 });
 
