@@ -45,5 +45,19 @@
     "mobile",
     "other browsers",
     "new entrance live speech synthesis/audio listening"
-  ]
+  ],
+  "releaseVerification": {
+    "revision": "5034916f9a77b5911b26ec6278670c4213366a04",
+    "workspace": "F:/数媒竞赛/codex-worktrees/lion-dance-release-2026-10-29",
+    "corePassed": 153,
+    "coreFailed": 0,
+    "buildModules": 993,
+    "browserPassed": 10,
+    "browserFailed": 0,
+    "browserDuration": "1.3m",
+    "memoryPages": 175,
+    "memoryErrors": 0,
+    "historicalWarnings": 8,
+    "githubParityConfirmed": true
+  }
 }
