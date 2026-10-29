@@ -53,7 +53,7 @@ export default function LionDetailModal({ part, breakdown, onClose }) {
     >
       <figure className="lion-detail-visual">
         <img src={breakdown.image} alt={breakdown.imageAlt} draggable="false" />
-        <figcaption>ImageGen 艺术示意 · 依据模型视图转译，不代表模型拆件或实测图</figcaption>
+        <figcaption>用户提供的部位海报 · 图示不代表模型拆件或实测图</figcaption>
       </figure>
       <div className="lion-detail-reading">
         <button ref={closeRef} className="lion-detail-close" type="button" aria-label="关闭文化讲解" onClick={onClose}>

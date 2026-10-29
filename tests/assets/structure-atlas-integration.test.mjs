@@ -33,7 +33,7 @@ test('观形的六套清晰图幅、入口图和文化信息图均独立登记�
     png(navigation);
   }
   assert.equal(fullHashes.size, 24, 'Each part and screen ratio retains its own authored image');
-  const breakdowns = [...configured].filter(path => /^assets\/structure-atlas\/images\/lion-info\/.*\.png$/.test(path));
+  const breakdowns = [...configured].filter(path => /^assets\/structure-atlas\/images\/user-posters\/.*\.png$/.test(path));
   assert.equal(breakdowns.length, 6);
   const hashes = new Set(breakdowns.map(path => png(path).hash));
   assert.equal(hashes.size, 6, 'Every cultural plate uses its own artwork');

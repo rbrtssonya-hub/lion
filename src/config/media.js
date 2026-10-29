@@ -16,7 +16,7 @@ export const structureAtlasMedia = {
     trim: { "reference": media.structureAtlasTrimReference, "16x10": media.structureAtlasTrim16X10, "16x9": media.structureAtlasTrim16X9, "ultrawide": media.structureAtlasTrimUltrawide },
     mouth: { "reference": media.structureAtlasMouthReference, "16x10": media.structureAtlasMouth16X10, "16x9": media.structureAtlasMouth16X9, "ultrawide": media.structureAtlasMouthUltrawide },
   },
-  navigation: { brows: media.structureAtlasNavBrows, crown: media.structureAtlasNavCrown, beard: media.structureAtlasNavBeard, body: media.structureAtlasNavBody, trim: media.structureAtlasNavTrim, mouth: media.structureAtlasNavMouth },
+  navigation: { overall: media.structureAtlasNavOverall, brows: media.structureAtlasNavBrows, crown: media.structureAtlasNavCrown, beard: media.structureAtlasNavBeard, body: media.structureAtlasNavBody, trim: media.structureAtlasNavTrim, mouth: media.structureAtlasNavMouth },
   breakdowns: { brows: media.structureAtlasBreakdownBrows, crown: media.structureAtlasBreakdownCrown, beard: media.structureAtlasBreakdownBeard, body: media.structureAtlasBreakdownBody, trim: media.structureAtlasBreakdownTrim, mouth: media.structureAtlasBreakdownMouth },
   font: media.structureAtlasFont,
 };

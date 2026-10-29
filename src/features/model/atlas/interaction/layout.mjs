@@ -26,11 +26,27 @@ export function frameLayout(width, height, artworkAspect = FULLSCREEN_REFERENCE_
   const artworkHeight = artworkWidth / artworkAspect;
   const frameHeight = artworkHeight;
   const frameWidth = frameHeight * 1.5;
-  const studyWidth = Math.min(width * .62, (height - 148) * width / height);
-  const studyHeight = studyWidth * height / width;
+  const columnWidth = width * .64;
+  const compact = height <= 650;
+  const navHeight = compact ? 78 : 104;
+  const navBottom = compact ? 8 : 18;
+  const mat = Math.max(10, Math.min(18, width * .008));
+  const captionHeight = compact ? 26 : 32;
+  const frameTop = Math.max(12, Math.min(20, height * .02));
+  const frameLeft = padding * 1.65;
+  const maxFrameWidth = columnWidth - frameLeft - padding * .65;
+  const maxPictureHeight = height - frameTop - navHeight - navBottom - 28 - mat * 2 - captionHeight;
+  const studyScale = Math.min((maxFrameWidth - mat * 2) / artworkWidth, Math.max(1, maxPictureHeight) / artworkHeight);
+  const studyWidth = width * studyScale;
+  const studyHeight = height * studyScale;
+  const pictureWidth = artworkWidth * studyScale;
+  const pictureHeight = artworkHeight * studyScale;
+  const plateWidth = pictureWidth + mat * 2;
+  const plateHeight = pictureHeight + mat * 2 + captionHeight;
+  const plateX = frameLeft + (maxFrameWidth - plateWidth) / 2;
   // The existing companion and sound button occupy the lower-left corner.
-  const companionReserve = Math.min(156, studyWidth * .25);
-  const navWidth = Math.min(900, studyWidth - companionReserve);
+  const companionReserve = Math.min(172, columnWidth * .23);
+  const navWidth = Math.min(1008, columnWidth - companionReserve - padding * .5);
   return {
     viewportWidth: width, viewportHeight: height,
     artworkWidth, artworkHeight,
@@ -39,14 +55,14 @@ export function frameLayout(width, height, artworkAspect = FULLSCREEN_REFERENCE_
     width: frameWidth, height: frameHeight,
     homeX: (width - frameWidth) / 2,
     homeY: (height - frameHeight) / 2,
-    studyX: 0, studyY: 0, studyWidth, studyHeight,
-    studyScale: studyWidth / width,
-    textX: studyWidth + padding,
-    textY: 72,
-    textWidth: width - studyWidth - padding * 2,
-    textHeight: height - 96,
+    studyX: plateX + mat, studyY: frameTop + mat, studyWidth, studyHeight, studyScale,
+    plate: { x: plateX, y: frameTop, width: plateWidth, height: plateHeight, mat, captionHeight },
+    textX: columnWidth + padding * .35,
+    textY: frameTop,
+    textWidth: width - columnWidth - padding * 1.35,
+    textHeight: height - frameTop * 2,
     navWidth, homeNavX: (width - navWidth) / 2,
-    studyNavX: companionReserve + (studyWidth - companionReserve - navWidth) / 2,
+    studyNavX: companionReserve + (columnWidth - companionReserve - navWidth) / 2,
     padding,
   };
 }

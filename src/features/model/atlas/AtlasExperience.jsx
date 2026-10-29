@@ -1,11 +1,12 @@
 import { structureAtlasMedia } from '../../../config/media.js';
 import './atlas-experience.css';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { ArrowLeft, RotateCcw } from './AtlasIcons.jsx';
+import { RotateCcw } from './AtlasIcons.jsx';
 import gsap from 'gsap';
 import ModelCanvas from './ModelCanvas.jsx';
 import LionBreakdownStage from './LionBreakdownStage.jsx';
 import LionDetailModal from './LionDetailModal.jsx';
+import AtlasStudyFrame from './AtlasStudyFrame.jsx';
 import { PARTS } from './content/parts.js';
 import { CHAPTERS } from './content/chapters.js';
 import { LION_BREAKDOWNS } from './content/lionBreakdowns.js';
@@ -94,10 +95,10 @@ export default function AtlasExperience({ active = true, onReady: onSceneReady, 
   const placeFrame = useCallback(() => {
     const l = layoutRef.current, p = presentation.current.progress;
     const mix = (a, b) => a + (b - a) * p;
-    gsap.set(frame.current, { x: l.studyX, y: l.studyY, scale: mix(1, l.studyScale) });
+    gsap.set(frame.current, { x: mix(0, l.studyX), y: mix(0, l.studyY), scale: mix(1, l.studyScale) });
     gsap.set(controls.current, { x: mix(l.homeNavX, l.studyNavX) });
     // Keep the source-aligned image centered for handoff, then dock its own
-    // complete bounds to the upper left.
+    // complete bounds inside the study frame after the registered dissolve.
     if (image.current) gsap.set(image.current, { x: -l.artworkX * p, y: -l.artworkY * p });
   }, []);
 
@@ -327,7 +328,6 @@ export default function AtlasExperience({ active = true, onReady: onSceneReady, 
 
   return <div ref={viewportRef} className="lion-experience" data-phase={phase} data-ready={ready} data-selected={selected || ''} aria-busy={!['overview', 'study'].includes(phase)}>
     <style>{`@font-face { font-family: LionAtlasSerif; src: url("${new URL(structureAtlasMedia.font, document.baseURI).href}") format('woff2'); font-display: swap; font-weight: 400; }`}</style>
-    {selected && <button className="return-home" onClick={returnHome}><ArrowLeft size={14}/>返回整体</button>}
     <div className="visual-frame" ref={frame} style={{ width: layout.viewportWidth, height: layout.viewportHeight }}>
       <div className="model-layer" ref={modelLayer} aria-hidden={phase === 'study' || phase === 'arranging'}><ModelCanvas worldRef={world} retryRef={retryModel} onLoading={onModelLoading} onSelect={select} onReady={onReady} onProgress={setProgress} onError={onModelError} getReferenceAspect={getReferenceAspect} active={active} lightingSettings={lightingSettings}/></div>
       <div className="artwork-layer" ref={imageLayer} aria-hidden={phase === 'overview' || phase === 'travel'}>
@@ -337,7 +337,7 @@ export default function AtlasExperience({ active = true, onReady: onSceneReady, 
         </>}
       </div>
     </div>
-    {phase === 'study' && <div className="artwork-credit" style={{ left: 18, top: artworkHeight * layout.studyScale + 15, width: artworkWidth * layout.studyScale - 36 }}><span>{part.number} / {part.name} · {chapter.caption}</span><small>AI 造型转译</small></div>}
+    {phase === 'study' && part && <AtlasStudyFrame plate={layout.plate} part={part} chapter={chapter}/>}
     {phase === 'study' && part && <LionBreakdownStage
       part={part}
       breakdown={LION_BREAKDOWNS[part.id]}
@@ -347,7 +347,10 @@ export default function AtlasExperience({ active = true, onReady: onSceneReady, 
     {detailOpen && part && <LionDetailModal part={part} breakdown={LION_BREAKDOWNS[part.id]} onClose={closeDetails}/>}
     {!ready && <div className="initial-loader" role="status"><span>{error ? '载入未完成' : '载入醒狮'}</span><i><b style={{ width: `${Math.max(3, progress)}%` }}/></i><small>{error || `${Math.round(progress)}%`}</small>{error && <button onClick={() => retryModel.current?.()}>重新载入</button>}</div>}
     {ready && error && <div className="experience-error" role="alert">{error}<button onClick={() => setError(null)}>关闭</button></div>}
-    <nav className="chapter-controls" ref={controls} style={{ width: layout.navWidth }} aria-label="六个造型研究控件">
+    <nav className="chapter-controls" ref={controls} style={{ width: layout.navWidth }} aria-label="整体与六个造型研究控件">
+      <button className={`chapter-control ${!selected ? 'is-selected' : ''}`} data-part="overall" aria-pressed={!selected} aria-label="整体" disabled={!ready} onClick={() => phaseRef.current === 'overview' ? world.current?.reset() : returnHome()}>
+        <span className="control-number">00</span><img className="control-art" src={structureAtlasMedia.navigation.overall} alt="" width="80" height="80" draggable="false"/><span className="control-name">整体</span>
+      </button>
       {PARTS.map(item => <button className={`chapter-control ${selected === item.id ? 'is-selected' : ''}`} key={item.id} data-part={item.id} aria-pressed={selected === item.id} aria-label={`${item.number} ${item.name}`} disabled={!ready} onClick={() => select(item.id)}><span className="control-number">{item.number}</span><img className="control-art" src={structureAtlasMedia.navigation[item.id]} alt="" width="80" height="80" draggable="false"/><span className="control-name">{item.name}</span></button>)}
     </nav>
     {ready && phase === 'overview' && <button className="reset-camera" title="还原视角" aria-label="还原视角" onClick={() => world.current?.reset()}><RotateCcw size={14}/></button>}

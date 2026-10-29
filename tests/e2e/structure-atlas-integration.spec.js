@@ -76,25 +76,35 @@ async function study(page, id) {
 async function expectDockedArtwork(page) {
   await expect.poll(() => atlas(page).evaluate(root => {
     const image = root.querySelector('.chapter-artwork').getBoundingClientRect();
-    const bar = document.querySelector('.model-journey-bar').getBoundingClientRect();
-    return Math.abs(image.top - bar.bottom);
-  }), { message: '等待图版布局与副导航同步' }).toBeLessThanOrEqual(1);
+    const caption = root.querySelector('.atlas-frame-caption').getBoundingClientRect();
+    return Math.abs(image.bottom - caption.top);
+  }), { message: '等待主图下沿与画框底栏衔接' }).toBeLessThanOrEqual(1.5);
   const bounds = await atlas(page).evaluate(root => {
     const picture = root.querySelector('.chapter-artwork');
     const image = picture.getBoundingClientRect();
     const bar = document.querySelector('.model-journey-bar').getBoundingClientRect();
     const frame = root.getBoundingClientRect();
+    const plate = root.querySelector('.atlas-study-frame').getBoundingClientRect();
+    const controls = root.querySelector('.chapter-controls').getBoundingClientRect();
     const info = root.querySelector('.lion-breakdown-stage').getBoundingClientRect();
-    const infoImage = root.querySelector('.lion-breakdown-image-button img').getBoundingClientRect();
+    const poster = root.querySelector('.lion-breakdown-image-button img');
+    const infoImage = poster.getBoundingClientRect();
+    const posterRatio = poster.naturalWidth / poster.naturalHeight;
+    const posterHeight = Math.min(infoImage.height, infoImage.width / posterRatio);
+    const posterWidth = posterHeight * posterRatio;
     return {
       top: image.top, left: image.left, right: image.right, bottom: image.bottom,
       barBottom: bar.bottom, frameLeft: frame.left, frameRight: frame.right,
+      plateLeft: plate.left, plateRight: plate.right, plateTop: plate.top, plateBottom: plate.bottom,
+      navTop: controls.top, navRight: controls.right,
       ratio: image.width / image.height, sourceRatio: picture.naturalWidth / picture.naturalHeight,
       decoded: picture.complete && picture.naturalWidth > 0,
       objectFit: getComputedStyle(picture).objectFit,
       infoLeft: info.left, infoRight: info.right, infoBottom: info.bottom,
       infoTop: info.top, infoImageTop: infoImage.top, infoImageBottom: infoImage.bottom,
       infoImageLeft: infoImage.left, infoImageRight: infoImage.right,
+      posterFit: getComputedStyle(poster).objectFit,
+      posterFill: Math.max(posterHeight / infoImage.height, posterWidth / infoImage.width),
       blockedControls: [...root.querySelectorAll('.chapter-control')].filter(button => {
         const box = button.getBoundingClientRect();
         const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
@@ -105,17 +115,25 @@ async function expectDockedArtwork(page) {
   });
   expect(bounds.decoded).toBe(true);
   expect(bounds.objectFit).toBe('contain');
-  expect(Math.abs(bounds.top - bounds.barBottom), '主图完整上沿紧贴副导航栏').toBeLessThanOrEqual(1);
-  expect(Math.abs(bounds.left - bounds.frameLeft), '研究态主图停在可用内容区左边缘').toBeLessThanOrEqual(1);
+  expect(bounds.plateTop, '画框与副导航保留间距').toBeGreaterThanOrEqual(bounds.barBottom + 10);
+  expect(bounds.plateLeft).toBeGreaterThanOrEqual(bounds.frameLeft + 20);
+  expect(bounds.left).toBeGreaterThan(bounds.plateLeft);
+  expect(bounds.top).toBeGreaterThan(bounds.plateTop);
+  expect(bounds.right).toBeLessThan(bounds.plateRight);
+  expect(bounds.bottom).toBeLessThan(bounds.plateBottom);
+  expect(bounds.plateBottom, '画框与底部导航互不遮挡').toBeLessThanOrEqual(bounds.navTop - 12);
   expect(Math.abs(bounds.ratio - bounds.sourceRatio), '完整等比图片不裁切或拉伸').toBeLessThan(.002);
-  expect(bounds.right).toBeLessThanOrEqual(bounds.infoLeft + 1);
+  expect(bounds.plateRight).toBeLessThanOrEqual(bounds.infoLeft - 12);
+  expect(bounds.navRight).toBeLessThanOrEqual(bounds.infoLeft + 1);
   expect(bounds.infoRight).toBeLessThanOrEqual(bounds.frameRight + 1);
   expect(bounds.infoBottom).toBeLessThanOrEqual(bounds.viewportHeight + 1);
   expect(bounds.infoImageBottom, '右图完整收进图版区域，不能由固有尺寸撑出窗口').toBeLessThanOrEqual(bounds.infoBottom + 1);
   expect(bounds.infoImageTop).toBeGreaterThanOrEqual(bounds.infoTop - 1);
   expect(bounds.infoImageLeft).toBeGreaterThanOrEqual(bounds.infoLeft - 1);
   expect(bounds.infoImageRight).toBeLessThanOrEqual(bounds.infoRight + 1);
-  expect(bounds.blockedControls, '六个入口均可真实点击，避让小醒').toEqual([]);
+  expect(bounds.posterFit, '海报按方案A完整显示').toBe('contain');
+  expect(bounds.posterFill, '海报在当前区域中等比放大至可用最大尺寸').toBeGreaterThan(.99);
+  expect(bounds.blockedControls, '整体与六个部位入口均可点击，避让小醒').toEqual([]);
   expect(bounds.top).toBeGreaterThan(40);
 }
 
@@ -161,6 +179,61 @@ function pixelDifference(before, after) {
   return { meanAbsolute: delta / before.pixels.length, changedFraction: changed / (before.pixels.length / 3) };
 }
 
+test('整体在部位导航首位，选图后显示祥云画框，点击整体返回模型', async ({ page }) => {
+  const { errors, failedAssets } = await openAtlas(page);
+  const overall = atlas(page).getByRole('button', { name: '整体', exact: true });
+  await expect(overall).toBeVisible();
+  await expect(overall).toHaveAttribute('aria-pressed', 'true');
+  expect(await atlas(page).locator('.chapter-control').evaluateAll(nodes => nodes.map(node => node.dataset.part)))
+    .toEqual(['overall', ...parts.map(([id]) => id)]);
+  await expect(atlas(page).locator('.return-home')).toHaveCount(0);
+  await expect(atlas(page).locator('.atlas-study-frame')).toHaveCount(0);
+  await study(page, 'crown');
+  await expect(overall).toHaveAttribute('aria-pressed', 'false');
+  await expect(atlas(page).locator('.atlas-study-frame')).toBeVisible();
+  await expect(atlas(page).locator('.atlas-frame-corner')).toHaveCount(4);
+  await expect(atlas(page).locator('.atlas-frame-caption')).toContainText('02 · 额冠');
+  await expectDockedArtwork(page);
+  await overall.click();
+  await expect(atlas(page)).toHaveAttribute('data-phase', 'overview');
+  await expect(overall).toHaveAttribute('aria-pressed', 'true');
+  await expect(atlas(page).locator('.atlas-study-frame')).toHaveCount(0);
+  expect(errors).toEqual([]);
+  expect(failedAssets).toEqual([]);
+});
+
+test('六部位各屏幕比例的主图均含真正透明区域', async ({ page }) => {
+  await page.goto('/');
+  const keys = ['Brows', 'Crown', 'Beard', 'Body', 'Trim', 'Mouth'];
+  const variants = ['Reference', '16X10', '16X9', 'Ultrawide'];
+  const paths = keys.flatMap(key => variants.map(variant => assetPaths[`structureAtlas${key}${variant}`]));
+  const results = await page.evaluate(async paths => {
+    const results = [];
+    for (const path of paths) {
+      const image = new Image();
+      image.src = path;
+      await image.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      context.drawImage(image, 0, 0);
+      const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      let clear = 0, visible = 0;
+      for (let i = 3; i < data.length; i += 4) {
+        if (data[i] === 0) clear++;
+        if (data[i] === 255) visible++;
+      }
+      results.push({ path, clear, visible });
+    }
+    return results;
+  }, paths);
+  for (const { path, clear, visible } of results) {
+    expect(clear, `${path} 应包含透明背景`).toBeGreaterThan(0);
+    expect(visible, `${path} 应保留完整主体`).toBeGreaterThan(0);
+  }
+});
+
 test('观形融合六部位、完整主图、独立信息图与文化浮窗，保留当前模型和图片背景', async ({ page }) => {
   const { errors, failedAssets } = await openAtlas(page);
   await expect(model(page)).toHaveAttribute('data-full-hair-drawn-strands', '2289801');
@@ -174,10 +247,13 @@ test('观形融合六部位、完整主图、独立信息图与文化浮窗，�
   for (const [id, name] of parts) {
     await study(page, id);
     await expectDockedArtwork(page);
+    expect(await atlas(page).locator('.artwork-layer').evaluate(node => getComputedStyle(node).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
     await expectDrawingPaused(model(page));
     await capture(page, `${id}-study-1920`);
     const button = atlas(page).getByRole('button', { name: `打开${name}文化讲解`, exact: true });
-    images.add(await button.locator('img').getAttribute('src'));
+    const poster = await button.locator('img').getAttribute('src');
+    expect(poster, `${name}的海报对应当前部位`).toContain(`assets/structure-atlas/images/user-posters/${id}.png`);
+    images.add(poster);
     await button.click();
     const dialog = page.getByRole('dialog', { name, exact: true });
     await expect(dialog).toBeVisible();
@@ -192,7 +268,7 @@ test('观形融合六部位、完整主图、独立信息图与文化浮窗，�
     await expect(atlas(page)).toHaveAttribute('data-selected', id);
   }
   expect(images.size, '每个部位有自己的信息可视化图版').toBe(6);
-  await atlas(page).getByRole('button', { name: '返回整体', exact: true }).click();
+  await atlas(page).getByRole('button', { name: '整体', exact: true }).click();
   await expect(atlas(page)).toHaveAttribute('data-phase', 'overview');
   await expect(atlas(page)).toHaveAttribute('data-selected', '');
   await expect(model(page)).toHaveAttribute('data-full-hair-drawn-groups', '33');
@@ -201,7 +277,7 @@ test('观形融合六部位、完整主图、独立信息图与文化浮窗，�
 });
 
 for (const size of [{ width: 1366, height: 768 }, { width: 2560, height: 1080 }]) {
-  test(`电脑${size.width}×${size.height}与窗口缩放仍完整贴副导航，并保留形制和工艺`, async ({ page }) => {
+  test(`电脑${size.width}×${size.height}与窗口缩放仍完整收进画框，并保留形制和工艺`, async ({ page }) => {
     const { errors, failedAssets } = await openAtlas(page, size);
     await study(page, 'trim');
     await expect(atlas(page).locator('.chapter-artwork')).toHaveAttribute('src', /\/fullscreen\/ultrawide\/trim\.png$/);
@@ -253,7 +329,7 @@ test('设置推开时图版完整对齐，HDRI强度与曝光实时改变当前�
   await settingsPanel(page).getByRole('button', { name: '取消', exact: true }).click();
   await expect(settingsPanel(page)).toHaveCount(0);
   await expectDockedArtwork(page);
-  await atlas(page).getByRole('button', { name: '返回整体', exact: true }).click();
+  await atlas(page).getByRole('button', { name: '整体', exact: true }).click();
   await expect(atlas(page)).toHaveAttribute('data-phase', 'overview');
   await page.locator('.site-navigation [data-action="settings"]').click();
   await selectSettingsPage(page, 'HDRI');
@@ -295,7 +371,7 @@ test('真实运镜可中断返回，隐藏章节不接收部位快捷键或继�
   await expect(atlas(page)).toHaveAttribute('data-phase', 'travel');
   await control(page, 'mouth').click();
   await expect(atlas(page)).toHaveAttribute('data-selected', 'mouth');
-  await atlas(page).getByRole('button', { name: '返回整体', exact: true }).click();
+  await atlas(page).getByRole('button', { name: '整体', exact: true }).click();
   await expect(atlas(page)).toHaveAttribute('data-phase', 'overview', { timeout: 30_000 });
   await expect(atlas(page)).toHaveAttribute('data-selected', '');
   await expect(model(page)).toHaveAttribute('data-focus-state', 'idle');

@@ -10,20 +10,39 @@
 .lion-experience button:disabled { cursor: wait; opacity: .35; }
 .lion-experience p, .lion-experience h1, .lion-experience h2, .lion-experience h3, .lion-experience figure { margin: 0; }
 .lion-experience svg { vertical-align: middle; }
-.lion-experience .return-home { position: absolute; right: 3.5%; top: 20px; z-index: 30; display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .1em; color: var(--muted); padding: 10px 0; }
-.lion-experience .return-home:hover { color: var(--accent); }
 .lion-experience .visual-frame { position: absolute; left: 0; top: 0; will-change: transform; z-index: 2; transform-origin: 0 0; }
 .lion-experience .model-layer, .lion-experience .artwork-layer, .lion-experience .canvas-host { position: absolute; inset: 0; width: 100%; height: 100%; }
 .lion-experience .model-layer { overflow: hidden; z-index: 3; }
 .lion-experience .canvas-host { touch-action: none; }
 .lion-experience .canvas-host canvas { display: block; width: 100%; height: 100%; cursor: grab; }
 .lion-experience .canvas-host canvas:active { cursor: grabbing; }
-.lion-experience .artwork-layer { z-index: 2; opacity: 0; visibility: hidden; pointer-events: none; overflow: hidden; background: var(--paper); }
+.lion-experience .artwork-layer { z-index: 2; opacity: 0; visibility: hidden; pointer-events: none; overflow: hidden; background: transparent; }
 .lion-experience .chapter-artwork { position: absolute; display: block; object-fit: contain; max-width: none; user-select: none; -webkit-user-drag: none; }
 .lion-experience .variant-outgoing { position: absolute; object-fit: contain; max-width: none; pointer-events: none; animation: atlas-variant-out .35s ease-in-out forwards; }
-.lion-experience .artwork-credit { position: absolute; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font: 10px/1.5 var(--serif); letter-spacing: .06em; }
-.lion-experience .artwork-credit small { font: 9px/1.5 var(--sans); letter-spacing: .08em; }
-.lion-experience .chapter-controls { position: absolute; z-index: 25; bottom: 18px; left: 0; display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); height: 104px; gap: 0; will-change: transform; }
+.lion-experience .atlas-study-frame {
+  position: absolute; z-index: 4; pointer-events: none; box-sizing: border-box;
+  border: 1px solid #ad4b36; box-shadow: 0 0 0 3px #fff8e89c, 0 4px 18px #7b4a2510;
+  background:
+    linear-gradient(#f8efdc,#f8efdc) top / 100% var(--atlas-mat) no-repeat,
+    linear-gradient(#f8efdc,#f8efdc) left / var(--atlas-mat) 100% no-repeat,
+    linear-gradient(#f8efdc,#f8efdc) right / var(--atlas-mat) 100% no-repeat,
+    linear-gradient(#f8efdc,#f8efdc) bottom / 100% calc(var(--atlas-mat) + var(--atlas-caption-height)) no-repeat;
+  animation: atlas-frame-in .25s ease both;
+}
+.lion-experience .atlas-frame-inner-line { position: absolute; inset: 5px; border: 1px solid #c7a468; }
+.lion-experience .atlas-frame-corner { position: absolute; width: clamp(42px,3.4vw,64px); height: clamp(42px,3.4vw,64px); overflow: visible; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+.lion-experience .atlas-frame-corner.is-top-left { left: 2px; top: 2px; }
+.lion-experience .atlas-frame-corner.is-top-right { right: 2px; top: 2px; transform: scaleX(-1); }
+.lion-experience .atlas-frame-corner.is-bottom-left { left: 2px; bottom: 2px; transform: scaleY(-1); }
+.lion-experience .atlas-frame-corner.is-bottom-right { right: 2px; bottom: 2px; transform: scale(-1); }
+.lion-experience .atlas-corner-key { stroke: #ad4b36; }
+.lion-experience .atlas-corner-cloud { fill: #f8efdc; stroke: #b18348; }
+.lion-experience .atlas-corner-scroll { stroke: #ad4b36; }
+.lion-experience .atlas-frame-caption { position: absolute; left: var(--atlas-mat); right: var(--atlas-mat); bottom: 6px; height: calc(var(--atlas-caption-height) + var(--atlas-mat) - 6px); display: flex; align-items: center; gap: 16px; padding: 0 48px; border-top: 1px solid #c7a468b3; color: #944530; font: 12px/1.5 var(--serif); letter-spacing: .055em; }
+.lion-experience .atlas-frame-caption > span:first-child { white-space: nowrap; }
+.lion-experience .atlas-caption-detail { margin-left: auto; color: #8b7760; font-size: 10px; }
+.lion-experience .atlas-frame-caption small { margin-left: auto; color: #8b7760; font: 9px/1.5 var(--sans); white-space: nowrap; }
+.lion-experience .chapter-controls { position: absolute; z-index: 25; bottom: 18px; left: 0; display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); height: 104px; gap: 0; will-change: transform; }
 .lion-experience .chapter-control { position: relative; display: grid; grid-template-columns: 18px 1fr; grid-template-rows: 76px 24px; align-items: center; padding: 0 15px; border-left: 1px solid #cfc7b86b; color: #826451; text-align: left; transition: color .25s,opacity .25s; }
 .lion-experience .chapter-control:first-child { border-left: 0; }
 .lion-experience .chapter-control:after { position: absolute; content: ''; left: 15px; right: 15px; bottom: 0; height: 1px; background: var(--accent); transform: scaleX(0); transition: transform .4s; transform-origin: left; }
@@ -33,6 +52,7 @@
 .lion-experience .control-art { width: 76px; height: 72px; object-fit: contain; display: block; justify-self: center; max-width: 100%; mix-blend-mode: multiply; transition: transform .4s; user-select: none; -webkit-user-drag: none; }
 .lion-experience .chapter-control:hover .control-art, .lion-experience .chapter-control.is-selected .control-art { transform: translateY(-3px); }
 .lion-experience .control-name { font: 17px var(--serif); grid-column: 2; letter-spacing: .12em; justify-self: center; white-space: nowrap; }
+.lion-experience .chapter-control[data-part="overall"] .control-name { padding: 1px 7px; background: #fbf5e8e6; border-radius: 2px; line-height: 20px; }
 .lion-experience .reset-camera { position: absolute; bottom: 49px; right: 3.5%; z-index: 25; color: var(--muted); padding: 10px; }
 .lion-experience .reset-camera:hover { color: var(--accent); }
 .lion-experience .flight-status { position: absolute; bottom: 130px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; font: 10px var(--mono); letter-spacing: .1em; color: var(--accent); }
@@ -51,10 +71,12 @@
 .lion-experience .lion-breakdown-stage { background: transparent; }
 .lion-experience .lion-breakdown-image-button { grid-template-rows: minmax(0,1fr); }
 .lion-experience .lion-breakdown-image-button img { min-width: 0; min-height: 0; }
+.lion-experience .lion-breakdown-stage { padding: 8px 0; }
 .lion-experience .lion-detail-backdrop { position: absolute; padding: 20px 3%; }
 .lion-experience .lion-detail-modal { width: min(1380px,94%); height: 94%; max-height: 94%; }
 @keyframes atlas-breathe { 50% { opacity: .3; } }
 @keyframes atlas-variant-out { to { opacity: 0; } }
+@keyframes atlas-frame-in { from { opacity: 0; } to { opacity: 1; } }
 @media (max-height:650px) {
   .lion-experience .chapter-controls { bottom: 8px; height: 78px; }
   .lion-experience .chapter-control { grid-template-rows: 52px 24px; padding-inline: 8px; }

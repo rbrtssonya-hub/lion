@@ -12,6 +12,8 @@ sources: []
 
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
+| 2026-10-29 | ui | completed | [观形祥云画框与整体入口](UI%E4%BF%AE%E6%94%B9/2026-10-29-%E8%A7%82%E5%BD%A2%E7%A5%A5%E4%BA%91%E7%94%BB%E6%A1%86%E4%B8%8E%E6%95%B4%E4%BD%93%E5%85%A5%E5%8F%A3.md) |
+| 2026-10-28 | ui | in_progress | [观形海报与透明主图](UI%E4%BF%AE%E6%94%B9/2026-10-28-%E8%A7%82%E5%BD%A2%E6%B5%B7%E6%8A%A5%E4%B8%8E%E9%80%8F%E6%98%8E%E4%B8%BB%E5%9B%BE.md) |
 | 2026-10-29 | feature | completed | [醒狮八态纵深接入主站](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-29-%E9%86%92%E7%8B%AE%E5%85%AB%E6%80%81%E7%BA%B5%E6%B7%B1%E7%89%88%E6%8E%A5%E5%85%A5%E4%B8%8E%E5%8F%AF%E8%B0%83%E5%B7%A1%E6%B8%B8.md) |
 | 2026-10-29 | feature | completed | [舞章对称景窗双入口](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-29-%E8%88%9E%E7%AB%A0%E5%AF%B9%E7%A7%B0%E6%99%AF%E7%AA%97%E5%8F%8C%E5%85%A5%E5%8F%A3.md) |
 | 2026-10-29 | ui | completed | [工艺字号与二级导航可读性](UI%E4%BF%AE%E6%94%B9/2026-10-29-%E5%B7%A5%E8%89%BA%E5%AD%97%E5%8F%B7%E4%B8%8E%E4%BA%8C%E7%BA%A7%E5%AF%BC%E8%88%AA%E5%8F%AF%E8%AF%BB%E6%80%A7.md) |
