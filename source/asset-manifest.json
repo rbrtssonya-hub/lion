@@ -13239,6 +13239,24 @@
       "path": "source/reviews/dance-entrance/2026-10-29/entrance-settings.png",
       "bytes": 1202796,
       "sha256": "c7b9ef380c9545b89d18e8985ea3648d493b19e0eccf3c3c16a1be3ed01435b1"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1366x768.png",
+      "bytes": 1089927,
+      "sha256": "8543f325580f14f7c0095a43444e6d4afeb87acb02c98319fb0f0842b1043e11"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1440x900.png",
+      "bytes": 1332382,
+      "sha256": "0bbc435bb9bf12a60b0aba04050a540a3716bb40d9a4b3a1de9d73c6da27b25e"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1920x1080.png",
+      "bytes": 2064857,
+      "sha256": "f4500309905e9b4d24cc2591dc856f8af7ae6013c870fb35a8bb266831bca885"
     }
   ]
 }

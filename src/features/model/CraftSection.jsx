@@ -63,14 +63,14 @@ export default function CraftSection({ active = true, settings = defaultCarousel
       <figcaption>
         <strong>{photo.caption}</strong>
         <span>工艺示意 · AI辅助绘制 · 等比展示</span>
+        <div className="model-craft-navigation" aria-label="工艺轮播控制">
+          <button type="button" aria-label="上一道" aria-controls={`craft-panel-${story.id}`} onClick={previous}><span aria-hidden="true">←</span> 上一道</button>
+          <span className="model-craft-counter" aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')} <i /> 04</span>
+          <button type="button" aria-label="下一道" aria-controls={`craft-panel-${story.id}`} onClick={next}>下一道 <span aria-hidden="true">→</span></button>
+          <button type="button" className="model-craft-playback" aria-label={autoplayEnabled ? '暂停轮播' : '播放轮播'}
+            onClick={() => setAutoplayEnabled(value => !value)}><span aria-hidden="true">{autoplayEnabled ? 'Ⅱ' : '▷'}</span>{autoplayEnabled ? '暂停轮播' : '播放轮播'}</button>
+        </div>
       </figcaption>
-      <div className="model-craft-navigation" aria-label="工艺轮播控制">
-        <button type="button" aria-label="上一道" aria-controls={`craft-panel-${story.id}`} onClick={previous}><span aria-hidden="true">←</span> 上一道</button>
-        <span className="model-craft-counter" aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')} <i /> 04</span>
-        <button type="button" aria-label="下一道" aria-controls={`craft-panel-${story.id}`} onClick={next}>下一道 <span aria-hidden="true">→</span></button>
-        <button type="button" className="model-craft-playback" aria-label={autoplayEnabled ? '暂停轮播' : '播放轮播'}
-          onClick={() => setAutoplayEnabled(value => !value)}><span aria-hidden="true">{autoplayEnabled ? 'Ⅱ' : '▷'}</span>{autoplayEnabled ? '暂停轮播' : '播放轮播'}</button>
-      </div>
     </figure>
     <div className="model-craft-reading" id={`craft-panel-${story.id}`}>
       <header>
