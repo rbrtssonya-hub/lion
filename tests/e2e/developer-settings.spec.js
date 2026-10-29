@@ -517,7 +517,8 @@ test('章节原毛笔标题继承导航字号设置，刷新与返回首页后�
   await page.setViewportSize({ width: 3440, height: 1440 });
   await loadPage(page);
   const labels = await page.locator('.site-nav-heading strong').elementHandles();
-  await page.locator('.site-nav-item[data-route="state"]').click();
+  await page.evaluate(() => { location.hash = '/state'; });
+  await expect(page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true })).toBeVisible();
   await expect(page.locator('.site-header')).toHaveAttribute('data-nav-animating', 'false');
   await openSettings(page);
   await editNumber(page, '导航标题字号', 28);
@@ -866,7 +867,8 @@ test('设置和尺寸调整保留首页视频及模型画布实例，切换章�
   await expect(page.locator('#toggleRotate')).toHaveAttribute('aria-pressed', 'false');
   await page.locator('.site-navigation [data-route="action"]').click();
   await expect(page.locator('#chapterTitle')).toHaveText('动作');
-  await page.locator('.site-navigation [data-route="state"]').click();
+  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
+  await expect(page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true })).toBeVisible();
   await expect(page.locator('#chapterTitle')).toHaveText('神态');
   await expect(panel(page)).toHaveCount(0);
   await openSettings(page);
@@ -1201,13 +1203,18 @@ test('参考资料在900/1920px桌面余宽与两层40/100%宽度极值均无溢
 test('神态底板六参数与简介解读字号独立保存，点击前后使用对应字号', async ({ page }) => {
   test.setTimeout(90_000);
   await page.setViewportSize({ width: 3440, height: 1440 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.addInitScript(({ key }) => {
     if (window.top !== window || localStorage.getItem(key)) return;
     localStorage.setItem(key, JSON.stringify({ headerTransparency: 34, cultureSourcesWidth: 82, navigationTypographyVersion: 2, navFontSize: 23 }));
   }, { key: settingsKey });
   await loadPage(page);
-  await page.locator('.site-navigation [data-route="state"]').click();
-  const copy = page.locator('#expressionStateCopy');
+  await page.evaluate(() => { location.hash = '/state'; });
+  const stateLink = page.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link', { name: '喜', exact: true });
+  await stateLink.click();
+  await expect(stateLink).toHaveAttribute('aria-current', 'location');
+  const copy = page.locator('#depth-joy .project-copy');
+  const description = copy.locator('.project-description');
   const defaults = {
     expressionOverlayWidth: 100, expressionOverlayHeight: 0, expressionOverlayTransparency: 10,
     expressionOverlayBlur: 0, expressionOverlayRadius: 10, expressionOverlayColor: '#f7f5f0',
@@ -1215,9 +1222,8 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   };
   await expectSaved(page, { ...defaults, headerTransparency: 34, cultureSourcesWidth: 82, navFontSize: 23 });
   await expect(copy).toHaveAttribute('data-surface', 'expressionOverlay');
-  await expect(copy).toHaveAttribute('data-view', 'overview');
-  expect(await copy.locator('.expression-description p').count()).toBeGreaterThan(0);
-  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '22px');
+  await expect(description).toBeVisible();
+  await expect(description).toHaveCSS('font-size', '22px');
   await openSettings(page);
   await expectPageWidth(page, 340);
   const initialWidth = await copy.evaluate(element => element.getBoundingClientRect().width);
@@ -1244,17 +1250,24 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
   await expect.poll(() => copy.evaluate(element => element.getBoundingClientRect().width)).toBeLessThan(initialWidth - 2);
   await editNumber(page, '神态简介字号', 28);
   await editNumber(page, '神态解读字号', 20);
-  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
+  await expect(description).toHaveCSS('font-size', '28px');
+  await expectSaved(page, defaults);
   await saveSettings(page, false);
-  await page.locator('#expressionLionTrigger').click();
-  await expect(copy).toHaveAttribute('data-view', 'details');
-  await expect(copy.locator('.expression-cues p')).toHaveCount(2);
-  for (const paragraph of await copy.locator('.expression-cues p').all()) await expect(paragraph).toHaveCSS('font-size', '20px');
+  await copy.locator('.project-open').click();
+  const reader = page.getByRole('dialog', { name: '喜 · 灵动欢喜', exact: true });
+  await expect(reader).toBeVisible();
+  await expect(reader.locator('.lion-reading-copy dd')).toHaveCount(3);
+  for (const paragraph of await reader.locator('.lion-reading-copy dd').all()) await expect(paragraph).toHaveCSS('font-size', '20px');
+  await expect(reader).toHaveCSS('background-color', 'rgba(246, 230, 199, 0.63)');
+  await expect(reader).toHaveCSS('backdrop-filter', 'blur(12px)');
+  await expect(reader).toHaveCSS('border-radius', '33px');
+  await expect(reader).toHaveCSS('--surface-height', '300px');
   await expectSaved(page, { ...changes, headerTransparency: 34, cultureSourcesWidth: 82 });
   await reloadPage(page);
   await expectSaved(page, changes);
-  await expect(copy).toHaveAttribute('data-view', 'overview');
-  for (const paragraph of await copy.locator('.expression-description p').all()) await expect(paragraph).toHaveCSS('font-size', '28px');
+  await stateLink.click();
+  await expect(reader).toHaveCount(0);
+  await expect(description).toHaveCSS('font-size', '28px');
   await openSettings(page);
   await panel(page).getByRole('button', { name: '恢复默认参数' }).click();
   await saveSettings(page);
@@ -1265,17 +1278,22 @@ test('神态底板六参数与简介解读字号独立保存，点击前后使�
 });
 
 test('神态两种字号校验16至32边界，透明底板仍保留前后文字', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await loadPage(page);
-  await page.locator('.site-navigation [data-route="state"]').click();
+  await page.evaluate(() => { location.hash = '/state'; });
+  const stateLink = page.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link', { name: '喜', exact: true });
+  await stateLink.click();
+  await expect(stateLink).toHaveAttribute('aria-current', 'location');
   await openSettings(page);
   await selectSettingsFor(page, '神态文字底板透明度数值');
   const transparency = panel(page).getByRole('spinbutton', { name: '神态文字底板透明度数值', exact: true });
   await transparency.fill('100');
   await transparency.press('Tab');
-  const copy = page.locator('#expressionStateCopy');
+  const copy = page.locator('#depth-joy .project-copy');
   await expect(copy).toHaveCSS('backdrop-filter', 'none');
   await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
   await expect(copy).toHaveCSS('opacity', '1');
+  await expect(copy.locator('.project-description')).toBeVisible();
   for (const [label, key] of [['神态简介字号', 'expressionOverviewFontSize'], ['神态解读字号', 'expressionDetailFontSize']]) {
     await selectSettingsFor(page, label);
     const input = panel(page).getByRole('spinbutton', { name: `${label}数值`, exact: true });
@@ -1288,9 +1306,11 @@ test('神态两种字号校验16至32边界，透明底板仍保留前后文字'
     }
   }
   await saveSettings(page, false);
-  await page.locator('#expressionLionTrigger').click();
-  await expect(copy).toHaveAttribute('data-view', 'details');
-  await expect(copy).toHaveCSS('backdrop-filter', 'none');
-  await expect(copy).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
-  for (const paragraph of await copy.locator('.expression-cues p').all()) await expect(paragraph).toHaveCSS('opacity', '1');
+  await copy.locator('.project-open').click();
+  const reader = page.getByRole('dialog', { name: '喜 · 灵动欢喜', exact: true });
+  await expect(reader).toBeVisible();
+  await expect(reader).toHaveCSS('backdrop-filter', 'none');
+  await expect(reader).toHaveCSS('background-color', 'rgba(247, 245, 240, 0)');
+  await expect(reader.locator('.lion-reading-copy dd')).toHaveCount(3);
+  for (const paragraph of await reader.locator('.lion-reading-copy dd').all()) await expect(paragraph).toHaveCSS('opacity', '1');
 });

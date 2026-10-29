@@ -1,0 +1,875 @@
+{
+  "startedAt": "2026-10-29T02:39:28.418Z",
+  "defaults": {
+    "moveSeconds": 6,
+    "readingSeconds": 12,
+    "volume": 0.25
+  },
+  "states": [
+    {
+      "id": "joy",
+      "title": "喜",
+      "station": 2,
+      "faceMs": 3006.5,
+      "readingMs": 12047.600000000093,
+      "moveMs": 6100,
+      "audioEndedBeforeDepartureMs": 4552.300000000279,
+      "audio": [
+        {
+          "at": 20314.5,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+          "currentTime": 0,
+          "duration": 11.478458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 2
+        },
+        {
+          "at": 31875.299999999814,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+          "currentTime": 11.478458,
+          "duration": 11.478458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 2
+        },
+        {
+          "at": 31877.299999999814,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+          "currentTime": 11.478458,
+          "duration": 11.478458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 2
+        }
+      ]
+    },
+    {
+      "id": "anger",
+      "title": "怒",
+      "station": 3,
+      "faceMs": 3004.9000000003725,
+      "readingMs": 12026.19999999972,
+      "moveMs": 6098.200000000186,
+      "audioEndedBeforeDepartureMs": 4294.5,
+      "audio": [
+        {
+          "at": 42146.799999999814,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+          "currentTime": 0,
+          "duration": 11.233958,
+          "volume": 0.25,
+          "muted": false,
+          "station": 3
+        },
+        {
+          "at": 53434.5,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+          "currentTime": 11.233958,
+          "duration": 11.233958,
+          "volume": 0.25,
+          "muted": false,
+          "station": 3
+        },
+        {
+          "at": 53436.39999999991,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+          "currentTime": 11.233958,
+          "duration": 11.233958,
+          "volume": 0.25,
+          "muted": false,
+          "station": 3
+        }
+      ]
+    },
+    {
+      "id": "sorrow",
+      "title": "哀",
+      "station": 4,
+      "faceMs": 3005.8000000002794,
+      "readingMs": 12058.299999999814,
+      "moveMs": 6099,
+      "audioEndedBeforeDepartureMs": 4582.699999999721,
+      "audio": [
+        {
+          "at": 63509.200000000186,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+          "currentTime": 0,
+          "duration": 10.987417,
+          "volume": 0.25,
+          "muted": false,
+          "station": 4
+        },
+        {
+          "at": 74545.5,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+          "currentTime": 10.987417,
+          "duration": 10.987417,
+          "volume": 0.25,
+          "muted": false,
+          "station": 4
+        },
+        {
+          "at": 74547.70000000019,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+          "currentTime": 10.987417,
+          "duration": 10.987417,
+          "volume": 0.25,
+          "muted": false,
+          "station": 4
+        }
+      ]
+    },
+    {
+      "id": "delight",
+      "title": "乐",
+      "station": 5,
+      "faceMs": 3006.6999999997206,
+      "readingMs": 12074.600000000093,
+      "moveMs": 6099.799999999814,
+      "audioEndedBeforeDepartureMs": 4643.299999999814,
+      "audio": [
+        {
+          "at": 84871.70000000019,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+          "currentTime": 0,
+          "duration": 10.967458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 5
+        },
+        {
+          "at": 95884.6000000001,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+          "currentTime": 10.967458,
+          "duration": 10.967458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 5
+        },
+        {
+          "at": 95886.70000000019,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+          "currentTime": 10.967458,
+          "duration": 10.967458,
+          "volume": 0.25,
+          "muted": false,
+          "station": 5
+        }
+      ]
+    },
+    {
+      "id": "motion",
+      "title": "动",
+      "station": 6,
+      "faceMs": 3004.5,
+      "readingMs": 12006.399999999907,
+      "moveMs": 6099.4000000003725,
+      "audioEndedBeforeDepartureMs": 4541.799999999814,
+      "audio": [
+        {
+          "at": 106109.3999999999,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+          "currentTime": 0,
+          "duration": 11.138792,
+          "volume": 0.25,
+          "muted": false,
+          "station": 6
+        },
+        {
+          "at": 117284.29999999981,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+          "currentTime": 11.138792,
+          "duration": 11.138792,
+          "volume": 0.25,
+          "muted": false,
+          "station": 6
+        },
+        {
+          "at": 117286,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+          "currentTime": 11.138792,
+          "duration": 11.138792,
+          "volume": 0.25,
+          "muted": false,
+          "station": 6
+        }
+      ]
+    },
+    {
+      "id": "stillness",
+      "title": "静",
+      "station": 7,
+      "faceMs": 3005.7999999998137,
+      "readingMs": 12034.200000000186,
+      "moveMs": 6098.100000000093,
+      "audioEndedBeforeDepartureMs": 4582.899999999907,
+      "audio": [
+        {
+          "at": 127470.8999999999,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+          "currentTime": 0,
+          "duration": 11.461167,
+          "volume": 0.25,
+          "muted": false,
+          "station": 7
+        },
+        {
+          "at": 138945.2999999998,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+          "currentTime": 11.461167,
+          "duration": 11.461167,
+          "volume": 0.25,
+          "muted": false,
+          "station": 7
+        },
+        {
+          "at": 138947.1000000001,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+          "currentTime": 11.461167,
+          "duration": 11.461167,
+          "volume": 0.25,
+          "muted": false,
+          "station": 7
+        }
+      ]
+    },
+    {
+      "id": "surprise",
+      "title": "惊",
+      "station": 8,
+      "faceMs": 3004.0999999996275,
+      "readingMs": 12071.100000000093,
+      "moveMs": 6099.5,
+      "audioEndedBeforeDepartureMs": 4072.6999999997206,
+      "audio": [
+        {
+          "at": 149305.8999999999,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+          "currentTime": 0,
+          "duration": 11.8075,
+          "volume": 0.25,
+          "muted": false,
+          "station": 8
+        },
+        {
+          "at": 161154.6000000001,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+          "currentTime": 11.8075,
+          "duration": 11.8075,
+          "volume": 0.25,
+          "muted": false,
+          "station": 8
+        },
+        {
+          "at": 161156.7000000002,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+          "currentTime": 11.8075,
+          "duration": 11.8075,
+          "volume": 0.25,
+          "muted": false,
+          "station": 8
+        }
+      ]
+    },
+    {
+      "id": "doubt",
+      "title": "疑",
+      "station": 9,
+      "faceMs": 3006,
+      "readingMs": 12057.799999999814,
+      "moveMs": 6099.700000000186,
+      "audioEndedBeforeDepartureMs": 3941.5,
+      "audio": [
+        {
+          "at": 170911.5,
+          "type": "playing",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+          "currentTime": 0,
+          "duration": 11.629083,
+          "volume": 0.25,
+          "muted": false,
+          "station": 9
+        },
+        {
+          "at": 182584.7000000002,
+          "type": "pause",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+          "currentTime": 11.629083,
+          "duration": 11.629083,
+          "volume": 0.25,
+          "muted": false,
+          "station": 9
+        },
+        {
+          "at": 182586.8999999999,
+          "type": "ended",
+          "trusted": true,
+          "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+          "currentTime": 11.629083,
+          "duration": 11.629083,
+          "volume": 0.25,
+          "muted": false,
+          "station": 9
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "status": "passed",
+  "finishedAt": "2026-10-29T02:42:44.560Z",
+  "baseURL": "http://127.0.0.1:4187",
+  "phases": [
+    {
+      "at": 2109.2999999998137,
+      "phase": "viewing",
+      "station": 0,
+      "status": "off"
+    },
+    {
+      "at": 2205.5,
+      "phase": "moving",
+      "station": 0,
+      "status": "running"
+    },
+    {
+      "at": 2526.7999999998137,
+      "phase": "viewing",
+      "station": 0,
+      "status": "running"
+    },
+    {
+      "at": 5128.399999999907,
+      "phase": "moving",
+      "station": 1,
+      "status": "running"
+    },
+    {
+      "at": 11229.600000000093,
+      "phase": "viewing",
+      "station": 1,
+      "status": "running"
+    },
+    {
+      "at": 14730,
+      "phase": "moving",
+      "station": 2,
+      "status": "running"
+    },
+    {
+      "at": 20829.799999999814,
+      "phase": "viewing",
+      "station": 2,
+      "status": "running"
+    },
+    {
+      "at": 21375.5,
+      "phase": "animating",
+      "station": 2,
+      "status": "running"
+    },
+    {
+      "at": 24382,
+      "phase": "reading",
+      "station": 2,
+      "status": "running"
+    },
+    {
+      "at": 36429.60000000009,
+      "phase": "moving",
+      "station": 3,
+      "status": "running"
+    },
+    {
+      "at": 42529.60000000009,
+      "phase": "viewing",
+      "station": 3,
+      "status": "running"
+    },
+    {
+      "at": 42699.799999999814,
+      "phase": "animating",
+      "station": 3,
+      "status": "running"
+    },
+    {
+      "at": 45704.700000000186,
+      "phase": "reading",
+      "station": 3,
+      "status": "running"
+    },
+    {
+      "at": 57730.89999999991,
+      "phase": "moving",
+      "station": 4,
+      "status": "running"
+    },
+    {
+      "at": 63829.10000000009,
+      "phase": "viewing",
+      "station": 4,
+      "status": "running"
+    },
+    {
+      "at": 64066.299999999814,
+      "phase": "animating",
+      "station": 4,
+      "status": "running"
+    },
+    {
+      "at": 67072.1000000001,
+      "phase": "reading",
+      "station": 4,
+      "status": "running"
+    },
+    {
+      "at": 79130.3999999999,
+      "phase": "moving",
+      "station": 5,
+      "status": "running"
+    },
+    {
+      "at": 85229.3999999999,
+      "phase": "viewing",
+      "station": 5,
+      "status": "running"
+    },
+    {
+      "at": 85448.70000000019,
+      "phase": "animating",
+      "station": 5,
+      "status": "running"
+    },
+    {
+      "at": 88455.3999999999,
+      "phase": "reading",
+      "station": 5,
+      "status": "running"
+    },
+    {
+      "at": 100530,
+      "phase": "moving",
+      "station": 6,
+      "status": "running"
+    },
+    {
+      "at": 106629.79999999981,
+      "phase": "viewing",
+      "station": 6,
+      "status": "running"
+    },
+    {
+      "at": 106816.8999999999,
+      "phase": "animating",
+      "station": 6,
+      "status": "running"
+    },
+    {
+      "at": 109821.3999999999,
+      "phase": "reading",
+      "station": 6,
+      "status": "running"
+    },
+    {
+      "at": 121827.79999999981,
+      "phase": "moving",
+      "station": 7,
+      "status": "running"
+    },
+    {
+      "at": 127927.20000000019,
+      "phase": "viewing",
+      "station": 7,
+      "status": "running"
+    },
+    {
+      "at": 128490,
+      "phase": "animating",
+      "station": 7,
+      "status": "running"
+    },
+    {
+      "at": 131495.7999999998,
+      "phase": "reading",
+      "station": 7,
+      "status": "running"
+    },
+    {
+      "at": 143530,
+      "phase": "moving",
+      "station": 8,
+      "status": "running"
+    },
+    {
+      "at": 149628.1000000001,
+      "phase": "viewing",
+      "station": 8,
+      "status": "running"
+    },
+    {
+      "at": 150154.2000000002,
+      "phase": "animating",
+      "station": 8,
+      "status": "running"
+    },
+    {
+      "at": 153158.2999999998,
+      "phase": "reading",
+      "station": 8,
+      "status": "running"
+    },
+    {
+      "at": 165229.3999999999,
+      "phase": "moving",
+      "station": 9,
+      "status": "running"
+    },
+    {
+      "at": 171328.8999999999,
+      "phase": "viewing",
+      "station": 9,
+      "status": "running"
+    },
+    {
+      "at": 171464.6000000001,
+      "phase": "animating",
+      "station": 9,
+      "status": "running"
+    },
+    {
+      "at": 174470.6000000001,
+      "phase": "reading",
+      "station": 9,
+      "status": "running"
+    },
+    {
+      "at": 186528.3999999999,
+      "phase": "moving",
+      "station": 10,
+      "status": "running"
+    },
+    {
+      "at": 192628.1000000001,
+      "phase": "viewing",
+      "station": 10,
+      "status": "running"
+    },
+    {
+      "at": 195728.3999999999,
+      "phase": "viewing",
+      "station": 10,
+      "status": "ended"
+    }
+  ],
+  "audio": [
+    {
+      "at": 20314.5,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+      "currentTime": 0,
+      "duration": 11.478458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 2
+    },
+    {
+      "at": 31875.299999999814,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+      "currentTime": 11.478458,
+      "duration": 11.478458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 2
+    },
+    {
+      "at": 31877.299999999814,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/joy.wav",
+      "currentTime": 11.478458,
+      "duration": 11.478458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 2
+    },
+    {
+      "at": 42146.799999999814,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+      "currentTime": 0,
+      "duration": 11.233958,
+      "volume": 0.25,
+      "muted": false,
+      "station": 3
+    },
+    {
+      "at": 53434.5,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+      "currentTime": 11.233958,
+      "duration": 11.233958,
+      "volume": 0.25,
+      "muted": false,
+      "station": 3
+    },
+    {
+      "at": 53436.39999999991,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/anger.wav",
+      "currentTime": 11.233958,
+      "duration": 11.233958,
+      "volume": 0.25,
+      "muted": false,
+      "station": 3
+    },
+    {
+      "at": 63509.200000000186,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+      "currentTime": 0,
+      "duration": 10.987417,
+      "volume": 0.25,
+      "muted": false,
+      "station": 4
+    },
+    {
+      "at": 74545.5,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+      "currentTime": 10.987417,
+      "duration": 10.987417,
+      "volume": 0.25,
+      "muted": false,
+      "station": 4
+    },
+    {
+      "at": 74547.70000000019,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/sorrow.wav",
+      "currentTime": 10.987417,
+      "duration": 10.987417,
+      "volume": 0.25,
+      "muted": false,
+      "station": 4
+    },
+    {
+      "at": 84871.70000000019,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+      "currentTime": 0,
+      "duration": 10.967458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 5
+    },
+    {
+      "at": 95884.6000000001,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+      "currentTime": 10.967458,
+      "duration": 10.967458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 5
+    },
+    {
+      "at": 95886.70000000019,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/delight.wav",
+      "currentTime": 10.967458,
+      "duration": 10.967458,
+      "volume": 0.25,
+      "muted": false,
+      "station": 5
+    },
+    {
+      "at": 106109.3999999999,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+      "currentTime": 0,
+      "duration": 11.138792,
+      "volume": 0.25,
+      "muted": false,
+      "station": 6
+    },
+    {
+      "at": 117284.29999999981,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+      "currentTime": 11.138792,
+      "duration": 11.138792,
+      "volume": 0.25,
+      "muted": false,
+      "station": 6
+    },
+    {
+      "at": 117286,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/motion.wav",
+      "currentTime": 11.138792,
+      "duration": 11.138792,
+      "volume": 0.25,
+      "muted": false,
+      "station": 6
+    },
+    {
+      "at": 127470.8999999999,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+      "currentTime": 0,
+      "duration": 11.461167,
+      "volume": 0.25,
+      "muted": false,
+      "station": 7
+    },
+    {
+      "at": 138945.2999999998,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+      "currentTime": 11.461167,
+      "duration": 11.461167,
+      "volume": 0.25,
+      "muted": false,
+      "station": 7
+    },
+    {
+      "at": 138947.1000000001,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/stillness.wav",
+      "currentTime": 11.461167,
+      "duration": 11.461167,
+      "volume": 0.25,
+      "muted": false,
+      "station": 7
+    },
+    {
+      "at": 149305.8999999999,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+      "currentTime": 0,
+      "duration": 11.8075,
+      "volume": 0.25,
+      "muted": false,
+      "station": 8
+    },
+    {
+      "at": 161154.6000000001,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+      "currentTime": 11.8075,
+      "duration": 11.8075,
+      "volume": 0.25,
+      "muted": false,
+      "station": 8
+    },
+    {
+      "at": 161156.7000000002,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/surprise.wav",
+      "currentTime": 11.8075,
+      "duration": 11.8075,
+      "volume": 0.25,
+      "muted": false,
+      "station": 8
+    },
+    {
+      "at": 170911.5,
+      "type": "playing",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+      "currentTime": 0,
+      "duration": 11.629083,
+      "volume": 0.25,
+      "muted": false,
+      "station": 9
+    },
+    {
+      "at": 182584.7000000002,
+      "type": "pause",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+      "currentTime": 11.629083,
+      "duration": 11.629083,
+      "volume": 0.25,
+      "muted": false,
+      "station": 9
+    },
+    {
+      "at": 182586.8999999999,
+      "type": "ended",
+      "trusted": true,
+      "src": "http://127.0.0.1:4187/assets/expression-depth/audio/doubt.wav",
+      "currentTime": 11.629083,
+      "duration": 11.629083,
+      "volume": 0.25,
+      "muted": false,
+      "station": 9
+    }
+  ],
+  "hashes": []
+}

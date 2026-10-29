@@ -1,0 +1,48 @@
+{
+  "viewport": {
+    "width": 715,
+    "height": 616
+  },
+  "root": {
+    "x": 0,
+    "y": 116,
+    "width": 700,
+    "height": 500
+  },
+  "joy": {
+    "root": {
+      "x": 0,
+      "y": 116,
+      "width": 700,
+      "height": 500
+    },
+    "artwork": {
+      "left": 396.46550866092616,
+      "right": 623.0613379661554,
+      "top": 244.2966250529771,
+      "bottom": 468.0439529820985,
+      "centerX": 507.8850108857391,
+      "centerY": 356.4985490192199
+    },
+    "descriptionSize": "12px"
+  },
+  "anger": {
+    "root": {
+      "x": 0,
+      "y": 116,
+      "width": 700,
+      "height": 500
+    },
+    "artwork": {
+      "left": 76.60725552883561,
+      "right": 304.48449849441596,
+      "top": 244.3170221081613,
+      "bottom": 468.13159995757127,
+      "centerX": 192.4280285305598,
+      "centerY": 357.20160454642377
+    },
+    "descriptionSize": "12px"
+  },
+  "visibleAtlas": true,
+  "errors": []
+}

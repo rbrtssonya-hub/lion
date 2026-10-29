@@ -13,10 +13,10 @@
 | `entry` | 序／入境 | `source/public/assets/xiaoxing/voice/entry.wav` | 42.70 秒 |
 | `model` | 造／观形 | `source/public/assets/xiaoxing/voice/model.wav` | 40.68 秒 |
 | `action` | 舞／动作 | `source/public/assets/xiaoxing/voice/action.wav` | 40.30 秒 |
-| `state` | 舞／神态 | `source/public/assets/xiaoxing/voice/state.wav` | 46.98 秒 |
+| `state` | 舞／神态 | `source/public/assets/xiaoxing/voice/state.wav` | 66.52 秒 |
 | `spread` | 传／狮行远方 | `source/public/assets/xiaoxing/voice/spread.wav` | 31.60 秒 |
 
-以上是四章中的五处讲解位置。五段固定讲解与 `sample.wav` 已由本机 CPU 版 GPT-SoVITS v2ProPlus 实际生成并应用，格式为 **WAV / PCM 16-bit / 32,000 Hz / 单声道**。固定 WAV 可离线播放，不需要观众电脑安装 Python、模型或系统中文声音。参考、认可试听、profile 与历史 SSML 属于创作源资料，只有五段网页讲解进入部署资产。
+以上是四章中的五处讲解位置。2026-10-26 初版五段讲解与 `sample.wav` 由本机 CPU 版 GPT-SoVITS v2ProPlus 生成。2026-10-28 神态页接入纵深 V7 后，只用同一获批参考音色和现有 CUDA 环境重生成 `state.wav`，同步滚轮纵深、左目录、三秒五官后当前态解读、自动巡游及默认十二秒阅读等现行操作；其余四段、sample、参考与认可试听原字节保持。新段共 4,257,324 字节，66.52 秒，准确文本、SHA 与单章生成时间见 `profile.json` 的 state 记录。所有固定讲解格式均为 **WAV / PCM 16-bit / 32,000 Hz / 单声道**。固定 WAV 可离线播放，不需要观众电脑安装 Python、模型或系统中文声音。参考、认可试听、profile 与历史 SSML 属于创作源资料，只有五段网页讲解进入部署资产。
 
 ## 动态回答与播放交互
 
@@ -35,10 +35,14 @@
 ```powershell
 npm run assistant:narration
 npm run assistant:narration -- --apply
+# 只更新一章时保留其他四章与 sample 的录音及原档案记录：
+npm run assistant:narration -- --chapter state --apply
 node scripts/xiaoxing/register-assets.mjs
 node --test tests/assets/xiaoxing-voice.test.mjs tests/assets/xiaoxing-speech.test.mjs
 ```
 
 默认从 `http://127.0.0.1:8787/api/xiaoxing/speech` 获取音频；其他地址通过进程环境变量 `XIAOXING_NARRATION_API_URL` 指定。第一次命令把完整候选批次放在 ignored 的 `tmp/xiaoxing-reference-voice/`；全部成功并核对后，`--apply` 才替换网页音频与 profile。生成器会核对已认可试听和当前参考片段的哈希，不能静默更换参考文件。
+
+`--chapter state` 只请求并应用选定一段，更新 profile 中该章的文本与真实 WAV 哈希；其他记录及 sample 保持原值。单章模式使用前也核对现有 profile 的参考哈希和引擎，不能用旧录音或改写 metadata 冒充新文本。2026-10-28 实际单章命令已成功，Node→现有 GPT-SoVITS CUDA 接口返回真实 WAV；没有改用系统声线或 Qwen。
 
 本轮真实 GPU 合成和 Chrome 播放证据见 [参考音色接入记录](../../../references/xiaoxing-reference-voice-2026-10-26.md)。旧 SSML、`build-narration.ps1` 及此前系统声音选型仅为历史资料。现有旧 EXE 尚未重新打包。

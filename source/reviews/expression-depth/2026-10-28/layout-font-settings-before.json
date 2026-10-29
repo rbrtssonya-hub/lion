@@ -1,0 +1,29 @@
+{
+  "original": {
+    "x": 0,
+    "y": 90,
+    "width": 1425,
+    "height": 810
+  },
+  "pushed": {
+    "root": {
+      "x": 0,
+      "y": 90,
+      "width": 1085,
+      "height": 810
+    },
+    "artwork": {
+      "left": 606.5130801966396,
+      "right": 973.223100372679,
+      "top": 297.49324859410865,
+      "bottom": 659.9734334860356,
+      "centerX": 786.8204813816366,
+      "centerY": 479.2639339647192
+    },
+    "descriptionSize": "14.6475px"
+  },
+  "overview16": 14.6475,
+  "overview32": 14.6475,
+  "detail16": 13,
+  "detail32": 13
+}

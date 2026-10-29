@@ -97,6 +97,19 @@ test('eight states retain AI-assisted qualitative and unverified-sample boundari
   assert.match(answerLocally('这个网站能识别情绪或给动作打分吗？', 'entry').answer, /不提供.*评分/);
 });
 
+test('state instructions describe the current depth journey and click-to-read tour', () => {
+  for (const answer of [chapterGuides.state.guide, answerLocally('神态页怎么操作？', 'state').answer]) {
+    assert.match(answer, /滚轮.*纵深|纵深.*滚轮/);
+    assert.match(answer, /左侧目录/);
+    assert.match(answer, /三秒|3秒/);
+    assert.match(answer, /当前.*解读|当前一态/);
+    assert.match(answer, /自动巡游/);
+    assert.match(answer, /十二秒|12秒/);
+    assert.match(answer, /设置.*调整|设置.*修改/);
+    assert.doesNotMatch(answer, /前后箭头|上方与下方的箭头|方向键|对照模式/);
+  }
+});
+
 test('spread guide describes the actual Guangdong, China, world levels and avoids a migration claim', () => {
   const answer = answerLocally('地图怎么从广东看到中国和世界？', 'spread');
   assert.equal(retrieveKnowledge('地图怎么从广东看到中国和世界？', 'entry')[0]?.id, 'spread-map-levels');
@@ -117,7 +130,7 @@ test('source links use existing sections and curated HTTPS references', () => {
     entry: ['src/features/home/HomeLionBook.jsx', 'src/features/home/HomeCultureSources.jsx'],
     model: ['src/features/model/ModelPage.jsx', 'src/features/model/StructureReadingPanel.jsx', 'src/features/model/CraftSection.jsx'],
     action: ['src/features/action/ActionPage.jsx'],
-    state: ['src/features/chapters/ExpressionPage.jsx', 'src/features/chapters/ExpressionComparison.jsx'],
+    state: ['src/features/chapters/ExpressionPage.jsx', 'src/features/expression-depth/ExpressionDepth.tsx', 'src/features/expression-depth/components/ProjectSection.tsx', 'src/features/expression-depth/components/ProjectGallery.tsx', 'src/features/expression-depth/components/Navigation.tsx'],
     spread: ['src/features/spread/SpreadPage.jsx', 'src/features/spread/SpreadMap.jsx'],
   };
   const files = Object.fromEntries(Object.entries(sourceFiles).map(([chapter, paths]) => [chapter, paths.map(path => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')).join('\n')]));

@@ -5051,10 +5051,10 @@
       "sha256": "60d14806ba1692add476c4ec0da0a52d7088832a770a9e5c519eb5d946d33df3"
     },
     {
-      "from": "local GPT-SoVITS v2ProPlus zero-shot synthesis from user-selected voice reference, 2026-10-26",
+      "from": "local GPT-SoVITS v2ProPlus CUDA zero-shot synthesis of current depth V7 guide, approved user reference, seed42; 2026-10-28",
       "path": "source/public/assets/xiaoxing/voice/state.wav",
-      "bytes": 3006764,
-      "sha256": "75e2fecc0142a40093d4d04e867c8683812e9b7ad82343ca90b12cfafda03216"
+      "bytes": 4257324,
+      "sha256": "a47147916c028d553f42c5e291be7917f77386beb178a95f676ba58356416d6b"
     },
     {
       "from": "actual Chrome desktop Xiaoxing visual review 2026-10-26",
@@ -12771,6 +12771,432 @@
       "path": "source/design/spread-stamps/user-no-backplate-2026-10-28.png",
       "bytes": 412132,
       "sha256": "d405c5fac0de8a525a417d96085c0dd791d3a0bc2e8d80977151470488173dbb"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/joy.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/joy.wav",
+      "bytes": 551012,
+      "sha256": "25e6c9f0184a362069aea0ecef59778b86310f379d38b1caccd12e8e94cea57b"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/anger.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/anger.wav",
+      "bytes": 539276,
+      "sha256": "6dceae520170ea696c927d7b9253f9887914fe178acd894bc582625775457e97"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/sorrow.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/sorrow.wav",
+      "bytes": 527442,
+      "sha256": "ed94b6ab650fc61b53368bc12e9276bddfdf88f7b033a52acee0fdc261a448bf"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/delight.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/delight.wav",
+      "bytes": 526484,
+      "sha256": "1bfdd9f098c310075978b685dc0119bc40929ad0070d859c68b18fbf3bd4c340"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/motion.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/motion.wav",
+      "bytes": 534708,
+      "sha256": "16f6839ad8c98e1efc8bb728acdcbe5b590a7a39aca86fccc67fe8250a98d329"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/stillness.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/stillness.wav",
+      "bytes": 550182,
+      "sha256": "cfba7c7f88272cb98b753a4a0073c0b57edc350200d4ad4673616a2986701b72"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/surprise.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/surprise.wav",
+      "bytes": 566806,
+      "sha256": "d33395913b149cd140b8e6d827d391c2925695941e9dc58536aa7f891d8d54b9"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/doubt.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/doubt.wav",
+      "bytes": 558242,
+      "sha256": "cb297696c0e347989634cfee96fce1c8107dd4b8133793334bfcb4e8bcb0ce86"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/paper-reference.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/paper-reference.png",
+      "bytes": 2341966,
+      "sha256": "aa62559fbbf74b40ef1020a469f839a10f7332d5eb99a9683f2dfa1a310c9a91"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/ui-lion-marker-q.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/ui-lion-marker-q.png",
+      "bytes": 1624882,
+      "sha256": "75e844450406311cb43c3e47931bd8c7d6696ba3dac9b1c5fd45e7c2ab08cf26"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/fallback.svg; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/fallback.svg",
+      "bytes": 951,
+      "sha256": "0aa46a369229c2059093c460e5f0047fcfc14dd6b99a9b4c9d93ebd52ff92c11"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/calligraphy/title-atlas.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/title-atlas.png",
+      "bytes": 644716,
+      "sha256": "5072758b0cff7231e40d3cc14bc2fe225689c57e21ba6040773d343a3995f139"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/calligraphy/contact-extra-atlas.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/contact-extra-atlas.png",
+      "bytes": 754025,
+      "sha256": "2a2ca849996836d5ffb442f54f1d1c09a60c18aad5dbb4aa37659252e7292d09"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/ma-shan-zheng-regular.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/ma-shan-zheng-regular.woff2",
+      "bytes": 199884,
+      "sha256": "0d81209860b9894e2fc806cda6015fa4dfdcce783f803986969bbbd95de1545a"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/noto-serif-sc-400-600.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/noto-serif-sc-400-600.woff2",
+      "bytes": 193760,
+      "sha256": "732a5d64e4200bddb09c72745b3f5a0ebc2546409bc23d3c89379855b5f3e11e"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/noto-sans-sc-400-600.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/noto-sans-sc-400-600.woff2",
+      "bytes": 148276,
+      "sha256": "2782034847c1345d1051522d6b31297eb84649298f8c5349c531d311057b5393"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-MaShanZheng.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-MaShanZheng.txt",
+      "bytes": 4397,
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-NotoSerifSC.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-NotoSerifSC.txt",
+      "bytes": 4350,
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-NotoSansSC.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-NotoSansSC.txt",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/manrope-latin.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/manrope-latin.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/space-grotesk-latin.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/space-grotesk-latin.woff2",
+      "bytes": 22288,
+      "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/instrument-serif-italic.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/instrument-serif-italic.woff2",
+      "bytes": 22128,
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/manrope-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/manrope-LICENSE.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/spacegrotesk-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/spacegrotesk-LICENSE.txt",
+      "bytes": 4495,
+      "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/instrumentserif-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/instrumentserif-LICENSE.txt",
+      "bytes": 4405,
+      "sha256": "129ed7618959716959f2941fdd5b49e0ad6e6c1d78726761786a00253d865521"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/ASSET-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/ASSET-SOURCES.json",
+      "bytes": 9983,
+      "sha256": "acfb14df94ecfbf8e96b73bd197409d88c13e6e1a201d9b848b2ca427db234c1"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/BRUSH-GLYPH-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/BRUSH-GLYPH-SOURCES.json",
+      "bytes": 10049,
+      "sha256": "8dd3aa3b9fe29b9f583c9c9e28248b11f9ae02da2b7a8832d7f203e867e90ae5"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/CONTACT-BRUSH-ATLAS-SOURCE.json",
+      "path": "source/design/expression-depth/v7/reference/CONTACT-BRUSH-ATLAS-SOURCE.json",
+      "bytes": 2135,
+      "sha256": "2230fa28d740a006b83bdfcf4f04f5f36d6089f4e970b45f602898477abc00f0"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/FACE-MOTION-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/FACE-MOTION-SOURCES.json",
+      "bytes": 6567,
+      "sha256": "a8f8be37e80bd55cf37764e81fa6797d594838c7b6c024eaea3d170941d3eeaa"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/NARRATION-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/NARRATION-SOURCES.json",
+      "bytes": 10943,
+      "sha256": "bfca55670a8da955f3c81110e4e8d81e3ad424fa45af6a7b52c986d346f0af34"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/TYPOGRAPHY-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/TYPOGRAPHY-SOURCES.json",
+      "bytes": 47483,
+      "sha256": "04039cfb8ac67398013e9fa255708a4bffe1dc480c87f378776d4630659ecaf9"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/UI-MARKER-SOURCE.json",
+      "path": "source/design/expression-depth/v7/reference/UI-MARKER-SOURCE.json",
+      "bytes": 3140,
+      "sha256": "760b8220e6c6b170e8bd643dbaaa0c503a2288ace618637cb0d5b3237e8db391"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/v7/marker-q-candidate.source.json",
+      "path": "source/design/expression-depth/v7/review/v7/marker-q-candidate.source.json",
+      "bytes": 2433,
+      "sha256": "c403c7d2038cb4f7fbcfe0a28ae6214961b9068e4ea06805879377ae6e9e6cda"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/v7/marker-q-candidate.alpha.json",
+      "path": "source/design/expression-depth/v7/review/v7/marker-q-candidate.alpha.json",
+      "bytes": 318,
+      "sha256": "44dd89142edcd35d1a1893f4f91621797951693a0dc6c84c7919cf337aa5be7c"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/generate-narration.ps1",
+      "path": "source/design/expression-depth/v7/scripts/generate-narration.ps1",
+      "bytes": 4106,
+      "sha256": "4f1018eaaf735bc64850506f8c6fb93ba93dde693274bc5264e2e30c88e2a728"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/generate-narration.validate.py",
+      "path": "source/design/expression-depth/v7/scripts/generate-narration.validate.py",
+      "bytes": 3341,
+      "sha256": "6a3d1868ccf2e2011fe4f5fb01f49026a1b8e0331be3d9b5049f2ab9b8da07fc"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/update-font-subsets.py",
+      "path": "source/design/expression-depth/v7/scripts/update-font-subsets.py",
+      "bytes": 9069,
+      "sha256": "8bdcea1dd3658fd8ce18c465581ac961f928666e7d60c5bbaac3e916fe9012e4"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): README.md",
+      "path": "source/design/expression-depth/v7/README.md",
+      "bytes": 11553,
+      "sha256": "da0a42dc92db71d0fe8c97e9f4cb7e897ad227ee30998c48847f10fcb81c7526"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/VALIDATION-v7.md",
+      "path": "source/design/expression-depth/v7/review/VALIDATION-v7.md",
+      "bytes": 6298,
+      "sha256": "f353dbedc7066e6c91c5fb626b1321eae4eda319a59f235f67a8c6bf845df07f"
+    },
+    {
+      "from": "Verified SHA256 runtime import inventory for independent eight-state depth V7, 2026-10-28",
+      "path": "source/design/expression-depth/v7/import-assets.json",
+      "bytes": 22492,
+      "sha256": "70b14375175691814f74031f1d10451e259ce16623cd4c5a6626f20d2a28eac9"
+    },
+    {
+      "path": "source/characters/xiaoxing/voice/profile.json",
+      "from": "Authenticated Xiaoxing fixed-narration text/hash profile; state-only regeneration for depth V7, 2026-10-28",
+      "bytes": 7971,
+      "sha256": "3f05fc3d801b66b7a17b9f1b4324cc10c192f46d1ad22fc8ab107b4f5c448279"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/initial-host-1440.png",
+      "bytes": 687229,
+      "sha256": "da7f6461a209b3e1439ae526eb8b0d69ff0a7a7c5df66b68bb38c6d1ade847cd"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-1280x720.png",
+      "bytes": 895364,
+      "sha256": "31c8341f660394028443113efa28ec795a42841ced013b5cc07faa7f2f1e193b"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-1366x768.png",
+      "bytes": 936221,
+      "sha256": "e412d23024ab0b88b12cb0e57beaa35109c2166c39b22c4338936af4741f51f4"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-1440x900.png",
+      "bytes": 1201508,
+      "sha256": "ac956cdbbe1521f7cbc3c1fe5e35d8b9812211d60debb78ea1da056abb2a272e"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-1920x1080.png",
+      "bytes": 1754867,
+      "sha256": "b5475f4a5e7fb6712f0074c9f9094f902d815f8654aa94c1b28e9d3341c9d96a"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-715x590.png",
+      "bytes": 456912,
+      "sha256": "2f9db4ad8a4b4189bf08f6d8d74b18dbd01fec2d2fdd29c20b28d3d6367825cf"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-anger-715x616.png",
+      "bytes": 452548,
+      "sha256": "0cf8b416eca94c39dea8672a934240f1be5a7f51ab7e4340d086b899894d625b"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-contact-1280x720.png",
+      "bytes": 772340,
+      "sha256": "85d63f0da12b13c93970adca49b9820c08218ec40e2a49f0c9f8947666419797"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-contact-715x616.png",
+      "bytes": 411023,
+      "sha256": "764bbbbae543e285afb57b2a243bf2c60afcd2033e33848c83b0cb4ef3f29da6"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-dialog-1440x900.png",
+      "bytes": 518052,
+      "sha256": "9c280262efca8f7c70069cecd9da8228ea4e383848be477accb55f9a34952e61"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-dialog-715x616.png",
+      "bytes": 239234,
+      "sha256": "41a9e6db9cd4f901bc44c9db44eac9caf90ac1c976c7d1c8f252c0c7b174cba6"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-1280x720.png",
+      "bytes": 826723,
+      "sha256": "7e3a7777afaba4896035bb417a7be01c639d5909af3708513cd33e136862e2c8"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-1366x768.png",
+      "bytes": 919843,
+      "sha256": "ea65834c6a93730b2855fcf92c832146a44e998a142b060dc910db781cb0ae7d"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-1440x900.png",
+      "bytes": 1092047,
+      "sha256": "930ac62a5fdabf24f3ef1fc57f3b259d0f320cedd76417d8f6cfd0b2b9daf931"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-1920x1080.png",
+      "bytes": 1593268,
+      "sha256": "9d731f73879ffe1b22c1b60bb7c443809b1f2d5f050d43b8e8fe49e603b18fa9"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-715x590.png",
+      "bytes": 429809,
+      "sha256": "d242be0a86084d77850c7f2c482b633bd1087a52c017ddf9ea18618fb502d9d4"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-home-715x616.png",
+      "bytes": 435820,
+      "sha256": "449a26841f4829258f7fffe4d3abfe94ee66bc675b1bda5163df123f865d703f"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-1280x720.png",
+      "bytes": 843342,
+      "sha256": "2c59bf732d68e58813a0fac5a944046eeacef8a5d890a774cc74bce5797959e3"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-1366x768.png",
+      "bytes": 941927,
+      "sha256": "174cc668f89135745f094d581c6a3a605e1870ac6a5ad077a8fad59c28f64a99"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-1440x900.png",
+      "bytes": 1130602,
+      "sha256": "b995a01b8b3a1c7003718268c9af25d8c797504ca0f355d8eba3554ad6828563"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-1920x1080.png",
+      "bytes": 1644820,
+      "sha256": "a8dbf4a70142de4cea3a9ab6a2b8c4979f08318dbc9bfee267633a7cf09553c9"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-715x590.png",
+      "bytes": 458368,
+      "sha256": "38be76418d720e637e2300fb9a8470c3c260c7cd9c83f156d28752f7b5dfde15"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-joy-715x616.png",
+      "bytes": 457580,
+      "sha256": "82ea4ebcf3c1739378c2d80355019a4619fa570277f64959fe39c2a3a74de489"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/layout-settings-push-1440x900.png",
+      "bytes": 982112,
+      "sha256": "8d9e6cf89ab51d40c230a5f3de402476d00f5fe8c43a8bdbf77da0ff13451153"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/material-preflight-700x500.png",
+      "bytes": 457975,
+      "sha256": "cddbde815853f7547236d459638f1ff7777f92a3ec234d9e9effdf2848e6b74c"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-before-motion.png",
+      "bytes": 275370,
+      "sha256": "dbcba4a8426d04055b6b4656409a32ec6dac9ae7a8435bd98d97832866c04bb4"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-0ms.png",
+      "bytes": 312706,
+      "sha256": "cfe4df5035456e170177ff4e21ab6cfcb81ff603c0d39bfac15d71eec2332ac7"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-1050ms.png",
+      "bytes": 280748,
+      "sha256": "2cfdaeb8b64e92a90d463a121f866f05e09c3206000d67724b67d8a1f468d99d"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-350ms.png",
+      "bytes": 280836,
+      "sha256": "10057fc58bf8ea1bb24902d0615ea1ff405ef84b56f3aa93542b8c5c1f315c22"
+    },
+    {
+      "from": "Chrome production preview 4187 / expression-depth integration review 2026-10-28",
+      "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-700ms.png",
+      "bytes": 280818,
+      "sha256": "608f504307ae3da570253413449ab7238fcc44e2754d1bc910bec5cd438eddd7"
     }
   ]
 }

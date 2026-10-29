@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254" role="img" aria-labelledby="title description">
+  <title id="title">醒狮图像暂未载入</title>
+  <desc id="description">图像加载占位，八态文字仍可阅读；此处不是表演照片。</desc>
+  <circle cx="627" cy="535" r="222" fill="none" stroke="#c5a66a" stroke-width="2" opacity=".5"/>
+  <path d="M447 535h360M627 355v360" fill="none" stroke="#c5a66a" stroke-width="1" opacity=".16"/>
+  <text x="627" y="558" text-anchor="middle" fill="#302d29" font-family="Microsoft YaHei, sans-serif" font-size="94">醒狮八态</text>
+  <text x="627" y="849" text-anchor="middle" fill="#706a61" font-family="Microsoft YaHei, sans-serif" font-size="38">图像暂未载入</text>
+  <text x="627" y="915" text-anchor="middle" fill="#706a61" font-family="Microsoft YaHei, sans-serif" font-size="26">请稍后重试 · 文字观察仍可阅读</text>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "mode": "RGBA",
+  "size": [
+    1254,
+    1254
+  ],
+  "alphaExtrema": [
+    0,
+    255
+  ],
+  "transparentPixelRatio": 0.4672804601034266,
+  "alphaBBox": [
+    0,
+    17,
+    1251,
+    1254
+  ],
+  "bytes": 1624882,
+  "sha256": "75e844450406311cb43c3e47931bd8c7d6696ba3dac9b1c5fd45e7c2ab08cf26"
+}

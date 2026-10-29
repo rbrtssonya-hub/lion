@@ -1,0 +1,183 @@
+{
+  "verifiedOn": "2026-10-29",
+  "environment": "Windows, Chrome, production preview 4187",
+  "objective": "Native V7 eight-state page in main website with original header, desktop resizing and saved settings",
+  "core": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "reports": [
+      "final-depth-results.json (12 completed checks only)",
+      "final-tour-results.json (3 completed reruns)"
+    ],
+    "tests": [
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 98,
+        "title": "电脑纵深排版 1440x900：卷首字图、喜怒双栏、回望及当前解读完整",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 98,
+        "title": "电脑纵深排版 1920x1080：卷首字图、喜怒双栏、回望及当前解读完整",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 98,
+        "title": "电脑纵深排版 1366x768：卷首字图、喜怒双栏、回望及当前解读完整",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 98,
+        "title": "电脑纵深排版 1280x720：卷首字图、喜怒双栏、回望及当前解读完整",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 98,
+        "title": "电脑纵深排版 715x616：卷首字图、喜怒双栏、回望及当前解读完整",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-layout.spec.js",
+        "line": 146,
+        "title": "设置推开后保留完整八态；简介与详情16→32字号实际增大",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-settings.spec.js",
+        "line": 96,
+        "title": "八态七项设置驱动真实场景、巡游时序和设置保存取消事务",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth.spec.js",
+        "line": 72,
+        "title": "V7八态目录只移动镜头，保持原站距、40px路线标记和唯一主站顶栏",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth.spec.js",
+        "line": 101,
+        "title": "八态均由真实Canvas点击触发原三秒五官，再打开仅本态解读",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth.spec.js",
+        "line": 158,
+        "title": "五官播放期间实际合成帧保持完整红色狮头，没有整幅消失闪烁",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth.spec.js",
+        "line": 186,
+        "title": "原顶栏可在播放期间离开，返回无旧解读、音轨、WAAPI驱动，返回戏台有效",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth.spec.js",
+        "line": 219,
+        "title": "滚轮正向推进与反向回退沿同一镜头和空间路线，不改变主站hash",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 77,
+        "title": "默认巡游从卷首走完八态，真实3秒五官、12秒解读、6秒运镜及八段自然完播旁白",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 156,
+        "title": "reduced兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+        "status": "expected"
+      },
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 156,
+        "title": "static兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+        "status": "expected"
+      }
+    ]
+  },
+  "hostContracts": {
+    "passed": 7,
+    "report": "host-contract-results.json",
+    "tests": [
+      {
+        "file": "chapter-identity.spec.js",
+        "line": 60,
+        "title": "V7神态保留主站章节归属，卷首与八态目录在1920桌面内可读",
+        "status": "expected"
+      },
+      {
+        "file": "chapter-identity.spec.js",
+        "line": 60,
+        "title": "V7神态保留主站章节归属，卷首与八态目录在1440桌面内可读",
+        "status": "expected"
+      },
+      {
+        "file": "content-comparison.spec.js",
+        "line": 83,
+        "title": "神态解读仅呈现当前态，背景滚动锁定且关闭恢复本态和触发焦点",
+        "status": "expected"
+      },
+      {
+        "file": "developer-settings.spec.js",
+        "line": 516,
+        "title": "章节原毛笔标题继承导航字号设置，刷新与返回首页后保持且品牌文字只在首页出现",
+        "status": "expected"
+      },
+      {
+        "file": "developer-settings.spec.js",
+        "line": 1203,
+        "title": "神态底板六参数与简介解读字号独立保存，点击前后使用对应字号",
+        "status": "expected"
+      },
+      {
+        "file": "developer-settings.spec.js",
+        "line": 1280,
+        "title": "神态两种字号校验16至32边界，透明底板仍保留前后文字",
+        "status": "expected"
+      },
+      {
+        "file": "four-chapter-journey.spec.js",
+        "line": 21,
+        "title": "four chapter navigation preserves the expression deep link and browser history",
+        "status": "expected"
+      }
+    ]
+  },
+  "interruption": {
+    "report": "final-depth-results.json",
+    "workerExitCodes": [
+      1073807364,
+      3221226091
+    ],
+    "unfinishedChecks": [
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 77,
+        "title": "默认巡游从卷首走完八态，真实3秒五官、12秒解读、6秒运镜及八段自然完播旁白",
+        "status": "unexpected"
+      },
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 156,
+        "title": "reduced兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+        "status": "unexpected"
+      },
+      {
+        "file": "expression-depth-tour.spec.js",
+        "line": 156,
+        "title": "static兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+        "status": "skipped"
+      }
+    ],
+    "rerunResolved": true
+  },
+  "otherChapterLimit": "Seven old model atlas preconditions in mixed legacy suites are outside this eight-state replacement; not counted as passed."
+}

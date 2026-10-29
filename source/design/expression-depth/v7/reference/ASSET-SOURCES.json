@@ -1,0 +1,257 @@
+{
+  "version": 3,
+  "preparedOn": "2026-10-27",
+  "title": "醒狮八态纵深独立版素材来源",
+  "sourceArchive": {
+    "originalPath": "F:/数媒竞赛/炫技2.zip",
+    "bytes": 333287548,
+    "sha256": "f5b26df5255708af98b1a0b679b8ca9715f2e9176bab6bb0a85bfc03a2a94851",
+    "role": "用户提供的纵深网页参考工程；沿用空间体验结构，不载入其中旧风景图片。",
+    "modified": false
+  },
+  "sourceData": {
+    "originalPath": "F:/数媒竞赛/信息可视化codex/src/data/lion-expressions.js",
+    "sha256": "d16886a9e6e7b6ace4771e416ada31a07f8504176c7da5880e97adc2c20368df",
+    "fields": {
+      "title": "name",
+      "subtitle": "summary",
+      "description": "description.join(newline)",
+      "category": "眉眼 · 狮口 · 身段",
+      "location": "meaning",
+      "coordinates": "verse",
+      "year": "定性观察",
+      "emotion": "emotion",
+      "motion": "motion",
+      "intent": "intent",
+      "posture": "posture"
+    }
+  },
+  "images": [
+    {
+      "id": "joy",
+      "title": "喜",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-joy-v2.png",
+      "originalAssetKey": "expressionJoy",
+      "outputPath": "public/images/lion-joy.png",
+      "runtimePath": "/images/lion-joy.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1973680,
+      "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "anger",
+      "title": "怒",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-anger-v2.png",
+      "originalAssetKey": "expressionAnger",
+      "outputPath": "public/images/lion-anger.png",
+      "runtimePath": "/images/lion-anger.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2148975,
+      "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "sorrow",
+      "title": "哀",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-sorrow-v2.png",
+      "originalAssetKey": "expressionSorrow",
+      "outputPath": "public/images/lion-sorrow.png",
+      "runtimePath": "/images/lion-sorrow.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2072160,
+      "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "delight",
+      "title": "乐",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-delight-v2.png",
+      "originalAssetKey": "expressionDelight",
+      "outputPath": "public/images/lion-delight.png",
+      "runtimePath": "/images/lion-delight.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2210847,
+      "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "motion",
+      "title": "动",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-motion-v2.png",
+      "originalAssetKey": "expressionMotion",
+      "outputPath": "public/images/lion-motion.png",
+      "runtimePath": "/images/lion-motion.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2272850,
+      "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "stillness",
+      "title": "静",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-stillness-v2.png",
+      "originalAssetKey": "expressionStillness",
+      "outputPath": "public/images/lion-stillness.png",
+      "runtimePath": "/images/lion-stillness.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2045186,
+      "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "surprise",
+      "title": "惊",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-surprise-v2.png",
+      "originalAssetKey": "expressionSurprise",
+      "outputPath": "public/images/lion-surprise.png",
+      "runtimePath": "/images/lion-surprise.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1975024,
+      "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    },
+    {
+      "id": "doubt",
+      "title": "疑",
+      "originalPath": "F:/数媒竞赛/信息可视化codex/source/public/assets/expression/lion-doubt-v2.png",
+      "originalAssetKey": "expressionDoubt",
+      "outputPath": "public/images/lion-doubt.png",
+      "runtimePath": "/images/lion-doubt.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1899231,
+      "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e",
+      "copiedByteForByte": true,
+      "aiAssistedIllustration": true,
+      "verifiedPerformanceSample": false,
+      "sampleReviewStatus": "等待真实图片/视频样本校核",
+      "usageBoundary": "用于八态定性观察与视觉演绎，不作为真实表演样本、情绪识别或评分数据。"
+    }
+  ],
+  "relatedImages": [
+    {
+      "id": "joy",
+      "images": [
+        "/images/lion-joy.png",
+        "/images/lion-delight.png",
+        "/images/lion-stillness.png"
+      ]
+    },
+    {
+      "id": "anger",
+      "images": [
+        "/images/lion-anger.png",
+        "/images/lion-surprise.png",
+        "/images/lion-motion.png"
+      ]
+    },
+    {
+      "id": "sorrow",
+      "images": [
+        "/images/lion-sorrow.png",
+        "/images/lion-stillness.png",
+        "/images/lion-doubt.png"
+      ]
+    },
+    {
+      "id": "delight",
+      "images": [
+        "/images/lion-delight.png",
+        "/images/lion-joy.png",
+        "/images/lion-motion.png"
+      ]
+    },
+    {
+      "id": "motion",
+      "images": [
+        "/images/lion-motion.png",
+        "/images/lion-stillness.png",
+        "/images/lion-anger.png"
+      ]
+    },
+    {
+      "id": "stillness",
+      "images": [
+        "/images/lion-stillness.png",
+        "/images/lion-motion.png",
+        "/images/lion-sorrow.png"
+      ]
+    },
+    {
+      "id": "surprise",
+      "images": [
+        "/images/lion-surprise.png",
+        "/images/lion-doubt.png",
+        "/images/lion-anger.png"
+      ]
+    },
+    {
+      "id": "doubt",
+      "images": [
+        "/images/lion-doubt.png",
+        "/images/lion-surprise.png",
+        "/images/lion-stillness.png"
+      ]
+    }
+  ],
+  "fallback": {
+    "outputPath": "public/images/fallback.svg",
+    "bytes": 1019,
+    "sha256": "3d5978da7b8da0aab32247d708d1def25434e49cc8ede2e99655df8fba28649e",
+    "type": "自主制作的中文图像加载占位",
+    "isPerformancePhoto": false
+  },
+  "boundaries": [
+    "八态图像为既有项目AI辅助示意，原字节复制。",
+    "未新增或生成表演图片，关联副卡重复引用已登记八态PNG。",
+    "真实图片/视频样本校核尚未完成，所有说明仅作定性观察提示。",
+    "原项目文件及参考ZIP均保持只读。"
+  ],
+  "backgroundReference": {
+    "originalPath": "F:/数媒竞赛/醒狮素材/醒狮模型背景.png",
+    "outputPath": "public/images/paper-reference.png",
+    "runtimePath": "/images/paper-reference.png",
+    "bytes": 2341966,
+    "sha256": "aa62559fbbf74b40ef1020a469f839a10f7332d5eb99a9683f2dfa1a310c9a91",
+    "copiedByteForByte": true,
+    "use": "暖米白纸色与低对比度边缘水墨氛围，CSS低透明度显示"
+  },
+  "typographyManifest": "reference/TYPOGRAPHY-SOURCES.json",
+  "narrationManifest": "reference/NARRATION-SOURCES.json"
+}

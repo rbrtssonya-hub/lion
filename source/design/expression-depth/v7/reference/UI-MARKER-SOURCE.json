@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "purpose": "用户审核通过的Q版醒狮移动路线标记",
+  "source": {
+    "path": "F:\\数媒竞赛\\醒狮素材\\UI狮头.png",
+    "archivedCopy": "reference/ui-lion-marker-original.png",
+    "sha256": "ab89f80e7b95a2a725f4b627704adddd21bdcfd2e544ea11acc4848a6046bb65",
+    "width": 2048,
+    "height": 2048,
+    "mode": "RGB",
+    "background": "white"
+  },
+  "generated": {
+    "path": "public/images/ui-lion-marker-q.png",
+    "sha256": "75e844450406311cb43c3e47931bd8c7d6696ba3dac9b1c5fd45e7c2ab08cf26",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "originalToolOutput": "C:\\Users\\ALLEN\\.codex\\generated_images\\01a18099-36a9-7fa3-8a2c-4adfd4d22078\\exec-675464e2-0089-4939-98d8-79b794901398.png"
+  },
+  "processing": {
+    "method": "built-in image_gen",
+    "aiAssisted": true,
+    "operation": "新生成Q版醒狮，非原图逐像素修改；工具未提供模型版本选择",
+    "sourcePreserved": true
+  },
+  "verification": {
+    "approvedBy": "user",
+    "approvedOn": "2026-10-28",
+    "approvalText": "通过，替换成这张",
+    "openedGenerated": true,
+    "alphaReport": "review/v7/marker-q-candidate.alpha.json",
+    "smallSizeReview": "review/v7/marker-q-size-review.jpg"
+  },
+  "prompt": "Use case: stylized-concept.\nAsset type: a single transparent PNG Q版醒狮 path marker for a Chinese cultural website, displayed at about 40–48px.\nPrimary request: create an adorable CHIBI Southern Chinese lion dance mascot, a cute miniature whole lion with an oversized round lion head, very large sparkling round dark eyes, short soft cream eyebrows and moustache, a tiny joyful open smiling mouth, two little front paws tucked beneath the head and a tiny rounded red body peeking behind. This is the traditional Chinese lion dance costume, not a natural animal lion, not a dragon.\nStyle/medium: polished cute hand-painted 2.5D game mascot illustration, soft rounded volumes, clean bold silhouette, gentle cel shading, charming and lively. Slight three-quarter angle facing toward the viewer, friendly and calm rather than fierce.\nColor palette: rich vermilion red, warm ivory white fur, restrained antique gold details; a simple circular gold forehead mirror and two little red-white ears. Use simplified large color shapes and just enough traditional forehead decoration to identify 醒狮.\nComposition/framing: exactly ONE mascot centered, full silhouette visible with generous transparent margin on all four sides, nearly square compact silhouette, oversized head about 80 percent of mascot height. Silhouette and eyes remain readable at 40px.\nScene/backdrop: genuine transparent background, alpha channel. No ground plane, no shadow behind the mascot, no colored backdrop.\nText: none.\nConstraints: no words, no letters, no numbers, no watermark, no border, no circular badge, no seal, no pedestal, no props, no human rider. The result must look unmistakably cute and Q版, not like a flat traditional emblem.",
+  "previousVersion": "reference/UI-MARKER-SOURCE-v4.json"
+}
