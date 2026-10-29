@@ -1,0 +1,258 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "F:\\数媒竞赛\\信息可视化codex\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/expression-depth-tour.spec.js",
+      "--config",
+      "playwright.preview.config.js",
+      "--workers=1",
+      "--reporter=list,json",
+      "--output=tmp/expression-depth-final-tour"
+    ],
+    "configFile": "F:\\数媒竞赛\\信息可视化codex\\playwright.preview.config.js",
+    "rootDir": "F:/数媒竞赛/信息可视化codex/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "F:/数媒竞赛/信息可视化codex/tmp/expression-depth-final-tour",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "F:/数媒竞赛/信息可视化codex/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "F:\\数媒竞赛\\信息可视化codex\\tmp\\expression-depth-final-tour",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "F:\\数媒竞赛\\信息可视化codex\\tests\\e2e",
+        "snapshotDir": "F:\\数媒竞赛\\信息可视化codex\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4187",
+          "channel": "chrome",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview -- --strictPort --port 4187",
+      "url": "http://127.0.0.1:4187",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "expression-depth-tour.spec.js",
+      "file": "expression-depth-tour.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "默认巡游从卷首走完八态，真实3秒五官、12秒解读、6秒运镜及八段自然完播旁白",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 196873,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "喜态：动效 3007ms，阅读 12048ms，运镜 6100ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "怒态：动效 3005ms，阅读 12026ms，运镜 6098ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "哀态：动效 3006ms，阅读 12058ms，运镜 6099ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "乐态：动效 3007ms，阅读 12075ms，运镜 6100ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "动态：动效 3005ms，阅读 12006ms，运镜 6099ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "静态：动效 3006ms，阅读 12034ms，运镜 6098ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "惊态：动效 3004ms，阅读 12071ms，运镜 6100ms，旁白已自然完播。\n"
+                    },
+                    {
+                      "text": "疑态：动效 3006ms，阅读 12058ms，运镜 6100ms，旁白已自然完播。\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T02:39:26.879Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e47c124f09b3b4efd5f-3bd29011ca8c383404bd",
+          "file": "expression-depth-tour.spec.js",
+          "line": 77,
+          "column": 1
+        },
+        {
+          "title": "reduced兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9725,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T02:42:45.114Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e47c124f09b3b4efd5f-8cadaa76d3ed1408b408",
+          "file": "expression-depth-tour.spec.js",
+          "line": 156,
+          "column": 43
+        },
+        {
+          "title": "static兜底可打开本态解读，visibilitychange暂停读秒且手动继续后恢复",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10164,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T02:42:54.847Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e47c124f09b3b4efd5f-1de9c4078ae49df9cfb1",
+          "file": "expression-depth-tour.spec.js",
+          "line": 156,
+          "column": 43
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-29T02:39:26.431Z",
+    "duration": 219076.42799999999,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "stagedAgainst": "360974369fe71381b4589c21d7e622efa98b0b44",
+  "stagedManifestEntries": 2199,
+  "taskChangedAssetRecords": 72,
+  "taskAssetHashesPassed": true,
+  "featureRelativeImportsPassed": true,
+  "archivedLegacyBytesPassed": true,
+  "hostReactThreePreserved": true,
+  "parallelTaskFilesExcluded": true
+}

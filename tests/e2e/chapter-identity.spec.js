@@ -6,6 +6,21 @@ const chapters = [
   ['action', '03', '传神'], ['spread', '04', '远播'],
 ];
 
+async function expectExpressionIdentity(page) {
+  const expression = page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true });
+  await expect(expression).toBeVisible();
+  await expect(expression.locator('#depth-home .hero-title')).toHaveAccessibleName('醒狮八态');
+  await expect(expression.locator('#depth-home .hero-title')).toBeVisible();
+  expect(await expression.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link').evaluateAll(links => links.map(link => link.getAttribute('aria-label')))).toEqual(['喜', '怒', '哀', '乐', '动', '静', '惊', '疑']);
+  await expect(page.locator('.site-header')).toHaveCount(1);
+  await expect(page.locator('.site-header [data-route="action"]')).toHaveAttribute('aria-current', 'page');
+  expect(await expression.locator('.hero-title').evaluate(element => {
+    const title = element.getBoundingClientRect();
+    const host = element.closest('.expression-depth').getBoundingClientRect();
+    return title.left >= host.left && title.right <= host.right + 1 && title.top >= host.top && title.bottom <= host.bottom + 1;
+  })).toBe(true);
+}
+
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     if (window !== window.top) return;
@@ -39,9 +54,14 @@ for (const size of [{ width: 1920, height: 1080 }, { width: 1440, height: 900 }]
       }
     }
     await page.evaluate(() => { location.hash = '/state'; });
-    const expressionIdentity = page.locator('.chapter-identity[data-chapter-identity="state"]');
-    await expect(expressionIdentity.locator('.chapter-identity__number')).toHaveText('03 / 04');
-    await expect(expressionIdentity.locator('.chapter-identity__phase')).toHaveText('传神');
+    await expectExpressionIdentity(page);
+  });
+
+  test(`V7神态保留主站章节归属，卷首与八态目录在${size.width}桌面内可读`, async ({ page }) => {
+    await page.setViewportSize(size);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/#/state');
+    await expectExpressionIdentity(page);
   });
 }
 
@@ -56,7 +76,7 @@ test('后台模型等待不遮挡首页和神态，准备后仍复用原画布',
     await expect(page.locator('#entryLionVideo')).toBeVisible();
     await expect.poll(() => page.locator('#entryLionVideo').evaluate(video => video.currentTime)).toBeGreaterThan(.1);
     await page.evaluate(() => { location.hash = '/state'; });
-    await expect(page.locator('#expressionLion')).toBeVisible();
+    await expect(page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true }).locator('#depth-home .hero-title')).toBeVisible();
     release();
     await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 45_000 });
     await page.locator('.site-nav-item[data-route="model"]').click();
@@ -64,7 +84,7 @@ test('后台模型等待不遮挡首页和神态，准备后仍复用原画布',
     await expect(page.locator('#resetView')).toBeVisible();
     const canvas = await page.locator('#sceneContainer canvas').elementHandle();
     await page.evaluate(() => { location.hash = '/state'; });
-    await expect(page.locator('#expressionLion')).toBeVisible();
+    await expect(page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true }).locator('#depth-home .hero-title')).toBeVisible();
     await page.locator('.site-nav-item[data-route="model"]').click();
     await expect(page.locator('#resetView')).toBeVisible();
     expect(await canvas.evaluate(node => node === document.querySelector('#sceneContainer canvas'))).toBe(true);

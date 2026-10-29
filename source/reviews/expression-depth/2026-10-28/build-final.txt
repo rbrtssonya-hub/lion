@@ -1,0 +1,33 @@
+
+> nan-feng-you-shi@0.2.0 build
+> vite build
+
+vite v7.1.9 building for production...
+transforming...
+✓ 990 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 0.58 kB │ gzip:   0.41 kB
+dist/assets/MiniGameDialog-Cr59AGLU.css         5.08 kB │ gzip:   1.69 kB
+dist/assets/ModelPage-L2upfhTi.css             40.08 kB │ gzip:   8.61 kB
+dist/assets/LionBookExperience-CWaMDFrR.css    72.92 kB │ gzip:  26.36 kB
+dist/assets/ExpressionDepth-Laf_nRtQ.css      102.32 kB │ gzip:  15.70 kB
+dist/assets/index-B_xZ2Iny.css                192.77 kB │ gzip:  37.44 kB
+dist/assets/cultureDepthGallery-Dh8xuLJf.js     6.29 kB │ gzip:   2.92 kB
+dist/assets/MiniGameDialog-Ca0PrBbw.js         32.44 kB │ gzip:  13.71 kB
+dist/assets/actionTheaterScene-CVTIFOpc.js     41.43 kB │ gzip:  16.16 kB
+dist/assets/StampGallery-D34d1SrI.js           43.16 kB │ gzip:  16.04 kB
+dist/assets/ExpressionDepth-mNy_tHz4.js        65.58 kB │ gzip:  21.92 kB
+dist/assets/index-CzGW6FVa.js                  70.46 kB │ gzip:  27.81 kB
+dist/assets/LionBookExperience-RazzvJDw.js     72.02 kB │ gzip:  23.76 kB
+dist/assets/lionLightingSettings-zFhK7qPu.js  111.43 kB │ gzip:  37.24 kB
+dist/assets/ModelPage-BJqfqlJI.js             118.70 kB │ gzip:  43.85 kB
+dist/assets/Scene-Ds-sVruo.js                 244.42 kB │ gzip:  80.15 kB
+dist/assets/index-B8L7LzRV.js                 445.44 kB │ gzip: 151.06 kB
+dist/assets/three.module-B9ND1AKC.js          667.38 kB │ gzip: 172.75 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 7.64s

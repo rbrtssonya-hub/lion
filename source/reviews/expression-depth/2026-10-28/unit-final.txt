@@ -1,0 +1,207 @@
+
+> nan-feng-you-shi@0.2.0 test
+> node --test tests/assets/*.test.mjs
+
+✔ 鼓运行资产保留全部评估三角、UV、PBR纹理，源文件原字节归档 (116.8887ms)
+✔ native ended after hidden is consumed once on returning, without replaying the finished clip (4.4713ms)
+✔ explicit pause keeps a pending end paused until the user resumes (1.1806ms)
+✔ a native end arriving after explicit pause also waits for a new play gesture (1.054ms)
+✔ stop cancels a hidden end before the same screen becomes active again (0.9712ms)
+✔ screen cancels a hidden end before the same screen becomes active again (1.7242ms)
+✔ unmount cancels a hidden end before the same screen becomes active again (1.0462ms)
+✔ 巨幕方向选择在边界保留当前屏，超过12度优势后仍等待180毫秒 (2.8832ms)
+✔ 巨幕边界抖动取消旧停留，换向和回看必须重新观察完整停留期 (0.3955ms)
+✔ 四个方向及±180度接缝均选择正确主屏，垂直观看不引起切换 (0.2066ms)
+✔ 动作空间镜头插值始终选择跨接缝的最短角度 (0.175ms)
+✔ 巨幕环绕限定缩放并开放俯仰，不再夹紧相机高度 (2.6541ms)
+✔ 环绕约束保留合法视角和水平目标偏移，不因模型旋转改变目标 (0.3139ms)
+✔ 自定义环绕边界遵守新的观看距离和俯仰范围 (0.2949ms)
+✔ 巨幕完整容纳16:9、宽屏和竖屏视频，保留比例并对未知尺寸安全回退 (0.2142ms)
+✖ migration snapshot preserves the size and SHA256 of every archived binary asset (6143.4787ms)
+✖ public assets include configured media and exclude private creative or review files (9.5319ms)
+✔ navigation lion is a configured transparent PNG (3.1106ms)
+✔ navigation brush font is a WOFF with its redistributable license (2.4121ms)
+✔ structure web export preserves every source mesh and its authored sheen weights (102.517ms)
+✔ complete user hair preserves all 33 groups, source points, radii and emitter UVs (4954.6772ms)
+✔ all six structure regions describe real model meshes or finite surface volumes (43.8708ms)
+✔ replacement GLB preserves UVs, embedded textures and valid indices across all meshes (135.9683ms)
+✔ structure hotspots provide cultural, technical and camera focus metadata (0.8287ms)
+✔ Live2D layer specification resolves the source cover after migration (1.6334ms)
+✔ four public chapters keep the expression page registered under the stage (2.1275ms)
+✔ every visible chapter has an existing icon and independent page identity (1.2745ms)
+✔ 章节与设置图案保留透明PNG，显示取景不超出原图 (6.7015ms)
+✔ 四章与设置标题使用透明毛笔字PNG (10.6761ms)
+✔ older saved settings gain the eight-state depth defaults without losing other preferences (4.3671ms)
+✔ depth slider values reject non-numeric input and snap or clamp to their supported intervals (0.4786ms)
+✔ saved depth values are validated before restoration and survive the existing settings export (2.6476ms)
+✔ the runtime resolver fills invalid or missing values and keeps only depth parameters (0.6349ms)
+✔ the runtime resolver bounds every depth parameter at both supported limits (0.1924ms)
+✔ HDRI settings default missing saved fields while preserving existing controls (1.3825ms)
+✔ view boundaries migrate missing fields, clamp extremes and preserve saved choices (3.3422ms)
+✔ 动作四项视角阈值采用指定范围，旧保存值限幅且保持初始取景 (0.4126ms)
+✔ 动作远近距离交叉时保留最新调整并遵守各自步长 (7.404ms)
+✔ HDRI source restores persistent presets and URLs while excluding stale local files (2.4569ms)
+✔ HDRI numeric controls clamp unsafe persisted values and snap every supported step exactly (2.2044ms)
+✔ heritage records distinguish merged form, dancing and craft and resolve every cited source (1.5987ms)
+✔ three independent type illustrations resolve to real landscape assets and archived originals (20.8712ms)
+✔ the entry and loop media are the 2026-10-21 action-folder originals in the correct order (35.0369ms)
+✔ the previous runtime videos remain recoverable byte-for-byte outside deployment assets (89.0756ms)
+✔ lion archive keeps the installed ThreeUI 1.2.0 paper engine unchanged (3.3822ms)
+✔ lion archive has seven local spreads and no lens, zoom controls, scenery, remote fonts or old site (3.2042ms)
+✔ archive adapter fails closed on engine/style drift, repeated adaptation and invalid content (2.1044ms)
+✔ archive data cannot escape its script (3.9391ms)
+✔ bridge accepts proportional pages, waits for all seven and the engine, then reports committed index (11.586ms)
+✔ bridge rejects missing, distorted or low-resolution pages despite upstream swallowed failures (6.9412ms)
+✔ wheel units, book keyboard boundaries and disposal obey the host lifecycle (2.904ms)
+✔ automatic reading visits all seven spreads in order, loops and never invokes the opening riffle (5.7475ms)
+✔ settings update the next reading interval in place and disabling autoplay clears pending work (3.3374ms)
+✔ manual reading, pointer hover and focus boundaries restart a full reading interval (4.1799ms)
+✔ offscreen, hidden documents and reduced motion suspend autoplay without a running RAF (6.601ms)
+✔ rapid timeline and keyboard navigation clears old springs and never leaves an idle RAF loop (2.5763ms)
+✔ a trusted host timeline command takes over after iframe focus moves to its parent (3.5377ms)
+✔ manual adjacent selection commits while paper is offscreen instead of parking an unseen spring (2.5666ms)
+✔ interrupted gestures return to committed paper and release capture on every lifecycle boundary (9.4295ms)
+✔ dynamic reduced motion immediately settles active paper and keeps short drag cancellation static (3.1998ms)
+✔ zero-size prewarming cannot start an automatic turn before host exposure (4.1045ms)
+✔ blank paper margins cannot start an interaction and cast shadows hide while page lighting remains (2.8663ms)
+✔ disposing scheduled or turning autoplay clears timers, frames, image work and bridge listeners (4.4998ms)
+✔ factory adapts only marked absolute asset URLs and strips their channel before generating content (3.9231ms)
+✔ Vite wraps only the exact installed factory while keeping canonical source and normal instances intact (11.0305ms)
+✔ uniform RGB and RGBA, Float32 and half-float environments give pi irradiance in every direction (14.4234ms)
+✔ vertical illumination and flipY reverse the expected hemisphere without changing total energy (5.7095ms)
+✔ Y rotation matches independent per-pixel projection and retains target vector identities (7.7671ms)
+✔ a concentrated environment has nonnegative irradiance across the sphere after the EEVEE energy limit (2.8951ms)
+✔ deringing uses a common RGB scale, keeps mean energy, and supports in-place vector reuse (0.8341ms)
+✔ invalid data fail, while finite compression ringing is integrated as nonnegative radiance (5.7458ms)
+✔ local diffuse replacement retains strand callbacks, source material, specular IBL, EV and one output conversion (2.1884ms)
+✔ install is idempotent, replacement pointers cannot reuse stale programs, and unknown shaders remain intact (0.4997ms)
+✔ each of the eight lion states resolves to distinct transparent artwork (36.3171ms)
+✔ eight generated brush glyphs retain the original transparent PNGs and exact state mapping (45.6582ms)
+✔ preserved Live2D package resolves model exports and local runtime dependencies (9.5568ms)
+✔ Cubism motion curves have valid segments and matching metadata (2.0185ms)
+✔ media volume clamps native limits, rounds to one percent and defaults invalid values (1.0799ms)
+✔ session audio preserves explicit mute and nonzero loudness, zero restores the latest audible level (10.9374ms)
+✔ zero-volume reload and unavailable session storage retain a usable nonzero unmute level (6.307ms)
+✔ rhythm: eighteen accurate beats collect greens on hit twelve and settle once at 25 seconds (16.3956ms)
+✔ rhythm: practice taps show their HUD notice during the demo, then restore its default hint (0.9867ms)
+✔ rhythm: early taps leave the beat available, holding cannot repeat and pause clears held input (6.9724ms)
+✔ rhythm: unavailable audio and idle rounds still finish; destroy stops later callbacks (5.9818ms)
+✔ poles: five gold-band releases complete the course once and pointer input shares the rule (7.7575ms)
+✔ poles: missed jumps recover; key repeat and pause cancellation cannot queue a jump (10.0665ms)
+✔ poles: 45-second timeout settles once; destroy and blocked audio stay safe (7.4761ms)
+✔ art: abort cancels image loading, rejects promptly and detaches all load handlers (4.0842ms)
+✔ art: loaded atlas uses different transparent frame crops with a shared foot anchor (1.9879ms)
+✔ audio: explicit enable creates context; pause, volume zero and disable stop existing sound (3.8034ms)
+✔ audio: dispose disconnects nodes and closes the context; late calls and unsupported audio stay safe (0.8047ms)
+✔ paper defaults distinguish feathered headings, reading and reference surfaces (3.3867ms)
+✔ legacy defaults migrate field by field without changing unrelated preferences or mutating input (1.4306ms)
+✔ custom material fields survive a mixed migration and old values chosen afterwards survive reload (0.2057ms)
+✔ missing storage fields stay missing so current defaults and legacy shared opacity can resolve normally (0.3202ms)
+✔ fully transparent material disables blur but does not fade the text or alter size (0.2582ms)
+✔ 地图按用户指定的三组收录十二个城市，编号与层级顺序稳定 (2.1593ms)
+✔ 北京坐标使用北京市政府公布的经纬度近似值 (0.1855ms)
+✔ 十二个城市保留经度在前、纬度在后的核对坐标 (0.1856ms)
+✔ 已有案例继续引用原 story 与照片，未提供资料的城市不借用其他地点照片 (0.4411ms)
+✔ 每幅照片归入真实地点，年份以拍摄年展示而不作为传播节点 (0.266ms)
+✔ 三种地域票幅在桌面余宽内完整排列且聚焦大于原票，随机角度稳定 (2.783ms)
+✔ 邮票原52项参数完整映射到独立持久设置，旧全站偏好补齐默认且不覆盖其他参数 (6.2787ms)
+✔ 邮票全部数字、开关、颜色、算法逐字段白名单限幅，保留源参数精度 (11.8589ms)
+✔ 六种光影算法ID与GPU索引稳定，应用预设不修改指针、聚焦、纸色和流动偏好 (4.2951ms)
+✔ 原v2邮票JSON与全站未保存导出均保留52参数，导入不接受任意uniform字段 (4.3277ms)
+✔ 原v1外观迁移保留交互编辑，revision4缺少算法时只补当前算法 (0.3342ms)
+✔ 观形的六套清晰图幅、入口图和文化信息图均独立登记为运行资产 (156.3473ms)
+✔ structure reading paper starts warm, nearly opaque and without glass blur (1.651ms)
+✔ independent structure migration upgrades every historical default without touching other pages (1.5585ms)
+✔ mixed structure material preferences migrate field by field and preserve custom dimensions (0.2343ms)
+✔ structure upgrade runs once, so historical material chosen afterwards survives reload (0.1953ms)
+✔ partial structure migration keeps missing fields absent for normal default resolution (0.1759ms)
+✔ storage restoration applies the structure upgrade even when reading paper was already migrated (8.873ms)
+✔ fresh or invalid storage resolves current structure defaults with a persisted upgrade marker (3.2725ms)
+✔ 观形六个部位分别使用用户提供的对应海报原图 (29.5072ms)
+✔ four current chapters plus the spread chapter offer grounded guides and answerable suggested questions (17.818ms)
+✔ natural questions retrieve their own topic across current chapter boundaries (6.9088ms)
+✔ unknown questions stay unknown instead of being assigned to the current chapter (55.688ms)
+✔ a basic cultural question answers only the site-supported introduction (1.8976ms)
+✔ a known lion topic does not invent uncovered mechanical, biological or color facts (0.3232ms)
+✔ type comparison preserves traditional schools versus a blended form (1.6022ms)
+✔ model explanation describes actual visible selection and never claims internal dismantling (0.8092ms)
+✔ action answer uses supplied current four clips and real viewing affordances (1.9895ms)
+✔ eight states retain AI-assisted qualitative and unverified-sample boundaries (1.0498ms)
+✔ state instructions describe the current depth journey and click-to-read tour (1.2871ms)
+✔ spread guide describes the actual Guangdong, China, world levels and avoids a migration claim (1.2139ms)
+✔ chapter-guide intent follows explicit chapter and otherwise current route (0.1953ms)
+✔ source links use existing sections and curated HTTPS references (3.935ms)
+✔ malformed or oversized input cannot add sources, throw, or retrieve arbitrary text (3.073ms)
+✔ real HTTP endpoint explains a chapter locally and rejects CSRF and oversized questions (81.1544ms)
+✔ model contract sends bounded trusted context and returns only known source references (25.943ms)
+✔ invalid model output, provider errors and forced offline retain grounded local answers (30.992ms)
+✔ out-of-corpus questions do not reach model and rate limits bound API use (17.9143ms)
+✔ timeout cancels upstream and the HTTPS gateway cannot introduce arbitrary source links (528.8092ms)
+✔ desktop-to-gateway-to-model flow works with server-held credentials and explicit origin access (47.5168ms)
+✔ actual portable HTTP server serves packaged assistant runtime while offline (46.8159ms)
+✔ standalone server registers speech and forwards only fixed GPT-SoVITS parameters (73.6193ms)
+✔ speech normalizes AI for speech and selects pure Chinese or mixed language without changing the text contract (66.3792ms)
+✔ actual Vite dev and preview both install the same-origin speech endpoint (470.0972ms)
+✔ speech validates text, JSON size, method and disallows client reference/config overrides over HTTP (40.222ms)
+✔ speech applies chat-equivalent origin, token and OPTIONS rules (34.1167ms)
+✔ speech only accepts server-configured HTTPS or loopback HTTP, and offline allows local inference (42.3775ms)
+✔ speech returns explicit JSON for upstream errors, redirects, wrong MIME and fake WAV without leaking details (42.3487ms)
+✔ speech bounds WAV bytes with declared and chunked response bodies (124.861ms)
+✔ speech timeout aborts a real upstream HTTP connection (515.3049ms)
+✔ client cancellation keeps the upstream and generation gate until inference completes, then discards the result (185.9392ms)
+✔ speech rate limit and one active generation bound GPU use over real HTTP (32.16ms)
+✔ portable runtime includes only required speech source/reference and routes local TTS while offline (59.314ms)
+✔ real Electron build configuration includes speech code and an external reference WAV (8.821ms)
+✔ selected reference voice covers every current chapter without a browser voice profile (1.5366ms)
+✔ user-selected MP3 is preserved byte for byte and the inference excerpt is 3–10 seconds (9.0743ms)
+✔ five generated recordings match the current guide text, exact reference and authenticated WAV files (103.6027ms)
+ℹ tests 153
+ℹ suites 0
+ℹ pass 151
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11713.1584
+
+✖ failing tests:
+
+test at tests\assets\asset-integrity.test.mjs:42:1
+✖ migration snapshot preserves the size and SHA256 of every archived binary asset (6143.4787ms)
+  AssertionError [ERR_ASSERTION]: Binary asset is absent from the migration snapshot: source/design/dance-entrance/reference.png
+
+  false !== true
+
+      at TestContext.<anonymous> (file:///F:/%E6%95%B0%E5%AA%92%E7%AB%9E%E8%B5%9B/%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96codex/tests/assets/asset-integrity.test.mjs:75:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\assets\asset-integrity.test.mjs:82:1
+✖ public assets include configured media and exclude private creative or review files (9.5319ms)
+  AssertionError [ERR_ASSERTION]: Unconfigured media or non-runtime file in publicDir: assets/dance-entrance/paper-landscape.png
+
+  false !== true
+
+      at TestContext.<anonymous> (file:///F:/%E6%95%B0%E5%AA%92%E7%AB%9E%E8%B5%9B/%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96codex/tests/assets/asset-integrity.test.mjs:101:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

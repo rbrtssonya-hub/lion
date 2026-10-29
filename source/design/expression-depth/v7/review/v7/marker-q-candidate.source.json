@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-28",
+  "status": "user-approved-and-integrated",
+  "userRequest": "做成一个Q版醒狮的样式",
+  "method": "built-in image_gen",
+  "model": "Built-in tool does not expose model selection; model version unverified",
+  "transparent_background": true,
+  "source": "C:\\Users\\ALLEN\\.codex\\generated_images\\01a18099-36a9-7fa3-8a2c-4adfd4d22078\\exec-675464e2-0089-4939-98d8-79b794901398.png",
+  "output": "F:\\数媒竞赛\\醒狮八态纵深独立版\\review\\v7\\marker-q-candidate.png",
+  "sourceImageRole": "new generation, no reference image supplied to generator",
+  "prompt": "Use case: stylized-concept.\nAsset type: a single transparent PNG Q版醒狮 path marker for a Chinese cultural website, displayed at about 40–48px.\nPrimary request: create an adorable CHIBI Southern Chinese lion dance mascot, a cute miniature whole lion with an oversized round lion head, very large sparkling round dark eyes, short soft cream eyebrows and moustache, a tiny joyful open smiling mouth, two little front paws tucked beneath the head and a tiny rounded red body peeking behind. This is the traditional Chinese lion dance costume, not a natural animal lion, not a dragon.\nStyle/medium: polished cute hand-painted 2.5D game mascot illustration, soft rounded volumes, clean bold silhouette, gentle cel shading, charming and lively. Slight three-quarter angle facing toward the viewer, friendly and calm rather than fierce.\nColor palette: rich vermilion red, warm ivory white fur, restrained antique gold details; a simple circular gold forehead mirror and two little red-white ears. Use simplified large color shapes and just enough traditional forehead decoration to identify 醒狮.\nComposition/framing: exactly ONE mascot centered, full silhouette visible with generous transparent margin on all four sides, nearly square compact silhouette, oversized head about 80 percent of mascot height. Silhouette and eyes remain readable at 40px.\nScene/backdrop: genuine transparent background, alpha channel. No ground plane, no shadow behind the mascot, no colored backdrop.\nText: none.\nConstraints: no words, no letters, no numbers, no watermark, no border, no circular badge, no seal, no pedestal, no props, no human rider. The result must look unmistakably cute and Q版, not like a flat traditional emblem.",
+  "approvedOn": "2026-10-28",
+  "runtime": "public/images/ui-lion-marker-q.png"
+}

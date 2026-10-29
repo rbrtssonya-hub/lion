@@ -1,0 +1,149 @@
+{
+    "schemaVersion":  1,
+    "generatedAt":  "2026-10-27T13:52:29.4336021+08:00",
+    "disclosure":  "AI合成语音：使用本机 Microsoft System.Speech / SAPI 普通话音色离线合成；非真人录音，未克隆真人声音。",
+    "engine":  "Microsoft System.Speech.Synthesis.SpeechSynthesizer / Windows SAPI",
+    "voice":  "Microsoft Huihui Desktop",
+    "language":  "zh-CN",
+    "speechRate":  3,
+    "speedMethod":  "Native SAPI synthesis rate; no digital time-stretching or resampling for speed.",
+    "targetDurationSeconds":  [
+                                  8,
+                                  12.5
+                              ],
+    "format":  {
+                   "container":  "WAV",
+                   "codec":  "PCM signed 16-bit little endian",
+                   "sampleRateHz":  24000,
+                   "channels":  1
+               },
+    "pauseMilliseconds":  {
+                              "leading":  200,
+                              "trailing":  300
+                          },
+    "music":  false,
+    "externalService":  false,
+    "qwen3TtsAvailability":  "Not installed: no qwen3-tts command, no C:/Users/ALLEN/Projects/qwen3-tts-cli/.venv, and no default HuggingFace model cache. No models or dependencies downloaded.",
+    "source":  {
+                   "file":  "src/data/projects.ts",
+                   "sha256":  "7bf71ba286e1816ecd2e3574f1ddbc8af6e513059acef720f448a06e63a9463d",
+                   "scope":  "The original subtitle and all three description lines for each of the eight states, plus each source title.",
+                   "boundary":  "The source labels these passages as qualitative observation prompts for AI-assisted visuals, pending checks against real image/video samples. Narration does not turn them into verified historical or recognition conclusions."
+               },
+    "entries":  [
+                    {
+                        "id":  "joy",
+                        "file":  "public/audio/joy.wav",
+                        "text":  "喜态，灵动欢喜。醒狮扬眉含笑，向人间送来好意。狮口轻启，白须随鼓点轻颤。一俯一仰间，是迎客纳福的欢喜。",
+                        "sourceTitle":  "喜",
+                        "sourceSubtitle":  "灵动欢喜",
+                        "sourceDescription":  "醒狮扬眉含笑，向人间送来好意。\n狮口轻启，白须随鼓点轻颤。\n一俯一仰间，是迎客纳福的欢喜。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "anger",
+                        "file":  "public/audio/anger.wav",
+                        "text":  "怒态，威严刚猛。醒狮凝目昂首，威势收在眉间。狮口一张一合，劲力随鼓声迸发。顿步扬头，见南狮刚健的精神。",
+                        "sourceTitle":  "怒",
+                        "sourceSubtitle":  "威严刚猛",
+                        "sourceDescription":  "醒狮凝目昂首，威势收在眉间。\n狮口一张一合，劲力随鼓声迸发。\n顿步扬头，见南狮刚健的精神。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "sorrow",
+                        "file":  "public/audio/sorrow.wav",
+                        "text":  "哀态，低回沉思。醒狮垂首敛目，把情绪藏进停顿。长须低拂，狮口缓缓收合。轻鼓慢步里，也有细腻的心事。",
+                        "sourceTitle":  "哀",
+                        "sourceSubtitle":  "低回沉思",
+                        "sourceDescription":  "醒狮垂首敛目，把情绪藏进停顿。\n长须低拂，狮口缓缓收合。\n轻鼓慢步里，也有细腻的心事。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "delight",
+                        "file":  "public/audio/delight.wav",
+                        "text":  "乐态，欢腾雀跃。醒狮仰头张口，喜乐溢出眉眼。摇头摆须，与锣鼓你来我往。腾起落下，满场都是嬉戏的趣味。",
+                        "sourceTitle":  "乐",
+                        "sourceSubtitle":  "欢腾雀跃",
+                        "sourceDescription":  "醒狮仰头张口，喜乐溢出眉眼。\n摇头摆须，与锣鼓你来我往。\n腾起落下，满场都是嬉戏的趣味。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "motion",
+                        "file":  "public/audio/motion.wav",
+                        "text":  "动态，腾挪起势。醒狮侧身起势，把目光送向前方。狮头领动，披身随步法舒展。鼓催身转，腾挪之间蓄足力量。",
+                        "sourceTitle":  "动",
+                        "sourceSubtitle":  "腾挪起势",
+                        "sourceDescription":  "醒狮侧身起势，把目光送向前方。\n狮头领动，披身随步法舒展。\n鼓催身转，腾挪之间蓄足力量。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "stillness",
+                        "file":  "public/audio/stillness.wav",
+                        "text":  "静态，凝神守势。醒狮驻足凝神，静中仍藏着气韵。狮目有落点，狮口微合不散神。锣鼓暂歇，一息之后再启新势。",
+                        "sourceTitle":  "静",
+                        "sourceSubtitle":  "凝神守势",
+                        "sourceDescription":  "醒狮驻足凝神，静中仍藏着气韵。\n狮目有落点，狮口微合不散神。\n锣鼓暂歇，一息之后再启新势。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "surprise",
+                        "file":  "public/audio/surprise.wav",
+                        "text":  "惊态，警觉骤起。醒狮忽然抬头，目光与狮口一同张开。白须扬起，像听见了新的动静。一记急鼓，惊而不乱地再探前方。",
+                        "sourceTitle":  "惊",
+                        "sourceSubtitle":  "警觉骤起",
+                        "sourceDescription":  "醒狮忽然抬头，目光与狮口一同张开。\n白须扬起，像听见了新的动静。\n一记急鼓，惊而不乱地再探前方。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    },
+                    {
+                        "id":  "doubt",
+                        "file":  "public/audio/doubt.wav",
+                        "text":  "疑态，探索试探。醒狮侧首探望，好奇里带着几分迟疑。一眼看去，又轻轻收回狮口。碎鼓试步，欲近还停地寻找答案。",
+                        "sourceTitle":  "疑",
+                        "sourceSubtitle":  "探索试探",
+                        "sourceDescription":  "醒狮侧首探望，好奇里带着几分迟疑。\n一眼看去，又轻轻收回狮口。\n碎鼓试步，欲近还停地寻找答案。",
+                        "sourceFields":  [
+                                             "title",
+                                             "subtitle",
+                                             "description"
+                                         ],
+                        "transformation":  "Prepend the source title followed by 态; join the original subtitle and all three description lines with punctuation. No new historical or recognition claims."
+                    }
+                ],
+    "validation":  "review/v5/audio-validation.json",
+    "regeneration":  "powershell -ExecutionPolicy Bypass -File scripts/generate-narration.ps1; python scripts/generate-narration.validate.py"
+}

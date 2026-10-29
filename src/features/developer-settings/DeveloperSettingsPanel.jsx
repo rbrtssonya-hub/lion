@@ -4,6 +4,7 @@ import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { soundControlRanges } from '../../config/soundControlSettings.js';
 import { expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
+import { expressionDepthRanges } from '../../config/expressionDepthSettings.js';
 import HdriSourceControls from './HdriSourceControls.jsx';
 import SpreadStampControls from './SpreadStampControls.jsx';
 import { ColorControl, MaterialControls, RangeControl, SettingsGroup, SettingsSubpages, SettingsTabList, ToggleControl } from './SettingsControls.jsx';
@@ -159,6 +160,19 @@ export default function DeveloperSettingsPanel({ open, settings, onChange, onApp
         </SettingsGroup> : surfaces(value === 'model' ? ['modelOverlay'] : value === 'action' ? ['actionOverlay','videoOverlay'] : ['expressionOverlay'])}
         {value === 'expression' && <SettingsGroup title="神态文字" note="简介与解读">
           {range('expressionOverviewFontSize','神态简介字号',16,32)}{range('expressionDetailFontSize','神态解读字号',16,32)}
+        </SettingsGroup>}
+        {value === 'expression' && <SettingsGroup title="醒狮八态纵深" note="比例与交互">
+          {range('expressionDepthImageScale','狮头图像比例',...expressionDepthRanges.expressionDepthImageScale,'%')}
+          {range('expressionDepthTextScale','图文文字比例',...expressionDepthRanges.expressionDepthTextScale,'%')}
+          {range('expressionDepthMarkerSize','节点标记尺寸',...expressionDepthRanges.expressionDepthMarkerSize,'px')}
+          {range('expressionDepthPointerStrength','指针跟随强度',...expressionDepthRanges.expressionDepthPointerStrength,'%')}
+          {range('expressionDepthWheelSpeed','滚轮推进速度',...expressionDepthRanges.expressionDepthWheelSpeed,'%')}
+          <p className="developer-settings-note">图像、文字与滚轮速度默认100%，节点默认40px。文字比例叠加上方简介与解读字号；指针强度默认100%，设为0可关闭跟随。</p>
+        </SettingsGroup>}
+        {value === 'expression' && <SettingsGroup title="自动巡游" note="镜头与阅读">
+          {range('expressionTourMoveDuration','单段行进时间',...expressionDepthRanges.expressionTourMoveDuration,'秒')}
+          {range('expressionTourReadingDuration','每态阅读停留',...expressionDepthRanges.expressionTourReadingDuration,'秒')}
+          <p className="developer-settings-note">行进时间控制相邻神态之间的镜头移动，默认6秒；停留时间控制每态的阅读阶段，默认12秒。调整后即时预览，保存后记住，取消可恢复。</p>
         </SettingsGroup>}
         {value === 'expression' && <SettingsGroup title="狮头点击反馈" note="点击查看解读">
           {range('expressionClickScale','狮头点击放大',...expressionFeedbackRanges.expressionClickScale,'%')}

@@ -46,13 +46,17 @@ test('four chapter navigation preserves the expression deep link and browser his
     await expect.poll(() => image.evaluate(element => element.complete && element.naturalWidth > 0)).toBe(true);
   }
   await expect(page.locator('.site-navigation [data-route="action"]')).toHaveAttribute('aria-current', 'page');
-  await expect(page.locator('[data-chapter-identity="state"]')).toContainText('03');
+  const expression = page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true });
+  await expect(expression).toHaveAttribute('data-chapter', 'state');
+  await expect(expression.locator('#depth-home .hero-title')).toHaveAccessibleName('醒狮八态');
+  await expect(expression.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link')).toHaveCount(8);
   await page.locator('.site-navigation [data-route="spread"]').click();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'spread');
   await expect(page.getByText('所收录案例分布示意', { exact: true })).toBeVisible();
   await page.goBack();
   await expect(page.locator('#react-app')).toHaveAttribute('data-route', 'state');
   await expect(page.locator('.site-navigation [data-route="action"]')).toHaveAttribute('aria-current', 'page');
+  await expect(expression.locator('#depth-home .hero-title')).toBeVisible();
 });
 
 test('the seven page book keeps chapter shortcuts and an auxiliary source dialog', async ({ page }) => {

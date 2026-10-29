@@ -1,0 +1,124 @@
+{
+  "portedOn": "2026-10-27",
+  "implementation": "Port of original SVG mask + WAAPI facial motion to perspective-correct Three planes. Exact original profiles and 3000ms native WAAPI timing; no videos or whole-image replacement.",
+  "disclosure": "Original underpaint images are AI-assisted gap-fill illustrations, only visible beneath moving facial pieces. Original lion PNGs remain byte-identical.",
+  "sources": [
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\ExpressionLion.jsx",
+      "copy": "reference/face-original/ExpressionLion.jsx",
+      "sha256": "646600c6ec4f717595ae2961490b64f908da95650767bdc79400159fe2c9fb31"
+    },
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\surprise-lion.css",
+      "copy": "reference/face-original/surprise-lion.css",
+      "sha256": "2db93e3f713d0064c71ce61dd3bb6b6cc04ef392964b67c3080a365f2e01bdee"
+    },
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\face-profiles\\index.js",
+      "copy": "reference/face-original/face-profiles/index.js",
+      "sha256": "6f327a0181ac3005cc57d90071ef90c1500d98c12c33aa07561445ed8017cb9f"
+    },
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\face-profiles\\front.js",
+      "copy": "reference/face-original/face-profiles/front.js",
+      "sha256": "499eb62d95a2e51e0df5d94aa2ef6846f2a2563ce2ea668acb8875f5fed5d084"
+    },
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\face-profiles\\poses.js",
+      "copy": "reference/face-original/face-profiles/poses.js",
+      "sha256": "c21134c7efed0d917020268358338dc5c5ddb9b6dcde4c14cd7166aba376f328"
+    },
+    {
+      "source": "F:\\数媒竞赛\\信息可视化codex\\src\\features\\chapters\\face-profiles\\surprise.js",
+      "copy": "reference/face-original/face-profiles/surprise.js",
+      "sha256": "f693fa1e7555da2e258a792c3adc893142b7d73dea21e2643d2c535eaeee1301"
+    }
+  ],
+  "assets": [
+    {
+      "id": "joy",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-joy-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-joy-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-joy-underpaint-v1.png",
+      "bytes": 1713559,
+      "sha256": "b831020f1d37f44848aa29fbecc26baad8cc929edb44e60be1699309c7e55f67",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+    },
+    {
+      "id": "anger",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-anger-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-anger-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-anger-underpaint-v1.png",
+      "bytes": 2047820,
+      "sha256": "5229dd7a6b8b20779c79b95e9f309388462bc86d16e4321b2f361e93e8c175d6",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+    },
+    {
+      "id": "delight",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-delight-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-delight-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-delight-underpaint-v1.png",
+      "bytes": 1946657,
+      "sha256": "d7ed77a8bdf8f876ba2a79ba2965822d51706d9cace75fa91b3b4655a8358fc2",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+    },
+    {
+      "id": "sorrow",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-sorrow-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-sorrow-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-sorrow-underpaint-v1.png",
+      "bytes": 1996477,
+      "sha256": "266f21fa53b5a6701b0d27078690cbb2ca9950dcdb5ed50bab0de532f394a451",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+    },
+    {
+      "id": "motion",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-motion-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-motion-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-motion-underpaint-v1.png",
+      "bytes": 2117141,
+      "sha256": "bf27ef4f3c6d2e3f17ff4923e88e930f4704d1b79ffd6a44fb662db09737df0d",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+    },
+    {
+      "id": "stillness",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-stillness-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-stillness-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-stillness-underpaint-v1.png",
+      "bytes": 1939047,
+      "sha256": "3222ceca66dcf12f08528b14e4f5d82e6eb584fc37852437397088ed838dc093",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+    },
+    {
+      "id": "doubt",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-doubt-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-doubt-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-doubt-underpaint-v1.png",
+      "bytes": 1816450,
+      "sha256": "d1513155cbc52982c91c963179cb403e8da2e0adab116602e2201e2d0a050e25",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+    },
+    {
+      "id": "surprise",
+      "source": "F:\\数媒竞赛\\信息可视化codex\\source\\public\\assets\\expression\\lion-surprise-underpaint-v1.png",
+      "runtime": "/images/underpaint/lion-surprise-underpaint-v1.png",
+      "output": "public/images/underpaint/lion-surprise-underpaint-v1.png",
+      "bytes": 1809215,
+      "sha256": "3ccf15f901e51651d8f7a12365d1941f1cb86316c15d842dca5f9325d2b71356",
+      "originalPngMatchesMain": true,
+      "originalPngSha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+    }
+  ],
+  "sourceNotes": [
+    "source/design/expression-eight/README.md",
+    "source/design/expression-surprise/README.md",
+    "source/references/eight-state-face-motion-2026-10-26.md"
+  ]
+}

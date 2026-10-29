@@ -56,3 +56,9 @@ source/public/assets/structure-atlas/fonts/OFL.txt -text
 # Preserve both original stamp editions and their authenticated research records.
 source/archives/xuanji3/** -text
 source/reviews/spread-stamps/imported-xuanji3/** -text
+
+# Byte-preserved depth provenance, runtime assets, test archive and narrated text.
+source/design/expression-depth/v7/** -text
+source/public/assets/expression-depth/** -text
+source/design/expression-depth/legacy-tests/** -text
+source/characters/xiaoxing/voice/profile.json -text

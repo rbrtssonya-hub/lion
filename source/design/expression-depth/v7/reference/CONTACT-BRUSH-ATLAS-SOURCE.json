@@ -1,0 +1,27 @@
+{
+  "edition": "2026-10-28 V6.1",
+  "disclosure": "AI-assisted dry-brush glyph atlas generated with the built-in imagegen tool. The original V5 title atlas is reused for 狮、八、态; this supplemental atlas supplies only missing characters. CSS alpha masks tint the visible glyphs red while accessible DOM labels preserve exact text.",
+  "asset": {
+    "runtimePath": "/images/calligraphy/contact-extra-atlas.png",
+    "outputPath": "public/images/calligraphy/contact-extra-atlas.png",
+    "sourcePath": "C:\\Users\\ALLEN\\.codex\\generated_images\\01a17896-f2e7-7200-96ee-9476788fd715\\exec-36f2fd13-788d-4568-8459-baa19ed6b2fa.png",
+    "bytes": 754025,
+    "sha256": "2a2ca849996836d5ffb442f54f1d1c09a60c18aad5dbb4aa37659252e7292d09",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "alphaExtrema": [0, 255],
+    "processing": "Generated source copied byte-for-byte; no bitmap post-processing",
+    "grid": {
+      "columns": 4,
+      "rows": 2,
+      "characters": ["一", "面", "情", "随", "鼓", "生", "再", "观"]
+    }
+  },
+  "reusedTitleAtlas": {
+    "path": "public/images/calligraphy/title-atlas.png",
+    "sha256": "5072758b0cff7231e40d3cc14bc2fe225689c57e21ba6040773d343a3995f139",
+    "charactersUsed": ["狮", "八", "态"]
+  },
+  "styleReference": "public/images/calligraphy/title-atlas.png",
+  "prompt": "Use case: logo-brand. Asset: transparent CSS alpha-mask glyph atlas for two horizontal Chinese brush headings. Style reference only: match the existing 醒狮八态 title atlas with bold forceful hand-brushed Chinese lettering, strong thick-thin variation, sharp swept terminals, energetic pressure changes, and crisp dry-brush flying-white streaks. Create exactly eight distinct simplified Chinese glyphs in a strict 4-column by 2-row grid: top 一 面 情 随; bottom 鼓 生 再 观. Solid black ink silhouettes, genuine transparent background and dry-brush gaps, each character centered in one equal square cell. Do not copy reference glyphs; no paper, color background, lines, stamps, decoration, shadow, English, numbers, or extra characters. Exact glyph structure and legibility are critical."
+}

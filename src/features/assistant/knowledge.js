@@ -10,7 +10,7 @@ const pageSources = {
   modelBoundary: { id: 'page-model-boundary', label: '造 · 模型与资料说明', chapter: 'model', section: 'model-reading-panel-form' },
   action: { id: 'page-action', label: '舞 · 四面巨幕厅', chapter: 'action', section: 'actionTheater' },
   state: { id: 'page-state', label: '舞 · 八态观察', chapter: 'state', section: 'expressionObservation' },
-  stateBoundary: { id: 'page-state-boundary', label: '舞 · 样本与视觉说明', chapter: 'state', section: 'chapterEvidence' },
+  stateBoundary: { id: 'page-state-boundary', label: '舞 · 样本与视觉说明', chapter: 'state', section: 'expressionObservation' },
   spread: { id: 'page-spread', label: '传 · 广东、中国与世界案例地图', chapter: 'spread', section: 'spreadStage' },
 };
 
@@ -42,7 +42,7 @@ export const chapterGuides = {
   },
   state: {
     title: '舞 · 传神', shortTitle: '传神',
-    guide: '神态页提供喜、怒、哀、乐、动、静、惊、疑八种观察提示。点击左侧目录，或在主狮头处使用滚轮、方向键与前后箭头切换；点击狮头能阅读眉眼、狮口、身段、步法和鼓点的观察引导，也可以比较喜与乐、惊与疑、动与静。图像为 AI 辅助视觉，八态属于本项目的定性观察框架，仍等待真实图片或视频样本校核，不构成情绪识别或评分。',
+    guide: '神态页以纵深图鉴呈现喜、怒、哀、乐、动、静、惊、疑。滚轮沿空间路线前行，也可点击左侧目录直达一态。到站保持静止，点击狮头或观狮头按钮，常规动态模式先播放约三秒五官动作，再打开当前一态解读。自动巡游默认约六秒一站，到站等待点击，解读默认停留十二秒后继续，也可提前继续；巡游与阅读时长可在设置中调整。减少动态或图形不可用时提供可读后备。图像为 AI 辅助视觉，八态是定性观察框架，等待真实图片或视频样本校核，不构成情绪识别或评分。',
     questions: ['醒狮八态有哪些？', '喜与乐有什么不同？', '这些神态图片是真实表演照片吗？'],
     sources: [pageSources.state, pageSources.stateBoundary],
   },
@@ -201,9 +201,9 @@ export const knowledgeEntries = [
     '本项目提供动作演示与神态的定性观察，不提供自动情绪识别、动作识别、动作捕捉或评分。神态图像属于 AI 辅助视觉，仍等待真实图片或视频样本校核。若要了解具体赛事评分，需要另外确认赛事、年份、项目和正式规则来源，不能用网页示意替代。',
     [pageSources.stateBoundary, pageSources.action]),
   fact('state-controls', 'state', '怎样切换与解读神态',
-    ['神态页怎么操作？', '怎么切换八态？', '怎么查看神态解读？'],
-    ['切换八态', '切换神态', '神态解读', '神态操作', '点击狮头', '神态对照'],
-    '点击左侧神态目录、主狮头上方与下方的箭头，或在主狮头区域使用滚轮，可以切换八态；聚焦后也能用方向键操作。点击完整狮头会展开神态解读，阅读眉眼、狮口以及鼓点、身段和步法提示。对照模式可比较喜与乐、惊与疑、动与静。',
+    ['神态页怎么操作？', '怎么切换八态？', '怎么查看神态解读？', '自动巡游怎么用？'],
+    ['切换八态', '切换神态', '神态解读', '神态操作', '点击狮头', '自动巡游', '巡游时长', '阅读时长', '解读停留'],
+    '使用滚轮沿纵深路线浏览，或点击左侧目录直达对应神态。到站后狮头保持静止，点击狮头或观狮头按钮，常规动态模式先播放约三秒五官动作，再打开当前一态解读；减少动态或图形不可用时保留可读后备。自动巡游默认约六秒前往下一站，到站等待点击，解读默认停留十二秒后继续；也可提前继续、暂停或退出。巡游与阅读时长可以在设置中调整。八态图像为AI辅助示意，不构成情绪识别或评分。',
     [pageSources.state]),
 ];
 

@@ -4,6 +4,7 @@ import { hdriDefaults, hdriRanges } from '../../config/hdri.js';
 import { resolveViewSettings, viewDefaults, viewRanges } from '../../config/viewSettings.js';
 import { soundControlDefaults, soundControlRanges } from '../../config/soundControlSettings.js';
 import { expressionFeedbackDefaults, expressionFeedbackRanges } from '../../config/expressionFeedbackSettings.js';
+import { expressionDepthDefaults, expressionDepthRanges } from '../../config/expressionDepthSettings.js';
 import { isSpreadStampSetting, normalizeSpreadStampSetting, spreadStampDefaults, spreadStampRanges } from '../../config/spreadStampSettings.js';
 import { snapSettingsRange } from './rangeSettings.js';
 
@@ -61,6 +62,7 @@ export const defaultDeveloperSettings = Object.freeze({
   ...viewDefaults,
   ...soundControlDefaults,
   ...expressionFeedbackDefaults,
+  ...expressionDepthDefaults,
   ...spreadStampDefaults,
 });
 
@@ -91,6 +93,7 @@ const ranges = {
   ...viewRanges,
   ...soundControlRanges,
   ...expressionFeedbackRanges,
+  ...expressionDepthRanges,
   ...spreadStampRanges,
 };
 

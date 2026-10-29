@@ -1,0 +1,463 @@
+{
+  "edition": "V7",
+  "sourceDirectory": "F:\\数媒竞赛\\醒狮八态纵深独立版",
+  "importedOn": "2026-10-28",
+  "sourceHasGitMetadata": false,
+  "scope": "Runtime assets only; archived validation records describe the independent project and do not prove main-site regression. Existing artwork, underpaint and single glyph files are SHA-identical and reused.",
+  "reused": [
+    {
+      "state": "joy",
+      "kind": "artwork",
+      "source": "public/images/lion-joy.png",
+      "path": "source/public/assets/expression/lion-joy-v2.png",
+      "bytes": 1973680,
+      "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+    },
+    {
+      "state": "joy",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-joy-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-joy-underpaint-v1.png",
+      "bytes": 1713559,
+      "sha256": "b831020f1d37f44848aa29fbecc26baad8cc929edb44e60be1699309c7e55f67"
+    },
+    {
+      "state": "joy",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/joy.png",
+      "path": "source/public/assets/expression/calligraphy/joy.png",
+      "bytes": 1200596,
+      "sha256": "ebf165d56cd495c72c00e4597b93d696362f29af81d36cb3c49d29ce5ca790cb"
+    },
+    {
+      "state": "anger",
+      "kind": "artwork",
+      "source": "public/images/lion-anger.png",
+      "path": "source/public/assets/expression/lion-anger-v2.png",
+      "bytes": 2148975,
+      "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+    },
+    {
+      "state": "anger",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-anger-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-anger-underpaint-v1.png",
+      "bytes": 2047820,
+      "sha256": "5229dd7a6b8b20779c79b95e9f309388462bc86d16e4321b2f361e93e8c175d6"
+    },
+    {
+      "state": "anger",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/anger.png",
+      "path": "source/public/assets/expression/calligraphy/anger.png",
+      "bytes": 1224080,
+      "sha256": "21ada293934054b5db68436291d0bc6d0a3908ef8bd5e5ed7a1366ca8d23f865"
+    },
+    {
+      "state": "sorrow",
+      "kind": "artwork",
+      "source": "public/images/lion-sorrow.png",
+      "path": "source/public/assets/expression/lion-sorrow-v2.png",
+      "bytes": 2072160,
+      "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+    },
+    {
+      "state": "sorrow",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-sorrow-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-sorrow-underpaint-v1.png",
+      "bytes": 1996477,
+      "sha256": "266f21fa53b5a6701b0d27078690cbb2ca9950dcdb5ed50bab0de532f394a451"
+    },
+    {
+      "state": "sorrow",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/sorrow.png",
+      "path": "source/public/assets/expression/calligraphy/sorrow.png",
+      "bytes": 1089829,
+      "sha256": "846fbbb6ec60f77a0d4a262c83cc2d64cea1a2db460e9b8cf8f1e6ce458129fb"
+    },
+    {
+      "state": "delight",
+      "kind": "artwork",
+      "source": "public/images/lion-delight.png",
+      "path": "source/public/assets/expression/lion-delight-v2.png",
+      "bytes": 2210847,
+      "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+    },
+    {
+      "state": "delight",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-delight-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-delight-underpaint-v1.png",
+      "bytes": 1946657,
+      "sha256": "d7ed77a8bdf8f876ba2a79ba2965822d51706d9cace75fa91b3b4655a8358fc2"
+    },
+    {
+      "state": "delight",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/delight.png",
+      "path": "source/public/assets/expression/calligraphy/delight.png",
+      "bytes": 1021041,
+      "sha256": "21dffb00f51ed66a96f9d6b94407f626ea7885cff06c88c26605da5f871d8c58"
+    },
+    {
+      "state": "motion",
+      "kind": "artwork",
+      "source": "public/images/lion-motion.png",
+      "path": "source/public/assets/expression/lion-motion-v2.png",
+      "bytes": 2272850,
+      "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+    },
+    {
+      "state": "motion",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-motion-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-motion-underpaint-v1.png",
+      "bytes": 2117141,
+      "sha256": "bf27ef4f3c6d2e3f17ff4923e88e930f4704d1b79ffd6a44fb662db09737df0d"
+    },
+    {
+      "state": "motion",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/motion.png",
+      "path": "source/public/assets/expression/calligraphy/motion.png",
+      "bytes": 1211487,
+      "sha256": "ab684e44b2edabd44b90466dac9272a5bb90e595a1005fe8f22acf3ce04bd0a8"
+    },
+    {
+      "state": "stillness",
+      "kind": "artwork",
+      "source": "public/images/lion-stillness.png",
+      "path": "source/public/assets/expression/lion-stillness-v2.png",
+      "bytes": 2045186,
+      "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+    },
+    {
+      "state": "stillness",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-stillness-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-stillness-underpaint-v1.png",
+      "bytes": 1939047,
+      "sha256": "3222ceca66dcf12f08528b14e4f5d82e6eb584fc37852437397088ed838dc093"
+    },
+    {
+      "state": "stillness",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/stillness.png",
+      "path": "source/public/assets/expression/calligraphy/stillness.png",
+      "bytes": 1276111,
+      "sha256": "156d01bc419592fd103b960a754cac58d41c89419fca441e4f56c9151382ebb6"
+    },
+    {
+      "state": "surprise",
+      "kind": "artwork",
+      "source": "public/images/lion-surprise.png",
+      "path": "source/public/assets/expression/lion-surprise-v2.png",
+      "bytes": 1975024,
+      "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+    },
+    {
+      "state": "surprise",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-surprise-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-surprise-underpaint-v1.png",
+      "bytes": 1809215,
+      "sha256": "3ccf15f901e51651d8f7a12365d1941f1cb86316c15d842dca5f9325d2b71356"
+    },
+    {
+      "state": "surprise",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/surprise.png",
+      "path": "source/public/assets/expression/calligraphy/surprise.png",
+      "bytes": 1265039,
+      "sha256": "953ca8d657b3616c05fe06c7146544b2f8295f4e313d8378def95f98a5a50f82"
+    },
+    {
+      "state": "doubt",
+      "kind": "artwork",
+      "source": "public/images/lion-doubt.png",
+      "path": "source/public/assets/expression/lion-doubt-v2.png",
+      "bytes": 1899231,
+      "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+    },
+    {
+      "state": "doubt",
+      "kind": "underpaint",
+      "source": "public/images/underpaint/lion-doubt-underpaint-v1.png",
+      "path": "source/public/assets/expression/lion-doubt-underpaint-v1.png",
+      "bytes": 1816450,
+      "sha256": "d1513155cbc52982c91c963179cb403e8da2e0adab116602e2201e2d0a050e25"
+    },
+    {
+      "state": "doubt",
+      "kind": "glyph",
+      "source": "public/images/calligraphy/doubt.png",
+      "path": "source/public/assets/expression/calligraphy/doubt.png",
+      "bytes": 1362027,
+      "sha256": "5b95eacaeb224f03edbb8dc82e9b24a26ac21880403de9b2290dfb9898972bda"
+    }
+  ],
+  "copied": [
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/joy.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/joy.wav",
+      "bytes": 551012,
+      "sha256": "25e6c9f0184a362069aea0ecef59778b86310f379d38b1caccd12e8e94cea57b"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/anger.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/anger.wav",
+      "bytes": 539276,
+      "sha256": "6dceae520170ea696c927d7b9253f9887914fe178acd894bc582625775457e97"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/sorrow.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/sorrow.wav",
+      "bytes": 527442,
+      "sha256": "ed94b6ab650fc61b53368bc12e9276bddfdf88f7b033a52acee0fdc261a448bf"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/delight.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/delight.wav",
+      "bytes": 526484,
+      "sha256": "1bfdd9f098c310075978b685dc0119bc40929ad0070d859c68b18fbf3bd4c340"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/motion.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/motion.wav",
+      "bytes": 534708,
+      "sha256": "16f6839ad8c98e1efc8bb728acdcbe5b590a7a39aca86fccc67fe8250a98d329"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/stillness.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/stillness.wav",
+      "bytes": 550182,
+      "sha256": "cfba7c7f88272cb98b753a4a0073c0b57edc350200d4ad4673616a2986701b72"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/surprise.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/surprise.wav",
+      "bytes": 566806,
+      "sha256": "d33395913b149cd140b8e6d827d391c2925695941e9dc58536aa7f891d8d54b9"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/audio/doubt.wav; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/audio/doubt.wav",
+      "bytes": 558242,
+      "sha256": "cb297696c0e347989634cfee96fce1c8107dd4b8133793334bfcb4e8bcb0ce86"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/paper-reference.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/paper-reference.png",
+      "bytes": 2341966,
+      "sha256": "aa62559fbbf74b40ef1020a469f839a10f7332d5eb99a9683f2dfa1a310c9a91"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/ui-lion-marker-q.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/ui-lion-marker-q.png",
+      "bytes": 1624882,
+      "sha256": "75e844450406311cb43c3e47931bd8c7d6696ba3dac9b1c5fd45e7c2ab08cf26"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/fallback.svg; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/fallback.svg",
+      "bytes": 951,
+      "sha256": "0aa46a369229c2059093c460e5f0047fcfc14dd6b99a9b4c9d93ebd52ff92c11"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/calligraphy/title-atlas.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/title-atlas.png",
+      "bytes": 644716,
+      "sha256": "5072758b0cff7231e40d3cc14bc2fe225689c57e21ba6040773d343a3995f139"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/images/calligraphy/contact-extra-atlas.png; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/images/contact-extra-atlas.png",
+      "bytes": 754025,
+      "sha256": "2a2ca849996836d5ffb442f54f1d1c09a60c18aad5dbb4aa37659252e7292d09"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/ma-shan-zheng-regular.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/ma-shan-zheng-regular.woff2",
+      "bytes": 199884,
+      "sha256": "0d81209860b9894e2fc806cda6015fa4dfdcce783f803986969bbbd95de1545a"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/noto-serif-sc-400-600.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/noto-serif-sc-400-600.woff2",
+      "bytes": 193760,
+      "sha256": "732a5d64e4200bddb09c72745b3f5a0ebc2546409bc23d3c89379855b5f3e11e"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/noto-sans-sc-400-600.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/noto-sans-sc-400-600.woff2",
+      "bytes": 148276,
+      "sha256": "2782034847c1345d1051522d6b31297eb84649298f8c5349c531d311057b5393"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-MaShanZheng.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-MaShanZheng.txt",
+      "bytes": 4397,
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-NotoSerifSC.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-NotoSerifSC.txt",
+      "bytes": 4350,
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/OFL-NotoSansSC.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/OFL-NotoSansSC.txt",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/manrope-latin.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/manrope-latin.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/space-grotesk-latin.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/space-grotesk-latin.woff2",
+      "bytes": 22288,
+      "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/instrument-serif-italic.woff2; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/instrument-serif-italic.woff2",
+      "bytes": 22128,
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/manrope-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/manrope-LICENSE.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/spacegrotesk-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/spacegrotesk-LICENSE.txt",
+      "bytes": 4495,
+      "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72"
+    },
+    {
+      "from": "Independent eight-state depth V7 (2026-10-28): public/fonts/instrumentserif-LICENSE.txt; provenance source/design/expression-depth/v7/reference/",
+      "path": "source/public/assets/expression-depth/fonts/instrumentserif-LICENSE.txt",
+      "bytes": 4405,
+      "sha256": "129ed7618959716959f2941fdd5b49e0ad6e6c1d78726761786a00253d865521"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/ASSET-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/ASSET-SOURCES.json",
+      "bytes": 9983,
+      "sha256": "acfb14df94ecfbf8e96b73bd197409d88c13e6e1a201d9b848b2ca427db234c1"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/BRUSH-GLYPH-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/BRUSH-GLYPH-SOURCES.json",
+      "bytes": 10049,
+      "sha256": "8dd3aa3b9fe29b9f583c9c9e28248b11f9ae02da2b7a8832d7f203e867e90ae5"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/CONTACT-BRUSH-ATLAS-SOURCE.json",
+      "path": "source/design/expression-depth/v7/reference/CONTACT-BRUSH-ATLAS-SOURCE.json",
+      "bytes": 2135,
+      "sha256": "2230fa28d740a006b83bdfcf4f04f5f36d6089f4e970b45f602898477abc00f0"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/FACE-MOTION-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/FACE-MOTION-SOURCES.json",
+      "bytes": 6567,
+      "sha256": "a8f8be37e80bd55cf37764e81fa6797d594838c7b6c024eaea3d170941d3eeaa"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/NARRATION-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/NARRATION-SOURCES.json",
+      "bytes": 10943,
+      "sha256": "bfca55670a8da955f3c81110e4e8d81e3ad424fa45af6a7b52c986d346f0af34"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/TYPOGRAPHY-SOURCES.json",
+      "path": "source/design/expression-depth/v7/reference/TYPOGRAPHY-SOURCES.json",
+      "bytes": 47483,
+      "sha256": "04039cfb8ac67398013e9fa255708a4bffe1dc480c87f378776d4630659ecaf9"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): reference/UI-MARKER-SOURCE.json",
+      "path": "source/design/expression-depth/v7/reference/UI-MARKER-SOURCE.json",
+      "bytes": 3140,
+      "sha256": "760b8220e6c6b170e8bd643dbaaa0c503a2288ace618637cb0d5b3237e8db391"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/v7/marker-q-candidate.source.json",
+      "path": "source/design/expression-depth/v7/review/v7/marker-q-candidate.source.json",
+      "bytes": 2433,
+      "sha256": "c403c7d2038cb4f7fbcfe0a28ae6214961b9068e4ea06805879377ae6e9e6cda"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/v7/marker-q-candidate.alpha.json",
+      "path": "source/design/expression-depth/v7/review/v7/marker-q-candidate.alpha.json",
+      "bytes": 318,
+      "sha256": "44dd89142edcd35d1a1893f4f91621797951693a0dc6c84c7919cf337aa5be7c"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/generate-narration.ps1",
+      "path": "source/design/expression-depth/v7/scripts/generate-narration.ps1",
+      "bytes": 4106,
+      "sha256": "4f1018eaaf735bc64850506f8c6fb93ba93dde693274bc5264e2e30c88e2a728"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/generate-narration.validate.py",
+      "path": "source/design/expression-depth/v7/scripts/generate-narration.validate.py",
+      "bytes": 3341,
+      "sha256": "6a3d1868ccf2e2011fe4f5fb01f49026a1b8e0331be3d9b5049f2ab9b8da07fc"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): scripts/update-font-subsets.py",
+      "path": "source/design/expression-depth/v7/scripts/update-font-subsets.py",
+      "bytes": 9069,
+      "sha256": "8bdcea1dd3658fd8ce18c465581ac961f928666e7d60c5bbaac3e916fe9012e4"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): README.md",
+      "path": "source/design/expression-depth/v7/README.md",
+      "bytes": 11553,
+      "sha256": "da0a42dc92db71d0fe8c97e9f4cb7e897ad227ee30998c48847f10fcb81c7526"
+    },
+    {
+      "from": "Unmodified independent eight-state depth V7 source/provenance archive (2026-10-28): review/VALIDATION-v7.md",
+      "path": "source/design/expression-depth/v7/review/VALIDATION-v7.md",
+      "bytes": 6298,
+      "sha256": "f353dbedc7066e6c91c5fb626b1321eae4eda319a59f235f67a8c6bf845df07f"
+    }
+  ],
+  "sourceVersionEvidence": [
+    {
+      "path": "src/App.tsx",
+      "sha256": "8d277dd1550fb2ac3f266a1a982420f773a0de34554754d88c5d729ae635be46"
+    },
+    {
+      "path": "src/scene/Scene.tsx",
+      "sha256": "eaa42d3eba039683389f1ec3f5e8e0d35ebae452a8997d5917683970c74c30fa"
+    },
+    {
+      "path": "src/scene/SpatialThread.tsx",
+      "sha256": "94eab0f7ece5e705e9dc2691eac0ded3e1cd7f191e3636c659ef69904bc31e81"
+    },
+    {
+      "path": "src/hooks/useScrollExperience.ts",
+      "sha256": "ffae3b29c49c7f1578c5f1d3f0a81904233263ecfaedf2d409e40afa7ea939be"
+    },
+    {
+      "path": "src/lib/motion.ts",
+      "sha256": "aff0c5e014932543cda465160265cf2bf10ae1b4c633e6e385a6be41b3892f90"
+    },
+    {
+      "path": "src/data/projects.ts",
+      "sha256": "7bf71ba286e1816ecd2e3574f1ddbc8af6e513059acef720f448a06e63a9463d"
+    }
+  ]
+}

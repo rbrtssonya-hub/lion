@@ -80,27 +80,46 @@ test('资料按历史文化和形制工艺去重，摄影仍保留八份署名�
   }
 });
 
-test('神态三组对照保持原详情，退出恢复焦点，滚轮不驱动隐藏八态', async ({ page }) => {
+test('神态解读仅呈现当前态，背景滚动锁定且关闭恢复本态和触发焦点', async ({ page }) => {
   await open(page, '#/state');
-  await page.getByRole('navigation', { name: '醒狮八态', exact: true }).getByRole('button', { name: '疑', exact: true }).click();
-  await page.locator('#expressionLionTrigger').click();
-  const compare = page.getByRole('button', { name: '神态对照', exact: true });
-  await compare.click();
-  const cards = page.locator('.expression-comparison-card');
-  await expect(cards.locator('h2')).toHaveText(['惊', '疑']);
-  await expect(page.locator('#expressionObservation')).toBeHidden();
-  await cards.first().hover();
-  await page.mouse.wheel(0, 150);
-  await expect(page.locator('#chapterStage')).toHaveAttribute('data-expression', '疑');
-  for (const [label, names] of [['喜与乐', ['喜', '乐']], ['惊与疑', ['惊', '疑']], ['动与静', ['动', '静']]]) {
-    await page.getByRole('tab', { name: label, exact: true }).click();
-    await expect(cards.locator('h2')).toHaveText(names);
-    for (const card of await cards.all()) await expect(card.locator('dt')).toHaveText(['姿态', '眉眼与狮口', '表现意图']);
-  }
-  await page.getByRole('tab', { name: '动与静', exact: true }).press('Escape');
-  await expect(compare).toBeFocused();
-  await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'details');
-  await expect(page.locator('#expressionStateTitle')).toHaveText('疑');
+  const stage = page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true });
+  const current = stage.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link', { name: '疑', exact: true });
+  await current.click();
+  await expect(current).toHaveAttribute('aria-current', 'location');
+  const trigger = page.locator('#depth-doubt .project-open');
+  await expect(trigger).toBeVisible();
+  const scroll = await stage.locator('.depth-scroll-viewport').evaluate(element => element.scrollTop);
+  await trigger.click();
+  const reader = stage.getByRole('dialog');
+  await expect(reader).toHaveCount(1);
+  await expect(reader.getByRole('heading', { level: 2 })).toHaveText(/^疑 · /);
+  await expect(reader.locator('.gallery-image img')).toHaveCount(1);
+  await expect(reader.locator('dt')).toHaveText(['看眉眼 · 读狮口', '听锣鼓 · 观身段', '观察线索']);
+  await expect(reader.getByRole('tab')).toHaveCount(0);
+  const close = reader.getByRole('button', { name: '关闭神态解读', exact: true });
+  await expect(close).toBeFocused();
+  await close.press('Tab');
+  await expect(close).toBeFocused();
+  await close.press('Shift+Tab');
+  await expect(close).toBeFocused();
+  await reader.hover();
+  await page.mouse.wheel(0, 700);
+  await close.press('PageDown');
+  await page.waitForTimeout(250);
+  expect(await stage.locator('.depth-scroll-viewport').evaluate(element => element.scrollTop)).toBe(scroll);
+  await expect(current).toHaveAttribute('aria-current', 'location');
+  await expect(reader.getByRole('heading', { level: 2 })).toHaveText(/^疑 · /);
+  expect(new URL(page.url()).hash).toBe('#/state');
+  await close.press('Escape');
+  await expect(reader).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  await expect(current).toHaveAttribute('aria-current', 'location');
+  await trigger.click();
+  await expect(reader).toBeVisible();
+  const backdrop = await stage.locator('.depth-gallery-backdrop').boundingBox();
+  await page.mouse.click(backdrop.x + 3, backdrop.y + backdrop.height / 2);
+  await expect(reader).toHaveCount(0);
+  await expect(trigger).toBeFocused();
 });
 
 test('结构观察跳转与浏览器返回保留部位、相机、可读资料和详情位置', async ({ page }) => {
@@ -115,8 +134,9 @@ test('结构观察跳转与浏览器返回保留部位、相机、可读资料�
   const before = await canvas.getAttribute('data-camera-distance');
   await page.getByRole('button', { name: '去神态页观察惊态', exact: true }).click();
   await expect(page).toHaveURL(/#\/state$/);
-  await expect(page.locator('#expressionStateTitle')).toHaveText('惊');
-  await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-view', 'details');
+  await expect(page.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link', { name: '惊', exact: true })).toHaveAttribute('aria-current', 'location');
+  await expect(page.locator('#depth-surprise .project-description')).toBeVisible();
+  await expect(page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true }).getByRole('dialog')).toHaveCount(0);
   await page.getByRole('button', { name: '返回眉眼部位', exact: true }).click();
   await expect(page).toHaveURL(/#\/model$/);
   await expect(page.locator('#modelExpressionLink')).toBeFocused();
@@ -150,7 +170,7 @@ test('后退修改模型部位使旧观察上下文失效，前进后不承诺�
   await open(page, '#/model');
   await page.locator('#modelHotspots button[data-id="eyes"]').click();
   await page.getByRole('button', { name: '去神态页观察惊态', exact: true }).click();
-  await expect(page.locator('#expressionStateTitle')).toHaveText('惊');
+  await expect(page.getByRole('navigation', { name: '八态目录', exact: true }).getByRole('link', { name: '惊', exact: true })).toHaveAttribute('aria-current', 'location');
   await page.goBack();
   await page.locator('#nextStructurePart').click();
   await page.locator('#nextStructurePart').click();
