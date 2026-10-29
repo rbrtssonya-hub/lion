@@ -183,7 +183,7 @@ test('五官播放期间实际合成帧保持完整红色狮头，没有整幅�
   await expect(dialog(page)).toBeVisible({ timeout: 5_000 });
 });
 
-test('原顶栏可在播放期间离开，返回无旧解读、音轨、WAAPI驱动，返回戏台有效', async ({ page }) => {
+test('原顶栏可在播放期间离开，返回无旧解读、音轨、WAAPI驱动，返回舞章入口有效', async ({ page }) => {
   test.setTimeout(120_000);
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -202,7 +202,7 @@ test('原顶栏可在播放期间离开，返回无旧解读、音轨、WAAPI驱
   await expectNoFaceDrivers(page);
   expect(await page.evaluate(() => window.__depthTestNarrators.length)).toBeGreaterThan(0);
   expect(await page.evaluate(() => window.__depthTestNarrators.every(audio => audio.paused && !audio.getAttribute('src')))).toBe(true);
-  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
+  await page.getByRole('link', { name: '走近醒狮八态', exact: true }).click();
   await expect(stage(page)).toHaveClass(/has-webgl/);
   await expect.poll(async () => (await snapshot(page))?.primaryCount).toBe(8);
   await page.waitForTimeout(3300);
@@ -210,7 +210,7 @@ test('原顶栏可在播放期间离开，返回无旧解读、音轨、WAAPI驱
   expect((await snapshot(page)).faces.every(face => !face.playing && face.playCount === 0)).toBe(true);
   await expectNoFaceDrivers(page);
   await expect(page.locator('.site-header')).toHaveCount(1);
-  await stage(page).getByRole('button', { name: '返回戏台', exact: true }).click();
+  await stage(page).getByRole('button', { name: '返回舞章入口', exact: true }).click();
   await expect(page).toHaveURL(/#\/action$/);
   await expect(stage(page)).toHaveCount(0);
   expect(errors).toEqual([]);

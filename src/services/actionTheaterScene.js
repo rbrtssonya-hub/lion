@@ -232,6 +232,7 @@ export function createActionTheater({
   lightingSettings,
   onLightingStatus = () => {},
   onDrumStatus = () => {},
+  preview,
 }) {
   mountedScenes.get(container)?.();
   const loadController = new AbortController();
@@ -426,7 +427,7 @@ export function createActionTheater({
       renderer.domElement.dataset.viewSettings = JSON.stringify(viewSettings);
       renderer.domElement.dataset.cameraLimits = JSON.stringify({ min: controls.minDistance, max: controls.maxDistance, minPolar: viewSettings.actionMinPolarAngle, maxPolar: viewSettings.actionMaxPolarAngle, fov: camera.fov });
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, preview ? 1 : qualityReduced ? 1 : frameWidth < 1100 ? 1.25 : 1.5));
     renderer.setSize(frameWidth, frameHeight, false);
     if (ready) { updateAnchor(); requestFrame(); }
   };
@@ -494,6 +495,7 @@ export function createActionTheater({
   function draw(now) {
     animationFrame = 0;
     if (!canRender()) return;
+    if (preview && lastFrameTime && now - lastFrameTime < 1000 / 24) { requestFrame(); return; }
     try {
       const dt = lastFrameTime ? Math.min(0.08, Math.max(0, (now - lastFrameTime) / 1000)) : 0;
       lastFrameTime = now;
@@ -514,7 +516,7 @@ export function createActionTheater({
         }
       }
       // The model alone rotates; changing the camera never resets its phase.
-      lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
+      if (!preview?.reduced) lionRoot.rotation.y = (lionRoot.rotation.y + dt * ROTATION_SPEED) % (Math.PI * 2);
       if (focusTween) {
         const fraction = Math.min(1, (now - focusTween.startedAt) / focusTween.duration);
         const eased = fraction * fraction * (3 - 2 * fraction);
@@ -523,6 +525,13 @@ export function createActionTheater({
         if (fraction >= 1) focusTween = null;
       }
       controls.update();
+      if (preview) {
+        // The entrance and destination share geometry/materials. Only the
+        // small window's camera is driven by the bounded portal gesture.
+        const { yaw, pitch } = preview.view.current;
+        const angle = (18 + yaw * .9) * Math.PI / 180;
+        camera.position.set(Math.sin(angle) * 8.6, 2.1 + pitch * .1, Math.cos(angle) * 8.6);
+      }
       camera.position.fromArray(constrainOrbit(camera.position.toArray(), orbitTarget.toArray(), viewSettings));
       camera.lookAt(orbitTarget);
       camera.updateMatrixWorld();
@@ -676,7 +685,7 @@ export function createActionTheater({
     setVisible(value) {
       if (disposed || visible === Boolean(value)) return;
       visible = Boolean(value);
-      if (controls) controls.enabled = visible;
+      if (controls) controls.enabled = visible && !preview;
       cancelAnimationFrame(animationFrame);
       animationFrame = 0;
       synchronizeActivityClock();
@@ -713,7 +722,7 @@ export function createActionTheater({
       renderer.domElement.style.height = '100%';
       renderer.domElement.style.touchAction = 'none';
       renderer.domElement.addEventListener('webglcontextlost', onContextLost);
-      renderer.domElement.addEventListener('wheel', preventPageWheel, { passive: false });
+      if (!preview) renderer.domElement.addEventListener('wheel', preventPageWheel, { passive: false });
       container.append(renderer.domElement);
       controls = new OrbitControls(camera, renderer.domElement);
       controls.target.copy(orbitTarget);
@@ -723,7 +732,7 @@ export function createActionTheater({
       controls.dampingFactor = 0.075;
       controls.rotateSpeed = 0.42;
       controls.zoomSpeed = 0.65;
-      controls.enabled = visible;
+      controls.enabled = visible && !preview;
       controls.addEventListener('start', onControlStart);
       controls.addEventListener('end', onControlEnd);
       controls.update();

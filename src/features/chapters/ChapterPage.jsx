@@ -5,7 +5,7 @@ import DanceEntrance from '../dance-entrance/DanceEntrance.jsx';
 
 export default function ChapterPage({ route, active = true, observation, onReturnToModel, lightingSettings, onNavigate, onStampPreviewReady }) {
   if (route === 'spread') return <SpreadPage onNavigate={onNavigate} settings={lightingSettings} onStampPreviewReady={onStampPreviewReady} />;
-  if (route === 'action') return <DanceEntrance onNavigate={onNavigate} />;
+  if (route === 'action') return <DanceEntrance onNavigate={onNavigate} settings={lightingSettings} />;
   return route === 'state'
     ? <ExpressionPage active={active} observation={observation} onReturnToModel={onReturnToModel} onReturnToAction={() => onNavigate('action')} settings={lightingSettings} />
     : <ActionPage lightingSettings={lightingSettings} onNavigate={onNavigate} />;

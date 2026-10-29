@@ -13,6 +13,7 @@ import { snapSettingsRange } from '../../developer-settings/rangeSettings.js'
 
 const look = new THREE.Vector3()
 const inspect = new URLSearchParams(location.search).has('inspect')
+type PreviewView = RefObject<{ yaw: number; pitch: number }>
 
 interface SceneSnapshot {
   chapter: number
@@ -119,6 +120,8 @@ function ArtworkFallback({ size, primaryId, fontsReady, meshRef, onReady }: { si
 }
 
 interface CardProps extends ArtworkSettings {
+  motion?: typeof motionState
+  preview?: PreviewView
   image: string
   position: [number, number, number]
   size: [number, number]
@@ -133,7 +136,7 @@ interface CardProps extends ArtworkSettings {
   onReady?: () => void
 }
 
-function Card({ image, position, size, rotation = [0, 0, 0], primaryId, fontsReady, blocked, reduced, imageScale, clickScale, clickDuration, requestToken, onFaceComplete, onFaceUnavailable, onOpen, onReady }: CardProps) {
+function Card({ image, position, size, rotation = [0, 0, 0], primaryId, fontsReady, blocked, reduced, imageScale, clickScale, clickDuration, requestToken, onFaceComplete, onFaceUnavailable, onOpen, onReady, motion = motionState, preview }: CardProps) {
   const group = useRef<THREE.Group>(null)
   const photo = useRef<THREE.Mesh>(null)
   const hovering = useRef(false)
@@ -169,7 +172,7 @@ function Card({ image, position, size, rotation = [0, 0, 0], primaryId, fontsRea
     const object = group.current
     if (!object) return
     const distance = camera.position.z - position[2]
-    const near = Math.abs(motionState.chapter - (primaryId + 2)) <= .12
+    const near = Math.abs(motion.chapter - (primaryId + 2)) <= .12
     if (requestToken !== feedbackToken.current) {
       feedbackToken.current = requestToken
       if (requestToken > 0 && near && !blocked && !reduced) feedbackStarted.current = performance.now()
@@ -200,7 +203,7 @@ function Card({ image, position, size, rotation = [0, 0, 0], primaryId, fontsRea
     object.position.set(x, y + Math.sin(clock.elapsedTime * 0.4 + x) * 0.018, position[2])
     const passing = 1 - smoothstep((distance - 2) / 12)
     object.rotation.x = rotation[0] + passing * 0.035
-    object.rotation.y = THREE.MathUtils.lerp(object.rotation.y, rotation[1] + Math.sign(x) * passing * 0.13 + (hovering.current ? motionState.pointerX * 0.035 : 0), damping)
+    object.rotation.y = THREE.MathUtils.lerp(object.rotation.y, rotation[1] + Math.sign(x) * passing * 0.13 + (hovering.current ? motion.pointerX * 0.035 : 0), damping)
     object.rotation.z = rotation[2] + Math.sin(clock.elapsedTime * 0.2 + x) * 0.003
   }, -0.5)
 
@@ -218,7 +221,7 @@ function Card({ image, position, size, rotation = [0, 0, 0], primaryId, fontsRea
       <Image ref={photo} name={`primary-artwork-${primaryId}`} userData={{ primaryArtwork: true }} renderOrder={10} url={image} scale={[artworkSize, artworkSize]} transparent opacity={1} toneMapped={false} side={THREE.DoubleSide} />
       <ReadySignal onReady={onReady} />
     </Suspense></CardBoundary>
-    <LionFace id={projects[primaryId].id} primaryId={primaryId} image={image} size={artworkSize} parent={group} photo={photo} blocked={blocked} reduced={reduced} requestToken={requestToken} onComplete={onFaceComplete} onUnavailable={onFaceUnavailable} />
+    {!preview && <LionFace id={projects[primaryId].id} primaryId={primaryId} image={image} size={artworkSize} parent={group} photo={photo} blocked={blocked} reduced={reduced} requestToken={requestToken} onComplete={onFaceComplete} onUnavailable={onFaceUnavailable} />}
   </group>
 }
 
@@ -242,24 +245,32 @@ function StateMarker({ primaryId, position, fontsReady }: { primaryId: number; p
   </mesh>
 }
 
-function CameraRig({ pointerStrength }: { pointerStrength: number }) {
+function CameraRig({ pointerStrength, motion = motionState, preview }: { pointerStrength: number; motion?: typeof motionState; preview?: PreviewView }) {
   const pointer = useRef(new THREE.Vector2())
   useFrame(({ camera }, delta) => {
-    const position = cameraPositionAt(motionState.chapter)
+    const position = cameraPositionAt(motion.chapter)
     const damping = 1 - Math.exp(-Math.min(delta, 0.05) * 9)
-    pointer.current.x = THREE.MathUtils.lerp(pointer.current.x, motionState.pointerX, damping)
-    pointer.current.y = THREE.MathUtils.lerp(pointer.current.y, motionState.pointerY, damping)
+    pointer.current.x = THREE.MathUtils.lerp(pointer.current.x, motion.pointerX, damping)
+    pointer.current.y = THREE.MathUtils.lerp(pointer.current.y, motion.pointerY, damping)
     // Lenis already smooths the playhead. A second Z chase made the camera
     // lag behind the text and continue forward after a reverse gesture.
     camera.position.set(position.x + pointer.current.x * 0.12 * pointerStrength, position.y + pointer.current.y * 0.075 * pointerStrength, position.z)
     look.set(position.x * 0.2, position.y * 0.2, position.z - 24)
+    if (preview) {
+      const { yaw, pitch } = preview.current
+      camera.position.x += .7 + yaw * .065
+      camera.position.y += pitch * .045
+      camera.position.z += pitch * .12
+      look.x += -.7 + yaw * .15
+      look.y += pitch * .08
+    }
     camera.lookAt(look)
     camera.updateMatrixWorld()
   }, -2)
   return null
 }
 
-function DebugProbe({ labelFontsReady }: { labelFontsReady: boolean }) {
+function DebugProbe({ labelFontsReady, motion = motionState, preview }: { labelFontsReady: boolean; motion?: typeof motionState; preview?: PreviewView }) {
   const pointLeft = useMemo(() => new THREE.Vector3(), [])
   const pointRight = useMemo(() => new THREE.Vector3(), [])
   const pointTop = useMemo(() => new THREE.Vector3(), [])
@@ -270,7 +281,7 @@ function DebugProbe({ labelFontsReady }: { labelFontsReady: boolean }) {
   const artworkCorners = useMemo(() => Array.from({ length: 4 }, () => new THREE.Vector3()), [])
   const last = useRef(-1)
   useFrame(({ camera, scene, size, clock, gl }) => {
-    if (!inspect || clock.elapsedTime - last.current < 0.12) return
+    if ((!inspect && !preview) || clock.elapsedTime - last.current < 0.12) return
     last.current = clock.elapsedTime
     const canvasRect = gl.domElement.getBoundingClientRect()
     scene.updateMatrixWorld(true)
@@ -321,8 +332,8 @@ function DebugProbe({ labelFontsReady }: { labelFontsReady: boolean }) {
     })
     const orb = scene.getObjectByName('journey-orb')
     const projectedOrb = orb ? orb.getWorldPosition(orbPoint).project(camera) : null
-    window.__LION_DEPTH_SCENE__ = {
-      chapter: motionState.chapter, scrollY: gl.domElement.closest('.expression-depth')?.querySelector('.depth-scroll-viewport')?.scrollTop ?? 0, targetCameraZ: cameraPositionAt(motionState.chapter).z,
+    const snapshot = {
+      chapter: motion.chapter, scrollY: gl.domElement.closest('.expression-depth')?.querySelector('.depth-scroll-viewport')?.scrollTop ?? 0, targetCameraZ: cameraPositionAt(motion.chapter).z,
       camera: { x: camera.position.x, y: camera.position.y, z: camera.position.z }, cards,
       primaryCount: cards.length, visiblePrimaryCount: cards.filter(card => card.visible).length,
       artworkCount, backplateCount, markers, labelFontsReady,
@@ -335,8 +346,14 @@ function DebugProbe({ labelFontsReady }: { labelFontsReady: boolean }) {
         distance: camera.position.z - orb.position.z, visible: orb.visible && projectedOrb.z > -1 && projectedOrb.z < 1,
       } : null,
     }
+    if (preview) {
+      gl.domElement.dataset.sceneReady = String(artworkCount === projects.length)
+      gl.domElement.dataset.cameraPosition = JSON.stringify(camera.position.toArray())
+      gl.domElement.dataset.sceneLayout = JSON.stringify(cards.map(({ stateId, worldZ }) => ({ stateId, worldZ })))
+      gl.domElement.dataset.projectedArtworks = JSON.stringify(cards.map(card => ({ x: (card.artworkPlaneBounds.centerX - canvasRect.left) / size.width, width: card.projectedWidth / size.width })))
+    } else window.__LION_DEPTH_SCENE__ = snapshot
   })
-  useEffect(() => () => { delete window.__LION_DEPTH_SCENE__ }, [])
+  useEffect(() => () => { if (!preview) delete window.__LION_DEPTH_SCENE__ }, [preview])
   return null
 }
 
@@ -346,34 +363,35 @@ interface FacePlaybackProps {
   onFaceUnavailable?: (primaryId: number) => void
 }
 
-function World({ onOpen, onReady, blocked, playRequest, onFaceComplete, onFaceUnavailable, imageScale, clickScale, clickDuration, reduced, markerSize, pointerStrength }: { onOpen: (index: number, image?: number) => void; onReady: () => void; blocked: boolean; markerSize: number; pointerStrength: number } & FacePlaybackProps & ArtworkSettings) {
+function World({ onOpen, onReady, blocked, playRequest, onFaceComplete, onFaceUnavailable, imageScale, clickScale, clickDuration, reduced, markerSize, pointerStrength, preview }: { onOpen: (index: number, image?: number) => void; onReady: () => void; blocked: boolean; markerSize: number; pointerStrength: number; preview?: PreviewView } & FacePlaybackProps & ArtworkSettings) {
   const labelFontsReady = useLabelFontsReady()
+  const motion = useMemo(() => preview ? { chapter: 1.9, pointerX: 0, pointerY: 0, hovered: false } : motionState, [preview])
   return <>
-    <CameraRig pointerStrength={pointerStrength} /><SpatialThread markerSize={markerSize} />
+    <CameraRig pointerStrength={pointerStrength} motion={motion} preview={preview} /><SpatialThread markerSize={markerSize} />
     {projects.map((project, index) => {
       const direction = index % 2 === 0 ? 1 : -1
       const z = CAMERA_STOPS[index + 2].z - FOCUS_DISTANCE
       return <group key={project.id}>
-        <Card primaryId={index} fontsReady={labelFontsReady} blocked={blocked} reduced={reduced} imageScale={imageScale} clickScale={clickScale} clickDuration={clickDuration} requestToken={playRequest?.project === index ? playRequest.token : 0} onFaceComplete={onFaceComplete} onFaceUnavailable={onFaceUnavailable} image={project.images[0]} position={[direction * 0.23, 0.02, z]} size={[0.42, 0.47]} rotation={[-0.025, direction * -0.075, direction * 0.007]} onOpen={() => onOpen(index)} onReady={index === 0 ? onReady : undefined} />
+        <Card primaryId={index} fontsReady={labelFontsReady} blocked={blocked} reduced={reduced} imageScale={imageScale} clickScale={clickScale} clickDuration={clickDuration} requestToken={playRequest?.project === index ? playRequest.token : 0} onFaceComplete={onFaceComplete} onFaceUnavailable={onFaceUnavailable} image={project.images[0]} position={[direction * 0.23, 0.02, z]} size={[0.42, 0.47]} rotation={[-0.025, direction * -0.075, direction * 0.007]} onOpen={preview ? undefined : () => onOpen(index)} onReady={index === 0 ? onReady : undefined} motion={motion} preview={preview} />
         <StateMarker primaryId={index} fontsReady={labelFontsReady} position={[direction * 0.23, 0.02, z]} />
       </group>
     })}
-    <DebugProbe labelFontsReady={labelFontsReady} />
+    <DebugProbe labelFontsReady={labelFontsReady} motion={motion} preview={preview} />
   </>
 }
 
-export default function Scene({ onOpen, onReady, onFailure, blocked = false, reduced, settings, playRequest, onFaceComplete, onFaceUnavailable }: { chapter: number; onOpen: (index: number, image?: number) => void; reduced: boolean; onReady: () => void; onFailure: () => void; blocked?: boolean; settings?: DepthSettings } & FacePlaybackProps) {
+export default function Scene({ onOpen, onReady, onFailure, blocked = false, reduced, settings, playRequest, onFaceComplete, onFaceUnavailable, preview, active = true }: { chapter: number; onOpen: (index: number, image?: number) => void; reduced: boolean; onReady: () => void; onFailure: () => void; blocked?: boolean; settings?: DepthSettings; preview?: PreviewView; active?: boolean } & FacePlaybackProps) {
   const depth = resolveExpressionDepthSettings(settings)
   const clickScale = typeof settings?.expressionClickScale === 'number' && Number.isFinite(settings.expressionClickScale)
     ? snapSettingsRange(settings.expressionClickScale, ...expressionFeedbackRanges.expressionClickScale) : expressionFeedbackDefaults.expressionClickScale
   const clickDuration = typeof settings?.expressionClickDuration === 'number' && Number.isFinite(settings.expressionClickDuration)
     ? snapSettingsRange(settings.expressionClickDuration, ...expressionFeedbackRanges.expressionClickDuration) : expressionFeedbackDefaults.expressionClickDuration
   return <div className="scene-canvas" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-    <Canvas camera={{ position: [0, 0, 20], fov: 40, near: 0.12, far: 290 }} dpr={[1, 1.5]}
+    <Canvas camera={{ position: [0, 0, 20], fov: 40, near: 0.12, far: 290 }} dpr={preview ? 1 : [1, 1.5]} frameloop={active ? 'always' : 'never'}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       onCreated={({ gl }) => { gl.setClearColor('#f3eee3', 0) }} fallback={null}>
       <RendererLifecycle onFailure={onFailure} />
-      <World onOpen={onOpen} onReady={onReady} blocked={blocked} reduced={reduced} imageScale={depth.expressionDepthImageScale / 100} clickScale={clickScale / 100} clickDuration={clickDuration} markerSize={depth.expressionDepthMarkerSize} pointerStrength={reduced ? 0 : depth.expressionDepthPointerStrength / 100} playRequest={playRequest} onFaceComplete={onFaceComplete} onFaceUnavailable={onFaceUnavailable} />
+      <World onOpen={onOpen} onReady={onReady} blocked={blocked} reduced={reduced} imageScale={depth.expressionDepthImageScale / 100} clickScale={clickScale / 100} clickDuration={clickDuration} markerSize={depth.expressionDepthMarkerSize} pointerStrength={reduced ? 0 : depth.expressionDepthPointerStrength / 100} playRequest={playRequest} onFaceComplete={onFaceComplete} onFaceUnavailable={onFaceUnavailable} preview={preview} />
     </Canvas>
   </div>
 }

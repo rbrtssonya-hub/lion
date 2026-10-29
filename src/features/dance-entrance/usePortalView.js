@@ -6,6 +6,7 @@ const clamp = (value, limit) => Math.max(-limit, Math.min(limit, value));
 // two-destination stage. No third-party source or global document state is used.
 export function usePortalView(rootRef, stageRef) {
   const target = useRef({ yaw: 0, pitch: 0 });
+  const view = useRef({ yaw: 0, pitch: 0 });
   const [moved, setMoved] = useState(false);
   const reset = () => { target.current = { yaw: 0, pitch: 0 }; setMoved(false); };
 
@@ -26,6 +27,7 @@ export function usePortalView(rootRef, stageRef) {
       const amount = reduced.matches ? 1 : 1 - Math.exp(-Math.min(time - (previous || time - 16), 50) / 90);
       previous = time;
       for (const axis of ['yaw', 'pitch']) current[axis] += (target.current[axis] - current[axis]) * amount;
+      Object.assign(view.current, current);
       root.style.setProperty('--view-yaw', `${current.yaw.toFixed(3)}deg`);
       root.style.setProperty('--view-pitch', `${current.pitch.toFixed(3)}deg`);
       if (Math.abs(target.current.yaw - current.yaw) + Math.abs(target.current.pitch - current.pitch) > .01) schedule();
@@ -102,5 +104,5 @@ export function usePortalView(rootRef, stageRef) {
     };
   }, [rootRef, stageRef]);
 
-  return { moved, reset: () => { reset(); rootRef.current?.dispatchEvent(new Event('portalreset')); } };
+  return { view, moved, reset: () => { reset(); rootRef.current?.dispatchEvent(new Event('portalreset')); } };
 }

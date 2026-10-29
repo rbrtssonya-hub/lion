@@ -1,0 +1,68 @@
+{
+  "baseline": "6d664d2",
+  "environment": "Windows, installed Chrome, production Vite preview 4189; current checkout also contains unrelated craft drafts",
+  "core": {
+    "command": "npm test",
+    "passed": 154,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "modules": 995,
+    "result": "pass",
+    "warnings": [
+      "existing large Three chunk"
+    ]
+  },
+  "browser": {
+    "initialBatch": {
+      "command": "playwright test --config playwright.preview.config.js dance-entrance action-theater expression-depth",
+      "passed": 17,
+      "failed": 1,
+      "failure": "legacy expression-depth test expected old theater button after navigation to the new chooser"
+    },
+    "correctedRecheck": {
+      "command": "playwright test --config playwright.preview.config.js -g \"entrance renders|原顶栏\"",
+      "passed": 2,
+      "failed": 0
+    },
+    "coveredDistinctCases": 18,
+    "devStrictModeAndFailureCases": {
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "review": "independent read-only reviewer verified fixes for all four findings; no remaining blockers in inspected scope",
+  "media": "same scene and model source; eight-state worldZ identical before and after entering; no new runtime assets",
+  "unverified": [
+    "public deployment",
+    "EXE",
+    "other browsers",
+    "mobile"
+  ],
+  "isolatedVerification": {
+    "candidateTree": "5a5a8ba56b248c8a7231aa69cf728bd4f0221a97",
+    "method": "git archive of the staged tree; UTF-8 Python tar extraction; shared node_modules junction; no unrelated worktree drafts",
+    "core": {
+      "passed": 154,
+      "failed": 0
+    },
+    "build": {
+      "result": "pass",
+      "modules": 995
+    },
+    "browser": {
+      "command": "PLAYWRIGHT_CHANNEL=chrome PLAYWRIGHT_PREVIEW_PORT=4209 playwright test --config playwright.preview.config.js tests/e2e/dance-entrance.spec.js tests/e2e/action-theater.spec.js tests/e2e/expression-depth.spec.js",
+      "passed": 18,
+      "failed": 0,
+      "duration": "3.5m"
+    },
+    "memory": {
+      "pages": 178,
+      "errors": 0,
+      "historicalWarnings": 8
+    },
+    "preview": "http://127.0.0.1:4209/#/action"
+  },
+  "worktreeFollowup": "A later combined-tree integrity run was blocked by another task adding an unregistered craft screenshot; isolated staged-tree integrity and core then passed 154/154. That screenshot and the other task changes were preserved and excluded."
+}

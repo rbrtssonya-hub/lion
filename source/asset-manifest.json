@@ -13371,6 +13371,30 @@
       "path": "source/reviews/structure-atlas/2026-10-29-frame/trim-study-2560.png",
       "bytes": 3606846,
       "sha256": "b13d7cb00e4a97eacb85366c75b1e4b57f9dc66976e78bcd6aea72f135d2b14f"
+    },
+    {
+      "from": "native Chrome production shared-scene preview 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29-live-scenes/entrance-1280.png",
+      "bytes": 1038975,
+      "sha256": "97611209d6895d909dde8303432468dba6190fa4bf557f455be35a8e38d30b4f"
+    },
+    {
+      "from": "native Chrome production shared-scene preview 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29-live-scenes/entrance-1440.png",
+      "bytes": 1421049,
+      "sha256": "fe8bb4abdace5fff6c9ab455c25133c63cc4d2be78b5772a15df508f9625b6b4"
+    },
+    {
+      "from": "native Chrome production shared-scene preview 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29-live-scenes/entrance-1920.png",
+      "bytes": 2129572,
+      "sha256": "4e5c6b25602b8a8d7b2bd7c4cb5dc77b89ff4ba43ee86fef1c16434f5343de55"
+    },
+    {
+      "from": "native Chrome production shared-scene preview 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29-live-scenes/entrance-rotated.png",
+      "bytes": 2129916,
+      "sha256": "15ac88bfb1fa1a9fd2c9a568055bf1620d35c66f603809b6e945cb4c9c41060c"
     }
   ]
 }
