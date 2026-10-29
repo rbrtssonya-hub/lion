@@ -171,10 +171,10 @@ test at tests\assets\asset-integrity.test.mjs:42:1
 ✖ migration snapshot preserves the size and SHA256 of every archived binary asset (4024.5016ms)
   AssertionError [ERR_ASSERTION]: Asset size changed: source/reviews/structure-atlas/2026-10-29-frame/beard-study-1920.png
   + actual - expected
-  
+
   + 3023591
   - 3018795
-  
+
       at TestContext.<anonymous> (file:///F:/%E6%95%B0%E5%AA%92%E7%AB%9E%E8%B5%9B/%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96codex/tests/assets/asset-integrity.test.mjs:68:12)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
