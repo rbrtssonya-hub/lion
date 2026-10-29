@@ -12771,6 +12771,24 @@
       "path": "source/design/spread-stamps/user-no-backplate-2026-10-28.png",
       "bytes": 412132,
       "sha256": "d405c5fac0de8a525a417d96085c0dd791d3a0bc2e8d80977151470488173dbb"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1366x768.png",
+      "bytes": 1089919,
+      "sha256": "52b5e5403aa994dca16fc6d961d1876d4910bb39c10755edd1497b5e44fe314f"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1440x900.png",
+      "bytes": 1332408,
+      "sha256": "73824abd507d633391157875ee63e1471096067a066231a76c1a777fea9b35a1"
+    },
+    {
+      "from": "native Chrome production screenshot, craft readability 2026-10-29",
+      "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1920x1080.png",
+      "bytes": 2064854,
+      "sha256": "68f310dd9dd1a93f0169e8b1dce929ca17b130d58f794c3dfb84afc8cd505e52"
     }
   ]
 }
