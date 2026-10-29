@@ -13395,6 +13395,24 @@
       "path": "source/reviews/dance-entrance/2026-10-29-live-scenes/entrance-rotated.png",
       "bytes": 2129916,
       "sha256": "15ac88bfb1fa1a9fd2c9a568055bf1620d35c66f603809b6e945cb4c9c41060c"
+    },
+    {
+      "from": "native Chrome production craft column alignment review 2026-10-29",
+      "path": "source/reviews/craft-column-align/2026-10-29/craft-zha-1366x768.png",
+      "bytes": 1090400,
+      "sha256": "b5c806fc0939667f479d8f123089e023f879d40b64bed1466935c7f7f2eaf6b2"
+    },
+    {
+      "from": "native Chrome production craft column alignment review 2026-10-29",
+      "path": "source/reviews/craft-column-align/2026-10-29/craft-zha-1440x900.png",
+      "bytes": 1329490,
+      "sha256": "f05cddaaf90024eeb56f26ceabb3d5fdd881a25240a9e95edd55dc3ef4390128"
+    },
+    {
+      "from": "native Chrome production craft column alignment review 2026-10-29",
+      "path": "source/reviews/craft-column-align/2026-10-29/craft-zha-1920x1080.png",
+      "bytes": 2056939,
+      "sha256": "d7f3fde96e4dd28f777f042a95f2db2a763ceb1de2b2558220f32b75563c5221"
     }
   ]
 }

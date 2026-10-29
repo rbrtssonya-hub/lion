@@ -71,8 +71,8 @@
 .model-types-panel .heritage-comparison-card dd { font-size: 16px; line-height: 1.7; }
 
 .model-craft { display: block; width: 100%; max-width: 1680px; min-height: 100%; margin-inline: auto; padding: clamp(16px, 2svh, 26px) clamp(18px, 2cqw, 36px); border: 1px solid var(--structure-panel-border); border-radius: var(--structure-panel-radius); background: var(--structure-panel-fill); }
-.model-craft-carousel { --gallery-height: clamp(330px, calc(100svh - var(--site-header-height) - 306px), 660px); display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 3cqw, 58px); min-height: 100%; }
-.model-craft-figure { min-width: 0; margin: 0; }
+.model-craft-carousel { --gallery-height: clamp(330px, calc(100svh - var(--site-header-height) - 306px), 660px); --craft-reading-offset: calc(var(--gallery-height) * .11); display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); align-items: stretch; gap: clamp(24px, 3cqw, 58px); min-height: 100%; }
+.model-craft-figure { display: flex; flex-direction: column; gap: 10px; min-width: 0; margin: 0; }
 .model-craft-depth-stage { position: relative; min-width: 0; height: var(--gallery-height); }
 .model-craft .culture-depth-gallery { inset: 0; width: 100%; height: 100%; }
 .model-craft-photo { position: absolute; z-index: 2; left: 2.5%; top: 11%; display: block; width: 79%; height: 78%; object-fit: contain; object-position: center; pointer-events: none; transition: transform 240ms ease; }
@@ -82,7 +82,7 @@
 .model-craft-photo-label { position: absolute; z-index: 4; top: 0; left: 2.5%; color: #82603d; font: 14px/1.6 var(--sans); letter-spacing: .1em; }
 .model-craft-depth-axis { position: absolute; z-index: 4; left: 2.5%; right: 17%; bottom: 1%; display: flex; align-items: center; gap: 13px; color: #8b6846; font: 15px/1.5 var(--structure-serif); }
 .model-craft-depth-axis i { flex: 1; height: 1px; background: linear-gradient(90deg, #aa765b66, #aa765b11); }
-.model-craft-figure figcaption { display: grid; gap: 5px; margin: 10px 0 0 110px; padding: 10px 14px; border-left: 2px solid #b47d51; border-radius: 0 8px 8px 0; background: linear-gradient(90deg, #b9926010, transparent); color: #765e45; font: 16px/1.5 var(--sans); }
+.model-craft-figure figcaption { display: grid; gap: 5px; margin: auto 0 0 110px; padding: 10px 14px; border-left: 2px solid #b47d51; border-radius: 0 8px 8px 0; background: linear-gradient(90deg, #b9926010, transparent); color: #765e45; font: 16px/1.5 var(--sans); }
 .model-craft-figure figcaption strong { color: #654830; font-weight: 400; font-size: 20px; }
 /* Leave the companion's default lower-left position clear of reading controls. */
 .model-craft-navigation { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 7px; }
@@ -93,7 +93,7 @@
 .model-craft-counter i { width: 22px; height: 1px; background: #b9946660; }
 .model-craft-navigation .model-craft-playback { border-color: transparent; background: transparent; color: #805c3d; font-size: 16px; }
 .model-craft a { color: #873d28; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.model-craft-reading { min-width: 0; padding-block: 0; }
+.model-craft-reading { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; min-height: 0; padding-block: 0; padding-block-start: var(--craft-reading-offset); }
 .model-craft-eyebrow { display: flex; align-items: center; gap: 15px; margin: 0 0 8px; color: #80603f; font: 14px/1.5 var(--sans); letter-spacing: .08em; }
 .model-craft-eyebrow > span { color: #a6402d; font: 15px/1.5 Georgia, serif; letter-spacing: .06em; }
 .model-craft h2 { margin: 0; color: var(--structure-deep-red); font: 400 clamp(33px, 2.7cqw, 46px)/1.3 var(--navigation-brush, var(--archive-brush)); letter-spacing: .06em; }
@@ -155,16 +155,16 @@
   .model-craft[data-craft-focused='true'] .model-craft-photo { transform: none; }
 }
 @media (max-height: 850px) and (min-width: 1000px) {
-  .model-craft-reading { padding-block: 4px; }
   .model-craft-eyebrow { margin-bottom: 6px; }
   .model-craft h2 { font-size: 34px; line-height: 1.25; }
   .model-craft-lead { margin: 5px 0 10px; font-size: 19px; line-height: 1.45; }
   .model-craft-description { font-size: 18px; line-height: 1.6; }
-  .model-craft-stages { margin: 12px 0 8px; }
+  .model-craft-observations { margin-top: 10px; padding-top: 8px; }
+  .model-craft-stages { margin: 10px 0 6px; }
   .model-craft-stages strong { margin: 1px 0 3px; font-size: 28px; line-height: 1.15; }
   .model-craft-source { margin-top: 10px; }
   .model-craft-note { margin-top: 8px; }
-  .model-craft-games { margin-top: 10px; padding-top: 8px; }
+  .model-craft-games { margin-top: 8px; padding-top: 6px; }
   .model-craft-games-heading { margin-bottom: 6px; }
   .model-craft-games-heading h3 { font-size: 19px; line-height: 1.4; }
   .model-craft-game { min-height: 64px; padding-block: 8px; }

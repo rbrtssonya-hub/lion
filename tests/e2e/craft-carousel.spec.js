@@ -214,11 +214,23 @@ for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768]]) {
     }
     const layout = await section.evaluate(node => {
       const panel = node.closest('[role="tabpanel"]');
+      const figure = node.querySelector('.model-craft-figure').getBoundingClientRect();
+      const reading = node.querySelector('.model-craft-reading').getBoundingClientRect();
+      const games = node.querySelector('.model-craft-games').getBoundingClientRect();
+      const photo = node.querySelector('.model-craft-photo').getBoundingClientRect();
+      const eyebrow = node.querySelector('.model-craft-eyebrow').getBoundingClientRect();
       return { documentFits: document.documentElement.scrollWidth <= innerWidth + 1,
-        panelFits: panel.scrollHeight <= panel.clientHeight + 1,
-        bodyFontSize: parseFloat(getComputedStyle(node.querySelector('.model-craft-description')).fontSize) };
+        panelOverflow: panel.scrollHeight - panel.clientHeight,
+        bodyFontSize: parseFloat(getComputedStyle(node.querySelector('.model-craft-description')).fontSize),
+        readingHeightDelta: Math.abs(figure.height - reading.height),
+        gamesBottomDelta: Math.abs(figure.bottom - games.bottom),
+        contentTopDelta: Math.abs(photo.top - eyebrow.top) };
     });
-    expect(layout).toEqual({ documentFits: true, panelFits: true, bodyFontSize: expect.any(Number) });
+    expect(layout).toMatchObject({ documentFits: true, bodyFontSize: expect.any(Number) });
+    expect(layout.panelOverflow).toBeLessThanOrEqual(1);
+    expect(layout.readingHeightDelta).toBeLessThanOrEqual(2);
+    expect(layout.gamesBottomDelta).toBeLessThanOrEqual(2);
+    expect(layout.contentTopDelta).toBeLessThanOrEqual(2);
     expect(layout.bodyFontSize).toBeGreaterThanOrEqual(17);
     for (const label of ['上一道', '下一道', '播放轮播', '查看扎工序', '查看扑工序', '查看画工序', '查看装工序', '体验鼓点采青', '挑战梅花桩']) {
       // This also checks that the floating assistant does not cover controls.
