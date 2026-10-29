@@ -22,6 +22,11 @@ test('real HTTP endpoint explains a chapter locally and rejects CSRF and oversiz
     const data = await response.json();
     assert.equal(data.mode, 'local'); assert.equal(data.reason, 'unconfigured');
     assert.ok(data.answer.length > 20); assert.ok(data.sources.length);
+    const chooser = await post(app.url, { question: '讲解本页', chapter: 'dance' });
+    assert.equal(chooser.status, 200);
+    const chooserData = await chooser.json();
+    assert.match(chooserData.answer, /两个空间入口/);
+    assert.ok(chooserData.sources.some(source => source.id === 'page-action'));
     assert.equal((await post(app.url, { question: '讲解本页' }, { Origin: 'https://evil.invalid' })).status, 403);
     assert.equal((await post(app.url, { question: '好'.repeat(1001) })).status, 400);
     assert.equal((await post(app.url, 'x'.repeat(20000))).status, 413);

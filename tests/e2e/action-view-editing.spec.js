@@ -23,7 +23,7 @@ async function prepare(page, { width = 1920, height = 1080, pushPage = true } = 
       sessionStorage.setItem('action-view-editing:seeded', '1');
     }
   }, { storageKey, pushPage });
-  await page.goto('/#/action');
+  await page.goto('/#/theater');
   await expect(canvas(page)).toHaveAttribute('data-scene-ready', 'true', { timeout: 70_000 });
   await expect(canvas(page)).toHaveAttribute('data-camera-state', 'idle');
   await trigger(page).click();
@@ -147,7 +147,7 @@ test('其他设置分类及其他章节保留外部点击与Escape关闭，返�
   await trigger(page).click();
   await selectSettingsPage(page, '视角');
   await expectOpen(page);
-  await page.locator('.site-navigation [data-route="state"]').click();
+  await page.getByRole('button', { name: '看狮头 · 八态', exact: true }).click();
   await expect(page.locator('main')).toHaveAttribute('data-route', 'state');
   await expect(settingsPanel(page)).toBeVisible();
   await expect(page.locator('.settings-outside-guard')).toBeVisible();
@@ -155,6 +155,7 @@ test('其他设置分类及其他章节保留外部点击与Escape关闭，返�
   await page.keyboard.press('Escape');
   await expect(settingsPanel(page)).toHaveCount(0);
   await page.locator('.site-navigation [data-route="action"]').click();
+  await page.getByRole('link', { name: '进入三维展厅', exact: true }).click();
   await expect(canvas(page)).toHaveAttribute('data-scene-ready', 'true', { timeout: 70_000 });
   await trigger(page).click();
   await expectOpen(page);

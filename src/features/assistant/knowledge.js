@@ -2,6 +2,7 @@
 // curated from the current exhibition, not retrieved from user-supplied URLs.
 // Source-to-code mapping and editorial limits: source/references/xiaoxing-knowledge.md.
 const pageSources = {
+  dance: { id: 'page-dance', label: '舞 · 两处空间入口', chapter: 'action' },
   entry: { id: 'page-entry', label: '首页 · 岭南醒狮志', chapter: 'entry', section: 'homeLionBook' },
   culture: { id: 'page-culture', label: '序 · 醒狮文化与资料', chapter: 'entry', section: 'homeCultureSources' },
   types: { id: 'page-lion-types', label: '造 · 醒狮形制', chapter: 'model', section: 'modelStage' },
@@ -54,9 +55,18 @@ export const chapterGuides = {
   },
 };
 
+// This chooser is a navigation context, separate from the five recorded tours.
+export const danceEntranceGuide = {
+  title: '舞 · 形神之间', shortTitle: '舞章空间入口',
+  guide: '这里是舞章的两个空间入口。左侧三维展厅可以进入四面巨幕观看醒狮动作；右侧醒狮八态纵深空间可以浏览喜、怒、哀、乐、动、静、惊、疑。拖动两张景窗可以有限角度环看，也可聚焦后用方向键调整、按 Home 归位，再点击入口进入完整体验。景窗使用 AI 辅助素材作分层场景预览，八态为定性观察提示，不是自动识别或评分。',
+  questions: ['这两个入口有什么不同？', '动作展厅怎么操作？', '醒狮八态有哪些？'],
+  sources: [pageSources.dance, pageSources.action, pageSources.state],
+};
+
 const fact = (id, chapter, title, questions, keywords, answer, sources) => ({ id, chapter, title, questions, keywords, answer, sources });
 
 export const knowledgeEntries = [
+  fact('guide-dance', 'dance', danceEntranceGuide.title, ['这两个入口有什么不同？'], ['两个入口', '舞章入口', '景窗'], danceEntranceGuide.guide, danceEntranceGuide.sources),
   ...Object.entries(chapterGuides).map(([chapter, guide]) => fact(
     `guide-${chapter}`, chapter, guide.title, [`介绍${chapter === 'entry' ? '首页' : `${guide.title.split(' · ')[0]}页`}`, `讲解${chapter === 'entry' ? '首页' : `${guide.title.split(' · ')[0]}页`}`],
     [`${guide.title.split(' · ')[0]}页讲解`, `${guide.shortTitle}章节`], guide.guide, guide.sources,
@@ -209,7 +219,8 @@ export const knowledgeEntries = [
 
 const normalize = value => typeof value === 'string'
   ? value.slice(0, 1200).normalize('NFKC').toLowerCase().replace(/[\p{P}\p{S}\s]/gu, '') : '';
-const canonicalChapter = chapter => Object.hasOwn(chapterGuides, chapter) ? chapter : 'entry';
+const canonicalChapter = chapter => chapter === 'dance' || Object.hasOwn(chapterGuides, chapter) ? chapter : 'entry';
+const guideForChapter = chapter => chapter === 'dance' ? danceEntranceGuide : chapterGuides[canonicalChapter(chapter)];
 const cloneSources = sources => sources.map(source => ({ ...source }));
 const genericKeywords = new Set([
   '四章', '四个章节', '参观路线', '流派', '腰马', '功架', '破阵', '猫步',
@@ -236,12 +247,12 @@ function guideIntent(question, chapter) {
 }
 
 export function getChapterGuide(chapter) {
-  const guide = chapterGuides[canonicalChapter(chapter)];
+  const guide = guideForChapter(chapter);
   return { answer: guide.guide, sources: cloneSources(guide.sources), mode: 'local' };
 }
 
 export function getSuggestedQuestions(chapter) {
-  return [...chapterGuides[canonicalChapter(chapter)].questions];
+  return [...guideForChapter(chapter).questions];
 }
 
 export function retrieveKnowledge(question, chapter, limit = 3) {
@@ -284,7 +295,7 @@ export function answerLocally(question, chapter) {
   if (guide) return getChapterGuide(guide);
   const entry = retrieveKnowledge(question, chapter, 1)[0];
   if (entry) return { answer: entry.answer, sources: cloneSources(entry.sources), mode: 'local' };
-  const current = chapterGuides[canonicalChapter(chapter)];
+  const current = guideForChapter(chapter);
   return {
     answer: query
       ? `这项内容暂未收录在小醒的讲解资料中。我可以先带你阅读“${current.title}”，也可以试试下方推荐问题；涉及具体历史、实物或赛事规则的结论，需要另核对可靠来源。`

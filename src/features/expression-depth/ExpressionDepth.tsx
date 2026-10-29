@@ -133,7 +133,7 @@ export default function ExpressionDepth({ active = true, observation, onReturnTo
     <style>{fonts.map(([family, url, weight, style]) => `@font-face{font-family:"${family}";src:url("${url}") format("woff2");font-weight:${weight};font-style:${style};font-display:swap}`).join('')}</style>
     <h1 className="sr-only" id="chapterTitle">神态</h1>
     <div className="depth-scroll-viewport" ref={scrollRef} aria-hidden="true"><div className="depth-scroll-content" ref={contentRef}>{chapterIds.map(id => <div key={id} className="depth-anchor" data-depth-anchor={id} data-depth-chapter={id} />)}</div></div>
-    <div className="depth-host-actions"><button type="button" onClick={() => manualNavigate('home')}>回到卷首</button>{observation && <button type="button" onClick={onReturnToModel}>返回{observation.partLabel ?? '结构'}部位</button>}<button type="button" onClick={onReturnToAction}>返回戏台</button></div>
+    <div className="depth-host-actions"><button type="button" onClick={() => manualNavigate('home')}>回到卷首</button>{observation && <button type="button" onClick={onReturnToModel}>返回{observation.partLabel ?? '结构'}部位</button>}<button type="button" onClick={onReturnToAction}>返回舞章入口</button></div>
     <a className="skip-link" href="#/state" onClick={event => { event.preventDefault(); manualNavigate('about') }}>跳到神态导言</a>
     <Navigation chapter={chapter} navigate={manualNavigate} />
     <AutoTourControls tour={tour} />

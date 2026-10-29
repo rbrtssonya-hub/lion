@@ -3,13 +3,13 @@ import { createPortal } from 'react-dom';
 import XiaoxingAvatar from './XiaoxingAvatar.jsx';
 import usePetPosition from './usePetPosition.js';
 import useNarration from './useNarration.js';
-import { chapterGuides, getChapterGuide, getSuggestedQuestions } from './knowledge.js';
+import { chapterGuides, danceEntranceGuide, getChapterGuide, getSuggestedQuestions } from './knowledge.js';
 import { askXiaoxing } from './client.js';
 import './assistant.css';
 
 const petSize = { width: 152, height: 194 };
 const spreadPetSize = { width: 120, height: 160 };
-const chapterTitles = { entry: '入境 · 首页', model: '造 · 观形', action: '舞 · 动作', state: '舞 · 神态', spread: '传 · 狮行远方' };
+const chapterTitles = { entry: '入境 · 首页', model: '造 · 观形', action: '舞 · 动作', dance: '舞 · 空间入口', state: '舞 · 神态', spread: '传 · 狮行远方' };
 const Icon = ({ type }) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
   {type === 'close' ? <path d="m6 6 12 12M18 6 6 18" /> : type === 'send' ? <><path d="m4 11 16-7-6 16-3-6-7-3Z" /><path d="m11 14 9-10" /></> : type === 'voice' ? <><path d="M11 5 6 9H3v6h3l5 4V5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></> : <><path d="M4 5h6c2 0 2 1 2 1s0-1 2-1h6v14h-6c-2 0-2 1-2 1s0-1-2-1H4V5Z" /><path d="M12 6v14" /></>}
 </svg>;
@@ -152,7 +152,12 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
     const latest = messagesRef.current.findLast(message => message.role === 'assistant' && message.chapter === chapter);
     narration.speak(latest?.answer || getChapterGuide(chapter).answer);
   };
-  const visitSource = source => { setSourceTarget(source); onNavigate?.(source.chapter, { assistantSource: source }); close(); };
+  const visitSource = source => {
+    setSourceTarget(source.section ? source : null);
+    // Keep the existing action knowledge/recording while its page now has a subroute.
+    const route = source.chapter === 'action' && source.section === 'actionTheater' ? 'theater' : source.chapter;
+    onNavigate?.(route, { assistantSource: source }); close();
+  };
   const panelWidth = Math.min(378, viewport.width - 28);
   const topInset = viewport.height < 600 ? 14 : 100;
   const panelHeight = Math.min(566, viewport.height - topInset - 14);
@@ -187,7 +192,7 @@ export default function XiaoxingAssistant({ chapter = 'entry', onNavigate, suppr
         <button type="button" className="xiaoxing-icon-button" aria-label="收起小醒对话" onClick={close}><Icon type="close" /></button>
       </header>
       <div className="xiaoxing-conversation" ref={logRef} role="log" aria-label="小醒对话记录" aria-live="polite" aria-relevant="additions" aria-busy={thinking}>
-        {!messages.length && <div className="xiaoxing-welcome"><span className="xiaoxing-welcome-eyebrow">南风有狮 · 一路相伴</span><h3>这一程，跟小醒看醒狮</h3><p>你现在来到{chapterGuides[chapter]?.shortTitle || '醒狮展览'}。想听一段讲解，还是从一个好奇开始？</p><span className="xiaoxing-welcome-flourish" aria-hidden="true">✦</span></div>}
+        {!messages.length && <div className="xiaoxing-welcome"><span className="xiaoxing-welcome-eyebrow">南风有狮 · 一路相伴</span><h3>这一程，跟小醒看醒狮</h3><p>你现在来到{chapter === 'dance' ? danceEntranceGuide.shortTitle : chapterGuides[chapter]?.shortTitle || '醒狮展览'}。想听一段讲解，还是从一个好奇开始？</p><span className="xiaoxing-welcome-flourish" aria-hidden="true">✦</span></div>}
         {messages.map(message => <article className={`xiaoxing-message is-${message.role}`} data-mode={message.mode} key={message.id}>
           <p className="xiaoxing-message-name">{message.role === 'user' ? '你' : '小醒'}{message.role === 'assistant' && <span>{chapterTitles[message.chapter]}</span>}</p>
           <p className="xiaoxing-message-text">{message.content || message.answer}</p>

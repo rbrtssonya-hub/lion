@@ -98,7 +98,7 @@ test('网络场景失败可重载，恢复只生成一个有效WebGL画布', asy
   let fail = true;
   await page.route(`**/${assetPaths.actionTheaterScene}`, route => fail ? route.abort('failed') : route.continue());
   await prepare(page);
-  await page.goto('/#/action');
+  await page.goto('/#/theater');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expect(page.getByRole('button', { name: '重新载入动作空间', exact: true })).toBeVisible();
   await expect(page.locator('#actionTheater')).toHaveAttribute('data-view', 'flat');

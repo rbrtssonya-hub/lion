@@ -322,7 +322,7 @@ for (const viewport of [{ width: 900, height: 900 }, { width: 1366, height: 768 
 
 test('动作章节接入四面巨幕与用户视频并保留全局导航及设置背景', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
-  await openPrepared(page, '/#/action');
+  await openPrepared(page, '/#/theater');
   await expect(page.locator('#chapterStage')).toHaveAttribute('data-chapter', 'action');
   await expectDecodedBackground(page, page.locator('.site-shell'), assetPaths.actionBackground);
   const canvas = page.locator('#chapterStage canvas');

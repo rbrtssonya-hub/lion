@@ -1,0 +1,117 @@
+{
+  "base": "http://127.0.0.1:4199",
+  "date": "2026-10-29T06:42:59.952Z",
+  "screenshots": [
+    {
+      "filename": "entrance-1920.png",
+      "width": 1920,
+      "height": 1080,
+      "background": "url(\"http://127.0.0.1:4199/assets/dance-entrance/paper-landscape.png\")",
+      "backgroundLoaded": true,
+      "overflow": false,
+      "pageHeight": 1080,
+      "portals": [
+        {
+          "x": 119.79872131347656,
+          "y": 239.93128967285156,
+          "width": 734.6048583984375,
+          "height": 501.03857421875,
+          "transform": "matrix3d(0.97437, 0, -0.224951, 0, 0, 1, 0, 0, 0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        },
+        {
+          "x": 1050.596435546875,
+          "y": 239.93128967285156,
+          "width": 734.6048583984375,
+          "height": 501.03857421875,
+          "transform": "matrix3d(0.97437, 0, 0.224951, 0, 0, 1, 0, 0, -0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        }
+      ],
+      "links": [
+        {
+          "href": "#/theater",
+          "bottom": 923.984375
+        },
+        {
+          "href": "#/state",
+          "bottom": 923.984375
+        }
+      ],
+      "broken": []
+    },
+    {
+      "filename": "entrance-1440.png",
+      "width": 1440,
+      "height": 900,
+      "background": "url(\"http://127.0.0.1:4199/assets/dance-entrance/paper-landscape.png\")",
+      "backgroundLoaded": true,
+      "overflow": false,
+      "pageHeight": 900,
+      "portals": [
+        {
+          "x": 62.69758605957031,
+          "y": 210.5173797607422,
+          "width": 589.0635375976562,
+          "height": 396.16204833984375,
+          "transform": "matrix3d(0.97437, 0, -0.224951, 0, 0, 1, 0, 0, 0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        },
+        {
+          "x": 773.2388916015625,
+          "y": 210.5173797607422,
+          "width": 589.0635986328125,
+          "height": 396.16204833984375,
+          "transform": "matrix3d(0.97437, 0, 0.224951, 0, 0, 1, 0, 0, -0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        }
+      ],
+      "links": [
+        {
+          "href": "#/theater",
+          "bottom": 780
+        },
+        {
+          "href": "#/state",
+          "bottom": 780
+        }
+      ],
+      "broken": []
+    },
+    {
+      "filename": "entrance-1280.png",
+      "width": 1280,
+      "height": 720,
+      "background": "url(\"http://127.0.0.1:4199/assets/dance-entrance/paper-landscape.png\")",
+      "backgroundLoaded": true,
+      "overflow": false,
+      "pageHeight": 720,
+      "portals": [
+        {
+          "x": 58.70965576171875,
+          "y": 167.23202514648438,
+          "width": 521.5007934570312,
+          "height": 297.0023498535156,
+          "transform": "matrix3d(0.97437, 0, -0.224951, 0, 0, 1, 0, 0, 0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        },
+        {
+          "x": 684.78955078125,
+          "y": 167.23202514648438,
+          "width": 521.500732421875,
+          "height": 297.0023498535156,
+          "transform": "matrix3d(0.97437, 0, 0.224951, 0, 0, 1, 0, 0, -0.224951, 0, 0.97437, 0, 0, 0, 0, 1)"
+        }
+      ],
+      "links": [
+        {
+          "href": "#/theater",
+          "bottom": 607.984375
+        },
+        {
+          "href": "#/state",
+          "bottom": 607.984375
+        }
+      ],
+      "broken": []
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "dragStayedInEntrance": true
+}

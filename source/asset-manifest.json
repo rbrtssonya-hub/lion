@@ -13197,6 +13197,48 @@
       "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-700ms.png",
       "bytes": 280818,
       "sha256": "608f504307ae3da570253413449ab7238fcc44e2754d1bc910bec5cd438eddd7"
+    },
+    {
+      "from": "User supplied original: F:/数媒竞赛/醒狮素材/醒狮模型背景.png (2026-10-29)",
+      "path": "source/public/assets/dance-entrance/paper-landscape.png",
+      "bytes": 2341966,
+      "sha256": "aa62559fbbf74b40ef1020a469f839a10f7332d5eb99a9683f2dfa1a310c9a91"
+    },
+    {
+      "from": "User approved symmetric portal reference: 国风醒狮展厅双屏界面.png (AI-assisted concept, 2026-10-29)",
+      "path": "source/design/dance-entrance/reference.png",
+      "bytes": 2172964,
+      "sha256": "0bf9c3e042a3b63ad84daba07fd5bfacf3f66d6bbb952013a3d497b31a3994e6"
+    },
+    {
+      "from": "Actual desktop Chrome production capture of dance entrance, 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29/entrance-1280.png",
+      "bytes": 1104951,
+      "sha256": "3fe14ca492505d2894bc17962cb43cac87c0b45968e3ba6b7829e71339ce08ee"
+    },
+    {
+      "from": "Actual desktop Chrome production capture of dance entrance, 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29/entrance-1440.png",
+      "bytes": 1508523,
+      "sha256": "58959cc544110975bb55bc53bb36d65e44db9e3846ef9e6604050d988d32673f"
+    },
+    {
+      "from": "Actual desktop Chrome production capture of dance entrance, 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29/entrance-1920.png",
+      "bytes": 2274557,
+      "sha256": "867765ae9def2549cd8c791fc234fe2b39b8f74693429b9f60d0f4b5fe23bbe8"
+    },
+    {
+      "from": "Actual desktop Chrome production capture of dance entrance, 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29/entrance-rotated.png",
+      "bytes": 1521275,
+      "sha256": "8300f52b1078a2accadd0f9b060ad31f83e0b8f480aa66da544cbd05a2625a8d"
+    },
+    {
+      "from": "Actual desktop Chrome production capture of dance entrance, 2026-10-29",
+      "path": "source/reviews/dance-entrance/2026-10-29/entrance-settings.png",
+      "bytes": 1202796,
+      "sha256": "c7b9ef380c9545b89d18e8985ea3648d493b19e0eccf3c3c16a1be3ed01435b1"
     }
   ]
 }

@@ -1,0 +1,49 @@
+{
+  "environment": {
+    "os": "Windows",
+    "node": "24.20.0",
+    "npm": "11.19.0",
+    "browser": "Chrome"
+  },
+  "base": "b8540e206019647dc8e81759e4f57b719bdb1275",
+  "background": "Original user image copied byte for byte",
+  "tests": {
+    "npm test": {
+      "passed": 154,
+      "failed": 0
+    },
+    "dance-entrance + action-theater production": {
+      "passed": 10,
+      "failed": 0
+    },
+    "extended readability/settings/entrance production": {
+      "passed": 15,
+      "failed": 2,
+      "ownFailureFixed": "795px toolbar overlap; related single test rerun 1/1 passed",
+      "existingFailure": "home chapter navigation selector no longer exists"
+    },
+    "distinct_related_cases_passed_in_batches": 21,
+    "known_other_old_cases": {
+      "model": 3,
+      "spread_settings": 1,
+      "home_navigation": 1
+    }
+  },
+  "build": {
+    "success": true,
+    "modules": 994,
+    "warning": "existing large Three.js chunks"
+  },
+  "visualReport": "review.json",
+  "review": {
+    "importantFound": 2,
+    "importantRemaining": 0
+  },
+  "notVerified": [
+    "public deployment",
+    "EXE",
+    "mobile",
+    "other browsers",
+    "new entrance live speech synthesis/audio listening"
+  ]
+}

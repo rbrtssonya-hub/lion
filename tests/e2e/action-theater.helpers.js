@@ -25,7 +25,7 @@ export async function prepare(page, { width = 1920, height = 1080, settings = {}
 
 export async function openTheater(page, options = {}) {
   await prepare(page, options);
-  await page.goto('/#/action');
+  await page.goto('/#/theater');
   await expect(page.locator('#startupLoading')).toHaveCount(0, { timeout: 60_000 });
   await expect(stage(page)).toHaveAttribute('data-chapter', 'action');
   await expect(scene(page)).toBeVisible({ timeout: 45_000 });

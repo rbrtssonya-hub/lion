@@ -1,4 +1,5 @@
 export const assetPaths = {
+  danceEntranceBackground: 'assets/dance-entrance/paper-landscape.png',
   depthPaperBackground: 'assets/expression-depth/images/paper-reference.png',
   depthTitleAtlas: 'assets/expression-depth/images/title-atlas.png',
   depthContactAtlas: 'assets/expression-depth/images/contact-extra-atlas.png',

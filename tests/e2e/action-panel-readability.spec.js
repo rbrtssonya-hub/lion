@@ -121,7 +121,7 @@ test('场景失败提示不覆盖左上解读与右上操作，矮窗回退仍�
     };
   });
   await prepare(page, { reducedMotion: 'reduce' });
-  await page.goto('/#/action');
+  await page.goto('/#/theater');
   await expect(page.locator('#actionTheater')).toHaveAttribute('data-view', 'flat');
   for (const [width, height, compact] of [[1920, 1080, false], [900, 600, true]]) {
     await page.setViewportSize({ width, height });

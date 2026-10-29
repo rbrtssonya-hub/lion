@@ -17,8 +17,8 @@ export const navigationLabelMediaKeys = {
 };
 
 // The expression collection remains addressable within the stage chapter.
-export const pageRoutes = [...chapters.map(chapter => chapter.route), 'state'];
-export const chapterForRoute = route => route === 'state' ? 'action' : route;
+export const pageRoutes = [...chapters.map(chapter => chapter.route), 'state', 'theater'];
+export const chapterForRoute = route => route === 'state' || route === 'theater' ? 'action' : route;
 export const getChapter = route => chapters.find(chapter => chapter.route === chapterForRoute(route));
 
 // Insets frame the visible artwork while keeping the supplied PNG bytes intact.

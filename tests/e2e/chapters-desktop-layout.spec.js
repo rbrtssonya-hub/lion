@@ -133,7 +133,7 @@ test('神态40%纸张和32px正文在窄电脑保留可读宽度，900px高度�
 
 test('巨幕场景在小电脑纵排解读与完整播放器，大窗口恢复左上阅读布局并保留同一画布', async ({ page }) => {
   test.setTimeout(90_000);
-  await open(page, 'action');
+  await open(page, 'theater');
   const stage = page.locator('#actionTheater');
   const scene = page.locator('#theaterSceneContainer canvas');
   await expect(scene).toHaveAttribute('data-scene-ready', 'true', { timeout: 60_000 });
@@ -183,7 +183,7 @@ test('巨幕失败回退在矮电脑保留视频、错误说明与重试入口�
     const original = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (type, ...args) { return /webgl/.test(type) ? null : original.call(this, type, ...args); };
   });
-  await open(page, 'action');
+  await open(page, 'theater');
   await resize(page, 640, 360);
   await expect(page.locator('#actionTheater')).toHaveAttribute('data-view', 'flat');
   await expect(page.getByRole('button', { name: '重新载入动作空间', exact: true })).toBeVisible();

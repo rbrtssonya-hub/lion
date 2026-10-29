@@ -1,6 +1,6 @@
 import { answerLocally } from './knowledge.js';
 
-const chapters = new Set(['entry', 'model', 'action', 'state']);
+const chapters = new Set(['entry', 'model', 'action', 'dance', 'state', 'spread']);
 const cancelled = () => new DOMException('讲解已取消', 'AbortError');
 
 export async function askXiaoxing({ question, chapter = 'entry', history = [], signal }) {

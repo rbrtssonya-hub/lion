@@ -13,6 +13,7 @@ sources: []
 | 日期 | 类型 | 任务结果 | 日志 |
 | --- | --- | --- | --- |
 | 2026-10-29 | feature | completed | [醒狮八态纵深接入主站](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-29-%E9%86%92%E7%8B%AE%E5%85%AB%E6%80%81%E7%BA%B5%E6%B7%B1%E7%89%88%E6%8E%A5%E5%85%A5%E4%B8%8E%E5%8F%AF%E8%B0%83%E5%B7%A1%E6%B8%B8.md) |
+| 2026-10-29 | feature | in_progress | [舞章对称景窗双入口](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-29-%E8%88%9E%E7%AB%A0%E5%AF%B9%E7%A7%B0%E6%99%AF%E7%AA%97%E5%8F%8C%E5%85%A5%E5%8F%A3.md) |
 | 2026-10-28 | maintenance | completed | [E盘同步GitHub最新 main](%E5%B7%A5%E7%A8%8B%E7%BB%B4%E6%8A%A4/2026-10-28-E%E7%9B%98%E5%90%8C%E6%AD%A5GitHub%E6%9C%80%E6%96%B0main.md) |
 | 2026-10-28 | feature | completed | [炫技5观形与五次历史融合](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-28-%E7%82%AB%E6%8A%805%E8%A7%82%E5%BD%A2%E4%B8%8E%E4%BA%94%E6%AC%A1%E5%8E%86%E5%8F%B2%E8%9E%8D%E5%90%88.md) |
 | 2026-10-28 | feature | completed | [炫技3地域邮票光影与历史融合](%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0/2026-10-28-%E7%82%AB%E6%8A%803%E5%9C%B0%E5%9F%9F%E9%82%AE%E7%A5%A8%E5%85%89%E5%BD%B1%E4%B8%8E%E5%8E%86%E5%8F%B2%E8%9E%8D%E5%90%88.md) |

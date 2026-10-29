@@ -241,6 +241,7 @@ export default function ActionPage({ clips = theaterActions, assets = media, lig
         </aside>
       </div>
       <div className="theater-view-tools">
+        <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => onNavigate?.('action')}>返回舞章入口</button>
         <button type="button" className="interaction-cue interaction-cue--dark" onClick={() => onNavigate?.('state')}>看狮头 · 八态</button>
         <button type="button" className="interaction-cue interaction-cue--dark theater-sequence-toggle" aria-pressed={sequenceActive}
           onClick={sequenceActive ? () => setSequenceMode('idle') : startSequence}>{sequenceActive ? '停止顺序观赏' : '顺序观赏'}</button>

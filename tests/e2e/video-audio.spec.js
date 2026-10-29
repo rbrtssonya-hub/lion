@@ -148,6 +148,7 @@ test.describe('浏览器实际拦截有声自动播放', () => {
       await page.locator('#replayIntro').click();
       await expect.poll(() => page.locator('#introVideo').evaluate(element => element.muted && !element.paused)).toBe(true);
       await page.locator('.site-header [data-route="action"]').click();
+      await page.getByRole('link', { name: '进入三维展厅', exact: true }).click();
       await expect.poll(() => page.locator('#actionTheater video').evaluateAll(elements => elements.length === 4 && elements.every(element => element.muted))).toBe(true);
       await page.keyboard.press('ArrowRight');
       await expect(page.locator('#actionTheater .sound-control')).toHaveAttribute('data-audio-state', 'muted');
@@ -167,7 +168,7 @@ test.describe('浏览器实际拦截有声自动播放', () => {
       const page = await browser.newPage({ baseURL, viewport: { width: 1920, height: 1080 } });
       await recordVideoAudio(page);
       const cdp = await page.context().newCDPSession(page);
-      await page.goto('/#/action');
+      await page.goto('/#/theater');
       await expect.poll(() => observe(cdp), { timeout: 90_000 }).toMatchObject({
         ready: true, activation: false, advancing: 4, muted: true,
         pending: 'awaiting-gesture', modal: false, denied: true,

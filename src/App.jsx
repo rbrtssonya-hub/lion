@@ -19,7 +19,8 @@ import XiaoxingAssistant from './features/assistant/XiaoxingAssistant.jsx';
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
   model: media.modelBackground,
-  action: media.actionBackground,
+  action: media.danceEntranceBackground,
+  theater: media.actionBackground,
   state: media.stateBackground,
   spread: media.homeArchiveBackground,
 };
@@ -34,7 +35,7 @@ export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsPage, setSettingsPage] = useState('common');
   const sceneViewEditing = settingsOpen && (
-    ((route === 'model' || route === 'action') && settingsPage === 'view')
+    ((route === 'model' || route === 'theater') && settingsPage === 'view')
     || (route === 'spread' && settingsPage === 'stamp')
   );
   const [discardPromptOpen, setDiscardPromptOpen] = useState(false);
@@ -204,7 +205,7 @@ export default function App() {
         {route !== 'entry' && route !== 'model' && <ChapterPage lightingSettings={settings} route={route} active observation={observation} onReturnToModel={returnToModel} onNavigate={navigateTo} onStampPreviewReady={setStampPreview} />}
       </main>
     </div>
-    <XiaoxingAssistant chapter={route} onNavigate={navigateFromAssistant} suppressed={settingsOpen} />
+    <XiaoxingAssistant chapter={route === 'theater' ? 'action' : route === 'action' ? 'dance' : route} onNavigate={navigateFromAssistant} suppressed={settingsOpen} />
     {settingsOpen && !sceneViewEditing && <div className="settings-outside-guard" aria-hidden="true" onClick={closeSettings} />}
     {settingsFeedback && <div className="settings-status" role="status">{settingsFeedback}</div>}
     <ResizeHandle label="调整顶栏高度" axis="y" value={settings.headerHeight} min={64} max={180}
