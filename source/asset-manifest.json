@@ -13201,20 +13201,20 @@
     {
       "from": "native Chrome production screenshot, craft readability 2026-10-29",
       "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1366x768.png",
-      "bytes": 1089919,
-      "sha256": "52b5e5403aa994dca16fc6d961d1876d4910bb39c10755edd1497b5e44fe314f"
+      "bytes": 1089927,
+      "sha256": "8543f325580f14f7c0095a43444e6d4afeb87acb02c98319fb0f0842b1043e11"
     },
     {
       "from": "native Chrome production screenshot, craft readability 2026-10-29",
       "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1440x900.png",
-      "bytes": 1332408,
-      "sha256": "73824abd507d633391157875ee63e1471096067a066231a76c1a777fea9b35a1"
+      "bytes": 1332382,
+      "sha256": "0bbc435bb9bf12a60b0aba04050a540a3716bb40d9a4b3a1de9d73c6da27b25e"
     },
     {
       "from": "native Chrome production screenshot, craft readability 2026-10-29",
       "path": "source/reviews/craft-readability/2026-10-29/craft-zha-1920x1080.png",
-      "bytes": 2064854,
-      "sha256": "68f310dd9dd1a93f0169e8b1dce929ca17b130d58f794c3dfb84afc8cd505e52"
+      "bytes": 2064857,
+      "sha256": "f4500309905e9b4d24cc2591dc856f8af7ae6013c870fb35a8bb266831bca885"
     }
   ]
 }
