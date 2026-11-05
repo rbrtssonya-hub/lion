@@ -244,6 +244,7 @@ async function verify(executable, expectedSiteDir, reviewDir) {
       await page.addInitScript(() => {
         if (window !== top) return;
         sessionStorage.clear();
+        localStorage.setItem('nanfeng-lion:developer-settings:v1', JSON.stringify({ bookAutoplay: false }));
         window.__deliveryEvents = [];
         const log = value => { if (window.__deliveryEvents.length < 5000) window.__deliveryEvents.push({ at: performance.now(), ...value }); };
         let phase;
@@ -267,7 +268,7 @@ async function verify(executable, expectedSiteDir, reviewDir) {
       return { actualElectronPid: status.pid, existingPage: page.url(), connectedToBundledWindow: true };
     });
     await step('natural-animation-intro-and-home-loop-sequence', async () => {
-      await page.goto(status.origin + '/');
+      await page.goto(status.origin + '/?inspect=1');
       await expect(page.locator('#entryTransitionFrame')).toBeVisible({ timeout: 60_000 });
       const security = await page.evaluate(() => ({ ua: navigator.userAgent, require: typeof window.require, process: typeof window.process, module: typeof window.module }));
       assert(security.ua.includes('Electron/' + status.runtime.electron));
@@ -298,7 +299,9 @@ async function verify(executable, expectedSiteDir, reviewDir) {
     });
     await step('seven-book-pages-render-and-switch', async () => {
       await page.bringToFront();
-      await page.locator('#homeLionBook').scrollIntoViewIfNeeded();
+      await page.locator('#enterWork').click();
+      await expect(page.locator('.home-archive-nav')).toBeVisible({ timeout: 15_000 });
+      await page.locator('.lion-book-stage').scrollIntoViewIfNeeded();
       // Match the existing paper regressions: allow the host and opaque iframe
       // compositor to publish the new exposure before sending a timeline input.
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -329,8 +332,10 @@ async function verify(executable, expectedSiteDir, reviewDir) {
     };
     await step('structure-real-model-webgl-and-hair', async () => {
       await route('model');
-      await expect(page.locator('#modelStatus')).toContainText('模型已载入', { timeout: 120_000 });
-      const canvas = page.locator('#sceneContainer canvas');
+      const atlas = page.locator('#model-reading-panel-form .lion-experience');
+      await expect(atlas).toHaveAttribute('data-ready', 'true', { timeout: 120_000 });
+      await expect(atlas).toHaveAttribute('data-phase', 'overview');
+      const canvas = atlas.locator('canvas');
       await expect(canvas).toHaveCount(1);
       await expect.poll(() => canvas.evaluate(node => Number(node.dataset.fullHairDrawnGroups)), { timeout: 90_000 }).toBeGreaterThan(0);
       const result = await webglState(canvas);
@@ -340,35 +345,32 @@ async function verify(executable, expectedSiteDir, reviewDir) {
       assert(Number(result.dataset.fullHairDrawnStrands) > 0);
       await shot('05-structure-model'); return result;
     });
+    const entrance = page.getByRole('region', { name: '舞章空间入口', exact: true });
     await step('all-eight-expression-states-decode', async () => {
-      await route('state');
-      const menu = page.getByRole('navigation', { name: '醒狮八态', exact: true });
-      await expect(menu.getByRole('button')).toHaveCount(lionExpressions.length);
+      await route('action');
+      await expect(entrance.locator('[data-scene="expressions"] canvas')).toHaveAttribute('data-scene-ready', 'true', { timeout: 60_000 });
+      await expect(entrance.locator('[data-scene="theater"] canvas')).toHaveAttribute('data-scene-ready', 'true', { timeout: 90_000 });
+      await entrance.getByRole('link', { name: '走近醒狮八态', exact: true }).click();
+      const stage = page.getByRole('region', { name: '醒狮八态纵深图鉴', exact: true });
+      const menu = stage.getByRole('navigation', { name: '八态目录', exact: true });
+      await expect(menu.getByRole('link')).toHaveCount(lionExpressions.length);
       const results = [];
-      for (const item of lionExpressions) {
-        await menu.getByRole('button', { name: item.name, exact: true }).click();
-        await expect(page.locator('#chapterStage')).toHaveAttribute('data-expression', item.name);
-        await expect(page.locator('#expressionStateTitle')).toHaveText(item.name);
-        const image = page.locator('#expressionLion');
-        await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
-        results.push({ name: item.name, src: await image.getAttribute('src') });
+      for (const [index, item] of lionExpressions.entries()) {
+        const link = menu.getByRole('link', { name: item.name, exact: true });
+        await link.click();
+        await expect(link).toHaveAttribute('aria-current', 'location');
+        const state = () => page.evaluate(index => {
+          const scene = window.__LION_DEPTH_SCENE__;
+          return { id: scene?.cards[index]?.stateId, visible: scene?.cards[index]?.visible, ready: scene?.faces[index]?.ready };
+        }, index);
+        await expect.poll(state, { timeout: 20_000 }).toEqual({ id: item.id, visible: true, ready: true });
+        results.push({ name: item.name, ...await state() });
       }
-      await expect(page.locator('#expressionStateCopy')).toHaveAttribute('data-motion', 'idle', { timeout: 15_000 });
-      await expect(page.locator('[data-expression-ghost]')).toHaveCount(0);
-      await expect.poll(() => page.locator('#chapterStage').evaluate(stage => {
-        const moving = stage.getAnimations({ subtree: true }).filter(animation =>
-          animation.effect?.getTiming().iterations !== Infinity && (animation.playState === 'running' || animation.pending));
-        const current = stage.querySelector('.expression-lion-layer.is-current');
-        const previous = stage.querySelector('.expression-lion-layer.is-leaving');
-        const revealed = [...stage.querySelectorAll('[data-expression-reveal]')];
-        return moving.length === 0 && current && Number(getComputedStyle(current).opacity) === 1
-          && (!previous || Number(getComputedStyle(previous).opacity) === 0)
-          && revealed.length > 0 && revealed.every(node => Number(getComputedStyle(node).opacity) === 1);
-      }), { timeout: 15_000, message: 'Wait for the actual lion transition and all explanation reveals to finish' }).toBe(true);
       await shot('06-expression-eight-states'); return results;
     });
     await step('four-action-videos-play-and-real-scene-switches', async () => {
-      await route('action');
+      await page.getByRole('button', { name: '返回舞章入口', exact: true }).click();
+      await entrance.getByRole('link', { name: '进入三维展厅', exact: true }).click();
       const canvas = page.locator('#theaterSceneContainer canvas');
       await expect(canvas).toHaveAttribute('data-scene-ready', 'true', { timeout: 120_000 });
       await expect.poll(() => canvas.evaluate(node => Number(node.dataset.renderedFrames)), { timeout: 60_000 }).toBeGreaterThan(0);
@@ -389,6 +391,39 @@ async function verify(executable, expectedSiteDir, reviewDir) {
       assert.equal(scene.dataset.drumState, 'ready');
       assert.equal(Number(scene.dataset.drumCount), 4);
       await shot('07-action-four-videos'); return { videos: results, scene };
+    });
+    await step('three-spread-maps-and-local-assistant', async () => {
+      await route('spread');
+      const maps = [];
+      for (const [name, id] of [['广东', 'guangdong'], ['中国', 'china'], ['世界', 'world']]) {
+        await page.getByRole('tab', { name, exact: true }).click();
+        await expect(page.locator('.spread-map')).toHaveAttribute('data-map-motion', 'idle', { timeout: 20_000 });
+        const image = page.locator('.spread-map-render');
+        await expect(image).toHaveAttribute('src', new RegExp(id));
+        await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
+        maps.push(await image.getAttribute('src'));
+      }
+      const reply = await page.evaluate(async () => {
+        const response = await fetch('/api/xiaoxing/chat', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: '讲解本页', chapter: 'spread' }),
+        });
+        if (!response.ok) throw new Error(`Local assistant returned HTTP ${response.status}`);
+        return response.json();
+      });
+      await page.getByRole('button', { name: '与小醒对话', exact: true }).click();
+      await page.getByRole('button', { name: '讲解本页', exact: true }).click();
+      assert.equal(reply.mode, 'local');
+      assert.equal(reply.reason, 'offline');
+      assert(reply.sources.length > 0);
+      await expect(page.locator('.xiaoxing-message').last()).toContainText(reply.answer);
+      const voice = page.getByRole('button', { name: '当前章节语音讲解', exact: true });
+      await voice.click();
+      await expect(voice).toHaveAttribute('aria-pressed', 'true', { timeout: 15_000 });
+      await voice.click();
+      await expect(voice).toHaveAttribute('aria-pressed', 'false');
+      await shot('08-spread-local-assistant');
+      return { maps, assistant: reply.mode, fixedNarrationPlayed: true };
     });
     await step('native-offline-policy-blocks-outside-origin', async () => {
       const leaks = [];

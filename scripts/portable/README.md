@@ -28,7 +28,7 @@ node scripts/portable/build-bundled.mjs 'F:/交付目录' '--icon=F:/素材/狮�
 
 默认图标为 `source/public/assets/entry/nav-lion-head.png`；也可用 `--icon=<png路径>` 指定外部图标。builder 会把所选 PNG 转为多尺寸 ICO，设置外层 portable 图标；内部 EXE 在 `afterPack` 中编辑图标和版本后再生成运行清单，避免后续图标编辑导致启动 SHA 校验失败。应用窗口使用同一 PNG，源图保持原字节。
 
-- 网页生产输出全部保留，文件数以本次清单为准。仅发布副本中的 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；六段发布视频逐帧解码，随后在内置浏览器再次验收。
+- 网页生产输出全部保留，文件数以本次清单为准。仅发布副本中的 HEVC 视频转 H.264/AAC（保留分辨率，奇数边仅补至偶数，CRF18），原 H.264 保持字节；源视频不改。转换记录保存原/派生字节及 SHA256；所有发布 MP4 均做完整解码检查，网页实播范围见验收记录。
 - 完整 Electron 官方 ZIP 内核、所有语言包、软件图形库和两份 Electron/Chromium 许可由打包器全量携带。`runtime-manifest.json` 在内核组装后生成，启动逐SHA核对整个运行目录（清单自身除外），不依赖旧版本 DLL 名单。
 - 保留 loopback 白名单/Host/Range/令牌停服；渲染器沙盒、context isolation 开启，Node 集成关闭。正常运行无 CDP；仅明确 `--inspect-ui` 验收才开放本地调试端口。HTTP 公共状态不暴露私有路径或停服令牌。
 - 按锁定的 builder 26.15.3 实际源码，`portable.unpackDirName: true` 才省略 `UNPACK_DIR_NAME` 并使用每次启动唯一 `$PLUGINSDIR`；不能照其他版本文档把 false 当唯一目录。此选择必须用同 TEMP 多实例验收。
@@ -38,7 +38,7 @@ node scripts/portable/build-bundled.mjs 'F:/交付目录' '--icon=F:/素材/狮�
 
 支持范围为 **Windows 10/11 x64**。内核内置不等于任意 OS/硬件都能运行：Windows 7/8、32位 Windows、macOS/Linux、未经验证的 ARM 和特定安全策略不作保证。提供 `--software-rendering` 兼容模式降低 GPU 依赖，但不承诺任意旧 CPU/驱动、极低内存或实体扬声器已验收。源站外链需要网络；本地展示无组件下载/登录需求。单EXE未签名，可能有来源提示，不应关闭系统安全保护。
 
-当前 `verify-delivery.mjs` 只用 CDP 连接 EXE 自己的内置窗口，不启动系统浏览器；核对真实 Electron PID、内核/网页/HTTP 全文件 SHA、所有 public 资产、六视频 Range、动画→短片→首页自然顺序、七书页、模型/WebGL/毛发、八态、四视频及离线阻断和退出回收。旧 `verify-bundled.mjs` 留存2026-10-20的固定revision/文件数和旧UI验收，不适用于现行页面。共 TEMP 多实例与真实兼容模式快捷键重启属于旧版当时覆盖，本轮范围以新报告为准。HDRI 使用内置或本地文件；本壳拒绝网页的远程HDRI请求，资料原文外链仍可由用户明确打开。
+当前 `verify-delivery.mjs` 用 CDP 连接 EXE 的内置窗口，核对真实 Electron PID、内核/网页/HTTP 全文件 SHA、所有 public 资产、所有 MP4 的 Range、入场自然播放、七书页、观形 WebGL 和毛发、舞章两处预览和八态纵深图鉴、展厅四视频、传章三级地图及小醒离线问答和固定录音。最后检查外部网络阻断和退出回收。旧 `verify-bundled.mjs` 留存2026-10-20的固定revision/文件数和旧UI验收。共 TEMP 多实例与兼容模式快捷键重启为旧版验收范围。HDRI 使用内置或本地文件。资料原文外链可由用户明确打开。
 
 GUI脚本另外以无inspect/serve-only的普通模式打开实际窗口，按EnumWindows/PID/可见尺寸选择真实窗口，经原生AttachThreadInput取得前台后核对有效像素截图，检查默认独立profile、正常关闭后的main/包装器退出码、子进程和HTTP回收；高DPI截图使用物理窗口坐标。验证脚本使用开发机工具，不能据此把开发工具写成成品运行依赖。2026-10-23最终结果与阶段失败边界见[本轮记录](../../source/references/offline-exe-delivery-2026-10-23.md)；2026-10-20的历史结果见[前次记录](../../source/references/bundled-browser-exe-2026-10-20.md)。
 
