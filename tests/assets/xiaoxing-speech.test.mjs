@@ -73,11 +73,10 @@ test('speech normalizes AI for speech and selects pure Chinese or mixed language
   } finally { await app.close(); await upstream.close(); }
 });
 
-test('actual Vite dev and preview both install the same-origin speech endpoint', async t => {
+test('actual Vite dev and preview both install the same-origin speech endpoint', async () => {
   const { createServer, preview } = await import('vite');
   const parent = path.resolve('tmp'); await fs.mkdir(parent, { recursive: true });
   const root = await fs.mkdtemp(path.join(parent, 'xiaoxing-vite-speech-'));
-  t.after(() => fs.rm(root, { recursive: true, force: true }));
   await fs.mkdir(path.join(root, 'dist')); await fs.writeFile(path.join(root, 'index.html'), '<!doctype html><title>fixture</title>');
   await fs.copyFile(path.join(root, 'index.html'), path.join(root, 'dist/index.html'));
   const upstream = await listen(wavReply);
@@ -250,11 +249,10 @@ test('speech rate limit and one active generation bound GPU use over real HTTP',
   } finally { release(); await app.close(); await upstream.close(); }
 });
 
-test('portable runtime includes only required speech source/reference and routes local TTS while offline', async t => {
+test('portable runtime includes only required speech source/reference and routes local TTS while offline', async () => {
   const { startServer } = await import('../../scripts/portable/bundled-server.cjs');
   const parent = path.resolve('tmp'); await fs.mkdir(parent, { recursive: true });
   const fixture = await fs.mkdtemp(path.join(parent, 'xiaoxing-speech-package-'));
-  t.after(() => fs.rm(fixture, { recursive: true, force: true }));
   const project = path.join(fixture, 'project'), appDir = path.join(fixture, 'app');
   const runtimeFiles = ['scripts/assistant/api.mjs', 'scripts/assistant/speech.mjs', 'src/features/assistant/knowledge.js'];
   for (const name of runtimeFiles) { const destination = path.join(project, name); await fs.mkdir(path.dirname(destination), { recursive: true }); await fs.copyFile(path.resolve(name), destination); }

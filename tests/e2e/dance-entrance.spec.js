@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { assetPaths } from '../../src/config/assetPaths.js';
 
 async function open(page, reduced = 'reduce') {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -49,7 +48,7 @@ test('preview videos retain their sources through mount replay and stop when the
   const preview = page.locator('[data-scene="theater"]');
   await expect(preview).toHaveAttribute('data-preview-state', 'ready', { timeout: 90_000 });
   await expect.poll(() => preview.locator('video').evaluateAll(videos => videos.filter(video => video.currentSrc && video.readyState >= 2 && !video.paused).length)).toBe(4);
-  await page.route(`**/${assetPaths.actionTheaterScene}`, route => route.abort());
+  await page.route('**/lion-action-theater.glb', route => route.abort());
   await page.reload();
   await expect(preview).toHaveAttribute('data-preview-state', 'error', { timeout: 60_000 });
   await expect.poll(() => preview.locator('video').evaluateAll(videos => videos.every(video => video.paused))).toBe(true);
@@ -59,7 +58,7 @@ test('preview videos retain their sources through mount replay and stop when the
 
 test('failed depth preview reports one error and preserves the entry', async ({ page }) => {
   await page.route(/\/(?:Scene-[^/]+\.js|Scene\.tsx)(?:\?|$)/, route => route.abort());
-  await page.route(`**/${assetPaths.actionTheaterScene}`, route => route.abort());
+  await page.route('**/lion-action-theater.glb', route => route.abort());
   await open(page);
   const preview = page.locator('[data-scene="expressions"]');
   await expect(preview).toHaveAttribute('data-preview-state', 'error');
@@ -111,7 +110,7 @@ test('entrance renders the destination worlds and dragging changes their real ca
 });
 
 test('paper background loads and reduced-motion entry links survive failed preview images', async ({ page }) => {
-  await page.route(/\/assets\/expression\/lion-[^/]+\.(?:png|webp)$/, route => route.abort());
+  await page.route('**/assets/expression/lion-*.png', route => route.abort());
   await open(page);
   const entrance = page.getByRole('region', { name: '舞章空间入口', exact: true });
   await expect(entrance).toBeVisible();

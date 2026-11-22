@@ -2,7 +2,7 @@
 
 ## 后续网页接入（2026-10-19）
 
-用户后续要求把本场景接到动作页面，并提供四段视频。2026-11-22 起，网页使用从本交接 GLB 提取的 `assets/models/lion-action-theater-shell.glb`，安装完整共享醒狮模型及毛发。四屏继续绑定探青采青、抖毛、狮子吐球和踩梅花桩，视频在 `source/public/assets/action/videos/`。原生工程与离线 GLB 保留原字节。[运行壳重建](../../../docs/DEVELOPMENT.md) · [网页首次接入](../../references/2026-10-19-action-theater-web.md) · [视频来源](../../references/2026-10-19-action-theater-videos.md)
+用户后续要求把本场景替换到“动作”页面，并提供四段视频所在目录。网页现通过 `assets/models/lion-action-theater.glb` 加载本文件的LOD副本，四屏分别绑定探青采青、抖毛、狮子吐球和踩梅花桩；视频在 `source/public/assets/action/videos/`。播放、视角切屏、音频、文字与生命周期的当前实现及实际验收见[网页接入记录](../../references/2026-10-19-action-theater-web.md)和[视频来源](../../references/2026-10-19-action-theater-videos.md)。原生工程和离线GLB字节均保持。
 
 以下保存离线工程交付时的范围、缺片条件及网页设计要求；当前网站状态以上述后续记录为准。
 

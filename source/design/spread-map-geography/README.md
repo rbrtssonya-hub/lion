@@ -32,7 +32,7 @@ node source/design/spread-map-geography/build-geography.mjs
 node source/design/spread-map-geography/verify.mjs
 ```
 
-生成目标为本目录的 `spread-map-geography.js`。该旧版轮廓模块用于离线研究，统一 `viewBox="0 0 1000 600"`。现用网页地图由 Blender 渲染资产驱动。
+生成目标为 `src/data/spread-map-geography.js`。运行时无需联网和新增依赖，统一 `viewBox="0 0 1000 600"`。
 
 - 使用球面 Mercator：`x=longitude`，`northing=180/π×ln(tan(π/4+latitude×π/360))`，各层按全部原始轮廓等比例居中拟合，边距至少 72。
 - `regionalMaps.guangdong` 与 `.china` 包含 SVG `paths`、原始经纬度 `bounds`、`sourceUrl`、`attribution` 和 `usageNote`。

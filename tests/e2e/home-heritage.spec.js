@@ -31,7 +31,7 @@ test('heritage sections appear in order; type selection synchronizes artwork, th
     await expect(article.locator('.heritage-copy')).toBeVisible();
     await expect(article.getByRole('heading', { level: 3, name, exact: true })).toBeVisible();
     await expect(article.locator('.heritage-kind')).toHaveText(kind);
-    await expect(article.getByRole('img')).toHaveAttribute('src', new RegExp(`lion-types/${id}\\.webp$`));
+    await expect(article.getByRole('img')).toHaveAttribute('src', new RegExp(`lion-types/${id}\\.png$`));
     await expect(article.locator('.heritage-hotspot, .heritage-point-list button')).toHaveCount(0);
     const observations = article.getByRole('list', { name: '观察重点' });
     await expect(observations.getByRole('listitem')).toHaveCount(3);

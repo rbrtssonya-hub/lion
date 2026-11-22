@@ -1,9 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { authoringTheater, exportTheaterShell, runtimeTheater } from '../../scripts/export_action_theater_shell.mjs';
-import { theaterActions } from '../../src/features/action/actionClips.js';
 import { chooseScreen, constrainOrbit, containedVideoScale, shortestAngle, THEATER_ORBIT } from '../../src/services/actionTheaterMath.js';
 
 const rad = degrees => degrees * Math.PI / 180;
@@ -15,22 +11,6 @@ const definitions = [
   { id: 'meihuazhuang', direction: [-1, 0, 0] },
 ];
 const select = (degrees, state, now) => chooseScreen({ forward: forward(degrees), definitions, ...state, now });
-
-test('the deployable theater preserves the room, four screen meshes and lion mount', async () => {
-  const deployed = readFileSync(runtimeTheater);
-  assert.deepEqual(deployed, exportTheaterShell(readFileSync(authoringTheater)));
-  const { scene } = await new GLTFLoader().parseAsync(Uint8Array.from(deployed).buffer, '');
-  const lion = scene.getObjectByName('Lion_RotationRoot');
-  assert.equal(lion.children.length, 0);
-  assert.ok(Number.isFinite(lion.userData.mountHeight) && lion.userData.mountHeight > 0);
-  assert.equal(scene.children.filter(node => node.name.startsWith('Room_') && node.isMesh).length, 5);
-  for (const clip of theaterActions) {
-    const screen = scene.getObjectByName(clip.objectName);
-    assert.ok(screen?.isMesh && screen.geometry.getAttribute('uv'));
-    assert.ok(scene.getObjectByName(clip.anchorName));
-  }
-  assert.equal(scene.children.length, 14);
-});
 
 test('巨幕方向选择在边界保留当前屏，超过12度优势后仍等待180毫秒', () => {
   const initial = { activeId: 'tanqing', pendingId: null, pendingSince: 0 };

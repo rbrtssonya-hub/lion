@@ -818,8 +818,9 @@ export function createActionTheater({
       scene.add(room);
       lionRoot = room.getObjectByName('Lion_RotationRoot');
       if (!lionRoot) throw new Error('巨幕厅缺少醒狮整体旋转节点');
-      const { mountHeight } = lionRoot.userData;
-      if (!Number.isFinite(mountHeight) || mountHeight <= 0) throw new Error('巨幕厅缺少有效的醒狮安装高度');
+      room.updateMatrixWorld(true);
+      const previousLionBox = new Box3().setFromObject(lionRoot);
+      const previousLionHeight = previousLionBox.max.y - previousLionBox.min.y;
       const loadedLion = await acquireFullLion({
         modelUrl: media.model,
         manifestUrl: media.modelHair,
@@ -828,6 +829,9 @@ export function createActionTheater({
       });
       if (disposed) { loadedLion.release(); return; }
       fullLion = loadedLion;
+      const previousLionChildren = [...lionRoot.children];
+      previousLionChildren.forEach(object => lionRoot.remove(object));
+      releaseResources(previousLionChildren);
       const replacementBox = new Box3().setFromObject(fullLion.root);
       const replacementHeight = replacementBox.max.y - replacementBox.min.y;
       if (!Number.isFinite(replacementHeight) || replacementHeight <= 0) throw new Error('完整醒狮模型没有可显示尺寸');
@@ -835,20 +839,28 @@ export function createActionTheater({
       fullLion.root.position.sub(new Vector3(replacementCenter.x, replacementBox.min.y, replacementCenter.z));
       const lionMount = new Group();
       lionMount.name = 'Lion_Full_Source_Mount';
-      lionMount.scale.setScalar(mountHeight / replacementHeight);
+      lionMount.scale.setScalar(previousLionHeight / replacementHeight);
       lionMount.add(fullLion.root);
       lionRoot.add(lionMount);
       lionRoot.userData.fullSourceModel = media.model;
       lionRoot.userData.fullSourceHair = media.modelHair;
+      // The room's screen geometry and UVs stay intact. Its historical embedded
+      // lion is replaced by the same complete mesh/strand asset as structure.
+      const screenNames = new Set(screenDefinitions.map(item => item.objectName));
       room.traverse((object) => {
         if (!object.isMesh && !object.userData.fullHair) return;
         let parent = object;
         let isLion = false;
         while (parent) { if (parent === lionRoot) { isLion = true; break; } parent = parent.parent; }
+        if (!isLion && !screenNames.has(object.name) && !object.name.startsWith('Room_')) object.visible = false;
         object.castShadow = isLion && !object.userData.fullHair;
         object.receiveShadow = !isLion;
         (Array.isArray(object.material) ? object.material : [object.material]).forEach((material) => {
           if ('envMapIntensity' in material) material.envMapIntensity = isLion ? 0.65 : 0.18;
+          // The source floor uses Blender procedural noise, which glTF cannot
+          // carry. Its exporter falls back to white; restore the documented
+          // authored stone base here rather than lighting a white showroom.
+          if (material.name === 'Floor_Polished_BrownBlack_Stone') material.color.setRGB(0.034, 0.019, 0.014);
         });
       });
       architecture = createTheaterArchitecture({ stageRadius: 4.7 });

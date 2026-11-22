@@ -128,7 +128,7 @@ test('chapter-guide intent follows explicit chapter and otherwise current route'
 test('source links use existing sections and curated HTTPS references', () => {
   const sourceFiles = {
     entry: ['src/features/home/HomeLionBook.jsx', 'src/features/home/HomeCultureSources.jsx'],
-    model: ['src/features/model/ModelPage.jsx', 'src/features/model/CraftSection.jsx'],
+    model: ['src/features/model/ModelPage.jsx', 'src/features/model/StructureReadingPanel.jsx', 'src/features/model/CraftSection.jsx'],
     action: ['src/features/action/ActionPage.jsx'],
     state: ['src/features/chapters/ExpressionPage.jsx', 'src/features/expression-depth/ExpressionDepth.tsx', 'src/features/expression-depth/components/ProjectSection.tsx', 'src/features/expression-depth/components/ProjectGallery.tsx', 'src/features/expression-depth/components/Navigation.tsx'],
     spread: ['src/features/spread/SpreadPage.jsx', 'src/features/spread/SpreadMap.jsx'],

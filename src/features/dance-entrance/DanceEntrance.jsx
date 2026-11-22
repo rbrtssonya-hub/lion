@@ -27,7 +27,7 @@ export default function DanceEntrance({ onNavigate, settings }) {
   };
 
   return <section ref={rootRef} className="dance-entrance" aria-label="舞章空间入口" data-view-moved={moved}
-    style={{ '--dance-paper': `url("${new URL(media.dancePaperBackground, document.baseURI).href}")` }}>
+    style={{ '--dance-paper': `url("${new URL(media.danceEntranceBackground, document.baseURI).href}")` }}>
     <header className="dance-heading">
       <div className="dance-heading-title"><img src={media.navLabelWu} alt="舞" /><span>形神之间</span></div>
       <p>一处观舞，一处观神。<span>循着狮韵，选择你的观看方式。</span></p>

@@ -1,7 +1,7 @@
 ---
 type: moc
 status: active
-updated: 2026-11-22
+updated: 2026-10-29
 topic: catalog-决策
 sources: []
 ---

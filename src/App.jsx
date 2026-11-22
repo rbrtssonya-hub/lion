@@ -19,7 +19,7 @@ import XiaoxingAssistant from './features/assistant/XiaoxingAssistant.jsx';
 const ModelPage = lazy(() => withStartupTimeout(import('./features/model/ModelPage.jsx'), 25_000, '模型组件准备超时'));
 const chapterBackgrounds = {
   model: media.modelBackground,
-  action: media.dancePaperBackground,
+  action: media.danceEntranceBackground,
   theater: media.actionBackground,
   state: media.stateBackground,
   spread: media.homeArchiveBackground,

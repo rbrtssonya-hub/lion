@@ -1,7 +1,5 @@
 # 工程开发说明
 
-`source/public/` 只登记随桌面网页部署的素材和许可。停用的 Live2D 试制包、结构书法和旧动作海报见 [工程资源目录](../source/README.md)。Vite 会重建 `dist/`。旧测试、浏览器配置及打包中间产物可按各自命令重建，成品和创作原件需单独保留。
-
 ## 传章地域邮票（2026-10-28）
 
 `SpreadStampBoard`替换旧右侧图文，当前地图范围对应四枚地域邮票。`services/spread-stamps/`完整迁移炫技3的runGo地域版光学、纸纹、六合成算法、影子及交互，动态加载并沿用现有Three；`src/config/spreadStampSettings.js`将原52字段映射为独立持久设置。设置新增“邮票”页，支持原参数JSON与全站事务。用户后续取消底板，因此右板、WebGL、聚焦和fallback均透明，仅票面纸张及投影可见；原背景输出shader保留但不绘制，两独立底色控件不用于当前呈现。
@@ -146,7 +144,7 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 ### 结构模型与部件聚焦
 
-2026-10-19 结构页改用用户提供的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出模型。当前部署路径为 `source/public/assets/models/lion-structure-optimized.glb`，由 `assetPaths.model` 和 `media.model` 引用。此前单狮头 `lion-overall.glb` 原字节归档至 `source/models/img23d_21199_优化版.glb`，不再部署。用户原始 Blender 输入保留在 `model/`，不改写、不复制到 public，也不纳入本次提交；导出检查数据见 [模型记录](../source/references/lion-structure-model.json)。
+2026-10-19 结构页改用用户提供的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出模型。当前部署路径为 `source/public/assets/models/lion-structure-optimized.glb`，由 `assetPaths.model` 和 `media.model` 引用。此前单狮头 `lion-overall.glb` 原字节归档至 `source/models/lion-head-overall-v1.glb`，不再部署。用户原始 Blender 输入保留在 `model/`，不改写、不复制到 public，也不纳入本次提交；导出检查数据见 [模型记录](../source/references/lion-structure-model.json)。
 
 电脑端使用单屏双栏：左侧 `scene-column` 展示完整醒狮，右侧唯一 `structurePanel` 集中标题、加载状态、旋转/复原、六组部件目录、工艺/文化资料及来源说明，详情在卡内滚动。`sceneContainer` 仍位于 `modelStage` 直属层，透明画布覆盖整页；左侧 `sceneFrame` 与独立 `scene-interaction` 负责构图及 OrbitControls 拖动、缩放、表面点击，不恢复16:9内框、地面或中央裁切。旧固定百分比热点、`showGuide`、结构滑杆、假拆解进度和示意图层已删除。
 
@@ -169,8 +167,6 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 短高桌面（窗口高度600px及以下）保留外部三栏，但右侧态字与解读标题并排，压缩字号/行距和目录行高；内部grid行显式minmax(0,1fr)，不让最小内容撑大高度，不隐藏或截掉文字。按住Space期间切态会取消该次尚未完成的原生按钮激活，松开不能重新打开详情；后续独立Space仍正常激活。
 
 ### 动作沉浸式巨幕厅
-
-2026-11-22 起，舞章入口与巨幕厅共用 `lion-action-theater-shell.glb`。它从离线交接 GLB 提取五面房间网格、四块屏幕及其 UV、四个解说锚点和醒狮安装高度。现用完整醒狮网格与毛发通过原共享加载入口挂载。重新导出运行壳用 `node scripts/export_action_theater_shell.mjs`，原 Blender 工程和交接 GLB 保留在 `source/models/immersive-theater/`。
 
 `ChapterPage` 在 `#/action` 挂载 `ActionPage`，以全屏高的四面巨幕替换旧长页、角色目录及待接入播放器。导航继续共用 `SiteHeader`。默认四段用户视频静音循环，转向当前主面时同步解说、450ms主辅亮度与唯一音频；按钮与左右方向键同样转向实际摄像机。视频来自用户指定目录，原始MP4字节保持；来源、完整解码与海报抽帧见[视频记录](../source/references/2026-10-19-action-theater-videos.md)。
 
@@ -214,8 +210,6 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 
 ## 资源更新
 
-形制、工艺和八态部分插画由归档 PNG 生成无损 WebP。运行 `python scripts/prepare_public_webp.py` 可重建这些部署副本，`python scripts/prepare_public_webp.py --check` 校验现有副本的尺寸、颜色和透明度。更新素材时同步 `source/asset-manifest.json` 的来源、大小及哈希。
-
 ### 前阶段独立巨幕厅 Blender 工程
 
 `source/models/immersive-theater/` 保存前阶段离线创作交付，不进入 `publicDir`；后续网页接入使用上文运行副本。先读[交接文档](../source/models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其中保留原生工程、网页LOD、真实渲染及离线交付时的素材条件。重建源工程使用本机 Blender 5.0（用户 launcher 的同目录可执行文件）：
@@ -242,7 +236,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 4. 运行 `npm test` 和 `npm run build`，涉及媒体交接、布局或模型时补充浏览器回归。
 5. 在工程记忆中记录重要替换原因、已验证行为和遗留问题。
 
-Live2D 试制包与创作源集中在 `source/live2d/`。当前首页使用视频，试制包独立执行资产检查。视觉与绑定问题见 [Live2D 说明](../source/live2d/web-package/README.md)。
+Live2D 创作源与运行包分开放置。当前运行包为重制参考，首页没有加载 Cubism/Pixi；不能仅将 manifest 改为 `ready` 就称为完成接入。视觉与绑定问题见 [Live2D 说明](../source/public/assets/live2d/README.md)。
 
 2026-10-12首页循环视频已按用户指定文件替换，运行路径仍为 `assets/entry/home-lion-loop.mp4`；旧运行视频原字节保留在 `source/video/entry/home-lion-loop-v1.mp4`，原资产清单记录迁到该归档路径。新运行视频、dist拷贝与用户源视频SHA-256一致，最终资产清单83条。文化摄影从具体Commons文件许可核对后接入，更新时需同步图注、来源说明和资产清单；不要批量重写已有快照。
 

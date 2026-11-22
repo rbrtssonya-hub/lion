@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 
 // Run with: node source/design/spread-map-geography/verify.mjs
-const moduleUrl = new URL('./spread-map-geography.js', import.meta.url);
+const moduleUrl = new URL('../../../src/data/spread-map-geography.js', import.meta.url);
 assert.equal(await access(moduleUrl).then(() => true, () => false), true, 'regional map module exists');
 const { regionalMaps, projectRegionalPoint, guangdongInChinaPaths } = await import(moduleUrl);
 

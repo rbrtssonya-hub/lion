@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
 // Rebuild from the unmodified DataV downloads; no runtime network or dependency.
-const moduleUrl = new URL('./spread-map-geography.js', import.meta.url);
+const moduleUrl = new URL('../../../src/data/spread-map-geography.js', import.meta.url);
 const mercatorLatitude = latitude => Math.log(Math.tan(Math.PI / 4 + latitude * Math.PI / 360)) * 180 / Math.PI;
 const round = Math.round;
 

@@ -4,30 +4,31 @@
 
 2026-10-21结构右栏单独拣选到主线，保留主线原动作页面。原结构素材与制作报告原样保全，主线整合记录独立见[本次说明](references/structure-atlas-main-2026-10-21.md)，不把原分支的动作参考图、截图或验证数字计入本次交付。
 
-2026-10-21结构右栏改为浅宣纸单部件图鉴。六张「神、威、冠、启、灵、势」经内置ImageGen逐字独立生成，当时使用的 PNG 已归档于 `design/structure-atlas/2026-10-21/web-export/`；原输出、完整提示词、透明裁剪记录和旧栏参考保存在 `design/structure-atlas/2026-10-21/`。原模型、全量毛发与HDRI保持，模型点选和前后翻阅共用同一选择状态。实现、真实验证与审查图入口见[结构图鉴说明](references/structure-atlas-2026-10-21.md)。
+2026-10-21结构右栏改为浅宣纸单部件图鉴。六张「神、威、冠、启、灵、势」经内置ImageGen逐字独立生成，运行PNG位于 `public/assets/structure/calligraphy/`；原输出、完整提示词、透明裁剪记录和旧栏参考保存在 `design/structure-atlas/2026-10-21/`。原模型、全量毛发与HDRI保持，模型点选和前后翻阅共用同一选择状态。实现、真实验证与审查图入口见[结构图鉴说明](references/structure-atlas-2026-10-21.md)。
 
 | 分类 | 存放内容 | 网页构建 |
 | --- | --- | --- |
 | `public/assets/entry/` | 首页循环视频、封面、图片标题与透明书法按钮字图 | 复制到 `dist/assets/entry/` |
 | `public/assets/intro/` | 当前入场视频与运行海报 | 复制到 `dist/assets/intro/` |
 | `public/assets/models/` | 当前网页使用的 GLB 模型 | 复制到 `dist/assets/models/` |
+| `public/assets/structure/calligraphy/` | 结构图鉴六张ImageGen朱砂透明书法PNG | 复制到 `dist/assets/structure/calligraphy/` |
 | `public/assets/environments/` | 用户指定的原字节4K EXR，供结构和动作HDRI照明 | 复制到 `dist/assets/environments/` |
 | `public/assets/action/videos/` | 用户提供的四段动作MP4及各自真实抽帧海报 | 复制到 `dist/assets/action/videos/` |
 | `public/assets/culture/` | 首页文化图鉴的八张实拍照片，许可与署名见来源文档 | 复制到 `dist/assets/culture/` |
-| `public/assets/lion-types/` | 三形制无损 WebP，PNG 原稿与提示词存于 `design/home-heritage/` | 复制到 `dist/assets/lion-types/` |
-| `public/assets/craft/` | 四道工序无损 WebP，PNG 原稿存于 `design/lion-head-craft/2026-10-28/` | 复制到 `dist/assets/craft/` |
-| `public/assets/decor/` | 三款现用的40–48px透明小装饰 | 复制到 `dist/assets/decor/` |
+| `public/assets/lion-types/` | 首页三形制AI辅助示意图，原输出与提示词另存design | 复制到 `dist/assets/lion-types/` |
+| `public/assets/decor/` | 保留的跨区探头狮与用户批准的三款40–48px透明小装饰 | 复制到 `dist/assets/decor/` |
 | `public/assets/lion-book/` | 《岭南醒狮志》七幅透明水彩展开页，AI辅助历史主题示意 | 复制到 `dist/assets/lion-book/` |
 | `public/assets/licenses/` | Codrops及ThreeUI运行许可、ThreeUI共享样式内嵌字体的OFL声明 | 复制到 `dist/assets/licenses/` |
 | `public/assets/fonts/` | 导航毛笔字体WOFF及随部署保留的OFL许可 | 复制到 `dist/assets/fonts/` |
 | `public/assets/backgrounds/` | 用户指定的结构、动作、神态三张PNG背景 | 复制到 `dist/assets/backgrounds/` |
 | `public/assets/poster/` | 网页使用的预览与海报 | 复制到 `dist/assets/poster/` |
+| `public/assets/live2d/` | 保留的 Live2D 运行包、本地库与许可说明 | 随 publicDir 复制，当前首页不加载 |
 | `models/` | 旧运行狮头归档、保留的优化与面部绑定模型版本 | 不复制 |
 | `models/immersive-theater/` | 独立巨幕厅原生 Blender 工程、网页 LOD GLB 与交接文档 | 不复制 |
 | `reviews/immersive-theater/` | 最终巨幕厅工程重开后的五视角真实渲染与来源证据 | 不复制 |
 | `reviews/action-theater/` | 网页巨幕厅各阶段真实浏览器审查图；红金视觉阶段 `2026-10-19-ornate/`、最终合并树 `2026-10-19-ornate-integrated/` | 不复制 |
 | `fonts/` | 字体来源、授权说明及子集生成脚本 | 不复制 |
-| `live2d/` | 分层图、PSD、Cubism 工程、原始导出及 `web-package/` 试制包 | 不复制 |
+| `live2d/` | 分层图、PSD、Cubism 工程与原始导出 | 不复制 |
 | `video/intro/` | 入场视频制作版本、对照海报 | 不复制 |
 | `video/entry/` | 替换前的首页循环视频归档 | 不复制 |
 | `reviews/homepage/` | 首页视觉审查图 | 不复制 |
@@ -43,23 +44,19 @@
 
 `public/` 是 Vite 静态资产根目录。相对网页地址 `assets/entry/home-lion-loop.mp4` 对应 `source/public/assets/entry/home-lion-loop.mp4`；文件路径集中维护在 `src/config/assetPaths.js`，`media.js` 补上 Vite 基址。新增素材先区分运行版与创作版，只有需要随网页交付的文件放入 `public/`。
 
-2026-11-22 清理后，旧动作海报见 `design/action/2026-10-14-action-explorer/`，旧结构书法见 `design/structure-atlas/2026-10-21/web-export/`，Live2D 试制包见 `live2d/web-package/`。舞章入口与八态纵深共用 `public/assets/expression-depth/images/paper-reference.png`。旧狮头 GLB 的同字节副本合并至 `models/img23d_21199_优化版.glb`。
-
-第二轮清理后，舞章使用 `public/assets/models/lion-action-theater-shell.glb`，完整交接 GLB 继续存于 `models/immersive-theater/`。四幅工艺图、三幅形制图、八态主图与八个书法题字共 23 份部署插画使用无损 WebP，PNG 原稿均可按资产清单回查。重建命令见 [开发说明](../docs/DEVELOPMENT.md)。
-
 2026-10-20本轮F盘首页续接采用`public/assets/backgrounds/home-archive-ink-2026-10-20.png`用户原图；旧背景原字节归档`design/home-heritage/2026-10-20-refresh/previous-archive-background.png`。三款小装饰均在用户明确通过后部署，提示词、审批记录和小尺寸预览另在design/reviews，不把审查图当网页底图。六张人物新闻照片只在Git忽略的`tmp/home-inheritor-photos/`本地研究目录，通过开发参数显式预览，未获许可的照片不进public/dist或Git。来源、运行边界与验收见[首页续接说明](references/home-refresh-2026-10-20.md)及[本轮验证](references/home-refresh-2026-10-20-validation.json)。
 
-2026-10-19 结构页运行模型为 `public/assets/models/lion-structure-optimized.glb`，从用户指定的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出，通过 `assetPaths.model`/`media.model` 加载。旧 `public/assets/models/lion-overall.glb` 原字节移至 `models/img23d_21199_优化版.glb` 归档，不再进入网页构建。用户原始 Blender 文件仍保留在根 `model/` 作为本次外部输入，未改写、未迁移或提交，不能把它放入运行目录。模型转换、复现和显示边界见 [导出说明](references/lion-structure-model.md)，数值见 [模型记录](references/lion-structure-model.json)，实际交付及验证以 [本轮任务日志](../wiki_memory/日志/功能添加/2026-10-19-结构新模型与部件聚焦.md) 为准。
+2026-10-19 结构页运行模型为 `public/assets/models/lion-structure-optimized.glb`，从用户指定的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出，通过 `assetPaths.model`/`media.model` 加载。旧 `public/assets/models/lion-overall.glb` 原字节移至 `models/lion-head-overall-v1.glb` 归档，不再进入网页构建。用户原始 Blender 文件仍保留在根 `model/` 作为本次外部输入，未改写、未迁移或提交，不能把它放入运行目录。模型转换、复现和显示边界见 [导出说明](references/lion-structure-model.md)，数值见 [模型记录](references/lion-structure-model.json)，实际交付及验证以 [本轮任务日志](../wiki_memory/日志/功能添加/2026-10-19-结构新模型与部件聚焦.md) 为准。
 
 结构页使用左模型、右宣纸部件图鉴的电脑双栏，右侧内部滚动，以前后翻阅取代两列编号网格；原资料通过三个文化小节及展开阅读完整保留。六组可见结构由真实网格名前缀和头壳表面区域共同映射，视口内的标签与连线随三维聚焦点投影更新。眼部表面语义不等于独立内部零件，须毛导出外观也不代表原 Blender 毛发系统在网页中运行。旧屏幕百分比热点和结构滑杆不再使用。
 
 同日材质与性能修复已恢复源材质的绒面反射权重，并优化网页几何；贴图原字节和原始 Blender 文件保持。当前 GLB 为20,238,640B、513,600三角，统计及复现以导出记录为准。[同机性能对照](references/2026-10-19-structure-performance.json)记录实际测试方法与设备；最终验证及交付见[修复日志](../wiki_memory/日志/Bug处理/2026-10-19-结构材质与旋转性能修复.md)。
 
-动作页四屏分别播放探青采青、抖毛、狮子吐球和踩梅花桩。用户视频与真实抽帧海报在 `public/assets/action/videos/`。网页环绕、主辅亮度、当前解说、单主音频、暂停续播及平面观看由 React 与 Three 服务管理。早期巨幕接入使用独立交接 GLB 的完整副本，后续由 Three 模块重建了红金梁柱、雕花屏框、圆台和石地反射。独立 Blender 工程、交接 GLB 及说明见 `models/immersive-theater/`。占位文字的 OFL 字体位于 `fonts/immersive-theater/`。[视频来源](references/2026-10-19-action-theater-videos.md) · [红金重构记录](references/2026-10-19-action-theater-ornate.md) · [网页首次接入](references/2026-10-19-action-theater-web.md) · [交接文档](models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)
+动作页现通过 `public/assets/models/lion-action-theater.glb` 加载原狮和四屏，并分别播放用户提供的探青采青、抖毛、狮子吐球和踩梅花桩四段视频；视频与真实抽帧海报在 `public/assets/action/videos/`，原路径和哈希见[视频来源](references/2026-10-19-action-theater-videos.md)。2026-10-19后续在原运行GLB外模块化重建红金梁柱、雕花屏框、低矮多层圆台和真实石地反射，参考图与完整要求归档 `design/action-theater/`，没有作为背景加载；模型/视频/海报/原路径均不改。当前组件、参数、九图及实际验证见[红金重构记录](references/2026-10-19-action-theater-ornate.md)。网页环绕、主辅亮度、当前解说、单主音频、暂停续播及平面观看继续由React与Three服务管理；首次接入[网页记录](references/2026-10-19-action-theater-web.md)保留历史证据。`models/immersive-theater/` 仍保留原字节独立Blender工程、网页LOD与[交接文档](models/immersive-theater/SouthWindLion_Immersive_Theater_Handoff.md)，其原生毛发、程序材质与网页发带LOD的区别继续有效。前阶段160项原生检查及Lux3D记录用于离线工程，不替代本轮网页验收。占位文字的OFL字体位于 `fonts/immersive-theater/`，不替换网页字体。
 
 2026-10-20在E盘将红金9bef951与远端首页9cb0097组合，保留新首页两视频、三形制/六人物栏目及AI示意，运行路径继续集中在assetPaths/media。两旧首页视频按远端归档为 `video/intro/entry-intro-before-2026-10-19.mp4` 与 `video/entry/home-lion-loop-before-2026-10-19.mp4`；元数据/许可边界见[替换记录](references/home-video-replacement-2026-10-19.md)及[首页资料](references/home-heritage-sources.md)。组合树图集独立存 `reviews/action-theater/2026-10-19-ornate-integrated/`，视觉阶段九图保持原字节；[组合验收](references/2026-10-19-action-theater-ornate-integrated-validation.json)与[内容审查](references/2026-10-19-action-theater-ornate-merge-audit.json)分别记录实际验证和双方保全，不以原阶段测试证明合并结果。
 
-Live2D 试制包保留供后续接入，视觉问题和导出过程见 [Live2D 说明](live2d/web-package/README.md)。四段用户动作视频已接入巨幕厅，神态真实样本仍待补齐，评分章节已移除。历史资料及来源边界见 [资料说明](references/sources.md)。
+未启用的 Live2D 包保留供后续接入，不代表其视觉问题已解决；继续制作前读 [Live2D 说明](public/assets/live2d/README.md)。四段用户动作视频已接入巨幕厅，神态真实样本仍待补齐，评分章节已移除；历史资料保留，来源边界见 [资料说明](references/sources.md)。
 
 `asset-manifest.json` 逐文件登记二进制素材与审查记录的来源、路径、大小及 SHA256，当前总数以该文件和实际检查为准。2026-10-14史册任务当时登记187条，保留原177条并增加7幅运行PNG与3张电脑审查图；此计数仅为历史快照。七幅内置imagegen插画总13,225,556字节，提示词、实际尺寸和透明边界见 [插画记录](references/lion-book-art-prompts.md)，历史依据、ThreeUI源码与许可见 [史册说明](references/lion-book.md)。审查图在 `reviews/homepage/2026-10-14-lion-book/`。
 

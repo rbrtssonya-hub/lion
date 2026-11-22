@@ -5,10 +5,10 @@ import { resolve } from 'node:path';
 test.use({ trace: 'off', viewport: { width: 1920, height: 1080 } });
 const reviewDirectory = resolve(process.env.CRAFT_CAROUSEL_REVIEW_DIR || 'source/reviews/craft-carousel/2026-10-26');
 const stages = [
-  { id: 'zha', step: '扎', title: '竹篾立骨', asset: 'zha.webp', text: '将竹篾扎成狮头骨架，让眉眼、额头与狮嘴的轮廓逐渐立起。' },
-  { id: 'pu', step: '扑', title: '覆纸成胚', asset: 'pu.webp', text: '在骨架上覆纱、纸或布，逐步形成狮胚，让起伏的轮廓连成完整表面。' },
-  { id: 'hua', step: '画', title: '落笔生彩', asset: 'hua.webp', text: '待狮胚干燥后描绘色彩与纹样，眉眼、额头和面颊的神采随笔触显现。' },
-  { id: 'zhuang', step: '装', title: '添饰成狮', asset: 'zhuang.webp', text: '为彩绘狮头装上绒毛、绒球、镜饰等配件，丰富质感，完成外观装饰。' },
+  { id: 'zha', step: '扎', title: '竹篾立骨', asset: 'zha.png', text: '将竹篾扎成狮头骨架，让眉眼、额头与狮嘴的轮廓逐渐立起。' },
+  { id: 'pu', step: '扑', title: '覆纸成胚', asset: 'pu.png', text: '在骨架上覆纱、纸或布，逐步形成狮胚，让起伏的轮廓连成完整表面。' },
+  { id: 'hua', step: '画', title: '落笔生彩', asset: 'hua.png', text: '待狮胚干燥后描绘色彩与纹样，眉眼、额头和面颊的神采随笔触显现。' },
+  { id: 'zhuang', step: '装', title: '添饰成狮', asset: 'zhuang.png', text: '为彩绘狮头装上绒毛、绒球、镜饰等配件，丰富质感，完成外观装饰。' },
 ];
 
 async function openCraft(page, settings = {}, viewport = { width: 1920, height: 1080 }) {

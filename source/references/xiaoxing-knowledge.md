@@ -12,9 +12,9 @@
 | 醒狮文化与协作 | `src/data/home-culture.js`、`src/features/home/HomeCulture.jsx` | 文化照片中的头尾协作、锣鼓、狮头外观和连续表演观察；不凭单图推断难度或得分 |
 | 佛山狮、鹤山狮、佛鹤狮 | `src/data/home-heritage.js`、`src/features/home/HomeHeritage.jsx` | 传统流派与融合形制的区分、形制与表演观察；不以颜色或一个特征作通用鉴定 |
 | 狮头工艺 | `src/data/lion-structure.json`、`src/data/home-culture.js`、已有工艺来源 | 扎、扑、画、装和材料概述；具体实物与工坊做法仍有差异 |
-| 六处可见结构 | `src/data/lion-structure.json`、`src/features/model/ModelPage.jsx`、`src/features/model/atlas/AtlasExperience.jsx` | 部件名称、旋转缩放、点选聚焦与复原；内部骨架、活动连接为资料说明，未展示内部拆装 |
+| 六处可见结构 | `src/data/lion-structure.json`、`src/features/model/ModelPage.jsx`、`src/features/model/StructureReadingPanel.jsx` | 部件名称、旋转缩放、点选聚焦与复原；内部骨架、活动连接为资料说明，未展示内部拆装 |
 | 四段动作视频 | `src/features/action/actionClips.js`、`src/features/action/ActionPage.jsx` | 探青采青、抖毛、狮子吐球、踩梅花桩的当前演示与实际控制；不用 `chapterContent.action` 的旧“待提供”文案 |
-| 八态纵深图鉴 | `src/features/expression-depth/ExpressionDepth.tsx`、`src/features/expression-depth/data/projects.ts` | 喜怒哀乐动静惊疑的五官演示和图文解读。AI 辅助视觉、定性观察提示及真实样本边界 |
+| 八态与对照 | `src/data/lion-expressions.js`、`src/features/chapters/ExpressionPage.jsx`、`src/features/chapters/ExpressionComparison.jsx` | 喜怒哀乐动静惊疑、三组对照和切换操作；AI 辅助视觉、定性观察提示、待真实样本校核 |
 | 来源与创作说明 | `src/features/home/HomeCultureSources.jsx`、`source/references/lion-expressions.md` | 文化照片署名与许可、书册和类型图示意、神态视觉证据边界 |
 
 外部链接全部复用网页已有的资料 URL：南海博物馆、鹤山市人民政府、中国非物质文化遗产网、新加坡武术龙狮总会。本轮核实了它们在工程内容中的对应关系，没有重新声称已经访问或验证远程页面当前可用性。

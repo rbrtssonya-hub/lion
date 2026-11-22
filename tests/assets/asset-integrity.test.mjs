@@ -95,7 +95,10 @@ test('public assets include configured media and exclude private creative or rev
     assert.equal(folders.some((name) => /^(?:source(?:-v\d+)?|reviews?|design|private|cubism|root-export)$/.test(name)), false, `Private asset directory in publicDir: ${path}`);
     if (runtimeMedia.has(path)) continue;
     if (path === 'assets/fonts/OFL.txt') continue;
-    assert.fail(`Unconfigured media or non-runtime file in publicDir: ${path}`);
+    const live2dAsset = path === 'assets/live2d/README.md'
+      || (path.startsWith('assets/live2d/runtime/') && ['.js', '.md'].includes(extension))
+      || (path.startsWith('assets/live2d/nanfeng-lion/') && ['.json', '.moc3', '.png'].includes(extension));
+    assert.equal(live2dAsset, true, `Unconfigured media or non-runtime file in publicDir: ${path}`);
   }
 });
 

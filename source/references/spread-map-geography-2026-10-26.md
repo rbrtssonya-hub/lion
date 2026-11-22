@@ -4,7 +4,7 @@
 
 原始数据：[广东省 440000.json](https://geo.datav.aliyun.com/areas_v3/bound/440000.json)、[中国 100000.json](https://geo.datav.aliyun.com/areas_v3/bound/100000.json)。官方入口：[DataV.GeoAtlas 区域选择器](https://datav.aliyun.com/portal/school/atlas/area_selector)。官方页脚说明数据来自高德开放平台，版本为 2021.5，仅供学习交流。未取得开放数据许可证或源图审图号，衍生图不作经审定标准地图声明。
 
-当时的实现为 [spread-map-geography.js](../design/spread-map-geography/spread-map-geography.js)，无新依赖和运行时网络请求。广东 65 个、中国 277 个原始 Polygon 全部保留；中国含台湾、海南和源文件海岛/南海断续线图形。使用同一 Mercator 规则、1000×600 视框和等比例 fit，1.2 视图像素简化再取整。额外导出 `guangdongInChinaPaths`，用同一广东原始数据在中国图上高亮广东，不虚构省界。
+实现为 [spread-map-geography.js](../../src/data/spread-map-geography.js)，无新依赖和运行时网络请求。广东 65 个、中国 277 个原始 Polygon 全部保留；中国含台湾、海南和源文件海岛/南海断续线图形。使用同一 Mercator 规则、1000×600 视框和等比例 fit，1.2 视图像素简化再取整。额外导出 `guangdongInChinaPaths`，用同一广东原始数据在中国图上高亮广东，不虚构省界。
 
 两级广州/佛山/香港投影位置分别为：
 

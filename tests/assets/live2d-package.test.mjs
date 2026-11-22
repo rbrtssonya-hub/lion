@@ -4,7 +4,7 @@ import { isAbsolute, relative, resolve, sep } from 'node:path';
 import test from 'node:test';
 
 const root = resolve(import.meta.dirname, '../..');
-const live2dRoot = resolve(root, 'source/live2d/web-package');
+const live2dRoot = resolve(root, 'source/public/assets/live2d');
 const modelRoot = resolve(live2dRoot, 'nanfeng-lion');
 const manifestPath = resolve(modelRoot, 'model-manifest.json');
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));

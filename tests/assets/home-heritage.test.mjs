@@ -4,7 +4,6 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { lionTypes, inheritors, heritageSources } from '../../src/data/home-heritage.js';
 import { assetPaths } from '../../src/config/assetPaths.js';
-import { readLosslessWebp } from './lossless-webp.mjs';
 
 test('heritage records distinguish merged form, dancing and craft and resolve every cited source', () => {
   assert.deepEqual(lionTypes.map(t=>t.kind), ['传统流派','传统流派','融合形制']);
@@ -23,11 +22,8 @@ test('three independent type illustrations resolve to real landscape assets and 
   const hashes=[];
   for(const type of lionTypes) {
     const bytes=readFileSync(new URL(`../../source/public/${assetPaths[type.imageKey]}`,import.meta.url));
-    const original = readFileSync(new URL(`../../source/design/home-heritage/2026-10-19/${type.id}.png`, import.meta.url));
-    assert.equal(original.readUInt32BE(16), 1536);
-    assert.equal(original.readUInt32BE(20), 1024);
-    assert.deepEqual(readLosslessWebp(bytes), { width: 1536, height: 1024, alpha: false });
-    assert.ok(bytes.length < original.length);
+    assert.equal(bytes.readUInt32BE(16),1536); assert.equal(bytes.readUInt32BE(20),1024);
+    assert.deepEqual(bytes,readFileSync(new URL(`../../source/design/home-heritage/2026-10-19/${type.id}.png`,import.meta.url)));
     hashes.push(createHash('sha256').update(bytes).digest('hex'));
     assert.equal(type.points.length,3);
     for(const point of type.points) assert.ok(point.x>0&&point.x<100&&point.y>0&&point.y<100);

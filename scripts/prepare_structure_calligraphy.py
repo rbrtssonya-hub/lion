@@ -11,7 +11,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / 'source/design/structure-atlas/2026-10-21'
-OUTPUT = ARCHIVE / 'web-export'
+OUTPUT = ROOT / 'source/public/assets/structure/calligraphy'
 
 
 def prepare():

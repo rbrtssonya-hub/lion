@@ -30,7 +30,7 @@
 
 - 2026-10-27历史原稿：上一级目录的四张同名PNG及 [历史说明](../README.md)，原字节保留。
 - 2026-10-28当前创作源：本目录的四张PNG与四份`*-generation.json`。
-- 现用部署副本为 `source/public/assets/craft/` 的四个同名 `.webp`。2026-11-22 从本目录原稿无损编码。PNG 副本最初接入时的记录见 [更新说明](../../../references/craft-art-varied-scenes-2026-10-28.md)。
+- 网页稳定运行路径：`source/public/assets/craft/zha.png`、`pu.png`、`hua.png`、`zhuang.png`；本轮由主任务将新版复制至这些路径，接入状态和源／public／dist字节核对见 [更新说明](../../../references/craft-art-varied-scenes-2026-10-28.md)。
 - README、生成记录与历史原稿属于设计资料，不放入public；轮播继续经现有`assetPaths.js`、`media.js`和四阶段数据消费稳定路径。
 
 ## 内容边界与检查
