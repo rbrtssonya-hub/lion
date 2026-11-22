@@ -170,6 +170,8 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 ### 动作沉浸式巨幕厅
 
+2026-11-22 起，舞章入口与巨幕厅共用 `lion-action-theater-shell.glb`。它从离线交接 GLB 提取五面房间网格、四块屏幕及其 UV、四个解说锚点和醒狮安装高度。现用完整醒狮网格与毛发通过原共享加载入口挂载。重新导出运行壳用 `node scripts/export_action_theater_shell.mjs`，原 Blender 工程和交接 GLB 保留在 `source/models/immersive-theater/`。
+
 `ChapterPage` 在 `#/action` 挂载 `ActionPage`，以全屏高的四面巨幕替换旧长页、角色目录及待接入播放器。导航继续共用 `SiteHeader`。默认四段用户视频静音循环，转向当前主面时同步解说、450ms主辅亮度与唯一音频；按钮与左右方向键同样转向实际摄像机。视频来自用户指定目录，原始MP4字节保持；来源、完整解码与海报抽帧见[视频记录](../source/references/2026-10-19-action-theater-videos.md)。
 
 `actionClips.js` 定义探青采青、抖毛、狮子吐球、踩梅花桩与四个屏幕名/方向/素材键。`useTheaterPlayback` 保留四个稳定视频实例，切屏不重置时间，暂停/续播、当前进度、声音与错误重试均由实际媒体状态驱动；静音后才能切音轨，隐藏与离页使旧播放请求失效并暂停。平面观看与三维空间复用同一视频，不另造播放器或用首页视频替代。
@@ -211,6 +213,8 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 首页探索按钮使用 `assetPaths.exploreMoreCalligraphy` 的透明PNG，按钮保留aria-label并按顶栏实际高度滚到首页书册区，装饰图不替代可访问名称。题图与按钮取原宽度中间的共同中心，题图向左、按钮与辅助文字向右；中文间距由CSS维护，避免连续空格造成文案超宽。来源、内置imagegen编辑提示词、原图归档及哈希见 [书法素材说明](../source/references/explore-more-calligraphy.md)。
 
 ## 资源更新
+
+形制、工艺和八态部分插画由归档 PNG 生成无损 WebP。运行 `python scripts/prepare_public_webp.py` 可重建这些部署副本，`python scripts/prepare_public_webp.py --check` 校验现有副本的尺寸、颜色和透明度。更新素材时同步 `source/asset-manifest.json` 的来源、大小及哈希。
 
 ### 前阶段独立巨幕厅 Blender 工程
 

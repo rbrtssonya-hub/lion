@@ -261,10 +261,10 @@
       "sha256": "2e69292bb7a509cb2cfa9739a4f5b90f46630cc1cd7dd524b1b0e6e921f7a5c2"
     },
     {
-      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
-      "path": "source/public/assets/lion-types/foshan.png",
-      "bytes": 3106271,
-      "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
+      "from": "Lossless WebP from source/design/home-heritage/2026-10-19/foshan.png",
+      "path": "source/public/assets/lion-types/foshan.webp",
+      "bytes": 2037144,
+      "sha256": "8201225b3a41bbde8df94a73ac305b05c6fb3df4073f59aa18edc1a602dc201d"
     },
     {
       "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
@@ -273,10 +273,10 @@
       "sha256": "3289d25a21bb37c07dcb574174c8f2397f9b8e8bfc516c51e756e399d575aa30"
     },
     {
-      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
-      "path": "source/public/assets/lion-types/heshan.png",
-      "bytes": 3157050,
-      "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
+      "from": "Lossless WebP from source/design/home-heritage/2026-10-19/heshan.png",
+      "path": "source/public/assets/lion-types/heshan.webp",
+      "bytes": 2052066,
+      "sha256": "0359c8abb9886a92399b0040491fda142a7894a6fd2ef61f4f09593a0599353e"
     },
     {
       "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
@@ -285,10 +285,10 @@
       "sha256": "ff0ca5e2bf4f713ae0efd6d5d442fd72e1046e9777b95e489cb6a65f29bd1e5b"
     },
     {
-      "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
-      "path": "source/public/assets/lion-types/fut-hok.png",
-      "bytes": 3104318,
-      "sha256": "c988ea1c4d7018dc69d585bec535746e2fd76f610268087fc10f0ecb55f88d75"
+      "from": "Lossless WebP from source/design/home-heritage/2026-10-19/fut-hok.png",
+      "path": "source/public/assets/lion-types/fut-hok.webp",
+      "bytes": 2074200,
+      "sha256": "c093a8489343f23c41effe371e80c4eeb1ba8cae44733b590edd5ad997793f9d"
     },
     {
       "from": "2026-10-19 built-in imagegen; AI-assisted illustrative type plate, not a documentary image",
@@ -2073,52 +2073,52 @@
       "sha256": "6005319e0304fd7e1ac6af52b1c81c251138cec3b345ce715e6bb4df0ad41cca"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-anger-v2.png",
-      "bytes": 2148975,
-      "sha256": "3c9b8b091ca8d8e549672c9cc6e0cbbca1e83a5a92d7052999ea04bc470ab37f"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-anger-original.png",
+      "path": "source/public/assets/expression/lion-anger-v2.webp",
+      "bytes": 1540012,
+      "sha256": "48a84335072affeec14ddfc69bc8b3ece7dbbb5ad0c1af6556b273b8b92d5bfb"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-delight-v2.png",
-      "bytes": 2210847,
-      "sha256": "b8e98ac5437d9735227f47dece7f74273d540590a97c4940383745aa51e563f2"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-delight-original.png",
+      "path": "source/public/assets/expression/lion-delight-v2.webp",
+      "bytes": 1591262,
+      "sha256": "3d41aa60ecd35d4a05afee09370c02f57b4e72dde27e1a3d9ff8fd95442ebc4a"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-doubt-v2.png",
-      "bytes": 1899231,
-      "sha256": "872da547c9c3774dbeab0333e13e88455a5573267ff93389791836d83e61177e"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-doubt-original.png",
+      "path": "source/public/assets/expression/lion-doubt-v2.webp",
+      "bytes": 1360608,
+      "sha256": "e5200a3f541a8fbd3b4ba9e3236d420509c658a57b41086fb799985ff0991891"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-joy-v2.png",
-      "bytes": 1973680,
-      "sha256": "db755d607d4ea75244d0e89975ce7f183319da6cd24940a266acc46ec5dd688e"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-joy-original.png",
+      "path": "source/public/assets/expression/lion-joy-v2.webp",
+      "bytes": 1405784,
+      "sha256": "27cbef61fd2e207b0bdaba3f3f18c2904060929008647c6f60e689a86cf9ce41"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-motion-v2.png",
-      "bytes": 2272850,
-      "sha256": "aa4d0032fad8faf2462decf90dcb9219ca92890aa567654d8993b885461a3476"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-motion-original.png",
+      "path": "source/public/assets/expression/lion-motion-v2.webp",
+      "bytes": 1643770,
+      "sha256": "8e78505ff1473970c0def3240429ca2515940f6ac80df93353b247bbad07fbaa"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-sorrow-v2.png",
-      "bytes": 2072160,
-      "sha256": "d89c62066a6324c215f0c783aba2b2a43bca094d2a94d3cdf63c0b0e219cc27d"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-sorrow-original.png",
+      "path": "source/public/assets/expression/lion-sorrow-v2.webp",
+      "bytes": 1488152,
+      "sha256": "04374d9397e6914b801964255b3ab0f3b9132fad7639ae15c1f617b2d555802b"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-stillness-v2.png",
-      "bytes": 2045186,
-      "sha256": "8ecbfdd200043946d5e63be21a175e349979c822376c9003c561cdb2893cd886"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-stillness-original.png",
+      "path": "source/public/assets/expression/lion-stillness-v2.webp",
+      "bytes": 1462624,
+      "sha256": "44a1f393bc3f1a18c917f08cd3d75acebcf42faf43d99bbb994601762f69a777"
     },
     {
-      "from": "2026-10-15 user eight-state reference and built-in imagegen extraction",
-      "path": "source/public/assets/expression/lion-surprise-v2.png",
-      "bytes": 1975024,
-      "sha256": "7b167fa62fb0e24afc103e6821322443fd361bd951b5d18ac2a58423f1b97480"
+      "from": "Lossless WebP from source/design/expression/2026-10-15-eight-poses/generated/lion-surprise-original.png",
+      "path": "source/public/assets/expression/lion-surprise-v2.webp",
+      "bytes": 1431686,
+      "sha256": "42c5c04d9ad2353963cafefb80b3f9d73bd61f09ea2229ec7c8362c43f040233"
     },
     {
       "from": "2026-10-15 expression eight-pose final browser review",
@@ -2577,10 +2577,10 @@
       "sha256": "6d9a52bed565456cc935e1ee9af5c9cf005ea30ee6241f2bd1bbe6685796dc76"
     },
     {
-      "from": "source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
-      "path": "source/public/assets/models/lion-action-theater.glb",
-      "bytes": 31826708,
-      "sha256": "b1ecec05ebb92e50fd714ae7ba56ffae18bb9ad10b374373e156c2fa4e44fc88"
+      "from": "Runtime room, screen geometry and mount height from source/models/immersive-theater/SouthWindLion_Immersive_Theater.glb",
+      "path": "source/public/assets/models/lion-action-theater-shell.glb",
+      "bytes": 13944,
+      "sha256": "82952289b274a9415e67a16a0d49b5ff93a0b7fa5e81edf464573cadac8c1bea"
     },
     {
       "from": "D:/04_EdgeDownload/醒狮动作 (3)/醒狮动作/探青采青.mp4",
@@ -3563,52 +3563,52 @@
       "sha256": "86430b5ca9bef18a499e6ba24d0a207236babd1e02702ebdfa3a0b2aed840f67"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/anger.png",
-      "bytes": 1224080,
-      "sha256": "21ada293934054b5db68436291d0bc6d0a3908ef8bd5e5ed7a1366ca8d23f865"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/anger.png",
+      "path": "source/public/assets/expression/calligraphy/anger.webp",
+      "bytes": 910752,
+      "sha256": "c003e247540985b2c49ec4571b0e24940158d85f4f4ce653756d2319eb818cb1"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/delight.png",
-      "bytes": 1021041,
-      "sha256": "21dffb00f51ed66a96f9d6b94407f626ea7885cff06c88c26605da5f871d8c58"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/delight.png",
+      "path": "source/public/assets/expression/calligraphy/delight.webp",
+      "bytes": 750250,
+      "sha256": "cf2e7734b8abe89e80ae9c9de2ca2073084a3dcbc20b992275e0a7cc7fbcb818"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/doubt.png",
-      "bytes": 1362027,
-      "sha256": "5b95eacaeb224f03edbb8dc82e9b24a26ac21880403de9b2290dfb9898972bda"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/doubt.png",
+      "path": "source/public/assets/expression/calligraphy/doubt.webp",
+      "bytes": 992630,
+      "sha256": "336189664e20eb7e61294685765950c2bf04be182351f173f71cdc943ae5fb2d"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/joy.png",
-      "bytes": 1200596,
-      "sha256": "ebf165d56cd495c72c00e4597b93d696362f29af81d36cb3c49d29ce5ca790cb"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/joy.png",
+      "path": "source/public/assets/expression/calligraphy/joy.webp",
+      "bytes": 913516,
+      "sha256": "b883870fef607793c7f16df3e1f3f880ba4aec9b37a80050270beb578ddf1477"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/motion.png",
-      "bytes": 1211487,
-      "sha256": "ab684e44b2edabd44b90466dac9272a5bb90e595a1005fe8f22acf3ce04bd0a8"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/motion.png",
+      "path": "source/public/assets/expression/calligraphy/motion.webp",
+      "bytes": 891868,
+      "sha256": "fcce2f9614a9b20e6661ebe7e1a76f3b0080f3223b33b77fe578cb32aa74c5e5"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/sorrow.png",
-      "bytes": 1089829,
-      "sha256": "846fbbb6ec60f77a0d4a262c83cc2d64cea1a2db460e9b8cf8f1e6ce458129fb"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/sorrow.png",
+      "path": "source/public/assets/expression/calligraphy/sorrow.webp",
+      "bytes": 801474,
+      "sha256": "3019a36f32b8f2aa2dd3bdc4e9498e94ac835133d63d414ec2de89ecf684a97e"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/stillness.png",
-      "bytes": 1276111,
-      "sha256": "156d01bc419592fd103b960a754cac58d41c89419fca441e4f56c9151382ebb6"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/stillness.png",
+      "path": "source/public/assets/expression/calligraphy/stillness.webp",
+      "bytes": 955410,
+      "sha256": "aeecdc958ef691472655839a4301a62d026cde0120322c8b97b0edab6a66a1ce"
     },
     {
-      "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
-      "path": "source/public/assets/expression/calligraphy/surprise.png",
-      "bytes": 1265039,
-      "sha256": "953ca8d657b3616c05fe06c7146544b2f8295f4e313d8378def95f98a5a50f82"
+      "from": "Lossless WebP from source/design/expression-calligraphy/2026-10-22/surprise.png",
+      "path": "source/public/assets/expression/calligraphy/surprise.webp",
+      "bytes": 943940,
+      "sha256": "6cfc3eef06e1e362a7fcb0801089005b65d234705b97a2f7749bf085804a6483"
     },
     {
       "from": "Built-in ImageGen; exact prompts in source/design/expression-calligraphy/2026-10-22/prompts.json",
@@ -5447,28 +5447,28 @@
       "sha256": "8616f153acf2d963c9d6e06a04bdfccdfcd3bd9855cc6819cf906010a6306745"
     },
     {
-      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
-      "path": "source/public/assets/craft/hua.png",
-      "bytes": 3075784,
-      "sha256": "32ab8c2a8bd4e7080cd21d6074e2df5c45fc726380961f6563137ca632de525b"
+      "from": "Lossless WebP from source/design/lion-head-craft/2026-10-28/hua.png",
+      "path": "source/public/assets/craft/hua.webp",
+      "bytes": 2119398,
+      "sha256": "62ee727a55ccde47d25c875b22a514d54e92d289a6a380703ccf5f4e5b2f4f5d"
     },
     {
-      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
-      "path": "source/public/assets/craft/pu.png",
-      "bytes": 3047576,
-      "sha256": "56d03aa3502a77c2b35f1ffd4237e982a5ade75a1649333fc2b55533656b3780"
+      "from": "Lossless WebP from source/design/lion-head-craft/2026-10-28/pu.png",
+      "path": "source/public/assets/craft/pu.webp",
+      "bytes": 2094342,
+      "sha256": "77d7bba8c5daaaf3b6be8a09ad88a2a7498491cac8fb0ae6dbeaed54544ca368"
     },
     {
-      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
-      "path": "source/public/assets/craft/zha.png",
-      "bytes": 3549341,
-      "sha256": "6b80832afda261498dfdd9a4ffb9d1b664c431e23b1f58cf1689d9946e57c7ed"
+      "from": "Lossless WebP from source/design/lion-head-craft/2026-10-28/zha.png",
+      "path": "source/public/assets/craft/zha.webp",
+      "bytes": 2402526,
+      "sha256": "1ef9dc4c3c5a7b7425d4d228dc9748813792e4b289b8ee252e7e9870dfc37206"
     },
     {
-      "from": "built-in image_gen AI-assisted varied-scene craft illustration 2026-10-28; source/design/lion-head-craft/2026-10-28/README.md",
-      "path": "source/public/assets/craft/zhuang.png",
-      "bytes": 3169315,
-      "sha256": "be06491c616469082e3741d07be7041fa13470c0e66e42242b7437282c55d351"
+      "from": "Lossless WebP from source/design/lion-head-craft/2026-10-28/zhuang.png",
+      "path": "source/public/assets/craft/zhuang.webp",
+      "bytes": 2203534,
+      "sha256": "179fa60f65f944c75c1efea868ac63b5cf5c01a991b7b19972424eda888f93a8"
     },
     {
       "from": "actual Chrome production craft depth carousel review 2026-10-27",

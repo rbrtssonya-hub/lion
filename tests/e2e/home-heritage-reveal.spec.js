@@ -60,7 +60,7 @@ test('type tabs and local keyboard keep the visible artwork, classification and 
   ]) {
     await types.getByRole('tab', { name: new RegExp(name) }).click();
     await expect(types.locator('.heritage-copy')).toBeVisible();
-    await expect(types.locator('.heritage-figure img')).toHaveAttribute('src', new RegExp(`lion-types/${id}\\.png$`));
+    await expect(types.locator('.heritage-figure img')).toHaveAttribute('src', new RegExp(`lion-types/${id}\\.webp$`));
     await expect(types.locator('.heritage-copy .heritage-kind')).toHaveText(kind);
     await expect(types.getByRole('list', { name: '观察重点' })).toContainText(observation);
   }

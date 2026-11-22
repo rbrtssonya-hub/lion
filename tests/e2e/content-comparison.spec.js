@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { assetPaths } from '../../src/config/assetPaths.js';
 import { selectHomeExhibit } from './home-exhibit.helpers.js';
 
 async function open(page, route = '') {
@@ -44,7 +45,7 @@ test('造章形制对照按相同维度联动，重复选择交换两侧并保�
 });
 
 test('退出类型对照恢复直接可读的单狮介绍和焦点，示意图失败仍能读对照', async ({ page }) => {
-  await page.route('**/lion-types/foshan.png', route => route.abort());
+  await page.route(`**/${assetPaths.lionTypeFoshan}`, route => route.abort());
   await open(page);
   const types = await selectHomeExhibit(page, 'homeLionTypes');
   await types.getByRole('tab', { name: /佛鹤狮/ }).click();
