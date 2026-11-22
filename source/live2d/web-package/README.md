@@ -21,7 +21,7 @@ source/live2d/cubism/nanfeng-lion.cmo3
 将 Cubism Editor 的发布文件放到：
 
 ```text
-source/public/assets/live2d/nanfeng-lion/
+source/live2d/web-package/nanfeng-lion/
   nanfeng-lion.model3.json
   nanfeng-lion.moc3
   nanfeng-lion.physics3.json
@@ -62,7 +62,7 @@ Cubism Editor 需要从 Live2D 官方页面获取并按其许可使用：
 2. 重做真实透明的狮头、眼睛和眼皮分层，并补绘 `Background_Repair`，不能继续使用当前全透明修复层或带背景的裁切块。
 3. 建立 `ParamAngleX/Y/Z`、眼睛开合、瞳孔、嘴部、呼吸、鬃毛和流苏参数。
 4. 制作并导出 `Idle`、`Blink`、`LookAt`、`EntryConfirm` 四个动作。
-5. 将发布目录复制到 `source/public/assets/live2d/nanfeng-lion/`，更新模型引用，再从项目根运行：
+5. 将发布目录复制到 `source/live2d/web-package/nanfeng-lion/`，更新模型引用，再从项目根运行：
 
 ```text
 node --test tests/assets/live2d-package.test.mjs

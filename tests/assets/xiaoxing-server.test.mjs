@@ -125,11 +125,12 @@ test('desktop-to-gateway-to-model flow works with server-held credentials and ex
   } finally { await desktop.close(); await gateway.close(); await provider.close(); }
 });
 
-test('actual portable HTTP server serves packaged assistant runtime while offline', async () => {
+test('actual portable HTTP server serves packaged assistant runtime while offline', async t => {
   const { startServer } = await import('../../scripts/portable/bundled-server.cjs');
   const project = process.cwd();
   const parent = path.join(project, 'tmp'); await fs.mkdir(parent, { recursive: true });
   const appDir = await fs.mkdtemp(path.join(parent, 'xiaoxing-package-'));
+  t.after(() => fs.rm(appDir, { recursive: true, force: true }));
   await fs.writeFile(path.join(appDir, 'package.json'), JSON.stringify({ type: 'module' }));
   await copyAssistantRuntime(project, appDir);
   const voiceBytes = Buffer.from('RIFF-fixture-WAVE');

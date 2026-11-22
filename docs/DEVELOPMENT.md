@@ -1,5 +1,7 @@
 # 工程开发说明
 
+`source/public/` 只登记随桌面网页部署的素材和许可。停用的 Live2D 试制包、结构书法和旧动作海报见 [工程资源目录](../source/README.md)。Vite 会重建 `dist/`。旧测试、浏览器配置及打包中间产物可按各自命令重建，成品和创作原件需单独保留。
+
 ## 传章地域邮票（2026-10-28）
 
 `SpreadStampBoard`替换旧右侧图文，当前地图范围对应四枚地域邮票。`services/spread-stamps/`完整迁移炫技3的runGo地域版光学、纸纹、六合成算法、影子及交互，动态加载并沿用现有Three；`src/config/spreadStampSettings.js`将原52字段映射为独立持久设置。设置新增“邮票”页，支持原参数JSON与全站事务。用户后续取消底板，因此右板、WebGL、聚焦和fallback均透明，仅票面纸张及投影可见；原背景输出shader保留但不绘制，两独立底色控件不用于当前呈现。
@@ -144,7 +146,7 @@ React 负责页面生命周期、部件选择与信息面板状态，场景服�
 
 ### 结构模型与部件聚焦
 
-2026-10-19 结构页改用用户提供的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出模型。当前部署路径为 `source/public/assets/models/lion-structure-optimized.glb`，由 `assetPaths.model` 和 `media.model` 引用。此前单狮头 `lion-overall.glb` 原字节归档至 `source/models/lion-head-overall-v1.glb`，不再部署。用户原始 Blender 输入保留在 `model/`，不改写、不复制到 public，也不纳入本次提交；导出检查数据见 [模型记录](../source/references/lion-structure-model.json)。
+2026-10-19 结构页改用用户提供的 `model/醒狮_保留UV_三角转四边_优化.blend` 导出模型。当前部署路径为 `source/public/assets/models/lion-structure-optimized.glb`，由 `assetPaths.model` 和 `media.model` 引用。此前单狮头 `lion-overall.glb` 原字节归档至 `source/models/img23d_21199_优化版.glb`，不再部署。用户原始 Blender 输入保留在 `model/`，不改写、不复制到 public，也不纳入本次提交；导出检查数据见 [模型记录](../source/references/lion-structure-model.json)。
 
 电脑端使用单屏双栏：左侧 `scene-column` 展示完整醒狮，右侧唯一 `structurePanel` 集中标题、加载状态、旋转/复原、六组部件目录、工艺/文化资料及来源说明，详情在卡内滚动。`sceneContainer` 仍位于 `modelStage` 直属层，透明画布覆盖整页；左侧 `sceneFrame` 与独立 `scene-interaction` 负责构图及 OrbitControls 拖动、缩放、表面点击，不恢复16:9内框、地面或中央裁切。旧固定百分比热点、`showGuide`、结构滑杆、假拆解进度和示意图层已删除。
 
@@ -236,7 +238,7 @@ Three.js 通过 `alpha: true` 与透明清屏融合全页背景，不添加地�
 4. 运行 `npm test` 和 `npm run build`，涉及媒体交接、布局或模型时补充浏览器回归。
 5. 在工程记忆中记录重要替换原因、已验证行为和遗留问题。
 
-Live2D 创作源与运行包分开放置。当前运行包为重制参考，首页没有加载 Cubism/Pixi；不能仅将 manifest 改为 `ready` 就称为完成接入。视觉与绑定问题见 [Live2D 说明](../source/public/assets/live2d/README.md)。
+Live2D 试制包与创作源集中在 `source/live2d/`。当前首页使用视频，试制包独立执行资产检查。视觉与绑定问题见 [Live2D 说明](../source/live2d/web-package/README.md)。
 
 2026-10-12首页循环视频已按用户指定文件替换，运行路径仍为 `assets/entry/home-lion-loop.mp4`；旧运行视频原字节保留在 `source/video/entry/home-lion-loop-v1.mp4`，原资产清单记录迁到该归档路径。新运行视频、dist拷贝与用户源视频SHA-256一致，最终资产清单83条。文化摄影从具体Commons文件许可核对后接入，更新时需同步图注、来源说明和资产清单；不要批量重写已有快照。
 

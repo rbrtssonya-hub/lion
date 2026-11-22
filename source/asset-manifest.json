@@ -544,21 +544,15 @@
     },
     {
       "from": "site/assets/live2d/nanfeng-lion/nanfeng-lion.moc3",
-      "path": "source/public/assets/live2d/nanfeng-lion/nanfeng-lion.moc3",
+      "path": "source/live2d/web-package/nanfeng-lion/nanfeng-lion.moc3",
       "bytes": 21888,
       "sha256": "c7986863e8d2e5253ca2af7357750d35afe237f3067b040dc6db083867975648"
     },
     {
       "from": "site/assets/live2d/nanfeng-lion/textures/texture_00.png",
-      "path": "source/public/assets/live2d/nanfeng-lion/textures/texture_00.png",
+      "path": "source/live2d/web-package/nanfeng-lion/textures/texture_00.png",
       "bytes": 2243385,
       "sha256": "7b1b163f20d9c3d49df048c2e87fde40419bb4f79fbd522e02039a33d94b581a"
-    },
-    {
-      "from": "site/assets/models/lion-overall.glb",
-      "path": "source/models/lion-head-overall-v1.glb",
-      "bytes": 22573396,
-      "sha256": "18ae2f59ac345b35fa6fe9e6e3bcbc1a1c2ff643ef0e92c4d81109640ebc33ed"
     },
     {
       "from": "site/assets/poster/lion-full.png",
@@ -1204,13 +1198,13 @@
     },
     {
       "from": "generated:runtime/lion-culture-pattern.svg",
-      "path": "source/public/assets/decor/lion-culture-pattern.svg",
+      "path": "source/design/home-heritage/lion-culture-pattern.svg",
       "bytes": 673,
       "sha256": "d28bd98a828731093bbea211913a755fba2e693661bf1d76e273803e2fe4633b"
     },
     {
       "from": "builtin-imagegen:2026-10-14/reference-lion-head-extraction",
-      "path": "source/public/assets/expression/lion-head-front.png",
+      "path": "source/design/expression/lion-head-front.png",
       "bytes": 1930415,
       "sha256": "2cb4b75558552f634d9e3b37869c535037ed60094945588f26a3ab284c1ab896"
     },
@@ -1588,25 +1582,25 @@
     },
     {
       "from": "imagegen:2026-10-14/action-reference-extraction",
-      "path": "source/public/assets/action/action-entry-poster.png",
+      "path": "source/design/action/2026-10-14-action-explorer/action-entry-poster.png",
       "bytes": 2161930,
       "sha256": "50697a5e3d546f6c39eb139f2faf84c69f9e64be6b8a7713397534f4e651691d"
     },
     {
       "from": "imagegen:2026-10-14/action-reference-extraction",
-      "path": "source/public/assets/action/action-probe-poster.png",
+      "path": "source/design/action/2026-10-14-action-explorer/action-probe-poster.png",
       "bytes": 2121230,
       "sha256": "51a5f6f64823b384f52680ac91fe4d42c5498c696d708195bb3976dc8e2aece8"
     },
     {
       "from": "imagegen:2026-10-14/action-reference-extraction",
-      "path": "source/public/assets/action/action-turn-poster.png",
+      "path": "source/design/action/2026-10-14-action-explorer/action-turn-poster.png",
       "bytes": 2241116,
       "sha256": "46ad3cc68afd465e6eba20ee09eaa80d0171e5ee2c6a612db03ef33d7c5c579d"
     },
     {
       "from": "imagegen:2026-10-14/action-reference-extraction",
-      "path": "source/public/assets/action/action-settle-poster.png",
+      "path": "source/design/action/2026-10-14-action-explorer/action-settle-poster.png",
       "bytes": 2100718,
       "sha256": "581f6c71e0d2a57d5adc332fcbd89e15a21080deb6bfbaf96b07da64b578edfd"
     },
@@ -1816,7 +1810,7 @@
     },
     {
       "from": "imagegen:exec-ab148310-6a50-4dc9-a532-be6d5d647cbf/nose-corrected-original-divider",
-      "path": "source/public/assets/decor/lion-peeking-divider.png",
+      "path": "source/design/home-heritage/2026-10-20-refresh/lion-peeking-divider.png",
       "bytes": 2392827,
       "sha256": "61cc43ea9fa347253c2f0edafb69fb73675a02136501049b866601926c665229"
     },
@@ -3324,37 +3318,37 @@
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/guan.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/guan.png",
       "bytes": 709168,
       "sha256": "09d163d4449ce9cc2a3005588d631754b29680ef1060716065bd1e1ecab4f646"
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/ling.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/ling.png",
       "bytes": 645783,
       "sha256": "91d09f2797850908a15f25509040b78e4cd6020afd4b87d143dd0421dc4bdce1"
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/qi.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/qi.png",
       "bytes": 556384,
       "sha256": "50587ba9daf5be51787fe18d9cf9a9d81ec6cf1af80a3f53e55118b531ada353"
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/shen.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/shen.png",
       "bytes": 660185,
       "sha256": "95fe040d4f86373027776a48c83b9ed0a25276410b02c290252b689f61b47e13"
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/shi.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/shi.png",
       "bytes": 639788,
       "sha256": "e8c6e62a61b7c7d6a612ee671a414eba0e5f13ce80714d371b39829ec17bf514"
     },
     {
       "from": "imagegen: alpha-preserving crop/pad of independent original, 2026-10-21",
-      "path": "source/public/assets/structure/calligraphy/wei.png",
+      "path": "source/design/structure-atlas/2026-10-21/web-export/wei.png",
       "bytes": 646034,
       "sha256": "a7da93f6b9267011774818ce79fb649800ae32fee8e488e67924aaf51b6e1de0"
     },
@@ -13197,12 +13191,6 @@
       "path": "source/reviews/expression-depth/2026-10-28/scene-frames/lion-motion-700ms.png",
       "bytes": 280818,
       "sha256": "608f504307ae3da570253413449ab7238fcc44e2754d1bc910bec5cd438eddd7"
-    },
-    {
-      "from": "User supplied original: F:/数媒竞赛/醒狮素材/醒狮模型背景.png (2026-10-29)",
-      "path": "source/public/assets/dance-entrance/paper-landscape.png",
-      "bytes": 2341966,
-      "sha256": "aa62559fbbf74b40ef1020a469f839a10f7332d5eb99a9683f2dfa1a310c9a91"
     },
     {
       "from": "User approved symmetric portal reference: 国风醒狮展厅双屏界面.png (AI-assisted concept, 2026-10-29)",

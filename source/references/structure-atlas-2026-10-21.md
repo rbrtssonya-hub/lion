@@ -14,14 +14,14 @@
 
 本轮使用当前环境内置 `image_gen.imagegen`，依次执行六次独立生成，均设置真实透明背景。每次只生成一个汉字，未从六字合图裁切，也未以字体、Unicode 文字、SVG text 或 CSS 替代大型艺术字。调用提示词、原工具路径及归档位置见 [imagegen.json](../design/structure-atlas/2026-10-21/imagegen.json)。
 
-| 部件 ID | 部件 | 汉字 | 部署 PNG |
+| 部件 ID | 部件 | 汉字 | 归档 PNG |
 | --- | --- | --- | --- |
-| `outer_shell` | 彩绘狮头 | 神 | [shen.png](../public/assets/structure/calligraphy/shen.png) |
-| `eyes` | 鼓眼与狮眉 | 威 | [wei.png](../public/assets/structure/calligraphy/wei.png) |
-| `mirror` | 额饰与狮角 | 冠 | [guan.png](../public/assets/structure/calligraphy/guan.png) |
-| `mouth` | 狮嘴 | 启 | [qi.png](../public/assets/structure/calligraphy/qi.png) |
-| `fur_and_bells` | 须毛与边饰 | 灵 | [ling.png](../public/assets/structure/calligraphy/ling.png) |
-| `lion_cloth` | 狮被与狮尾 | 势 | [shi.png](../public/assets/structure/calligraphy/shi.png) |
+| `outer_shell` | 彩绘狮头 | 神 | [shen.png](../design/structure-atlas/2026-10-21/web-export/shen.png) |
+| `eyes` | 鼓眼与狮眉 | 威 | [wei.png](../design/structure-atlas/2026-10-21/web-export/wei.png) |
+| `mirror` | 额饰与狮角 | 冠 | [guan.png](../design/structure-atlas/2026-10-21/web-export/guan.png) |
+| `mouth` | 狮嘴 | 启 | [qi.png](../design/structure-atlas/2026-10-21/web-export/qi.png) |
+| `fur_and_bells` | 须毛与边饰 | 灵 | [ling.png](../design/structure-atlas/2026-10-21/web-export/ling.png) |
+| `lion_cloth` | 狮被与狮尾 | 势 | [shi.png](../design/structure-atlas/2026-10-21/web-export/shi.png) |
 
 六张 ImageGen 原输出均为 1254×1254，原字节归档于 `source/design/structure-atlas/2026-10-21/originals/`。用户明确要求裁剪透明边缘并协调显示大小，因此 [prepare_structure_calligraphy.py](../../scripts/prepare_structure_calligraphy.py) 只按 alpha 边界裁剪、等比缩放并居中留白，不绘制笔画、不调色、不改写原件。运行图统一 1024×1024 RGBA；alpha 范围 0–255，墨迹四周至少留 72px 透明边缘。尺寸、原裁切范围、alpha 边界、颜色统计及 SHA256 见 [prepared-assets.json](../design/structure-atlas/2026-10-21/prepared-assets.json)。六字已逐张查看并独立复核，未发现错字、额外文字或明显笔画缺损；六份运行 PNG 的实际 SHA 与记录一致，不以透明 padding 代替字形审查。
 
@@ -29,8 +29,8 @@
 
 ## 页面与交互
 
-- [StructureReadingPanel.jsx](../../src/features/model/StructureReadingPanel.jsx) 以题签、真实书法图片、部件标题/诗性副标题、引言、三个文化小节和底部翻阅导航组成一页图鉴。取消原两列 01–06 网格与结构/文化标签切换。
-- [structure-atlas.js](../../src/data/structure-atlas.js) 按原稳定部件 ID 关联六字、指定副标题和编辑性引言；[lion-structure.json](../../src/data/lion-structure.json) 原结构、材料、连接、文化资料完整保留，通过「形制之美」「匠心之艺」「狮韵之意」及原生 `<details>` 阅读。
+- `StructureReadingPanel.jsx`（历史源见 `cd6cfd3`） 以题签、真实书法图片、部件标题/诗性副标题、引言、三个文化小节和底部翻阅导航组成一页图鉴。取消原两列 01–06 网格与结构/文化标签切换。
+- `structure-atlas.js`（历史源见 `cd6cfd3`） 按原稳定部件 ID 关联六字、指定副标题和编辑性引言；[lion-structure.json](../../src/data/lion-structure.json) 原结构、材料、连接、文化资料完整保留，通过「形制之美」「匠心之艺」「狮韵之意」及原生 `<details>` 阅读。
 - [ModelPage.jsx](../../src/features/model/ModelPage.jsx) 保持唯一 `selectedId`。模型真实表面点选、投影标签与前后翻阅均走 `selectHotspot`，同步图片、资料、选中态和原相机聚焦。选部件停止自转、重置右栏阅读位置；「复原整体」恢复首部件与整体镜头，「自动旋转」及载入状态移到左侧轻工具栏。原眉眼/狮嘴去神态观察与返回保留。
 - [model.css](../../src/styles/model.css) 将右栏限制在桌面约 380–420px，题签和页脚固定，中部独立纵向滚动。容器余宽 850px 以上保持双栏；更窄的电脑缩放/设置余宽改为模型在上、图鉴在下，避免挤压模型。书法仅有 160ms、4px 淡入，减少动态偏好关闭动画。此处窄窗防御不等同于手机专项验收。
 - 左侧标题增加低对比宣纸题签，投影标签按标题真实高度避让；合法 40% 自定义纸页宽度下，题签、汉字图片、阅读与翻阅导航继续可用。683px 电脑缩放窗口仅在结构路由固定品牌占用 44px、导航使用剩余高度，并核对导航图标及子文字的真实 bounds，避免按钮外框正常但文字越出。

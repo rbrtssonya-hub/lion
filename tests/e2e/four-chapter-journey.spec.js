@@ -86,25 +86,6 @@ test('legacy aliases and unknown addresses keep their existing fallback behavior
   }
 });
 
-test('the spread surface participates in chapter material saving and settings push layout', async ({ page }) => {
-  await open(page, 'spread');
-  await page.locator('[data-action="settings"]').click();
-  const panel = page.getByRole('region', { name: '开发者参数设置', exact: true });
-  await panel.getByRole('tab', { name: '章节', exact: true }).click();
-  await panel.getByRole('tab', { name: '传章', exact: true }).click();
-  const group = panel.locator('.developer-settings-group:visible').first();
-  if (await group.getAttribute('open') === null) await group.locator('summary').click();
-  const opacity = panel.getByRole('spinbutton', { name: '传章案例底板透明度数值', exact: true });
-  await opacity.fill('37');
-  await opacity.press('Tab');
-  await expect(page.locator('#spreadPlaceCard')).toHaveCSS('--surface-opacity', '0.63');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
-  await panel.getByRole('button', { name: '保存设置', exact: true }).click();
-  await page.reload();
-  await expect(page.locator('#spreadPlaceCard')).toHaveCSS('--surface-opacity', '0.63');
-  await expect(page.locator('[data-route="spread"][aria-current="page"]')).toBeVisible();
-});
-
 test('source dialog renders saved surface materials after moving out of the home exhibit', async ({ page }) => {
   await open(page);
   await page.evaluate(() => {

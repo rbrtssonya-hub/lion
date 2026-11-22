@@ -10,7 +10,7 @@
 - 核实版本：`302800b7ec50fa243e2dae155e3ba6a2b2b9b2f6`，2026-10-29 GitHub API 元数据 `license: null`。
 - 读取其 `README.md`、`index.html`、`styles.css`、`script.js`。参考其图层纵深、缓动插值和指针交互机制；本项目独立改写 React 生命周期与镜头行为，没有复制参考代码、城市图片、图标或字体。
 - 原参考为连续滚动故事与五卡片轨道；现实现改为两处独立目的地、受限拖动视角、键盘环看、归位、原生锚点与浏览器历史。
-- 固定山水背景来自用户 `F:/数媒竞赛/醒狮素材/醒狮模型背景.png`，原字节复制至 `source/public/assets/dance-entrance/paper-landscape.png`。
+- 固定山水背景来自用户 `F:/数媒竞赛/醒狮素材/醒狮模型背景.png`。2026-11-22 起，舞章入口和八态纵深共用原字节一致的 `source/public/assets/expression-depth/images/paper-reference.png`。
 - 设计参考 `source/design/dance-entrance/reference.png` 来自用户提供的《国风醒狮展厅双屏界面.png》，为 AI 辅助概念图，未作为整页运行截图部署。
 - 左窗使用现有动作场景海报和四段视频海报，右窗使用既有八态 AI 辅助视觉，实际八态仍为定性观察提示。入口中已说明 AI 辅助预览。
 

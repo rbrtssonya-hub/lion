@@ -95,7 +95,7 @@ class PreviewBoundary extends Component {
 export function ExpressionPreview({ view, active, reduced, settings }) {
   const [status, setStatus] = useState('loading');
   return <div className="portal-world expression-preview" data-scene="expressions" data-preview-state={status} aria-hidden="true"
-    style={{ '--preview-paper': `url("${new URL(media.depthPaperBackground, document.baseURI).href}")` }}>
+    style={{ '--preview-paper': `url("${new URL(media.dancePaperBackground, document.baseURI).href}")` }}>
     <div className="portal-paper-atmosphere" />
     <PreviewBoundary onFailure={() => setStatus('error')}><Suspense fallback={null}>
       {status !== 'error' && <DepthScene chapter={1.9} preview={view} active={active} reduced={reduced} blocked settings={settings}

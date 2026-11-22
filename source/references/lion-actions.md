@@ -1,6 +1,6 @@
 # 动作图鉴素材与接入边界
 
-现行动作页为“左视频右简介＋四段长页＋讲解区唯一阶段目录”。用户于2026-10-15指出重复的小导航冗余，因此移除首屏底部的入场／探步／转身／收势导航及“向下读懂动作”提示，只保留下方讲解区的吸顶阶段目录。
+本文记录 2026-10-15 的动作图鉴方案。当时采用“左视频右简介＋四段长页＋讲解区唯一阶段目录”。用户指出重复的小导航冗余，因此移除首屏底部的入场／探步／转身／收势导航及“向下读懂动作”提示，只保留下方讲解区的吸顶阶段目录。
 
 保留的目录负责四段定位、当前阶段高亮、键盘操作与自然滚动联动；首屏编号、海报和简介仍同步当前阶段。四段配图、观察文案与正式视频待接入状态保持。2026-10-14批准的两个阶段导航属于此前方案，现已由此次要求替代。
 
@@ -8,7 +8,7 @@
 
 - 首屏参考归档：`source/design/action/action-hero-reference.png`，来自用户的“动作展示.png”。
 - 四段参考归档：`source/design/action/action-detail-reference.png`，来自用户的“动作下滑界面新版.png”。
-- 四张部署海报分别为 `source/public/assets/action/action-entry-poster.png`、`action-probe-poster.png`、`action-turn-poster.png`、`action-settle-poster.png`。
+- 四张历史海报存于 `source/design/action/2026-10-14-action-explorer/`，文件名为 `action-entry-poster.png`、`action-probe-poster.png`、`action-turn-poster.png`、`action-settle-poster.png`。
 - 海报使用内置imagegen逐幅AI辅助提取/扩展为16:9，不是像素无损裁切，不是摄影或正式视频首帧；没有复制整页的标题、按钮、印章或背景到播放器。白红醒狮属于参考图的形象。
 - 用户补充的“醒狮全身图.png”与现有 `media.poster`（`source/public/assets/poster/lion-full.png`）SHA256一致：`e58ee7dae46691e8d3f9ca55e746a90153532016b73c5e25dbd4bef0de8f6e27`。原文件未修改；红绒金彩形象作为海报加载异常的回退，不声称与参考图白红狮是同一素材。
 

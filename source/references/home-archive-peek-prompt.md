@@ -3,7 +3,7 @@
 - 执行方式：内置 imagegen；全流程保持 transparent_background=true，没有CLI或Python图像处理。
 - 构图参考：用户提供的小红书图片，只参考狮头探出与双爪搭边的姿势；没有编辑或去除该参考的文字、水印。
 - 首次生成：`exec-ca20103b-ce1a-4b91-aac9-d92caf852756.png`。用户指出鼻子奇怪，不作为网页最终素材。
-- 局部编辑：`exec-ab148310-6a50-4dc9-a532-be6d5d647cbf.png`。只修正鼻部，最终部署为 `source/public/assets/decor/lion-peeking-divider.png`。
+- 局部编辑：`exec-ab148310-6a50-4dc9-a532-be6d5d647cbf.png`。只修正鼻部，最终部署为 `source/design/home-heritage/2026-10-20-refresh/lion-peeking-divider.png`。
 - 新背景另用用户PNG原字节，不属于生成结果。
 
 ## 首次生成提示词（原文）
